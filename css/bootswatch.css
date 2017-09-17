@@ -58,13 +58,4 @@ body {
   }
 }
 
-@media (max-width: 980px) {
 
-  /* Unfloat brand */
-  .navbar-fixed-top .brand {
-    float: left;
-    margin-left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
