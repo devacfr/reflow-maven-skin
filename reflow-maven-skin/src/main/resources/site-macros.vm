@@ -1061,7 +1061,7 @@
             #set ( $divId = $funSplit.get(1) )
             #set ( $imgId = $funSplit.get(3) )
             #set ( $replBefore = '<button title="Information" class="btn btn-link btn-small" type="button" data-toggle="collapse" data-target="#' )
-            #set ( $replAfter = '"><i class="icon-info-sign"></i></button>' )
+            #set ( $replAfter = '"><i class="glyphicon glyphicon-info-sign"></i></button>' )
             #call ( $iconReplacements.put("#$imgId", "$replBefore$divId$replAfter") )
             #set ( $collapseSelector = "${collapseSelector}, #$divId" )
         #end

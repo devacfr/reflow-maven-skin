@@ -1,15 +1,9 @@
 # Contribute
 
-Reflow skin is an open-source project and all contributions are welcome to assist with its
-development and maintenance. The skin originated as a new skin for the upcoming
-[Community Z Tools][czt] release, which uses Maven site for its documentation.
-
-Along the way I realised that the skin is becoming general enough to be released separately so that
-the whole community can benefit. Reflow Maven skin and the associated Reflow Velocity tools can be
-used freely and are released under [Apache license][apache-license].
-
-[czt]: http://czt.sourceforge.net
-[apache-license]: http://www.apache.org/licenses/LICENSE-2.0
+Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests, 
+please state that the contribution is your original work and that you license the work to the project under the project's open source license. 
+Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email, 
+or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.
 
 
 ## Issues (bug and feature tracker)
@@ -17,10 +11,8 @@ used freely and are released under [Apache license][apache-license].
 Please report any bugs found, feature requests or other issues on
 [Reflow skin GitHub tracker][reflow-issues].
 
-When creating a new issue, try following [necolas's guidelines][issue-guidelines].
+[reflow-issues]: http://github.com/devacfr/reflow-maven-skin/issues/
 
-[reflow-issues]: http://github.com/andriusvelykis/reflow-maven-skin/issues/
-[issue-guidelines]: http://github.com/necolas/issue-guidelines/#readme
 
 
 ## Fork, patch and contribute code
@@ -79,7 +71,7 @@ Inspired by [Maven Fluido Skin][fluido].
 
 ## Copyright and license
 
-Copyright 2012 Andrius Velykis
+Copyright 2012-2017 Christophe Friederich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.

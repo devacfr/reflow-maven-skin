@@ -94,15 +94,15 @@
 	#if ( !$config.not( "bootstrapIcons" ) )
 		## Bootstrap Icons are enabled by default, so check for false and negate
 		#depsCollapse ()
-		#set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="icon-plus"></i>',
-										'img[src$=images/remove.gif]' : '<i class="icon-remove"></i>',
-										'img[src$=images/fix.gif]' : '<i class="icon-wrench"></i>',
-										'img[src$=images/update.gif]' : '<i class="icon-refresh"></i>',
-										'img[src$=images/icon_help_sml.gif]' : '<i class="icon-question-sign"></i>',
-										'img[src$=images/icon_success_sml.gif]' : '<i class="icon-ok"></i>',
-										'img[src$=images/icon_warning_sml.gif]' : '<i class="icon-warning-sign"></i>',
-										'img[src$=images/icon_error_sml.gif]' : '<i class="icon-exclamation-sign"></i>',
-										'img[src$=images/icon_info_sml.gif]' : '<i class="icon-info-sign"></i>' } )
+		#set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="glyphicon glyphicon-plus"></i>',
+										'img[src$=images/remove.gif]' : '<i class="glyphicon glyphicon-remove"></i>',
+										'img[src$=images/fix.gif]' : '<i class="glyphicon glyphicon-wrench"></i>',
+										'img[src$=images/update.gif]' : '<i class="glyphicon glyphicon-refresh"></i>',
+										'img[src$=images/icon_help_sml.gif]' : '<i class="glyphicon glyphicon-question-sign"></i>',
+										'img[src$=images/icon_success_sml.gif]' : '<i class="glyphicon glyphicon-ok"></i>',
+										'img[src$=images/icon_warning_sml.gif]' : '<i class="glyphicon glyphicon-sign"></i>',
+										'img[src$=images/icon_error_sml.gif]' : '<i class="glyphicon glyphicon-exclamation-sign"></i>',
+										'img[src$=images/icon_info_sml.gif]' : '<i class="glyphicon glyphicon-info-sign"></i>' } )
 		#set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )
 	#end
 ##
@@ -175,15 +175,6 @@
 		<meta http-equiv="content-language" content="$locale.language" />
 	#end
 ##
-	## Use protocol relative URLs: http://paulirish.com/2010/the-protocol-relative-url/
-	## So we need a workaround for local file:// URLs
-	## Use config option <protocolRelativeURLs>true</protocolRelativeURLs>
-	#if ( $config.is( "protocolRelativeURLs" ) )
-		#set ( $protocol = "" )
-	#else
-		#set ( $protocol = "http:" )
-	#end
-##
 	## Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
 	#if ( $config.absoluteResourceURL && $config.absoluteResourceURL.getValue() != '' )
 		#currentFileRelativeLink ( $config.absoluteResourceURL.getValue() ) 
@@ -227,16 +218,16 @@
 		#end
 
 		#if ( $bootswatchTheme )
-			#set ( $bootstrapCssPath = "$protocol//netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )
-			#set ( $bootstrapCssResponsivePath = "$protocol//netdna.bootstrapcdn.com/twitter-bootstrap/${bootswatchVersion}/css" )
+			#set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )
+			#set ( $bootstrapCssResponsivePath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootswatchVersion}/css" )
 			#set ( $bootstrapCssCombined = false )
 		#else
-			#set ( $bootstrapCssPath = "$protocol//netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )
+			#set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )
 			#set ( $bootstrapCssCombined = true )
 		#end
 
 
-		#set ( $bootstrapJsPath = "$protocol//netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )
+		#set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )
 
 	#end
 ##
@@ -559,7 +550,7 @@
 	#if ( $localResources )
 	<script src="$resourcePath/js/jquery.min.js"></script>
 	#else
-	<script src="$protocol//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	#end
 ##
 	<script src="$bootstrapJsPath/bootstrap.min.js"></script>

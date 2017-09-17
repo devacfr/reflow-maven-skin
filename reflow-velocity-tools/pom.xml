@@ -6,7 +6,6 @@
     <groupId>lt.velykis.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
     <version>1.1.2-DEVACFR-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>reflow-velocity-tools</artifactId>

@@ -2,8 +2,15 @@
 
 The history of Reflow Maven skin releases is documented below. For details of changes refer to the [project's GitHub issues][reflow-issues] or the [GitHub report][github-report].
 
-[reflow-issues]: http://github.com/andriusvelykis/reflow-maven-skin/issues?state=closed
+[reflow-issues]: http://github.com/devacfr/reflow-maven-skin/issues?state=closed
 [github-report]: github-report.html
+
+## 1.1.2-DEVACFR
+
+### Minor enhancements
+
+- Bump Bootstrap version to 3.3.6 (default version)
+- Bump Highlight version to 9.10.0 (default version)
 
 
 ## 1.1.1 / 2014-06-22
