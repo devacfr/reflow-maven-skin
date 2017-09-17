@@ -18,7 +18,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>lt.velykis.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2-DEVACFR</version>
   </skin>
   ...
 </project>
@@ -40,7 +40,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>lt.velykis.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.1.1</version>
+          <version>1.1.2-DEVACFR</version>
         </dependency>
         <!-- Reflow skin requires Velocity >= 1.7  -->
         <dependency>
@@ -124,7 +124,7 @@ A sample configuration file is given below:
 Have a bug or a feature request? Please create an issue here on GitHub that conforms with
 [necolas's guidelines](http://github.com/necolas/issue-guidelines).
 
-http://github.com/andriusvelykis/reflow-maven-skin/issues
+http://github.com/devacfr/reflow-maven-skin/issues
 
 
 ## Contributing
@@ -139,11 +139,14 @@ Fork the repository and submit pull requests.
 + http://andrius.velykis.lt
 + http://github.com/andriusvelykis
 
+** Christophe Friederich
+
++ http://devacfr.github.io/
 
 
 ## Copyright and license
 
-Copyright 2012-2013 Andrius Velykis
+Copyright 2012-2017 Christophe Friederich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.

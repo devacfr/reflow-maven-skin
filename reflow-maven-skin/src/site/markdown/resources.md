@@ -39,9 +39,9 @@ Use at your own risk, however, as major version changes are likely to break the 
 When using `<localResources>`, the following files need to be available in the corresponding
 directories within your project's `src/site/resources` folder:
 
--   **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap 2.3.2
--   **`css/bootstrap-responsive.min.css`** - Bootstrap 2.3.2
--   **`js/bootstrap.min.js`** - Bootstrap 2.3.2
+-   **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap 3.3.6
+-   **`css/bootstrap-responsive.min.css`** - Bootstrap 3.3.6
+-   **`js/bootstrap.min.js`** - Bootstrap 3.3.6
 -   **`js/jquery.min.js`** - jQuery 1.9.1
 -   **`js/html5.js`** - HTML5 support for IE6-8, get it from [here][html5shiv].
 

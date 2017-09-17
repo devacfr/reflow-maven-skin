@@ -23,12 +23,12 @@
   <custom>
     <reflowSkin>
       <!-- Make this to 'false' for local development, i.e. file:// URLs -->
-      <protocolRelativeURLs>false</protocolRelativeURLs>
+      <protocolRelativeURLs>true</protocolRelativeURLs>
       <smoothScroll>true</smoothScroll>
       <theme>default</theme>
       <highlightJs>true</highlightJs>
       <highlightJsTheme>github</highlightJsTheme>
-      <absoluteResourceURL>http://andriusvelykis.github.io/reflow-maven-skin/</absoluteResourceURL>
+      <highlightJsVersion>9.12.0</highlightJsVersion>
       <bootstrapVersion>3.3.6</bootstrapVersion>
       <bootswatchVersion>3.3.6</bootswatchVersion>
       <brand>
@@ -110,14 +110,12 @@
   <body>
     <!-- Add a rel to Google profile for all pages -->
     <head>
-      <![CDATA[
         <link rel="author" href="http://plus.google.com/103421057435787675572" />
-      ]]>
     </head>
 
     <links>
       <item name="Download" href="skin/index.html#Usage" />
-      <item name="GitHub project" href="http://github.com/andriusvelykis/reflow-maven-skin/" />
+      <item name="GitHub project" href="${project.scm.url}" />
     </links>
 
     <breadcrumbs>
