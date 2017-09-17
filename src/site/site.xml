@@ -29,6 +29,8 @@
       <highlightJs>true</highlightJs>
       <highlightJsTheme>github</highlightJsTheme>
       <absoluteResourceURL>http://andriusvelykis.github.io/reflow-maven-skin/</absoluteResourceURL>
+      <bootstrapVersion>3.3.6</bootstrapVersion>
+      <bootswatchVersion>3.3.6</bootswatchVersion>
       <brand>
         <!-- Brand text in top-left part of the site -->
         <name>
