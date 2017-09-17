@@ -22,7 +22,7 @@ a[name]:before {
 @media (min-width: 980px) {
   .navbar.affix {
     position: fixed;
-    top: 40px;
+    top: 50px;
     right: 0;
     left: 0;
     z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */

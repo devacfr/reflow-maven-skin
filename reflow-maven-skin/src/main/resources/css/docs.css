@@ -7,144 +7,255 @@
 
 /* Body and structure
 -------------------------------------------------- */
-
 body {
-  position: relative;
-  padding-top: 40px;
+	position: relative;
+	padding-top: 70px;
 }
 
 /* Code in headings */
 h3 code {
-  font-size: 14px;
-  font-weight: normal;
+	font-size: 14px;
+	font-weight: normal;
 }
 
 /* Jumbotrons
 -------------------------------------------------- */
 .jumbotron {
-  position: relative;
-  padding: 40px 0;
-}
-.jumbotron h1 {
-  font-size: 80px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 1;
-}
-.jumbotron p {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 30px;
-  margin-bottom: 30px;
-}
-.jumbotron .btn-large {
-  font-size: 20px;
-  font-weight: normal;
-  padding: 14px 24px;
-  margin-right: 10px;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
-.jumbotron .btn-large small {
-  font-size: 14px;
+	position: relative;
+	padding: 40px 0;
 }
 
+.jumbotron h1 {
+	font-size: 80px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
+}
+
+.jumbotron p {
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 30px;
+	margin-bottom: 30px;
+}
+
+.jumbotron .btn-large {
+	font-size: 20px;
+	font-weight: normal;
+	padding: 14px 24px;
+	margin-right: 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.jumbotron .btn-large small {
+	font-size: 14px;
+}
 
 /* Specific jumbotrons
 ------------------------- */
 /* supporting docs pages */
 .subhead {
-  padding-bottom: 0;
-  margin-bottom: 9px;
+	padding-bottom: 0;
+	margin-bottom: 9px;
+	padding-top: 0px;
 }
+
 .subhead h1 {
-  font-size: 54px;
+	font-size: 54px;
 }
 
-/* Responsive Docs
--------------------------------------------------- */
-@media (max-width: 480px) {
+/*--------------------------------------------------
+ * nav list
+ *-------------------------------------------------- */
+ 
+.nav-list>li>a, .nav-list .nav-header {
+	margin-left: -15px;
+	margin-right: -15px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
 
-  /* Reduce padding above jumbotron */
-  body {
-    padding-top: 70px;
-  }
+.nav-header {
+	display: block;
+	padding: 3px 15px;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #999999;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-transform: uppercase;
+}
 
-  /* Adjust the jumbotron */
-  .jumbotron h1,
-  .jumbotron p {
-    text-align: center;
-    margin-right: 0;
-  }
-  .jumbotron h1 {
-    font-size: 45px;
-    margin-right: 0;
-  }
-  .jumbotron p {
-    margin-right: 0;
-    margin-left: 0;
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .jumbotron .btn {
+.nav li+.nav-header {
+	margin-top: 9px;
+}
+
+.nav-list {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 0;
+}
+
+.nav-list>li>a, .nav-list .nav-header {
+	margin-left: -15px;
+	margin-right: -15px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.nav-list>li>a {
+	padding: 3px 15px;
+}
+
+.nav-list>.active>a, .nav-list>.active>a:hover, .nav-list>.active>a:focus
+	{
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+	background-color: #0088cc;
+}
+
+.nav-list [class^="glyphicon"], .nav-list [class*=" glyphicon"] {
+	margin-right: 2px;
+}
+
+.nav-list .divider {
+	*width: 100%;
+	height: 1px;
+	margin: 9px 1px;
+	*margin: -5px 0 5px;
+	overflow: hidden;
+	background-color: #e5e5e5;
+	border-bottom: 1px solid #ffffff;
+}
+
+
+/*--------------------------------------------------
+ * dropdown submmenu
+ *-------------------------------------------------- */
+ 
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
     display: block;
-    font-size: 18px;
-    padding: 10px 14px;
-    margin: 0 auto 10px;
-  }
+    right: auto;
+}
 
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
 }
 
 
-@media (max-width: 768px) {
+/*--------------------------------------------------
+ * Responsive Docs
+ *-------------------------------------------------- */
+@media ( max-width : 480px) {
+	/* Reduce padding above jumbotron */
+	body {
+		padding-top: 70px;
+	}
 
-  /* Remove any padding from the body */
-  body {
-    padding-top: 0;
-  }
-
-  /* Jumbotron buttons */
-  .jumbotron .btn {
-    margin-bottom: 10px;
-  }
+	/* Adjust the jumbotron */
+	.jumbotron h1, .jumbotron p {
+		text-align: center;
+		margin-right: 0;
+	}
+	.jumbotron h1 {
+		font-size: 45px;
+		margin-right: 0;
+	}
+	.jumbotron p {
+		margin-right: 0;
+		margin-left: 0;
+		font-size: 18px;
+		line-height: 24px;
+	}
+	.jumbotron .btn {
+		display: block;
+		font-size: 18px;
+		padding: 10px 14px;
+		margin: 0 auto 10px;
+	}
 }
 
+@media ( max-width : 768px) {
+	/* Remove any padding from the body */
+	body {
+		padding-top: 0;
+	}
 
-@media (min-width: 480px) and (max-width: 768px) {
-
-  /* Scale down the jumbotron content */
-  .jumbotron h1 {
-    font-size: 54px;
-  }
-  .jumbotron p {
-    margin-right: 0;
-    margin-left: 0;
-  }
+	/* Jumbotron buttons */
+	.jumbotron .btn {
+		margin-bottom: 10px;
+	}
 }
 
-
-@media (min-width: 768px) and (max-width: 980px) {
-
-  /* Remove any padding from the body */
-  body {
-    padding-top: 0;
-  }
-
-  /* Scale down the jumbotron content */
-  .jumbotron h1 {
-    font-size: 72px;
-  }
+@media ( min-width : 480px) and (max-width: 768px) {
+	/* Scale down the jumbotron content */
+	.jumbotron h1 {
+		font-size: 54px;
+	}
+	.jumbotron p {
+		margin-right: 0;
+		margin-left: 0;
+	}
 }
 
+@media ( min-width : 768px) and (max-width: 980px) {
+	/* Remove any padding from the body */
+	body {
+		padding-top: 0;
+	}
 
-@media (max-width: 980px) {
+	/* Scale down the jumbotron content */
+	.jumbotron h1 {
+		font-size: 72px;
+	}
+}
 
-  /* Unfloat brand */
-  .navbar-fixed-top .brand {
-    float: left;
-    margin-left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+@media ( max-width : 980px) {
+	/* Unfloat brand */
+	.navbar-fixed-top .navbar-brand {
+		float: left;
+		margin-left: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }

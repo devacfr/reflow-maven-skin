@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
-  xmlns="http://maven.apache.org/DECORATION/1.3.0"
+  xmlns="http://maven.apache.org/DECORATION/1.7.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd">
 
   <!-- Google Analytics not inherited for some reason -->
-  <googleAnalyticsAccountId>UA-1402675-6</googleAnalyticsAccountId>
+  <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
 
   <custom>
     <reflowSkin>
