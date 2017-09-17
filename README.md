@@ -4,7 +4,7 @@ Reflow is an Apache Maven site skin built on [Bootstrap][bootstrap]. It allows v
 and stylistic customizations to create a modern-looking Maven-generated website.
 
 To get started and see how the skin looks by default, check out
-http://andriusvelykis.github.io/reflow-maven-skin!
+http://devacfr.github.io/reflow-maven-skin!
 
 [bootstrap]: http://getbootstrap.com
 
