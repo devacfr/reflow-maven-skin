@@ -203,12 +203,12 @@
 	   #if ($config.bootstrapVersion )
 	       #set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )
 	   #else
-	       #set ( $bootstrapVersion = "${bootstrapVersion}" )
+	       #set ( $bootstrapVersion = "@bootstrapVersion@" )
 	   #end
 	   #if ($config.bootswatchVersion )
            #set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )
        #else
-           #set ( $bootswatchVersion = "${bootswatchVersion}" )
+           #set ( $bootswatchVersion = "@bootswatchVersion@" )
        #end
       
 ##
@@ -256,7 +256,7 @@
 	#if ( $config.highlightJsVersion )
 	   #set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )
 	#else
-	   #set ( $highlightJsVersion = "${highlightJsVersion}" )
+	   #set ( $highlightJsVersion = "@highlightJsVersion@" )
 	#end
 ##
 	#if ( $highlightJs )
@@ -267,7 +267,7 @@
 			#set ( $highlightJsTheme = 'default' )
 		#end
 		## use a hosted version of highlight.js for syntax highlighting
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$highlightJsVersion/styles/${highlightJsTheme}.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/styles/${highlightJsTheme}.min.css" />
 	#end
 ##
 	#if ( !$config.not( "imgLightbox" ) )
@@ -550,9 +550,14 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 ##
 	#if ( $localResources )
-	<script src="$resourcePath/js/jquery.min.js"></script>
+		<script src="$resourcePath/js/jquery.min.js"></script>
 	#else
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js"></script>
+		#if ( $config.jqueryVersion )
+			#set ( $jqueryVersion = $config.jqueryVersion.getValue() )
+		#else
+			#set ( $jqueryVersion = "@jqueryVersion@" )
+		#end
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js"></script>
 	#end
 ##
 	<script src="$bootstrapJsPath/bootstrap.min.js"></script>
