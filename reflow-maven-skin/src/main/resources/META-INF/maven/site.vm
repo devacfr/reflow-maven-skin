@@ -533,7 +533,7 @@
 	#end
 ##
 	#if ( !$config.not("skinAttribution") )
-				<p><a href="${scm-url}" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://devacfr.github.io" target="_blank" title="devacfr">devacfr</a>.</p>
+				<p><a href="@scm-url@" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://devacfr.github.io" target="_blank" title="devacfr">devacfr</a>.</p>
 	#end
 
 
