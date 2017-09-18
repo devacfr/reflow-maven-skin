@@ -18,8 +18,8 @@
   <url>${site.url}</url>
   <inceptionYear>2012</inceptionYear>
   <organization>
-    <name>Andrius Velykis</name>
-    <url>http://andrius.velykis.lt</url>
+    <name>Friederich Christophe</name>
+    <url>http://devacfr.github.io</url>
   </organization>
   <licenses>
     <license>
@@ -52,16 +52,16 @@
   <scm>
     <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
-    <url>http://github.com/devacfr/reflow-maven-skin/tree/master</url>
+    <url>${scm-url}/tree/master</url>
   </scm>
   <issueManagement>
-    <system>${issue.system}</system>
-    <url>${issue.url}</url>
+    <system>${issue-system}</system>
+    <url>${issue-url}</url>
   </issueManagement>
-
   <distributionManagement>
     <repository>
-      <id>${distribution.releaseRepositoryId}</id>
+      <id>${distribution.releaseRepository.id}</id>
+      <name>${distribution.releaseRepository.nam}</name>
       <url>${distribution.releaseRepositoryUrl}</url>
     </repository>
     <snapshotRepository>
@@ -77,8 +77,9 @@
 
   <properties>
 
-    <distribution.releaseRepositoryId>bintray</distribution.releaseRepositoryId>
-    <distribution.releaseRepositoryUrl>https://api.bintray.com/maven/devacfr/maven/reflow-maven-skin</distribution.releaseRepositoryUrl>
+    <distribution.releaseRepository.id>bintray</distribution.releaseRepository.id>
+    <distribution.releaseRepository.name>devacfr-maven</distribution.releaseRepository.name>
+    <distribution.releaseRepositoryUrl>https://api.bintray.com/maven/devacfr/maven/reflow-maven-skin/;publish=1</distribution.releaseRepositoryUrl>
     <distribution.snapshotRepositoryId>internal-repo</distribution.snapshotRepositoryId>
     <distribution.snapshotRepositoryUrl>file:///Users/devacfr/Development/github/mvn-repo</distribution.snapshotRepositoryUrl>
 
@@ -90,9 +91,10 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>${maven.compiler.target}</maven.compiler.source>
 
-    <issue.system>github</issue.system>
-    <issue.url>https://github.com/devacfr/reflow-maven-skin/issues</issue.url>
-    <ci.url>https://github.com/devacfr/reflow-maven-skin</ci.url>
+    <scm-url>https://github.com/devacfr/reflow-maven-skin</scm-url>
+    <issue-system>github</issue-system>
+    <issue-url>${scm-url}/issues</issue-url>
+    <ci.url>${scm-url}</ci.url>
     <ci.system>Travis</ci.system>
     <ci.contact-admin>christophefriederich@mac.om</ci.contact-admin>
 
@@ -101,6 +103,11 @@
     <site.deploy.url />
     <site.deploy.name />
 
+    <bootstrapVersion>3.3.6</bootstrapVersion>
+    <bootswatchVersion>3.3.6</bootswatchVersion>
+    <highlightJsVersion>9.12.0</highlightJsVersion>
+    <jqueryVersion>1.9.1</jqueryVersion>
+
 
     <repositoryName>reflow-maven-skin</repositoryName>
     <repositoryOwner>devacfr</repositoryOwner>
@@ -108,6 +115,7 @@
     <maven-jgitflow-plugin.version>1.0-m5.1</maven-jgitflow-plugin.version>
 
     <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+    <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-site-plugin.version>3.4</maven-site-plugin.version>
 
@@ -117,6 +125,11 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${maven-deploy-plugin.version}</version>
+      </plugin>
       <!-- Configure Maven site plugin for Reflow skin and Markdown support -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -143,7 +156,6 @@
           <generateReports>true</generateReports>
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-          <skipDeploy>true</skipDeploy>
         </configuration>
       </plugin>
 
@@ -303,33 +315,6 @@
           </plugin>
         </plugins>        
       </build>
-    </profile>
-    <profile>
-      <id>stage</id>
-      <properties>
-        <site.deploy.url>http://github.com/devacfr/reflow-maven-skin/tree/gh-pages/</site.deploy.url>
-      </properties>
-
-      <build>
-        <plugins>
-          <!-- Configure Maven site plugin to perform stage -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>{maven-site-plugin.version}</version>
-            <executions>
-              <execution>
-                <id>stage</id>
-                <goals>
-                  <goal>stage</goal>
-                </goals>
-                <phase>site</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-
     </profile>
   </profiles>
 </project>

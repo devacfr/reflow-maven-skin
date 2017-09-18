@@ -1,21 +1,29 @@
-# Release notes
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+$h1 Release notes
 
 The history of Reflow Maven skin releases is documented below. For details of changes refer to the [project's GitHub issues][reflow-issues] or the [GitHub report][github-report].
 
-[reflow-issues]: http://github.com/devacfr/reflow-maven-skin/issues?state=closed
+[reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
 
-## 1.1.2-DEVACFR
+$h2 1.1.2-DEVACFR
 
-### Minor enhancements
+$h3 Minor enhancements
 
-- Bump Bootstrap version to 3.3.6 (default version)
-- Bump Highlight version to 9.10.0 (default version)
+- Bump Bootstrap version to 3.3.6 (default version) ([#2][])
+- Bump HighlightJs version to 9.12.0 (default version) ([#3][])
+
+[#2]: ${issue-url}/2
+[#3]: ${issue-url}/3
 
 
-## 1.1.1 / 2014-06-22
+$h2 1.1.1 / 2014-06-22
 
-### Bug fixes
+$h3 Bug fixes
 
 -   Image previews (lightbox) don't work anymore ([#35][])
 -   Smooth scrolling does not work ([#36][])
@@ -28,18 +36,18 @@ See [all GitHub issues for 1.1.1][reflow-issues-111] for further details.
 [reflow-issues-111]: http://github.com/andriusvelykis/reflow-maven-skin/issues?milestone=2&amp;state=closed
 
 
-## 1.1.0 / 2014-02-17
+$h2 1.1.0 / 2014-02-17
 
-### Major enhancements
+$h3 Major enhancements
 
 -   Support for custom/local resources (vs. hardcoded CDN-based jQuery and Bootstrap), which enables use of Reflow skin in a local/intranet setting ([#24][])
 
-### Minor enhancements
+$h3 Minor enhancements
 
 -   Upgraded to Bootstrap 2.3 ([#9][])
 -   Bumped versions of other skin components (e.g. [#22][])
 
-### Bug fixes
+$h3 Bug fixes
 
 -   Fixed ToC snapping when banner is not available/is of custom size ([#1][])
 -   NPE when menu item href is not set ([#8][])
@@ -56,7 +64,7 @@ See [all GitHub issues for 1.1.0][reflow-issues-110] for further details.
 [reflow-issues-110]: http://github.com/andriusvelykis/reflow-maven-skin/issues?milestone=1&amp;state=closed
 
 
-## 1.0.0 / 2013-01-15
+$h2 1.0.0 / 2013-01-15
 
 -   Initial release of Reflow Maven skin and Reflow Velocity tools.
 
