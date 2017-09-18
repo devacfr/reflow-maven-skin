@@ -1,4 +1,9 @@
-#### [Bootstrap themes from Bootswatch][themes]
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+$h4 [Bootstrap themes from Bootswatch][themes]
 
 [![Bootswatch themes](images/carousel-themes.png)][themes]
 
@@ -6,14 +11,14 @@ Select a free theme for your website from an excellent gallery at [Bootswatch][b
 Out of the box support for these and other custom [Bootstrap][bootstrap] themes.
 
 
-#### [Page layouts][reflow-layouts]
+$h4 [Page layouts][reflow-layouts]
 
 [![Page layouts](images/carousel-layouts.jpg)][reflow-layouts]
 
 Write plain text in Markdown or APT, then set different layouts to your page sections.
 
 
-#### [Modern skin][reflow-misc]
+$h4 [Modern skin][reflow-misc]
 
 [![Modern skin](images/carousel-components.jpg)][reflow-misc]
 
@@ -21,7 +26,7 @@ Reflow skin uses modern components from Bootstrap and other libraries, upgrades 
 site and provides further enhancements.
 
 
-#### [New Velocity tools][reflow-tools]
+$h4 [New Velocity tools][reflow-tools]
 
 [![Reflow Velocity tools](images/carousel-tools.png)][reflow-tools]
 
@@ -40,7 +45,7 @@ support per-page configurations and more!
 ---
 
 
-## Get it now
+$h2 Get it now
 
 To use Reflow skin in your Maven site, [add it to site.xml][reflow-usage]:
 
@@ -48,7 +53,7 @@ To use Reflow skin in your Maven site, [add it to site.xml][reflow-usage]:
 <skin>
   <groupId>lt.velykis.maven.skins</groupId>
   <artifactId>reflow-maven-skin</artifactId>
-  <version>1.1.2-DEVACFR</version>
+  <version>${project.version}</version>
 </skin>
 ```
 
@@ -61,7 +66,7 @@ as well as Apache Velocity 1.7.
 [reflow-usage]: skin/
 
 
-## Responsive layouts
+$h2 Responsive layouts
 
 Write your pages in [APT or Markdown][doxia-formats], then restructure them using Reflow skin
 [layouts][reflow-layouts]:
@@ -80,7 +85,7 @@ will be rearranged automatically for readability on small screens.
 [doxia-formats]: http://maven.apache.org/doxia/references/index.html
 
 
-## Themes
+$h2 Themes
 
 The skin theme can be [switched easily][themes]: just select a Bootstrap theme
 to give an easy makeover for your Maven site.
@@ -98,7 +103,7 @@ to give an easy makeover for your Maven site.
 [reflow-multi]: skin/multi-module.html
 
 
-## Configure
+$h2 Configure
 
 Reflow is very configurable: many features and components can be disabled, and optional
 enhancements enabled using [configuration in `site.xml`][reflow-config]:
@@ -118,7 +123,7 @@ can be applied on a _per-page_ basis!
 ---
 
 
-## Velocity tools
+$h2 Velocity tools
 
 Reflow skin provides custom Velocity tools library to be used in Maven site template:
 
@@ -135,7 +140,7 @@ To enable these tools for any skin, add `reflow-velocity-tools` dependency to
 ---
 
 
-### About
+$h3 About
 
 Reflow Maven skin is an [Apache Maven site][mvn-site] skin built on [Bootstrap][bootstrap].
 
@@ -145,11 +150,10 @@ The skin can be used freely for your Maven projects.
 [Contribute][contribute] by reporting issues, suggesting new features, or forking the
 Git repository on GitHub and adding some good code!
 
-In the end, if you _really really_ like the skin and want to support the author, I will
-be glad to [accept a small donation][donate].
+
 
 [mvn-site]: http://maven.apache.org/guides/mini/guide-site.html
 [apache-license]: http://www.apache.org/licenses/LICENSE-2.0
 [contribute]: contribute.html
-[reflow-github]: http://github.com/andriusvelykis/reflow-maven-skin/
-[donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=QWKNRFZH52828
+[reflow-github]: ${scm-url}
+

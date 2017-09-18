@@ -1,4 +1,9 @@
-# Reflow Velocity tools
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+$h1 Reflow Velocity tools
 
 Reflow skin provides custom tools for [Apache Velocity][velocity] to be used in Maven site
 template. These objects are contributed to Velocity context and can be used within the template.
@@ -26,7 +31,7 @@ Refer to [Javadoc][javadoc-all] for each tool for more information.
 [javadoc-uri]: apidocs/lt/velykis/maven/skins/reflow/URITool.html
 
 
-## Usage
+$h2 Usage
 
 To enable these tools, add `reflow-velocity-tools` dependency to `maven-site-plugin` in the POM
 file:
@@ -38,13 +43,13 @@ file:
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>3.3</version>
+      <version>3.4</version>
       <dependencies>
         ...
         <dependency>
           <groupId>lt.velykis.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.1.2-DEVACFR</version>
+          <version>${project.version}</version>
         </dependency>
         ...
       </dependencies>

@@ -1,4 +1,9 @@
-# Contribute
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+$h1 Contribute
 
 Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests, 
 please state that the contribution is your original work and that you license the work to the project under the project's open source license. 
@@ -6,16 +11,16 @@ Whether or not you state this explicitly, by submitting any copyrighted material
 or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.
 
 
-## Issues (bug and feature tracker)
+$h2 Issues (bug and feature tracker)
 
 Please report any bugs found, feature requests or other issues on
 [Reflow skin GitHub tracker][reflow-issues].
 
-[reflow-issues]: http://github.com/devacfr/reflow-maven-skin/issues/
+[reflow-issues]: ${issue-url}
 
 
 
-## Fork, patch and contribute code
+$h2 Fork, patch and contribute code
 
 Feel free to fork Reflow skin's [Git repository at GitHub][reflow-github] for your own use and
 updates.
@@ -23,11 +28,11 @@ updates.
 Contribute your fixes and new features back to the main codebase using
 [GitHub pull requests][github-pull-req].
 
-[reflow-github]: http://github.com/andriusvelykis/reflow-maven-skin/
+[reflow-github]: ${scm-url}
 [github-pull-req]: http://help.github.com/articles/using-pull-requests
 
 
-## Support
+$h2 Support
 
 Let me know if you are using Reflow skin in your project. I may get around to creating a showcase
 page listing skin user sites.
@@ -40,7 +45,7 @@ If you _really really_ like the skin and want to support the author, I will be g
 [donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=QWKNRFZH52828
 
 
-## Acknowledgements
+$h2 Acknowledgements
 
 Reflow skin is built on [Bootstrap][bootstrap] and uses themes from [Bootswatch][bootswatch].
 These include icons from [Glyphicons][glyphicons] and web fonts from [Google][webfonts].
@@ -69,7 +74,7 @@ Inspired by [Maven Fluido Skin][fluido].
 [fluido]: http://maven.apache.org/skins/maven-fluido-skin/
 
 
-## Copyright and license
+$h2 Copyright and license
 
 Copyright 2012-2017 Christophe Friederich
 
