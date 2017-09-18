@@ -3,16 +3,32 @@
 #set($h3 = '###')
 #set($h4 = '####')
 #set($h5 = '#####')
-$h1 Release notes
+$h2 Release notes
 
 The history of Reflow Maven skin releases is documented below. For details of changes refer to the [project's GitHub issues][reflow-issues] or the [GitHub report][github-report].
 
 [reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
 
-$h2 1.1.2-DEVACFR
+$h3 Reflow Maven skin 1.2.0-DEVACFR Release Notes
+**2014-09-18**
 
-$h3 Minor enhancements
+$h4 Highlights of this release
+
+This release covers all features targeted for 1.2-DEVACFR Some of the highlights include:
+
+* The site documentation use maven properties to keep up to date after each release.
+
+$h4 Minor enhancements
+
+- Add maven properties in site documentation ([#17][])
+
+[#17]: ${issue-url}/17
+
+$h3 Reflow Maven skin 1.1.2-DEVACFR Release Notes
+**2014-09-17**
+
+$h4 Minor enhancements
 
 - Bump Bootstrap version to 3.3.6 (default version) ([#2][])
 - Bump HighlightJs version to 9.12.0 (default version) ([#3][])
@@ -21,9 +37,10 @@ $h3 Minor enhancements
 [#3]: ${issue-url}/3
 
 
-$h2 1.1.1 / 2014-06-22
+$h3 Reflow Maven skin 1.1.1 Release Notes
+**2014-06-22**
 
-$h3 Bug fixes
+$h4 Bug fixes
 
 -   Image previews (lightbox) don't work anymore ([#35][])
 -   Smooth scrolling does not work ([#36][])
@@ -36,18 +53,19 @@ See [all GitHub issues for 1.1.1][reflow-issues-111] for further details.
 [reflow-issues-111]: http://github.com/andriusvelykis/reflow-maven-skin/issues?milestone=2&amp;state=closed
 
 
-$h2 1.1.0 / 2014-02-17
+$h3 Reflow Maven skin 1.1.0 Release Notes
+**2014-02-17**
 
-$h3 Major enhancements
+$h4 Major enhancements
 
 -   Support for custom/local resources (vs. hardcoded CDN-based jQuery and Bootstrap), which enables use of Reflow skin in a local/intranet setting ([#24][])
 
-$h3 Minor enhancements
+$h4 Minor enhancements
 
 -   Upgraded to Bootstrap 2.3 ([#9][])
 -   Bumped versions of other skin components (e.g. [#22][])
 
-$h3 Bug fixes
+$h4 Bug fixes
 
 -   Fixed ToC snapping when banner is not available/is of custom size ([#1][])
 -   NPE when menu item href is not set ([#8][])
@@ -64,7 +82,8 @@ See [all GitHub issues for 1.1.0][reflow-issues-110] for further details.
 [reflow-issues-110]: http://github.com/andriusvelykis/reflow-maven-skin/issues?milestone=1&amp;state=closed
 
 
-$h2 1.0.0 / 2013-01-15
+$h3 Reflow Maven skin 1.0.0 Release Notes
+**2013-01-15**
 
 -   Initial release of Reflow Maven skin and Reflow Velocity tools.
 
