@@ -1,3 +1,6 @@
+##
+## Copyright 2012-2017 Andrius Velykis
+##
 ## Licensed to the Apache Software Foundation (ASF) under one
 ## or more contributor license agreements.  See the NOTICE file
 ## distributed with this work for additional information
@@ -610,24 +613,24 @@
 #macro ( thumbs $colCount $subsections )
     <div class="row thumbnail-row">
         <div class="col-md-12">
-  #set ( $colCount = $convert.toNumber($colCount) )
-            <ul class="thumbnails">
-  #set ( $colSpan = 12 / $colCount )
-    #foreach ( $subsection in $subsections )
+            #set ( $colCount = $convert.toNumber($colCount) )
+            <ul class="list-unstyled">
+            #set ( $colSpan = 12 / $colCount )
+            #foreach ( $subsection in $subsections )
                 <li class="col-md-$colSpan">
                     <div class="thumbnail">
-      ## bring the first image (possibly with a link) to the top of the subsection
-        ## (to have a thumbnail with leading image)
-        #set ( $thumbnailContent = $htmlTool.reorderToTop( $subsection, "a:has(img), img", 1, '<div class="caption"></div>' ) )
-        #if ( $thumbnailContent == $subsection )
-            ## no image found, so at least wrap into a caption 
+                    ## bring the first image (possibly with a link) to the top of the subsection
+                    ## (to have a thumbnail with leading image)
+                    #set ( $thumbnailContent = $htmlTool.reorderToTop( $subsection, "a:has(img), img", 1, '<div class="caption"></div>' ) )
+                    #if ( $thumbnailContent == $subsection )
+                        ## no image found, so at least wrap into a caption 
                         <div class="caption">#stripEmptyP ( $thumbnailContent )</div>
-      #else
+                    #else
                         #stripEmptyP ( $thumbnailContent )
-      #end
+                    #end
                     </div>
                 </li>
-  #end
+            #end
             </ul>
         </div>
     </div>
