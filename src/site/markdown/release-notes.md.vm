@@ -10,7 +10,7 @@ The history of Reflow Maven skin releases is documented below. For details of ch
 [reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
 
-$h3 Reflow Maven skin 1.2.0-DEVACFR Release Notes
+$h3 Reflow Maven skin 1.2-DEVACFR Release Notes
 **2014-09-18**
 
 $h4 Highlights of this release
@@ -23,6 +23,12 @@ $h4 Minor enhancements
 
 - Add maven properties in site documentation ([#17][])
 
+$h4 Bug fixes
+
+- Rename Rename `index.md.mv` to `index.md.vm`
+- Maven Site Plugin 3.6 compatibility ([#1][])
+
+[#1]: ${issue-url}/1
 [#17]: ${issue-url}/17
 
 $h3 Reflow Maven skin 1.1.2-DEVACFR Release Notes
