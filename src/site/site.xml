@@ -8,7 +8,7 @@
       <span class="color-highlight">Reflow</span> Maven Skin
       ]]>
     </name>
-    <href>${site.url}</href>
+    <href>${this.site.url}</href>
   </bannerLeft>
 
   <publishDate position="bottom" format="yyyy-MM-dd" />
@@ -18,7 +18,7 @@
   <skin>
     <groupId>lt.velykis.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>${project.version}</version>
+    <version>${this.version}</version>
   </skin>
   <custom>
     <reflowSkin>
@@ -28,9 +28,9 @@
       <theme>default</theme>
       <highlightJs>true</highlightJs>
       <highlightJsTheme>github</highlightJsTheme>
-      <highlightJsVersion>${highlightJsVersion}</highlightJsVersion>
-      <bootstrapVersion>${bootstrapVersion}</bootstrapVersion>
-      <bootswatchVersion>${bootswatchVersion}</bootswatchVersion>
+      <highlightJsVersion>${this.highlightJsVersion}</highlightJsVersion>
+      <bootstrapVersion>${this.bootstrapVersion}</bootstrapVersion>
+      <bootswatchVersion>${this.bootswatchVersion}</bootswatchVersion>
       <brand>
         <!-- Brand text in top-left part of the site -->
         <name>
@@ -38,7 +38,7 @@
           <span class="color-highlight">Reflow</span> Maven Skin
           ]]>
         </name>
-        <href>${site.url}</href>
+        <href>${this.site.url}</href>
       </brand>
       <slogan>Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
@@ -110,12 +110,14 @@
   <body>
     <!-- Add a rel to Google profile for all pages -->
     <head>
+        <![CDATA[
         <link rel="author" href="http://plus.google.com/103421057435787675572" />
+        ]]>
     </head>
 
     <links>
       <item name="Download" href="skin/index.html#Usage" />
-      <item name="GitHub project" href="${scm-url}" />
+      <item name="GitHub project" href="${this.scm-url}" />
     </links>
 
     <breadcrumbs>
@@ -124,7 +126,7 @@
 
     <menu name="Main" inherit="top">
       <item name="Home" href="./" />
-      <item name="GitHub project" href="${scm-url}" />
+      <item name="GitHub project" href="${this.scm-url}" />
       <item name="Release notes" href="release-notes.html" />
     </menu>
     <menu name="Download" inherit="top">
@@ -147,8 +149,8 @@
     </menu>
     <menu name="Contribute" inherit="bottom">
       <item name="Contribute" href="contribute.html" />
-      <item name="Issues" href="${project.issueManagement.url}" />
-      <item name="Fork on GitHub" href="${scm-url}" />
+      <item name="Issues" href="${this..issueManagement.url}" />
+      <item name="Fork on GitHub" href="${this.scm-url}" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>
