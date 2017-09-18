@@ -139,7 +139,7 @@ Fork the repository and submit pull requests.
 + http://andrius.velykis.lt
 + http://github.com/andriusvelykis
 
-** Christophe Friederich
+**Christophe Friederich**
 
 + http://devacfr.github.io/
 
