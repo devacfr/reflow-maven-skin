@@ -28,7 +28,7 @@ on using the skin with Maven 2 site or other configurations.
 
 $h2 POM dependencies
 
-Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` (_>3.5 not supported_) in the POM file:
+Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` in the POM file:
 
 [reflow-tools]: ../reflow-velocity-tools
 
