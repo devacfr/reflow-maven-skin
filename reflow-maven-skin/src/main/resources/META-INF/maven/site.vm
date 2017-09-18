@@ -1,5 +1,5 @@
 ##
-## Copyright 2012 Andrius Velykis
+## Copyright 2012-2017 Andrius Velykis
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -88,6 +88,8 @@
 	#if ( !$config.not( "bootstrapCss" ) )
 		## Bootstrap CSS class conversion is enabled by default, so check for false and negate
 		#set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )
+		## image is responsive by default
+		#set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-responsive"] ) )
 		#set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )
 	#end
 ##
@@ -201,12 +203,12 @@
 	   #if ($config.bootstrapVersion )
 	       #set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )
 	   #else
-	       #set ( $bootstrapVersion = "3.3.6" )
+	       #set ( $bootstrapVersion = "${bootstrapVersion}" )
 	   #end
 	   #if ($config.bootswatchVersion )
            #set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )
        #else
-           #set ( $bootswatchVersion = "3.3.6" )
+           #set ( $bootswatchVersion = "${bootswatchVersion}" )
        #end
       
 ##
@@ -254,7 +256,7 @@
 	#if ( $config.highlightJsVersion )
 	   #set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )
 	#else
-	   #set ( $highlightJsVersion = "9.12.0" )
+	   #set ( $highlightJsVersion = "${highlightJsVersion}" )
 	#end
 ##
 	#if ( $highlightJs )
@@ -531,7 +533,7 @@
 	#end
 ##
 	#if ( !$config.not("skinAttribution") )
-				<p><a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://andrius.velykis.lt" target="_blank" title="Andrius Velykis">Andrius Velykis</a>.</p>
+				<p><a href="${scm-url}" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://devacfr.github.io" target="_blank" title="devacfr">devacfr</a>.</p>
 	#end
 
 
@@ -550,7 +552,7 @@
 	#if ( $localResources )
 	<script src="$resourcePath/js/jquery.min.js"></script>
 	#else
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js"></script>
 	#end
 ##
 	<script src="$bootstrapJsPath/bootstrap.min.js"></script>
