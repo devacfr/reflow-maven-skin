@@ -733,7 +733,7 @@
     #if ( !$tocSidebarAdded )
             <div id="toc-sidebar">
               ## do not set as scroll target - works weird with grid section headers
-                <div id="toc-scroll-target" class="well">
+                <div id="toc-scroll-target">
                 <div class="well">
                   #listToc ( $tocItems )
                 </div>
