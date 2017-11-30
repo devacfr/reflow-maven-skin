@@ -72,7 +72,7 @@
 		#set ( $tocSidebar = true )
 	#else
 		#set ( $tocSidebar = false )
-	#end	
+	#end
 ##
 	#if ( !$config.not( "imgLightbox" ) )
 		## lightbox is enabled by default, so check for false and negate
@@ -179,7 +179,7 @@
 ##
 	## Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
 	#if ( $config.absoluteResourceURL && $config.absoluteResourceURL.getValue() != '' )
-		#currentFileRelativeLink ( $config.absoluteResourceURL.getValue() ) 
+		#currentFileRelativeLink ( $config.absoluteResourceURL.getValue() )
 		#set ( $resourcePath = $currentFileRelativeLink )
 	#else
 		#set ( $resourcePath = $relativePath )
@@ -210,7 +210,7 @@
        #else
            #set ( $bootswatchVersion = "@bootswatchVersion@" )
        #end
-      
+
 ##
 		## use Bootstrap theme from BootstrapCDN (loaded over network)
 		#if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )
@@ -235,11 +235,11 @@
 ##
 		<link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 		#if ( !$bootstrapCssCombined )
-		    ## if Bootstrap CSS is not combined, add bootstrap-responsive CSS 
+		    ## if Bootstrap CSS is not combined, add bootstrap-responsive CSS
 		<link href="$bootstrapCssResponsivePath/bootstrap-responsive.min.css" rel="stylesheet" />
 		#end
 		#if ( $bootswatchTheme )
-		    ## for Bootswatch themes, add bootswatch.css 
+		    ## for Bootswatch themes, add bootswatch.css
 		<link href="$resourcePath/css/bootswatch.css" rel="stylesheet" />
 		#else
 		<link href="$resourcePath/css/docs.css" rel="stylesheet" />
@@ -271,7 +271,7 @@
 	#end
 ##
 	#if ( !$config.not( "imgLightbox" ) )
-		## if not disabled, include lightbox for showing images	
+		## if not disabled, include lightbox for showing images
 		<link href="$resourcePath/css/lightbox.css" rel="stylesheet" />
 	#end
 ##
@@ -311,7 +311,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    </button>        
+                    </button>
 ##
 	## Insert brand if it is available
 	#if ( $config.brand )
@@ -446,10 +446,10 @@
 ##
 	<div class="main-body">
 ##
-	#if ( $config.sections )	
+	#if ( $config.sections )
 		#bodySections ( $bodyContent $config.sections )
 	#else
-	## non-sectioned body - just output it all	
+	## non-sectioned body - just output it all
 	<div class="row">
 		#if ( $tocSidebar )
 		<div class="col-md-8">
@@ -490,7 +490,7 @@
 		#if ( $config.bottomDescription.getChildCount() > 0 )
 					#htmlContent ( $config.bottomDescription.getChildren() )
 		#elseif ( $config.bottomDescription.getAttribute("quote") && 'false' == $config.bottomDescription.getAttribute("quote") )
-					## no quote	
+					## no quote
 					$config.bottomDescription.getValue()
 		#else
 					<blockquote>$config.bottomDescription.getValue()</blockquote>
@@ -563,26 +563,44 @@
 	<script src="$bootstrapJsPath/bootstrap.min.js"></script>
 ##
 	#if ( !$config.not( "imgLightbox" ) )
-		## if not disabled, include lightbox for showing images	
+		## if not disabled, include lightbox for showing images
 	<script src="$resourcePath/js/lightbox.min.js"></script>
 	#end
 ##
 	#if ( !$config.not( "smoothScroll" ) )
-		## if not disabled, include smooth scrolling 
+		## if not disabled, include smooth scrolling
 	<script src="$resourcePath/js/reflow-scroll.js"></script>
 	#end
 ##
-	#if ( $highlightJs )
-		## use a hosted version of highlight.js for syntax highlighting	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$highlightJsVersion/highlight.min.js"></script>
-	#end
-##
 	#if ( $config.endContent )
-		## custom HTML (e.g. JavaScript) to place at the end of the document before </body>	
-	#htmlContent ( $config.endContent.getChildren() )
+		## custom HTML (e.g. JavaScript) to place at the end of the document before </body>
+	    #htmlContent ( $config.endContent.getChildren() )
 	#end
 ##
 	<script src="$resourcePath/js/reflow-skin.js"></script>
 ##
+    #if ( $localResources )
+        <script src="$resourcePath/js/anchor.min.js"></script>
+    #else
+        #if ( $config.anchorJsVesrion )
+            #set ( $anchorJsVesrion = $config.anchorJsVesrion.getValue() )
+        #else
+            #set ( $anchorJsVesrion = "@anchorJsVesrion@" )
+        #end
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${anchorJsVesrion}/anchor.min.js"></script>
+    #end
+##
+    #if ( $tocTop || $tocSidebar )
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            anchors.options = {
+              placement: 'left',
+            };
+            anchors.add('h1,h2, h3, h4, h5, h6');
+        });
+    </script>
+    #end
+##
+
 	</body>
 </html>
