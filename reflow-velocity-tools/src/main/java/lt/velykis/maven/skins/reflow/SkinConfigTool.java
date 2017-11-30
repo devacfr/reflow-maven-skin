@@ -15,6 +15,10 @@
  */
 package lt.velykis.maven.skins.reflow;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
@@ -224,6 +228,31 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         return parentNode.getChild(namespace + name);
+    }
+
+    /**
+     * Gets the list of all children name for the {@code parentNode}.
+     *
+     * @param parentNode the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all children,
+     *          which may be empty but never {@code null}.
+     *
+     * @since 1.3
+     */
+    public List<String> getChildren(final Xpp3Dom parentNode) {
+        if (parentNode == null) {
+            return Collections.emptyList();
+        }
+        final Xpp3Dom[] children = parentNode.getChildren();
+        if (children == null) {
+            return Collections.emptyList();
+        }
+        List<String> list = new ArrayList<>(children.length);
+        for (Xpp3Dom child : children) {
+            list.add(child.getName());
+        }
+
+        return list;
     }
 
     /**
