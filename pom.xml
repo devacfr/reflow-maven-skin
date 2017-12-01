@@ -10,7 +10,7 @@
 
   <groupId>lt.velykis.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.0-DEVACFR-SNAPSHOT</version>
+  <version>1.3.0-DEVACFR</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
@@ -91,6 +91,9 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>${maven.compiler.target}</maven.compiler.source>
 
+    <repositoryName>reflow-maven-skin</repositoryName>
+    <repositoryOwner>devacfr</repositoryOwner>
+
     <scm-url>https://github.com/devacfr/reflow-maven-skin</scm-url>
     <issue-system>github</issue-system>
     <issue-url>${scm-url}/issues</issue-url>
@@ -107,10 +110,15 @@
     <bootswatchVersion>3.3.6</bootswatchVersion>
     <highlightJsVersion>9.12.0</highlightJsVersion>
     <jqueryVersion>1.9.1</jqueryVersion>
+    <anchorJsVesrion>4.1.0</anchorJsVesrion>
 
-
-    <repositoryName>reflow-maven-skin</repositoryName>
-    <repositoryOwner>devacfr</repositoryOwner>
+    <!-- ================================================================================ -->
+    <!-- Test dependencies version -->
+    <!-- ================================================================================ -->
+    <junit.version>4.12</junit.version>
+    <junit-addons.version>1.4</junit-addons.version>
+    <mockito.version>1.10.19</mockito.version>
+    <hamcrest.version>1.3</hamcrest.version>
 
 
     <maven-jgitflow-plugin.version>1.0-m5.1</maven-jgitflow-plugin.version>
@@ -122,7 +130,9 @@
     <maven-jsoup.version>1.10.3</maven-jsoup.version>
     <maven-maven-project.version>2.2.1</maven-maven-project.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+    <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
     <maven-site-plugin.version>3.6</maven-site-plugin.version>
+    <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <maven-velocity.version>1.7</maven-velocity.version>
     <maven-velocity-tools.version>2.0</maven-velocity-tools.version>
     <maven-wagon-git.version>2.0.0</maven-wagon-git.version>
@@ -131,8 +141,86 @@
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <!-- ================================================================================ -->
+      <!-- Test Dependencies -->
+      <!-- ================================================================================ -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit-addons</groupId>
+        <artifactId>junit-addons</artifactId>
+        <version>${junit-addons.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>xercesImpl</artifactId>
+            <groupId>xerces</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>xmlParserAPIs</artifactId>
+            <groupId>xerces</groupId>
+          </exclusion>
+        </exclusions>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-core</artifactId>
+        <version>${hamcrest.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-library</artifactId>
+        <version>${hamcrest.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
+        <configuration>
+          <delimiters>
+            <delimiter>${*}</delimiter>
+          </delimiters>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-filtering</artifactId>
+            <version>1.3</version>
+          </dependency>
+        </dependencies>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
