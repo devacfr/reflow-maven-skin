@@ -111,7 +111,7 @@
 	#if ( $tocTop || $tocSidebar )
 		## Ensure IDs on all headings to refer to them in TOC
 		#set ( $bodyContent = $htmlTool.ensureHeadingIds( $bodyContent, "_" ) )
-		#set ( $tocItems = $htmlTool.headingTree( $bodyContent ) )
+		#set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )
 	#end
 ##
 	## generate a short title if one does not exist or is specified explicitly
