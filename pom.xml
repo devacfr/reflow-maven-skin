@@ -10,7 +10,7 @@
 
   <groupId>lt.velykis.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.0-DEVACFR</version>
+  <version>1.3.1-DEVACFR-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
