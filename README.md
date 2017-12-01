@@ -18,7 +18,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>lt.velykis.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.2.3-DEVACFR</version>
+    <version>1.3.0-DEVACFR</version>
   </skin>
   ...
 </project>
@@ -40,7 +40,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>lt.velykis.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.2.3-DEVACFR</version>
+          <version>1.3.0-DEVACFR</version>
         </dependency>
         <!-- Reflow skin requires Velocity >= 1.7  -->
         <dependency>
@@ -55,6 +55,18 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
     ...
   </plugins>
 </build>
+```
+Add the following maven repository:
+
+```xml
+<repository>
+  <snapshots>
+    <enabled>false</enabled>
+  </snapshots>
+  <id>bintray-devacfr-maven</id>
+  <name>bintray</name>
+  <url>https://dl.bintray.com/devacfr/maven</url>
+ </repository>
 ```
 
 Note that _Apache Velocity 1.7_ is also required by the template.
