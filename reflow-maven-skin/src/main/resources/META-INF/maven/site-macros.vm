@@ -711,7 +711,7 @@
  *
  *##macro ( tocSidebarContent )#*
     *##if ( !$tocSidebarAdded )##
-            <div id="toc-sidebar">
+            <div id="toc-sidebar" class="hidden-print hidden-xs hidden-sm">
 #*
     do not set as scroll target - works weird with grid section headers *#
                 <div id="toc-scroll-target">
