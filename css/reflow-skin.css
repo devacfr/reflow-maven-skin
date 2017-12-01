@@ -9,16 +9,16 @@ h4[id]:before,
 h5[id]:before,
 h6[id]:before,
 a[name]:before {
-    display:block; 
-    content:""; 
-    height:90px; 
-    margin:-90px 0 0; 
+    display:block;
+    content:"";
+    height:100px;
+    margin:-100px 0 0;
 }
 
 /*--------------------------------------------------
  * nav list
  *--------------------------------------------------*/
- 
+
 .nav-list>li>a, .nav-list .nav-header {
     margin-left: -15px;
     margin-right: -15px;
@@ -81,7 +81,7 @@ a[name]:before {
 /*--------------------------------------------------
  * dropdown submmenu
  *--------------------------------------------------*/
- 
+
 .dropdown-submenu {
     position: relative;
 }
@@ -158,7 +158,7 @@ a[name]:before {
     z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
     margin-bottom: 0;
   }
-  
+
 .navbar.affix .navbar-inner {
     border-width: 0 0 1px;
     padding-right: 0;
