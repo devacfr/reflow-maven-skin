@@ -859,7 +859,7 @@ public class HtmlTool extends SafeConfig {
      * The anchors are used to indicate positions within a HTML page. In HTML5, however, the {@code name} attribute is
      * no longer supported on {@code <a>}) tag. The positions within pages are indicated using {@code id} attribute
      * instead, e.g. {@code
-     * 
+     *
     <h1 id="myheading">}.
      * </p>
      * <p>
@@ -1053,7 +1053,7 @@ public class HtmlTool extends SafeConfig {
 
     /**
      * Fixes table heads: wraps rows with {@code
-     * 
+     *
     <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
      *
      * @param content
@@ -1139,11 +1139,7 @@ public class HtmlTool extends SafeConfig {
 
     /**
      * Reads all headings in the given HTML content as a hierarchy. Subsequent smaller headings are nested within bigger
-     * ones, e.g. {@code
-     * 
-    <h2>} is nested under preceding {@code
-     * 
-    <h1>}.
+     * ones, e.g. {@code <h2>} is nested under preceding {@code <h1>}.
      * <p>
      * Only headings with IDs are included in the hierarchy. The result elements contain ID and heading text for each
      * heading. The hierarchy is useful to generate a Table of Contents for a page.
@@ -1151,22 +1147,32 @@ public class HtmlTool extends SafeConfig {
      *
      * @param content
      *            HTML content to extract heading hierarchy from
+     * @param sections
+     *            list of all sections
      * @return a list of top-level heading items (with id and text). The remaining headings are nested within these
      *         top-level items. Empty list if no headings are in the content.
      * @since 1.0
      */
-    public List<? extends IdElement> headingTree(final String content) {
+    public List<? extends IdElement> headingTree(final String content, List<String> sections) {
 
-        final Element body = parseContent(content);
-
+        List<String> sectionContents = this.split(content, "hr");
         final List<String> headIds = concat(HEADINGS, "[id]", true);
-
-        // select all headings that have an ID
-        final List<Element> headings = body.select(StringUtil.join(headIds, ", "));
-
         final List<HeadingItem> headingItems = new ArrayList<>();
-        for (final Element heading : headings) {
-            headingItems.add(new HeadingItem(heading.id(), heading.text(), headingIndex(heading)));
+
+        int index = 0;
+        for (String sectionContent : sectionContents) {
+            String sectionType = index < sections.size() ? sections.get(index++) : "";
+
+            // exclude carousel headings
+            if ("carousel".equals(sectionType)) {
+                continue;
+            }
+            final Element body = parseContent(sectionContent);
+            // select all headings that have an ID
+            final List<Element> headings = body.select(StringUtil.join(headIds, ", "));
+            for (final Element heading : headings) {
+                headingItems.add(new HeadingItem(heading.id(), heading.text(), headingIndex(heading)));
+            }
         }
 
         final List<HeadingItem> topHeadings = new ArrayList<>();
