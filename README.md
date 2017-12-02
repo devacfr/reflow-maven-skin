@@ -16,9 +16,9 @@ To use this Maven skin, include it in your `site.xml` file:
 <project>
   ...
   <skin>
-    <groupId>lt.velykis.maven.skins</groupId>
+    <groupId>org.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.2.3-DEVACFR</version>
+    <version>1.3.0</version>
   </skin>
   ...
 </project>
@@ -38,9 +38,9 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
       <dependencies>
         ...
         <dependency>
-          <groupId>lt.velykis.maven.skins</groupId>
+          <groupId>org.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.2.3-DEVACFR</version>
+          <version>1.3.0</version>
         </dependency>
         <!-- Reflow skin requires Velocity >= 1.7  -->
         <dependency>
