@@ -18,9 +18,9 @@ To use this Maven skin, include it in your `site.xml` file:
 <project>
   ...
   <skin>
-    <groupId>org.devacfr.maven.skins</groupId>
+    <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
   </skin>
   ...
 </project>
@@ -40,9 +40,9 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
       <dependencies>
         ...
         <dependency>
-          <groupId>org.devacfr.maven.skins</groupId>
+          <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.3.1</version>
+          <version>1.3.2</version>
         </dependency>
         <!-- Reflow skin requires Velocity >= 1.7  -->
         <dependency>
@@ -161,3 +161,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+<a href='https://bintray.com/devacfr/maven/reflow-maven-skin?source=watch' alt='Get automatic notifications about new "reflow-maven-skin" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
