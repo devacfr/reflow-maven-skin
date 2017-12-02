@@ -26,9 +26,9 @@ Refer to [Javadoc][javadoc-all] for each tool for more information.
 [jsoup]: http://jsoup.org/
 
 [javadoc-all]: apidocs/
-[javadoc-config]: apidocs/lt/velykis/maven/skins/reflow/SkinConfigTool.html
-[javadoc-html]: apidocs/lt/velykis/maven/skins/reflow/HtmlTool.html
-[javadoc-uri]: apidocs/lt/velykis/maven/skins/reflow/URITool.html
+[javadoc-config]: apidocs/org/devacfr/maven/skins/reflow/SkinConfigTool.html
+[javadoc-html]: apidocs/org/devacfr/maven/skins/reflow/HtmlTool.html
+[javadoc-uri]: apidocs/org/devacfr/maven/skins/reflow/URITool.html
 
 
 $h2 Usage
@@ -47,7 +47,7 @@ file:
       <dependencies>
         ...
         <dependency>
-          <groupId>lt.velykis.maven.skins</groupId>
+          <groupId>${project.groupId}</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
           <version>${project.version}</version>
         </dependency>

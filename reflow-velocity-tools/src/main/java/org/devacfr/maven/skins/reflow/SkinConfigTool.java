@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lt.velykis.maven.skins.reflow;
+package org.devacfr.maven.skins.reflow;
 
 import java.util.ArrayList;
 import java.util.Collections;
