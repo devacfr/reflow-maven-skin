@@ -10,7 +10,7 @@
 
   <groupId>io.github.devacfr</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.2-SNAPSHOT</version>
+  <version>1.3.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
