@@ -131,7 +131,7 @@
     <maven-maven-project.version>2.2.1</maven-maven-project.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
-    <maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <maven-site-plugin.version>3.6</maven-site-plugin.version>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <maven-velocity.version>1.7</maven-velocity.version>
