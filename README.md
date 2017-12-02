@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/devacfr/maven/reflow-maven-skin/images/download.svg) ](https://bintray.com/devacfr/maven/reflow-maven-skin/_latestVersion)
+
 # [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/ )
 
 Reflow is an Apache Maven site skin built on [Bootstrap][bootstrap]. It allows various structural
