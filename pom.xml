@@ -8,9 +8,9 @@
     <version>9</version>
   </parent>
 
-  <groupId>io.github.devacfr</groupId>
+  <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.2</version>
+  <version>1.3.3</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
@@ -61,7 +61,6 @@
   <distributionManagement>
     <repository>
       <id>${distribution.releaseRepository.id}</id>
-      <name>${distribution.releaseRepository.nam}</name>
       <url>${distribution.releaseRepositoryUrl}</url>
     </repository>
     <snapshotRepository>
@@ -77,11 +76,10 @@
 
   <properties>
 
-    <distribution.releaseRepository.id>bintray</distribution.releaseRepository.id>
-    <distribution.releaseRepository.name>devacfr-maven</distribution.releaseRepository.name>
-    <distribution.releaseRepositoryUrl>https://api.bintray.com/maven/devacfr/maven/reflow-maven-skin/;publish=1</distribution.releaseRepositoryUrl>
-    <distribution.snapshotRepositoryId>internal-repo</distribution.snapshotRepositoryId>
-    <distribution.snapshotRepositoryUrl>file:///Users/devacfr/Development/github/mvn-repo</distribution.snapshotRepositoryUrl>
+    <distribution.releaseRepository.id>ossrh</distribution.releaseRepository.id>
+    <distribution.releaseRepositoryUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</distribution.releaseRepositoryUrl>
+    <distribution.snapshotRepositoryId>ossrh</distribution.snapshotRepositoryId>
+    <distribution.snapshotRepositoryUrl>https://oss.sonatype.org/content/repositories/snapshots</distribution.snapshotRepositoryUrl>
 
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -280,7 +278,7 @@
         <version>${maven-site-plugin.version}</version>
         <dependencies>
           <dependency>
-            <groupId>io.github.devacfr</groupId>
+            <groupId>io.github.devacfr.maven.skins</groupId>
             <artifactId>reflow-velocity-tools</artifactId>
             <version>${project.version}</version>
           </dependency>
@@ -483,6 +481,15 @@
       </activation>
       <properties>
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
+      </properties>
+    </profile>
+    <profile>
+      <id>bintray</id>
+      <properties>
+        <distribution.releaseRepository.id>bintray</distribution.releaseRepository.id>
+        <distribution.releaseRepositoryUrl>https://api.bintray.com/maven/devacfr/maven/reflow-maven-skin/;publish=1</distribution.releaseRepositoryUrl>
+        <distribution.snapshotRepositoryId>internal-repo</distribution.snapshotRepositoryId>
+        <distribution.snapshotRepositoryUrl>file:///Users/devacfr/Development/github/mvn-repo</distribution.snapshotRepositoryUrl>
       </properties>
     </profile>
   </profiles>

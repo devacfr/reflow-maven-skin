@@ -16,7 +16,7 @@
   <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
 
   <skin>
-    <groupId>io.github.devacfr</groupId>
+    <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
     <version>${this.version}</version>
   </skin>
