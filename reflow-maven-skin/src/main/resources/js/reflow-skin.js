@@ -1,3 +1,5 @@
+'use strict';
+
 // Additional skin Javascript
 // ++++++++++++++++++++++++++++++++++++++++++
 
@@ -21,6 +23,17 @@
 			$('div.source pre, pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		}
 
-	})
+    // toc aside bar
+    if ($('#toc-sidebar.affix-top').length) {
+      $('#toc-sidebar').affix({
+        offset: {
+            top: $('#toc-sidebar').offset().top
+        }
+      });
+    }
+
+  });
+
+
 
 }(window.jQuery)

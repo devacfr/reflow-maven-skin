@@ -198,6 +198,15 @@ a[name]:before {
 
 }
 
+#toc-sidebar {
+    z-index: 1000;
+}
+
+#toc-sidebar.affix {
+    top: 70px;
+    width: 360px;
+}
+
 /* Fix for header links - do not color/underline them */
 #banner a {
 	color: inherit;
