@@ -123,7 +123,9 @@ http://github.com/devacfr/reflow-maven-skin/issues
 
 ## Contributing
 
-Fork the repository and submit pull requests.
+Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project releaes.
+
+    Pull request on **master** will be refused.
 
 
 ## Author

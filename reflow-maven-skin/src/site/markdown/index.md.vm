@@ -47,12 +47,6 @@ Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` in
           <artifactId>reflow-velocity-tools</artifactId>
           <version>${project.version}</version>
         </dependency>
-        <!-- Reflow skin requires Velocity >= 1.7  -->
-        <dependency>
-          <groupId>org.apache.velocity</groupId>
-          <artifactId>velocity</artifactId>
-          <version>1.7</version>
-        </dependency>
         ...
       </dependencies>
       ...
