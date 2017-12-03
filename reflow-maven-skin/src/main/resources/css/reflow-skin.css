@@ -198,6 +198,8 @@ a[name]:before {
 
 }
 
+/* affix toc aside bar
+*/
 #toc-sidebar {
     z-index: 1000;
 }
@@ -206,6 +208,73 @@ a[name]:before {
     top: 70px;
     width: 360px;
 }
+
+#toc-sidebar.affix-bottom {
+    position: absolute;
+    width: 360px;
+}
+
+@media (min-width: 1200px) {
+    #toc-sidebar.affix-bottom {
+        width: 360px;
+    }
+}
+
+.nav .active {
+    background-color: #e2e6ea;
+    border-radius: 3px;
+    border: solid 1px #dadada;
+}
+
+.nav .nav .active {
+    border: none;
+}
+
+.nav > .active {
+    font-weight: bold;
+}
+
+.nav .nav {
+    display: none;
+}
+
+.nav .active .nav {
+    display: block;
+}
+
+.nav .active .nav span {
+    display: inline-block !important;
+}
+
+.nav .nav a {
+    font-weight: normal;
+}
+
+.nav .nav span {
+    margin: 0 5px 0 2px;
+}
+
+.nav .nav > .active  > a,
+.nav .nav > .active:hover  > a,
+.nav .nav > .active:focus > a {
+    font-weight: bold;
+    padding-left: 25px;
+    border-left: 5px solid rgb(106, 158, 185);
+}
+
+.m-aside-toc.nav > li > a > span, /* remove span first depth */
+.nav .nav .active span,
+.nav .nav .active:hover span,
+.nav .nav .active:focus a span {
+    display: none;
+}
+
+.nav .nav li a {
+    padding-left: 30px;
+}
+
+
+
 
 /* Fix for header links - do not color/underline them */
 #banner a {

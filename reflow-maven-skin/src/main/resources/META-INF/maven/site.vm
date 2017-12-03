@@ -276,7 +276,7 @@
   *#
       #googleAnalytics( $decoration.googleAnalyticsAccountId )
 ##
-  </div> <!-- end : head -->
+  </head> <!-- end : head -->
 ##
   ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
   <body class="page-$config.fileId project-$config.projectId" data-spy="scroll" data-offset="70" data-target="${esc.h}toc-scroll-target">
@@ -403,13 +403,13 @@
 ##
     <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
       <div id="toc-scroll-target" class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                </div> <!-- .navbar-header -->
+            </div> <!-- .navbar-header -->
         <div class="collapse navbar-collapse" id="toc-nav-collapse">
           <ul id="toc" class="nav navbar-nav">
             ## display Table of Contents in a top bar
@@ -417,9 +417,9 @@
           </ul>
         </div>
       </div> <!-- .container -->
-    </div>
+    </div> <!-- end: toc-bar -->
 #*  *##end##
-  </header>
+  </div> <!-- end : header -->
 ##
   <div class="main-body">
 #*
@@ -440,11 +440,12 @@
 #*      *##if ( $tocSidebar )#*
           *##tocSidebar ()#*
       *##end##
-  </div>
+  </div> <!-- /row -->
 #*  *##end##
   </div>
 ##
-  </div><!-- /container -->
+    </div> <!-- end : row -->
+</div> <!-- /container -->
 ##
   <!-- Footer
   ================================================== -->

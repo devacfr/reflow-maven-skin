@@ -27,7 +27,9 @@
     if ($('#toc-sidebar.affix-top').length) {
       $('#toc-sidebar').affix({
         offset: {
-            top: $('#toc-sidebar').offset().top
+            top: $('#toc-sidebar').offset().top,
+            bottom: ($('footer').outerHeight(true) +
+            $('.subfooter').outerHeight(true)-40) //padding of footer.
         }
       });
     }
