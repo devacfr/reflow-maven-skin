@@ -44,12 +44,6 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
           <artifactId>reflow-velocity-tools</artifactId>
           <version>1.3.3</version>
         </dependency>
-        <!-- Reflow skin requires Velocity >= 1.7  -->
-        <dependency>
-          <groupId>org.apache.velocity</groupId>
-          <artifactId>velocity</artifactId>
-          <version>1.7</version>
-        </dependency>
         ...
       </dependencies>
       ...
@@ -58,8 +52,6 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
   </plugins>
 </build>
 ```
-
-Note that _Apache Velocity 1.7_ is also required by the template.
 
 The skin is provided on the "works on my computer" basis at the moment. I am using the newest
 versions of `maven-site-plugin` and other components and at the moment do not have any feedback
