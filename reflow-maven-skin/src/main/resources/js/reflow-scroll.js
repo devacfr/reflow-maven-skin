@@ -21,10 +21,12 @@ $(window).load(function(){
       // other
       scrollTo();
     } else {
+      var body  = $(this).closest( "[data-psy='scroll']");
+      var offset = $(body).attr('data-offset') |  10 ;
       // heading click
       scrollTo(
         $(this.hash),
-        undefined,
+        offset,
         function(){
           // when done, add hash to url
           // (default click behaviour)
@@ -35,3 +37,4 @@ $(window).load(function(){
 
   });
 });
+

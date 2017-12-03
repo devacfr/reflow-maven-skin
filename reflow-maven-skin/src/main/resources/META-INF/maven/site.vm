@@ -276,7 +276,7 @@
   *#
       #googleAnalytics( $decoration.googleAnalyticsAccountId )
 ##
-  </head>
+  </div> <!-- end : head -->
 ##
   ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
   <body class="page-$config.fileId project-$config.projectId" data-spy="scroll" data-offset="70" data-target="${esc.h}toc-scroll-target">
@@ -343,7 +343,7 @@
       *##set ( $hasBanner = false )#*
   *##end##
 ##
-  <header>
+  <div class="header container-fluid">
 #*
   *##if  ( $hasBanner )##
   <div class="jumbotron subhead">
