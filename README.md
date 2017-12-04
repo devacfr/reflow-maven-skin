@@ -124,9 +124,9 @@ http://github.com/devacfr/reflow-maven-skin/issues
 
 ## Contributing
 
-Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project releaes.
+Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release_Management Documentation][release-management] for more information).
 
-    Pull request on **master** will be refused.
+    Pull request on master will be refused.
 
 
 ## Author
@@ -159,3 +159,5 @@ limitations under the License.
 
 
 <a href='https://bintray.com/devacfr/maven/reflow-maven-skin?source=watch' alt='Get automatic notifications about new "reflow-maven-skin" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
+
+[release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management
