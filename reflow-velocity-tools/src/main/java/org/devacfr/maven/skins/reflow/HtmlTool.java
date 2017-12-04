@@ -858,9 +858,7 @@ public class HtmlTool extends SafeConfig {
      * <p>
      * The anchors are used to indicate positions within a HTML page. In HTML5, however, the {@code name} attribute is
      * no longer supported on {@code <a>}) tag. The positions within pages are indicated using {@code id} attribute
-     * instead, e.g. {@code
-     *
-    <h1 id="myheading">}.
+     * instead, e.g. {@code <h1 id="myheading">}.
      * </p>
      * <p>
      * The method finds anchors inside, immediately before or after the heading tags and uses their name as heading
@@ -1024,12 +1022,26 @@ public class HtmlTool extends SafeConfig {
 
                 heading.attr("id", headingId);
             }
-
-            return body.html();
-        } else {
-            // nothing to update
-            return content;
         }
+
+        // create unique id for all heading elements
+        final List<String> headIds = concat(HEADINGS, "[id]", true);
+        // select all headings that have an ID
+        final List<Element> headingIds = body.select(StringUtil.join(headIds, ", "));
+
+        for (final Element heading : headingIds) {
+            final String headingText = heading.text();
+            String headingSlug = slug(headingText, idSeparator);
+            // also limit slug to 50 symbols
+            if (headingSlug.length() > 50) {
+                headingSlug = headingSlug.substring(0, 50);
+            }
+            final String headingId = "_toc_" + generateUniqueId(ids, headingSlug);
+
+            heading.attr("id", headingId);
+        }
+
+        return body.html();
     }
 
     /**
