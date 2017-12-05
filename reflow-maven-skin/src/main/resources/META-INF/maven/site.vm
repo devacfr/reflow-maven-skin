@@ -395,11 +395,11 @@
     <hr class="toc-separator" />
 
     ## read top offset for fixed ToC bar from the config
-#*      *##if ( $config.toc.getAttribute("offsetTop") )#*
+#*    *##if ( $config.toc.getAttribute("offsetTop") )#*
           *##set ( $tocOffsetTop = $config.toc.getAttribute("offsetTop") )#*
       *##else#*
           *##set ( $tocOffsetTop = "250" )#*
-      *##end
+      *##end##
 ##
     <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
       <div id="toc-scroll-target" class="container">

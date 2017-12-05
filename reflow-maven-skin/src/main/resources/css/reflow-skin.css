@@ -220,56 +220,56 @@ a[name]:before {
     }
 }
 
-.nav .active {
+.m-nav--sidebar .active {
     background-color: #e2e6ea;
     border-radius: 3px;
     border: solid 1px #dadada;
 }
 
-.nav .nav .active {
+.m-nav--sidebar .m-nav--sidebar .active {
     border: none;
 }
 
-.nav > .active {
+.m-nav--sidebar > .active {
     font-weight: bold;
 }
 
-.nav .nav {
+.m-nav--sidebar .m-nav--sidebar {
     display: none;
 }
 
-.nav .active .nav {
+.m-nav--sidebar .active .m-nav--sidebar {
     display: block;
 }
 
-.nav .active .nav span {
+.m-nav--sidebar .active .m-nav--sidebar span {
     display: inline-block !important;
 }
 
-.nav .nav a {
+.m-nav--sidebar .m-nav--sidebar a {
     font-weight: normal;
 }
 
-.nav .nav span {
+.m-nav--sidebar .m-nav--sidebar span {
     margin: 0 5px 0 2px;
 }
 
-.nav .nav > .active  > a,
-.nav .nav > .active:hover  > a,
-.nav .nav > .active:focus > a {
+.m-nav--sidebar .m-nav--sidebar > .active  > a,
+.m-nav--sidebar .m-nav--sidebar > .active:hover  > a,
+.m-nav--sidebar .m-nav--sidebar > .active:focus > a {
     font-weight: bold;
     padding-left: 25px;
     border-left: 5px solid rgb(106, 158, 185);
 }
 
 .m-aside-toc.nav > li > a > span, /* remove span first depth */
-.nav .nav .active span,
-.nav .nav .active:hover span,
-.nav .nav .active:focus a span {
+.m-nav--sidebar .m-nav--sidebar .active span,
+.m-nav--sidebar .m-nav--sidebar .active:hover span,
+.m-nav--sidebar .m-nav--sidebar .active:focus a span {
     display: none;
 }
 
-.nav .nav li a {
+.m-nav--sidebar .m-nav--sidebar li a {
     padding-left: 30px;
 }
 

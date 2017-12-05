@@ -24,7 +24,7 @@
 		}
 
     // toc aside bar
-    if ($('#toc-sidebar.affix-top').length) {
+    if ($('#toc-sidebar[data-spy=affix]').length) {
       $('#toc-sidebar').affix({
         offset: {
             top: $('#toc-sidebar').offset().top,

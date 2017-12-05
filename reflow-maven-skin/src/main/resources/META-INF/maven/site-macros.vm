@@ -400,11 +400,11 @@
  *
  *##macro ( listAsideToc $menus )##
 ##
-                <ul class="nav m-aside-toc">
+                <ul class="nav m-nav--sidebar m-aside-toc">
                     <li class="nav-header">Table of Contents</li>
-#*  *##foreach ( $item in $menus )#*
-        *##listAsideTocItem ( $item )#*
-    *##end##
+#*  *##foreach ( $item in $menus )
+        #listAsideTocItem ( $item )
+    #end##
                 </ul>
 #end##
 ##
@@ -418,7 +418,7 @@
         $item.text
         </a>
 #*  *##if ( $item.items.size() > 0 )##
-        <ul class="nav">
+        <ul class="nav m-nav--sidebar">
 #*      *##foreach ( $subitem in $item.items )
             #listAsideTocItem ( $subitem )
 #*      *##end#*
@@ -743,14 +743,16 @@
  *
  *##macro ( tocSidebarContent )#*
     *##if ( !$tocSidebarAdded )##
-            <div id="toc-sidebar" class="hidden-print hidden-xs hidden-sm affix-top" data-spsy="affix">
-#*
-    do not set as scroll target - works weird with grid section headers *#
+#*      *##set ( $isFixed = $config.toc.getAttribute("type") == "fixed")
+            <div id="toc-sidebar" class="hidden-print hidden-xs hidden-sm" #if ( $isFixed) data-spy="affix" #end>
+#*              do not set as scroll target - works weird with grid section headers *#
                 <div id="toc-scroll-target">
                 <div class="well">
-#*
-    *##listAsideToc ( $tocItems )#*
-*#
+                #if ( $isFixed)
+                    #listAsideToc ( $tocItems )
+                #else
+                    #listToc ( $tocItems )
+                #end##
                 </div>
             </div>
 #*
