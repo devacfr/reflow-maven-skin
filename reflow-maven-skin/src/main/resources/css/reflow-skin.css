@@ -183,20 +183,11 @@ a[name]:before {
   }
 }
 
-@media (max-width: 979px) {
-  .navbar.affix {
-    position: static;
-  }
-
-  /* Give a positive z-index to ToC bar, otherwise the pseudo elements before may overlap and
-     make the button unclickable. */
-  #toc-bar {
-    position: relative;
+#toc-bar {
     z-index:1020;
-    margin-bottom: 20px;
   }
 
-}
+
 
 /* Fix for header links - do not color/underline them */
 #banner a {
