@@ -146,18 +146,16 @@ a[name]:before {
     padding-top: 0;
 }
 
-/* Fixed subnav support: */
-
-/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
-@media (min-width: 980px) {
-  .navbar.affix {
+.navbar.affix {
     position: fixed;
     top: 50px;
     right: 0;
     left: 0;
     z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
     margin-bottom: 0;
-  }
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 .navbar.affix .navbar-inner {
     border-width: 0 0 1px;
@@ -171,10 +169,7 @@ a[name]:before {
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
   }
 
-.navbar.affix .container {
-    width: 940px;
-  }
-}
+
 
 /* Other screen sizes navbar container width */
 @media (min-width: 1200px) {
@@ -183,20 +178,89 @@ a[name]:before {
   }
 }
 
-@media (max-width: 979px) {
-  .navbar.affix {
-    position: static;
-  }
-
-  /* Give a positive z-index to ToC bar, otherwise the pseudo elements before may overlap and
-     make the button unclickable. */
-  #toc-bar {
-    position: relative;
+#toc-bar {
     z-index:1020;
-    margin-bottom: 20px;
-  }
-
 }
+
+
+
+/* affix toc aside bar
+*/
+#toc-sidebar {
+    z-index: 1000;
+}
+
+#toc-sidebar.affix {
+    top: 70px;
+    width: 360px;
+}
+
+#toc-sidebar.affix-bottom {
+    position: absolute;
+    width: 360px;
+}
+
+@media (min-width: 1200px) {
+    #toc-sidebar.affix-bottom {
+        width: 360px;
+    }
+}
+
+.m-nav--sidebar .active {
+    background-color: #e2e6ea;
+    border-radius: 3px;
+    border: solid 1px #dadada;
+}
+
+.m-nav--sidebar .m-nav--sidebar .active {
+    border: none;
+}
+
+.m-nav--sidebar > .active {
+    font-weight: bold;
+}
+
+.m-nav--sidebar .m-nav--sidebar {
+    display: none;
+}
+
+.m-nav--sidebar .active .m-nav--sidebar {
+    display: block;
+}
+
+.m-nav--sidebar .active .m-nav--sidebar span {
+    display: inline-block !important;
+}
+
+.m-nav--sidebar .m-nav--sidebar a {
+    font-weight: normal;
+}
+
+.m-nav--sidebar .m-nav--sidebar span {
+    margin: 0 5px 0 2px;
+}
+
+.m-nav--sidebar .m-nav--sidebar > .active  > a,
+.m-nav--sidebar .m-nav--sidebar > .active:hover  > a,
+.m-nav--sidebar .m-nav--sidebar > .active:focus > a {
+    font-weight: bold;
+    padding-left: 25px;
+    border-left: 5px solid rgb(106, 158, 185);
+}
+
+.m-aside-toc.nav > li > a > span, /* remove span first depth */
+.m-nav--sidebar .m-nav--sidebar .active span,
+.m-nav--sidebar .m-nav--sidebar .active:hover span,
+.m-nav--sidebar .m-nav--sidebar .active:focus a span {
+    display: none;
+}
+
+.m-nav--sidebar .m-nav--sidebar li a {
+    padding-left: 30px;
+}
+
+
+
 
 /* Fix for header links - do not color/underline them */
 #banner a {
@@ -208,15 +272,7 @@ a[name]:before {
 /* Footer */
 
 footer.well {
-  padding: 50px 0;
   margin-top: 70px;
-  margin-bottom: 0;
-  -webkit-border-radius: 0;
-     -moz-border-radius: 0;
-          border-radius: 0;
-  border-right: 0;
-  border-left: 0;
-  font-size: 90%;
 }
 
 footer.well p,
@@ -225,5 +281,12 @@ footer.well p,
 }
 
 .subfooter {
-  padding: 30px 0;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+    .bottom-description {
+        margin-top: 15px;
+    }
 }
