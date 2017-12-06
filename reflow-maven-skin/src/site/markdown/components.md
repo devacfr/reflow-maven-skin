@@ -104,10 +104,10 @@ disable altogether.
 
 ### Sidebar ToC
 
-The ToC can be displayed as a tree in the sidebar. This default style `standard` does not snap to the page when scrolling, but scrolls with the whole page. The type `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
+The ToC can be displayed as a tree in the sidebar. This default style `static` does not snap to the page when scrolling, but scrolls with the whole page. The type `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
 
 ```xml
-<toc type="fixed|standard">sidebar</toc>
+<toc type="fixed|static">sidebar</toc>
 ```
 
 [toc-sidebar]: toc-sidebar.html
