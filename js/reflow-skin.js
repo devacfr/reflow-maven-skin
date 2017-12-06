@@ -1,3 +1,5 @@
+'use strict';
+
 // Additional skin Javascript
 // ++++++++++++++++++++++++++++++++++++++++++
 
@@ -21,6 +23,19 @@
 			$('div.source pre, pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		}
 
-	})
+    // toc aside bar
+    if ($('#toc-sidebar[data-spy=affix]').length) {
+      $('#toc-sidebar').affix({
+        offset: {
+            top: $('#toc-sidebar').offset().top,
+            bottom: ($('footer').outerHeight(true) +
+            $('.subfooter').outerHeight(true)-40) //padding of footer.
+        }
+      });
+    }
+
+  });
+
+
 
 }(window.jQuery)
