@@ -401,7 +401,7 @@
       </activation>
       <properties>
         <site.deploy.id>github</site.deploy.id>
-        <site.deploy.url>git:ssh://git@github.com/devacfr/reflow-maven-skin.git?gh-pages#/</site.deploy.url>
+        <site.deploy.url>github:http://devacfr.github.io/reflow-maven-skin/</site.deploy.url>
         <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
       </properties>
     </profile>
