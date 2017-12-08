@@ -5,9 +5,9 @@
 #set($h5 = '#####')
 $h1 Contribute
 
-Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests, 
-please state that the contribution is your original work and that you license the work to the project under the project's open source license. 
-Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email, 
+Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests,
+please state that the contribution is your original work and that you license the work to the project under the project's open source license.
+Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email,
 or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.
 
 
@@ -56,6 +56,8 @@ Image previews with [Lightbox2][lightbox2].
 
 Code highlighting with [highlight.js][highlight-js].
 
+Anchor Heading with [anchor.js][anchor-js].
+
 HTML rewriting with [jsoup][jsoup].
 
 Some artwork resources from [MediaLoot][medialoot].
@@ -69,6 +71,7 @@ Inspired by [Maven Fluido Skin][fluido].
 [jquery]: http://jquery.org
 [lightbox2]: http://lokeshdhakar.com/projects/lightbox2
 [highlight-js]: http://softwaremaniacs.org/soft/highlight/en/
+[anchor-js]: https://www.bryanbraun.com/anchorjs/
 [jsoup]: http://jsoup.org/
 [medialoot]: http://medialoot.com/
 [fluido]: http://maven.apache.org/skins/maven-fluido-skin/

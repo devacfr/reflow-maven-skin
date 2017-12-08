@@ -127,4 +127,4 @@ The source code is [available on GitHub][reflow-src].
 Look for the site configuration and web page sources in `/src/site` of each module;
 and for plug-in configuration in respective POM files.
 
-[reflow-src]: h${scm-url} "Reflow Maven skin source code"
+[reflow-src]: ${scm-url} "Reflow Maven skin source code"
