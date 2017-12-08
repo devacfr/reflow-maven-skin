@@ -21,7 +21,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.3.3</version>
+    <version>1.3.4</version>
   </skin>
   ...
 </project>
@@ -43,7 +43,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.3.3</version>
+          <version>1.3.4</version>
         </dependency>
         ...
       </dependencies>
@@ -124,7 +124,7 @@ http://github.com/devacfr/reflow-maven-skin/issues
 
 ## Contributing
 
-Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release_Management Documentation][release-management] for more information).
+Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release Management Documentation][release-management] for more information).
 
     Pull request on master will be refused.
 
