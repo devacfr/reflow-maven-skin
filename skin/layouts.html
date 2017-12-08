@@ -128,14 +128,14 @@
             </div> <!-- .navbar-header -->
         <div class="collapse navbar-collapse" id="toc-nav-collapse">
           <ul id="toc" class="nav navbar-nav">
-                                                            <li class="toplevel"><a href="#page_section_layouts" title="Page section layouts">Page section layouts</a></li>
-                        <li class="toplevel"><a href="#Defining_sections" title="Defining sections">Defining sections</a></li>
-                        <li class="toplevel"><a href="#Carousel" title="Carousel">Carousel</a></li>
-                        <li class="toplevel"><a href="#Columns" title="Columns">Columns</a></li>
-                        <li class="toplevel"><a href="#Thumbnails" title="Thumbnails">Thumbnails</a></li>
-                        <li class="toplevel"><a href="#Body" title="Body">Body</a></li>
-                        <li class="toplevel"><a href="#Sidebar" title="Sidebar">Sidebar</a></li>
-                        <li class="toplevel"><a href="#Responsive_design" title="Responsive design">Responsive design</a></li>
+                                                            <li class="toplevel"><a href="#_toc_page_section_layouts1" title="Page section layouts">Page section layouts</a></li>
+                        <li class="toplevel"><a href="#_toc_defining_sections" title="Defining sections">Defining sections</a></li>
+                        <li class="toplevel"><a href="#_toc_carousel" title="Carousel">Carousel</a></li>
+                        <li class="toplevel"><a href="#_toc_columns" title="Columns">Columns</a></li>
+                        <li class="toplevel"><a href="#_toc_thumbnails" title="Thumbnails">Thumbnails</a></li>
+                        <li class="toplevel"><a href="#_toc_body" title="Body">Body</a></li>
+                        <li class="toplevel"><a href="#_toc_sidebar" title="Sidebar">Sidebar</a></li>
+                        <li class="toplevel"><a href="#_toc_responsive_design" title="Responsive design">Responsive design</a></li>
           </ul>
         </div>
       </div> <!-- .container -->
@@ -147,7 +147,7 @@
     <div class="col-md-12">
       <div class="body-content">
 <div class="page-header">
- <h1 id="page_section_layouts">Page section layouts</h1>
+ <h1 id="_toc_page_section_layouts1">Page section layouts</h1>
 </div> 
 <p>When writing Maven site pages using most of the available file formats, such as <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">APT, XDoc or Markdown</a>, it is difficult to write anything more but a straightforward linear page with headings to split the content. Reflow skin allows customizing the page layout and reflowing the page using columns, thumbnails, or with the <i>carousel</i> component.</p> 
 <p>The page is divided into <i>sections</i> and each section can be assigned a special layout for its contents. The different layouts are discussed in more detail below. The sections are specified using <tt>&lt;sections&gt;</tt> element in the per-page (or global) configuration:</p> 
@@ -177,13 +177,13 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="Defining_sections">Defining sections</h2> 
+ <h2 id="_toc_defining_sections">Defining sections</h2> 
  <p>Page sections are indicated using <i>horizontal rule</i> (<tt>&lt;hr/&gt;</tt>) elements in the generated page. Check your file format reference on how to write them, e.g. <tt>"==="</tt> for <a class="externalLink" href="http://maven.apache.org/doxia/references/apt-format.html">APT</a> or <tt>"---"</tt> for <a class="externalLink" href="http://daringfireball.net/projects/markdown/syntax#hr">Markdown</a>.</p> 
  <p>If sections are configured for a page, its contents are split on the <tt>&lt;hr/&gt;</tt> element and indicated section layout is used sequentially. For all sections that have undefined layout, <tt>&lt;body/&gt;</tt> is used (just plain body text). So for the example configuration above, the index page is expected to have at least 5 sections, separated by <i>horizontal rules</i>. Then the first one will be formatted as <i>carousel</i>, followed by a 2-column <i>thumbnails</i> section, followed by a <i>body</i> text with <i>sidebar</i> (2 sections here), then with 3-<i>column</i> section. If there are more sections after this in the text, they will have usual <i>body</i> text layout.</p> 
  <p>Note that the layout actually defines how the <i>subsections</i> of each section are laid out. <i>Subsections</i> currently are produced by splitting the section at the inner headings.</p> 
 </div> 
 <div class="section"> 
- <h2 id="Carousel">Carousel</h2> 
+ <h2 id="_toc_carousel">Carousel</h2> 
  <p><i>Carousel</i> component provides a slideshow of images with captions. It is normally used in front page to advertise main features or showcase a portfolio, etc. See one in action at the top of the <a href="../">front page of this site</a>, or as a <a class="externalLink" href="http://twitter.github.com/bootstrap/javascript.html#carousel">Bootstrap component</a>.</p> 
  <p>Carousel section is indicated using <tt>&lt;carousel /&gt;</tt> element without any attributes:</p> 
  <div class="source"> 
@@ -200,7 +200,7 @@
  <p>Carousel is constructed by displaying each subsection in the text as a carousel slide. The first image in the section becomes the carousel image. The subsection header and text consitute the slide caption. For best results, aim for images of the same size, and use <tt>h4</tt> headings for the subsections.</p> 
 </div> 
 <div class="section"> 
- <h2 id="Columns">Columns</h2> 
+ <h2 id="_toc_columns">Columns</h2> 
  <p><i>Columns</i> layout puts the section parts into columns. Each subsection is placed in the subsequent column. The layout requires the number of columns to be indicated. Bootstrap uses a 12-column ruler, so for best results, use 1, 2, 3, 4, 6 or 12 column layout. A 2-column layout is used <a href="./#Usage">here</a>.</p> 
  <p>Columns section with the number of columns is indicated using <tt>&lt;columns&gt;num&lt;/columns&gt;</tt> element:</p> 
  <div class="source"> 
@@ -217,7 +217,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="Thumbnails">Thumbnails</h2> 
+ <h2 id="_toc_thumbnails">Thumbnails</h2> 
  <p><i>Thumbnails</i> layout is best suited to produce a gallery of images. Each subsection constitutes a thumbnail block, with its first image followed by the subsection heading and text. The <a href="themes/#theme-bootswatch">themes page</a> uses thumbnails to showcase examples of Bootswatch themes.</p> 
  <p>Thumbnails are placed in columns, so the same requirements as in <i>columns</i> layout apply. To set the layout with the number of columns, use <tt>&lt;thumbs&gt;num&lt;/thumbs&gt;</tt> element:</p> 
  <div class="source"> 
@@ -234,7 +234,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="Body">Body</h2> 
+ <h2 id="_toc_body">Body</h2> 
  <p><i>Body</i> layout just outputs the page contents as they are. The subsections are output sequentially. If no <i>sidebar</i> (or sidebar ToC) is indicated, the <i>body</i> text occupies full page width. Otherwise it accommodates the sidebar and takes 3/4 of the page.</p> 
  <p>Body section is indicated using <tt>&lt;body /&gt;</tt> element without any attributes. The layout is also used as default for sections without explicit layout.</p> 
  <div class="source"> 
@@ -251,7 +251,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="Sidebar">Sidebar</h2> 
+ <h2 id="_toc_sidebar">Sidebar</h2> 
  <p><i>Sidebar</i> layout places the section contents into a sidebar with shaded background. If the sidebar follows <i>body</i> section, it is placed side-by-side with the body text. Otherwise it occupies a whole row.</p> 
  <p>If sidebar ToC is used, it is placed within the first sidebar in the page.</p> 
  <p>Sidebar section is indicated using <tt>&lt;sidebar /&gt;</tt> element without any attributes.</p> 
@@ -270,7 +270,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="Responsive_design">Responsive design</h2> 
+ <h2 id="_toc_responsive_design">Responsive design</h2> 
  <p>Reflow skin is built on <a class="externalLink" href="http://getbootstrap.com">Bootstrap</a> and provides responsive design features out of the box. The page layouts are rearranged for smaller screens to provide a good viewing experience.</p> 
 </div>      </div>
     </div>

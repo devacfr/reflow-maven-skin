@@ -128,10 +128,10 @@
             </div> <!-- .navbar-header -->
         <div class="collapse navbar-collapse" id="toc-nav-collapse">
           <ul id="toc" class="nav navbar-nav">
-                                                            <li class="toplevel"><a href="#localcustom_resources" title="Local/custom resources">Local/custom resources</a></li>
-                        <li class="toplevel"><a href="#Local_Bootstrap__jQuery" title="Local Bootstrap & jQuery">Local Bootstrap & jQuery</a></li>
-                        <li class="toplevel"><a href="#Additional_CSS_files" title="Additional CSS files">Additional CSS files</a></li>
-                        <li class="toplevel"><a href="#Additional_JavaScript_files" title="Additional JavaScript files">Additional JavaScript files</a></li>
+                                                            <li class="toplevel"><a href="#_toc_localcustom_resources1" title="Local/custom resources">Local/custom resources</a></li>
+                        <li class="toplevel"><a href="#_toc_local_bootstrap__jquery" title="Local Bootstrap & jQuery">Local Bootstrap & jQuery</a></li>
+                        <li class="toplevel"><a href="#_toc_additional_css_files" title="Additional CSS files">Additional CSS files</a></li>
+                        <li class="toplevel"><a href="#_toc_additional_javascript_files" title="Additional JavaScript files">Additional JavaScript files</a></li>
           </ul>
         </div>
       </div> <!-- .container -->
@@ -143,12 +143,12 @@
     <div class="col-md-12">
       <div class="body-content">
 <div class="page-header">
- <h1 id="localcustom_resources">Local/custom resources</h1>
+ <h1 id="_toc_localcustom_resources1">Local/custom resources</h1>
 </div> 
 <p>Reflow Maven skin utilises content delivery networks (CDN) for a number of CSS and JavaScript resources. These include Bootstrap files, themes, the jQuery library, etc. The reuse of popular resources via CDN provides better performance. However, such resources may not be accessible when the site is used in an offline/intranet setting.</p> 
 <p>To support such deployments of Reflow skin, the configuration allows using local resources. Furthermore, custom resources can also be easily added to the generated website. These include newer versions of the used libraries as well as arbitrary scripts.</p> 
 <div class="section"> 
- <h2 id="Local_Bootstrap__jQuery">Local Bootstrap &amp; jQuery</h2> 
+ <h2 id="_toc_local_bootstrap__jquery">Local Bootstrap &amp; jQuery</h2> 
  <p><b>Requires Reflow Maven skin ≥ v1.1.0.</b></p> 
  <p>To force the generated site use only local CSS/JavaScript resources, use the <tt>&lt;localResources&gt;</tt> flag:</p> 
  <div class="source"> 
@@ -173,7 +173,7 @@
  <p>For multi-module site, remember to enable <a href="multi-module.html#Reuse_resources">resource reuse flag</a>, otherwise these files will have to be repeated for each sub-module.</p> 
 </div> 
 <div class="section"> 
- <h2 id="Additional_CSS_files">Additional CSS files</h2> 
+ <h2 id="_toc_additional_css_files">Additional CSS files</h2> 
  <p>Additional CSS files (or other resources) can be added to the page head using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head"><tt>&lt;body&gt;&lt;head&gt;</tt> configuration</a> in the <tt>site.xml</tt> site descriptor. This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.</p> 
  <p>The <tt>&lt;head&gt;</tt> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="misc.html#Code_highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<tt>&lt;highlightJs&gt;false&lt;/highlightJs&gt;</tt>) and add the relevant CSS and JavaScript manually:</p> 
  <div class="source"> 
@@ -211,7 +211,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="Additional_JavaScript_files">Additional JavaScript files</h2> 
+ <h2 id="_toc_additional_javascript_files">Additional JavaScript files</h2> 
  <p><b>Requires Reflow Maven skin ≥ v1.1.0.</b></p> 
  <p>JavaScript files can be added to the page head together with CSS files. However, for performance reasons, it can be better to reference JavaScript files at the end of the document. To place custom XHTML at the end of the page (before the <tt>&lt;/body&gt;</tt> tag), use the <tt>&lt;endContent&gt;</tt> element, which also supports Velocity variables, e.g.:</p> 
  <div class="source"> 
