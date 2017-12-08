@@ -57,9 +57,6 @@ To use Reflow skin in your Maven site, [add it to site.xml][reflow-usage]:
 </skin>
 ```
 
-Furthermore, the skin requires accompanying [Reflow Velocity tools][reflow-tools] as a dependency
-as well as Apache Velocity 1.7.
-[Add them as dependencies][reflow-usage] to `maven-site-plugin`.
 
 [Full usage instructions &raquo;][reflow-usage]
 

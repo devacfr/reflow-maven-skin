@@ -1,4 +1,5 @@
 [ ![Download](https://api.bintray.com/packages/devacfr/maven/reflow-maven-skin/images/download.svg) ](https://bintray.com/devacfr/maven/reflow-maven-skin/_latestVersion)
+[![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 
 # [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/ )
 
@@ -20,7 +21,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.3.3</version>
+    <version>1.3.4</version>
   </skin>
   ...
 </project>
@@ -42,7 +43,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.3.3</version>
+          <version>1.3.4</version>
         </dependency>
         ...
       </dependencies>
@@ -123,7 +124,9 @@ http://github.com/devacfr/reflow-maven-skin/issues
 
 ## Contributing
 
-Fork the repository and submit pull requests.
+Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release Management Documentation][release-management] for more information).
+
+    Pull request on master will be refused.
 
 
 ## Author
@@ -156,3 +159,5 @@ limitations under the License.
 
 
 <a href='https://bintray.com/devacfr/maven/reflow-maven-skin?source=watch' alt='Get automatic notifications about new "reflow-maven-skin" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
+
+[release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management

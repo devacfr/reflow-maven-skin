@@ -23,36 +23,36 @@ Bootstrap themes. They are set using the `<theme>` element in the customization:
 There are several options for the `<theme>` value:
 
 -   **`default`**
-    
+
     (**Default**: will be used if `<theme>` is not set).
-    
+
     Default Bootstrap theme (version ${bootstrapVersion}). The default theme (with minor customizations)
     is used for this website.
-    
+
     The default Bootstrap theme is loaded from the
     [BootstrapCDN Content Delivery Network][bootstrapcdn], which improves website loading
     by hosting the Bootstrap CSS and JavaScript files.
 
 -   **`site`**
-    
+
     A customized (local) Bootstrap theme. This option should be used when a custom Bootstrap
     theme is developed and included with the Maven site. The theme expects the following
     Bootstrap CSS and JavaScript files to be available in `src/site/resources`:
-    
+
     -   `css/bootstrap.min.css`
     -   `css/bootstrap-responsive.min.css`
     -   `js/bootstrap.min.js`
-    
+
     The files can be customized and generated at [Bootstrap's Customize page][bootstrap-custom].
 
 -   **`bootswatch-*`**<span id="theme-bootswatch"></span>
-    
+
     One of free Bootstrap themes from [Bootswatch][bootswatch]. Append the lowercase theme name
     in the [Bootswatch gallery][bootswatch-gallery], e.g. `bootswatch-readable`.
-    
+
     Bootswatch themes (default version ${bootstrapVersion}) are loaded from the
     [BootstrapCDN Content Delivery Network][bootstrapcdn].
-    
+
     Preview full themes at the [Bootswatch gallery][bootswatch-gallery],
     or check out several examples of Reflow skin using Bootswatch themes below.
 
@@ -140,7 +140,7 @@ $h3 [Lumen][theme-lumen]
 [theme-lumen]: bootswatch-lumen.html
 
 
-### [Paper][theme-paper]
+$h3 [Paper][theme-paper]
 
 [![Paper Bootswatch theme](../img/bootswatch-paper.png)][theme-paper]
 
@@ -152,7 +152,7 @@ $h3 [Lumen][theme-lumen]
 
 
 [theme-journal]: bootswatch-journal.html
-### [Readable][theme-readable]
+$h3 [Readable][theme-readable]
 
 [![Readable Bootswatch theme](../img/bootswatch-readable.png)][theme-readable]
 

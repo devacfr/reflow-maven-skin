@@ -16,6 +16,7 @@ $h3 Reflow Maven skin 1.3-DEVACFR Release Notes
 
 $h4 Minor enhancements
 
+- Add affix on toc side bar.
 - Change groupId to io.github.devacfr to deploy on maven central repository.
 - Add CI on master branch
 - Add AnchorJs javascript library.
@@ -27,6 +28,7 @@ $h4 Minor enhancements
 
 $h4 Bug fixes
 
+- Fix Top navbar overlaps with header
 - Fix scroll to Top
 - Fix url project in copyright
 
