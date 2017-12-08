@@ -57,7 +57,7 @@
         </themes-bootswatch-lumen>
         <themes-bootswatch-paper>
           <theme>bootswatch-paper</theme>
-        </themes-bootswatch-paper>        
+        </themes-bootswatch-paper>
         <themes-bootswatch-readable>
           <theme>bootswatch-readable</theme>
           <toc offsetTop="250">top</toc>
@@ -94,7 +94,7 @@
           </sections>
         </advanced>
         <toc-sidebar>
-          <toc>sidebar</toc>
+          <toc type="fixed">sidebar</toc>
         </toc-sidebar>
       </pages>
     </reflowSkin>

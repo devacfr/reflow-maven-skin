@@ -276,16 +276,17 @@
   *#
       #googleAnalytics( $decoration.googleAnalyticsAccountId )
 ##
-  </head>
+  </head> <!-- end : head -->
 ##
   ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
   <body class="page-$config.fileId project-$config.projectId" data-spy="scroll" data-offset="70" data-target="${esc.h}toc-scroll-target">
 
-    <div class="navbar #if ( $config.is( "navbarInverse" ) ) navbar-inverse #else navbar-default#end navbar-fixed-top">
+    <div id="m-top-navbar" class="navbar #if ( $config.is( "navbarInverse" ) ) navbar-inverse #else navbar-default#end navbar-fixed-top">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#top-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -310,8 +311,8 @@
   *##end##
 ##
         </div> <!-- .navbar-header -->
-      <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
-         <ul class="nav navbar-nav navbar-right">
+        <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
 #*
   *##if ( $decoration.body.links )#*
       *##links ( $decoration.body.links )#*
@@ -328,10 +329,10 @@
       *##topMenu ( $filterMenus )#*
   *##end##
 ##
-          </ul>
+            </ul>
         </div><!--/.nav-collapse -->
       </div> <!--/.container -->
-    </div> <!--/.container -->
+    </div> <!--/.navbar -->
 ##
   <div class="container">
 ##
@@ -343,7 +344,7 @@
       *##set ( $hasBanner = false )#*
   *##end##
 ##
-  <header>
+  <div class="header container-fluid">
 #*
   *##if  ( $hasBanner )##
   <div class="jumbotron subhead">
@@ -395,21 +396,21 @@
     <hr class="toc-separator" />
 
     ## read top offset for fixed ToC bar from the config
-#*      *##if ( $config.toc.getAttribute("offsetTop") )#*
+#*    *##if ( $config.toc.getAttribute("offsetTop") )#*
           *##set ( $tocOffsetTop = $config.toc.getAttribute("offsetTop") )#*
       *##else#*
           *##set ( $tocOffsetTop = "250" )#*
-      *##end
+      *##end##
 ##
     <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
       <div id="toc-scroll-target" class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                </div> <!-- .navbar-header -->
+            </div> <!-- .navbar-header -->
         <div class="collapse navbar-collapse" id="toc-nav-collapse">
           <ul id="toc" class="nav navbar-nav">
             ## display Table of Contents in a top bar
@@ -417,9 +418,9 @@
           </ul>
         </div>
       </div> <!-- .container -->
-    </div>
+    </div> <!-- end: toc-bar -->
 #*  *##end##
-  </header>
+  </div> <!-- end : header -->
 ##
   <div class="main-body">
 #*
@@ -440,11 +441,12 @@
 #*      *##if ( $tocSidebar )#*
           *##tocSidebar ()#*
       *##end##
-  </div>
+  </div> <!-- /row -->
 #*  *##end##
   </div>
 ##
-  </div><!-- /container -->
+    </div> <!-- end : row -->
+</div> <!-- /container -->
 ##
   <!-- Footer
   ================================================== -->
@@ -500,7 +502,7 @@
   <div class="container subfooter">
     <div class="row">
       <div class="col-md-12">
-        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p class="pull-right"><a id="m-scroll-top" href="#">Back to top</a></p>
         <p class="copyright">Copyright &copy;#copyright (). All Rights Reserved.</p>
 #*  *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )##
         <p class="version-date">
