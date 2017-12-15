@@ -259,7 +259,10 @@ a[name]:before {
     padding-left: 30px;
 }
 
-
+.breadcrumb {
+    z-index: 1020;
+    position: relative;
+}
 
 
 /* Fix for header links - do not color/underline them */
