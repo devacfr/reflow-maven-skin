@@ -21,7 +21,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.3.4</version>
+    <version>1.3.5</version>
   </skin>
   ...
 </project>
@@ -43,7 +43,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.3.4</version>
+          <version>1.3.5</version>
         </dependency>
         ...
       </dependencies>

@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>1.3.4</version>
+    <version>1.3.5</version>
   </parent>
 
   <artifactId>reflow-maven-skin</artifactId>
@@ -17,6 +17,10 @@
   <!-- Indicate that the site for skin plug-in is nested under `skin` -->
   <url>${site.url}/skin</url>
 
+  <properties>
+    <main.basedir>${basedir}/..</main.basedir>
+  </properties>
+  
   <distributionManagement>
     <site>
       <id>${site.deploy.id}</id>
@@ -47,8 +51,8 @@
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.6</version>
         <configuration>
-          <!-- Override resource filtering delimiters to avoid filtering Velocity variables,
-               which have the same pattern ${replace.me}. Instead, using @replace.me@. -->
+          <!-- Override resource filtering delimiters to avoid filtering Velocity variables, which have the same pattern 
+            ${replace.me}. Instead, using @replace.me@. -->
           <useDefaultDelimiters>false</useDefaultDelimiters>
           <delimiters>
             <delimiter>@</delimiter>

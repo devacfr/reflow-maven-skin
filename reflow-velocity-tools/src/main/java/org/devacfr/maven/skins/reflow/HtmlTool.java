@@ -858,7 +858,9 @@ public class HtmlTool extends SafeConfig {
      * <p>
      * The anchors are used to indicate positions within a HTML page. In HTML5, however, the {@code name} attribute is
      * no longer supported on {@code <a>}) tag. The positions within pages are indicated using {@code id} attribute
-     * instead, e.g. {@code <h1 id="myheading">}.
+     * instead, e.g. {@code
+     *
+    <h1 id="myheading">}.
      * </p>
      * <p>
      * The method finds anchors inside, immediately before or after the heading tags and uses their name as heading
@@ -986,12 +988,19 @@ public class HtmlTool extends SafeConfig {
      *         already, the original content is returned.
      * @since 1.0
      */
-    public String ensureHeadingIds(final String content, final String idSeparator) {
+    public String ensureHeadingIds(final String currentPage, final String content, final String idSeparator) {
+        final List<String> excludedPages = Arrays.asList("checkstyle-aggregate", "checkstyle");
 
         final Element body = parseContent(content);
 
+        // exclude pages
+        if (excludedPages.contains(currentPage)) {
+            return content;
+        }
+
         // first find all existing IDs (to avoid generating duplicates)
         final List<Element> idElems = body.select("*[id]");
+
         final Set<String> ids = new HashSet<>();
         boolean modified = false;
         for (final Element idElem : idElems) {
@@ -1151,7 +1160,13 @@ public class HtmlTool extends SafeConfig {
 
     /**
      * Reads all headings in the given HTML content as a hierarchy. Subsequent smaller headings are nested within bigger
-     * ones, e.g. {@code <h2>} is nested under preceding {@code <h1>}.
+     * ones, e.g. {@code
+     *
+    <h2>} is nested under preceding {@code
+       * 
+      
+     
+    <h1>}.
      * <p>
      * Only headings with IDs are included in the hierarchy. The result elements contain ID and heading text for each
      * heading. The hierarchy is useful to generate a Table of Contents for a page.
@@ -1165,15 +1180,15 @@ public class HtmlTool extends SafeConfig {
      *         top-level items. Empty list if no headings are in the content.
      * @since 1.0
      */
-    public List<? extends IdElement> headingTree(final String content, List<String> sections) {
+    public List<? extends IdElement> headingTree(final String content, final List<String> sections) {
 
-        List<String> sectionContents = this.split(content, "hr");
+        final List<String> sectionContents = this.split(content, "hr");
         final List<String> headIds = concat(HEADINGS, "[id]", true);
         final List<HeadingItem> headingItems = new ArrayList<>();
 
         int index = 0;
-        for (String sectionContent : sectionContents) {
-            String sectionType = index < sections.size() ? sections.get(index++) : "";
+        for (final String sectionContent : sectionContents) {
+            final String sectionType = index < sections.size() ? sections.get(index++) : "";
 
             // exclude carousel headings
             if ("carousel".equals(sectionType)) {

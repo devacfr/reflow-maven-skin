@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>1.3.4</version>
+    <version>1.3.5</version>
   </parent>
 
   <artifactId>reflow-velocity-tools</artifactId>
@@ -13,6 +13,10 @@
   <name>Reflow Velocity Tools</name>
   <description>Velocity tools supporting Reflow Maven skin</description>
 
+  <properties>
+    <main.basedir>${basedir}/..</main.basedir>
+  </properties>
+  
   <distributionManagement>
     <site>
       <id>${site.deploy.id}</id>
@@ -48,21 +52,21 @@
     <plugins>
       <!-- https://issues.apache.org/jira/browse/DOXIASITETOOLS-168 tools.xml has to be at META-INF/maven/site-tools.xml -->
       <plugin>
-          <groupId>com.coderplus.maven.plugins</groupId>
-          <artifactId>copy-rename-maven-plugin</artifactId>
-          <executions>
-              <execution>
-                  <id>copy-tools-xml</id>
-                  <phase>process-resources</phase>
-                  <goals>
-                      <goal>copy</goal>
-                  </goals>
-                  <configuration>
-                      <sourceFile>src/main/resources/tools.xml</sourceFile>
-                      <destinationFile>${basedir}/target/classes/META-INF/maven/site-tools.xml</destinationFile>
-                  </configuration>
-              </execution>
-          </executions>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-tools-xml</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <sourceFile>src/main/resources/tools.xml</sourceFile>
+              <destinationFile>${basedir}/target/classes/META-INF/maven/site-tools.xml</destinationFile>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
