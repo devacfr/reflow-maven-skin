@@ -28,9 +28,11 @@ $h4 Minor enhancements
 
 $h4 Bug fixes
 
-- Fix Top navbar overlaps with header
-- Fix scroll to Top
-- Fix url project in copyright
+- In checkstyle report link on detail of file doesn't work.
+- Can not click on breadcrumb.
+- Fix Top navbar overlaps with header.
+- Fix scroll to Top.
+- Fix url project in copyright.
 
 
 $h3 Reflow Maven skin 1.2-DEVACFR Release Notes
