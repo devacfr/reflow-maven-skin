@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -17,6 +18,10 @@
   <!-- Indicate that the site for skin plug-in is nested under `skin` -->
   <url>${site.url}/skin</url>
 
+  <properties>
+    <main.basedir>${basedir}/..</main.basedir>
+  </properties>
+  
   <distributionManagement>
     <site>
       <id>${site.deploy.id}</id>
@@ -47,8 +52,8 @@
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.6</version>
         <configuration>
-          <!-- Override resource filtering delimiters to avoid filtering Velocity variables,
-               which have the same pattern ${replace.me}. Instead, using @replace.me@. -->
+          <!-- Override resource filtering delimiters to avoid filtering Velocity variables, which have the same pattern 
+            ${replace.me}. Instead, using @replace.me@. -->
           <useDefaultDelimiters>false</useDefaultDelimiters>
           <delimiters>
             <delimiter>@</delimiter>
