@@ -39,90 +39,13 @@
   };
 })(jQuery, window, document);
 
-function getViewPort() {
-  var e = window, a = 'inner';
-  if (!('innerWidth' in window)) {
-    a = 'client';
-    e = document.documentElement || document.body;
-  }
-
-  return {
-    width : e[a + 'Width'],
-    height : e[a + 'Height']
-  };
-}
-
-var timestampSideBar = 0;
-
 // Additional skin Javascript
 // ++++++++++++++++++++++++++++++++++++++++++
 !function($) {
 
   $(function() {
 
-    var $window = $(window);
-    var $body   = $(document.body);
-    var sidebar = $('.m-toc-sidebar-container');
-    
-    function getSidebarContainerOffset() {
-      if (sidebar.hasClass('affix')) {
-        // size header
-        return 70
-      } else {
-        return sidebar.offset().top;
-      }
-    }
-
-    sidebar.mCustomScrollbar({
-      theme : "inset",
-      axis : "y",
-      setHeight : getViewPort().height - getSidebarContainerOffset()
-    });
-
-    $window.resize(function() {
-      sidebar.css('height', (getViewPort().height - getSidebarContainerOffset()) + 'px');
-    });
-
-    
-    $body.scrollspy({
-      target: '.m-toc-sidebar'
-    });
-    
-    /*
-    sidebar.on('activate.bs.scrollspy', function(evt) {
-      var el = $(evt.target);
-      if (timestampSideBar > 0 && evt.timeStamp < timestampSideBar + 100)
-        return false;
-      timestampSideBar = evt.timeStamp;
-      var container = sidebar.find('.mCSB_container');
-      var offsetHeight = 0;
-      var elHeight = container.height()
-
-      var parent = $(el.offsetParent())
-      offsetHeight = el.position().top;
-      while (!parent.hasClass('mCSB_container')) {
-        offsetHeight += parent.position().top;
-        parent = $(parent.offsetParent());
-      }
-      var offset = offsetHeight; // - (elHeight / 2);
-      // sidebar.mCustomScrollbar("scrollTo",el);
-      sidebar.mCustomScrollbar("scrollTo", offset);
-      evt.stopImmediatePropagation();
-      return false;
-    });
-    
-    */
-
-    // toc aside bar
-    if ($('.m-toc-sidebar-container[data-spy=affix]').length) {
-      sidebar.affix({
-        offset : {
-          top : sidebar.offset().top,
-          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 40)
-        // padding of footer.
-        }
-      });
-    }
+    var $window = $(window)
 
     // Start carousel
     $(function() {
@@ -139,7 +62,16 @@ var timestampSideBar = 0;
       });
     }
 
-
+    // toc aside bar
+    if ($('#toc-sidebar[data-spy=affix]').length) {
+      $('#toc-sidebar').affix({
+        offset : {
+          top : $('#toc-sidebar').offset().top,
+          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 40)
+        // padding of footer.
+        }
+      });
+    }
 
     function resizeTopNavBar() {
       var navbar = $('#m-top-navbar');
