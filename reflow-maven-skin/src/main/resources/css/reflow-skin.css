@@ -116,7 +116,7 @@ a[name]:before {
 }
 
 .dropdown-submenu:hover>a:after {
-    border-left-color: #fff;
+    border-left-color: #484848;
 }
 
 .dropdown-submenu.pull-left {
@@ -130,6 +130,12 @@ a[name]:before {
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+@media (max-width: 767px) {
+    .dropdown-submenu .dropdown-menu {
+        margin-left: 10px;
+    }
+}
+
 
 /*--------------------------------------------------
  * carousel
@@ -145,6 +151,10 @@ a[name]:before {
     padding: 10px;
     padding-top: 0;
 }
+
+/*--------------------------------------------------
+ * navbar
+ *--------------------------------------------------*/
 
 .navbar.affix {
     position: fixed;
@@ -178,11 +188,17 @@ a[name]:before {
   }
 }
 
+/*--------------------------------------------------
+ * toc top
+ *--------------------------------------------------*/
+
 #toc-bar {
     z-index:1020;
 }
 
-
+/*--------------------------------------------------
+ * toc sidebar
+ *--------------------------------------------------*/
 
 /* affix toc aside bar
 */
@@ -259,20 +275,31 @@ a[name]:before {
     padding-left: 30px;
 }
 
+
+/*--------------------------------------------------
+ * breadcrumb
+ *--------------------------------------------------*/
+
 .breadcrumb {
     z-index: 1020;
     position: relative;
 }
 
+/*--------------------------------------------------
+ * banner
+ *--------------------------------------------------*/
+ 
 
 /* Fix for header links - do not color/underline them */
 #banner a {
-	color: inherit;
-	text-decoration: inherit;
+    color: inherit;
+    text-decoration: inherit;
 }
 
 
-/* Footer */
+/*--------------------------------------------------
+ * Footer
+ *--------------------------------------------------*/
 
 footer.well {
   margin-top: 70px;
