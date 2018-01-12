@@ -356,52 +356,12 @@
     *##end#*
 
 *##end##
-##
-#**
- * Outputs Table of Contents into a list menu
- *
- *##macro ( listToc $menus )##
-##
-                <ul class="nav nav-list">
-                    <li class="nav-header">Table of Contents</li>
-#*  *##foreach ( $item in $menus )#*
-        *##listTocItem ( $item )#*
-    *##end##
-                </ul>
-#end##
-##
-#**
- * Recursively outputs ToC item and its children
- *
- *##macro ( listTocItem $item )#*
-
-    *##if ( $item.items.size() > 0 )##
-        <li class="dropdown"><a href="#$item.id" title="$item.text">$item.text <b class="caret"></b></a>
-#*      *##if ( $item.items.size() > 0 )##
-            <ul class="nav nav-list">
-#*          *##foreach ( $subitem in $item.items )
-                #listTocItem ( $subitem )
-#*          *##end#*
-
-            *##if ( !$addedDivider )
-                <li class="divider"></li>
-#*              *##set ( $addedDivider = true )#*
-            *##end##
-            </ul>
-#*      *##end#*
-        *#</li>
-#*  *##else##
-        <li><a href="#$item.id" title="$item.text">$item.text</a>
-#*      *##set ( $addedDivider = false )#*
-    *##end##
-#end##
 #**
  * Outputs Table of Contents into a list menu
  *
  *##macro ( listAsideToc $menus )##
 ##
-                <ul class="nav m-nav--sidebar m-aside-toc">
-                    <li class="nav-header">Table of Contents</li>
+                <ul class="m-nav--sidebar nav">
 #*  *##foreach ( $item in $menus )
         #listAsideTocItem ( $item )
     #end##
@@ -412,21 +372,16 @@
  * Recursively outputs ToC item and its children
  *
  *##macro ( listAsideTocItem $item )##
-    <li>
-        <a href="#$item.id" title="$item.text">
-#*          *##if ( $item.items.size() == 0 )<span class="fa fa-angle-double-right"></span>#end##
-        $item.text
-        </a>
+    <li class="$item.tagName">
+        <a href="#$item.id" title="$item.text">$item.text</a>
+    </li>
 #*  *##if ( $item.items.size() > 0 )##
-        <ul class="nav m-nav--sidebar">
 #*      *##foreach ( $subitem in $item.items )
             #listAsideTocItem ( $subitem )
 #*      *##end#*
 *#
-        </ul>
-#*  *##end#*
-    *#</li>
-#end##
+#*  *##end   
+#end
 ##
 #**
  * Outputs the top banner contents
@@ -729,8 +684,7 @@
  *##macro ( tocSidebar )#*
     *##if ( !$tocSidebarAdded )##
         <div class="col-md-4">
-#*
-    *##tocSidebarContent ()#*
+#*    *##tocSidebarContent ()#*
 *#
         </div>
 #*
@@ -744,17 +698,11 @@
  *##macro ( tocSidebarContent )#*
     *##if ( !$tocSidebarAdded )##
 #*      *##set ( $isFixed = $config.toc.getAttribute("type") == "fixed")
-            <div id="toc-sidebar" class="hidden-print hidden-xs hidden-sm" #if ( $isFixed) data-spy="affix" #end>
-#*              do not set as scroll target - works weird with grid section headers *#
-                <div id="toc-scroll-target">
-                <div class="well">
-                #if ( $isFixed)
-                    #listAsideToc ( $tocItems )
-                #else
-                    #listToc ( $tocItems )
-                #end##
-                </div>
-            </div>
+        <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm" #if ( $isFixed) data-spy="affix" #end>
+            <nav class="m-toc-sidebar">
+               #listAsideToc ( $tocItems )
+           </nav>
+       </div>
 #*
     *##set ( $tocSidebarAdded = true )#*
     *##end##

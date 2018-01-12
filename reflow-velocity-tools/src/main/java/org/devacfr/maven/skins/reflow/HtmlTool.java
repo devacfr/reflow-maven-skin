@@ -1163,7 +1163,12 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-       * 
+            * 
+           
+          
+         
+        
+       
       
      
     <h1>}.
@@ -1198,7 +1203,8 @@ public class HtmlTool extends SafeConfig {
             // select all headings that have an ID
             final List<Element> headings = body.select(StringUtil.join(headIds, ", "));
             for (final Element heading : headings) {
-                headingItems.add(new HeadingItem(heading.id(), heading.text(), headingIndex(heading)));
+                headingItems
+                        .add(new HeadingItem(heading.id(), heading.nodeName(), heading.text(), headingIndex(heading)));
             }
         }
 
@@ -1249,14 +1255,17 @@ public class HtmlTool extends SafeConfig {
 
         private final String id;
 
+        private final String tagName;
+
         private final String text;
 
         private final int headingIndex;
 
         private final List<HeadingItem> children = new ArrayList<>();
 
-        public HeadingItem(final String id, final String text, final int headingIndex) {
+        public HeadingItem(final String id, final String tagName, final String text, final int headingIndex) {
             this.id = id;
+            this.tagName = tagName;
             this.text = text;
             this.headingIndex = headingIndex;
         }
@@ -1264,6 +1273,11 @@ public class HtmlTool extends SafeConfig {
         @Override
         public String getId() {
             return id;
+        }
+
+        @Override
+        public String getTagName() {
+            return tagName;
         }
 
         @Override
@@ -1291,6 +1305,11 @@ public class HtmlTool extends SafeConfig {
          * @return element {@code id} value
          */
         public String getId();
+
+        /**
+         * @return Returns the tag name of element
+         */
+        public String getTagName();
 
         /**
          * Retrieves the text contents of the HTML element (rendered for display)

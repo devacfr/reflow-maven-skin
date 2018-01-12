@@ -2,7 +2,7 @@
 .breadcrumb,
 .toc-separator
 #toc-bar,
-#toc-sidebar,
+.m-toc-sidebar-container,
 footer,
 .subfooter {
 	display: none !important;

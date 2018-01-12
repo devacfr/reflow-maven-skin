@@ -1,4 +1,4 @@
-## Sidebar table of contents
+# Sidebar table of contents
 
 An example page showing the table of contents rendered as a sidebar tree menu.
 
