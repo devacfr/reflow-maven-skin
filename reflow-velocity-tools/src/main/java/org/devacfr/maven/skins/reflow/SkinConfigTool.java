@@ -17,7 +17,10 @@ package org.devacfr.maven.skins.reflow;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
@@ -26,6 +29,8 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
@@ -73,24 +78,38 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 @DefaultKey("config")
 public class SkinConfigTool extends SafeConfig {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
+
     public static final String DEFAULT_KEY = "config";
 
     /** By default use Reflow skin configuration tag */
     public static final String SKIN_KEY = "reflowSkin";
 
+    /** */
     private String key = DEFAULT_KEY;
 
+    /** */
     private String skinKey = SKIN_KEY;
 
     /* Create dummy nodes to avoid null checks */
     private Xpp3Dom globalProperties = new Xpp3Dom("");
 
+    /** */
     private Xpp3Dom pageProperties = new Xpp3Dom("");
 
+    /** */
     private String namespace = "";
 
+    /** */
     private String projectId = null;
 
+    /** */
+    private String type = "page";
+
+    /** */
+    private boolean includeInDocument = false;
+
+    /** */
     private String fileId = null;
     // private String fileShortId = null;
 
@@ -132,22 +151,7 @@ public class SkinConfigTool extends SafeConfig {
         // calculate the page ID from the current file name
         final Object currentFileObj = ctxt.get("currentFileName");
         if (currentFileObj instanceof String) {
-
-            String currentFile = (String) currentFileObj;
-
-            // drop the extension
-            final int lastDot = currentFile.lastIndexOf(".");
-            if (lastDot >= 0) {
-                currentFile = currentFile.substring(0, lastDot);
-            }
-
-            // get the short ID (in case of nested files)
-            // String fileName = new File(currentFile).getName();
-            // fileShortId = HtmlTool.slug(fileName);
-
-            // full file ID includes the nested dirs
-            // replace nesting "/" with "-"
-            fileId = HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
+            fileId = slugFilename((String) currentFileObj);
         }
 
         final Object decorationObj = ctxt.get("decoration");
@@ -196,6 +200,10 @@ public class SkinConfigTool extends SafeConfig {
                 // TODO try fileShortId as well?
                 Xpp3Dom page = getChild(pagesNode, fileId);
 
+                final Set<String> pagesInDocuments = findPagesIncludeInDocument(pagesNode);
+                LOGGER.info("findPagesIncludeInDocument: " + pagesInDocuments);
+                this.includeInDocument = pagesInDocuments.contains(fileId);
+
                 // Now check if the project artifact ID is set, and if so, if it matches the
                 // current project. This allows preventing accidental reuse of parent page
                 // configs in children modules
@@ -209,9 +217,22 @@ public class SkinConfigTool extends SafeConfig {
 
                 if (page != null) {
                     pageProperties = page;
+                    final String pageType = page.getAttribute("type");
+                    if (pageType != null) {
+                        this.type = pageType;
+                    }
+                }
+                if (this.includeInDocument) {
+                    this.type = "frame";
                 }
             }
         }
+        LOGGER.info("currentFileName: " + currentFileObj);
+        LOGGER.info("Project id: " + projectId);
+        LOGGER.info("File id: " + fileId);
+        LOGGER.info("Include in Document: " + this.includeInDocument);
+        LOGGER.info("Page Type: " + this.type);
+        LOGGER.info("---------------------------------------------------");
     }
 
     /**
@@ -233,26 +254,14 @@ public class SkinConfigTool extends SafeConfig {
     /**
      * Gets the list of all children name for the {@code parentNode}.
      *
-     * @param parentNode the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all children,
-     *          which may be empty but never {@code null}.
-     *
+     * @param parentNode
+     *            the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
+     *         {@code null}.
      * @since 1.3
      */
     public List<String> getChildren(final Xpp3Dom parentNode) {
-        if (parentNode == null) {
-            return Collections.emptyList();
-        }
-        final Xpp3Dom[] children = parentNode.getChildren();
-        if (children == null) {
-            return Collections.emptyList();
-        }
-        List<String> list = new ArrayList<>(children.length);
-        for (Xpp3Dom child : children) {
-            list.add(child.getName());
-        }
-
-        return list;
+        return getChildrenNodes(parentNode, null).stream().map(node -> node.getName()).collect(Collectors.toList());
     }
 
     /**
@@ -373,6 +382,80 @@ public class SkinConfigTool extends SafeConfig {
 
     public String getFileId() {
         return fileId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean getIsIncludeInDocument() {
+        return includeInDocument;
+    }
+
+    private static Set<String> findPagesIncludeInDocument(final Xpp3Dom pagesNode) {
+        final Xpp3Dom[] pages = pagesNode.getChildren();
+        final Set<String> includePages = new HashSet<>();
+        for (int i = 0; i < pages.length; i++) {
+            final Xpp3Dom page = pages[i];
+            final String type = page.getAttribute("type");
+            if ("doc".equals(type)) {
+                final Xpp3Dom menu = page.getChild("menu");
+                if (menu == null) {
+                    continue;
+                }
+                for (final Xpp3Dom item : getChildrenNodes(menu, "item")) {
+                    final String pageName = extractPageFromMenu(item);
+                    if (pageName != null) {
+                        includePages.add(slugFilename(pageName));
+                    }
+                }
+            }
+        }
+        return includePages;
+    }
+
+    private static String extractPageFromMenu(final Xpp3Dom itemMenu) {
+        return itemMenu.getAttribute("href");
+    }
+
+    public static List<Xpp3Dom> getChildrenNodes(final Xpp3Dom parentNode, final String name) {
+        if (parentNode == null) {
+            return Collections.emptyList();
+        }
+        final Xpp3Dom[] children = parentNode.getChildren();
+        if (children == null) {
+            return Collections.emptyList();
+        }
+        final List<Xpp3Dom> list = new ArrayList<>(children.length);
+        for (final Xpp3Dom child : children) {
+            if (name != null) {
+                if (name.equals(child.getName())) {
+                    list.add(child);
+                }
+            } else {
+                list.add(child);
+            }
+        }
+
+        return list;
+    }
+
+    private static String slugFilename(final String fileName) {
+        String currentFile = fileName;
+
+        // drop the extension
+        final int lastDot = currentFile.lastIndexOf(".");
+        if (lastDot >= 0) {
+            currentFile = currentFile.substring(0, lastDot);
+        }
+
+        // get the short ID (in case of nested files)
+        // String fileName = new File(currentFile).getName();
+        // fileShortId = HtmlTool.slug(fileName);
+
+        // full file ID includes the nested dirs
+        // replace nesting "/" with "-"
+        return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
     }
 
 }

@@ -29,6 +29,7 @@
     ## do nothing - the 'if' is for ignoring the return value#*
   *##end#*
 *##end#*
+#*
  *
  * Checks if the given link is an external one.
 *##macro ( checkExtLink $href )#*
@@ -623,6 +624,64 @@
 #end##
 ##
 #**
+ * Outputs navbar
+ *
+ *##macro ( navbar )##
+    <div id="m-top-navbar" class="navbar #if ( $config.is( "navbarInverse" ) ) navbar-inverse #else navbar-default#end navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#top-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+##
+  ## Insert brand if it is available
+#*  *##if ( $config.brand )#*
+
+      *##if ( $config.brand.getChild( 'name' ) )#*
+          *##set ( $brandName = $config.brand.getChild( 'name' ).getValue() )#*
+      *##else#*
+          *##set ( $brandName = $defaultProjectName )#*
+      *##end#*
+
+      *##if ( $config.brand.getChild( 'href' ) )#*
+          *##currentFileRelativeLink ( $config.brand.getChild( 'href' ).getValue() )##
+      <a class="navbar-brand" href="$currentFileRelativeLink">$brandName</a>
+#*      *##else##
+      <div class="navbar-brand">$brandName</div>
+#*      *##end#*
+  *##end##
+##
+        </div> <!-- .navbar-header -->
+        <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+#*
+  *##if ( $decoration.body.links )#*
+      *##links ( $decoration.body.links )#*
+  *##end#*
+
+  *##if ( $decoration.body.menus )#*
+    ## filter menus into the list if <topNav>regex<topNav> is configured
+      *##if ( $config.topNav )#*
+          *##filterMenus ( $decoration.body.menus, $config.topNav.getValue() )#*
+      *##else#*
+          *##set ( $filterMenus = $decoration.body.menus )#*
+      *##end#*
+
+      *##topMenu ( $filterMenus )#*
+  *##end##
+##
+            </ul>
+        </div><!--/.nav-collapse -->
+      </div> <!--/.container -->
+    </div> <!--/.navbar -->
+#end##
+##
+#**
  * Outputs subsections into a sidebar one after another
  *
  *##macro ( sidebar $subsections )#*
@@ -1032,3 +1091,47 @@
         *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, $collapseSelector, "style", "" ) )#*
     *##end##
 #end##
+#*
+ *
+ * Adapt bodyContent.
+*##macro ( adaptBodyContent )#*
+  *##if ( !$config.not( "imgLightbox" ) )#*
+    ## lightbox is enabled by default, so check for false and negate
+    ## TODO explain more?
+        *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)", "data-lightbox", "page" ))#*
+  *##end#*
+
+  *##if ( !$config.not( "html5Anchor" ) )#*
+    ## HTML5-style anchors are enabled by default, so check for false and negate
+        *##set ( $bodyContent = $htmlTool.headingAnchorToId( $bodyContent ) )#*
+  *##end#*
+
+  *##if ( !$config.not( "bootstrapCss" ) )#*
+    ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
+        *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )#*
+    ## image is responsive by default
+        *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-responsive"] ) )#*
+        *##set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )#*
+  *##end#*
+    #
+  *##if ( !$config.not( "bootstrapIcons" ) )#*
+    ## Bootstrap Icons are enabled by default, so check for false and negate
+        *##depsCollapse ()#*
+      *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="glyphicon glyphicon-plus"></i>',
+                    'img[src$=images/remove.gif]' : '<i class="glyphicon glyphicon-remove"></i>',
+                    'img[src$=images/fix.gif]' : '<i class="glyphicon glyphicon-wrench"></i>',
+                    'img[src$=images/update.gif]' : '<i class="glyphicon glyphicon-refresh"></i>',
+                    'img[src$=images/icon_help_sml.gif]' : '<i class="glyphicon glyphicon-question-sign"></i>',
+                    'img[src$=images/icon_success_sml.gif]' : '<i class="glyphicon glyphicon-ok"></i>',
+                    'img[src$=images/icon_warning_sml.gif]' : '<i class="glyphicon glyphicon-sign"></i>',
+                    'img[src$=images/icon_error_sml.gif]' : '<i class="glyphicon glyphicon-exclamation-sign"></i>',
+                    'img[src$=images/icon_info_sml.gif]' : '<i class="glyphicon glyphicon-info-sign"></i>' } )#*
+      *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
+  *##end#*
+
+  *##if ( $tocTop || $tocSidebar )#*
+    ## Ensure IDs on all headings to refer to them in TOC
+        *##set ( $bodyContent = $htmlTool.ensureHeadingIds( $config.fileId, $bodyContent, "_" ) )#*
+      *##set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )#*
+  *##end
+#end

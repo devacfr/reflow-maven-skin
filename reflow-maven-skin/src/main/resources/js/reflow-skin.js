@@ -61,9 +61,9 @@ var timestampSideBar = 0;
   $(function() {
 
     var $window = $(window);
-    var $body   = $(document.body);
+    var $body = $(document.body);
     var sidebar = $('.m-toc-sidebar-container');
-    
+
     function getSidebarContainerOffset() {
       if (sidebar.hasClass('affix')) {
         // size header
@@ -73,56 +73,50 @@ var timestampSideBar = 0;
       }
     }
 
-    sidebar.mCustomScrollbar({
-      theme : "inset",
-      axis : "y",
-      setHeight : getViewPort().height - getSidebarContainerOffset()
-    });
-
-    $window.resize(function() {
-      sidebar.css('height', (getViewPort().height - getSidebarContainerOffset()) + 'px');
-    });
-
-    
-    $body.scrollspy({
-      target: '.m-toc-sidebar'
-    });
-    
-    /*
-    sidebar.on('activate.bs.scrollspy', function(evt) {
-      var el = $(evt.target);
-      if (timestampSideBar > 0 && evt.timeStamp < timestampSideBar + 100)
-        return false;
-      timestampSideBar = evt.timeStamp;
-      var container = sidebar.find('.mCSB_container');
-      var offsetHeight = 0;
-      var elHeight = container.height()
-
-      var parent = $(el.offsetParent())
-      offsetHeight = el.position().top;
-      while (!parent.hasClass('mCSB_container')) {
-        offsetHeight += parent.position().top;
-        parent = $(parent.offsetParent());
-      }
-      var offset = offsetHeight; // - (elHeight / 2);
-      // sidebar.mCustomScrollbar("scrollTo",el);
-      sidebar.mCustomScrollbar("scrollTo", offset);
-      evt.stopImmediatePropagation();
-      return false;
-    });
-    
-    */
-
-    // toc aside bar
-    if ($('.m-toc-sidebar-container[data-spy=affix]').length) {
-      sidebar.affix({
-        offset : {
-          top : sidebar.offset().top,
-          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 40)
-        // padding of footer.
-        }
+    if (sidebar.length) {
+      sidebar.mCustomScrollbar({
+        theme : "inset",
+        axis : "y",
+        setHeight : getViewPort().height - getSidebarContainerOffset()
       });
+
+      $window.resize(function() {
+        sidebar.css('height', (getViewPort().height - getSidebarContainerOffset()) + 'px');
+      });
+
+      /*
+       * sidebar.on('activate.bs.scrollspy', function(evt) { var el =
+       * $(evt.target); if (timestampSideBar > 0 && evt.timeStamp <
+       * timestampSideBar + 100) return false; timestampSideBar = evt.timeStamp;
+       * var container = sidebar.find('.mCSB_container'); var offsetHeight = 0;
+       * var elHeight = container.height()
+       * 
+       * var parent = $(el.offsetParent()) offsetHeight = el.position().top;
+       * while (!parent.hasClass('mCSB_container')) { offsetHeight +=
+       * parent.position().top; parent = $(parent.offsetParent()); } var offset =
+       * offsetHeight; // - (elHeight / 2); //
+       * sidebar.mCustomScrollbar("scrollTo",el);
+       * sidebar.mCustomScrollbar("scrollTo", offset);
+       * evt.stopImmediatePropagation(); return false; });
+       * 
+       */
+
+      // toc aside bar
+      if ($('.m-toc-sidebar-container[data-spy=affix]').length) {
+        sidebar.affix({
+          offset : {
+            top : sidebar.offset().top,
+            bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 40)
+          // padding of footer.
+          }
+        });
+      }
+
     }
+
+    $body.scrollspy({
+      target : '.m-toc-sidebar'
+    });
 
     // Start carousel
     $(function() {
@@ -138,8 +132,6 @@ var timestampSideBar = 0;
         hljs.highlightBlock(e)
       });
     }
-
-
 
     function resizeTopNavBar() {
       var navbar = $('#m-top-navbar');
@@ -157,6 +149,32 @@ var timestampSideBar = 0;
     // prevents the browser from opening a URL but allows that if tapped once
     // again in succession
     $('.dropdown-submenu').doubleTapToGo();
+
+    // add scroll-top
+    $('#m-scroll-top').on('click', function(e) {
+
+      function scrollTo(el, offset, clbck) {
+        var pos = (el && el.length > 0) ? el.offset().top : 0;
+        pos = pos + (offset ? offset : 0);
+
+        $('html,body').animate({
+          scrollTop : pos
+        }, 300, clbck);
+      }
+
+      // prevent default anchor click behavior
+      e.preventDefault();
+      scrollTo();
+
+    });
+    
+    $('.nav-side-menu li').on('click', function(e) {
+      var item = $(this), anchor = $(this).find('a');
+      $('#m-doc-frame').load( anchor.attr('href'));
+      $('.nav-side-menu li').removeClass('active');
+      item.addClass('active');
+      e.preventDefault();
+    });
 
   });
 

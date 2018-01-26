@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-  xmlns="http://maven.apache.org/DECORATION/1.7.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/DECORATION/1.7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd">
 
   <!-- Google Analytics not inherited for some reason -->
@@ -86,16 +84,19 @@
         <themes-bootswatch-yeti>
           <theme>bootswatch-yeti</theme>
         </themes-bootswatch-yeti>
-        <advanced>
-          <sections>
-            <body />
-            <columns>2</columns>
-            <body />
-          </sections>
-        </advanced>
         <toc-sidebar>
           <toc type="fixed">sidebar</toc>
         </toc-sidebar>
+        <reflow-documentation type="doc">
+          <menu name="Documentation">
+            <item name="Configuration" href="config.html" />
+            <item name="Layouts" href="layouts.html" />
+            <item name="Components" href="components.html" />
+            <item name="Other Configuration" href="misc.html" />
+            <item name="Multi-module Site" href="multi-module.html" />
+            <item name="Local Resources" href="resources.html" />
+          </menu>
+        </reflow-documentation>
       </pages>
     </reflowSkin>
   </custom>

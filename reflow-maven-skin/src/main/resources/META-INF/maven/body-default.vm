@@ -1,0 +1,134 @@
+##
+## Copyright 2012-2018 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+##
+  ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
+  <body class="page-$config.fileId project-$config.projectId" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
+
+#navbar ()
+##
+  <div class="container">
+##
+  <!-- Masthead -->
+  <!-- ================================================== -->#*
+  *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name || $decoration.bannerLeft.src || $decoration.bannerLeft.href ) || $decoration.bannerRight )#*
+      *##set ( $hasBanner = true )#*
+  *##else#*
+      *##set ( $hasBanner = false )#*
+  *##end##
+##
+  <div class="header container-fluid">
+#*
+  *##if  ( $hasBanner )##
+  <div class="jumbotron subhead">
+    <div class="row" id="banner">
+      <div class="col-md-12">
+        <div class="pull-left">
+          #banner ( $decoration.bannerLeft "bannerLeft" )
+        </div>
+        <div class="pull-right">
+          #banner ( $decoration.bannerRight "bannerRight" )
+        </div>
+      </div>
+    </div>
+  </div>
+#*  *##end#*
+##
+  ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
+  *##if ( !$config.not( "breadcrumbs" )
+      && (( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0)
+        || $datePosition == "left" || $versionPosition == "left"
+        || $datePosition == "right" || $versionPosition == "right") )##
+    <div>
+      <ol class="breadcrumb">
+#*
+    ## left side version/date
+      *##if ( $versionPosition == "left" )##
+      <li class="projectVersion version-date">#version ()</li>
+#*      *##end#*
+      *##if ( $datePosition == "left" )
+      <li class="publishDate version-date">#publishDate ()</li>
+#*      *##end#*
+
+    ## breadcrumbs
+    *##if ( !$config.not( "breadcrumbs" ) && $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0 )#*
+          *##breadcrumbs ( $decoration.body.breadcrumbs )#*
+      *##end#*
+    ## right side version/date
+      *##if ( $datePosition == "right" )##
+      <li class="publishDate version-date pull-right">#publishDate ()</li>
+#*      *##end#*
+      *##if ( $versionPosition == "right" )##
+      <li class="projectVersion version-date pull-right">#version ()</li>
+#*      *##end
+      </ol>
+    </div>
+#*  *##end#*
+
+  *##if ( $tocTop )##
+    <hr class="toc-separator" />
+
+    ## read top offset for fixed ToC bar from the config
+#*    *##if ( $config.toc.getAttribute("offsetTop") )#*
+          *##set ( $tocOffsetTop = $config.toc.getAttribute("offsetTop") )#*
+      *##else#*
+          *##set ( $tocOffsetTop = "250" )#*
+      *##end##
+##
+    <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
+      <div id="toc-scroll-target" class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+            </div> <!-- .navbar-header -->
+        <div class="collapse navbar-collapse" id="toc-nav-collapse">
+          <ul id="toc" class="nav navbar-nav">
+            ## display Table of Contents in a top bar
+            #topToc ( $tocItems )
+          </ul>
+        </div>
+      </div> <!-- .container -->
+    </div> <!-- end: toc-bar -->
+#*  *##end##
+  </div> <!-- end : header -->
+##
+  <div class="main-body">
+#*
+  *##if ( $config.sections )#*
+      *##bodySections ( $bodyContent $config.sections )
+  #else#*
+  ## non-sectioned body - just output it all *#
+  <div class="row">
+#*      *##if ( $tocSidebar )##
+    <div class="col-md-8">
+#*      *##else##
+    <div class="col-md-12">
+#*      *##end##
+      <div class="body-content">
+#*              *##bodyWithHeader ( $bodyContent )
+      </div>
+    </div>
+#*      *##if ( $tocSidebar )#*
+          *##tocSidebar ()#*
+      *##end##
+  </div> <!-- /row -->
+#*  *##end##
+  </div>
+##
+    </div> <!-- end : row -->
+</div> <!-- /container -->

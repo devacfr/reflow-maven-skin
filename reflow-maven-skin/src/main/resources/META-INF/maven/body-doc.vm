@@ -1,0 +1,60 @@
+##
+## Copyright 2012-2018 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+##
+##
+## Copyright 2012-2018 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+##
+  ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
+  <body class="page-$config.fileId project-$config.projectId m-page-type-$config.type m-sidenav-enabled m-sidetocbar-enabled" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
+
+#navbar( )
+##
+  <div class="main-body">
+    <div class="row">
+        <div class="col-xs-12 col-sm-2 col-md-2">
+            <div class="nav-side-menu">
+                <div class="brand">$config.menu.getAttribute("name")</div>
+                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                <div class="menu-list">
+                    <ul id="menu-content" class="menu-content collapse out">
+                        #foreach ( $item in $config.menu.getChildren() )
+                        #set ( $itemName = $item.getAttribute("href"))
+                        <li>
+                          <a href="$itemName"><span style="margin: 0 5px"></span>$item.getAttribute("name")</a>
+                        </li>
+                        #end
+                </div>
+            </div>
+        </div>
+        <div id="m-doc-frame" class="col-xs-12 col-sm-10 col-md-10">
+        </div>
+  </div>
+##
+    </div> <!-- end : row -->
+</div> <!-- /container -->
