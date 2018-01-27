@@ -169,7 +169,9 @@ var timestampSideBar = 0;
     
     $('.nav-side-menu li').on('click', function(e) {
       var item = $(this), anchor = $(this).find('a');
-      $('#m-doc-frame').load( anchor.attr('href'));
+      if(anchor.attr('href') !== '#') {
+        $('#m-doc-frame').load( anchor.attr('href'));
+      }
       $('.nav-side-menu li').removeClass('active');
       item.addClass('active');
       e.preventDefault();

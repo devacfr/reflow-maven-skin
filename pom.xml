@@ -104,8 +104,8 @@
     <site.deploy.url />
     <site.deploy.name />
 
-    <bootstrapVersion>3.3.6</bootstrapVersion>
-    <bootswatchVersion>3.3.6</bootswatchVersion>
+    <bootstrapVersion>3.3.7</bootstrapVersion>
+    <bootswatchVersion>3.3.7</bootswatchVersion>
     <highlightJsVersion>9.12.0</highlightJsVersion>
     <jqueryVersion>1.9.1</jqueryVersion>
     <anchorJsVesrion>4.1.0</anchorJsVesrion>

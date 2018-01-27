@@ -15,14 +15,18 @@
 ##
 #parse( "site-macros.vm" )##
 #if( $config.isIncludeInDocument )
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9">
-        #set ( $tocSidebar = true )
+    <div class="row">        
+        #set ( $tocSidebar = true )      
         #adaptBodyContent ()
-        $bodyContent
+        <div class="col-xs-12 col-sm-9 col-md-9"> 
+        #if ( $config.sections )
+            #simpleBodySections ( $bodyContent $config.sections )
+        #else
+            $bodyContent            
+        #end        
         </div>
-        <div class="col-md-3">   
-        #tocSidebarContent ()
+        <div class="col-md-3">  
+            #tocSidebarContent ()
         </div>     
     </div>
 #else  

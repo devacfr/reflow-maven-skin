@@ -201,7 +201,9 @@ public class SkinConfigTool extends SafeConfig {
                 Xpp3Dom page = getChild(pagesNode, fileId);
 
                 final Set<String> pagesInDocuments = findPagesIncludeInDocument(pagesNode);
-                LOGGER.info("findPagesIncludeInDocument: " + pagesInDocuments);
+                if (LOGGER.isTraceEnabled()) {
+                    LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
+                }
                 this.includeInDocument = pagesInDocuments.contains(fileId);
 
                 // Now check if the project artifact ID is set, and if so, if it matches the
@@ -227,12 +229,14 @@ public class SkinConfigTool extends SafeConfig {
                 }
             }
         }
-        LOGGER.info("currentFileName: " + currentFileObj);
-        LOGGER.info("Project id: " + projectId);
-        LOGGER.info("File id: " + fileId);
-        LOGGER.info("Include in Document: " + this.includeInDocument);
-        LOGGER.info("Page Type: " + this.type);
-        LOGGER.info("---------------------------------------------------");
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Current Filename: " + currentFileObj);
+            LOGGER.info("Project id: " + projectId);
+            LOGGER.info("File id: " + fileId);
+            LOGGER.info("Include in Document: " + this.includeInDocument);
+            LOGGER.info("Page Type: " + this.type);
+            LOGGER.info("---------------------------------------------------");
+        }
     }
 
     /**
@@ -403,15 +407,20 @@ public class SkinConfigTool extends SafeConfig {
                 if (menu == null) {
                     continue;
                 }
-                for (final Xpp3Dom item : getChildrenNodes(menu, "item")) {
-                    final String pageName = extractPageFromMenu(item);
-                    if (pageName != null) {
-                        includePages.add(slugFilename(pageName));
-                    }
-                }
+                appendFromItems(includePages, menu);
             }
         }
         return includePages;
+    }
+
+    private static void appendFromItems(final Set<String> includePages, final Xpp3Dom parentNode) {
+        for (final Xpp3Dom item : getChildrenNodes(parentNode, "item")) {
+            final String pageName = extractPageFromMenu(item);
+            if (pageName != null) {
+                includePages.add(slugFilename(pageName));
+            }
+            appendFromItems(includePages, item);
+        }
     }
 
     private static String extractPageFromMenu(final Xpp3Dom itemMenu) {

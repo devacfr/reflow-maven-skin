@@ -436,12 +436,79 @@
  *
  *  <sections>
  *      <body/> - the main body of the page
- *      <sidebar/> - sidebar (should go after the body)
  *      <thumbs>x</thumbs> - x-column grid layout for thumbnails (first image is used as thumbnail)
  *      <columns>x</columns> - x-column grid layout
  *      <carousel/> - carousel (spinning images with captions)
  *  </sections>
  *
+ *##macro ( simpleBodySections $bodyContent $sectionConfig )#*
+    ## Split everything in the content on the horizontal rule tags <hr />
+    *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*
+    *##set ( $sectCount = $sectionConfig.getChildCount() )#*
+    
+
+
+    ## flag to indicate that a body section has already been found (to avoid multiple page-headers)
+    *##set ( $bodyFound = false )#*
+
+    *##set ( $sectIndex = 0 )#*
+    *##foreach ($section in $sections)#*
+
+        ## Determine section type from the configuration
+        *##if ( $sectIndex < $sectCount )#*
+            *##set ( $sectType = $sectionConfig.getChild($sectIndex).getName() )#*
+            *##set ( $sectTypeValue = $sectionConfig.getChild($sectIndex).getValue() )#*
+        *##else#*
+            *##set ( $sectType = 'body' )#*
+        *##end#*
+
+        *##if ( 'sidebar' == $sectType || 'thumbs' == $sectType || 'columns' == $sectType || 'carousel' == $sectType )#*
+            ## split section into sub-sections for each header (h1, h2, etc tag)
+            *##set ( $subsections = $htmlTool.splitOnStarts( $section, "h1, h2, h3, h4, h5, h6") )#*
+        *##else#*
+            ## keep the section
+            *##set ( $subsections = [ $section ] )#*
+        *##end#*
+
+
+        *##if ( 'thumbs' == $sectType || 'columns' == $sectType || 'carousel' == $sectType )#*
+            ## Print the subsections into columns
+            *##if ( 'thumbs' == $sectType )#*
+                *##thumbs ( $sectTypeValue $subsections )#*
+            *##elseif ( 'columns' == $sectType )#*
+                *##columns ( $sectTypeValue $subsections )#*
+            *##else#*
+                *##carousel ( $subsections )#*
+            *##end#*
+            
+        *##else#*
+            ## set the contents
+            *##foreach ( $subsection in $subsections )#*
+                ## if first body section, output with page-header
+                *##if ( !$bodyFound )#*
+                    *##bodyWithHeader ( $subsection )#*
+                *##else#*
+                    *#$subsection#*
+                *##end#*
+                *##set ( $bodyFound = true )#*
+            *##end#* foreach
+        *##end#*
+        ## increment the section counter (need to advance through the types)
+        *##set ( $sectIndex = $sectIndex + 1 )#*
+    *##end##
+#end##
+#**
+ * Partitions the body contents into sections with possibly different representations.
+ * Available body types, indicated in custom page config `sections` tag:
+ *
+ *  <sections>
+ *      <body/> - the main body of the page
+ *      <sidebar/> - sidebar (should go after the body)
+ *      <thumbs>x</thumbs> - x-column grid layout for thumbnails (first image is used as thumbnail)
+ *      <columns>x</columns> - x-column grid layout
+ *      <carousel/> - carousel (spinning images with captions)
+ *  </sections>
+ * sidebar is deprecated this macro use 'simpleBodySections' instead.
  *##macro ( bodySections $bodyContent $sectionConfig )#*
     ## Split everything in the content on the horizontal rule tags <hr />
     *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*
@@ -487,7 +554,7 @@
 #*                  *##tocSidebar ()#*
                 *##end##
     </div>
-#*      *##end#*
+#*          *##end#*
 
             ## Print the subsections into columns
             *##if ( 'thumbs' == $sectType )#*
@@ -506,35 +573,35 @@
             *##if ( $lastBody )##
             </div>
         </div>
-#*      *##else##
+#*          *##else##
     <hr />
     <div class="row">
-#*      *##end
+#*          *##end
         <div class="col-md-4">
-#*      *##if ( $tocSidebar )#*
-            *##tocSidebarContent ()#*
-        *##end##
+#*          *##if ( $tocSidebar )#*
+                *##tocSidebarContent ()#*
+            *##end##
             <div class="well sidebar">
               ## Print the subsections into sidebar
-                #sidebar ( $subsections )
+             #sidebar ( $subsections )
             </div>
         </div>
     </div>
-#*      *##set ( $lastBody = false )#*
+#*          *##set ( $lastBody = false )#*
 
-    *##else#*
+        *##else#*
         ## handle all other cases as 'body' type
-        *##if ( !$lastBody )##
+            *##if ( !$lastBody )##
     <div class="row">
-#*          *##if ( $hasSidebar || $tocSidebar )#*
+#*              *##if ( $hasSidebar || $tocSidebar )#*
         ## has a sidebar - take part width *#
       <div class="col-md-8">
-#*          *##else#*
+#*              *##else#*
             ## no sidebar - take full width *#
       <div class="col-md-12">
-#*          *##end##
+#*              *##end##
             <div class="body-content">
-#*      *##else#*
+#*          *##else#*
                 ## reinstate the horizontal rule for continuing body *#
               <hr />
 #*
@@ -548,7 +615,7 @@
                 *#$subsection#*
             *##end#*
             *##set ( $bodyFound = true )#*
-        *##end#*
+        *##end#* foreach
         *##set ( $lastBody = true )#*
     *##end#*
         ## increment the section counter (need to advance through the types)

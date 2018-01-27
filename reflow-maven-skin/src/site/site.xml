@@ -88,13 +88,23 @@
           <toc type="fixed">sidebar</toc>
         </toc-sidebar>
         <reflow-documentation type="doc">
-          <menu name="Documentation">
-            <item name="Configuration" href="config.html" />
-            <item name="Layouts" href="layouts.html" />
-            <item name="Components" href="components.html" />
-            <item name="Other Configuration" href="misc.html" />
-            <item name="Multi-module Site" href="multi-module.html" />
-            <item name="Local Resources" href="resources.html" />
+          <toc type="fixed">sidebar</toc>
+          <menu name="Reflow Documentation">
+            <item name="Configuration" href="config.html" icon="fa fa-tachometer fa-fw"/>
+            <item name="Layouts" icon="fa fa-clone fa-fw">
+              <item name="Overview" href="layouts.html"/>
+              <item name="Themes" href="themes/index.html"/>
+              <item name="Carousel" href="carousel.html"/>
+              <item name="Columns" href="columns.html"/>
+              <item name="Thumbnails" href="thumbnails.html"/>
+              <item name="Body" href="body.html"/>
+              <item name="Sidebar" href="sidebar.html"/>
+              <item name="Responsive Design" href="responsive-design.html"/>
+            </item>
+            <item name="Components" href="components.html" icon="fa fa-suitcase fa-fw"/>
+            <item name="Other Configuration" href="misc.html" icon="fa fa-sliders fa-fw"/>
+            <item name="Multi-module Site" href="multi-module.html" icon="fa fa-window-restore fa-fw"/>
+            <item name="Local Resources" href="resources.html" icon="fa fa-bookmark fa-fw"/>
           </menu>
         </reflow-documentation>
       </pages>
