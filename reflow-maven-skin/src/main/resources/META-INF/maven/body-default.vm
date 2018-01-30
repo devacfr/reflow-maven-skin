@@ -15,7 +15,7 @@
 ##
 ##
   ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
-  <body class="page-$config.fileId project-$config.projectId" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
+  <body class="page-$config.fileId project-$config.projectId $globalCssClass" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
 
 #navbar ()
 ##

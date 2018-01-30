@@ -31,14 +31,14 @@
 ##
 ##
   ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
-  <body class="page-$config.fileId project-$config.projectId m-page-type-$config.type m-sidenav-enabled m-tocsidebar-enabled" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
+  <body class="page-$config.fileId project-$config.projectId m-page-type-$config.type m-sidenav-enabled $globalCssClass" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
 
 #navbar( )
 ##
   <div class="main-body">
     <div class="row">
         <div class="col-xs-12 col-sm-2 col-md-2">
-            <div class="nav-side-menu navbar navbar-default">
+            <div class="nav-side-menu hidden-print hidden-xs hidden-sm" data-spy="affix">
                 <div class="brand">$config.menu.getAttribute("name")</div>
                 <i class="toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
                 <div class="menu-list">
@@ -51,8 +51,9 @@
                             #set ( $itemIcon = "spacer")
                             #set ( $itemIcon = $item.getAttribute("icon"))
                             #set ( $subItems = $item.getChildren())
+                             #set( $slugName = $config.slugFilename($itemName))
                         <li #if( $subItems.size() > 0) data-toggle="collapse" data-target="#$itemId" class="collapsed" #end>
-                          <a #if( $subItems.size() == 0) href="$itemName" #else href="#" #end>
+                          <a #if( $subItems.size() == 0) href="#$itemName" slug-name="$slugName" #else href="#" #end>
                             <i class="$itemIcon" aria-hidden="true"></i>&nbsp;
                             $item.getAttribute("name")
                             #if( $subItems.size() > 0)
@@ -64,7 +65,8 @@
                             <ul class="sub-menu collapse" id="$itemId">
                                 #foreach ( $subItem in $subItems )
                                     #set( $subHref = $subItem.getAttribute("href"))
-                                <li><a href="$subHref">$subItem.getAttribute("name")</a></li>
+                                    #set( $slugName = $config.slugFilename($subHref))
+                                <li><a href="#$subHref" slug-name="$slugName">$subItem.getAttribute("name")</a></li>
                                 #end
                             </ul>
                             #end

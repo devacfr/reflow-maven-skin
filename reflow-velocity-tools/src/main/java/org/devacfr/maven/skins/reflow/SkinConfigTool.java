@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,8 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.context.FrameContext;
+import org.devacfr.maven.skins.reflow.context.PageContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,11 +110,9 @@ public class SkinConfigTool extends SafeConfig {
     private String type = "page";
 
     /** */
-    private boolean includeInDocument = false;
-
-    /** */
     private String fileId = null;
-    // private String fileShortId = null;
+
+    private PageContext context = null;
 
     /**
      * {@inheritDoc}
@@ -200,12 +201,6 @@ public class SkinConfigTool extends SafeConfig {
                 // TODO try fileShortId as well?
                 Xpp3Dom page = getChild(pagesNode, fileId);
 
-                final Set<String> pagesInDocuments = findPagesIncludeInDocument(pagesNode);
-                if (LOGGER.isTraceEnabled()) {
-                    LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
-                }
-                this.includeInDocument = pagesInDocuments.contains(fileId);
-
                 // Now check if the project artifact ID is set, and if so, if it matches the
                 // current project. This allows preventing accidental reuse of parent page
                 // configs in children modules
@@ -224,8 +219,17 @@ public class SkinConfigTool extends SafeConfig {
                         this.type = pageType;
                     }
                 }
-                if (this.includeInDocument) {
+
+                final Set<MenuItem> pagesInDocuments = findPagesIncludeInDocument(pagesNode);
+                if (LOGGER.isTraceEnabled()) {
+                    LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
+                }
+                final Optional<MenuItem> menuItem = pagesInDocuments.stream()
+                        .filter(item -> fileId.equals(item.getSlugName()))
+                        .findFirst();
+                if (menuItem.isPresent()) {
                     this.type = "frame";
+                    this.context = new FrameContext(menuItem.get());
                 }
             }
         }
@@ -233,8 +237,8 @@ public class SkinConfigTool extends SafeConfig {
             LOGGER.info("Current Filename: " + currentFileObj);
             LOGGER.info("Project id: " + projectId);
             LOGGER.info("File id: " + fileId);
-            LOGGER.info("Include in Document: " + this.includeInDocument);
             LOGGER.info("Page Type: " + this.type);
+            LOGGER.info("Page Options: " + this.context);
             LOGGER.info("---------------------------------------------------");
         }
     }
@@ -392,41 +396,73 @@ public class SkinConfigTool extends SafeConfig {
         return type;
     }
 
-    public boolean getIsIncludeInDocument() {
-        return includeInDocument;
+    public PageContext getContext() {
+        return context;
     }
 
-    private static Set<String> findPagesIncludeInDocument(final Xpp3Dom pagesNode) {
+    /**
+     * @param fileName
+     * @return
+     */
+    public static String slugFilename(final String fileName) {
+        String currentFile = fileName;
+
+        // drop the extension
+        final int lastDot = currentFile.lastIndexOf(".");
+        if (lastDot >= 0) {
+            currentFile = currentFile.substring(0, lastDot);
+        }
+
+        // get the short ID (in case of nested files)
+        // String fileName = new File(currentFile).getName();
+        // fileShortId = HtmlTool.slug(fileName);
+
+        // full file ID includes the nested dirs
+        // replace nesting "/" with "-"
+        return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
+    }
+
+    /**
+     * @param pagesNode
+     * @return
+     */
+    private static Set<MenuItem> findPagesIncludeInDocument(final Xpp3Dom pagesNode) {
         final Xpp3Dom[] pages = pagesNode.getChildren();
-        final Set<String> includePages = new HashSet<>();
-        for (int i = 0; i < pages.length; i++) {
-            final Xpp3Dom page = pages[i];
+        final Set<MenuItem> includePages = new HashSet<>();
+        for (final Xpp3Dom page : pages) {
             final String type = page.getAttribute("type");
             if ("doc".equals(type)) {
                 final Xpp3Dom menu = page.getChild("menu");
                 if (menu == null) {
                     continue;
                 }
-                appendFromItems(includePages, menu);
+                addMenuItemRecursively(includePages, menu);
             }
         }
         return includePages;
     }
 
-    private static void appendFromItems(final Set<String> includePages, final Xpp3Dom parentNode) {
+    /**
+     * @param includePages
+     * @param parentNode
+     */
+    private static void addMenuItemRecursively(final Set<MenuItem> includePages, final Xpp3Dom parentNode) {
         for (final Xpp3Dom item : getChildrenNodes(parentNode, "item")) {
-            final String pageName = extractPageFromMenu(item);
-            if (pageName != null) {
-                includePages.add(slugFilename(pageName));
+            final String href = item.getAttribute("href");
+            if (href != null) {
+                final String toc = item.getAttribute("toc");
+                includePages.add(new MenuItem(item.getAttribute("name"), slugFilename(href), href,
+                        item.getAttribute("icon"), toc == null || "true".equals(toc) ? true : false));
             }
-            appendFromItems(includePages, item);
+            addMenuItemRecursively(includePages, item);
         }
     }
 
-    private static String extractPageFromMenu(final Xpp3Dom itemMenu) {
-        return itemMenu.getAttribute("href");
-    }
-
+    /**
+     * @param parentNode
+     * @param name
+     * @return
+     */
     public static List<Xpp3Dom> getChildrenNodes(final Xpp3Dom parentNode, final String name) {
         if (parentNode == null) {
             return Collections.emptyList();
@@ -447,24 +483,6 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         return list;
-    }
-
-    private static String slugFilename(final String fileName) {
-        String currentFile = fileName;
-
-        // drop the extension
-        final int lastDot = currentFile.lastIndexOf(".");
-        if (lastDot >= 0) {
-            currentFile = currentFile.substring(0, lastDot);
-        }
-
-        // get the short ID (in case of nested files)
-        // String fileName = new File(currentFile).getName();
-        // fileShortId = HtmlTool.slug(fileName);
-
-        // full file ID includes the nested dirs
-        // replace nesting "/" with "-"
-        return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
     }
 
 }

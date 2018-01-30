@@ -823,7 +823,11 @@
  *
  *##macro ( tocSidebarContent )#*
     *##if ( !$tocSidebarAdded )##
-#*      *##set ( $isFixed = $config.toc.getAttribute("type") == "fixed")
+        ## set true by default for 'frame' page type
+        #set ( $isFixed = true)##
+        #if( $config.type != "frame")
+            #set ( $isFixed = $config.toc.getAttribute("type") == "fixed")
+        #end##
         <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm" #if ( $isFixed) data-spy="affix" #end>
             <nav class="m-toc-sidebar">
                #listAsideToc ( $tocItems )
