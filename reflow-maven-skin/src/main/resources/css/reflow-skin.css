@@ -464,7 +464,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     transition: all 1s ease;
 }
 
-@media ( max-width : 767px) {
+@media ( max-width: 969px) {
     .nav-side-menu {
         position: relative;
         width: 100%;
@@ -502,7 +502,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     }
 }
 
-@media ( min-width : 767px) {
+@media ( min-width : 970px) {
     .nav-side-menu .menu-list .menu-content {
         display: block;
     }

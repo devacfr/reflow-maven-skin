@@ -226,6 +226,12 @@ var mReflow = function () {
     });
 
     var navSidebar = $('.nav-side-menu ');
+    
+    $window.resize(function () {
+      navSidebar.width(navSidebar.parent().width());
+    });
+    
+    
 
     navSidebar.affix({
       offset: {
