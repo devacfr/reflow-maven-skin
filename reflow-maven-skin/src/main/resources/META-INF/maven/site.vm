@@ -14,7 +14,7 @@
 ## limitations under the License.
 ##
 #parse( "site-macros.vm" )##
-#set( $pageType = $config.type)
+#set( $pageType = $config.context.type)
 #set( $pageContext = $config.context)
 #if( $pageType == "frame" )
     <div class="row">        

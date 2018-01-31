@@ -13,29 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devacfr.maven.skins.reflow;
+package org.devacfr.maven.skins.reflow.context;
 
-import java.util.List;
+import org.devacfr.maven.skins.reflow.model.SideNavMenu;
 
 /**
  * @author Christophe Friederich
  * @since 2.0
  */
-public class Menu {
+public class DocumentContext extends Context<DocumentContext> {
 
-    private String name;
+    private SideNavMenu menu;
 
-    private List<MenuItem> items;
-
-    public Menu(final String name, final List<MenuItem> items) {
+    public DocumentContext() {
+        setType("doc");
     }
 
-    public String getName() {
-        return name;
+    public SideNavMenu getMenu() {
+        return menu;
     }
 
-    public List<MenuItem> getItems() {
-        return items;
+    public void setMenu(final SideNavMenu menu) {
+        this.menu = menu;
+    }
+
+    public DocumentContext withMenu(final SideNavMenu menu) {
+        this.menu = menu;
+        return self();
     }
 
 }

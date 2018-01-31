@@ -19,9 +19,10 @@ package org.devacfr.maven.skins.reflow.context;
  * @author Christophe Friederich
  * @since 2.0
  */
-public class PageContext {
+public class PageContext extends Context<PageContext> {
 
     public PageContext() {
+        setType("page");
     }
 
 }

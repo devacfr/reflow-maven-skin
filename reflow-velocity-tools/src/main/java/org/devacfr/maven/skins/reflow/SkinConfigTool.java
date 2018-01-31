@@ -17,10 +17,8 @@ package org.devacfr.maven.skins.reflow;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
@@ -30,8 +28,12 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.context.Context;
+import org.devacfr.maven.skins.reflow.context.DocumentContext;
 import org.devacfr.maven.skins.reflow.context.FrameContext;
 import org.devacfr.maven.skins.reflow.context.PageContext;
+import org.devacfr.maven.skins.reflow.model.SideNavMenu;
+import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,12 +109,10 @@ public class SkinConfigTool extends SafeConfig {
     private String projectId = null;
 
     /** */
-    private String type = "page";
-
-    /** */
     private String fileId = null;
 
-    private PageContext context = null;
+    /** */
+    private Context<?> context = null;
 
     /**
      * {@inheritDoc}
@@ -198,7 +198,6 @@ public class SkinConfigTool extends SafeConfig {
             if (pagesNode != null) {
 
                 // Get the page for the file
-                // TODO try fileShortId as well?
                 Xpp3Dom page = getChild(pagesNode, fileId);
 
                 // Now check if the project artifact ID is set, and if so, if it matches the
@@ -214,31 +213,16 @@ public class SkinConfigTool extends SafeConfig {
 
                 if (page != null) {
                     pageProperties = page;
-                    final String pageType = page.getAttribute("type");
-                    if (pageType != null) {
-                        this.type = pageType;
-                    }
                 }
 
-                final Set<MenuItem> pagesInDocuments = findPagesIncludeInDocument(pagesNode);
-                if (LOGGER.isTraceEnabled()) {
-                    LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
-                }
-                final Optional<MenuItem> menuItem = pagesInDocuments.stream()
-                        .filter(item -> fileId.equals(item.getSlugName()))
-                        .findFirst();
-                if (menuItem.isPresent()) {
-                    this.type = "frame";
-                    this.context = new FrameContext(menuItem.get());
-                }
             }
+            this.context = buildContext(pagesNode);
         }
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Current Filename: " + currentFileObj);
             LOGGER.info("Project id: " + projectId);
             LOGGER.info("File id: " + fileId);
-            LOGGER.info("Page Type: " + this.type);
-            LOGGER.info("Page Options: " + this.context);
+            LOGGER.info("Context: " + this.context);
             LOGGER.info("---------------------------------------------------");
         }
     }
@@ -392,11 +376,7 @@ public class SkinConfigTool extends SafeConfig {
         return fileId;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public PageContext getContext() {
+    public Context<?> getContext() {
         return context;
     }
 
@@ -405,6 +385,9 @@ public class SkinConfigTool extends SafeConfig {
      * @return
      */
     public static String slugFilename(final String fileName) {
+        if (fileName == null) {
+            return null;
+        }
         String currentFile = fileName;
 
         // drop the extension
@@ -426,9 +409,12 @@ public class SkinConfigTool extends SafeConfig {
      * @param pagesNode
      * @return
      */
-    private static Set<MenuItem> findPagesIncludeInDocument(final Xpp3Dom pagesNode) {
+    private static List<SideNavMenuItem> findAllDocumentMenuItems(final Xpp3Dom pagesNode) {
+        if (pagesNode == null) {
+            return Collections.emptyList();
+        }
         final Xpp3Dom[] pages = pagesNode.getChildren();
-        final Set<MenuItem> includePages = new HashSet<>();
+        final List<SideNavMenuItem> includePages = new ArrayList<>();
         for (final Xpp3Dom page : pages) {
             final String type = page.getAttribute("type");
             if ("doc".equals(type)) {
@@ -436,25 +422,49 @@ public class SkinConfigTool extends SafeConfig {
                 if (menu == null) {
                     continue;
                 }
-                addMenuItemRecursively(includePages, menu);
+                final String pageName = page.getName();
+                addMenuItemRecursively(includePages, menu, pageName, true);
             }
         }
         return includePages;
+    }
+
+    private static SideNavMenu getDocumentMenu(final Xpp3Dom pageNode) {
+        final Xpp3Dom menu = pageNode.getChild("menu");
+        if (menu == null) {
+            return null;
+        }
+        final String pageName = pageNode.getName();
+        final List<SideNavMenuItem> items = new ArrayList<>();
+        final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name")).withItems(items);
+        addMenuItemRecursively(items, menu, pageName, false);
+        return documentMenu;
     }
 
     /**
      * @param includePages
      * @param parentNode
      */
-    private static void addMenuItemRecursively(final Set<MenuItem> includePages, final Xpp3Dom parentNode) {
+    private static void addMenuItemRecursively(final List<SideNavMenuItem> includePages,
+        final Xpp3Dom parentNode,
+        final String pageName,
+        final boolean includSameList) {
         for (final Xpp3Dom item : getChildrenNodes(parentNode, "item")) {
             final String href = item.getAttribute("href");
-            if (href != null) {
-                final String toc = item.getAttribute("toc");
-                includePages.add(new MenuItem(item.getAttribute("name"), slugFilename(href), href,
-                        item.getAttribute("icon"), toc == null || "true".equals(toc) ? true : false));
+            final String toc = item.getAttribute("toc");
+            final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
+                    .withParent(pageName)
+                    .withHref(href)
+                    .withIcon(item.getAttribute("icon"))
+                    .withToc(toc == null || "true".equals(toc) ? true : false);
+            includePages.add(menuItem);
+            if (includSameList) {
+                addMenuItemRecursively(includePages, item, pageName, true);
+            } else {
+                final List<SideNavMenuItem> list = new ArrayList<>();
+                menuItem.withItems(list);
+                addMenuItemRecursively(list, item, pageName, false);
             }
-            addMenuItemRecursively(includePages, item);
         }
     }
 
@@ -485,4 +495,41 @@ public class SkinConfigTool extends SafeConfig {
         return list;
     }
 
+    private Context<?> buildContext(final Xpp3Dom pagesNode) {
+        String type = "page";
+        final List<SideNavMenuItem> pagesInDocuments = findAllDocumentMenuItems(pagesNode);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
+        }
+        if (pageProperties != null) {
+            if (pageProperties.getAttribute("type") != null) {
+                type = pageProperties.getAttribute("type");
+            }
+
+            // frame type whether page associates to document page
+            if (pagesInDocuments.stream().filter(item -> fileId.equals(item.getSlugName())).count() > 0) {
+                type = "frame";
+            }
+        }
+        Context<?> context = null;
+        switch (type) {
+            case "doc":
+                context = new DocumentContext().withMenu(getDocumentMenu(pageProperties));
+                break;
+
+            case "frame":
+                final Optional<SideNavMenuItem> menuItem = pagesInDocuments.stream()
+                        .filter(item -> fileId.equals(item.getSlugName()))
+                        .findFirst();
+                final SideNavMenuItem item = menuItem.get();
+                final String documentParent = item.getParent();
+                context = new FrameContext().withDocumentParent(documentParent).withItem(item);
+                break;
+            case "page":
+            default:
+                context = new PageContext();
+                break;
+        }
+        return context;
+    }
 }

@@ -15,22 +15,51 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
-import org.devacfr.maven.skins.reflow.MenuItem;
+import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 
 /**
  * @author Christophe Friederich
  * @since 2.0
  */
-public class FrameContext extends PageContext {
+public class FrameContext extends Context<FrameContext> {
 
-    private final MenuItem item;
+    private String documentParent;
 
-    public FrameContext(final MenuItem item) {
+    private SideNavMenuItem item;
+
+    public FrameContext() {
+        setType("frame");
+    }
+
+    public String getDocumentParent() {
+        return documentParent;
+    }
+
+    public String getSlugDocumentParent() {
+        return SkinConfigTool.slugFilename(documentParent);
+    }
+
+    public void setDocumentParent(final String documentParent) {
+        this.documentParent = documentParent;
+    }
+
+    public FrameContext withDocumentParent(final String documentParent) {
+        setDocumentParent(documentParent);
+        return self();
+    }
+
+    public SideNavMenuItem getItem() {
+        return item;
+    }
+
+    public void setItem(final SideNavMenuItem item) {
         this.item = item;
     }
 
-    public MenuItem getItem() {
-        return item;
+    public FrameContext withItem(final SideNavMenuItem item) {
+        this.setItem(item);
+        return self();
     }
 
 }

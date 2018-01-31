@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devacfr.maven.skins.reflow;
+package org.devacfr.maven.skins.reflow.context;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -21,54 +21,33 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @author Christophe Friederich
  * @since 2.0
  */
-public class MenuItem {
+public class Context<T extends Context<?>> {
 
-    /** */
-    private final String name;
+    private String type;
 
-    private final String slugName;
-
-    private final String href;
-
-    /** */
-    private final String icon;
-
-    /** */
-    private final boolean toc;
-
-    public MenuItem(final String name, final String slugName, final String href, final String icon, final boolean toc) {
-        this.name = name;
-        this.slugName = slugName;
-        this.href = href;
-        this.icon = icon;
-        this.toc = toc;
-
+    public Context() {
     }
 
-    public String getName() {
-        return name;
+    public void setType(final String type) {
+        this.type = type;
     }
 
-    public String getHref() {
-        return href;
+    public T withType(final String type) {
+        setType(type);
+        return self();
     }
 
-    public String getSlugName() {
-        return slugName;
+    public String getType() {
+        return type;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
-    public boolean isToc() {
-        return toc;
+    @SuppressWarnings("unchecked")
+    protected T self() {
+        return (T) this;
     }
 
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-
     }
-
 }

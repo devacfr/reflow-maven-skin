@@ -245,7 +245,7 @@
   </head> <!-- end : head -->
 ##
 ##
-#if( $config.type == "doc")
+#if( $pageType == "doc")
     #parse( "body-doc.vm")
 #else
     #parse( "body-default.vm")
