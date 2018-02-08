@@ -22,13 +22,13 @@
         #adaptBodyContent ()
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9"> 
         #if ( $config.sections )
-            #simpleBodySections ( $bodyContent $config.sections )
+            #renderBodySections ( $bodyContent $config.sections )
         #else
             $bodyContent            
         #end        
         </div>
         <div class="hidden-xs hidden-sm col-md-3 col-lg-3">  
-            #tocSidebarContent ()
+            #renderTocSidebar ()
         </div>     
     </div>
 #else  

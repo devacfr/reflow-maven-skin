@@ -20,94 +20,21 @@
 #navbar ()
 ##
   <div class="container">
-##
-  <!-- Masthead -->
-  <!-- ================================================== -->#*
-  *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name || $decoration.bannerLeft.src || $decoration.bannerLeft.href ) || $decoration.bannerRight )#*
-      *##set ( $hasBanner = true )#*
-  *##else#*
-      *##set ( $hasBanner = false )#*
-  *##end##
-##
-  <div class="header container-fluid">
-#*
-  *##if  ( $hasBanner )##
-  <div class="jumbotron subhead">
-    <div class="row" id="banner">
-      <div class="col-md-12">
-        <div class="pull-left">
-          #banner ( $decoration.bannerLeft "bannerLeft" )
-        </div>
-        <div class="pull-right">
-          #banner ( $decoration.bannerRight "bannerRight" )
-        </div>
-      </div>
-    </div>
-  </div>
-#*  *##end#*
-##
-  ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
-  *##if ( !$config.not( "breadcrumbs" )
-      && (( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0)
-        || $datePosition == "left" || $versionPosition == "left"
-        || $datePosition == "right" || $versionPosition == "right") )##
-    <div>
-      <ol class="breadcrumb">
-#*
-    ## left side version/date
-      *##if ( $versionPosition == "left" )##
-      <li class="projectVersion version-date">#version ()</li>
-#*      *##end#*
-      *##if ( $datePosition == "left" )
-      <li class="publishDate version-date">#publishDate ()</li>
-#*      *##end#*
+        <div class="header container-fluid">
 
-    ## breadcrumbs
-    *##if ( !$config.not( "breadcrumbs" ) && $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0 )#*
-          *##breadcrumbs ( $decoration.body.breadcrumbs )#*
-      *##end#*
-    ## right side version/date
-      *##if ( $datePosition == "right" )##
-      <li class="publishDate version-date pull-right">#publishDate ()</li>
-#*      *##end#*
-      *##if ( $versionPosition == "right" )##
-      <li class="projectVersion version-date pull-right">#version ()</li>
-#*      *##end
-      </ol>
-    </div>
-#*  *##end#*
+    ## add a banner
+    #renderBanner ()
+    
+    ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#  
+    #renderBreadcrumbs ()
 
-  *##if ( $tocTop )##
-    <hr class="toc-separator" />
+    #if ( $tocTop )
+        #renderTopToc ( $tocItems )
+    #end
 
-    ## read top offset for fixed ToC bar from the config
-#*    *##if ( $config.toc.getAttribute("offsetTop") )#*
-          *##set ( $tocOffsetTop = $config.toc.getAttribute("offsetTop") )#*
-      *##else#*
-          *##set ( $tocOffsetTop = "250" )#*
-      *##end##
+        </div> <!-- end : header -->
 ##
-    <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
-      <div id="toc-scroll-target" class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-            </div> <!-- .navbar-header -->
-        <div class="collapse navbar-collapse" id="toc-nav-collapse">
-          <ul id="toc" class="nav navbar-nav">
-            ## display Table of Contents in a top bar
-            #topToc ( $tocItems )
-          </ul>
-        </div>
-      </div> <!-- .container -->
-    </div> <!-- end: toc-bar -->
-#*  *##end##
-  </div> <!-- end : header -->
-##
-  <div class="main-body">
+    <div class="main-body">
 #*
   *##if ( $config.sections )#*
       *##bodySections ( $bodyContent $config.sections )
@@ -120,12 +47,14 @@
     <div class="col-md-12">
 #*      *##end##
       <div class="body-content">
-#*              *##bodyWithHeader ( $bodyContent )
+#*       *##bodyWithHeader ( $bodyContent )
       </div>
     </div>
-#*      *##if ( $tocSidebar )#*
-          *##tocSidebar ()#*
-      *##end##
+#*      *##if ( $tocSidebar ) ##
+    <div class="col-md-4">
+            #renderTocSidebar () ##
+    </div>
+#*      *##end##        
   </div> <!-- /row -->
 #*  *##end##
   </div>

@@ -226,12 +226,14 @@ var mReflow = function () {
     });
 
     var navSidebar = $('.nav-side-menu ');
-    
-    $window.resize(function () {
+
+    function resizeNavSidebar () {
       navSidebar.width(navSidebar.parent().width());
-    });
-    
-    
+    }
+    $window.resize(resizeNavSidebar);
+
+    navSidebar.on('affixed.bs.affix', resizeNavSidebar);
+
 
     navSidebar.affix({
       offset: {

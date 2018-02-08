@@ -230,20 +230,40 @@
 #end##
 ##
 #**
- * Outputs a list of breadcrumbs
- *
- *##macro ( breadcrumbs $breadcrumbs )#*
-    *##foreach ( $item in $breadcrumbs )#*
-        *##relativeLink ( $item.href )##
-                <li>#fullLink ( $relativeLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height false )</li>
-#*  *##end##
-                <li>#if ( $shortTitle )$shortTitle#else$title#end</li>
-#end##
+ * output top table fo content
+ *##macro( renderTopToc $topItems )
+    <hr class="toc-separator" />
+
+    ## read top offset for fixed ToC bar from the config
+#*    *##if ( $config.toc.getAttribute("offsetTop") )#*
+          *##set ( $tocOffsetTop = $config.toc.getAttribute("offsetTop") )#*
+      *##else#*
+          *##set ( $tocOffsetTop = "250" )#*
+      *##end##
 ##
+    <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
+      <div id="toc-scroll-target" class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+            </div> <!-- .navbar-header -->
+        <div class="collapse navbar-collapse" id="toc-nav-collapse">
+          <ul id="toc" class="nav navbar-nav">
+            ## display Table of Contents in a top bar
+            #renderTopTocItems ( $tocItems )
+          </ul>
+        </div>
+      </div> <!-- .container -->
+    </div> <!-- end: toc-bar -->
+ #end
+ 
 #**
  * Outputs the top Table of Contents ( subnav )
  *
- *##macro ( topToc $topItems )#*
+ *##macro ( renderTopTocItems $topItems )#*
     ## read the top ToC max config to get the number of items to show
     *##if ( $config.tocTopMax )#*
         *##set ( $tocMax = $convert.toNumber($config.tocTopMax.getValue()) )#*
@@ -318,7 +338,7 @@
                                 <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
                                 <li><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
                                 <li class="divider"></li>
-                              #topTocDropdown ( $topItem.items )
+                              #renderTopTocDropdown ( $topItem.items )
                             </ul>
                         </li>
 #*      *##end#*
@@ -331,7 +351,7 @@
         <li class="dropdown">
             <a href="#" title="More&hellip;" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#">&hellip; <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu">
-#*              *##topTocDropdown ( $tocBarMaxItems )##
+#*              *##renderTopTocDropdown ( $tocBarMaxItems )##
             </ul>
         </li>
 #*  *##end##
@@ -341,7 +361,7 @@
  * Recursively outputs the contents of top bar ToC dropdown item
  *
  *#
-#macro ( topTocDropdown $items )#*
+#macro ( renderTopTocDropdown $items )#*
 
     *##foreach ( $subitem in $items )#*
         *##if ($subitem.items.isEmpty())##
@@ -350,32 +370,75 @@
                 <li class="dropdown-submenu">
                     <a href="#$subitem.id" title="$subitem.text">$subitem.text</a>
                     <ul class="dropdown-menu" role="menu">
-#*                      *##topTocDropdown ( $subitem.items )##
+#*                      *##renderTopTocDropdown ( $subitem.items )##
                     </ul>
                 </li>
 #*      *##end#*
     *##end#*
 
 *##end##
-#**
- * Outputs a sidebar containing ToC only.
- * Does not do anything if ToC sidebar has already been added.
- *
- *##macro ( tocSidebar )#*
-    *##if ( !$tocSidebarAdded )##
-        <div class="col-md-4">
-#*    *##tocSidebarContent ()#*
-*#
+
+#macro( renderBanner )#*
+    *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name || 
+        $decoration.bannerLeft.src || $decoration.bannerLeft.href ) || $decoration.bannerRight )
+      <div class="jumbotron subhead">
+        <div class="row" id="banner">
+          <div class="col-md-12">
+            <div class="pull-left">
+              #banner ( $decoration.bannerLeft "bannerLeft" )
+            </div>
+            <div class="pull-right">
+              #banner ( $decoration.bannerRight "bannerRight" )
+            </div>
+          </div>
         </div>
+      </div>
+#*  *##end ##
+#end
+#**
+ * Render a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
+ *
+ *##macro( renderBreadcrumbs )#*
+  *##if ( !$config.not( "breadcrumbs" )
+      && (( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0)
+        || $datePosition == "left" || $versionPosition == "left"
+        || $datePosition == "right" || $versionPosition == "right") )##
+    <div>
+      <ol class="breadcrumb">
 #*
-    *##end##
-#end##
-##
+    ## left side version/date
+      *##if ( $versionPosition == "left" )##
+      <li class="projectVersion version-date">#version ()</li>
+#*      *##end#*
+      *##if ( $datePosition == "left" )
+      <li class="publishDate version-date">#publishDate ()</li>
+#*      *##end#*
+
+    ## breadcrumbs
+    *##if ( !$config.not( "breadcrumbs" ) && $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0 )#*
+        *##foreach ( $item in  $decoration.body.breadcrumbs )#*
+            *##relativeLink ( $item.href )##
+                <li>#fullLink ( $relativeLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height false )</li>
+#*      *##end##
+                <li>#if ( $shortTitle )$shortTitle#else$title#end</li>
+
+#*  *##end#*
+    ## right side version/date
+      *##if ( $datePosition == "right" )##
+      <li class="publishDate version-date pull-right">#publishDate ()</li>
+#*      *##end#*
+      *##if ( $versionPosition == "right" )##
+      <li class="projectVersion version-date pull-right">#version ()</li>
+#*      *##end
+      </ol>
+    </div>
+#*  *##end
+#end
 #**
  * Outputs ToC sidebar contents.
  * Does not do anything if ToC sidebar has already been added.
  *
- *##macro ( tocSidebarContent )#*
+ *##macro ( renderTocSidebar )#*
     *##if ( !$tocSidebarAdded )##
         ## set true by default for 'frame' page type
         #set ( $isFixed = true)##
@@ -388,8 +451,8 @@
            </nav>
        </div>
 #*
-    *##set ( $tocSidebarAdded = true )#*
-    *##end##
+        *##set ( $tocSidebarAdded = true )#*
+    *##end##    
 #end##
 ##
 #**
@@ -477,7 +540,7 @@
  *      <carousel/> - carousel (spinning images with captions)
  *  </sections>
  *
- *##macro ( simpleBodySections $bodyContent $sectionConfig )#*
+ *##macro ( renderBodySections $bodyContent $sectionConfig )#*
     ## Split everything in the content on the horizontal rule tags <hr />
     *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*
     *##set ( $sectCount = $sectionConfig.getChildCount() )#*
@@ -544,7 +607,7 @@
  *      <columns>x</columns> - x-column grid layout
  *      <carousel/> - carousel (spinning images with captions)
  *  </sections>
- * sidebar is deprecated this macro use 'simpleBodySections' instead.
+ * sidebar is deprecated this macro use 'renderBodySections' instead.
  *##macro ( bodySections $bodyContent $sectionConfig )#*
     ## Split everything in the content on the horizontal rule tags <hr />
     *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*
@@ -587,8 +650,10 @@
                 check if need to add explicit ToC sidebar
                 (if ToC sidebar is needed, but no sidebar is defined)
                 *##if ( $tocSidebar && !$hasSidebar)##
-#*                  *##tocSidebar ()#*
-                *##end##
+                    <div class="col-md-4">
+                            #renderTocSidebar () ##
+                    </div>
+#*              *##end##
     </div>
 #*          *##end#*
 
@@ -615,7 +680,7 @@
 #*          *##end
         <div class="col-md-4">
 #*          *##if ( $tocSidebar )#*
-                *##tocSidebarContent ()#*
+                *##renderTocSidebar ()#*
             *##end##
             <div class="well sidebar">
               ## Print the subsections into sidebar
@@ -664,9 +729,11 @@
  #*
         check if need to add explicit ToC sidebar
         (if ToC sidebar is needed, but no sidebar is defined)
-        *##if ( $tocSidebar && !$hasSidebar )#*
-            *##tocSidebar ()#*
-        *##end##
+        *##if ( $tocSidebar && !$hasSidebar ) ##
+            <div class="col-md-4">
+                    #renderTocSidebar () ##
+            </div>
+#*      *##end##
     </div>
 #*  *##end##
 #end##
