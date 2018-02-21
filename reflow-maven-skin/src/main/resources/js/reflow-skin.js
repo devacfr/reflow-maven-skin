@@ -240,23 +240,27 @@ var mReflow = function() {
   }
 
   function initNavSidebar() {
+    var navSidebar = $('.nav-side-menu');
+    if (navSidebar.length == 0) {
+      return;
+    }
 
     function findFirstMenu(navSidebar) {
       var href = $('.nav-side-menu a').first();
       return href.attr('slug-name');
     }
-
-    var navSidebar = $('.nav-side-menu ');
-
-    if (navSidebar.length == 0) {
-      return;
+    function hashes(fragment) {
+      return '#' + fragment;
+    }
+    function resizeNavSidebar() {
+      navSidebar.width(navSidebar.parent().width());
     }
 
     $window.bind('hashchange', function(e) {
 
       var item = null;
       if (window.location.hash == '') {
-        window.location.hash = findFirstMenu();
+        window.location.hash = hashes(findFirstMenu());
       }
       var hash = window.location.hash;
       var id = hash.substring(1); // remove #
@@ -271,15 +275,13 @@ var mReflow = function() {
         item = $('.nav-side-menu a[slug-name$="' + id + '"]');
       }
       var slugName = item.attr('slug-name');
-      window.location.hash = slugName;
+      window.location.hash = hashes(slugName);
       var href = item.attr('href').substring(1);
       loadFrame(href, slugName);
 
     });
 
-    function resizeNavSidebar() {
-      navSidebar.width(navSidebar.parent().width());
-    }
+
     $window.resize(resizeNavSidebar);
 
     navSidebar.on('affixed.bs.affix', resizeNavSidebar);
@@ -296,12 +298,18 @@ var mReflow = function() {
     var fragment = window.location.hash;
     if (!fragment) {
       var href = findFirstMenu();
-      window.location.hash = href;
+      window.location.hash = hashes(href);
     } else {
       // enforce load frame
       $window.trigger('hashchange');
     }
 
+    // select first menu item on show collapse
+    $('.nav-side-menu').on('shown.bs.collapse', function(ev) {
+      var el = $(ev.target);
+      var href = el.find('li a').first();
+      window.location.hash  = hashes( href.attr('slug-name'));
+    });
   }
 
   function refreshScrollSpy() {
