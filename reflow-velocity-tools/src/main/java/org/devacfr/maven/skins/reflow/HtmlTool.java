@@ -1163,7 +1163,8 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-            * 
+             * 
+            
            
           
          
@@ -1213,7 +1214,7 @@ public class HtmlTool extends SafeConfig {
 
         for (final HeadingItem heading : headingItems) {
 
-            while (!parentHeadings.isEmpty() && parentHeadings.peek().headingIndex >= heading.headingIndex) {
+            while (!parentHeadings.isEmpty() && parentHeadings.peek().headingLevel >= heading.headingLevel) {
                 parentHeadings.pop();
             }
 
@@ -1259,15 +1260,15 @@ public class HtmlTool extends SafeConfig {
 
         private final String text;
 
-        private final int headingIndex;
+        private final int headingLevel;
 
         private final List<HeadingItem> children = new ArrayList<>();
 
-        public HeadingItem(final String id, final String tagName, final String text, final int headingIndex) {
+        public HeadingItem(final String id, final String tagName, final String text, final int headingLevel) {
             this.id = id;
             this.tagName = tagName;
             this.text = text;
-            this.headingIndex = headingIndex;
+            this.headingLevel = headingLevel;
         }
 
         @Override
@@ -1288,6 +1289,11 @@ public class HtmlTool extends SafeConfig {
         @Override
         public List<HeadingItem> getItems() {
             return Collections.unmodifiableList(children);
+        }
+
+        @Override
+        public int getHeadingLevel() {
+            return headingLevel;
         }
     }
 
@@ -1317,6 +1323,11 @@ public class HtmlTool extends SafeConfig {
          * @return text contents of the element
          */
         public String getText();
+
+        /**
+         * @return Returns the level of heading.
+         */
+        int getHeadingLevel();
 
         /**
          * Retrieves the children of the HTML element (nested within the element)

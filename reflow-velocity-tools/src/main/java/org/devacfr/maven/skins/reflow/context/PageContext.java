@@ -15,14 +15,30 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
+import org.devacfr.maven.skins.reflow.model.Toc;
+
 /**
  * @author Christophe Friederich
  * @since 2.0
  */
 public class PageContext extends Context<PageContext> {
 
+    private Toc<?> toc;
+
     public PageContext() {
         setType("page");
     }
 
+    public Toc<?> getToc() {
+        return toc;
+    }
+
+    public void setToc(final Toc<?> toc) {
+        this.toc = toc;
+    }
+
+    public PageContext withToc(final Toc<?> toc) {
+        setToc(toc);
+        return self();
+    }
 }

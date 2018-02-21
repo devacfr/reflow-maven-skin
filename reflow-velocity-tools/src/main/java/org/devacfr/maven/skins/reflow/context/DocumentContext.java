@@ -23,6 +23,7 @@ import org.devacfr.maven.skins.reflow.model.SideNavMenu;
  */
 public class DocumentContext extends Context<DocumentContext> {
 
+    /** */
     private SideNavMenu menu;
 
     public DocumentContext() {

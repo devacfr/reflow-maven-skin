@@ -15,9 +15,14 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
 /**
  * @author Christophe Friederich
@@ -28,6 +33,43 @@ public class SideNavMenu {
     private String name;
 
     private List<SideNavMenuItem> items;
+
+    public static SideNavMenu createSideNavMenu(final SkinConfigTool config) {
+        final Xpp3Dom pageNode = config.getPageProperties();
+        final Xpp3Dom menu = pageNode.getChild("menu");
+        if (menu == null) {
+            return null;
+        }
+        final String pageName = pageNode.getName();
+        final List<SideNavMenuItem> items = new ArrayList<>();
+        final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name")).withItems(items);
+        addMenuItemRecursively(items, menu, pageName, false);
+        return documentMenu;
+    }
+
+    /**
+     * @param pagesNode
+     * @return
+     */
+    public static List<SideNavMenuItem> findAllDocumentMenuItems(final Xpp3Dom pagesNode) {
+        if (pagesNode == null) {
+            return Collections.emptyList();
+        }
+        final Xpp3Dom[] pages = pagesNode.getChildren();
+        final List<SideNavMenuItem> includePages = new ArrayList<>();
+        for (final Xpp3Dom page : pages) {
+            final String type = page.getAttribute("type");
+            if ("doc".equals(type)) {
+                final Xpp3Dom menu = page.getChild("menu");
+                if (menu == null) {
+                    continue;
+                }
+                final String pageName = page.getName();
+                addMenuItemRecursively(includePages, menu, pageName, true);
+            }
+        }
+        return includePages;
+    }
 
     public SideNavMenu() {
     }
@@ -66,5 +108,30 @@ public class SideNavMenu {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
 
+    }
+
+    /**
+     * @param includePages
+     * @param parentNode
+     */
+    private static void addMenuItemRecursively(final List<SideNavMenuItem> includePages,
+        final Xpp3Dom parentNode,
+        final String pageName,
+        final boolean includSameList) {
+        for (final Xpp3Dom item : Xpp3Utils.getChildrenNodes(parentNode, "item")) {
+            final String href = item.getAttribute("href");
+            final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
+                    .withParent(pageName)
+                    .withHref(href)
+                    .withIcon(item.getAttribute("icon"));
+            includePages.add(menuItem);
+            if (includSameList) {
+                addMenuItemRecursively(includePages, item, pageName, true);
+            } else {
+                final List<SideNavMenuItem> list = new ArrayList<>();
+                menuItem.withItems(list);
+                addMenuItemRecursively(list, item, pageName, false);
+            }
+        }
     }
 }

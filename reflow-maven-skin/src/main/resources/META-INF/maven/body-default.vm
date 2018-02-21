@@ -15,7 +15,7 @@
 ##
 ##
   ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
-  <body class="page-$config.fileId project-$config.projectId $globalCssClass" data-spy="scroll" data-offset="70" data-target=".m-toc-sidebar-container">
+  <body class="page-$config.fileId project-$config.projectId $globalCssClass">
 
 #navbar ()
 ##
@@ -28,9 +28,7 @@
     ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#  
     #renderBreadcrumbs ()
 
-    #if ( $tocTop )
-        #renderTopToc ( $tocItems )
-    #end
+    #renderTopToc ()
 
         </div> <!-- end : header -->
 ##
@@ -41,7 +39,7 @@
   #else#*
   ## non-sectioned body - just output it all *#
   <div class="row">
-#*      *##if ( $tocSidebar )##
+#*      *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" )##
     <div class="col-md-8">
 #*      *##else##
     <div class="col-md-12">
@@ -50,7 +48,7 @@
 #*       *##bodyWithHeader ( $bodyContent )
       </div>
     </div>
-#*      *##if ( $tocSidebar ) ##
+#*      *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" ) ##
     <div class="col-md-4">
             #renderTocSidebar () ##
     </div>

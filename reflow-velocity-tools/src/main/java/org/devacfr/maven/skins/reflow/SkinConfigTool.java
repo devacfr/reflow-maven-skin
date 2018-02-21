@@ -15,11 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
@@ -29,11 +25,6 @@ import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.context.Context;
-import org.devacfr.maven.skins.reflow.context.DocumentContext;
-import org.devacfr.maven.skins.reflow.context.FrameContext;
-import org.devacfr.maven.skins.reflow.context.PageContext;
-import org.devacfr.maven.skins.reflow.model.SideNavMenu;
-import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -194,11 +185,11 @@ public class SkinConfigTool extends SafeConfig {
 
             // for page properties, retrieve the file name and drop the `.html`
             // extension - this will be used, i.e. `index` instead of `index.html`
-            final Xpp3Dom pagesNode = getChild(skinNode, "pages");
+            final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(skinNode, "pages", namespace);
             if (pagesNode != null) {
 
                 // Get the page for the file
-                Xpp3Dom page = getChild(pagesNode, fileId);
+                Xpp3Dom page = Xpp3Utils.getFirstChild(pagesNode, fileId, namespace);
 
                 // Now check if the project artifact ID is set, and if so, if it matches the
                 // current project. This allows preventing accidental reuse of parent page
@@ -216,7 +207,7 @@ public class SkinConfigTool extends SafeConfig {
                 }
 
             }
-            this.context = buildContext(pagesNode);
+            this.context = Context.buildContext(this);
         }
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Current Filename: " + currentFileObj);
@@ -225,35 +216,6 @@ public class SkinConfigTool extends SafeConfig {
             LOGGER.info("Context: " + this.context);
             LOGGER.info("---------------------------------------------------");
         }
-    }
-
-    /**
-     * Retrieves the child node. Tests both default name and with namespace.
-     *
-     * @param parentNode
-     * @param name
-     * @return
-     */
-    private Xpp3Dom getChild(final Xpp3Dom parentNode, final String name) {
-        final Xpp3Dom child = parentNode.getChild(name);
-        if (child != null) {
-            return child;
-        }
-
-        return parentNode.getChild(namespace + name);
-    }
-
-    /**
-     * Gets the list of all children name for the {@code parentNode}.
-     *
-     * @param parentNode
-     *            the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
-     *         {@code null}.
-     * @since 1.3
-     */
-    public List<String> getChildren(final Xpp3Dom parentNode) {
-        return getChildrenNodes(parentNode, null).stream().map(node -> node.getName()).collect(Collectors.toList());
     }
 
     /**
@@ -294,10 +256,10 @@ public class SkinConfigTool extends SafeConfig {
     public Xpp3Dom get(final String property) {
 
         // first try page properties
-        Xpp3Dom propNode = getChild(pageProperties, property);
+        Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
         if (propNode == null) {
             // try global
-            propNode = getChild(globalProperties, property);
+            propNode = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
         }
 
         return propNode;
@@ -322,6 +284,86 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         return propNode.getValue();
+    }
+
+    /**
+     * Gets the text value of the given {@code property}.
+     *
+     * @param property
+     *            the property to use
+     * @param targetType
+     *            the returned target type use to convert value.
+     * @param defaultValue
+     *            the default value used if property doesn't exist.
+     * @return Returns a converted value of the given {@code property}.
+     * @since 2.0
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getConfigValue(final String property, final Class<T> targetType, final T defaultValue) {
+        final String value = value(property);
+        if (value == null) {
+            return defaultValue;
+        }
+        Object returnedValue = value;
+        if (targetType.isAssignableFrom(Boolean.class)) {
+            returnedValue = Boolean.valueOf(value);
+        } else if (targetType.isAssignableFrom(Integer.class)) {
+            returnedValue = Integer.valueOf(value);
+        } else if (targetType.isAssignableFrom(Long.class)) {
+            returnedValue = Long.valueOf(value);
+        }
+        return (T) returnedValue;
+    }
+
+    /**
+     * Gets the list of all children name for the {@code parentNode}.
+     *
+     * @param parentNode
+     *            the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
+     *         {@code null}.
+     * @since 1.3
+     */
+    public List<String> getChildren(final Xpp3Dom parentNode) {
+        return Xpp3Utils.getChildren(parentNode);
+    }
+
+    /**
+     * Gets the attribute value of the given {@code attribute} of {@code property}.
+     *
+     * @param property
+     *            the property to use
+     * @param attribute
+     *            the attribute to use.
+     * @param targetType
+     *            the returned target type use to convert value.
+     * @param defaultValue
+     *            the default value used if property doesn't exist.
+     * @return Returns a converted value of the given {@code property}.
+     * @since 2.0
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getConfigAttribute(final String property,
+        final String attribute,
+        final Class<T> targetType,
+        final T defaultValue) {
+        final Xpp3Dom element = get(property);
+        if (element == null) {
+            return defaultValue;
+        }
+        final String value = element.getAttribute(attribute);
+        if (value == null) {
+            return defaultValue;
+        }
+        Object returnedValue = value;
+        if (targetType.isAssignableFrom(Boolean.class)) {
+            returnedValue = Boolean.valueOf(value);
+        } else if (targetType.isAssignableFrom(Integer.class)) {
+            returnedValue = Integer.valueOf(value);
+        } else if (targetType.isAssignableFrom(Long.class)) {
+            returnedValue = Long.valueOf(value);
+        }
+        return (T) returnedValue;
     }
 
     /**
@@ -380,6 +422,18 @@ public class SkinConfigTool extends SafeConfig {
         return context;
     }
 
+    public Xpp3Dom getPageProperties() {
+        return pageProperties;
+    }
+
+    public Xpp3Dom getGlobalProperties() {
+        return globalProperties;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
     /**
      * @param fileName
      * @return
@@ -405,131 +459,4 @@ public class SkinConfigTool extends SafeConfig {
         return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
     }
 
-    /**
-     * @param pagesNode
-     * @return
-     */
-    private static List<SideNavMenuItem> findAllDocumentMenuItems(final Xpp3Dom pagesNode) {
-        if (pagesNode == null) {
-            return Collections.emptyList();
-        }
-        final Xpp3Dom[] pages = pagesNode.getChildren();
-        final List<SideNavMenuItem> includePages = new ArrayList<>();
-        for (final Xpp3Dom page : pages) {
-            final String type = page.getAttribute("type");
-            if ("doc".equals(type)) {
-                final Xpp3Dom menu = page.getChild("menu");
-                if (menu == null) {
-                    continue;
-                }
-                final String pageName = page.getName();
-                addMenuItemRecursively(includePages, menu, pageName, true);
-            }
-        }
-        return includePages;
-    }
-
-    private static SideNavMenu getDocumentMenu(final Xpp3Dom pageNode) {
-        final Xpp3Dom menu = pageNode.getChild("menu");
-        if (menu == null) {
-            return null;
-        }
-        final String pageName = pageNode.getName();
-        final List<SideNavMenuItem> items = new ArrayList<>();
-        final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name")).withItems(items);
-        addMenuItemRecursively(items, menu, pageName, false);
-        return documentMenu;
-    }
-
-    /**
-     * @param includePages
-     * @param parentNode
-     */
-    private static void addMenuItemRecursively(final List<SideNavMenuItem> includePages,
-        final Xpp3Dom parentNode,
-        final String pageName,
-        final boolean includSameList) {
-        for (final Xpp3Dom item : getChildrenNodes(parentNode, "item")) {
-            final String href = item.getAttribute("href");
-            final String toc = item.getAttribute("toc");
-            final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
-                    .withParent(pageName)
-                    .withHref(href)
-                    .withIcon(item.getAttribute("icon"))
-                    .withToc(toc == null || "true".equals(toc) ? true : false);
-            includePages.add(menuItem);
-            if (includSameList) {
-                addMenuItemRecursively(includePages, item, pageName, true);
-            } else {
-                final List<SideNavMenuItem> list = new ArrayList<>();
-                menuItem.withItems(list);
-                addMenuItemRecursively(list, item, pageName, false);
-            }
-        }
-    }
-
-    /**
-     * @param parentNode
-     * @param name
-     * @return
-     */
-    public static List<Xpp3Dom> getChildrenNodes(final Xpp3Dom parentNode, final String name) {
-        if (parentNode == null) {
-            return Collections.emptyList();
-        }
-        final Xpp3Dom[] children = parentNode.getChildren();
-        if (children == null) {
-            return Collections.emptyList();
-        }
-        final List<Xpp3Dom> list = new ArrayList<>(children.length);
-        for (final Xpp3Dom child : children) {
-            if (name != null) {
-                if (name.equals(child.getName())) {
-                    list.add(child);
-                }
-            } else {
-                list.add(child);
-            }
-        }
-
-        return list;
-    }
-
-    private Context<?> buildContext(final Xpp3Dom pagesNode) {
-        String type = "page";
-        final List<SideNavMenuItem> pagesInDocuments = findAllDocumentMenuItems(pagesNode);
-        if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
-        }
-        if (pageProperties != null) {
-            if (pageProperties.getAttribute("type") != null) {
-                type = pageProperties.getAttribute("type");
-            }
-
-            // frame type whether page associates to document page
-            if (pagesInDocuments.stream().filter(item -> fileId.equals(item.getSlugName())).count() > 0) {
-                type = "frame";
-            }
-        }
-        Context<?> context = null;
-        switch (type) {
-            case "doc":
-                context = new DocumentContext().withMenu(getDocumentMenu(pageProperties));
-                break;
-
-            case "frame":
-                final Optional<SideNavMenuItem> menuItem = pagesInDocuments.stream()
-                        .filter(item -> fileId.equals(item.getSlugName()))
-                        .findFirst();
-                final SideNavMenuItem item = menuItem.get();
-                final String documentParent = item.getParent();
-                context = new FrameContext().withDocumentParent(documentParent).withItem(item);
-                break;
-            case "page":
-            default:
-                context = new PageContext();
-                break;
-        }
-        return context;
-    }
 }

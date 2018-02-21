@@ -17,6 +17,7 @@ package org.devacfr.maven.skins.reflow.context;
 
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
+import org.devacfr.maven.skins.reflow.model.Toc;
 
 /**
  * @author Christophe Friederich
@@ -24,9 +25,13 @@ import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
  */
 public class FrameContext extends Context<FrameContext> {
 
+    /** */
     private String documentParent;
 
+    /** */
     private SideNavMenuItem item;
+
+    private Toc<?> toc;
 
     public FrameContext() {
         setType("frame");
@@ -59,6 +64,19 @@ public class FrameContext extends Context<FrameContext> {
 
     public FrameContext withItem(final SideNavMenuItem item) {
         this.setItem(item);
+        return self();
+    }
+
+    public Toc<?> getToc() {
+        return toc;
+    }
+
+    public void setToc(final Toc<?> toc) {
+        this.toc = toc;
+    }
+
+    public FrameContext withToc(final Toc<?> toc) {
+        setToc(toc);
         return self();
     }
 

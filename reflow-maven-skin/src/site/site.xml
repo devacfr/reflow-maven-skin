@@ -7,6 +7,7 @@
 
   <custom>
     <reflowSkin>
+      <toc>sidebar</toc>
       <pages>
         <index project="reflow-maven-skin" combine.self="override">
           <shortTitle>Usage</shortTitle>
@@ -18,7 +19,11 @@
             <body />
           </sections>
         </index>
+        <layouts>
+          <toc>false</toc>
+        </layouts>
         <themes-index>
+          <toc>false</toc>
           <sections>
             <body />
             <thumbs>3</thumbs>
@@ -78,14 +83,14 @@
           <theme>bootswatch-yeti</theme>
         </themes-bootswatch-yeti>
         <toc-sidebar>
-          <toc type="fixed">sidebar</toc>
+          <toc>sidebar</toc>
         </toc-sidebar>
         <reflow-documentation type="doc">
           <menu name="Reflow Documentation">
             <item name="Configuration" href="config.html" icon="fa fa-tachometer fa-fw"/>
             <item name="Layouts" icon="fa fa-clone fa-fw">
-              <item name="Overview" href="layouts.html"  toc="false"/>
-              <item name="Themes" href="themes/index.html" toc="false"/>
+              <item name="Overview" href="layouts.html"/>
+              <item name="Themes" href="themes/index.html"/>
               <item name="Carousel" href="carousel.html"/>
               <item name="Columns" href="columns.html"/>
               <item name="Thumbnails" href="thumbnails.html"/>

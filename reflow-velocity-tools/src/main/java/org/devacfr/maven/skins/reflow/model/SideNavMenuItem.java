@@ -36,9 +36,6 @@ public class SideNavMenuItem {
     private String icon;
 
     /** */
-    private boolean toc;
-
-    /** */
     private List<SideNavMenuItem> items;
 
     private String parent;
@@ -99,19 +96,6 @@ public class SideNavMenuItem {
 
     public SideNavMenuItem withIcon(final String icon) {
         setIcon(icon);
-        return this;
-    }
-
-    public boolean isToc() {
-        return toc;
-    }
-
-    public void setToc(final boolean toc) {
-        this.toc = toc;
-    }
-
-    public SideNavMenuItem withToc(final boolean toc) {
-        setToc(toc);
         return this;
     }
 

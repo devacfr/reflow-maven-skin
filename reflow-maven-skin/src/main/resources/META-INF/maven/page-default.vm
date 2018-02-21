@@ -50,28 +50,19 @@
   #if ( $project.url && $project.url != '' )#*
         *##set ( $projectSiteLoc = $project.url )#*
         *##if ( !$projectSiteLoc.endsWith("/") )#*
-      ## ensure that the directory is uniform
-      *##set ( $projectSiteLoc = "$projectSiteLoc/" )#*
+          ## ensure that the directory is uniform
+          *##set ( $projectSiteLoc = "$projectSiteLoc/" )#*
         *##end#*
-    *##else#*
+  *##else#*
     ## dummy project URL is used to provide a good base to resolve relative links with ../
     *##set ( $projectSiteLoc = "http://dummy.parent.url/" )#*
-    *##end#*
+  *##end#*
   ## absolute location of the current file
   *##set ( $currentFileLoc = $uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString() )#*
   ## Check if <toc> is set on the page or globally, then display Table of Contents
-  *##if ( $config.isValue( "toc", "top" ) )#*
-  *##set ( $tocTop = true )#*
-  *##set ( $globalCssClass = $globalCssClass + " m-toctop-enabled")#*
-  *##else#*
-  *##set ( $tocTop = false )#*
-  *##end#*
-  *##if ( $config.isValue( "toc", "sidebar" ) )#*
-      *##set ( $tocSidebar = true )#*
-      *##set ( $globalCssClass = $globalCssClass + " m-tocsidebar-enabled")#*
-  *##else#*
-      *##set ( $tocSidebar = false )#*
-  *##end##
+  *##if ($pageContext.toc.enabled )#*
+    *##set ( $globalCssClass = $globalCssClass + " " + $pageContext.toc.cssClass)#*
+  *##end
   #adaptBodyContent ()
   ## generate a short title if one does not exist or is specified explicitly
   #* if specified explicitly, use that
@@ -302,5 +293,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${anchorJsVesrion}/anchor.min.js"></script>
 #*  *##end##
 ##
-  </body>
 </html>

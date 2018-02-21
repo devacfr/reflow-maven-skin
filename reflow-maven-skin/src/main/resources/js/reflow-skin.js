@@ -1,18 +1,19 @@
 "use strict";
+
 /*
  * By Osvaldas Valutis, www.osvaldas.info Available for use under the MIT
  * License
  */
-(function ($, window, document, undefined) {
-  $.fn.doubleTapToGo = function (params) {
+(function($, window, document, undefined) {
+  $.fn.doubleTapToGo = function(params) {
     if (!('ontouchstart' in window) && !navigator.msMaxTouchPoints
-      && !navigator.userAgent.toLowerCase().match(/windows phone os 7/i))
+        && !navigator.userAgent.toLowerCase().match(/windows phone os 7/i))
       return false;
 
-    this.each(function () {
+    this.each(function() {
       var curItem = false;
 
-      $(this).on('click', function (e) {
+      $(this).on('click', function(e) {
         var item = $(this);
         if (item[0] != curItem[0]) {
           e.stopPropagation();
@@ -21,7 +22,7 @@
         }
       });
 
-      $(document).on('click touchstart MSPointerDown', function (e) {
+      $(document).on('click touchstart MSPointerDown', function(e) {
         var resetItem = true, parents = $(e.target).parents();
 
         for (var i = 0; i < parents.length; i++)
@@ -46,21 +47,21 @@ function getViewPort() {
   }
 
   return {
-    width: e[a + 'Width'],
-    height: e[a + 'Height']
+    width : e[a + 'Width'],
+    height : e[a + 'Height']
   };
 }
 
 var timestampSideBar = 0;
 
-var mReflow = function () {
+var mReflow = function() {
   var $window = $(window);
   var $body = $(document.body);
 
   function getTocSidebarContainerOffset(tocSidebar) {
     if (tocSidebar.hasClass('affix')) {
       // size header
-      return 70
+      return 70;
     } else {
       return tocSidebar.offset().top;
     }
@@ -68,6 +69,27 @@ var mReflow = function () {
 
   function initCarousel() {
     $('.carousel').carousel();
+  }
+
+  function initTocTop() {
+    var tocTop = $('#toc-bar');
+    if (!tocTop.length) {
+      return;
+    }
+
+    if ($('#toc-bar[data-spy=affix]').length) {
+      tocTop.affix({
+        offset : {
+          top : tocTop.offset().top,
+          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
+        // padding of footer.
+        }
+      });
+    }
+
+    $body.scrollspy({
+      target : '#toc-bar'
+    });
   }
 
   function initTocSidebar() {
@@ -79,11 +101,12 @@ var mReflow = function () {
     /*
      * tocSidebar.mCustomScrollbar({ theme: "inset", axis: "y", setHeight:
      * getViewPort().height - getTocSidebarContainerOffset(tocSidebar) });
+     *
+     *
+     * $window.resize(function () { tocSidebar.css('height',
+     * (getViewPort().height - getTocSidebarContainerOffset(tocSidebar)) +
+     * 'px'); });
      */
-
-    $window.resize(function () {
-      tocSidebar.css('height', (getViewPort().height - getTocSidebarContainerOffset(tocSidebar)) + 'px');
-    });
 
     /*
      * tocSidebar.on('activate.bs.scrollspy', function(evt) { var el =
@@ -102,19 +125,40 @@ var mReflow = function () {
      *
      */
 
-    // toc aside bar
+    // add auto collapase
+    if ($body.hasClass('m-tocsidebar-collapsed') || tocSidebar.hasClass('nav-collapsed')) {
+
+      tocSidebar.find('.nav-collapsable').addClass('collapse').attr('aria-expanded', 'false');
+
+      tocSidebar.on('activate.bs.scrollspy', function() {
+        var active = $('.m-toc-sidebar li.active');
+        var collapsePanel = active.next('ul.nav.nav-collapsable');
+        tocSidebar.find('ul.nav.nav-collapsable').each(function(index, element) {
+          var el = $(element);
+          if (el.is(collapsePanel))
+            return;
+          var children = el.find('li.active');
+          if (children.length == 0) {
+            el.collapse('hide');
+          }
+        });
+        collapsePanel.collapse('show');
+        active.parent('ul.nav.nav-collapsable').collapse('show');
+      });
+    }
+    // toc sidebar
     if ($('.m-toc-sidebar-container[data-spy=affix]').length) {
       tocSidebar.affix({
-        offset: {
-          top: tocSidebar.offset().top,
-          bottom: ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
-          // padding of footer.
+        offset : {
+          top : tocSidebar.offset().top,
+          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
+        // padding of footer.
         }
       });
     }
 
     $body.scrollspy({
-      target: '.m-toc-sidebar'
+      target : '.m-toc-sidebar'
     });
   }
 
@@ -124,23 +168,22 @@ var mReflow = function () {
     if (typeof hljs !== 'undefined') {
       // classic encoding with <div class="source"><pre></pre></div>
       // and HTML5 version with <pre><code></code></pre>
-      $('div.source pre, pre code').each(function (i, e) {
+      $('div.source pre, pre code').each(function(i, e) {
         hljs.highlightBlock(e);
       });
     }
   }
 
-  function resizeTopNavBar() {
-    var navbar = $('#m-top-navbar');
-    var size = 0;
-    if (navbar.length) {
-      size = navbar.height() + 20; // normally 70
-    }
-    $('body').css('padding-top', size);
-  }
-
   function initTopNavBar() {
-    $(window).resize(resizeTopNavBar);
+    function resizeTopNavBar() {
+      var navbar = $('#m-top-navbar');
+      var size = 0;
+      if (navbar.length) {
+        size = navbar.height() + 20; // normally 70
+      }
+      $('body').css('padding-top', size);
+    }
+    $window.resize(resizeTopNavBar);
     // initialize size on start up
     resizeTopNavBar();
     // prevents the browser from opening a URL but allows that if tapped once
@@ -153,13 +196,13 @@ var mReflow = function () {
     pos = pos + (offset ? offset : 0);
 
     $('html,body').animate({
-      scrollTop: pos
+      scrollTop : pos
     }, 300, clbck);
   }
 
   function initScrollTop() {
     // add scroll-top
-    $('#m-scroll-top').on('click', function (e) {
+    $('#m-scroll-top').on('click', function(e) {
       // prevent default anchor click behavior
       e.preventDefault();
       scrollTo();
@@ -167,13 +210,8 @@ var mReflow = function () {
     });
   }
 
-  function findFirstMenu(navSidebar) {
-    var href = $('.nav-side-menu a').first();
-    return href.attr('slug-name');
-  }
-
   function loadFrame(href, slugName) {
-    $('#m-doc-frame').load(href, function () {
+    $('#m-doc-frame').load(href, function() {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
       var item = $('.nav-side-menu a[slug-name$="' + slugName + '"]').parent();
@@ -182,25 +220,39 @@ var mReflow = function () {
       // activate current item
       item.addClass('active');
 
+      scrollTo();
       initCarousel();
+      initTocTop();
       initTocSidebar();
       initHighlight();
       initAnchorJs();
-      scrollTo();
+      refreshScrollSpy();
     });
   }
 
   function initAnchorJs() {
     if (anchors && $body.hasClass('m-tocsidebar-enabled') || $body.hasClass('m-toctop-enabled')) {
       anchors.options = {
-        placement: 'left',
+        placement : 'left',
       };
       anchors.add('h1,h2, h3, h4, h5, h6');
     }
   }
 
   function initNavSidebar() {
-    $window.bind('hashchange', function (e) {
+
+    function findFirstMenu(navSidebar) {
+      var href = $('.nav-side-menu a').first();
+      return href.attr('slug-name');
+    }
+
+    var navSidebar = $('.nav-side-menu ');
+
+    if (navSidebar.length == 0) {
+      return;
+    }
+
+    $window.bind('hashchange', function(e) {
 
       var item = null;
       if (window.location.hash == '') {
@@ -225,21 +277,18 @@ var mReflow = function () {
 
     });
 
-    var navSidebar = $('.nav-side-menu ');
-
-    function resizeNavSidebar () {
+    function resizeNavSidebar() {
       navSidebar.width(navSidebar.parent().width());
     }
     $window.resize(resizeNavSidebar);
 
     navSidebar.on('affixed.bs.affix', resizeNavSidebar);
 
-
     navSidebar.affix({
-      offset: {
-        top: navSidebar.offset().top,
-        bottom: ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
-        // padding of footer.
+      offset : {
+        top : navSidebar.offset().top,
+        bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
+      // padding of footer.
       }
     });
 
@@ -250,28 +299,31 @@ var mReflow = function () {
       window.location.hash = href;
     } else {
       // enforce load frame
-      $(window).trigger('hashchange');
+      $window.trigger('hashchange');
     }
-
 
   }
 
+  function refreshScrollSpy() {
+    $body.scrollspy('refresh');
+  }
+
   return {
-    init: function () {
+    init : function() {
       initCarousel();
       initTocSidebar();
+      initTocTop();
       initNavSidebar();
       initScrollTop();
       initTopNavBar();
       initHighlight();
       initAnchorJs();
+      refreshScrollSpy();
     }
   };
 
 }();
 
-
-$(document).ready(function () {
+$(document).ready(function() {
   mReflow.init();
 });
-

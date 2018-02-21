@@ -231,17 +231,10 @@
 ##
 #**
  * output top table fo content
- *##macro( renderTopToc $topItems )
+ *##macro( renderTopToc )
+    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")
     <hr class="toc-separator" />
-
-    ## read top offset for fixed ToC bar from the config
-#*    *##if ( $config.toc.getAttribute("offsetTop") )#*
-          *##set ( $tocOffsetTop = $config.toc.getAttribute("offsetTop") )#*
-      *##else#*
-          *##set ( $tocOffsetTop = "250" )#*
-      *##end##
-##
-    <div id="toc-bar" class="navbar navbar-default" data-spy="affix" data-offset-top="$tocOffsetTop">
+    <div id="toc-bar" class="navbar navbar-default" data-spy="affix">
       <div id="toc-scroll-target" class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
@@ -258,21 +251,16 @@
         </div>
       </div> <!-- .container -->
     </div> <!-- end: toc-bar -->
+    #end
  #end
  
 #**
  * Outputs the top Table of Contents ( subnav )
  *
- *##macro ( renderTopTocItems $topItems )#*
-    ## read the top ToC max config to get the number of items to show
-    *##if ( $config.tocTopMax )#*
-        *##set ( $tocMax = $convert.toNumber($config.tocTopMax.getValue()) )#*
-    *##else#*
-        *##set ( $tocMax = -1 )#*
-    *##end#*
-
+ *##macro ( renderTopTocItems $topItems )
+    #set ( $tocMax = $pageContext.toc.topMax )#*
     ## check if we flatten the first 2 levels of ToC:
-    *##set ( $flattenConfig = $config.tocTopFlatten )#*
+    *##set ( $flattenConfig = $pageContext.toc.flatten )#*
     *##if ( !$flattenConfig )#*
         flatten config not available - calculate if need flattening:
         only flatten if the top level has not more than 2 elements
@@ -438,31 +426,28 @@
  * Outputs ToC sidebar contents.
  * Does not do anything if ToC sidebar has already been added.
  *
- *##macro ( renderTocSidebar )#*
-    *##if ( !$tocSidebarAdded )##
-        ## set true by default for 'frame' page type
-        #set ( $isFixed = true)##
-        #if( $pageType != "frame")
-            #set ( $isFixed = $config.toc.getAttribute("type") == "fixed")
-        #end##
-        <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm" #if ( $isFixed) data-spy="affix" #end>
-            <nav class="m-toc-sidebar">
-               #listAsideToc ( $tocItems )
-           </nav>
-       </div>
-#*
-        *##set ( $tocSidebarAdded = true )#*
-    *##end##    
+ *##macro ( renderTocSidebar )
+    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")
+        #if ( !$tocSidebarAdded )##
+            #set ( $isFixed = $pageContext.toc.fixed)
+            <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm #{if}(${pageContext.toc.collapsed})nav-collapsed#{end}" #if ( $isFixed) data-spy="affix" #end>
+                <nav class="m-toc-sidebar">
+                   #renderAsideTocMenu ( $tocItems )
+               </nav>
+           </div>
+#*          *##set ( $tocSidebarAdded = true )#*
+        *##end##  
+    #end
 #end##
 ##
 #**
  * Outputs Table of Contents into a list menu
  *
- *##macro ( listAsideToc $menus )##
+ *##macro ( renderAsideTocMenu $menus )##
 ##
                 <ul class="m-nav--sidebar nav">
 #*  *##foreach ( $item in $menus )
-        #listAsideTocItem ( $item )
+        #renderAsideTocItem ( $item )
     #end##
                 </ul>
 #end##
@@ -470,17 +455,22 @@
 #**
  * Recursively outputs ToC item and its children
  *
- *##macro ( listAsideTocItem $item )##
+ *##macro ( renderAsideTocItem $item )##
     #set( $href = ${item.id} )
     <li class="${item.tagName}">
         <a href="#${href}" title="${item.text}">$item.text</a>
-    </li>
+    </li>    
 #*  *##if ( $item.items.size() > 0 )##
+    #if ($item.headingLevel > 1)##
+    <ul class="nav nav-collapsable">
+    #end##
 #*      *##foreach ( $subitem in $item.items )
-            #listAsideTocItem ( $subitem )
-#*      *##end#*
-*#
-#*  *##end   
+            #renderAsideTocItem ( $subitem )
+#*      *##end##
+    #if ($item.headingLevel > 1)##
+    </ul>   
+    #end##
+#*  *##end
 #end
 ##
 #**
@@ -649,7 +639,7 @@
         </div>#*
                 check if need to add explicit ToC sidebar
                 (if ToC sidebar is needed, but no sidebar is defined)
-                *##if ( $tocSidebar && !$hasSidebar)##
+                *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" && !$hasSidebar)##
                     <div class="col-md-4">
                             #renderTocSidebar () ##
                     </div>
@@ -679,9 +669,7 @@
     <div class="row">
 #*          *##end
         <div class="col-md-4">
-#*          *##if ( $tocSidebar )#*
-                *##renderTocSidebar ()#*
-            *##end##
+#*          *##renderTocSidebar ()##
             <div class="well sidebar">
               ## Print the subsections into sidebar
              #sidebar ( $subsections )
@@ -694,7 +682,7 @@
         ## handle all other cases as 'body' type
             *##if ( !$lastBody )##
     <div class="row">
-#*              *##if ( $hasSidebar || $tocSidebar )#*
+#*              *##if ( $hasSidebar || ($pageContext.toc.enabled && $pageContext.toc.type == "sidebar") )#*
         ## has a sidebar - take part width *#
       <div class="col-md-8">
 #*              *##else#*
@@ -729,7 +717,7 @@
  #*
         check if need to add explicit ToC sidebar
         (if ToC sidebar is needed, but no sidebar is defined)
-        *##if ( $tocSidebar && !$hasSidebar ) ##
+        *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" && !$hasSidebar ) ##
             <div class="col-md-4">
                     #renderTocSidebar () ##
             </div>
@@ -1268,7 +1256,7 @@
       *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
   *##end#*
 
-  *##if ( $tocTop || $tocSidebar )#*
+  *##if ( $pageContext.toc.enabled )#*
     ## Ensure IDs on all headings to refer to them in TOC
         *##set ( $bodyContent = $htmlTool.ensureHeadingIds( $config.fileId, $bodyContent, "_" ) )#*
       *##set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )#*

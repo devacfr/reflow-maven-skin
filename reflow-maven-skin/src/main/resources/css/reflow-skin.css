@@ -259,15 +259,18 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     line-height: 20px;
 }
 
+
+
 .m-toc-sidebar li:hover a {
     color: #1e88e5;
+    background-color: transparent;
 }
 
 .m-toc-sidebar  li:not(.active ):hover a:before {
     content: "";
     border-radius: 50%;
     left: -3px;
-    top: 12px;
+    top: 10px;
     background: #dbdbdb;
     position: absolute;
     width: 6px;
@@ -290,7 +293,6 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     padding: 3px 0 3px 0px;
     margin: 0;
     position: relative;
-    transition: all .3s ease-in-out;
     display: list-item;
     line-height: 16px;
 }

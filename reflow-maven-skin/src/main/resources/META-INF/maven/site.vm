@@ -17,10 +17,10 @@
 #set( $pageType = $config.context.type)
 #set( $pageContext = $config.context)
 #if( $pageType == "frame" )
-    <div class="row">        
-        #set ( $tocSidebar =  $pageContext.item.toc )      
-        #adaptBodyContent ()
+    <div class="row">              
+        #adaptBodyContent ()       
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9"> 
+         #renderTopToc ()
         #if ( $config.sections )
             #renderBodySections ( $bodyContent $config.sections )
         #else
