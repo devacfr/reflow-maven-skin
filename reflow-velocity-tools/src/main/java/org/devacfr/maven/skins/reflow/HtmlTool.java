@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Andrius Velykis
+ * Copyright 2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1163,7 +1163,8 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-             * 
+              * 
+             
             
            
           
