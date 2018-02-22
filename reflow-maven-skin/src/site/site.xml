@@ -19,6 +19,9 @@
             <body />
           </sections>
         </index>
+        <config>
+          <toc collapsed="false">sidebar</toc>
+        </config>
         <layouts>
           <toc>false</toc>
         </layouts>

@@ -227,6 +227,9 @@ var mReflow = function() {
       initHighlight();
       initAnchorJs();
       refreshScrollSpy();
+
+      var hash = window.location.hash;
+      scrollTo($(hash));
     });
   }
 
@@ -249,33 +252,51 @@ var mReflow = function() {
       var href = $('.nav-side-menu a').first();
       return href.attr('slug-name');
     }
-    function hashes(fragment) {
-      return '#' + fragment;
+    function hashes(fragment, link) {
+      var hash = '#' + fragment;
+      if (link) {
+        hash += '_toc_' + link;
+      }
+      return hash;
     }
     function resizeNavSidebar() {
       navSidebar.width(navSidebar.parent().width());
     }
 
-    $window.bind('hashchange', function(e) {
+    $window.bind('hashchange', function(evt) {
+
+      var originalEvt = evt.originalEvent;
+      var identicalPage = false;
+      if (originalEvt) {
+        var oldURL = originalEvt.oldURL.split('_toc_');
+        var newURL = originalEvt.newURL.split('_toc_');
+        identicalPage = oldURL[0] === newURL[0];
+      }
+
+      if (identicalPage) {
+        return;
+      }
 
       var item = null;
       if (window.location.hash == '') {
         window.location.hash = hashes(findFirstMenu());
       }
       var hash = window.location.hash;
-      var id = hash.substring(1); // remove #
-      // skip on heading event (for the moment)
-      if (id.startsWith('_toc')) {
-        return;
+      var link = hash.split('_toc_');
+      var page = link[0].substring(1);
+      if (link.length > 1) {
+        link = link[1];
+      } else {
+        link = null;
       }
 
-      if (id.endsWith('html')) {
-        item = $('.nav-side-menu a[href$="' + id + '"]');
+      if (page.endsWith('html')) {
+        item = $('.nav-side-menu a[href$="' + page + '"]');
       } else {
-        item = $('.nav-side-menu a[slug-name$="' + id + '"]');
+        item = $('.nav-side-menu a[slug-name$="' + page + '"]');
       }
       var slugName = item.attr('slug-name');
-      window.location.hash = hashes(slugName);
+      window.location.hash = hashes(slugName, link);
       var href = item.attr('href').substring(1);
       loadFrame(href, slugName);
 

@@ -988,7 +988,10 @@ public class HtmlTool extends SafeConfig {
      *         already, the original content is returned.
      * @since 1.0
      */
-    public String ensureHeadingIds(final String currentPage, final String content, final String idSeparator) {
+    public String ensureHeadingIds(final String pageType,
+        final String currentPage,
+        final String content,
+        final String idSeparator) {
         final List<String> excludedPages = Arrays.asList("checkstyle-aggregate", "checkstyle");
 
         final Element body = parseContent(content);
@@ -1027,7 +1030,7 @@ public class HtmlTool extends SafeConfig {
                 if (headingSlug.length() > 50) {
                     headingSlug = headingSlug.substring(0, 50);
                 }
-                final String headingId = generateUniqueId(ids, headingSlug);
+                final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
 
                 heading.attr("id", headingId);
             }
@@ -1045,7 +1048,7 @@ public class HtmlTool extends SafeConfig {
             if (headingSlug.length() > 50) {
                 headingSlug = headingSlug.substring(0, 50);
             }
-            final String headingId = "_toc_" + generateUniqueId(ids, headingSlug);
+            final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
 
             heading.attr("id", headingId);
         }
@@ -1060,7 +1063,10 @@ public class HtmlTool extends SafeConfig {
      * @param idBase
      * @return
      */
-    private static String generateUniqueId(final Set<String> ids, final String idBase) {
+    private static String generateUniqueId(final String pageType,
+        final String currentPage,
+        final Set<String> ids,
+        final String idBase) {
         String id = idBase;
         int counter = 1;
         while (ids.contains(id)) {
@@ -1069,6 +1075,10 @@ public class HtmlTool extends SafeConfig {
 
         // put the newly generated one into the set
         ids.add(id);
+        id = "_toc_" + id;
+        if ("frame".equals(pageType)) {
+            id = currentPage + id;
+        }
         return id;
     }
 
@@ -1163,7 +1173,16 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-              * 
+                           * 
+                          
+                         
+                        
+                       
+                      
+                     
+                    
+                   
+                  
              
             
            

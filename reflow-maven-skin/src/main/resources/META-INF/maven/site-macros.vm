@@ -1258,7 +1258,7 @@
 
   *##if ( $pageContext.toc.enabled )#*
     ## Ensure IDs on all headings to refer to them in TOC
-        *##set ( $bodyContent = $htmlTool.ensureHeadingIds( $config.fileId, $bodyContent, "_" ) )#*
+        *##set ( $bodyContent = $htmlTool.ensureHeadingIds( $pageContext.type, $config.fileId, $bodyContent, "_" ) )#*
       *##set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )#*
   *##end
 #end
