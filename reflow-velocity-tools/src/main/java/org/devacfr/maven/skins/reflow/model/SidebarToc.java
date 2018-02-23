@@ -31,7 +31,7 @@ public class SidebarToc extends Toc<SidebarToc> {
     public String getCssClass() {
         String css = isEnabled() ? "m-tocsidebar-enabled" : "";
         if (isCollapsed()) {
-            css += " m-tocsidebar-collapsed";
+            css += " m-tocsidebar-collapsible";
         }
         return css;
     }

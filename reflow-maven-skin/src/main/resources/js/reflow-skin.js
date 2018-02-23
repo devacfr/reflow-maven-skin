@@ -126,14 +126,14 @@ var mReflow = function() {
      */
 
     // add auto collapase
-    if ($body.hasClass('m-tocsidebar-collapsed') || tocSidebar.hasClass('nav-collapsed')) {
+    if ($body.hasClass('m-tocsidebar-collapsible') || tocSidebar.hasClass('nav-collapsible')) {
 
-      tocSidebar.find('.nav-collapsable').addClass('collapse').attr('aria-expanded', 'false');
+      tocSidebar.find('.nav-collapsible').addClass('collapse').attr('aria-expanded', 'false');
 
       tocSidebar.on('activate.bs.scrollspy', function() {
         var active = $('.m-toc-sidebar li.active');
-        var collapsePanel = active.next('ul.nav.nav-collapsable');
-        tocSidebar.find('ul.nav.nav-collapsable').each(function(index, element) {
+        var collapsePanel = active.next('ul.nav.nav-collapsible');
+        tocSidebar.find('ul.nav.nav-collapsible').each(function(index, element) {
           var el = $(element);
           if (el.is(collapsePanel))
             return;
@@ -143,7 +143,7 @@ var mReflow = function() {
           }
         });
         collapsePanel.collapse('show');
-        active.parent('ul.nav.nav-collapsable').collapse('show');
+        active.parent('ul.nav.nav-collapsible').collapse('show');
       });
     }
     // toc sidebar
@@ -295,6 +295,11 @@ var mReflow = function() {
       } else {
         item = $('.nav-side-menu a[slug-name$="' + page + '"]');
       }
+      // item in collapsible element
+      var collapsible = item.parents('ul.collapse');
+      if (collapsible.length > 0) {
+        collapsible.collapse('show');
+      }
       var slugName = item.attr('slug-name');
       window.location.hash = hashes(slugName, link);
       var href = item.attr('href').substring(1);
@@ -326,10 +331,20 @@ var mReflow = function() {
     }
 
     // select first menu item on show collapse
-    $('.nav-side-menu').on('shown.bs.collapse', function(ev) {
+    navSidebar.on('shown.bs.collapse', function(ev) {
       var el = $(ev.target);
+      // break if have already active item
+      if (el.find('li.active').length > 0) {
+        return;
+      }
+
       var href = el.find('li a').first();
       window.location.hash  = hashes( href.attr('slug-name'));
+    });
+
+    // prevent event on collapse clik.
+    navSidebar.find("a[href=#]").click(function(event){
+      event.preventDefault();
     });
   }
 

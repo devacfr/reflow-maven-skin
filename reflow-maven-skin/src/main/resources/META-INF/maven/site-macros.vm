@@ -430,7 +430,7 @@
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")
         #if ( !$tocSidebarAdded )##
             #set ( $isFixed = $pageContext.toc.fixed)
-            <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm #{if}(${pageContext.toc.collapsed})nav-collapsed#{end}" #if ( $isFixed) data-spy="affix" #end>
+            <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm #{if}(${pageContext.toc.collapsed})nav-collapsible#{end}" #if ( $isFixed) data-spy="affix" #end>
                 <nav class="m-toc-sidebar">
                    #renderAsideTocMenu ( $tocItems )
                </nav>
@@ -462,7 +462,7 @@
     </li>    
 #*  *##if ( $item.items.size() > 0 )##
     #if ($item.headingLevel > 1)##
-    <ul class="nav nav-collapsable">
+    <ul class="nav nav-collapsible">
     #end##
 #*      *##foreach ( $subitem in $item.items )
             #renderAsideTocItem ( $subitem )
