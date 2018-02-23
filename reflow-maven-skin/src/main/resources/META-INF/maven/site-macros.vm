@@ -525,80 +525,12 @@
  *
  *  <sections>
  *      <body/> - the main body of the page
- *      <thumbs>x</thumbs> - x-column grid layout for thumbnails (first image is used as thumbnail)
- *      <columns>x</columns> - x-column grid layout
- *      <carousel/> - carousel (spinning images with captions)
- *  </sections>
- *
- *##macro ( renderBodySections $bodyContent $sectionConfig )#*
-    ## Split everything in the content on the horizontal rule tags <hr />
-    *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*
-    *##set ( $sectCount = $sectionConfig.getChildCount() )#*
-    
-
-
-    ## flag to indicate that a body section has already been found (to avoid multiple page-headers)
-    *##set ( $bodyFound = false )#*
-
-    *##set ( $sectIndex = 0 )#*
-    *##foreach ($section in $sections)#*
-
-        ## Determine section type from the configuration
-        *##if ( $sectIndex < $sectCount )#*
-            *##set ( $sectType = $sectionConfig.getChild($sectIndex).getName() )#*
-            *##set ( $sectTypeValue = $sectionConfig.getChild($sectIndex).getValue() )#*
-        *##else#*
-            *##set ( $sectType = 'body' )#*
-        *##end#*
-
-        *##if ( 'sidebar' == $sectType || 'thumbs' == $sectType || 'columns' == $sectType || 'carousel' == $sectType )#*
-            ## split section into sub-sections for each header (h1, h2, etc tag)
-            *##set ( $subsections = $htmlTool.splitOnStarts( $section, "h1, h2, h3, h4, h5, h6") )#*
-        *##else#*
-            ## keep the section
-            *##set ( $subsections = [ $section ] )#*
-        *##end#*
-
-
-        *##if ( 'thumbs' == $sectType || 'columns' == $sectType || 'carousel' == $sectType )#*
-            ## Print the subsections into columns
-            *##if ( 'thumbs' == $sectType )#*
-                *##thumbs ( $sectTypeValue $subsections )#*
-            *##elseif ( 'columns' == $sectType )#*
-                *##columns ( $sectTypeValue $subsections )#*
-            *##else#*
-                *##carousel ( $subsections )#*
-            *##end#*
-            
-        *##else#*
-            ## set the contents
-            *##foreach ( $subsection in $subsections )#*
-                ## if first body section, output with page-header
-                *##if ( !$bodyFound )#*
-                    *##bodyWithHeader ( $subsection )#*
-                *##else#*
-                    *#$subsection#*
-                *##end#*
-                *##set ( $bodyFound = true )#*
-            *##end#* foreach
-        *##end#*
-        ## increment the section counter (need to advance through the types)
-        *##set ( $sectIndex = $sectIndex + 1 )#*
-    *##end##
-#end##
-#**
- * Partitions the body contents into sections with possibly different representations.
- * Available body types, indicated in custom page config `sections` tag:
- *
- *  <sections>
- *      <body/> - the main body of the page
  *      <sidebar/> - sidebar (should go after the body)
  *      <thumbs>x</thumbs> - x-column grid layout for thumbnails (first image is used as thumbnail)
  *      <columns>x</columns> - x-column grid layout
  *      <carousel/> - carousel (spinning images with captions)
  *  </sections>
- * sidebar is deprecated this macro use 'renderBodySections' instead.
- *##macro ( bodySections $bodyContent $sectionConfig )#*
+ *##macro ( renderBodySections $bodyContent $sectionConfig )#*
     ## Split everything in the content on the horizontal rule tags <hr />
     *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*
     *##set ( $sectCount = $sectionConfig.getChildCount() )#*
@@ -636,14 +568,7 @@
             ## for full width layouts, we first need to close the body if it is still open
             *##if ( $lastBody )##
             </div>
-        </div>#*
-                check if need to add explicit ToC sidebar
-                (if ToC sidebar is needed, but no sidebar is defined)
-                *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" && !$hasSidebar)##
-                    <div class="col-md-4">
-                            #renderTocSidebar () ##
-                    </div>
-#*              *##end##
+        </div>
     </div>
 #*          *##end#*
 
@@ -655,10 +580,6 @@
             *##else#*
                 *##carousel ( $subsections )#*
             *##end#*
-
-            ## mark that last one was not a body
-            #set ( $lastBody = false )
-
         *##elseif ( 'sidebar' == $sectType )#*
             ## for sidebar, close the body if needed but not body row - then add the sidebar
             *##if ( $lastBody )##
@@ -669,7 +590,6 @@
     <div class="row">
 #*          *##end
         <div class="col-md-4">
-#*          *##renderTocSidebar ()##
             <div class="well sidebar">
               ## Print the subsections into sidebar
              #sidebar ( $subsections )
@@ -682,7 +602,7 @@
         ## handle all other cases as 'body' type
             *##if ( !$lastBody )##
     <div class="row">
-#*              *##if ( $hasSidebar || ($pageContext.toc.enabled && $pageContext.toc.type == "sidebar") )#*
+#*              *##if ( $hasSidebar)#*
         ## has a sidebar - take part width *#
       <div class="col-md-8">
 #*              *##else#*
@@ -714,14 +634,6 @@
     *##if ( $lastBody )##
             </div>
         </div>
- #*
-        check if need to add explicit ToC sidebar
-        (if ToC sidebar is needed, but no sidebar is defined)
-        *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" && !$hasSidebar ) ##
-            <div class="col-md-4">
-                    #renderTocSidebar () ##
-            </div>
-#*      *##end##
     </div>
 #*  *##end##
 #end##

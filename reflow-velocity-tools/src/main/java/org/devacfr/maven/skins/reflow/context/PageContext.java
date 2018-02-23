@@ -29,6 +29,15 @@ public class PageContext extends Context<PageContext> {
         setType("page");
     }
 
+    @Override
+    public String getCssClass() {
+        String css = super.getCssClass();
+        if (getToc() != null) {
+            css += " " + getToc().getCssClass();
+        }
+        return css;
+    }
+
     public Toc<?> getToc() {
         return toc;
     }

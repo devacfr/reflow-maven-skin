@@ -13,49 +13,28 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-##
-  ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
-  <body class="page-$config.fileId project-$config.projectId $globalCssClass">
-
-#navbar ()
-##
-  <div class="container">
-        <div class="header container-fluid">
-
-    ## add a banner
-    #renderBanner ()
-    
-    ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#  
-    #renderBreadcrumbs ()
-
-    #renderTopToc ()
-
-        </div> <!-- end : header -->
-##
-    <div class="main-body">
-#*
-  *##if ( $config.sections )#*
-      *##bodySections ( $bodyContent $config.sections )
-  #else#*
-  ## non-sectioned body - just output it all *#
-  <div class="row">
-#*      *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" )##
-    <div class="col-md-8">
-#*      *##else##
-    <div class="col-md-12">
-#*      *##end##
-      <div class="body-content">
-#*       *##bodyWithHeader ( $bodyContent )
-      </div>
-    </div>
-#*      *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar" ) ##
-    <div class="col-md-4">
-            #renderTocSidebar () ##
-    </div>
-#*      *##end##        
-  </div> <!-- /row -->
-#*  *##end##
-  </div>
-##
-    </div> <!-- end : row -->
-</div> <!-- /container -->
+    <div class="container-fluid">
+        <div class="main-body">
+            <div class="row">  
+                <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                </div>              
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"> 
+                     <div class="header container-fluid">
+                        ## add a banner
+                        #renderBanner ()##   
+                        ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#  
+                        #renderBreadcrumbs ()##
+                        ## add top toc if enabled
+                        #renderTopToc ()
+                    </div> <!-- end : header -->
+                    #if ( $config.sections )
+                        #renderBodySections ( $bodyContent $config.sections )
+                    #else
+                        #bodyWithHeader ( $bodyContent )      
+                    #end        
+                </div>
+                <div class="hidden-xs hidden-sm col-md-3 col-lg-3">  
+                    #renderTocSidebar ()
+                </div>     
+            </div>
+    </div> <!-- /container-fluid -->

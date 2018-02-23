@@ -15,7 +15,9 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-public abstract class PageElement {
+public class PageElement {
 
-    public abstract String getCssClass();
+    public String getCssClass() {
+        return "";
+    }
 }

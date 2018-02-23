@@ -4,16 +4,16 @@
  * By Osvaldas Valutis, www.osvaldas.info Available for use under the MIT
  * License
  */
-(function($, window, document, undefined) {
-  $.fn.doubleTapToGo = function(params) {
+(function ($, window, document, undefined) {
+  $.fn.doubleTapToGo = function (params) {
     if (!('ontouchstart' in window) && !navigator.msMaxTouchPoints
-        && !navigator.userAgent.toLowerCase().match(/windows phone os 7/i))
+      && !navigator.userAgent.toLowerCase().match(/windows phone os 7/i))
       return false;
 
-    this.each(function() {
+    this.each(function () {
       var curItem = false;
 
-      $(this).on('click', function(e) {
+      $(this).on('click', function (e) {
         var item = $(this);
         if (item[0] != curItem[0]) {
           e.stopPropagation();
@@ -22,7 +22,7 @@
         }
       });
 
-      $(document).on('click touchstart MSPointerDown', function(e) {
+      $(document).on('click touchstart MSPointerDown', function (e) {
         var resetItem = true, parents = $(e.target).parents();
 
         for (var i = 0; i < parents.length; i++)
@@ -47,14 +47,14 @@ function getViewPort() {
   }
 
   return {
-    width : e[a + 'Width'],
-    height : e[a + 'Height']
+    width: e[a + 'Width'],
+    height: e[a + 'Height']
   };
 }
 
 var timestampSideBar = 0;
 
-var mReflow = function() {
+var mReflow = function () {
   var $window = $(window);
   var $body = $(document.body);
 
@@ -79,16 +79,16 @@ var mReflow = function() {
 
     if ($('#toc-bar[data-spy=affix]').length) {
       tocTop.affix({
-        offset : {
-          top : tocTop.offset().top,
-          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
-        // padding of footer.
+        offset: {
+          top: tocTop.offset().top,
+          bottom: ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
+          // padding of footer.
         }
       });
     }
 
     $body.scrollspy({
-      target : '#toc-bar'
+      target: '#toc-bar'
     });
   }
 
@@ -130,10 +130,10 @@ var mReflow = function() {
 
       tocSidebar.find('.nav-collapsible').addClass('collapse').attr('aria-expanded', 'false');
 
-      tocSidebar.on('activate.bs.scrollspy', function() {
+      tocSidebar.on('activate.bs.scrollspy', function () {
         var active = $('.m-toc-sidebar li.active');
         var collapsePanel = active.next('ul.nav.nav-collapsible');
-        tocSidebar.find('ul.nav.nav-collapsible').each(function(index, element) {
+        tocSidebar.find('ul.nav.nav-collapsible').each(function (index, element) {
           var el = $(element);
           if (el.is(collapsePanel))
             return;
@@ -149,16 +149,16 @@ var mReflow = function() {
     // toc sidebar
     if ($('.m-toc-sidebar-container[data-spy=affix]').length) {
       tocSidebar.affix({
-        offset : {
-          top : tocSidebar.offset().top,
-          bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
-        // padding of footer.
+        offset: {
+          top: tocSidebar.offset().top,
+          bottom: ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
+          // padding of footer.
         }
       });
     }
 
     $body.scrollspy({
-      target : '.m-toc-sidebar'
+      target: '.m-toc-sidebar'
     });
   }
 
@@ -168,7 +168,7 @@ var mReflow = function() {
     if (typeof hljs !== 'undefined') {
       // classic encoding with <div class="source"><pre></pre></div>
       // and HTML5 version with <pre><code></code></pre>
-      $('div.source pre, pre code').each(function(i, e) {
+      $('div.source pre, pre code').each(function (i, e) {
         hljs.highlightBlock(e);
       });
     }
@@ -196,13 +196,13 @@ var mReflow = function() {
     pos = pos + (offset ? offset : 0);
 
     $('html,body').animate({
-      scrollTop : pos
+      scrollTop: pos
     }, 300, clbck);
   }
 
   function initScrollTop() {
     // add scroll-top
-    $('#m-scroll-top').on('click', function(e) {
+    $('#m-scroll-top').on('click', function (e) {
       // prevent default anchor click behavior
       e.preventDefault();
       scrollTo();
@@ -211,7 +211,7 @@ var mReflow = function() {
   }
 
   function loadFrame(href, slugName) {
-    $('#m-doc-frame').load(href, function() {
+    $('#m-doc-frame').load(href, function () {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
       var item = $('.nav-side-menu a[slug-name$="' + slugName + '"]').parent();
@@ -234,9 +234,9 @@ var mReflow = function() {
   }
 
   function initAnchorJs() {
-    if (anchors && $body.hasClass('m-tocsidebar-enabled') || $body.hasClass('m-toctop-enabled')) {
+    if (anchors && $body.hasClass('m-tocsidebar-enabled') || $body.hasClass('m-toctop-enabled') || $body.hasClass('m-sidenav-enabled')) {
       anchors.options = {
-        placement : 'left',
+        placement: 'left',
       };
       anchors.add('h1,h2, h3, h4, h5, h6');
     }
@@ -263,7 +263,7 @@ var mReflow = function() {
       navSidebar.width(navSidebar.parent().width());
     }
 
-    $window.bind('hashchange', function(evt) {
+    $window.bind('hashchange', function (evt) {
 
       var originalEvt = evt.originalEvent;
       var identicalPage = false;
@@ -313,10 +313,10 @@ var mReflow = function() {
     navSidebar.on('affixed.bs.affix', resizeNavSidebar);
 
     navSidebar.affix({
-      offset : {
-        top : navSidebar.offset().top,
-        bottom : ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
-      // padding of footer.
+      offset: {
+        top: navSidebar.offset().top,
+        bottom: ($('footer').outerHeight(true) + $('.subfooter').outerHeight(true) - 70)
+        // padding of footer.
       }
     });
 
@@ -331,7 +331,7 @@ var mReflow = function() {
     }
 
     // select first menu item on show collapse
-    navSidebar.on('shown.bs.collapse', function(ev) {
+    navSidebar.on('shown.bs.collapse', function (ev) {
       var el = $(ev.target);
       // break if have already active item
       if (el.find('li.active').length > 0) {
@@ -339,11 +339,11 @@ var mReflow = function() {
       }
 
       var href = el.find('li a').first();
-      window.location.hash  = hashes( href.attr('slug-name'));
+      window.location.hash = hashes(href.attr('slug-name'));
     });
 
     // prevent event on collapse clik.
-    navSidebar.find("a[href=#]").click(function(event){
+    navSidebar.find("a[href=#]").click(function (event) {
       event.preventDefault();
     });
   }
@@ -353,7 +353,7 @@ var mReflow = function() {
   }
 
   return {
-    init : function() {
+    init: function () {
       initCarousel();
       initTocSidebar();
       initTocTop();
@@ -368,6 +368,6 @@ var mReflow = function() {
 
 }();
 
-$(document).ready(function() {
+$(document).ready(function () {
   mReflow.init();
 });

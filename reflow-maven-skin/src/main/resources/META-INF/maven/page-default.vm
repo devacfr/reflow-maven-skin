@@ -41,8 +41,6 @@
   *##else#*
       *##set ( $datePosition = "bottom" )#*
   *##end##
-  ##
-  #set( $globalCssClass = "")
   ## 
   ## Try resolving site URL from the POM.
   ## This can help with resolution of relative links, needed for 'active' link calculations,
@@ -53,16 +51,12 @@
           ## ensure that the directory is uniform
           *##set ( $projectSiteLoc = "$projectSiteLoc/" )#*
         *##end#*
-  *##else#*
+  *##else
     ## dummy project URL is used to provide a good base to resolve relative links with ../
-    *##set ( $projectSiteLoc = "http://dummy.parent.url/" )#*
-  *##end#*
-  ## absolute location of the current file
-  *##set ( $currentFileLoc = $uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString() )#*
-  ## Check if <toc> is set on the page or globally, then display Table of Contents
-  *##if ($pageContext.toc.enabled )#*
-    *##set ( $globalCssClass = $globalCssClass + " " + $pageContext.toc.cssClass)#*
+    #set ( $projectSiteLoc = "http://dummy.parent.url/" )#*
   *##end
+  ## absolute location of the current 
+  #set ( $currentFileLoc = $uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString() )
   #adaptBodyContent ()
   ## generate a short title if one does not exist or is specified explicitly
   #* if specified explicitly, use that
@@ -236,6 +230,9 @@
   </head> <!-- end : head -->
 ##
 ##
+## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
+<body class="page-${config.fileId} project-${config.projectId} ${config.context.cssClass}">
+#navbar ()
 #if( $pageType == "doc")
     #parse( "body-doc.vm")
 #else
@@ -293,4 +290,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${anchorJsVesrion}/anchor.min.js"></script>
 #*  *##end##
 ##
+    </body>
 </html>

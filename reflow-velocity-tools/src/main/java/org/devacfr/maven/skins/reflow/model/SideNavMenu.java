@@ -28,7 +28,7 @@ import org.devacfr.maven.skins.reflow.Xpp3Utils;
  * @author Christophe Friederich
  * @since 2.0
  */
-public class SideNavMenu {
+public class SideNavMenu extends PageElement {
 
     private String name;
 
@@ -72,6 +72,11 @@ public class SideNavMenu {
     }
 
     public SideNavMenu() {
+    }
+
+    @Override
+    public String getCssClass() {
+        return "m-sidenav-enabled";
     }
 
     public String getName() {

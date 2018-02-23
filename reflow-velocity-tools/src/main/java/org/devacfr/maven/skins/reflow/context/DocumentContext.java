@@ -30,6 +30,15 @@ public class DocumentContext extends Context<DocumentContext> {
         setType("doc");
     }
 
+    @Override
+    public String getCssClass() {
+        String css = super.getCssClass();
+        if (getMenu() != null) {
+            css += " " + getMenu().getCssClass();
+        }
+        return css;
+    }
+
     public SideNavMenu getMenu() {
         return menu;
     }

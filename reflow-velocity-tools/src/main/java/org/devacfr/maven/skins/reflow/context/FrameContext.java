@@ -37,6 +37,15 @@ public class FrameContext extends Context<FrameContext> {
         setType("frame");
     }
 
+    @Override
+    public String getCssClass() {
+        String css = super.getCssClass();
+        if (getToc() != null) {
+            css += " " + getToc().getCssClass();
+        }
+        return css;
+    }
+
     public String getDocumentParent() {
         return documentParent;
     }

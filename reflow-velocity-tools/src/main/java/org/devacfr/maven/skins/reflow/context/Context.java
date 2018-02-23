@@ -24,6 +24,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
+import org.devacfr.maven.skins.reflow.model.PageElement;
 import org.devacfr.maven.skins.reflow.model.SideNavMenu;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ import org.slf4j.LoggerFactory;
  * @author Christophe Friederich
  * @since 2.0
  */
-public class Context<T extends Context<?>> {
+public class Context<T extends Context<?>> extends PageElement {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Context.class);
 
