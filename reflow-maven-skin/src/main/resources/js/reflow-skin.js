@@ -101,8 +101,8 @@ var mReflow = function () {
     /*
      * tocSidebar.mCustomScrollbar({ theme: "inset", axis: "y", setHeight:
      * getViewPort().height - getTocSidebarContainerOffset(tocSidebar) });
-     *
-     *
+     * 
+     * 
      * $window.resize(function () { tocSidebar.css('height',
      * (getViewPort().height - getTocSidebarContainerOffset(tocSidebar)) +
      * 'px'); });
@@ -114,7 +114,7 @@ var mReflow = function () {
      * timestampSideBar + 100) return false; timestampSideBar = evt.timeStamp;
      * var container = tocSidebar.find('.mCSB_container'); var offsetHeight = 0;
      * var elHeight = container.height()
-     *
+     * 
      * var parent = $(el.offsetParent()) offsetHeight = el.position().top; while
      * (!parent.hasClass('mCSB_container')) { offsetHeight +=
      * parent.position().top; parent = $(parent.offsetParent()); } var offset =
@@ -122,7 +122,7 @@ var mReflow = function () {
      * tocSidebar.mCustomScrollbar("scrollTo",el);
      * tocSidebar.mCustomScrollbar("scrollTo", offset);
      * evt.stopImmediatePropagation(); return false; });
-     *
+     * 
      */
 
     // add auto collapase
@@ -201,12 +201,16 @@ var mReflow = function () {
   }
 
   function initScrollTop() {
-    // add scroll-top
-    $('#m-scroll-top').on('click', function (e) {
-      // prevent default anchor click behavior
-      e.preventDefault();
-      scrollTo();
-
+    var el = $("#m-scroll-top");
+    $window.scroll(function () {
+      if ($(window).scrollTop() > 100) {
+        el.fadeIn(500);
+      } else {
+        el.fadeOut(500);
+      }
+    });
+    el.click(function () {
+      window.scrollTo(0, 0);
     });
   }
 
@@ -234,7 +238,8 @@ var mReflow = function () {
   }
 
   function initAnchorJs() {
-    if (anchors && $body.hasClass('m-tocsidebar-enabled') || $body.hasClass('m-toctop-enabled') || $body.hasClass('m-sidenav-enabled')) {
+    if (anchors && $body.hasClass('m-tocsidebar-enabled') || $body.hasClass('m-toctop-enabled')
+      || $body.hasClass('m-sidenav-enabled')) {
       anchors.options = {
         placement: 'left',
       };
@@ -307,7 +312,6 @@ var mReflow = function () {
 
     });
 
-
     $window.resize(resizeNavSidebar);
 
     navSidebar.on('affixed.bs.affix', resizeNavSidebar);
@@ -347,6 +351,7 @@ var mReflow = function () {
       event.preventDefault();
     });
   }
+
 
   function refreshScrollSpy() {
     $body.scrollspy('refresh');

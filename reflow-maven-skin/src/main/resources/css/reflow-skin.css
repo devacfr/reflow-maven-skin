@@ -9,6 +9,40 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     margin: -100px 0 0;
 }
 
+/**
+* back to top
+*/
+#m-scroll-top {
+	position: fixed;
+	right: 25px;
+	bottom: 10px;
+	width: 60px;
+	height: 60px;
+	background-color: #bbb;
+	border-radius: 7px;
+	opacity: 0.8;
+	display: none;
+	z-index: 888;
+}
+
+#m-scroll-top .arrow {
+	margin: 0 auto;
+	padding-top: 11px;
+	width: 0;
+	height: 0;
+	border-right: 15px solid transparent;
+	border-left: 15px solid transparent;
+	border-bottom: 15px solid #7f7f7f;
+}
+
+#m-scroll-top .stick {
+	margin: 0 auto;
+	padding-bottom: 21px;
+	width: 13px;
+	border-bottom: 13px solid #bbb;
+	background-color: #7f7f7f;
+}
+
 /*--------------------------------------------------
  * nav list
  *--------------------------------------------------*/

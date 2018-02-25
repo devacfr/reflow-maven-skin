@@ -67,7 +67,6 @@
   <div class="container subfooter">
     <div class="row">
       <div class="col-md-12">
-        <p class="pull-right"><a id="m-scroll-top" href="#">Back to top</a></p>
         <p class="copyright">Copyright &copy;#copyright (). All Rights Reserved.</p>
 #*  *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )##
         <p class="version-date">
