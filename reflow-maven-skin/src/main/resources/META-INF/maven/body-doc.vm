@@ -16,36 +16,7 @@
   <div class="main-body container-fluid">
     <div class="row">
         <div class="col-md-2 col-lg-2">
-            <div class="nav-side-menu hidden-print" data-spy="affix">
-                <div class="brand">$config.context.menu.name</div>
-                <i class="toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-                #if( $config.context.menu.hasItems )
-                <div class="menu-list">
-                    <ul id="menu-content" class="menu-content collapse out">
-                        #set ( $counterMenu = 1)                        
-                        #foreach ( $item in $config.context.menu.items )
-                            #set ( $itemId = "m-navbar-menu_"+ $counterMenu)
-                        <li #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" class="collapsed" #end>
-                          <a #if( !$item.hasItems ) href="#${item.href}" slug-name="${item.slugName}" #{else}href="#"#{end}>
-                            <i class="#if ( ${item.icon} )${item.icon}#{else}spacer#{end}" aria-hidden="true"></i>&nbsp;
-                            $item.name
-                            #if( $item.hasItems)
-                                <span class="arrow"></span>
-                            #end
-                          </a>
-                        </li>
-                            #if( $item.hasItems)
-                            <ul class="sub-menu collapse" id="$itemId">
-                                #foreach ( $subItem in $item.items )
-                                <li><a href="#${subItem.href}" slug-name="${subItem.slugName}">$subItem.name</a></li>
-                                #end
-                            </ul>
-                            #end
-                        #end
-                    </ul>
-                </div>
-                #end
-            </div>
+           #renderNavSideMenu ()
         </div>
         <div id="m-doc-frame" class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
         </div>

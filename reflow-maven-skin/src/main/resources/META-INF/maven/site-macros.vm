@@ -472,6 +472,41 @@
     #end##
 #*  *##end
 #end
+#**
+ * Render NavSideMenu web element page
+ *
+ *##macro( renderNavSideMenu )##
+    <div class="nav-side-menu hidden-print" data-spy="affix">
+        <div class="brand">$config.context.menu.name</div>
+        <i class="toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+#*      *##if( $config.context.menu.hasItems )##
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+#*              *##set ( $counterMenu = 1)##                  
+#*              *##foreach ( $item in $config.context.menu.items )##
+#*                  *##set ( $itemId = "m-navbar-menu_"+ $counterMenu)##
+                <li #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" class="collapsed" #end>
+                  <a #if( !$item.hasItems ) href="#${item.href}" slug-name="${item.slugName}" #{else}href="#"#{end}>
+                    #if ( ${item.icon} )<i class="${item.icon}" aria-hidden="true"></i>#{end}&nbsp;
+                    $item.name
+#*                  *##if( $item.hasItems)##
+                        <span class="arrow"></span>
+#*                  *##end##
+                  </a>
+                </li>
+#*              *##if( $item.hasItems)##
+                    <ul class="sub-menu collapse" id="$itemId">
+#*                      *##foreach ( $subItem in $item.items )##
+                        <li><a href="#${subItem.href}" slug-name="${subItem.slugName}">${subItem.name}</a></li>
+#*                      *##end##
+                    </ul>
+#*                  *##end##
+#*              *##end##
+            </ul>
+        </div>
+#*      *##end##
+    </div>
+#end##
 ##
 #**
  * Outputs the top banner contents
