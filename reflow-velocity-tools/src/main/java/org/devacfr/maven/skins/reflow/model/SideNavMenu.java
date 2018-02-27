@@ -34,6 +34,8 @@ public class SideNavMenu extends PageElement {
 
     private List<SideNavMenuItem> items;
 
+    private boolean selectOnCollapse = false;
+
     public static SideNavMenu createSideNavMenu(final SkinConfigTool config) {
         final Xpp3Dom pageNode = config.getPageProperties();
         final Xpp3Dom menu = pageNode.getChild("menu");
@@ -42,7 +44,9 @@ public class SideNavMenu extends PageElement {
         }
         final String pageName = pageNode.getName();
         final List<SideNavMenuItem> items = new ArrayList<>();
-        final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name")).withItems(items);
+        final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name"))
+                .withItems(items)
+                .withSelectOnCollapse(config.getConfigAttribute("menu", "selectOnCollapse", Boolean.class, false));
         addMenuItemRecursively(items, menu, pageName, false);
         return documentMenu;
     }
@@ -76,7 +80,12 @@ public class SideNavMenu extends PageElement {
 
     @Override
     public String getCssClass() {
-        return "m-sidenav-enabled";
+        String css = "m-sidenav-enabled";
+
+        if (isSelectOnCollapse()) {
+            css += " m-sidenav-select-oncollapase";
+        }
+        return css;
     }
 
     public String getName() {
@@ -106,6 +115,19 @@ public class SideNavMenu extends PageElement {
 
     public SideNavMenu withItems(final List<SideNavMenuItem> items) {
         setItems(items);
+        return this;
+    }
+
+    public boolean isSelectOnCollapse() {
+        return selectOnCollapse;
+    }
+
+    public void setSelectOnCollapse(final boolean selectOnCollapse) {
+        this.selectOnCollapse = selectOnCollapse;
+    }
+
+    public SideNavMenu withSelectOnCollapse(final boolean selectOnCollapse) {
+        setSelectOnCollapse(selectOnCollapse);
         return this;
     }
 

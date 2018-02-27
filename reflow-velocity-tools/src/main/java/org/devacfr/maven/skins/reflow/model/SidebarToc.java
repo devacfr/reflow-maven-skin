@@ -33,6 +33,7 @@ public class SidebarToc extends Toc<SidebarToc> {
         if (isCollapsed()) {
             css += " m-tocsidebar-collapsible";
         }
+
         return css;
     }
 

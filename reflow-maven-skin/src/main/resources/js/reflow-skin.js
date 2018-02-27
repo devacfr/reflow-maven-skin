@@ -101,8 +101,8 @@ var mReflow = function () {
     /*
      * tocSidebar.mCustomScrollbar({ theme: "inset", axis: "y", setHeight:
      * getViewPort().height - getTocSidebarContainerOffset(tocSidebar) });
-     * 
-     * 
+     *
+     *
      * $window.resize(function () { tocSidebar.css('height',
      * (getViewPort().height - getTocSidebarContainerOffset(tocSidebar)) +
      * 'px'); });
@@ -114,7 +114,7 @@ var mReflow = function () {
      * timestampSideBar + 100) return false; timestampSideBar = evt.timeStamp;
      * var container = tocSidebar.find('.mCSB_container'); var offsetHeight = 0;
      * var elHeight = container.height()
-     * 
+     *
      * var parent = $(el.offsetParent()) offsetHeight = el.position().top; while
      * (!parent.hasClass('mCSB_container')) { offsetHeight +=
      * parent.position().top; parent = $(parent.offsetParent()); } var offset =
@@ -122,7 +122,7 @@ var mReflow = function () {
      * tocSidebar.mCustomScrollbar("scrollTo",el);
      * tocSidebar.mCustomScrollbar("scrollTo", offset);
      * evt.stopImmediatePropagation(); return false; });
-     * 
+     *
      */
 
     // add auto collapase
@@ -335,16 +335,18 @@ var mReflow = function () {
     }
 
     // select first menu item on show collapse
-    navSidebar.on('shown.bs.collapse', function (ev) {
-      var el = $(ev.target);
-      // break if have already active item
-      if (el.find('li.active').length > 0) {
-        return;
-      }
+    if ($body.hasClass('m-sidenav-select-oncollapase')) {
+      navSidebar.on('shown.bs.collapse', function (ev) {
+        var el = $(ev.target);
+        // break if have already active item
+        if (el.find('li.active').length > 0) {
+          return;
+        }
 
-      var href = el.find('li a').first();
-      window.location.hash = hashes(href.attr('slug-name'));
-    });
+        var href = el.find('li a').first();
+        window.location.hash = hashes(href.attr('slug-name'));
+      });
+    }
 
     // prevent event on collapse clik.
     navSidebar.find("a[href=#]").click(function (event) {
