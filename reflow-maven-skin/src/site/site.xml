@@ -10,7 +10,7 @@
       <toc>sidebar</toc>
       <pages>
         <index project="reflow-maven-skin" combine.self="override">
-          <shortTitle>Usage</shortTitle>
+          <shortTitle>Get Started</shortTitle>
           <breadcrumbs>true</breadcrumbs>
           <!-- no ToC on the main index page -->
           <toc>false</toc>
