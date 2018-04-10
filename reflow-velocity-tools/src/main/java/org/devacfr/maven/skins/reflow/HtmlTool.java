@@ -1086,29 +1086,30 @@ public class HtmlTool extends SafeConfig {
 
         final Element body = parseContent(content);
 
-        // select rows with <th> tags within <tbody>
-        final List<Element> tableHeadRows = body.select("table > tbody > tr:has(th)");
-        if (tableHeadRows.size() > 0) {
-            for (final Element row : tableHeadRows) {
+        final List<Element> tables = body.select("table");
 
-                // get the row's table
-                final Element table = row.parent().parent();
+        for (final Element table : tables) {
+            // select rows with <th> tags within <tbody>
+            final List<Element> tableHeadRows = table.select("tbody > tr:has(th)");
+            // convert only table containing one tr head.
+            if (tableHeadRows.size() == 1) {
 
-                // remove row from its original position
-                row.remove();
+                for (final Element row : tableHeadRows) {
 
-                // create table header element with the row
-                final Element thead = new Element(Tag.valueOf("thead"), "");
-                thead.appendChild(row);
-                // add at the beginning of the table
-                table.prependChild(thead);
+                    // remove row from its original position
+                    row.remove();
+
+                    // create table header element with the row
+                    final Element thead = new Element(Tag.valueOf("thead"), "");
+                    thead.appendChild(row);
+                    // add at the beginning of the table
+                    table.prependChild(thead);
+                }
             }
 
-            return body.html();
-        } else {
-            // nothing changed
-            return content;
         }
+        return body.html();
+
     }
 
     private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
@@ -1163,7 +1164,16 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-       * 
+                * 
+               
+              
+             
+            
+           
+          
+         
+        
+       
       
      
     <h1>}.

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -104,11 +105,15 @@
     <site.deploy.url />
     <site.deploy.name />
 
+    <anchorJsVesrion>4.1.0</anchorJsVesrion>
+
     <bootstrapVersion>3.3.6</bootstrapVersion>
     <bootswatchVersion>3.3.6</bootswatchVersion>
+    <approval.version>0.3</approval.version>
     <highlightJsVersion>9.12.0</highlightJsVersion>
     <jqueryVersion>1.9.1</jqueryVersion>
-    <anchorJsVesrion>4.1.0</anchorJsVesrion>
+    <logback.version>1.1.2</logback.version>
+    <slf4j.version>1.7.7</slf4j.version>
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
@@ -125,7 +130,7 @@
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
-    <maven-jsoup.version>1.10.3</maven-jsoup.version>
+    <maven-jsoup.version>1.11.2</maven-jsoup.version>
     <maven-maven-project.version>2.2.1</maven-maven-project.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
@@ -143,10 +148,54 @@
   </properties>
 
   <dependencyManagement>
-    <dependencies>
+    <dependencies>      
+      <!-- ================================================================================ -->
+      <!-- Log Dependencies -->
+      <!-- ================================================================================ -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jul-to-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>log4j-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
       <!-- ================================================================================ -->
       <!-- Test Dependencies -->
       <!-- ================================================================================ -->
+      <dependency>
+        <groupId>com.github.nikolavp</groupId>
+        <artifactId>approval-core</artifactId>
+        <version>${approval.version}</version>
+        <scope>test</scope>
+      </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
