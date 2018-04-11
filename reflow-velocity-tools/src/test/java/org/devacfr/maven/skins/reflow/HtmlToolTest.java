@@ -16,32 +16,24 @@
 package org.devacfr.maven.skins.reflow;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.apache.velocity.tools.generic.ValueParser;
+import org.devacfr.testing.TestCase;
 import org.junit.Test;
 
-import com.github.approval.Approvals;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 
-public class HtmlToolTest {
-
-    private static Path TEST_RESOURCES = Paths.get("src/test/resources");
+public class HtmlToolTest extends TestCase {
 
     @Test
-    public void fixTableHeadsWithTagListReportOuput() {
+    public void fixTableHeadsWithTagListReportOuput() throws IOException {
         final HtmlTool htmlTool = new HtmlTool();
         htmlTool.configure(new ValueParser());
-        Approvals.verify(htmlTool.fixTableHeads(readFile(TEST_RESOURCES.resolve("HtmlTool.fixTableHeads.actual"))),
-            TEST_RESOURCES.resolve("HtmlTool.fixTableHeads.approved"));
+        verify(htmlTool.fixTableHeads(Resources.toString(
+            Resources.getResource(
+                getPackagePath().resolve("HtmlToolTest.fixTableHeadsWithTagListReportOuput.actual").toString()),
+            Charsets.UTF_8)));
     }
 
-    private static String readFile(final Path path) {
-        try {
-            return new String(Files.readAllBytes(TEST_RESOURCES.resolve("HtmlTool.fixTableHeads.actual")));
-        } catch (final IOException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
-    }
 }

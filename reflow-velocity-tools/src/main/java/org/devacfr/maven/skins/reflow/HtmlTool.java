@@ -57,8 +57,8 @@ import org.jsoup.parser.Tag;
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
 
-    /** A list of all HTML heading classes (h1-6) */
-    private static List<String> HEADINGS = Collections
+    /** A list of all HTML heading classes (h1-6). */
+    private static final List<String> HEADINGS = Collections
             .unmodifiableList(Arrays.asList("h1", "h2", "h3", "h4", "h5", "h6"));
 
     /** Enum indicating separator handling strategy for document partitioning. */
@@ -316,9 +316,11 @@ public class HtmlTool extends SafeConfig {
         switch (elements.size()) {
             case 0:
                 return "";
+
             case 1:
                 return elements.get(0).outerHtml();
-            default: {
+
+            default:
                 // more than one element
                 // wrap into <div> which we will remove afterwards
                 final Element root = new Element(Tag.valueOf("div"), "");
@@ -327,7 +329,6 @@ public class HtmlTool extends SafeConfig {
                 }
 
                 return root.html();
-            }
         }
     }
 
@@ -518,30 +519,30 @@ public class HtmlTool extends SafeConfig {
      * @author Andrius Velykis
      * @since 1.0
      */
-    public static interface ExtractResult {
+    public interface ExtractResult {
 
         /**
          * Retrieves the extracted HTML elements.
          *
          * @return List of HTML of extracted elements. Can be empty if no elements found.
          */
-        public List<String> getExtracted();
+        List<String> getExtracted();
 
         /**
          * Retrieves the content from which elements were extracted.
          *
          * @return The HTML content with extracted elements removed.
          */
-        public String getRemainder();
+        String getRemainder();
     }
 
-    private static class DefaultExtractResult implements ExtractResult {
+    private static final class DefaultExtractResult implements ExtractResult {
 
         private final List<String> extracted;
 
         private final String remainder;
 
-        public DefaultExtractResult(final List<String> extracted, final String remainder) {
+        private DefaultExtractResult(final List<String> extracted, final String remainder) {
             this.extracted = extracted;
             this.remainder = remainder;
         }
@@ -1164,7 +1165,18 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-                * 
+                           * 
+                          
+                         
+                        
+                       
+                      
+                     
+                    
+                   
+                  
+                 
+                
                
               
              
@@ -1265,7 +1277,7 @@ public class HtmlTool extends SafeConfig {
 
         private final List<HeadingItem> children = new ArrayList<>();
 
-        public HeadingItem(final String id, final String text, final int headingIndex) {
+        private HeadingItem(final String id, final String text, final int headingIndex) {
             this.id = id;
             this.text = text;
             this.headingIndex = headingIndex;
@@ -1296,25 +1308,25 @@ public class HtmlTool extends SafeConfig {
     public interface IdElement {
 
         /**
-         * Retrieves the ID of the HTML element (attribute {@code id})
+         * Retrieves the ID of the HTML element (attribute {@code id}).
          *
          * @return element {@code id} value
          */
-        public String getId();
+        String getId();
 
         /**
-         * Retrieves the text contents of the HTML element (rendered for display)
+         * Retrieves the text contents of the HTML element (rendered for display).
          *
          * @return text contents of the element
          */
-        public String getText();
+        String getText();
 
         /**
-         * Retrieves the children of the HTML element (nested within the element)
+         * Retrieves the children of the HTML element (nested within the element).
          *
          * @return nested items within the element
          */
-        public List<? extends IdElement> getItems();
+        List<? extends IdElement> getItems();
     }
 
     /**
