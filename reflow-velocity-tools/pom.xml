@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>1.3.6</version>
+    <version>1.3.7</version>
   </parent>
 
   <artifactId>reflow-velocity-tools</artifactId>
@@ -16,7 +16,7 @@
   <properties>
     <main.basedir>${basedir}/..</main.basedir>
   </properties>
-  
+
   <distributionManagement>
     <site>
       <id>${site.deploy.id}</id>
@@ -24,6 +24,7 @@
       <url>${site.deploy.url}${project.artifactId}</url>
     </site>
   </distributionManagement>
+
 
   <dependencies>
     <dependency>
@@ -41,10 +42,53 @@
       <artifactId>maven-project</artifactId>
       <version>${maven-maven-project.version}</version>
     </dependency>
-    <dependency><!-- jsoup HTML parser library @ http://jsoup.org/ -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+    <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
       <version>${maven-jsoup.version}</version>
+    </dependency>
+
+    <!-- ================================================================================ -->
+    <!-- Test Dependencies -->
+    <!-- ================================================================================ -->
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- ================================================================================ -->
+    <!-- Log dependencies -->
+    <!-- ================================================================================ -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

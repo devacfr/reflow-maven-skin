@@ -10,7 +10,7 @@
 
   <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.6</version>
+  <version>1.3.7</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
@@ -84,6 +84,9 @@
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will 
+      be stored. See also the clover-report.xml file which refers to this location -->
+    <surefire.and.failsafe.report.dir>${project.build.directory}/surefire-reports</surefire.and.failsafe.report.dir>
 
     <!-- Set compiler source and target versions (m-compiler-p) -->
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -104,11 +107,16 @@
     <site.deploy.url />
     <site.deploy.name />
 
+    <anchorJsVesrion>4.1.0</anchorJsVesrion>
+
     <bootstrapVersion>3.3.6</bootstrapVersion>
     <bootswatchVersion>3.3.6</bootswatchVersion>
+    <findbugs.version>3.0.1</findbugs.version>
+    <guava.version>23.0</guava.version>
     <highlightJsVersion>9.12.0</highlightJsVersion>
     <jqueryVersion>1.9.1</jqueryVersion>
-    <anchorJsVesrion>4.1.0</anchorJsVesrion>
+    <logback.version>1.1.2</logback.version>
+    <slf4j.version>1.7.7</slf4j.version>
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
@@ -125,7 +133,7 @@
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
-    <maven-jsoup.version>1.10.3</maven-jsoup.version>
+    <maven-jsoup.version>1.11.2</maven-jsoup.version>
     <maven-maven-project.version>2.2.1</maven-maven-project.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
@@ -140,10 +148,60 @@
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+    <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${findbugs.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+      <!-- ================================================================================ -->
+      <!-- Log Dependencies -->
+      <!-- ================================================================================ -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jul-to-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>log4j-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
       <!-- ================================================================================ -->
       <!-- Test Dependencies -->
       <!-- ================================================================================ -->
@@ -347,6 +405,22 @@
             </dependency>
           </dependencies>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <configuration>
+            <reportsDirectory>${surefire.and.failsafe.report.dir}</reportsDirectory>
+            <argLine>-Xmx512m</argLine>
+            <includes>
+              <include>**/*Test.java</include>
+            </includes>
+            <excludes>
+              <!-- exclude Clover generated inner class -->
+              <exclude>**/*$__CLR*</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -437,6 +511,25 @@
             <reports>
               <report>aggregate</report>
               <report>test-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>${maven-surefire-report-plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <id>aggregate</id>
+            <configuration>
+              <reportsDirectories>
+                <reportsDirectory>${surefire.and.failsafe.report.dir}</reportsDirectory>
+              </reportsDirectories>
+              <aggregate>true</aggregate>
+            </configuration>
+            <reports>
+              <report>report-only</report>
             </reports>
           </reportSet>
         </reportSets>

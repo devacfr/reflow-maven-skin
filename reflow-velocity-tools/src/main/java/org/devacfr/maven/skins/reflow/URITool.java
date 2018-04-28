@@ -26,6 +26,8 @@ import org.apache.velocity.tools.config.DefaultKey;
  * @author Andrius Velykis
  * @since 1.0
  */
+// instancied by Velocity
+@SuppressWarnings({ "checkstyle:finalclass", "checkstyle:hideutilityclassconstructor" })
 @DefaultKey("uriTool")
 public class URITool {
 
@@ -64,6 +66,13 @@ public class URITool {
         }
     }
 
+    /**
+     * Creates a URI by parsing the given string.
+     *
+     * @param uri
+     *            The string to be parsed into a URI
+     * @return Returns the new URI.
+     */
     public static URI toURI(final String uri) {
         return URI.create(uri);
     }

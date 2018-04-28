@@ -18,7 +18,6 @@
           e.stopPropagation();
           e.preventDefault();
           curItem = item;
-          timeStamp = e.timeStamp;
         }
       });
 
