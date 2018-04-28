@@ -17,7 +17,5 @@
     <appender-ref ref="CONSOLE" />
   </root>
 
-  <logger name="org.hibernate.engine.jdbc.spi" level="ERROR" />
-
 
 </configuration>
