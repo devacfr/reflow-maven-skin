@@ -28,6 +28,7 @@ $h4 Minor enhancements
 
 $h4 Bug fixes
 
+- Fix the method fixTableHeads (for Tag List Report), now convert table containing only one head row.
 - Second level menu on mobile devices #20 (Maxim Solodovnik <solomax666@gmail.com>).
 - In checkstyle report link on detail of file doesn't work.
 - Can not click on breadcrumb.
