@@ -10,7 +10,7 @@
 
   <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.8-SNAPSHOT</version>
+  <version>1.3.9-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
@@ -565,7 +565,7 @@
       </activation>
       <properties>
         <site.deploy.id>github</site.deploy.id>
-        <site.deploy.url></site.deploy.url>
+        <site.deploy.url />
         <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
       </properties>
     </profile>
