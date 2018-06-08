@@ -1,4 +1,3 @@
-[ ![Download](https://api.bintray.com/packages/devacfr/maven/reflow-maven-skin/images/download.svg) ](https://bintray.com/devacfr/maven/reflow-maven-skin/_latestVersion)
 [![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 
 # [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/ )
