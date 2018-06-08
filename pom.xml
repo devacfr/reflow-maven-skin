@@ -647,14 +647,6 @@
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
       </properties>
     </profile>
-    <profile>
-      <id>bintray</id>
-      <properties>
-        <distribution.releaseRepository.id>bintray</distribution.releaseRepository.id>
-        <distribution.releaseRepositoryUrl>https://api.bintray.com/maven/devacfr/maven/reflow-maven-skin/;publish=1</distribution.releaseRepositoryUrl>
-        <distribution.snapshotRepositoryId>internal-repo</distribution.snapshotRepositoryId>
-        <distribution.snapshotRepositoryUrl>file:///Users/devacfr/Development/github/mvn-repo</distribution.snapshotRepositoryUrl>
-      </properties>
-    </profile>
   </profiles>
 </project>
+
