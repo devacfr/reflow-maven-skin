@@ -57,8 +57,11 @@ import org.jsoup.parser.Tag;
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
 
-    /** A list of all HTML heading classes (h1-6) */
-    private static List<String> HEADINGS = Collections
+    /** prefix heading id associated to table of contents. */
+    private static final String PREFIX_TOC = "_toc_";
+
+    /** A list of all HTML heading classes (h1-6). */
+    private static final List<String> HEADINGS = Collections
             .unmodifiableList(Arrays.asList("h1", "h2", "h3", "h4", "h5", "h6"));
 
     /** Enum indicating separator handling strategy for document partitioning. */
@@ -316,9 +319,11 @@ public class HtmlTool extends SafeConfig {
         switch (elements.size()) {
             case 0:
                 return "";
+
             case 1:
                 return elements.get(0).outerHtml();
-            default: {
+
+            default:
                 // more than one element
                 // wrap into <div> which we will remove afterwards
                 final Element root = new Element(Tag.valueOf("div"), "");
@@ -327,7 +332,6 @@ public class HtmlTool extends SafeConfig {
                 }
 
                 return root.html();
-            }
         }
     }
 
@@ -518,30 +522,30 @@ public class HtmlTool extends SafeConfig {
      * @author Andrius Velykis
      * @since 1.0
      */
-    public static interface ExtractResult {
+    public interface ExtractResult {
 
         /**
          * Retrieves the extracted HTML elements.
          *
          * @return List of HTML of extracted elements. Can be empty if no elements found.
          */
-        public List<String> getExtracted();
+        List<String> getExtracted();
 
         /**
          * Retrieves the content from which elements were extracted.
          *
          * @return The HTML content with extracted elements removed.
          */
-        public String getRemainder();
+        String getRemainder();
     }
 
-    private static class DefaultExtractResult implements ExtractResult {
+    private static final class DefaultExtractResult implements ExtractResult {
 
         private final List<String> extracted;
 
         private final String remainder;
 
-        public DefaultExtractResult(final List<String> extracted, final String remainder) {
+        private DefaultExtractResult(final List<String> extracted, final String remainder) {
             this.extracted = extracted;
             this.remainder = remainder;
         }
@@ -1075,7 +1079,7 @@ public class HtmlTool extends SafeConfig {
 
         // put the newly generated one into the set
         ids.add(id);
-        id = "_toc_" + id;
+        id = PREFIX_TOC + id;
         if ("frame".equals(pageType)) {
             id = currentPage + id;
         }
@@ -1096,29 +1100,30 @@ public class HtmlTool extends SafeConfig {
 
         final Element body = parseContent(content);
 
-        // select rows with <th> tags within <tbody>
-        final List<Element> tableHeadRows = body.select("table > tbody > tr:has(th)");
-        if (tableHeadRows.size() > 0) {
-            for (final Element row : tableHeadRows) {
+        final List<Element> tables = body.select("table");
 
-                // get the row's table
-                final Element table = row.parent().parent();
+        for (final Element table : tables) {
+            // select rows with <th> tags within <tbody>
+            final List<Element> tableHeadRows = table.select("tbody > tr:has(th)");
+            // convert only table containing one tr head.
+            if (tableHeadRows.size() == 1) {
 
-                // remove row from its original position
-                row.remove();
+                for (final Element row : tableHeadRows) {
 
-                // create table header element with the row
-                final Element thead = new Element(Tag.valueOf("thead"), "");
-                thead.appendChild(row);
-                // add at the beginning of the table
-                table.prependChild(thead);
+                    // remove row from its original position
+                    row.remove();
+
+                    // create table header element with the row
+                    final Element thead = new Element(Tag.valueOf("thead"), "");
+                    thead.appendChild(row);
+                    // add at the beginning of the table
+                    table.prependChild(thead);
+                }
             }
 
-            return body.html();
-        } else {
-            // nothing changed
-            return content;
         }
+        return body.html();
+
     }
 
     private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
@@ -1170,29 +1175,7 @@ public class HtmlTool extends SafeConfig {
 
     /**
      * Reads all headings in the given HTML content as a hierarchy. Subsequent smaller headings are nested within bigger
-     * ones, e.g. {@code
-     *
-    <h2>} is nested under preceding {@code
-                           * 
-                          
-                         
-                        
-                       
-                      
-                     
-                    
-                   
-                  
-             
-            
-           
-          
-         
-        
-       
-      
-     
-    <h1>}.
+     * ones, e.g. <code>&lt;h2&gt;</code> is nested under preceding <code>&lt;h1&gt;</code>.
      * <p>
      * Only headings with IDs are included in the hierarchy. The result elements contain ID and heading text for each
      * heading. The hierarchy is useful to generate a Table of Contents for a page.
@@ -1284,7 +1267,7 @@ public class HtmlTool extends SafeConfig {
 
         private final List<HeadingItem> children = new ArrayList<>();
 
-        public HeadingItem(final String id, final String tagName, final String text, final int headingLevel) {
+        private HeadingItem(final String id, final String tagName, final String text, final int headingLevel) {
             this.id = id;
             this.tagName = tagName;
             this.text = text;
@@ -1326,11 +1309,11 @@ public class HtmlTool extends SafeConfig {
     public interface IdElement {
 
         /**
-         * Retrieves the ID of the HTML element (attribute {@code id})
+         * Retrieves the ID of the HTML element (attribute {@code id}).
          *
          * @return element {@code id} value
          */
-        public String getId();
+        String getId();
 
         /**
          * @return Returns the tag name of element
@@ -1342,7 +1325,7 @@ public class HtmlTool extends SafeConfig {
          *
          * @return text contents of the element
          */
-        public String getText();
+        String getText();
 
         /**
          * @return Returns the level of heading.
@@ -1354,7 +1337,7 @@ public class HtmlTool extends SafeConfig {
          *
          * @return nested items within the element
          */
-        public List<? extends IdElement> getItems();
+        List<? extends IdElement> getItems();
     }
 
     /**

@@ -14,4 +14,4 @@ nbproject
 
 # Maven output dirs
 target/
-velocity.log
+*.log
