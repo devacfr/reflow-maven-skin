@@ -212,7 +212,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
  * toc top
  *--------------------------------------------------*/
 #toc-bar {
-    z-index: 1120;
+    z-index:1010; /*must be < nav-bar bootstrap container  1020 */
 }
 
 /*--------------------------------------------------
@@ -222,7 +222,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
 /* affix toc aside bar
 */
 .m-toc-sidebar-container {
-    z-index: 1100;
+    z-index:1010; /*must be < nav-bar bootstrap container  1020 */
 }
 
 .m-toc-sidebar-container.affix {
@@ -557,7 +557,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
  * breadcrumb
  *--------------------------------------------------*/
 .breadcrumb {
-    z-index: 1020;
+    z-index: 1000; /*must be < nav-bar bootstrap container  1020 */
     position: relative;
 }
 
