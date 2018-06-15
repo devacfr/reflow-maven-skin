@@ -1,3 +1,44 @@
+#### [Bootstrap themes from Bootswatch][themes]
+
+[![Bootswatch themes](img/carousel-themes.png)][themes]
+
+Select a free theme for your website from an excellent gallery at [Bootswatch][bootswatch].
+Out of the box support for these and other custom [Bootstrap][bootstrap] themes.
+
+
+#### [Page layouts][reflow-layouts]
+
+[![Page layouts](img/carousel-layouts.jpg)][reflow-layouts]
+
+Write plain text in Markdown or APT, then set different layouts to your page sections.
+
+
+#### [Modern skin][reflow-misc]
+
+[![Modern skin](img/carousel-components.jpg)][reflow-misc]
+
+Reflow skin uses modern components from Bootstrap and other libraries, upgrades Maven generated
+site and provides further enhancements.
+
+
+#### [New Velocity tools][reflow-tools]
+
+[![Reflow Velocity tools](img/carousel-tools.png)][reflow-tools]
+
+The skin adds a library of new Velocity tools to use in your own Maven template: rewrite HTML code,
+support per-page configurations and more!
+
+
+[bootswatch]: http://bootswatch.com
+[bootstrap]: http://getbootstrap.com
+[themes]: skin/themes/
+[reflow-layouts]: skin/layouts.html
+[reflow-misc]: skin/misc.html
+[reflow-tools]: reflow-velocity-tools/
+
+
+---
+
 ## Sidebar table of contents
 
 An example page showing the table of contents rendered as a sidebar tree menu.

@@ -40,9 +40,7 @@
 
 // Additional skin Javascript
 // ++++++++++++++++++++++++++++++++++++++++++
-!function($) {
-
-  $(function() {
+$(document).ready(function () {
 
     var $window = $(window)
 
@@ -89,6 +87,5 @@
     // again in succession
     $('.dropdown-submenu').doubleTapToGo();
 
-  });
+});
 
-}(window.jQuery)
