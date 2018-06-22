@@ -56,6 +56,7 @@ var reflow = function () {
         });
       }
     });
+    $('body').scrollspy({ target: '#toc-scroll-target' })
   };
 
   var initCarousel = function () {
