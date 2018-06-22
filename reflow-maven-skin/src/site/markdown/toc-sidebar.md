@@ -1,6 +1,6 @@
 #### [Bootstrap themes from Bootswatch][themes]
 
-[![Bootswatch themes](img/carousel-themes.png)][themes]
+[![Bootswatch themes](images/carousel-themes.png)][themes]
 
 Select a free theme for your website from an excellent gallery at [Bootswatch][bootswatch].
 Out of the box support for these and other custom [Bootstrap][bootstrap] themes.
@@ -8,14 +8,14 @@ Out of the box support for these and other custom [Bootstrap][bootstrap] themes.
 
 #### [Page layouts][reflow-layouts]
 
-[![Page layouts](img/carousel-layouts.jpg)][reflow-layouts]
+[![Page layouts](images/carousel-layouts.jpg)][reflow-layouts]
 
 Write plain text in Markdown or APT, then set different layouts to your page sections.
 
 
 #### [Modern skin][reflow-misc]
 
-[![Modern skin](img/carousel-components.jpg)][reflow-misc]
+[![Modern skin](images/carousel-components.jpg)][reflow-misc]
 
 Reflow skin uses modern components from Bootstrap and other libraries, upgrades Maven generated
 site and provides further enhancements.
@@ -23,7 +23,7 @@ site and provides further enhancements.
 
 #### [New Velocity tools][reflow-tools]
 
-[![Reflow Velocity tools](img/carousel-tools.png)][reflow-tools]
+[![Reflow Velocity tools](images/carousel-tools.png)][reflow-tools]
 
 The skin adds a library of new Velocity tools to use in your own Maven template: rewrite HTML code,
 support per-page configurations and more!
