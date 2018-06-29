@@ -100,11 +100,11 @@
     <issue-url>${scm-url}/issues</issue-url>
     <ci.url>${scm-url}</ci.url>
     <ci.system>Travis</ci.system>
-    <ci.contact-admin>christophefriederich@mac.om</ci.contact-admin>
+    <ci.contact-admin>christophefriederich@mac.com</ci.contact-admin>
 
     <site.url>http://devacfr.github.io/reflow-maven-skin</site.url>
     <site.deploy.id>github</site.deploy.id>
-    <site.deploy.url>github:http://devacfr.github.io/reflow-maven-skin/</site.deploy.url>
+    <site.deploy.url></site.deploy.url>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
     
     <!-- ================================================================================ -->
@@ -396,7 +396,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <includes>
             <include>**/*Test.java</include>
