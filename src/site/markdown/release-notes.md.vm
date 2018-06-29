@@ -16,6 +16,7 @@ $h3 Reflow Maven skin 1.3 Release Notes
 
 $h4 Minor enhancements
 
+- TOC block overlapping carusel element ([#23][]).
 - Add affix on toc side bar.
 - Change groupId to io.github.devacfr to deploy on maven central repository.
 - Add CI on master branch
@@ -25,6 +26,8 @@ $h4 Minor enhancements
 - Remove white space in generate html.
 - Double 'well' in TOC is fixed [Pull request #11](https://github.com/devacfr/reflow-maven-skin/pull/8) (Maxim Solodovnik <solomax666@gmail.com>).
 - Sidebar should be hidden for small devices [Pull request #8](https://github.com/devacfr/reflow-maven-skin/pull/8) (Maxim Solodovnik <solomax666@gmail.com>).
+
+[#23]: ${issue-url}/23
 
 $h4 Bug fixes
 

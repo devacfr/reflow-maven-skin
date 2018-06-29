@@ -47,7 +47,7 @@ default but can be disabled using `<imgLightbox>` flag:
 -   **false** - disable lightbox, image link will open the image itself
 
 [lightbox]: http://lokeshdhakar.com/projects/lightbox2/
-[lightbox-test]: img/snowdon.jpg "Lightbox example - climbing Snowdon in Wales, UK"
+[lightbox-test]: images/snowdon.jpg "Lightbox example - climbing Snowdon in Wales, UK"
 
 
 ### Smooth scroll

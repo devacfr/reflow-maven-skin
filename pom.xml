@@ -106,15 +106,21 @@
     <site.deploy.id>github</site.deploy.id>
     <site.deploy.url>github:http://devacfr.github.io/reflow-maven-skin/</site.deploy.url>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
-
+    
+    <!-- ================================================================================ -->
+    <!-- Web dependencies version -->
+    <!-- ================================================================================ -->
     <anchorJsVesrion>4.1.0</anchorJsVesrion>
-
-    <bootstrapVersion>3.3.6</bootstrapVersion>
-    <bootswatchVersion>3.3.6</bootswatchVersion>
-    <findbugs.version>3.0.1</findbugs.version>
-    <guava.version>23.0</guava.version>
+    <bootstrapVersion>3.3.7</bootstrapVersion>
+    <bootswatchVersion>3.3.7</bootswatchVersion>
     <highlightJsVersion>9.12.0</highlightJsVersion>
-    <jqueryVersion>1.9.1</jqueryVersion>
+    <jqueryVersion>3.3.1</jqueryVersion>
+    
+    <!-- ================================================================================ -->
+    <!-- Java dependencies version -->
+    <!-- ================================================================================ -->
+    <guava.version>23.0</guava.version>
+    <findbugs.version>3.0.1</findbugs.version>
     <logback.version>1.1.2</logback.version>
     <slf4j.version>1.7.7</slf4j.version>
 
@@ -143,7 +149,7 @@
     <maven-velocity.version>1.7</maven-velocity.version>
     <maven-velocity-tools.version>2.0</maven-velocity-tools.version>
 
-    <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
+    <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>

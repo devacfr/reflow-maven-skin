@@ -1,5 +1,5 @@
 
-$(window).load(function(){
+$(document).ready(function () {
   $('#m-scroll-top').on('click', function(e) {
 
     function scrollTo(el, offset, clbck) {
