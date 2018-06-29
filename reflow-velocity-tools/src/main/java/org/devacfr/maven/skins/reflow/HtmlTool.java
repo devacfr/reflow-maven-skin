@@ -58,7 +58,7 @@ import org.jsoup.parser.Tag;
 public class HtmlTool extends SafeConfig {
 
     /** prefix heading id associated to table of contents. */
-    private static final String PREFIX_TOC = "_toc_";
+    private static final String SEPARATOR_TOC = ".";
 
     /** A list of all HTML heading classes (h1-6). */
     private static final List<String> HEADINGS = Collections
@@ -1079,7 +1079,7 @@ public class HtmlTool extends SafeConfig {
 
         // put the newly generated one into the set
         ids.add(id);
-        id = PREFIX_TOC + id;
+        id = SEPARATOR_TOC + id;
         if ("frame".equals(pageType)) {
             id = currentPage + id;
         }

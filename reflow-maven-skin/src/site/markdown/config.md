@@ -26,7 +26,7 @@ The documentation is split over several pages, describing the various configurat
     Additional support and notes for generating multi-module Maven sites.
 
 Note that all configuration options can be set on a per-page basis
-([see below](#config_toc_per-page_configuration)).
+([see below](#config.per-page_configuration)).
 
 
 ## Per-page configuration

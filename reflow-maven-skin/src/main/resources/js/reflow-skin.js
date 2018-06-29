@@ -57,6 +57,7 @@ var timestampSideBar = 0;
 var mReflow = function () {
   var $window = $(window);
   var $body = $(document.body);
+  var TOC_SEPARATOR = '.';
 
   function getTocSidebarContainerOffset(tocSidebar) {
     if (tocSidebar.hasClass('affix')) {
@@ -155,11 +156,12 @@ var mReflow = function () {
           // padding of footer.
         }
       });
+      $body.scrollspy({
+        target: '.m-toc-sidebar'
+      });
     }
 
-    $body.scrollspy({
-      target: '.m-toc-sidebar'
-    });
+
   }
 
   function initHighlight() {
@@ -260,7 +262,7 @@ var mReflow = function () {
     function hashes(fragment, link) {
       var hash = '#' + fragment;
       if (link) {
-        hash += '_toc_' + link;
+        hash += TOC_SEPARATOR + link;
       }
       return hash;
     }
@@ -268,13 +270,21 @@ var mReflow = function () {
       navSidebar.width(navSidebar.parent().width());
     }
 
+    function splitUrl(url) {
+      var index = url.indexOf(TOC_SEPARATOR, url.indexOf('#'));
+      if (index >= 0) {
+        return [url.substring(0, index), url.substring(index + 1)];
+      }
+      return [url];
+    }
+
     $window.bind('hashchange', function (evt) {
 
       var originalEvt = evt.originalEvent;
       var identicalPage = false;
       if (originalEvt) {
-        var oldURL = originalEvt.oldURL.split('_toc_');
-        var newURL = originalEvt.newURL.split('_toc_');
+        var oldURL = splitUrl(originalEvt.oldURL);
+        var newURL = splitUrl(originalEvt.newURL);
         identicalPage = oldURL[0] === newURL[0];
       }
 
@@ -287,7 +297,7 @@ var mReflow = function () {
         window.location.hash = hashes(findFirstMenu());
       }
       var hash = window.location.hash;
-      var link = hash.split('_toc_');
+      var link = splitUrl(hash);
       var page = link[0].substring(1);
       if (link.length > 1) {
         link = link[1];
