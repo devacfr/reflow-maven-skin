@@ -12,7 +12,8 @@
 
   <name>Reflow Velocity Tools</name>
   <description>Velocity tools supporting Reflow Maven skin</description>
-
+  <url>${site.url}/${project.artifactId}</url>
+  
   <properties>
     <main.basedir>${basedir}/..</main.basedir>
   </properties>
@@ -24,6 +25,7 @@
       <url>${site.deploy.url}${project.artifactId}</url>
     </site>
   </distributionManagement>
+
 
 
   <dependencies>

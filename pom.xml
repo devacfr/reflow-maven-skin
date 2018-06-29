@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -102,11 +103,11 @@
     <ci.system>Travis</ci.system>
     <ci.contact-admin>christophefriederich@mac.com</ci.contact-admin>
 
-    <site.url>http://devacfr.github.io/reflow-maven-skin</site.url>
+    <site.url>https://devacfr.github.io/reflow-maven-skin</site.url>
     <site.deploy.id>github</site.deploy.id>
-    <site.deploy.url>github:http://devacfr.github.io/reflow-maven-skin/</site.deploy.url>
+    <site.deploy.url></site.deploy.url>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
-    
+
     <!-- ================================================================================ -->
     <!-- Web dependencies version -->
     <!-- ================================================================================ -->
@@ -115,7 +116,7 @@
     <bootswatchVersion>3.3.7</bootswatchVersion>
     <highlightJsVersion>9.12.0</highlightJsVersion>
     <jqueryVersion>3.3.1</jqueryVersion>
-    
+
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->
     <!-- ================================================================================ -->
@@ -359,6 +360,7 @@
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
           <!-- Site deployment done using GitHub site plugin -->
           <skipDeploy>true</skipDeploy>
+          <topSiteURL>${site.url}</topSiteURL>
         </configuration>
       </plugin>
       <plugin>
@@ -370,6 +372,8 @@
           <message>Creating site for ${project.artifactId}, ${project.version}</message>
           <merge>true</merge>
           <server>github</server>
+          <!-- this does the trick to place every module in the correct subfolder -->
+          <path>${project.distributionManagement.site.url}</path>
         </configuration>
         <executions>
           <execution>
