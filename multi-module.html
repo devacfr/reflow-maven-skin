@@ -9,7 +9,7 @@
 
         <head>
     <meta charset="UTF-8" />
-    <title>Project Team | Reflow Maven Skin</title>
+    <title>Multi-module site | Reflow Maven Skin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
       <meta http-equiv="content-language" content="en" />
@@ -40,7 +40,7 @@
 
         </script>
   </head> <!-- end : head -->
-    <body class="page-team-list project-reflow-maven-skin">
+    <body class="page-multi-module project-reflow-maven-skin">
 
     <div id="m-top-navbar" class="navbar  navbar-default navbar-fixed-top">
       <div class="container">
@@ -59,7 +59,7 @@
             <ul class="nav navbar-nav navbar-right">
 <li ><a  href="index.html#Usage"  title="Download" >Download</a></li>
 <li ><a  href="https://github.com/devacfr/reflow-maven-skin"  title="GitHub project"  class="externalLink" >GitHub project</a></li>
-            <li class="dropdown">
+                            <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li ><a  href="./"  title="Usage" >Usage</a></li>
@@ -68,7 +68,7 @@
                     <li ><a  href="layouts.html"  title="Layouts" >Layouts</a></li>
                     <li ><a  href="components.html"  title="Components" >Components</a></li>
                     <li ><a  href="misc.html"  title="Other" >Other</a></li>
-                    <li ><a  href="multi-module.html"  title="Multi-module site" >Multi-module site</a></li>
+                                    <li  class="active" ><a  href=""  title="Multi-module site" >Multi-module site</a></li>
                     <li ><a  href="resources.html"  title="Local resources" >Local resources</a></li>
             </ul>
         </li>
@@ -87,14 +87,14 @@
                     <li ><a  href="https://github.com/devacfr/reflow-maven-skin"  title="Fork on GitHub"  class="externalLink" >Fork on GitHub</a></li>
             </ul>
         </li>
-                            <li class="dropdown active">
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maven documentation <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-submenu ">
 <a  href="project-info.html"  title="Project Information" >Project Information</a>                    <ul class="dropdown-menu">
                         <li ><a  href="project-summary.html"  title="Summary" >Summary</a></li>
                         <li ><a  href="license.html"  title="Licenses" >Licenses</a></li>
-                                        <li  class="active" ><a  href=""  title="Team" >Team</a></li>
+                        <li ><a  href="team-list.html"  title="Team" >Team</a></li>
                         <li ><a  href="source-repository.html"  title="Source Code Management" >Source Code Management</a></li>
                         <li ><a  href="issue-tracking.html"  title="Issue Management" >Issue Management</a></li>
                         <li ><a  href="dependency-convergence.html"  title="Dependency Convergence" >Dependency Convergence</a></li>
@@ -128,7 +128,7 @@
       <ol class="breadcrumb">
                 <li><a  href="../"  title="Reflow" >Reflow</a></li>
                 <li><a  href="./"  title="Maven skin" >Maven skin</a></li>
-                <li>Project Team</li>
+                <li>Multi-module site</li>
       </ol>
     </div>
     <hr class="toc-separator" />
@@ -144,9 +144,9 @@
             </div> <!-- .navbar-header -->
         <div class="collapse navbar-collapse" id="toc-nav-collapse">
           <ul id="toc" class="nav navbar-nav">
-                                                            <li class="toplevel"><a href="#_toc_project_team" title="Project Team">Project Team</a></li>
-                        <li class="toplevel"><a href="#_toc_members" title="Members">Members</a></li>
-                        <li class="toplevel"><a href="#_toc_contributors" title="Contributors">Contributors</a></li>
+                                                            <li class="toplevel"><a href="#_toc_multi-module_site1" title="Multi-module site">Multi-module site</a></li>
+                        <li class="toplevel"><a href="#_toc_reuse_resources" title="Reuse resources">Reuse resources</a></li>
+                        <li class="toplevel"><a href="#_toc_project_urls" title="Project URLs">Project URLs</a></li>
           </ul>
         </div>
       </div> <!-- .container -->
@@ -157,47 +157,33 @@
   <div class="row">
     <div class="col-md-12">
       <div class="body-content">
+<div class="page-header">
+ <h1 id="_toc_multi-module_site1">Multi-module site</h1>
+</div> 
+<p>Aimed at providing good support for websites of multi-module Maven projects, Reflow skin has several options enhancing such configurations.</p> 
 <div class="section"> 
- <div class="page-header">
-  <h2 id="_toc_project_team">Project Team</h2>
+ <h2 id="_toc_reuse_resources">Reuse resources</h2> 
+ <p>In a multi-module project, the Maven site for each submodule is generated separately, and only then brought together for deployment. Reflow skin allows reusing resources of top-level module using <tt>&lt;absoluteResourceURL&gt;</tt> element:</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;custom&gt;
+  &lt;reflowSkin&gt;
+    ...
+    &lt;absoluteResourceURL&gt;http://mysite.com/&lt;/absoluteResourceURL&gt;
+    ...
+  &lt;/reflowSkin&gt;
+&lt;/custom&gt;
+</pre> 
+  </div> 
  </div> 
- <a name="Project_Team"></a> 
- <p>A successful project requires many people to play many roles. Some members write code or documentation, while others are valuable as testers, submitting patches and suggestions.</p> 
- <p>The project team is comprised of Members and Contributors. Members have direct access to the source of a project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. Get involved today. All contributions to the project are greatly appreciated.</p> 
- <div class="section"> 
-  <h3 id="_toc_members">Members</h3> 
-  <a name="Members"></a> 
-  <p>The following is a list of developers with commit privileges that have directly contributed to the project in one way or another.</p> 
-  <table border="0" class="bodyTable table table-striped table-hover"> 
-   <thead> 
-    <tr class="a"> 
-     <th>Id</th> 
-     <th>Name</th> 
-     <th>URL</th> 
-     <th>Time Zone</th> 
-    </tr> 
-   </thead> 
-   <tbody> 
-    <tr class="b"> 
-     <td><a name="andriusvelykis"></a>andriusvelykis</td> 
-     <td>Andrius Velykis</td> 
-     <td><a class="externalLink" href="http://andrius.velykis.lt">http://andrius.velykis.lt</a></td> 
-     <td>0</td> 
-    </tr> 
-    <tr class="a"> 
-     <td><a name="devacfr"></a>devacfr</td> 
-     <td>Friederich Christophe</td> 
-     <td><a class="externalLink" href="http://devacfr.github.io">http://devacfr.github.io</a></td> 
-     <td>0</td> 
-    </tr> 
-   </tbody> 
-  </table> 
- </div> 
- <div class="section"> 
-  <h3 id="_toc_contributors">Contributors</h3> 
-  <a name="Contributors"></a> 
-  <p>There are no contributors listed for this project. Please check back again later.</p> 
- </div> 
+ <p>The absolute resource URL should be relative to project URL set in POM. Then all modules will resolve a relative path to resources under this URL.</p> 
+ <p>Setting the absolute resource URL allows configuring CSS, images and other site resources for the top-level module only. Normally, when generating a multi-module Maven site, each module gets a copy of Maven skin resources together with that module’s local <tt>site.css</tt> file and others. This means, however, that the users must either create their own skin to ensure that resources are copied to all modules or manually copy these resources. Furthermore, each resource has to be loaded separately, so that expensive brand image could be loaded again for each submodule.</p> 
+ <p>Using <tt>absoluteResourceURL</tt> element allows referencing the same resources. This way a skin does not need to be extended, and all customisations can be done using CSS and JavaScript files in the top-level module. Note that the skin resources are still copied to each submodule and will be there in the generated site, however they are not referenced by the module site files.</p> 
+</div> 
+<div class="section"> 
+ <h2 id="_toc_project_urls">Project URLs</h2> 
+ <p>If you encounter problems with relative links (e.g. if the links are not correctly highlighted), ensure that URLs are indicated (or derived automatically) correctly for each module. Reflow skin uses project URLs to calculate correct relative paths between modules, e.g. especially when the links reference pages in other submodules.</p> 
+ <p>Project URLs are indicated using the <a class="externalLink" href="http://maven.apache.org/pom.html#More_Project_Information"><tt>&lt;url&gt;</tt> element in the POM file</a> of each project.</p> 
 </div>      </div>
     </div>
   </div> <!-- /row -->
@@ -245,7 +231,7 @@
                     <li ><a  href="layouts.html"  title="Layouts" >Layouts</a></li>
                     <li ><a  href="components.html"  title="Components" >Components</a></li>
                     <li ><a  href="misc.html"  title="Other" >Other</a></li>
-                    <li ><a  href="multi-module.html"  title="Multi-module site" >Multi-module site</a></li>
+                                    <li  class="active" ><a  href="#"  title="Multi-module site" >Multi-module site</a></li>
                     <li ><a  href="resources.html"  title="Local resources" >Local resources</a></li>
                 </ul>
 
@@ -254,16 +240,7 @@
 
                 <ul class="nav nav-list">
                     <li class="nav-header">Maven documentation</li>
-                                    <li ><a  href="project-info.html"  title="Project Information" >Project Information <i class="glyphicon glyphicon-chevron-down"></i></a>        <ul class="nav nav-list">
-                    <li ><a  href="project-summary.html"  title="Summary" >Summary</a></li>
-                    <li ><a  href="license.html"  title="Licenses" >Licenses</a></li>
-                                    <li  class="active" ><a  href="#"  title="Team" >Team</a></li>
-                    <li ><a  href="source-repository.html"  title="Source Code Management" >Source Code Management</a></li>
-                    <li ><a  href="issue-tracking.html"  title="Issue Management" >Issue Management</a></li>
-                    <li ><a  href="dependency-convergence.html"  title="Dependency Convergence" >Dependency Convergence</a></li>
-                    <li ><a  href="plugins.html"  title="Plugins" >Plugins</a></li>
-        </ul>
-</li>
+                    <li ><a  href="project-info.html"  title="Project Information" >Project Information <i class="glyphicon glyphicon-chevron-right"></i></a></li>
                 </ul>
 
             </div>
