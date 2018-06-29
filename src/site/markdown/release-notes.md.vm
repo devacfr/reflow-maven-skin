@@ -16,7 +16,9 @@ $h3 Reflow Maven skin 1.3 Release Notes
 
 $h4 Minor enhancements
 
-- TOC block overlapping carusel element ([#23][]).
+- Update JQuery version to 3.3.1
+- Update Bootstrap version to 3.3.7
+- Update LightBox version to 2.10.0
 - Add affix on toc side bar.
 - Change groupId to io.github.devacfr to deploy on maven central repository.
 - Add CI on master branch
@@ -27,10 +29,10 @@ $h4 Minor enhancements
 - Double 'well' in TOC is fixed [Pull request #11](https://github.com/devacfr/reflow-maven-skin/pull/8) (Maxim Solodovnik <solomax666@gmail.com>).
 - Sidebar should be hidden for small devices [Pull request #8](https://github.com/devacfr/reflow-maven-skin/pull/8) (Maxim Solodovnik <solomax666@gmail.com>).
 
-[#23]: ${issue-url}/23
-
 $h4 Bug fixes
 
+- TOC block overlapping carousel element ([#23][]).
+- Fix jquery error: jquery.min.js:2 Uncaught Error: Syntax error, unrecognized expression: #
 - Fix the method fixTableHeads (for Tag List Report), now convert table containing only one head row.
 - Second level menu on mobile devices #20 (Maxim Solodovnik <solomax666@gmail.com>).
 - In checkstyle report link on detail of file doesn't work.
@@ -39,6 +41,7 @@ $h4 Bug fixes
 - Fix scroll to Top.
 - Fix url project in copyright.
 
+[#23]: ${issue-url}/23
 
 $h3 Reflow Maven skin 1.2-DEVACFR Release Notes
 **2014-09-18**
