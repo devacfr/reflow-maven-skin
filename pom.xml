@@ -104,7 +104,7 @@
 
     <site.url>http://devacfr.github.io/reflow-maven-skin</site.url>
     <site.deploy.id>github</site.deploy.id>
-    <site.deploy.url></site.deploy.url>
+    <site.deploy.url>github:http://devacfr.github.io/reflow-maven-skin/</site.deploy.url>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
     
     <!-- ================================================================================ -->
@@ -368,8 +368,6 @@
         <version>0.12</version>
         <configuration>
           <message>Creating site for ${project.artifactId}, ${project.version}</message>
-          <!-- this does the trick to place every module in the correct subfolder -->
-          <path>${project.distributionManagement.site.url}</path>
           <merge>true</merge>
           <server>github</server>
         </configuration>
