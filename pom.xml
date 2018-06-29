@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -10,7 +11,7 @@
 
   <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.3.9-SNAPSHOT</version>
+  <version>1.3.11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
@@ -100,21 +101,27 @@
     <issue-url>${scm-url}/issues</issue-url>
     <ci.url>${scm-url}</ci.url>
     <ci.system>Travis</ci.system>
-    <ci.contact-admin>christophefriederich@mac.om</ci.contact-admin>
+    <ci.contact-admin>christophefriederich@mac.com</ci.contact-admin>
 
-    <site.url>http://devacfr.github.io/reflow-maven-skin</site.url>
+    <site.url>https://devacfr.github.io/reflow-maven-skin</site.url>
     <site.deploy.id>github</site.deploy.id>
-    <site.deploy.url>github:http://devacfr.github.io/reflow-maven-skin/</site.deploy.url>
+    <site.deploy.url></site.deploy.url>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
+    <!-- ================================================================================ -->
+    <!-- Web dependencies version -->
+    <!-- ================================================================================ -->
     <anchorJsVesrion>4.1.0</anchorJsVesrion>
-
-    <bootstrapVersion>3.3.6</bootstrapVersion>
-    <bootswatchVersion>3.3.6</bootswatchVersion>
-    <findbugs.version>3.0.1</findbugs.version>
-    <guava.version>23.0</guava.version>
+    <bootstrapVersion>3.3.7</bootstrapVersion>
+    <bootswatchVersion>3.3.7</bootswatchVersion>
     <highlightJsVersion>9.12.0</highlightJsVersion>
-    <jqueryVersion>1.9.1</jqueryVersion>
+    <jqueryVersion>3.3.1</jqueryVersion>
+
+    <!-- ================================================================================ -->
+    <!-- Java dependencies version -->
+    <!-- ================================================================================ -->
+    <guava.version>23.0</guava.version>
+    <findbugs.version>3.0.1</findbugs.version>
     <logback.version>1.1.2</logback.version>
     <slf4j.version>1.7.7</slf4j.version>
 
@@ -353,6 +360,7 @@
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
           <!-- Site deployment done using GitHub site plugin -->
           <skipDeploy>true</skipDeploy>
+          <topSiteURL>${site.url}</topSiteURL>
         </configuration>
       </plugin>
       <plugin>
@@ -362,10 +370,10 @@
         <version>0.12</version>
         <configuration>
           <message>Creating site for ${project.artifactId}, ${project.version}</message>
-          <!-- this does the trick to place every module in the correct subfolder -->
-          <path>${project.distributionManagement.site.url}</path>
           <merge>true</merge>
           <server>github</server>
+          <!-- this does the trick to place every module in the correct subfolder -->
+          <path>${project.distributionManagement.site.url}</path>
         </configuration>
         <executions>
           <execution>
@@ -390,7 +398,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
         <configuration>
           <includes>
             <include>**/*Test.java</include>

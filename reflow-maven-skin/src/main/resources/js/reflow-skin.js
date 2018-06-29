@@ -349,7 +349,7 @@ var mReflow = function () {
     }
 
     // prevent event on collapse clik.
-    navSidebar.find("a[href=#]").click(function (event) {
+    navSidebar.find("a[href=\\#]").click(function (event) {
       event.preventDefault();
     });
   }

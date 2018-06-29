@@ -221,8 +221,9 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
 
 /* affix toc aside bar
 */
-.m-toc-sidebar-container {
-    z-index:1010; /*must be < nav-bar bootstrap container  1020 */
+#toc-sidebar {
+    margin-top: 10px;
+    z-index: 1010; /*must be < nav-bar bootstrap container  1020 */
 }
 
 .m-toc-sidebar-container.affix {
@@ -564,6 +565,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
 /*--------------------------------------------------
  * banner
  *--------------------------------------------------*/
+
 
 /* Fix for header links - do not color/underline them */
 #banner a {
