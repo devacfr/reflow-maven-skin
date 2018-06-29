@@ -193,7 +193,7 @@ a[name]:before {
  *--------------------------------------------------*/
 
 #toc-bar {
-    z-index:1020;
+    z-index:1010; /*must be < nav-bar bootstrap container  1020 */
 }
 
 /*--------------------------------------------------
@@ -203,7 +203,8 @@ a[name]:before {
 /* affix toc aside bar
 */
 #toc-sidebar {
-    z-index: 1000;
+    margin-top: 10px;
+    z-index: 1010; /*must be < nav-bar bootstrap container  1020 */
 }
 
 #toc-sidebar.affix {
@@ -281,14 +282,14 @@ a[name]:before {
  *--------------------------------------------------*/
 
 .breadcrumb {
-    z-index: 1020;
+    z-index: 1000; /*must be < nav-bar bootstrap container  1020 */
     position: relative;
 }
 
 /*--------------------------------------------------
  * banner
  *--------------------------------------------------*/
- 
+
 
 /* Fix for header links - do not color/underline them */
 #banner a {
