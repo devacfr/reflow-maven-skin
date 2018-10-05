@@ -9,7 +9,7 @@
 
         <head>
     <meta charset="UTF-8" />
-    <title>Reflow Velocity tools | Reflow Velocity Tools</title>
+    <title>Usage | Reflow Maven Skin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
       <meta http-equiv="content-language" content="en" />
@@ -40,7 +40,7 @@
 
         </script>
   </head> <!-- end : head -->
-    <body class="page-index project-reflow-velocity-tools">
+    <body class="page-index project-reflow-maven-skin">
 
     <div id="m-top-navbar" class="navbar  navbar-default navbar-fixed-top">
       <div class="container">
@@ -97,14 +97,8 @@
                         <li ><a  href="team-list.html"  title="Team" >Team</a></li>
                         <li ><a  href="source-repository.html"  title="Source Code Management" >Source Code Management</a></li>
                         <li ><a  href="issue-tracking.html"  title="Issue Management" >Issue Management</a></li>
-                        <li ><a  href="dependencies.html"  title="Dependencies" >Dependencies</a></li>
                         <li ><a  href="dependency-convergence.html"  title="Dependency Convergence" >Dependency Convergence</a></li>
                         <li ><a  href="plugins.html"  title="Plugins" >Plugins</a></li>
-                    </ul>
-                </li>
-                    <li class="dropdown-submenu ">
-<a  href="project-reports.html"  title="Project Reports" >Project Reports</a>                    <ul class="dropdown-menu">
-                        <li ><a  href="apidocs/index.html"  title="JavaDocs" >JavaDocs</a></li>
                     </ul>
                 </li>
             </ul>
@@ -133,31 +127,40 @@
     <div>
       <ol class="breadcrumb">
                 <li><a  href="../https:/devacfr.github.io/reflow-maven-skin/"  title="Reflow" >Reflow</a></li>
-                <li><a  href="./"  title="Velocity tools" >Velocity tools</a></li>
-                <li>Reflow Velocity tools</li>
+                <li><a  href="./"  title="Maven skin" >Maven skin</a></li>
+                <li>Usage</li>
       </ol>
     </div>
   </div> <!-- end : header -->
   <div class="main-body">
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="body-content">
-<div class="page-header">
- <h1>Reflow Velocity tools</h1>
-</div> 
-<p>Reflow skin provides custom tools for <a class="externalLink" href="http://velocity.apache.org/">Apache Velocity</a> to be used in Maven site template. These objects are contributed to Velocity context and can be used within the template. Refer to <a href="apidocs/">Javadoc</a> for each tool for more information.</p> 
-<ul> 
- <li> <p><b><a href="apidocs/org/devacfr/maven/skins/reflow/SkinConfigTool.html"><tt>SkinConfigTool</tt></a></b> (key <b>$config</b>)</p> <p>Provides a uniform access to Maven site custom configuration options. Supports global and per-page configuration. See info on <a href="../skin/config.html#Per-page_configuration"><i>per-page configuration</i></a> in Reflow skin for an example of features it brings.</p></li> 
- <li> <p><b><a href="apidocs/org/devacfr/maven/skins/reflow/HtmlTool.html"><tt>HtmlTool</tt></a></b> (key <b>$htmlTool</b>)</p> <p>Provides methods to modify and query HTML text using <a class="externalLink" href="http://jsoup.org/">jsoup</a> library.</p></li> 
- <li> <p><b><a href="apidocs/org/devacfr/maven/skins/reflow/URITool.html"><tt>URITool</tt></a></b> (key <b>$uriTool</b>)</p> <p>Provides URI utilities that expose URIs to the template.</p></li> 
-</ul> 
-<div class="section"> 
- <h2 id="Usage">Usage</h2> 
- <p>To enable these tools, add <tt>reflow-velocity-tools</tt> dependency to <tt>maven-site-plugin</tt> in the POM file:</p> 
+    <div class="row">
+        <div class="col-md-6">
+            <h2 id="Usage">Usage</h2>
+<p>To use this Maven skin, include it in your <a class="externalLink" href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html"><tt>site.xml</tt> site descriptor</a> file:</p>
+<div class="source"> 
  <div class="source"> 
-  <div class="source"> 
-   <pre>&lt;build&gt;
+  <pre>&lt;project&gt;
+  ...
+  &lt;skin&gt;
+    &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
+    &lt;artifactId&gt;reflow-maven-skin&lt;/artifactId&gt;
+    &lt;version&gt;1.4.0&lt;/version&gt;
+  &lt;/skin&gt;
+  ...
+&lt;/project&gt;
+</pre> 
+ </div> 
+</div>
+<p>The skin is provided on the <i>works on my computer</i> basis at the moment. I am using the newest versions of <tt>maven-site-plugin</tt> and other components and at the moment do not have any feedback on using the skin with Maven 2 site or other configurations.</p>
+<div class="section">      
+</div>
+        </div>
+        <div class="col-md-6">
+            <h2 id="POM_dependencies">POM dependencies</h2>
+<p>Add <a href="../reflow-velocity-tools"><tt>reflow-velocity-tools</tt></a> dependency to <tt>maven-site-plugin</tt> in the POM file:</p>
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;build&gt;
   &lt;plugins&gt;
     ...
     &lt;plugin&gt;
@@ -179,12 +182,78 @@
   &lt;/plugins&gt;
 &lt;/build&gt;
 </pre> 
+ </div> 
+</div>
+<p>Reflow Velocity tools (<a href="../reflow-velocity-tools"><tt>reflow-velocity-tools</tt></a>) are required by the Reflow skin to read skin configuration and provides other functionality. The library must be available when generating Maven site.</p>
+<p>Note that <i>Velocity 1.7</i> is also required by the template.</p>
+        </div>
+
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+
+      <div class="col-md-12">
+            <div class="body-content">
+<div class="section"> 
+ <div class="page-header">
+  <h2 id="Configuration">Configuration</h2>
+ </div> 
+ <p>The skin is configurable using the <tt>&lt;custom&gt;</tt> element in your <tt>site.xml</tt> file. The available options are <a href="config.html">described in the documentation</a>. A sample configuration file is below:</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;project&gt;
+  ...
+  &lt;custom&gt;
+    &lt;reflowSkin&gt;
+      &lt;theme&gt;bootswatch-spacelab&lt;/theme&gt;
+      &lt;highlightJs&gt;true&lt;/highlightJs&gt;
+      &lt;brand&gt;
+        &lt;name&gt;My Project&lt;/name&gt;
+        &lt;href&gt;https://github.com/devacfr/reflow-maven-skin&lt;/href&gt;
+      &lt;/brand&gt;
+      &lt;slogan&gt;Super interesting project doing good things.&lt;/slogan&gt;
+      &lt;titleTemplate&gt;%2$s | %1$s&lt;/titleTemplate&gt;
+      &lt;toc&gt;top&lt;/toc&gt;
+      &lt;topNav&gt;Download|reports&lt;/topNav&gt;
+      &lt;bottomNav&gt;
+        &lt;column&gt;Main|Download&lt;/column&gt;
+        &lt;column&gt;Documentation&lt;/column&gt;
+        &lt;column&gt;reports|modules&lt;/column&gt;
+      &lt;/bottomNav&gt;
+      &lt;bottomDescription&gt;
+        This is a very good project doing interesting and valuable things.
+      &lt;/bottomDescription&gt;
+      &lt;pages&gt;
+        &lt;index project="project-id"&gt;
+          &lt;shortTitle&gt;Welcome&lt;/shortTitle&gt;
+          &lt;breadcrumbs&gt;false&lt;/breadcrumbs&gt;
+          &lt;toc&gt;false&lt;/toc&gt;
+          &lt;sections&gt;
+            &lt;carousel /&gt;
+            &lt;body /&gt;
+            &lt;sidebar /&gt;
+            &lt;thumbs&gt;2&lt;/thumbs&gt;
+            &lt;columns&gt;3&lt;/columns&gt;
+          &lt;/sections&gt;
+        &lt;/index&gt;
+        &lt;developer-info&gt;
+          &lt;toc&gt;sidebar&lt;/toc&gt;
+        &lt;/developer-info&gt;
+      &lt;/pages&gt;
+    &lt;/reflowSkin&gt;
+  &lt;/custom&gt;
+  ...
+&lt;/project&gt;
+</pre> 
   </div> 
  </div> 
-</div>      </div>
+ <p>This website itself is generated using Reflow Maven skin and is written in Markdown. The source code is <a class="externalLink" href="https://github.com/devacfr/reflow-maven-skin" title="Reflow Maven skin source code">available on GitHub</a>.</p> 
+ <p>Look for the site configuration and web page sources in <tt>/src/site</tt> of each module; and for plug-in configuration in respective POM files.</p> 
+</div>            </div>
+        </div>
+     </div>
     </div>
-  </div> <!-- /row -->
-  </div>
     </div> <!-- end : row -->
 </div> <!-- /container -->
   <!-- Footer
@@ -238,7 +307,6 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Maven documentation</li>
                     <li ><a  href="project-info.html"  title="Project Information" >Project Information <i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                    <li ><a  href="project-reports.html"  title="Project Reports" >Project Reports <i class="glyphicon glyphicon-chevron-right"></i></a></li>
                 </ul>
 
             </div>
