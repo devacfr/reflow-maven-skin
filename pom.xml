@@ -70,7 +70,7 @@
     <site>
       <id>${site.deploy.id}</id>
       <name>${site.deploy.name}</name>
-      <url>${site.url}</url>
+      <url>${site.deploy.url}</url>
     </site>
   </distributionManagement>
 
@@ -84,7 +84,7 @@
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will
+    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will 
       be stored. See also the clover-report.xml file which refers to this location -->
     <surefire.and.failsafe.report.dir>${project.build.directory}/surefire-reports</surefire.and.failsafe.report.dir>
 
@@ -104,8 +104,8 @@
 
     <site.url>https://devacfr.github.io/reflow-maven-skin</site.url>
     <site.deploy.id>github</site.deploy.id>
+    <site.deploy.url />
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
-    <github.global.server>${site.deploy.id}</github.global.server>
 
     <!-- ================================================================================ -->
     <!-- Web dependencies version -->
@@ -371,6 +371,8 @@
           <message>Creating site for ${project.artifactId}, ${project.version}</message>
           <merge>true</merge>
           <server>github</server>
+          <!-- this does the trick to place every module in the correct subfolder -->
+          <path>${project.distributionManagement.site.url}</path>
         </configuration>
         <executions>
           <execution>
