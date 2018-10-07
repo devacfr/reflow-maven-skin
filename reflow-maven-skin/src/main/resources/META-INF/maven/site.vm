@@ -552,6 +552,11 @@
   <script src="$resourcePath/js/reflow-scroll.js"></script>
 #*  *##end#*
 
+    *##if ( $highlightJs )#*
+	// use a hosted version of highlight.js for syntax highlighting	*###
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/highlight.min.js"></script>
+#*	*##end#*
+
     *##if ( $config.endContent )#*
     ## custom HTML (e.g. JavaScript) to place at the end of the document before </body>
       *##htmlContent ( $config.endContent.getChildren() )#*
