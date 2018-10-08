@@ -102,13 +102,9 @@ var reflow = function () {
       var $menuItem = menu.find('.dropdown-menu');
       var width = $menuItem.width();
       var mw = width + (menu.offset().left + menu.width());
-      var factor = 1;
       if (ww < mw) {
-        factor = -1;
-        $menuItem.css('top', menu.offset().top - $('#navbar').height());
-        $menuItem.css('left', factor * ($menuItem.width()), 'important');
+        $menuItem.css('left', -1 * (width), 'important');
       } else {
-        $menuItem.css('top', '0px');
         $menuItem.css('left', '100%');
       }
     });
