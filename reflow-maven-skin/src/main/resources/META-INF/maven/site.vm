@@ -14,10 +14,12 @@
 ## limitations under the License.
 ##
 #parse( "site-macros.vm" )##
-#parse( "components/toc-topbar.vm" )##
-#parse( "components/toc-sidebar.vm" )##
+#parse( "components/banner.vm" )##
+#parse( "components/breadcrumbs.vm" )##
 #parse( "components/scroll-top.vm" )##
 #parse( "components/thumbnails.vm" )##
+#parse( "components/toc-topbar.vm" )##
+#parse( "components/toc-sidebar.vm" )##
 ##
 ##
 #set( $pageType = $config.context.type)

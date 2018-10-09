@@ -26,7 +26,7 @@ import org.apache.velocity.tools.config.DefaultKey;
  * @author Andrius Velykis
  * @since 1.0
  */
-// instancied by Velocity
+// instanced by Velocity
 @SuppressWarnings({ "checkstyle:finalclass", "checkstyle:hideutilityclassconstructor" })
 @DefaultKey("uriTool")
 public class URITool {

@@ -84,7 +84,7 @@
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will 
+    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will
       be stored. See also the clover-report.xml file which refers to this location -->
     <surefire.and.failsafe.report.dir>${project.build.directory}/surefire-reports</surefire.and.failsafe.report.dir>
 
@@ -354,6 +354,7 @@
           </dependency>
         </dependencies>
         <configuration>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
           <generateReports>true</generateReports>
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>

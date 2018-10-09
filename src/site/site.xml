@@ -22,8 +22,6 @@
   </skin>
   <custom>
     <reflowSkin>
-      <!-- Make this to 'false' for local development, i.e. file:// URLs -->
-      <protocolRelativeURLs>true</protocolRelativeURLs>
       <smoothScroll>true</smoothScroll>
       <theme>default</theme>
       <highlightJs>true</highlightJs>
@@ -139,7 +137,7 @@
     </menu>
     <menu name="Contribute" inherit="bottom">
       <item name="Contribute" href="contribute.html" />
-      <item name="Issues" href="${this..issueManagement.url}" />
+      <item name="Issues" href="${this.issueManagement.url}" />
       <item name="Fork on GitHub" href="${this.scm-url}" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />

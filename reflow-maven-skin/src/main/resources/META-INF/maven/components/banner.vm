@@ -1,0 +1,80 @@
+##
+## Copyright 2012-2017 Andrius Velykis
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#**
+ * Render Banner
+ *#
+#macro( renderBanner )#*
+    *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name ||
+        $decoration.bannerLeft.src || $decoration.bannerLeft.href ) || $decoration.bannerRight )
+      <div class="jumbotron subhead">
+        <div class="row" id="banner">
+          <div class="col-md-12">
+            <div class="pull-left">
+              #banner ( $decoration.bannerLeft "bannerLeft" )
+            </div>
+            <div class="pull-right">
+              #banner ( $decoration.bannerRight "bannerRight" )
+            </div>
+          </div>
+        </div>
+      </div>
+#*  *##end ##
+#end
+#**
+ * Outputs the top banner contents
+ *
+ *##macro ( banner $banner $id )#*
+    *##if ( $banner )#*
+        *##if ( $banner.href )#*
+            *##relativeExtLink ( $banner.href )##
+                    <a href="$relativeExtLink" id="$id"#if ( $banner.alt ) title="$banner.alt"#end>
+#*      *##else##
+                    <div id="$id">
+#*      *##end#*
+
+        *##if ( $banner.src )#*
+            *##relativeExtLink ( $banner.src )##
+            <img src="$relativeExtLink"
+                 alt='"'#if ( $banner.alt )$banner.alt#elseif ( $banner.name )$banner.name#end'"'
+#*              *##if ( $banner.border ) border="$banner.border"#end##
+#*              *##if ( $banner.width ) width="$banner.width"#end##
+#*              *##if ( $banner.height ) height="$banner.height"#end##
+#*          *# />#*
+        *##else##
+            <h1>$banner.name</h1>
+#*      *##end#*
+
+        *##if ( $banner.href )##
+            </a>
+#*      *##else##
+            </div>
+#*      *##end#*
+
+        ## add slogan to correct position
+        *##if ( $config.slogan && $config.slogan != '' )#*
+            ## read slogan position - if not set, use 'bannerLeft' as default
+            *##if ( $config.slogan.getAttribute("position") )#*
+                *##set ( $sloganPos = $config.slogan.getAttribute("position") )#*
+            *##else#*
+                *##set ( $sloganPos = "bannerLeft" )#*
+            *##end#*
+
+            *##if ( $id == $sloganPos )##
+                    <p class="lead">$config.slogan.getValue()</p>
+#*          *##end#*
+        *##end#*
+    *##end##
+#end##

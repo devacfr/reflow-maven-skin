@@ -160,7 +160,7 @@ $h3 [Readable][theme-readable]
 <theme>bootswatch-readable</theme>
 ```
 
-[theme-readable]: bootswatch-readable.html
+[theme-readable]: themes/bootswatch-readable.html
 
 
 $h3 [Sandstone][theme-sandstone]
@@ -171,7 +171,7 @@ $h3 [Sandstone][theme-sandstone]
 <theme>bootswatch-sandstone</theme>
 ```
 
-[theme-sandstone]: bootswatch-sandstone.html
+[theme-sandstone]: themes/bootswatch-sandstone.html
 
 
 $h3 [Simplex][theme-simplex]
