@@ -57,7 +57,7 @@ var timestampSideBar = 0;
 var mReflow = function () {
   var $window = $(window);
   var $body = $(document.body);
-  var TOC_SEPARATOR = '.';
+  var TOC_SEPARATOR = '_toc_';
 
   function getTocSidebarContainerOffset(tocSidebar) {
     if (tocSidebar.hasClass('affix')) {
@@ -73,12 +73,12 @@ var mReflow = function () {
   }
 
   function initTocTop() {
-    var tocTop = $('#toc-bar');
+    var tocTop = $('#m-toc-topbar');
     if (!tocTop.length) {
       return;
     }
 
-    if ($('#toc-bar[data-spy=affix]').length) {
+    if ($('#m-toc-topbar[data-spy=affix]').length) {
       tocTop.affix({
         offset: {
           top: tocTop.offset().top,
@@ -89,50 +89,43 @@ var mReflow = function () {
     }
 
     $body.scrollspy({
-      target: '#toc-bar'
+      target: '#m-toc-topbar'
     });
   }
 
   function initTocSidebar() {
-    var tocSidebar = $('.m-toc-sidebar-container');
+    var tocSidebar = $('#m-toc-sidebar');
     if (!tocSidebar.length) {
       return;
     }
-    // TODO
-    /*
-     * tocSidebar.mCustomScrollbar({ theme: "inset", axis: "y", setHeight:
-     * getViewPort().height - getTocSidebarContainerOffset(tocSidebar) });
-     *
-     *
-     * $window.resize(function () { tocSidebar.css('height',
-     * (getViewPort().height - getTocSidebarContainerOffset(tocSidebar)) +
-     * 'px'); });
-     */
 
     /*
-     * tocSidebar.on('activate.bs.scrollspy', function(evt) { var el =
-     * $(evt.target); if (timestampSideBar > 0 && evt.timeStamp <
-     * timestampSideBar + 100) return false; timestampSideBar = evt.timeStamp;
-     * var container = tocSidebar.find('.mCSB_container'); var offsetHeight = 0;
-     * var elHeight = container.height()
-     *
-     * var parent = $(el.offsetParent()) offsetHeight = el.position().top; while
-     * (!parent.hasClass('mCSB_container')) { offsetHeight +=
-     * parent.position().top; parent = $(parent.offsetParent()); } var offset =
-     * offsetHeight; // - (elHeight / 2); //
-     * tocSidebar.mCustomScrollbar("scrollTo",el);
-     * tocSidebar.mCustomScrollbar("scrollTo", offset);
-     * evt.stopImmediatePropagation(); return false; });
-     *
-     */
+    tocSidebar.mCustomScrollbar({
+      theme: "inset", axis: "y", setHeight:
+        getViewPort().height - getTocSidebarContainerOffset(tocSidebar)
+    });
+    */
 
-    // add auto collapase
-    if ($body.hasClass('m-tocsidebar-collapsible') || tocSidebar.hasClass('nav-collapsible')) {
+    /*
+    $window.resize(function () {
+      tocSidebar.css('height',
+        (getViewPort().height - getTocSidebarContainerOffset(tocSidebar)) +
+        'px');
+    });
+    */
 
+
+
+    // collapse all
+    if (!tocSidebar.hasClass('m-toc-sidebar-expanded')) {
       tocSidebar.find('.nav-collapsible').addClass('collapse').attr('aria-expanded', 'false');
+    }
+
+    // add auto collapse on scrollspy
+    if (tocSidebar.hasClass('m-toc-sidebar-autoexpandable')) {
 
       tocSidebar.on('activate.bs.scrollspy', function () {
-        var active = $('.m-toc-sidebar li.active');
+        var active = $('#m-toc-sidebar li.active');
         var collapsePanel = active.next('ul.nav.nav-collapsible');
         tocSidebar.find('ul.nav.nav-collapsible').each(function (index, element) {
           var el = $(element);
@@ -147,8 +140,10 @@ var mReflow = function () {
         active.parent('ul.nav.nav-collapsible').collapse('show');
       });
     }
-    // toc sidebar
-    if ($('.m-toc-sidebar-container[data-spy=affix]').length) {
+
+
+    // apply affix to #m-toc-sidebar
+    if ($('#m-toc-sidebar[data-spy=affix]').length) {
       tocSidebar.affix({
         offset: {
           top: tocSidebar.offset().top,
@@ -156,9 +151,36 @@ var mReflow = function () {
           // padding of footer.
         }
       });
+      // apply scrollspy to #m-toc-sidebar
       $body.scrollspy({
-        target: '.m-toc-sidebar'
+        target: '#m-toc-sidebar'
       });
+
+      /*
+      tocSidebar.on('activate.bs.scrollspy', function (evt) {
+        var el = $(evt.target);
+        if (timestampSideBar > 0 && evt.timeStamp < timestampSideBar + 100) {
+          return false;
+        }
+        timestampSideBar = evt.timeStamp;
+        var container = tocSidebar.find('.mCSB_container');
+        var offsetHeight = 0;
+        var elHeight = container.height();
+
+        var parent = $(el.offsetParent());
+        offsetHeight = el.position().top;
+        while (!parent.hasClass('mCSB_container')) {
+          offsetHeight +=
+            parent.position().top; parent = $(parent.offsetParent());
+        }
+        var offset = offsetHeight; // - (elHeight / 2); //
+        tocSidebar.mCustomScrollbar("scrollTo", el);
+        tocSidebar.mCustomScrollbar("scrollTo", offset);
+        evt.stopImmediatePropagation();
+        return false;
+      });
+      */
+
     }
 
 
@@ -255,7 +277,7 @@ var mReflow = function () {
   }
 
   function initAnchorJs() {
-    if (anchors && $body.hasClass('m-tocsidebar-enabled') || $body.hasClass('m-toctop-enabled')
+    if (anchors && $body.hasClass('m-toc-sidebar-enabled') || $body.hasClass('m-toc-top-enabled')
       || $body.hasClass('m-sidenav-enabled')) {
       anchors.options = {
         placement: 'left',
@@ -270,14 +292,23 @@ var mReflow = function () {
       return;
     }
 
-    function findFirstMenu(navSidebar) {
+    /**
+     * Gets the slug name of first &lt;a&gt; element in nav sidebar.
+     */
+    function findFirstMenu() {
       var href = $('.nav-side-menu a').first();
       return href.attr('slug-name');
     }
-    function hashes(fragment, link) {
-      var hash = '#' + fragment;
-      if (link) {
-        hash += TOC_SEPARATOR + link;
+
+    /**
+     * create a link
+     * @param {*} slugName
+     * @param {*} chapter
+     */
+    function hashes(slugName, chapter) {
+      var hash = '#' + slugName;
+      if (chapter) {
+        hash += TOC_SEPARATOR + chapter;
       }
       return hash;
     }
@@ -285,10 +316,16 @@ var mReflow = function () {
       navSidebar.width(navSidebar.parent().width());
     }
 
+    /**
+     * Split the fragement of url and returns an array containing following info:
+     * - the slugname of section
+     * - the chapter in the section
+     * @param {*} url the url the split
+     */
     function splitUrl(url) {
       var index = url.indexOf(TOC_SEPARATOR, url.indexOf('#'));
       if (index >= 0) {
-        return [url.substring(0, index), url.substring(index + 1)];
+        return [url.substring(0, index), url.substring(index + TOC_SEPARATOR.length)];
       }
       return [url];
     }
@@ -308,30 +345,33 @@ var mReflow = function () {
       }
 
       var item = null;
+      // set the first page in nav sidebar
       if (window.location.hash == '') {
         window.location.hash = hashes(findFirstMenu());
       }
       var hash = window.location.hash;
-      var link = splitUrl(hash);
-      var page = link[0].substring(1);
-      if (link.length > 1) {
-        link = link[1];
+      var chapter = '';
+      var splittedUrl = splitUrl(hash);
+      var section = splittedUrl[0].substring(1);
+      if (splittedUrl.length > 1) {
+        chapter = splittedUrl[1];
       } else {
-        link = null;
+        chapter = null;
       }
 
-      if (page.endsWith('html')) {
-        item = $('.nav-side-menu a[href$="' + page + '"]');
+      // search the item in nav sidebar corresponding to section
+      if (section.endsWith('html')) {
+        item = $('.nav-side-menu a[href$="' + section + '"]');
       } else {
-        item = $('.nav-side-menu a[slug-name$="' + page + '"]');
+        item = $('.nav-side-menu a[slug-name$="' + section + '"]');
       }
-      // item in collapsible element
+      // expand the parent of item if it is sub-section menu.
       var collapsible = item.parents('ul.collapse');
       if (collapsible.length > 0) {
         collapsible.collapse('show');
       }
       var slugName = item.attr('slug-name');
-      window.location.hash = hashes(slugName, link);
+      window.location.hash = hashes(slugName, chapter);
       var href = item.attr('href').substring(1);
       loadFrame(href, slugName);
 
@@ -359,8 +399,8 @@ var mReflow = function () {
       $window.trigger('hashchange');
     }
 
-    // select first menu item on show collapse
-    if ($body.hasClass('m-sidenav-select-oncollapase')) {
+    // select first menu item on expand
+    if ($body.hasClass('m-sidenav-select-onexpand')) {
       navSidebar.on('shown.bs.collapse', function (ev) {
         var el = $(ev.target);
         // break if have already active item

@@ -54,10 +54,10 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         }
         switch (type) {
             case "sidebar":
-                toc = createSidebarToc(config);
+                toc = createTocSidebar(config);
                 break;
             case "top":
-                toc = createTopToc(config);
+                toc = createTocTopBar(config);
                 break;
             default:
                 // create a disabled empty toc
@@ -75,16 +75,17 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         return toc;
     }
 
-    private static Toc<?> createTopToc(final SkinConfigTool config) {
-        return new TopToc().withEnabled(true)
+    private static Toc<?> createTocTopBar(final SkinConfigTool config) {
+        return new TocTopBar().withEnabled(true)
                 .withFlatten(config.getConfigValue("tocTopFlatten", Boolean.class, false))
                 .withTopMax(config.getConfigValue("tocTopMax", Integer.class, -1));
     }
 
-    private static Toc<?> createSidebarToc(final SkinConfigTool config) {
+    private static Toc<?> createTocSidebar(final SkinConfigTool config) {
         final String position = config.getConfigAttribute("toc", "type", String.class, "fixed").toLowerCase();
-        return new SidebarToc().withEnabled(true)
-                .withCollapsed(config.getConfigAttribute("toc", "collapsed", Boolean.class, true))
+        return new TocSidebar().withEnabled(true)
+                .withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
+                .withAutoExpandable(config.getConfigAttribute("toc", "auto-expandable", Boolean.class, true))
                 .withFixed("fixed".equals(position));
     }
 

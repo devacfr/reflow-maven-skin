@@ -20,7 +20,7 @@
           </sections>
         </index>
         <config>
-          <toc collapsed="false">sidebar</toc>
+          <toc expanded="false">sidebar</toc>
         </config>
         <layouts>
           <toc>false</toc>
@@ -89,7 +89,7 @@
           <toc>sidebar</toc>
         </toc-sidebar>
         <reflow-documentation type="doc">
-          <menu name="Reflow Documentation" selectOnCollapse="false">
+          <menu name="Reflow Documentation" selectOnExpand="true">
             <item name="Configuration" href="config.html" icon="fa fa-tachometer fa-fw"/>
             <item name="Layouts" icon="fa fa-clone fa-fw">
               <item name="Overview" href="layouts.html"/>

@@ -228,146 +228,12 @@
         *# />#*
     *##end##
 #end##
-##
+
 #**
- * output top table fo content
- *##macro( renderTopToc )
-    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")
-    <hr class="toc-separator" />
-    <div id="toc-bar" class="navbar navbar-default" data-spy="affix">
-      <div id="toc-scroll-target" class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#toc-nav-collapse" aria-expanded="false">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-            </div> <!-- .navbar-header -->
-        <div class="collapse navbar-collapse" id="toc-nav-collapse">
-          <ul id="toc" class="nav navbar-nav">
-            ## display Table of Contents in a top bar
-            #renderTopTocItems ( $tocItems )
-          </ul>
-        </div>
-      </div> <!-- .container -->
-    </div> <!-- end: toc-bar -->
-    #end
- #end
- 
-#**
- * Outputs the top Table of Contents ( subnav )
- *
- *##macro ( renderTopTocItems $topItems )
-    #set ( $tocMax = $pageContext.toc.topMax )#*
-    ## check if we flatten the first 2 levels of ToC:
-    *##set ( $flattenConfig = $pageContext.toc.flatten )#*
-    *##if ( !$flattenConfig )#*
-        flatten config not available - calculate if need flattening:
-        only flatten if the top level has not more than 2 elements
-        *##set ( $topItemsCount = $topItems.size() )#*
-        *##set ( $flattenLevel2 = $topItemsCount <= 2 )#*
-    *##elseif ( "true" == $flattenConfig.getValue() )#*
-        *##set ( $flattenLevel2 = true )#*
-    *##else#*
-        *##set ( $flattenLevel2 = false )#*
-    *##end#*
-    ## count items at top and the next level that will be displayed in the ToC bar
-    *##set ( $tocBarItems = [] )#*
-    *##set ( $tocBarMaxItems = [] )#*
-
-    *##set ( $tocCount = 0 )#*
-    *##foreach ( $topItem in $topItems )#*
-
-        *##if ( ($tocCount < $tocMax) || ($tocMax < 0) )#*
-            ## only add items if not after the maximum
-            *##call ( $tocBarItems.add( $topItem ) )#*
-            *##set ( $topInMax = false )#*
-        *##else#*
-            *##call ( $tocBarMaxItems.add( $topItem ) )#*
-            *##set ( $topInMax = true )#*
-        *##end#*
-
-        *##set ( $tocCount = $tocCount + 1 )#*
-
-        ## if level 2 is flattened, traverse for subitems
-        *##if ( $flattenLevel2 )#*
-
-            *##foreach ( $item in $topItem.items )#*
-
-                *##if ( ($tocCount < $tocMax) || ($tocMax < 0) )#*
-                    ## only add subitems if not after the maximum
-                    *##call ( $tocBarItems.add( $item ) )#*
-                *##elseif ( !$topInMax )#*
-                    ## top is not in the max - so add these directly to the max
-                    *##call ( $tocBarMaxItems.add( $item ) )#*
-                *##end#*
-                *##set ( $tocCount = $tocCount + 1 )#*
-            *##end#*
-        *##end#*
-    *##end#*
-
-    ## count items at top and the next level that will be displayed in the ToC bar
-    *##set ( $tocCount = 0 )#*
-    *##set ( $tocDivider = false )#*
-
-    *##foreach ( $topItem in $tocBarItems )#*
-        *##if ( $topItems.contains( $topItem ) && $tocDivider )##
-                        <li class="divider-vertical"></li>
-#*      *##end#*
-        *##if ( $topItem.items.isEmpty() )##
-                        <li class="toplevel"><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
-#*      *##elseif ( $topItems.contains( $topItem ) && $flattenLevel2 )##
-            ## top level item, but flattened: put it as a link, because its children are also in top bar
-                        <li class="toplevel"><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
-#*      *##else##
-                        <li class="dropdown">
-                            <a href="#$topItem.id" title="$topItem.text" class="dropdown-toggle" role="button" data-toggle="dropdown">$topItem.text <b class="caret"></b></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
-                                <li><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
-                                <li class="divider"></li>
-                              #renderTopTocDropdown ( $topItem.items )
-                            </ul>
-                        </li>
-#*      *##end#*
-        *##set ( $tocDivider = true )#*
-    *##end#*
-
-    *##if ( $tocBarMaxItems.size() > 0 )##
-        ## put the max items into an extra dropdown
-        <li class="divider-vertical"></li>
-        <li class="dropdown">
-            <a href="#" title="More&hellip;" class="dropdown-toggle" role="button" data-toggle="dropdown">&hellip; <b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
-#*              *##renderTopTocDropdown ( $tocBarMaxItems )##
-            </ul>
-        </li>
-#*  *##end##
-#end##
-##
-#**
- * Recursively outputs the contents of top bar ToC dropdown item
- *
+ * Render Banner
  *#
-#macro ( renderTopTocDropdown $items )#*
-
-    *##foreach ( $subitem in $items )#*
-        *##if ($subitem.items.isEmpty())##
-                <li><a href="#$subitem.id" title="$subitem.text">$subitem.text</a></li>
-#*      *##else##
-                <li class="dropdown-submenu">
-                    <a href="#$subitem.id" title="$subitem.text">$subitem.text</a>
-                    <ul class="dropdown-menu" role="menu">
-#*                      *##renderTopTocDropdown ( $subitem.items )##
-                    </ul>
-                </li>
-#*      *##end#*
-    *##end#*
-
-*##end##
-
 #macro( renderBanner )#*
-    *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name || 
+    *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name ||
         $decoration.bannerLeft.src || $decoration.bannerLeft.href ) || $decoration.bannerRight )
       <div class="jumbotron subhead">
         <div class="row" id="banner">
@@ -423,56 +289,6 @@
 #*  *##end
 #end
 #**
- * Outputs ToC sidebar contents.
- * Does not do anything if ToC sidebar has already been added.
- *
- *##macro ( renderTocSidebar )
-    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")
-        #if ( !$tocSidebarAdded )##
-            #set ( $isFixed = $pageContext.toc.fixed)
-            <div class="m-toc-sidebar-container hidden-print hidden-xs hidden-sm #{if}(${pageContext.toc.collapsed})nav-collapsible#{end}" #if ( $isFixed) data-spy="affix" #end>
-                <nav class="m-toc-sidebar">
-                   #renderAsideTocMenu ( $tocItems )
-               </nav>
-           </div>
-#*          *##set ( $tocSidebarAdded = true )#*
-        *##end##  
-    #end
-#end##
-##
-#**
- * Outputs Table of Contents into a list menu
- *
- *##macro ( renderAsideTocMenu $menus )##
-##
-                <ul class="m-nav--sidebar nav">
-#*  *##foreach ( $item in $menus )
-        #renderAsideTocItem ( $item )
-    #end##
-                </ul>
-#end##
-##
-#**
- * Recursively outputs ToC item and its children
- *
- *##macro ( renderAsideTocItem $item )##
-    #set( $href = ${item.id} )
-    <li class="${item.tagName}">
-        <a href="#${href}" title="${item.text}">$item.text</a>
-    </li>    
-#*  *##if ( $item.items.size() > 0 )##
-    #if ($item.headingLevel > 1)##
-    <ul class="nav nav-collapsible">
-    #end##
-#*      *##foreach ( $subitem in $item.items )
-            #renderAsideTocItem ( $subitem )
-#*      *##end##
-    #if ($item.headingLevel > 1)##
-    </ul>   
-    #end##
-#*  *##end
-#end
-#**
  * Render NavSideMenu web element page
  *
  *##macro( renderNavSideMenu )##
@@ -482,7 +298,7 @@
 #*      *##if( $config.context.menu.hasItems )##
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
-#*              *##set ( $counterMenu = 1)##                  
+#*              *##set ( $counterMenu = 1)##
 #*              *##foreach ( $item in $config.context.menu.items )##
 #*                  *##set ( $itemId = "m-navbar-menu_"+ $counterMenu)##
                 <li #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" class="collapsed" #end>
@@ -839,31 +655,6 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-#end##
-##
-#**
- * Renders copyright year (inception-currentDate) and organization.
- *
- *##macro ( copyright )#*
-
-    *##if ( $project )#*
-        *##set ( $currentYear = ${currentDate.year} + 1900 )#*
-
-        *##if ( ${project.inceptionYear} && ( ${project.inceptionYear} != ${currentYear.toString()} ) )#*
-            *#${project.inceptionYear}-${currentYear}#*
-        *##else#*
-            *#${currentYear}#*
-        *##end#*
-
-        *##if ( ${project.organization} && ${project.organization.name} )#*
-            *##if ( ${project.organization.url} )##
-                 <a href="$project.organization.url">${project.organization.name}</a>
-#*
-            *##else#*
-                *#${project.organization.name}#*
-            *##end#*
-        *##end#*
-    *##end##
 #end##
 ##
 #**

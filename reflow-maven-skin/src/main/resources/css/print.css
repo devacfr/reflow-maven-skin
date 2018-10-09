@@ -1,8 +1,8 @@
 .navbar,
 .breadcrumb,
 .toc-separator
-#toc-bar,
-.m-toc-sidebar-container,
+#m-toc-topbar,
+#m-toc-sidebar,
 footer,
 .subfooter {
 	display: none !important;

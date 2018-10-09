@@ -34,7 +34,7 @@ public class SideNavMenu extends PageElement {
 
     private List<SideNavMenuItem> items;
 
-    private boolean selectOnCollapse = false;
+    private boolean selectOnExpand = false;
 
     public static SideNavMenu createSideNavMenu(final SkinConfigTool config) {
         final Xpp3Dom pageNode = config.getPageProperties();
@@ -46,7 +46,7 @@ public class SideNavMenu extends PageElement {
         final List<SideNavMenuItem> items = new ArrayList<>();
         final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name"))
                 .withItems(items)
-                .withSelectOnCollapse(config.getConfigAttribute("menu", "selectOnCollapse", Boolean.class, false));
+                .withSelectOnExpand(config.getConfigAttribute("menu", "selectOnExpand", Boolean.class, false));
         addMenuItemRecursively(items, menu, pageName, false);
         return documentMenu;
     }
@@ -82,8 +82,8 @@ public class SideNavMenu extends PageElement {
     public String getCssClass() {
         String css = "m-sidenav-enabled";
 
-        if (isSelectOnCollapse()) {
-            css += " m-sidenav-select-oncollapase";
+        if (isSelectOnExpand()) {
+            css += " m-sidenav-select-onexpand";
         }
         return css;
     }
@@ -118,16 +118,16 @@ public class SideNavMenu extends PageElement {
         return this;
     }
 
-    public boolean isSelectOnCollapse() {
-        return selectOnCollapse;
+    public boolean isSelectOnExpand() {
+        return selectOnExpand;
     }
 
-    public void setSelectOnCollapse(final boolean selectOnCollapse) {
-        this.selectOnCollapse = selectOnCollapse;
+    public void setSelectOnExpand(final boolean selectOnExpand) {
+        this.selectOnExpand = selectOnExpand;
     }
 
-    public SideNavMenu withSelectOnCollapse(final boolean selectOnCollapse) {
-        setSelectOnCollapse(selectOnCollapse);
+    public SideNavMenu withSelectOnExpand(final boolean selectOnExpand) {
+        setSelectOnExpand(selectOnExpand);
         return this;
     }
 

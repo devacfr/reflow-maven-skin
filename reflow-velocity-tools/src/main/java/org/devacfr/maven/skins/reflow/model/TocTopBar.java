@@ -15,7 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-public class TopToc extends Toc<TopToc> {
+public class TocTopBar extends Toc<TocTopBar> {
 
     /** no <tocTopFlatten> element (default) - flatten if single top heading */
     private boolean flatten = false;
@@ -23,13 +23,13 @@ public class TopToc extends Toc<TopToc> {
     /** -1 or no <tocTopMax> element (default) - unlimited */
     private int topMax = -1;
 
-    public TopToc() {
+    public TocTopBar() {
         super("top");
     }
 
     @Override
     public String getCssClass() {
-        return isEnabled() ? "m-toctop-enabled" : "";
+        return isEnabled() ? "m-toc-top-enabled" : "";
     }
 
     public boolean isFlatten() {
@@ -40,7 +40,7 @@ public class TopToc extends Toc<TopToc> {
         this.flatten = flatten;
     }
 
-    public TopToc withFlatten(final boolean flatten) {
+    public TocTopBar withFlatten(final boolean flatten) {
         setFlatten(flatten);
         return self();
     }
@@ -53,7 +53,7 @@ public class TopToc extends Toc<TopToc> {
         this.topMax = topMax;
     }
 
-    public TopToc withTopMax(final int topMax) {
+    public TocTopBar withTopMax(final int topMax) {
         setTopMax(topMax);
         return self();
     }

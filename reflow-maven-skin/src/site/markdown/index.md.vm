@@ -109,11 +109,11 @@ options are [described in the documentation][doc]. A sample configuration file i
             <toc>false</toc>
             <sections>
                 <thumbs>3</thumbs>
-                <body />                
+                <body />
             </sections>
         </overview>
         <documentation type="doc">
-          <menu name="Documentation" selectOnCollapse="false">
+          <menu name="Documentation" selectOnExpand="false">
             <item name="Overview" href="overview.html"/>
             <item name="Installation">
               <item name="Standalone Installation" href="standalone-installation.html"/>

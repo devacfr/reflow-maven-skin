@@ -58,7 +58,7 @@ import org.jsoup.parser.Tag;
 public class HtmlTool extends SafeConfig {
 
     /** prefix heading id associated to table of contents. */
-    private static final String SEPARATOR_TOC = ".";
+    private static final String SEPARATOR_TOC = "_toc_";
 
     /** A list of all HTML heading classes (h1-6). */
     private static final List<String> HEADINGS = Collections

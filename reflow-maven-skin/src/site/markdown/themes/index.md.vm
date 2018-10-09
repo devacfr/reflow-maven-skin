@@ -66,7 +66,7 @@ There are several options for the `<theme>` value:
 
 $h3 [Cerulean][theme-cerulean]
 
-[![Cerulean Bootswatch theme](../images/bootswatch-cerulean.png)][theme-cerulean]
+[![Cerulean Bootswatch theme](images/bootswatch-cerulean.png)][theme-cerulean]
 
 ```xml
 <theme>bootswatch-cerulean</theme>
@@ -77,7 +77,7 @@ $h3 [Cerulean][theme-cerulean]
 
 $h3 [Cosmo][theme-cosmo]
 
-[![Cosmo Bootswatch theme](../images/bootswatch-cosmo.png)][theme-cosmo]
+[![Cosmo Bootswatch theme](images/bootswatch-cosmo.png)][theme-cosmo]
 
 ```xml
 <theme>bootswatch-cosmo</theme>
@@ -88,7 +88,7 @@ $h3 [Cosmo][theme-cosmo]
 
 $h3 [Cyborg][theme-cyborg]
 
-[![Cyborg Bootswatch theme](../images/bootswatch-cyborg.png)][theme-cyborg]
+[![Cyborg Bootswatch theme](images/bootswatch-cyborg.png)][theme-cyborg]
 
 ```xml
 <theme>bootswatch-cyborg</theme>
@@ -100,7 +100,7 @@ $h3 [Cyborg][theme-cyborg]
 
 $h3 [Darkly][theme-darkly]
 
-[![Darkly Bootswatch theme](../images/bootswatch-darkly.png)][theme-darkly]
+[![Darkly Bootswatch theme](images/bootswatch-darkly.png)][theme-darkly]
 
 ```xml
 <theme>bootswatch-darkly</theme>
@@ -111,7 +111,7 @@ $h3 [Darkly][theme-darkly]
 
 $h3 [Flatly][theme-flatly]
 
-[![Flatly Bootswatch theme](../images/bootswatch-flatly.png)][theme-flatly]
+[![Flatly Bootswatch theme](images/bootswatch-flatly.png)][theme-flatly]
 
 ```xml
 <theme>bootswatch-flatly</theme>
@@ -122,7 +122,7 @@ $h3 [Flatly][theme-flatly]
 
 $h3 [Journal][theme-journal]
 
-[![Journal Bootswatch theme](../images/bootswatch-journal.png)][theme-journal]
+[![Journal Bootswatch theme](images/bootswatch-journal.png)][theme-journal]
 
 ```xml
 <theme>bootswatch-journal</theme>
@@ -131,7 +131,7 @@ $h3 [Journal][theme-journal]
 
 $h3 [Lumen][theme-lumen]
 
-[![Lumen Bootswatch theme](../images/bootswatch-lumen.png)][theme-lumen]
+[![Lumen Bootswatch theme](images/bootswatch-lumen.png)][theme-lumen]
 
 ```xml
 <theme>bootswatch-lumen</theme>
@@ -142,7 +142,7 @@ $h3 [Lumen][theme-lumen]
 
 $h3 [Paper][theme-paper]
 
-[![Paper Bootswatch theme](../images/bootswatch-paper.png)][theme-paper]
+[![Paper Bootswatch theme](images/bootswatch-paper.png)][theme-paper]
 
 ```xml
 <theme>bootswatch-paper</theme>
@@ -154,7 +154,7 @@ $h3 [Paper][theme-paper]
 [theme-journal]: bootswatch-journal.html
 $h3 [Readable][theme-readable]
 
-[![Readable Bootswatch theme](../images/bootswatch-readable.png)][theme-readable]
+[![Readable Bootswatch theme](images/bootswatch-readable.png)][theme-readable]
 
 ```xml
 <theme>bootswatch-readable</theme>
@@ -165,7 +165,7 @@ $h3 [Readable][theme-readable]
 
 $h3 [Sandstone][theme-sandstone]
 
-[![Sandstone Bootswatch theme](../images/bootswatch-sandstone.png)][theme-sandstone]
+[![Sandstone Bootswatch theme](images/bootswatch-sandstone.png)][theme-sandstone]
 
 ```xml
 <theme>bootswatch-sandstone</theme>
@@ -176,7 +176,7 @@ $h3 [Sandstone][theme-sandstone]
 
 $h3 [Simplex][theme-simplex]
 
-[![Simplex Bootswatch theme](../images/bootswatch-simplex.png)][theme-simplex]
+[![Simplex Bootswatch theme](images/bootswatch-simplex.png)][theme-simplex]
 
 ```xml
 <theme>bootswatch-simplex</theme>
@@ -187,7 +187,7 @@ $h3 [Simplex][theme-simplex]
 
 $h3 [Slate][theme-slate]
 
-[![Slate Bootswatch theme](../images/bootswatch-slate.png)][theme-slate]
+[![Slate Bootswatch theme](images/bootswatch-slate.png)][theme-slate]
 
 ```xml
 <theme>bootswatch-slate</theme>
@@ -198,7 +198,7 @@ $h3 [Slate][theme-slate]
 
 $h3 [Solar][theme-solar]
 
-[![Solar Bootswatch theme](../images/bootswatch-solar.png)][theme-solar]
+[![Solar Bootswatch theme](images/bootswatch-solar.png)][theme-solar]
 
 ```xml
 <theme>bootswatch-solar</theme>
@@ -209,7 +209,7 @@ $h3 [Solar][theme-solar]
 
 $h3 [Spacelab][theme-spacelab]
 
-[![Spacelab Bootswatch theme](../images/bootswatch-spacelab.png)][theme-spacelab]
+[![Spacelab Bootswatch theme](images/bootswatch-spacelab.png)][theme-spacelab]
 
 ```xml
 <theme>bootswatch-spacelab</theme>
@@ -220,7 +220,7 @@ $h3 [Spacelab][theme-spacelab]
 
 $h3 [Superhero][theme-superhero]
 
-[![Superhero Bootswatch theme](../images/bootswatch-superhero.png)][theme-superhero]
+[![Superhero Bootswatch theme](images/bootswatch-superhero.png)][theme-superhero]
 
 ```xml
 <theme>bootswatch-superhero</theme>
@@ -231,7 +231,7 @@ $h3 [Superhero][theme-superhero]
 
 $h3 [United][theme-united]
 
-[![United Bootswatch theme](../images/bootswatch-united.png)][theme-united]
+[![United Bootswatch theme](images/bootswatch-united.png)][theme-united]
 
 ```xml
 <theme>bootswatch-united</theme>
@@ -242,7 +242,7 @@ $h3 [United][theme-united]
 
 $h3 [Yeti][theme-yeti]
 
-[![Yeti Bootswatch theme](../images/bootswatch-yeti.png)][theme-yeti]
+[![Yeti Bootswatch theme](images/bootswatch-yeti.png)][theme-yeti]
 
 ```xml
 <theme>bootswatch-yeti</theme>
