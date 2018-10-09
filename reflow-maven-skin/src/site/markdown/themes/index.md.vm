@@ -72,7 +72,7 @@ $h3 [Cerulean][theme-cerulean]
 <theme>bootswatch-cerulean</theme>
 ```
 
-[theme-cerulean]: bootswatch-cerulean.html
+[theme-cerulean]: themes/bootswatch-cerulean.html
 
 
 $h3 [Cosmo][theme-cosmo]
@@ -83,7 +83,7 @@ $h3 [Cosmo][theme-cosmo]
 <theme>bootswatch-cosmo</theme>
 ```
 
-[theme-cosmo]: bootswatch-cosmo.html
+[theme-cosmo]: themes/bootswatch-cosmo.html
 
 
 $h3 [Cyborg][theme-cyborg]
@@ -94,7 +94,7 @@ $h3 [Cyborg][theme-cyborg]
 <theme>bootswatch-cyborg</theme>
 ```
 
-[theme-cyborg]: bootswatch-cyborg.html
+[theme-cyborg]: themes/bootswatch-cyborg.html
 
 
 
@@ -106,7 +106,7 @@ $h3 [Darkly][theme-darkly]
 <theme>bootswatch-darkly</theme>
 ```
 
-[theme-darkly]: bootswatch-darkly.html
+[theme-darkly]: themes/bootswatch-darkly.html
 
 
 $h3 [Flatly][theme-flatly]
@@ -117,7 +117,7 @@ $h3 [Flatly][theme-flatly]
 <theme>bootswatch-flatly</theme>
 ```
 
-[theme-flatly]: bootswatch-flatly.html
+[theme-flatly]: themes/bootswatch-flatly.html
 
 
 $h3 [Journal][theme-journal]
@@ -128,6 +128,7 @@ $h3 [Journal][theme-journal]
 <theme>bootswatch-journal</theme>
 ```
 
+[theme-journal]: themes/bootswatch-journal.html
 
 $h3 [Lumen][theme-lumen]
 
@@ -137,7 +138,7 @@ $h3 [Lumen][theme-lumen]
 <theme>bootswatch-lumen</theme>
 ```
 
-[theme-lumen]: bootswatch-lumen.html
+[theme-lumen]: themes/bootswatch-lumen.html
 
 
 $h3 [Paper][theme-paper]
@@ -148,10 +149,9 @@ $h3 [Paper][theme-paper]
 <theme>bootswatch-paper</theme>
 ```
 
-[theme-paper]: bootswatch-paper.html
+[theme-paper]: themes/bootswatch-paper.html
 
 
-[theme-journal]: bootswatch-journal.html
 $h3 [Readable][theme-readable]
 
 [![Readable Bootswatch theme](images/bootswatch-readable.png)][theme-readable]
@@ -182,7 +182,7 @@ $h3 [Simplex][theme-simplex]
 <theme>bootswatch-simplex</theme>
 ```
 
-[theme-simplex]: bootswatch-simplex.html
+[theme-simplex]: themes/bootswatch-simplex.html
 
 
 $h3 [Slate][theme-slate]
@@ -193,7 +193,7 @@ $h3 [Slate][theme-slate]
 <theme>bootswatch-slate</theme>
 ```
 
-[theme-slate]: bootswatch-slate.html
+[theme-slate]: themes/bootswatch-slate.html
 
 
 $h3 [Solar][theme-solar]
@@ -204,7 +204,7 @@ $h3 [Solar][theme-solar]
 <theme>bootswatch-solar</theme>
 ```
 
-[theme-solar]: bootswatch-solar.html
+[theme-solar]: themes/bootswatch-solar.html
 
 
 $h3 [Spacelab][theme-spacelab]
@@ -215,7 +215,7 @@ $h3 [Spacelab][theme-spacelab]
 <theme>bootswatch-spacelab</theme>
 ```
 
-[theme-spacelab]: bootswatch-spacelab.html
+[theme-spacelab]: themes/bootswatch-spacelab.html
 
 
 $h3 [Superhero][theme-superhero]
@@ -226,7 +226,7 @@ $h3 [Superhero][theme-superhero]
 <theme>bootswatch-superhero</theme>
 ```
 
-[theme-superhero]: bootswatch-superhero.html
+[theme-superhero]: themes/bootswatch-superhero.html
 
 
 $h3 [United][theme-united]
@@ -237,7 +237,7 @@ $h3 [United][theme-united]
 <theme>bootswatch-united</theme>
 ```
 
-[theme-united]: bootswatch-united.html
+[theme-united]: themes/bootswatch-united.html
 
 
 $h3 [Yeti][theme-yeti]
@@ -248,7 +248,7 @@ $h3 [Yeti][theme-yeti]
 <theme>bootswatch-yeti</theme>
 ```
 
-[theme-yeti]: bootswatch-yeti.html
+[theme-yeti]: themes/bootswatch-yeti.html
 
 
 $h3 [And more..][bootswatch-gallery]

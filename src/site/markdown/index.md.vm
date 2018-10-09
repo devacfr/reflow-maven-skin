@@ -36,9 +36,9 @@ support per-page configurations and more!
 
 [bootswatch]: http://bootswatch.com
 [bootstrap]: http://getbootstrap.com
-[themes]: skin/themes/
-[reflow-layouts]: skin/layouts.html
-[reflow-misc]: skin/misc.html
+[themes]: skin/reflow-documentation.html#themes-index
+[reflow-layouts]: skin/reflow-documentation.html#layouts.html
+[reflow-misc]: skin/reflow-documentation.html#misc.html
 [reflow-tools]: reflow-velocity-tools/
 
 
@@ -97,7 +97,7 @@ to give an easy makeover for your Maven site.
 [How to select a theme &raquo;][themes]
 
 [bootstrap-custom]: http://twitter.github.com/bootstrap/customize.html
-[reflow-multi]: skin/multi-module.html
+[reflow-multi]: skin/reflow-documentation.html#multi-module.html
 
 
 $h2 Configure
@@ -114,7 +114,7 @@ enhancements enabled using [configuration in `site.xml`][reflow-config]:
 Check out the [documentation][reflow-config] for all the features. Every configuration option
 can be applied on a _per-page_ basis!
 
-[reflow-config]: skin/config.html
+[reflow-config]:  skin/reflow-documentation.html#config.html
 
 
 ---
