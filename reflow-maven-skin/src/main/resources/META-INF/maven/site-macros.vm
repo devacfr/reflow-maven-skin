@@ -130,42 +130,8 @@
   *##if ( $name && '' != $name )#*
       *# class="$name" #*
   *##end#*
-*##end#*
- *
- * Creates dropdown menu items
- *
- *##macro ( topMenu $menus )#*
-
-    *##foreach ( $menu in $menus )#*
-
-      *##if ( $menu.name )#*
-            ## check if one of the subtree items is the current one
-            *##set ( $displayTree = false )#*
-          *##displayTree ( $menu )##
-            <li class="dropdown#if ( $displayTree ) active#end">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">$menu.name <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-#*          *##foreach ( $item in $menu.items )#*
-              *##activeLink ( $item.href )#*
-              *##if ($item.items.isEmpty())##
-                    <li #classAttr( $activeClass )>#link ( $relativeLink $item.name $item.target )</li>
-#*              *##else##
-                    <li class="dropdown-submenu $activeClass">
-#*                  *##link ( $relativeLink $item.name $item.target )##
-                    <ul class="dropdown-menu">
-#*                  *##foreach ($subitem in $item.items)#*
-                      *##activeLink ( $subitem.href )##
-                        <li #classAttr( $activeClass )>#link ( $relativeLink $subitem.name $subitem.target )</li>
-#*                  *##end##
-                    </ul>
-                </li>
-#*              *##end#*
-          *##end##
-            </ul>
-        </li>
-#*      *##end#*
-  *##end#*
-*##end#*
+*##end##
+#*
  *
  * Outputs a list of links
  *
@@ -227,41 +193,6 @@
             *##if ( $height ) height="$height" #end#*
         *# />#*
     *##end##
-#end##
-#**
- * Render NavSideMenu web element page
- *
- *##macro( renderNavSideMenu )##
-    <div class="nav-side-menu hidden-print" data-spy="affix">
-        <div class="brand">$config.context.menu.name</div>
-        <i class="toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-#*      *##if( $config.context.menu.hasItems )##
-        <div class="menu-list">
-            <ul id="menu-content" class="menu-content collapse out">
-#*              *##set ( $counterMenu = 1)##
-#*              *##foreach ( $item in $config.context.menu.items )##
-#*                  *##set ( $itemId = "m-navbar-menu_"+ $counterMenu)##
-                <li #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" class="collapsed" #end>
-                  <a #if( !$item.hasItems ) href="#${item.href}" slug-name="${item.slugName}" #{else}href="#"#{end}>
-                    #if ( ${item.icon} )<i class="${item.icon}" aria-hidden="true"></i>#{end}&nbsp;
-                    $item.name
-#*                  *##if( $item.hasItems)##
-                        <span class="arrow"></span>
-#*                  *##end##
-                  </a>
-                </li>
-#*              *##if( $item.hasItems)##
-                    <ul class="sub-menu collapse" id="$itemId">
-#*                      *##foreach ( $subItem in $item.items )##
-                        <li><a href="#${subItem.href}" slug-name="${subItem.slugName}">${subItem.name}</a></li>
-#*                      *##end##
-                    </ul>
-#*                  *##end##
-#*              *##end##
-            </ul>
-        </div>
-#*      *##end##
-    </div>
 #end##
 ##
 #**
@@ -409,63 +340,6 @@
     </div>
 #end##
 ##
-#**
- * Outputs navbar
- *
- *##macro ( navbar )##
-    <div id="m-top-navbar" class="navbar #if ( $config.is( "navbarInverse" ) ) navbar-inverse #else navbar-default#end navbar-fixed-top">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#top-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-##
-  ## Insert brand if it is available
-#*  *##if ( $config.brand )#*
-
-      *##if ( $config.brand.getChild( 'name' ) )#*
-          *##set ( $brandName = $config.brand.getChild( 'name' ).getValue() )#*
-      *##else#*
-          *##set ( $brandName = $defaultProjectName )#*
-      *##end#*
-
-      *##if ( $config.brand.getChild( 'href' ) )#*
-          *##currentFileRelativeLink ( $config.brand.getChild( 'href' ).getValue() )##
-      <a class="navbar-brand" href="$currentFileRelativeLink">$brandName</a>
-#*      *##else##
-      <div class="navbar-brand">$brandName</div>
-#*      *##end#*
-  *##end##
-##
-        </div> <!-- .navbar-header -->
-        <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-#*
-  *##if ( $decoration.body.links )#*
-      *##links ( $decoration.body.links )#*
-  *##end#*
-
-  *##if ( $decoration.body.menus )#*
-    ## filter menus into the list if <topNav>regex<topNav> is configured
-      *##if ( $config.topNav )#*
-          *##filterMenus ( $decoration.body.menus, $config.topNav.getValue() )#*
-      *##else#*
-          *##set ( $filterMenus = $decoration.body.menus )#*
-      *##end#*
-
-      *##topMenu ( $filterMenus )#*
-  *##end##
-##
-            </ul>
-        </div><!--/.nav-collapse -->
-      </div> <!--/.container -->
-    </div> <!--/.navbar -->
-#end##
 ##
 #**
  * Outputs subsections into a sidebar one after another
@@ -526,7 +400,6 @@
  * Recursively checks if any of the submenu items is the current one
  *
  *##macro ( displayTree $item )#*
-
     *##if ( $item && $item.items && $item.items.size() > 0 )#*
         *##foreach ( $subitem in $item.items )#*
             *##activeLink ( $subitem.href )#*

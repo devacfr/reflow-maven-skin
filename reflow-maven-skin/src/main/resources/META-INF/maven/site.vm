@@ -16,6 +16,8 @@
 #parse( "site-macros.vm" )##
 #parse( "components/banner.vm" )##
 #parse( "components/breadcrumbs.vm" )##
+#parse( "components/nav-side-menu.vm" )##
+#parse( "components/navbar.vm" )##
 #parse( "components/scroll-top.vm" )##
 #parse( "components/thumbnails.vm" )##
 #parse( "components/toc-topbar.vm" )##

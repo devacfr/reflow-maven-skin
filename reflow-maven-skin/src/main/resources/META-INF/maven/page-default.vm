@@ -227,7 +227,7 @@
 ##
 ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
 <body class="page-${config.fileId} project-${config.projectId} ${config.context.cssClass}">
-#navbar ()
+#renderNavbar ()
 #if( $pageType == "doc")
     #parse( "body-doc.vm")
 #else
