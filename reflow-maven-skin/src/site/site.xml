@@ -33,7 +33,7 @@
         </themes-index>
         <themes-bootswatch-cerulean>
           <theme>bootswatch-cerulean</theme>
-          <toc offsetTop="225">top</toc>
+          <toc>top</toc>
         </themes-bootswatch-cerulean>
         <themes-bootswatch-cosmo>
           <theme>bootswatch-cosmo</theme>
@@ -58,7 +58,7 @@
         </themes-bootswatch-paper>
         <themes-bootswatch-readable>
           <theme>bootswatch-readable</theme>
-          <toc offsetTop="250">top</toc>
+          <toc>top</toc>
         </themes-bootswatch-readable>
         <themes-bootswatch-simplex>
           <theme>bootswatch-simplex</theme>
