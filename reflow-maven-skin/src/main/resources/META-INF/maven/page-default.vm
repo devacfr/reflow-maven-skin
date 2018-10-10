@@ -162,23 +162,15 @@
 
       *##if ( $bootswatchTheme )#*
           *##set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )#*
-          *##set ( $bootstrapCssResponsivePath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootswatchVersion}/css" )#*
-          *##set ( $bootstrapCssCombined = false )#*
       *##else#*
           *##set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )#*
-          *##set ( $bootstrapCssCombined = true )#*
       *##end#*
 
       *##set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )#*
-
   *##end
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
-#*      *##if ( !$bootstrapCssCombined )#*
-      *### if Bootstrap CSS is not combined, add bootstrap-responsive CSS ##
-    <link href="$bootstrapCssResponsivePath/bootstrap-responsive.min.css" rel="stylesheet" />
-#*      *##end#*
-      *##if ( $bootswatchTheme )#*
+#*      *##if ( $bootswatchTheme )#*
         ## for Bootswatch themes, add bootswatch.css *#
     <link href="$resourcePath/css/bootswatch.css" rel="stylesheet" />
 #*      *##else##
