@@ -150,24 +150,6 @@ marked, use the `<markPageHeader>` flag:
 -   **false** - Page content is unchanged
 
 
-## Protocol-relative URLs
-
-By default, a number of core resources are loaded from the cloud. Bootstrap, JQuery,
-Bootstrap themes and other components are not local to the website, but loaded from
-corresponding Content Delivery Networks. This reduces the load on the server and improves
-latency for users, who may have these resources already cached.
-
-To support both `http://` and `https://` websites, these resources can be referenced
-using [protocol-relative URLs][protocol-url], starting with `//`. However, this is not supported
-when building the website locally, for `file://` URLs.
-
-For this reason, the protocol-relative URLs are disabled by default. Enable them using
-`<protocolRelativeURLs>` flag:
-
-```xml
-<protocolRelativeURLs>true|false</protocolRelativeURLs>
-```
-
 -   **true** - Bootstrap CSS, JS and other resources are referenced using protocol-relative
     URLs: `//`
 -   **false (default)** - Resources are referenced using `http://` protocol

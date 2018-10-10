@@ -22,8 +22,6 @@
   </skin>
   <custom>
     <reflowSkin>
-      <!-- Make this to 'false' for local development, i.e. file:// URLs -->
-      <protocolRelativeURLs>true</protocolRelativeURLs>
       <smoothScroll>true</smoothScroll>
       <theme>default</theme>
       <highlightJs>true</highlightJs>
