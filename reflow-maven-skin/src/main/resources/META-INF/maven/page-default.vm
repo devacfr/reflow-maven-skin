@@ -132,42 +132,39 @@
       *##set ( $localResources = true )#*
   *##else#*
       *##set ( $localResources = false )#*
-  *##end#*
-
-  ## for 'site' theme, use local CSS/Javascript. This allows users to use their own Bootstrap configs.
-  ## Otherwise, load the default or Bootswatch themes from BootstrapCDN
-  *##if ( $localResources || ( $config.theme && "site" == $config.theme.getValue() ) )#*
-      *##set ( $bootstrapCssPath = "$resourcePath/css" )#*
-      *##set ( $bootstrapCssResponsivePath = $bootstrapCssPath )#*
-      *##set ( $bootstrapCssCombined = false )#*
-      *##set ( $bootstrapJsPath = "$resourcePath/js" )#*
-  *##else#*
-        *##if ($config.bootstrapVersion )#*
-            *##set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )#*
-        *##else#*
-            *##set ( $bootstrapVersion = "@bootstrapVersion@" )#*
-        *##end#*
-        *##if ($config.bootswatchVersion )#*
-            *##set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )#*
-        *##else#*
-            *##set ( $bootswatchVersion = "@bootswatchVersion@" )#*
-        *##end#*
-
+  *##end##
+##
     ## use Bootstrap theme from BootstrapCDN (loaded over network)
-      *##if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )#*
-          *##set ( $bootswatchTheme = $config.theme.getValue().substring(11) )#*
-      *##else#*
-          *##set ( $bootswatchTheme = false )#*
-      *##end#*
-
-      *##if ( $bootswatchTheme )#*
-          *##set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )#*
-      *##else#*
-          *##set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )#*
-      *##end#*
-
-      *##set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )#*
-  *##end
+    #if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )##
+        #set ( $bootswatchTheme = $config.theme.getValue().substring(11) )##
+    #else##
+        #set ( $bootswatchTheme = false )##
+    #end##
+    #if ($config.bootstrapVersion )##
+        #set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )##
+    #else##
+        #set ( $bootstrapVersion = "@bootstrapVersion@" )##
+    #end##
+    #if ($config.bootswatchVersion )##
+        #set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )##
+    #else##
+        #set ( $bootswatchVersion = "@bootswatchVersion@" )##
+    #end##
+##
+    #if ( $localResources )##
+        #set ( $bootstrapCssPath = "$resourcePath/css" )##
+        #set ( $bootstrapJsPath = "$resourcePath/js" )##
+        #if ( $bootswatchTheme )##
+            #set ( $bootstrapCssPath = "$resourcePath/css/themes/$bootswatchTheme" )##
+        #end##
+    #else##
+        #if ( $bootswatchTheme )##
+          #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )##
+        #else##
+            #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )##
+        #end##
+        #set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )##
+    #end##
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 #*      *##if ( $bootswatchTheme )#*
