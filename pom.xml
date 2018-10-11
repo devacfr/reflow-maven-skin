@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -46,6 +47,7 @@
 
   <modules>
     <module>reflow-velocity-tools</module>
+    <module>reflow-default-webdeps</module>
     <module>reflow-maven-skin</module>
   </modules>
 
@@ -84,7 +86,7 @@
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will 
+    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will
       be stored. See also the clover-report.xml file which refers to this location -->
     <surefire.and.failsafe.report.dir>${project.build.directory}/surefire-reports</surefire.and.failsafe.report.dir>
 
@@ -110,10 +112,11 @@
     <!-- ================================================================================ -->
     <!-- Web dependencies version -->
     <!-- ================================================================================ -->
-    <anchorJsVesrion>4.1.0</anchorJsVesrion>
+    <anchorJsVesrion>3.2.2</anchorJsVesrion>
     <bootstrapVersion>3.3.7</bootstrapVersion>
     <bootswatchVersion>3.3.7</bootswatchVersion>
-    <highlightJsVersion>9.12.0</highlightJsVersion>
+    <highlightJsVersion>9.8.0</highlightJsVersion>
+    <highlightJsTheme>github</highlightJsTheme>
     <jqueryVersion>3.3.1</jqueryVersion>
 
     <!-- ================================================================================ -->
@@ -134,9 +137,11 @@
 
 
     <maven-jgitflow-plugin.version>1.0-m5.1</maven-jgitflow-plugin.version>
-    <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0</maven-copy-rename-maven-plugin.version>
+    <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+    <maven-download-plugin.version>1.4.0</maven-download-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
     <maven-jsoup.version>1.11.2</maven-jsoup.version>
@@ -284,7 +289,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>${maven-resources-plugin.version}</version>
         <configuration>
           <delimiters>
             <delimiter>${*}</delimiter>
@@ -340,14 +344,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>${maven-site-plugin.version}</version>
         <dependencies>
           <dependency>
             <groupId>io.github.devacfr.maven.skins</groupId>
             <artifactId>reflow-velocity-tools</artifactId>
             <version>${project.version}</version>
           </dependency>
-          <dependency><!-- Reflow skin requires velocity 1.7 -->
+          <dependency>            <!-- Reflow skin requires velocity 1.7 -->
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>${maven-velocity.version}</version>
@@ -361,6 +364,34 @@
           <skipDeploy>true</skipDeploy>
           <topSiteURL>${site.url}</topSiteURL>
         </configuration>
+      </plugin>
+      <!-- copy default web dependencies -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>io.github.devacfr.maven.skins</groupId>
+                  <artifactId>reflow-default-webdeps</artifactId>
+                  <version>${project.version}</version>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <!-- exclude all highlight styles except the theme in highlightJsTheme property -->
+                  <includes>**/css/**/*.css,**/fonts/*,**/js/*.js,**/js/languages/*,**/js/styles/${highlightJsTheme}.min.css</includes>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/site</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <!-- GitHub site plug-in for deployment to GitHub pages -->
@@ -414,6 +445,11 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${maven-dependency-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven-javadoc-plugin.version}</version>
         </plugin>
@@ -428,6 +464,16 @@
               <version>7.6.1</version>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven-site-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

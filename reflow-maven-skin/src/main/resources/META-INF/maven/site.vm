@@ -182,39 +182,37 @@
       *##set ( $localResources = false )#*
   *##end#*
 
-  ## for 'site' theme, use local CSS/Javascript. This allows users to use their own Bootstrap configs.
-  ## Otherwise, load the default or Bootswatch themes from BootstrapCDN
-  *##if ( $localResources || ( $config.theme && "site" == $config.theme.getValue() ) )#*
-      *##set ( $bootstrapCssPath = "$resourcePath/css" )#*
-      *##set ( $bootstrapCssResponsivePath = $bootstrapCssPath )#*
-      *##set ( $bootstrapCssCombined = false )#*
-      *##set ( $bootstrapJsPath = "$resourcePath/js" )#*
-  *##else#*
-        *##if ($config.bootstrapVersion )#*
-            *##set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )#*
-        *##else#*
-            *##set ( $bootstrapVersion = "@bootstrapVersion@" )#*
-        *##end#*
-        *##if ($config.bootswatchVersion )#*
-            *##set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )#*
-        *##else#*
-            *##set ( $bootswatchVersion = "@bootswatchVersion@" )#*
-        *##end#*
-
     ## use Bootstrap theme from BootstrapCDN (loaded over network)
-      *##if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )#*
-          *##set ( $bootswatchTheme = $config.theme.getValue().substring(11) )#*
-      *##else#*
-          *##set ( $bootswatchTheme = false )#*
-      *##end#*
+    *##if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )#*
+        *##set ( $bootswatchTheme = $config.theme.getValue().substring(11) )#*
+    *##else#*
+        *##set ( $bootswatchTheme = false )#*
+    *##end#*
+    *##if ($config.bootstrapVersion )#*
+        *##set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )#*
+    *##else#*
+        *##set ( $bootstrapVersion = "@bootstrapVersion@" )#*
+    *##end#*
+    *##if ($config.bootswatchVersion )#*
+        *##set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )#*
+    *##else#*
+        *##set ( $bootswatchVersion = "@bootswatchVersion@" )#*
+    *##end#*
 
-      *##if ( $bootswatchTheme )#*
-          *##set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )#*
-      *##else#*
-          *##set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )#*
-      *##end#*
-      *##set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )#*
-  *##end
+    *##if ( $localResources )##
+        #set ( $bootstrapCssPath = "$resourcePath/css" )##
+        #set ( $bootstrapJsPath = "$resourcePath/js" )##
+        #if ( $bootswatchTheme )##
+            #set ( $bootstrapCssPath = "$resourcePath/css/themes/$bootswatchTheme" )##
+        #end##
+    #else##
+        #if ( $bootswatchTheme )##
+          #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )##
+        #else##
+            #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )##
+        #end##
+        #set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )##
+    #end##
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 #*      *##if ( $bootswatchTheme )#*
@@ -225,29 +223,26 @@
 #*      *##end##
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
 ##
-    ## disable CDN-loaded highlightJs altogether if `localResources` is selected.
-  #* it will need to be added manually
-  *##if ( !$localResources && $config.is( "highlightJs" ) )#*
-      *##set ( $highlightJs = true )#*
-  *##else#*
-      *##set ( $highlightJs = false )#*
-  *##end#*
-  *##if ( $config.highlightJsVersion )#*
+#*  *##if ( $config.highlightJsVersion )#*
       *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
-  *##else#*
+    *##else#*
       *##set ( $highlightJsVersion = "@highlightJsVersion@" )#*
-  *##end#*
+    *##end#*
 
 
-  *##if ( $highlightJs )#*
+    *##if ( $config.is( "highlightJs" ) )#*
     ## get the configured theme, or use default if not explicitly specified
-    *##if ( $config.highlightJsTheme )#*
+        *##if ( $config.highlightJsTheme )#*
           *##set ( $highlightJsTheme = $config.highlightJsTheme.getValue() )#*
-      *##else#*
+        *##else#*
           *##set ( $highlightJsTheme = 'default' )#*
-      *##end#*
+        *##end#*
     ## use a hosted version of highlight.js for syntax highlighting *#
+#*      *##if ( $localResources )##
+    <link rel="stylesheet" href="$resourcePath/js/styles/${highlightJsTheme}.min.css" />
+#*      *##else
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/styles/${highlightJsTheme}.min.css" />
+#*      *##end
 #*  *##end#*
 
   *##if ( !$config.not( "imgLightbox" ) )#*
@@ -535,9 +530,13 @@
   <script src="$resourcePath/js/reflow-scroll.js"></script>
 #*  *##end#*
 
-    *##if ( $highlightJs )#*
-	// use a hosted version of highlight.js for syntax highlighting	*###
+    *##if ( $config.is( "highlightJs" ) )#*
+        *##if ( $localResources )##
+	<script src="$resourcePath/js/highlight.min.js"></script>
+#*      *##else##
+	## use a hosted version of highlight.js for syntax highlighting	*###
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/highlight.min.js"></script>
+#*      *##end##
 #*	*##end#*
 
     *##if ( $config.endContent )#*
