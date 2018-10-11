@@ -176,29 +176,26 @@
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
     <link href="$resourcePath/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
 ##
-    ## disable CDN-loaded highlightJs altogether if `localResources` is selected.
-  #* it will need to be added manually
-  *##if ( !$localResources && $config.is( "highlightJs" ) )#*
-      *##set ( $highlightJs = true )#*
-  *##else#*
-      *##set ( $highlightJs = false )#*
-  *##end#*
-  *##if ( $config.highlightJsVersion )#*
+#*  *##if ( $config.highlightJsVersion )#*
       *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
-  *##else#*
+    *##else#*
       *##set ( $highlightJsVersion = "@highlightJsVersion@" )#*
-  *##end#*
+    *##end#*
 
 
-  *##if ( $highlightJs )#*
+    *##if ( $config.is( "highlightJs" ) )#*
     ## get the configured theme, or use default if not explicitly specified
-    *##if ( $config.highlightJsTheme )#*
+        *##if ( $config.highlightJsTheme )#*
           *##set ( $highlightJsTheme = $config.highlightJsTheme.getValue() )#*
-      *##else#*
+        *##else#*
           *##set ( $highlightJsTheme = 'default' )#*
-      *##end#*
+        *##end#*
     ## use a hosted version of highlight.js for syntax highlighting *#
+#*      *##if ( $localResources )##
+    <link rel="stylesheet" href="$resourcePath/js/styles/${highlightJsTheme}.min.css" />
+#*      *##else
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/styles/${highlightJsTheme}.min.css" />
+#*      *##end
 #*  *##end#*
 
   *##if ( !$config.not( "imgLightbox" ) )#*
@@ -260,15 +257,14 @@
   <script src="$resourcePath/js/lightbox.min.js"></script>
 #* *##end##
 ##
-    #if ( $highlightJs )
-        ## use a hosted version of highlight.js for syntax highlighting
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/$highlightJsVersion/highlight.min.js"></script>
-    #end
-#*
-    *##if ( $config.endContent )#*
-    ## custom HTML (e.g. JavaScript) to place at the end of the document before </body>
-      *##htmlContent ( $config.endContent.getChildren() )#*
-    *##end##
+    #if ( $config.is( "highlightJs" ) )##
+        #if ( $localResources )##
+	<script src="$resourcePath/js/highlight.min.js"></script>
+        #else##
+	## use a hosted version of highlight.js for syntax highlighting	*###
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/highlight.min.js"></script>
+        #end##
+    #end##
 ##
   <script src="$resourcePath/js/reflow-skin.js"></script>
 #*
