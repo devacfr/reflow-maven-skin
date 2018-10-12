@@ -3,6 +3,10 @@
 #set($h3 = '###')
 #set($h4 = '####')
 #set($h5 = '#####')
+#set($dollar = '$')
+#set($leftCurlyBrace= '{')
+#set($rightCurlyBrace= '}')
+
 $h1 Local/custom resources
 
 Reflow Maven skin utilises content delivery networks (CDN) for a number of CSS and JavaScript
@@ -25,30 +29,68 @@ flag:
 <localResources>true|false</localResources>
 ```
 
--   **true** - Locally provided Bootstrap and jQuery files will be used in the generated site,
+- **true** - Locally provided Bootstrap and jQuery files will be used in the generated site,
     not the CDN versions. This forces [`site` Bootstrap theme][bootstrap-theme], which
     uses local Bootstrap files. Furthermore, other non-local resources such as _highlight.js_
     are disabled and their [local versions need to be added manually][local-css].
     See below for the list of files that need to be available locally.
 
--   **false (default)** - CDN delivered resources are used, where available.
+- **false (default)** - CDN delivered resources are used, where available.
 
 Note that when using `<localResources>`, you need to provide the necessary local versions of
-Bootstrap and jQuery files. Reflow skin does not package the default files at the moment, mainly
-because overriding packaged files is not possible at the moment (see [issue MSITE-702][msite-702]).
+Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module `reflow-default-webdeps`. this package should be unpack as following example:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <executions>
+        <execution>
+        <id>unpack</id>
+        <phase>pre-site</phase>
+        <goals>
+            <goal>unpack</goal>
+        </goals>
+        <configuration>
+            <artifactItems>
+                <artifactItem>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>reflow-default-webdeps</artifactId>
+                    <version>${project.version}</version>
+                    <type>jar</type>
+                    <overWrite>false</overWrite>
+                    <includes>
+                        **/css/bootstrap.min.css,
+                        **/fonts/*,
+                        **/js/*.js,
+                        **/js/languages/*,
+                        **/js/styles/github.min.css
+                    </includes>
+                </artifactItem>
+            </artifactItems>
+            <outputDirectory>${dollar}${leftCurlyBrace}project.build.directory${rightCurlyBrace}/site</outputDirectory>
+        </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
 Therefore it is easier to get appropriate Bootstrap files directly from the
-[customiser][bootstrap-cust] or [Bootswatch][bootswatch2] and use them with the Reflow skin.
+[customiser][bootstrap-cust] or [Bootswatch][bootswatch3] and use them with the Reflow skin.
 Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used.
 Use at your own risk, however, as major version changes are likely to break the website!
 
 When using `<localResources>`, the following files need to be available in the corresponding
 directories within your project's `src/site/resources` folder:
 
--   **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap ${bootstrapVersion}
--   **`css/bootstrap-responsive.min.css`** - Bootstrap ${bootstrapVersion}
--   **`js/bootstrap.min.js`** - Bootstrap ${bootstrapVersion}
--   **`js/jquery.min.js`** - jQuery ${jqueryVersion}
--   **`js/html5.js`** - HTML5 support for IE6-8, get it from [here][html5shiv].
+- **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap ${bootstrapVersion}
+- **`fonts/glyphicons-halflings-regular.*`** - fonts used by Bootstrap ${bootstrapVersion}
+- **`js/bootstrap.min.js`** - Bootstrap ${bootstrapVersion}
+- **`js/jquery.min.js`** - jQuery ${jqueryVersion}
+- **`js/anchor.min.js`** - anchorJs ${anchorJsVesrion}
+- **`js/highlight.min.js`** - highlightJs ${highlightJsVersion}
+- **`js/languages/*.js`** - folder containing highlightJs languages
+- **`js/styles/*.js`** - folder containing highlightJs styles
 
 For multi-module site, remember to enable [resource reuse flag][resource-reuse], otherwise
 these files will have to be repeated for each sub-module.
@@ -56,10 +98,8 @@ these files will have to be repeated for each sub-module.
 
 [bootstrap-theme]: themes/
 [local-css]: #Additional_CSS_files
-[msite-702]: https://jira.codehaus.org/browse/MSITE-702
-[bootstrap-cust]: http://getbootstrap.com/2.3.2/customize.html
-[bootswatch2]: http://bootswatch.com/2/
-[html5shiv]: http://html5shim.googlecode.com/svn/trunk/html5.js
+[bootstrap-cust]: https://getbootstrap.com/docs/3.3/customize/
+[bootswatch3]: http://bootswatch.com/3/
 
 
 $h2 Additional CSS files
@@ -99,7 +139,7 @@ descriptor.
 
 Furthermore, the injected XHTML allows using Velocity variables. Therefore you can [reuse
 a local version of the library][resource-reuse] by indicating its path with a `$resourcePath`
-variable, e.g.: 
+variable, e.g.:
 
 ```xml
 <head>
