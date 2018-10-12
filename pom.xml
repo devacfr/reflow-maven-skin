@@ -405,6 +405,7 @@
           <server>github</server>
           <!-- this does the trick to place every module in the correct subfolder -->
           <path>${project.distributionManagement.site.url}</path>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
         </configuration>
         <executions>
           <execution>

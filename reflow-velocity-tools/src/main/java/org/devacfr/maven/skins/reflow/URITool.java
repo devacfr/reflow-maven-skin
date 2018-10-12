@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Andrius Velykis
+ * Copyright 2012-2018 Andrius Velykis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@
 package org.devacfr.maven.skins.reflow;
 
 import java.net.URI;
-import java.nio.file.Paths;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Strings;
 
+import org.apache.maven.doxia.site.decoration.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
 
 /**
@@ -64,13 +64,8 @@ public class URITool {
             return link;
         }
         try {
-
-            String path = Paths.get(baseDirUri).relativize(Paths.get(link)).normalize().toString();
-            if (Strings.isNullOrEmpty(path)) {
-                return ".";
-            }
-            return path;
-
+            final URIPathDescriptor path = new URIPathDescriptor(baseDirUri, link);
+            return normalisedBaseUrl(path.relativizeLink().toString());
         } catch (final IllegalArgumentException e) {
             return link;
         }
@@ -85,5 +80,22 @@ public class URITool {
     @Nonnull
     public static URI toURI(@Nonnull String uri) {
         return URI.create(uri);
+    }
+
+    /**
+     * remove url path separator ('/') to the end of path.
+     *
+     * @param baseUrl a base url
+     * @return Returns new <code>String</code> base path instance.
+     */
+    public static String normalisedBaseUrl(@Nonnull String baseUrl) {
+        if (Strings.isNullOrEmpty(baseUrl)) {
+            return baseUrl;
+        }
+        if (baseUrl.endsWith("/")) {
+            return baseUrl.substring(0, baseUrl.length() - 1);
+        }
+
+        return baseUrl;
     }
 }
