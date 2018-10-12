@@ -241,6 +241,67 @@
  <div class="section"> 
   <h3 id="_toc_reflow_maven_skin_15_release_notes">Reflow Maven skin 1.5 Release Notes</h3> 
   <p><b>2018-10-12</b></p> 
+  <p>this release propoese a new module <tt>reflow-default-webdeps</tt> containing all required web resources to create a local version of your site ( inspired of work on project <a class="externalLink" href="https://github.com/apache/incubator-plc4x">incubator-plc4x</a> ).</p> 
+  <p><tt>reflow-default-webdeps</tt> has following structure:</p> 
+  <div class="source"> 
+   <div class="source"> 
+    <pre>+- css
+|   + bootstrap.min.css
++- fonts
+|   - glyphicons-halflings-regular.eot
+|   - glyphicons-halflings-regular.svg
+|   - glyphicons-halflings-regular.woff
+|   - glyphicons-halflings-regular.woff2
++- js
+|   - anchor.min.js
+|   - bootstrap.min.js
+|   - jquery.min.js
+|   - highlight.min.js
+|   - languages
+|       + all highlight languages
+|   - styles
+|       + all highlight styles
+</pre> 
+   </div> 
+  </div> 
+  <p>This package should be unpack as following example:</p> 
+  <div class="source"> 
+   <div class="source"> 
+    <pre>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+        &lt;id&gt;unpack&lt;/id&gt;
+        &lt;phase&gt;pre-site&lt;/phase&gt;
+        &lt;goals&gt;
+            &lt;goal&gt;unpack&lt;/goal&gt;
+        &lt;/goals&gt;
+        &lt;configuration&gt;
+            &lt;artifactItems&gt;
+                &lt;artifactItem&gt;
+                    &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
+                    &lt;artifactId&gt;reflow-default-webdeps&lt;/artifactId&gt;
+                    &lt;version&gt;1.5.0-SNAPSHOT&lt;/version&gt;
+                    &lt;type&gt;jar&lt;/type&gt;
+                    &lt;overWrite&gt;false&lt;/overWrite&gt;
+                    &lt;includes&gt;
+                        **/css/bootstrap.min.css,
+                        **/fonts/*,
+                        **/js/*.js,
+                        **/js/languages/*,
+                        **/js/styles/github.min.css
+                    &lt;/includes&gt;
+                &lt;/artifactItem&gt;
+            &lt;/artifactItems&gt;
+            &lt;outputDirectory&gt;${root.basedir}/site&lt;/outputDirectory&gt;
+        &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre> 
+   </div> 
+  </div> 
   <div class="section"> 
    <h4 id="_toc_minor_enhancements">Minor enhancements</h4> 
    <ul> 
