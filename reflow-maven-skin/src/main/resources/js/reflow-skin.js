@@ -345,11 +345,12 @@ var mReflow = function () {
       }
 
       var item = null;
+      var hash = window.location.hash;
       // set the first page in nav sidebar
       if (window.location.hash == '') {
-        window.location.hash = hashes(findFirstMenu());
+        hash = hashes(findFirstMenu());
       }
-      var hash = window.location.hash;
+
       var chapter = '';
       var splittedUrl = splitUrl(hash);
       var section = splittedUrl[0].substring(1);
