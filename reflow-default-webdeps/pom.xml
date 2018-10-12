@@ -14,10 +14,6 @@
   <name>Reflow Default Web Dependencies</name>
   <description>Reflow Default Web Dependencies contains all default web dependencies</description>
 
-  <properties>
-    <main.basedir>${basedir}/..</main.basedir>
-  </properties>
-
   <build>
     <plugins>
       <plugin>

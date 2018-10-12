@@ -17,10 +17,6 @@
   <!-- Indicate that the site for skin plug-in is nested under `skin` -->
   <url>${site.url}/skin</url>
 
-  <properties>
-    <main.basedir>${basedir}/..</main.basedir>
-  </properties>
-  
   <distributionManagement>
     <site>
       <id>${site.deploy.id}</id>
@@ -50,7 +46,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <configuration>
-          <!-- Override resource filtering delimiters to avoid filtering Velocity variables, which have the same pattern 
+          <!-- Override resource filtering delimiters to avoid filtering Velocity variables, which have the same pattern
             ${replace.me}. Instead, using @replace.me@. -->
           <useDefaultDelimiters>false</useDefaultDelimiters>
           <delimiters>

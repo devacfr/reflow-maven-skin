@@ -161,7 +161,7 @@ marked, use the `<markPageHeader>` flag:
 
 The Reflow skin is released under the [Apache license][apache-license] and thus can be used freely.
 By default, a link to the skin website and the author homepage is added at the bottom of the skin:
-_Reflow Maven skin by Andrius Velykis_. I would appreciate if you kept the link - it will help with
+_Reflow Maven skin by devcfr_. I would appreciate if you kept the link - it will help with
 the popularity of the skin. If you want, it can be disabled using `<skinAttribution>` flag:
 
 ```xml

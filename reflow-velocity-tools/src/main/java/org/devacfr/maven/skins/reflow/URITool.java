@@ -16,12 +16,18 @@
 package org.devacfr.maven.skins.reflow;
 
 import java.net.URI;
+import java.nio.file.Paths;
 
-import org.apache.maven.doxia.site.decoration.inheritance.URIPathDescriptor;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import com.google.common.base.Strings;
+
 import org.apache.velocity.tools.config.DefaultKey;
 
 /**
- * An Apache Velocity tool that provides utility methods to work with URIs/URLs and links.
+ * An Apache Velocity tool that provides utility methods to work with URIs/URLs
+ * and links.
  *
  * @author Andrius Velykis
  * @since 1.0
@@ -34,32 +40,36 @@ public class URITool {
     /**
      * Resolves the link as relative to the base dir URI.
      * <p>
-     * Relativizes only absolute links, if the link has the same scheme, host and port as the base, it is made into a
-     * relative link as viewed from the base.
+     * Relativizes only absolute links, if the link has the same scheme, host and
+     * port as the base, it is made into a relative link as viewed from the base.
      * </p>
      * <p>
-     * This is the same method that's used to relativize project links in Maven site.
+     * This is the same method that's used to relativize project links in Maven
+     * site.
      * </p>
      *
-     * @param baseDirUri
-     *            URI that will serve as the base to calculate the relative one
-     * @param link
-     *            The link to relativize (make it relative to the base URI if possible)
+     * @param baseDirUri URI that will serve as the base to calculate the relative
+     *                   one
+     * @param link       The link to relativize (make it relative to the base URI if
+     *                   possible)
      * @return the relative link, if calculated, or the original link if not.
      * @since 1.0
      */
-    public static String relativizeLink(final String baseDirUri, final String link) {
-        // taken from org.apache.maven.doxia.site.decoration.inheritance.DecorationModelInheritanceAssembler
+    @Nullable
+    public static String relativizeLink(@Nonnull String baseDirUri, @Nonnull final String link) {
+        // taken from
+        // org.apache.maven.doxia.site.decoration.inheritance.DecorationModelInheritanceAssembler
 
         if (link == null || baseDirUri == null) {
             return link;
         }
-
-        // this shouldn't be necessary, just to swallow malformed hrefs
         try {
 
-            final URIPathDescriptor path = new URIPathDescriptor(baseDirUri, link);
-            return path.relativizeLink().toString();
+            String path = Paths.get(baseDirUri).relativize(Paths.get(link)).normalize().toString();
+            if (Strings.isNullOrEmpty(path)) {
+                return ".";
+            }
+            return path;
 
         } catch (final IllegalArgumentException e) {
             return link;
@@ -69,11 +79,11 @@ public class URITool {
     /**
      * Creates a URI by parsing the given string.
      *
-     * @param uri
-     *            The string to be parsed into a URI
+     * @param uri The string to be parsed into a URI
      * @return Returns the new URI.
      */
-    public static URI toURI(final String uri) {
+    @Nonnull
+    public static URI toURI(@Nonnull String uri) {
         return URI.create(uri);
     }
 }

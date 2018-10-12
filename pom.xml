@@ -78,7 +78,7 @@
   </distributionManagement>
 
   <properties>
-    <main.basedir>${basedir}</main.basedir>
+    <main.basedir>${session.executionRootDirectory}</main.basedir>
     <distribution.releaseRepository.id>ossrh</distribution.releaseRepository.id>
     <distribution.releaseRepositoryUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</distribution.releaseRepositoryUrl>
     <distribution.snapshotRepositoryId>ossrh</distribution.snapshotRepositoryId>
@@ -389,7 +389,7 @@
                   <includes>**/css/**/*.css,**/fonts/*,**/js/*.js,**/js/languages/*,**/js/styles/${highlightJsTheme}.min.css</includes>
                 </artifactItem>
               </artifactItems>
-              <outputDirectory>${project.build.directory}/site</outputDirectory>
+              <outputDirectory>${main.basedir}/target/site</outputDirectory>
             </configuration>
           </execution>
         </executions>
