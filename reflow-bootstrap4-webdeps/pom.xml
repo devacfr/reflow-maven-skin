@@ -9,13 +9,15 @@
     <version>1.4.3-SNAPSHOT</version>
   </parent>
 
-  <artifactId>reflow-default-webdeps</artifactId>
+  <artifactId>reflow-bootstrap4-webdeps</artifactId>
 
-  <name>Reflow Default Web Dependencies</name>
-  <description>Reflow Default Web Dependencies contains all default web dependencies</description>
+  <name>Reflow Bootstap 4 Web Dependencies</name>
+  <description>Reflow Bootstap 4 Web Dependencies contains all web dependencies</description>
 
   <properties>
     <main.basedir>${basedir}/..</main.basedir>
+    <bootstrapVersion>4.1.3</bootstrapVersion>
+    <bootswatchVersion>4.1.3</bootswatchVersion>
   </properties>
 
   <build>
@@ -184,6 +186,18 @@
             </configuration>
           </execution>
           <execution>
+            <id>get-litera-bootstrap-theme</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/litera/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/litera</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
             <id>get-lumen-bootstrap-theme</id>
             <phase>process-resources</phase>
             <goals>
@@ -196,26 +210,50 @@
             </configuration>
           </execution>
           <execution>
-            <id>get-paper-bootstrap-theme</id>
+            <id>get-lux-bootstrap-theme</id>
             <phase>process-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/paper/bootstrap.min.css</url>
-              <outputDirectory>${project.build.outputDirectory}/css/themes/paper</outputDirectory>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/lux/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/lux/lumen</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
           <execution>
-            <id>get-readable-bootstrap-theme</id>
+            <id>get-materia-bootstrap-theme</id>
             <phase>process-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/readable/bootstrap.min.css</url>
-              <outputDirectory>${project.build.outputDirectory}/css/themes/readable</outputDirectory>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/materia/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/materia/paper</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-minty-bootstrap-theme</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/minty/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/minty</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-pulse-bootstrap-theme</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/pulse/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/pulse</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
@@ -240,6 +278,18 @@
             <configuration>
               <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/simplex/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/simplex</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-sketchy-bootstrap-theme</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/sketchy/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/sketchy</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
