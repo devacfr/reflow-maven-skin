@@ -167,12 +167,14 @@
     #end##
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
-#*      *##if ( $bootswatchTheme )#*
-        ## for Bootswatch themes, add bootswatch.css *#
-    <link href="$resourcePath/css/bootswatch.css" rel="stylesheet" />
-#*      *##else##
+##
+    ## for 'site' theme, use local CSS/Javascript. This allows users to use their own Bootstrap configs.
+    ## Otherwise, load the default or Bootswatch themes from BootstrapCDN
+    #if ( $config.theme && "site" == $config.theme.getValue() )##
+      <link href="$resourcePath/css/bootstrap-theme.min.css" rel="stylesheet" />
+    #end##
+##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />
-#*      *##end##
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
     <link href="$resourcePath/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
 ##
