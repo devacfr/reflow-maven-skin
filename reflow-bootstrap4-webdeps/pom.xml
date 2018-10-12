@@ -12,6 +12,15 @@
 
   <name>Reflow Bootstap 4 Web Dependencies</name>
   <description>Reflow Bootstap 4 Web Dependencies contains all web dependencies</description>
+  <url>${site.url}/${project.artifactId}</url>
+
+  <distributionManagement>
+    <site>
+      <id>${site.deploy.id}</id>
+      <!-- Note that GitHub does not like having leading slash, so make it explicit -->
+      <url>${site.deploy.url}${project.artifactId}</url>
+    </site>
+  </distributionManagement>
 
   <properties>
     <bootstrapVersion>4.1.3</bootstrapVersion>
@@ -394,13 +403,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
       </plugin>
     </plugins>
 

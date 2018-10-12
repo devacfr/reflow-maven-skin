@@ -363,6 +363,7 @@
           <!-- Site deployment done using GitHub site plugin -->
           <skipDeploy>true</skipDeploy>
           <topSiteURL>${site.url}</topSiteURL>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
         </configuration>
       </plugin>
       <!-- copy default web dependencies -->
@@ -404,7 +405,6 @@
           <server>github</server>
           <!-- this does the trick to place every module in the correct subfolder -->
           <path>${project.distributionManagement.site.url}</path>
-          <relativizeDecorationLinks>false</relativizeDecorationLinks>
         </configuration>
         <executions>
           <execution>
