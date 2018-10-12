@@ -10,6 +10,86 @@ The history of Reflow Maven skin releases is documented below. For details of ch
 [reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
 
+$h3 Reflow Maven skin 1.5 Release Notes
+**2018-10-12**
+
+this release proposes a new module `reflow-default-webdeps` containing all required web resources to create a local version of your site ( inspired of work on project [incubator-plc4x](https://github.com/apache/incubator-plc4x) ).
+
+`reflow-default-webdeps` has following structure:
+
+```text
++- css
+|   + bootstrap.min.css
++- fonts
+|   - glyphicons-halflings-regular.eot
+|   - glyphicons-halflings-regular.svg
+|   - glyphicons-halflings-regular.woff
+|   - glyphicons-halflings-regular.woff2
++- js
+|   - anchor.min.js
+|   - bootstrap.min.js
+|   - jquery.min.js
+|   - highlight.min.js
+|   - languages
+|       + all highlight languages
+|   - styles
+|       + all highlight styles
+```
+
+This package should be unpack as following example:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <executions>
+        <execution>
+        <id>unpack</id>
+        <phase>pre-site</phase>
+        <goals>
+            <goal>unpack</goal>
+        </goals>
+        <configuration>
+            <artifactItems>
+                <artifactItem>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>reflow-default-webdeps</artifactId>
+                    <version>${project.version}</version>
+                    <type>jar</type>
+                    <overWrite>false</overWrite>
+                    <includes>
+                        **/css/bootstrap.min.css,
+                        **/fonts/*,
+                        **/js/*.js,
+                        **/js/languages/*,
+                        **/js/styles/github.min.css
+                    </includes>
+                </artifactItem>
+            </artifactItems>
+            <outputDirectory>${root.basedir}/site</outputDirectory>
+        </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+$h4 Minor enhancements
+
+- Update to use customized Bootstrap theme 3.x ([#29][]).
+- Add local resources easily during site generation ([#28][]).
+- Share the same site.css by default for all modules ([#5][]).
+- Remove unused relative URL on external link ([#25][]).
+- Remove unsused offsetTop attibute on toc element ([#26][]).
+- Remove using of awesome font in toc sidebar ([#27][]).
+
+
+[#5]: ${issue-url}/5
+[#25]: ${issue-url}/25
+[#26]: ${issue-url}/26
+[#27]: ${issue-url}/27
+[#28]: ${issue-url}/28
+[#29]: ${issue-url}/29
+
 $h3 Reflow Maven skin 1.4 Release Notes
 **2018-10-05**
 
