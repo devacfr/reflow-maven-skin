@@ -180,26 +180,26 @@
       *##set ( $localResources = true )#*
   *##else#*
       *##set ( $localResources = false )#*
-  *##end#*
-
+  *##end##
+##
     ## use Bootstrap theme from BootstrapCDN (loaded over network)
-    *##if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )#*
-        *##set ( $bootswatchTheme = $config.theme.getValue().substring(11) )#*
-    *##else#*
-        *##set ( $bootswatchTheme = false )#*
-    *##end#*
-    *##if ($config.bootstrapVersion )#*
-        *##set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )#*
-    *##else#*
-        *##set ( $bootstrapVersion = "@bootstrapVersion@" )#*
-    *##end#*
-    *##if ($config.bootswatchVersion )#*
-        *##set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )#*
-    *##else#*
-        *##set ( $bootswatchVersion = "@bootswatchVersion@" )#*
-    *##end#*
-
-    *##if ( $localResources )##
+    #if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )##
+        #set ( $bootswatchTheme = $config.theme.getValue().substring(11) )##
+    #else##
+        #set ( $bootswatchTheme = false )##
+    #end##
+    #if ($config.bootstrapVersion )##
+        #set ( $bootstrapVersion = $config.bootstrapVersion.getValue() )##
+    #else##
+        #set ( $bootstrapVersion = "@bootstrapVersion@" )##
+    #end##
+    #if ($config.bootswatchVersion )##
+        #set ( $bootswatchVersion = $config.bootswatchVersion.getValue() )##
+    #else##
+        #set ( $bootswatchVersion = "@bootswatchVersion@" )##
+    #end##
+##
+    #if ( $localResources )##
         #set ( $bootstrapCssPath = "$resourcePath/css" )##
         #set ( $bootstrapJsPath = "$resourcePath/js" )##
         #if ( $bootswatchTheme )##
@@ -215,18 +215,19 @@
     #end##
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
-#*      *##if ( $bootswatchTheme )#*
-        ## for Bootswatch themes, add bootswatch.css *#
-    <link href="$resourcePath/css/bootswatch.css" rel="stylesheet" />
-#*      *##else##
+##
+    ## for 'site' theme, use local CSS/Javascript. This allows users to use their own Bootstrap configs.
+    ## Otherwise, load the default or Bootswatch themes from BootstrapCDN
+    #if ( $config.theme && "site" == $config.theme.getValue() )##
+      <link href="$resourcePath/css/bootstrap-theme.min.css" rel="stylesheet" />
+    #end##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />
-#*      *##end##
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
 ##
 #*  *##if ( $config.highlightJsVersion )#*
-      *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
+        *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
     *##else#*
-      *##set ( $highlightJsVersion = "@highlightJsVersion@" )#*
+        *##set ( $highlightJsVersion = "@highlightJsVersion@" )#*
     *##end#*
 
 

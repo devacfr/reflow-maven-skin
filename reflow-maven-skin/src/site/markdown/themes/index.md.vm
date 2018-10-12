@@ -39,9 +39,10 @@ There are several options for the `<theme>` value:
     theme is developed and included with the Maven site. The theme expects the following
     Bootstrap CSS and JavaScript files to be available in `src/site/resources`:
 
-    -   `css/bootstrap.min.css`
-    -   `css/bootstrap-responsive.min.css`
-    -   `js/bootstrap.min.js`
+    - `css/bootstrap.min.css`
+    - `css/bootstrap-theme.min.css`
+    - `js/bootstrap.min.js`
+    - `fonts/glyphicons-halflings-regular.*`
 
     The files can be customized and generated at [Bootstrap's Customize page][bootstrap-custom].
 
