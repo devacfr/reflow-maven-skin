@@ -16,12 +16,16 @@
 #parse( "site-macros.vm" )##
 #parse( "components/banner.vm" )##
 #parse( "components/breadcrumbs.vm" )##
+#parse( "components/carousel.vm" )##
 #parse( "components/nav-side-menu.vm" )##
 #parse( "components/navbar.vm" )##
 #parse( "components/scroll-top.vm" )##
 #parse( "components/thumbnails.vm" )##
 #parse( "components/toc-topbar.vm" )##
 #parse( "components/toc-sidebar.vm" )##
+#parse( "layouts/layout.vm" )##
+##
+#parse( "footer-default.vm")
 ##
 ##
 #set( $pageType = $config.context.type)

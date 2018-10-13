@@ -16,7 +16,7 @@
 ##
 #macro ( renderFooter )##
   <!-- Footer -->
-  <footer class="well">
+  <footer class="bg-light mt-3 p-3">
     <div class="container">
       <div class="row">
 #*  *##if( $decoration.body.menus )#*
@@ -38,7 +38,7 @@
             ## no quote
             *#$config.bottomDescription.getValue()#*
       *##else##
-          <blockquote>$config.bottomDescription.getValue()</blockquote>
+          <blockquote class="blockquote">$config.bottomDescription.getValue()</blockquote>
 #*    *##end#*
 
     ## add version and publish date if the position is "navigation-bottom"
@@ -112,4 +112,147 @@
             *##end#*
         *##end#*
     *##end##
+#end##
+##
+#**
+ * Outputs bottom navigation columns. The menus can be split into columns to be
+ * placed in the bottom navigation. This is done with the `bottomNav` config option:
+ *
+ *  <bottomNav maxSpan="8"> - maximum span is indicated in the attribute (default =9)
+ *      <column>regex</column> - indicates to add a column with the indicated regex filter
+ *      <column>regex</column> - ...
+ *      <column>regex</column> - ...
+ *  </bottomNav>
+ *
+ * (The above produces a 3-column navigation with `span2` for each column (because max is 8)).
+ *
+ *##macro ( bottomNav )#*
+    ## by default, max span for bottom navigation is 9
+    *##set ( $maxNavSpan = 9 )#*
+    *##if ( $config.bottomNav && $config.bottomNav.getChildCount() > 0 )#*
+        ## Bottom navigation config is available - filter menus for each column and collect
+        *##set ( $menuColumns = [] )#*
+        *##foreach ( $bottomNavCol in $config.bottomNav.getChildren() )#*
+            *##filterMenus ( $decoration.body.menus, $bottomNavCol.getValue() )#*
+            *##call ( $menuColumns.add( $filterMenus ) )#*
+        *##end#*
+        ## read max span for bottom navigation from the config
+        *##if ( $config.bottomNav.getAttribute("maxSpan") )#*
+            *##set ( $maxNavSpanStr = $config.bottomNav.getAttribute("maxSpan") )#*
+            *##set ( $maxNavSpan = $convert.toNumber($maxNavSpanStr) )#*
+        *##end#*
+    *##else#*
+        ## No bottom navigation config - just use all menus in a single column
+        *##set ( $menuColumns = [ $decoration.body.menus ] )#*
+    *##end#*
+
+    *##if ( $maxNavSpan > 12 )#*
+        *##set ( $maxNavSpan = 12 )#*
+    *##end#*
+    ## Determine the column widths (aim for max span of 9 (default), and max width of 4)
+    *##set ( $navSpan = $maxNavSpan / $menuColumns.size() )#*
+    *##if ( $navSpan > 4 )#*
+        *##set ( $navSpan = 4 )#*
+    *##end#*
+    *##if ( $navSpan <= 0 )#*
+        *##set ( $navSpan = 1 )#*
+    *##end#*
+
+    *##if ( $maxNavSpan <= 0 )#*
+        *##set ( $maxNavSpan = $navSpan * $menuColumns.size() )#*
+    *##end#*
+
+    ## mark total span taken by the bottomNav (needed to add other components to the footer)
+    *##set ( $lastNavSpan = $maxNavSpan - ($navSpan * ($menuColumns.size() - 1)) )#*
+    *##set ( $totalNavSpan = $maxNavSpan )#*
+
+    *##set ( $navColIndex = 0 )#*
+    *##foreach ( $menuCol in $menuColumns )#*
+        *##if ( $navColIndex == $menuColumns.size() - 1 )#*
+            *##set ( $navSpan = $lastNavSpan )#*
+        *##end##
+            <div class="col-md-$navSpan bottom-nav">
+#*
+    *##listMenu ( $menuCol )#*
+*#
+            </div>
+#*
+    *##set ( $navColIndex = $navColIndex + 1 )#*
+    *##end##
+#end##
+##
+#**
+ * Creates a list menu with submenus
+ *##macro ( listMenu $menus )#*
+*#
+                <ul class="nav flex-column">
+#*
+    *##foreach ( $menu in $menus )#*
+        *##if ( $menu.name )##
+                    <li class="nav-header">#*
+            *##if ( $menu.img )#*
+                *##if ( !$menu.position || $menu.position == "left" )#*
+                    *##image ($menu.img $menu.alt $menu.border $menu.width $menu.height) $menu.name#*
+                *##else#*
+                    *#$menu.name #image ($menu.img $menu.alt $menu.border $menu.width $menu.height)#*
+                *##end#*
+            *##else#*
+                *#$menu.name#*
+            *##end#*
+                    *#</li>
+#*      *##end#*
+
+        *##if ( $menu.items && $menu.items.size() > 0 )#*
+            *##foreach ( $item in $menu.items )#*
+                *##menuItem ( $item )#*
+            *##end#*
+
+        *##end#*
+
+    *##end##
+                </ul>
+#end##
+##
+#**
+ * Recursively outputs menu item and its children
+ *
+ *##macro ( menuItem $item )#*
+    *##set ( $collapseClass = false )#*
+    *##activeLink ( $item.href )#*
+    ## store value (if active) for later
+    *##set ( $active = $activeLink )#*
+    *##if ( $active )#*
+        *##set ( $currentLink = "#" )#*
+    *##else#*
+        *##set ( $currentLink = $relativeLink )#*
+    *##end#*
+
+    *##if ( $item.items && $item.items.size() > 0 )#*
+
+        *##if ( $item.collapse == false )#*
+
+            *##set ( $collapseClass = "glyphicon glyphicon-chevron-down" )#*
+        *##else#*
+                ## By default collapsed
+            *##set ( $collapseClass = "glyphicon glyphicon-chevron-right" )#*
+        *##end#*
+        ## check if one of the subtree items is the current one, if so, autoexpand
+        *##set ( $displayTree = false )#displayTree ( $item )#*
+        *##if ( $active || $displayTree )#*
+            *##set ( $collapseClass = "glyphicon glyphicon-chevron-down" )#*
+        *##end#*
+
+    *##end##
+                    <li class="nav-item $activeClass" )>#*
+    *##fullLink ( $currentLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")#*
+    *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "glyphicon glyphicon-chevron-down" )##
+        <ul class="nav flex-column">
+#*
+    *##foreach ( $subitem in $item.items )#*
+        *##menuItem ( $subitem )#*
+    *##end##
+        </ul>
+#*
+    *##end#*
+    *#</li>
 #end##

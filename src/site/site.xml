@@ -66,8 +66,7 @@
       <topNav>Tools|Contribute|Maven documentation</topNav>
       <!-- Split menus in the bottom navigation -->
       <bottomNav maxSpan="9">
-        <column>Main</column>
-        <column>Tools</column>
+        <column>Main|Tools</column>
         <column>Contribute</column>
         <column>reports</column>
       </bottomNav>
@@ -129,7 +128,6 @@
     <head>
         <![CDATA[
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="author" href="https://plus.google.com/103421057435787675572" />
         ]]>
     </head>

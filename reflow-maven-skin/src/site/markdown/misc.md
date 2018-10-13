@@ -116,6 +116,8 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 
 ## Navbar colour
 
+<navbar theme="" bgcolor="" />
+
 Bootstrap themes provide an [alternative colour for top navigation bar][navbar-inverse].
 To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
 

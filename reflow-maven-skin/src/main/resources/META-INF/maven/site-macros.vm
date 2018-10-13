@@ -135,35 +135,37 @@
  *
  * Outputs a list of links
  *
- *##macro ( links $links )#*
+ *##macro ( links $links $className)#*
 
-  *##foreach ( $item in $links )#*
+  *##foreach ( $item in $links)#*
       *##activeLink ( $item.href )#*
-      *#<li #classAttr( $activeClass )>#link ( $relativeLink $item.name $item.target )</li>
+      *#<li #classAttr( $activeClass )>#link ( $relativeLink $item.name $item.target $className)</li>
 #*  *##end#*
 *##end#*
 
  *
  * Shortcut to display a basic hyperlink
  *
- *##macro ( link $href $name $target )#*
-  *##fullLink ( $href $name $target false false false false false false false )#*
+ *##macro ( link $href $name $target $className)#*
+  *##fullLink ( $href $name $target false false false false false false false $className)#*
 *##end#*
 
  *
  * Outputs a hyperlink with image and other attributes
  *
- *##macro ( fullLink $href $name $target $img $position $alt $border $width $height $icon)##
+ *##macro ( fullLink $href $name $target $img $position $alt $border $width $height $icon $className)##
 ##
 ## The opening <a> tag
-<a #*
-    ## if $href=false, do not create link
-    *##if ( $href ) href="$href" #end##
+<a ##
+    #* if $href=false, do not create link *#
+    #if ( $href ) href="$href" #end##
 #*  *##if ( $name ) title="$name" #end##
 #*  *##if ( $target ) target="$target" #end##
 #*  *##checkExtLink ( $href )##
-#*  *##if ( $checkExtLink ) class="externalLink" #end##
->#*
+    #set($css = $className)
+#*  *##if ( $checkExtLink ) #set($css = "externalink " + $className) #end##
+ class="$css" >##
+#*
     *##if ( $img && $position == "left" )#*
         ## Image on the left side of the name
         *##image ($img $alt $border $width $height)$name#*
@@ -266,10 +268,8 @@
     <div class="row">
 #*          *##end
         <div class="col-md-4">
-            <div class="well sidebar">
-              ## Print the subsections into sidebar
-             #sidebar ( $subsections )
-            </div>
+            ## Print the subsections into sidebar
+            #sidebar ( $subsections )
         </div>
     </div>
 #*          *##set ( $lastBody = false )#*
@@ -340,62 +340,6 @@
     </div>
 #end##
 ##
-##
-#**
- * Outputs subsections into a sidebar one after another
- *
- *##macro ( sidebar $subsections )#*
-    *##foreach ( $subsection in $subsections )#*
-        *#$subsection#*
-    *##end##
-#end##
-##
-#**
- * Outputs subsections into a carousel. Also rearranges the layout to fit carousel.
- *
- *##macro ( carousel $subsections )#*
-
-    *##if ( !$carouselCounter )#*
-        *##set ( $carouselCounter = 0 )#*
-    *##else#*
-        *##set ( $carouselCounter = $carouselCounter + 1 )#*
-    *##end#*
-
-    *##set ( $carouselId = "carousel$carouselCounter" )##
-    <div id="$carouselId" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-#*
-    *##set ( $activeClass = 'active' )#*
-    *##foreach ( $subsection in $subsections )##
-            <div class="item $activeClass">
-#*
-        ## Extract image (or link with image) from the subsection
-        *##set ( $extract = $htmlTool.extract( $subsection, "a:has(img), img", 1 ) )#*
-        *##if ( $extract.extracted && $extract.extracted.size() > 0 )#*
-            ## take just the first extracted image element
-            *#$extract.extracted.get(0)#*
-        *##end#*
-        ## the remainder becomes the caption (heading with text) *#
-                <div class="carousel-caption">
-                    #stripEmptyP ( $extract.remainder )
-                </div> <!-- .carousel-caption -->
-            </div> <!-- .item -->
-#*
-    *##set ( $activeClass = '' )#*
-    *##end##
-        </div> <!-- .carousel-inner -->
-        <!-- Controls -->
-        <a class="left carousel-control" href="#$carouselId" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#$carouselId" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-#end##
-##
 #**
  * Recursively checks if any of the submenu items is the current one
  *
@@ -412,81 +356,6 @@
 #end##
 ##
 #**
- * Recursively outputs menu item and its children
- *
- *##macro ( menuItem $item )#*
-    *##set ( $collapseClass = false )#*
-    *##activeLink ( $item.href )#*
-    ## store value (if active) for later
-    *##set ( $active = $activeLink )#*
-    *##if ( $active )#*
-        *##set ( $currentLink = "#" )#*
-    *##else#*
-        *##set ( $currentLink = $relativeLink )#*
-    *##end#*
-
-    *##if ( $item.items && $item.items.size() > 0 )#*
-
-        *##if ( $item.collapse == false )#*
-
-            *##set ( $collapseClass = "glyphicon glyphicon-chevron-down" )#*
-        *##else#*
-                ## By default collapsed
-            *##set ( $collapseClass = "glyphicon glyphicon-chevron-right" )#*
-        *##end#*
-        ## check if one of the subtree items is the current one, if so, autoexpand
-        *##set ( $displayTree = false )#displayTree ( $item )#*
-        *##if ( $active || $displayTree )#*
-            *##set ( $collapseClass = "glyphicon glyphicon-chevron-down" )#*
-        *##end#*
-
-    *##end##
-                    <li #classAttr( $activeClass )>#*
-    *##fullLink ( $currentLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $collapseClass)#*
-    *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "glyphicon glyphicon-chevron-down" )##
-        <ul class="nav nav-list">
-#*
-    *##foreach ( $subitem in $item.items )#*
-        *##menuItem ( $subitem )#*
-    *##end##
-        </ul>
-#*
-    *##end#*
-    *#</li>
-#end##
-##
-#**
- * Creates a list menu with submenus
- *##macro ( listMenu $menus )#*
-*#
-                <ul class="nav nav-list">
-#*
-    *##foreach ( $menu in $menus )#*
-        *##if ( $menu.name )##
-                    <li class="nav-header">#*
-            *##if ( $menu.img )#*
-                *##if ( !$menu.position || $menu.position == "left" )#*
-                    *##image ($menu.img $menu.alt $menu.border $menu.width $menu.height) $menu.name#*
-                *##else#*
-                    *#$menu.name #image ($menu.img $menu.alt $menu.border $menu.width $menu.height)#*
-                *##end#*
-            *##else#*
-                *#$menu.name#*
-            *##end#*
-                    *#</li>
-#*      *##end#*
-
-        *##if ( $menu.items && $menu.items.size() > 0 )#*
-            *##foreach ( $item in $menu.items )#*
-                *##menuItem ( $item )#*
-            *##end#*
-
-        *##end#*
-
-    *##end##
-                </ul>
-#end##
-#**
  * Filters menus by their ref or name, and returns the matching results.
  * The regex is used to check the match
  *
@@ -497,73 +366,6 @@
         *##if ( ( $menu.ref && $menu.ref.matches($filterRegex) ) || ( $menu.name && $menu.name.matches($filterRegex) ) )#*
             *##call ( $filterMenus.add( $menu ) )#*
         *##end#*
-    *##end##
-#end##
-##
-#**
- * Outputs bottom navigation columns. The menus can be split into columns to be
- * placed in the bottom navigation. This is done with the `bottomNav` config option:
- *
- *  <bottomNav maxSpan="8"> - maximum span is indicated in the attribute (default =9)
- *      <column>regex</column> - indicates to add a column with the indicated regex filter
- *      <column>regex</column> - ...
- *      <column>regex</column> - ...
- *  </bottomNav>
- *
- * (The above produces a 3-column navigation with `span2` for each column (because max is 8)).
- *
- *##macro ( bottomNav )#*
-    ## by default, max span for bottom navigation is 9
-    *##set ( $maxNavSpan = 9 )#*
-    *##if ( $config.bottomNav && $config.bottomNav.getChildCount() > 0 )#*
-        ## Bottom navigation config is available - filter menus for each column and collect
-        *##set ( $menuColumns = [] )#*
-        *##foreach ( $bottomNavCol in $config.bottomNav.getChildren() )#*
-            *##filterMenus ( $decoration.body.menus, $bottomNavCol.getValue() )#*
-            *##call ( $menuColumns.add( $filterMenus ) )#*
-        *##end#*
-        ## read max span for bottom navigation from the config
-        *##if ( $config.bottomNav.getAttribute("maxSpan") )#*
-            *##set ( $maxNavSpanStr = $config.bottomNav.getAttribute("maxSpan") )#*
-            *##set ( $maxNavSpan = $convert.toNumber($maxNavSpanStr) )#*
-        *##end#*
-    *##else#*
-        ## No bottom navigation config - just use all menus in a single column
-        *##set ( $menuColumns = [ $decoration.body.menus ] )#*
-    *##end#*
-
-    *##if ( $maxNavSpan > 12 )#*
-        *##set ( $maxNavSpan = 12 )#*
-    *##end#*
-    ## Determine the column widths (aim for max span of 9 (default), and max width of 4)
-    *##set ( $navSpan = $maxNavSpan / $menuColumns.size() )#*
-    *##if ( $navSpan > 4 )#*
-        *##set ( $navSpan = 4 )#*
-    *##end#*
-    *##if ( $navSpan <= 0 )#*
-        *##set ( $navSpan = 1 )#*
-    *##end#*
-
-    *##if ( $maxNavSpan <= 0 )#*
-        *##set ( $maxNavSpan = $navSpan * $menuColumns.size() )#*
-    *##end#*
-
-    ## mark total span taken by the bottomNav (needed to add other components to the footer)
-    *##set ( $lastNavSpan = $maxNavSpan - ($navSpan * ($menuColumns.size() - 1)) )#*
-    *##set ( $totalNavSpan = $maxNavSpan )#*
-
-    *##set ( $navColIndex = 0 )#*
-    *##foreach ( $menuCol in $menuColumns )#*
-        *##if ( $navColIndex == $menuColumns.size() - 1 )#*
-            *##set ( $navSpan = $lastNavSpan )#*
-        *##end##
-            <div class="col-md-$navSpan bottom-nav">
-#*
-    *##listMenu ( $menuCol )#*
-*#
-            </div>
-#*
-    *##set ( $navColIndex = $navColIndex + 1 )#*
     *##end##
 #end##
 ##
@@ -702,25 +504,25 @@
     ## lightbox is enabled by default, so check for false and negate
     ## TODO explain more?
         *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)", "data-lightbox", "page" ))#*
-  *##end#*
-
-  *##if ( !$config.not( "html5Anchor" ) )#*
+  *##end##
+##
+    #if ( !$config.not( "html5Anchor" ) )##
     ## HTML5-style anchors are enabled by default, so check for false and negate
-        *##set ( $bodyContent = $htmlTool.headingAnchorToId( $bodyContent ) )#*
-  *##end#*
-
-  *##if ( !$config.not( "bootstrapCss" ) )#*
+        #set ( $bodyContent = $htmlTool.headingAnchorToId( $bodyContent ) )##
+    #end##
+##
+    #if ( !$config.not( "bootstrapCss" ) )##
     ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
-        *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )#*
+        #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )##
     ## image is responsive by default
-        *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-responsive"] ) )#*
-        *##set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )#*
-  *##end#*
-    #
-  *##if ( !$config.not( "bootstrapIcons" ) )#*
-    ## Bootstrap Icons are enabled by default, so check for false and negate
+        #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-responsive"] ) )##
+        #set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )##
+    #end##
+##
+    #if ( !$config.not( "bootstrapIcons" ) )#*
+        ## Bootstrap Icons are enabled by default, so check for false and negate
         *##depsCollapse ()#*
-      *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="glyphicon glyphicon-plus"></i>',
+        *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="glyphicon glyphicon-plus"></i>',
                     'img[src$=images/remove.gif]' : '<i class="glyphicon glyphicon-remove"></i>',
                     'img[src$=images/fix.gif]' : '<i class="glyphicon glyphicon-wrench"></i>',
                     'img[src$=images/update.gif]' : '<i class="glyphicon glyphicon-refresh"></i>',

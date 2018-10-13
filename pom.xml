@@ -48,7 +48,6 @@
   <modules>
     <module>reflow-velocity-tools</module>
     <module>reflow-default-webdeps</module>
-    <module>reflow-bootstrap4-webdeps</module>
     <module>reflow-maven-skin</module>
   </modules>
 
@@ -114,11 +113,12 @@
     <!-- Web dependencies version -->
     <!-- ================================================================================ -->
     <anchorJsVesrion>3.2.2</anchorJsVesrion>
-    <bootstrapVersion>3.3.7</bootstrapVersion>
-    <bootswatchVersion>3.3.7</bootswatchVersion>
+    <bootstrapVersion>4.1.3</bootstrapVersion>
+    <bootswatchVersion>4.1.3</bootswatchVersion>
     <highlightJsVersion>9.8.0</highlightJsVersion>
     <highlightJsTheme>github</highlightJsTheme>
     <jqueryVersion>3.3.1</jqueryVersion>
+    <fontawesomeVersion>5.2.0</fontawesomeVersion>
 
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->
@@ -387,8 +387,12 @@
                   <version>${project.version}</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
-                  <!-- exclude all highlight styles except the theme in highlightJsTheme property -->
-                  <includes>**/css/**/*.css,**/fonts/*,**/js/*.js,**/js/languages/*,**/js/styles/${highlightJsTheme}.min.css</includes>
+                  <includes>
+                    **/css/**/*,
+                    **/js/*.js,
+                    **/js/languages/*,
+                    **/js/styles/${highlightJsTheme}.min.css
+                  </includes>
                 </artifactItem>
               </artifactItems>
               <outputDirectory>${project.build.directory}/site</outputDirectory>
