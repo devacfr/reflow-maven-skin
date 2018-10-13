@@ -47,7 +47,6 @@
   <modules>
     <module>reflow-velocity-tools</module>
     <module>reflow-default-webdeps</module>
-    <module>reflow-bootstrap4-webdeps</module>
     <module>reflow-maven-skin</module>
   </modules>
 

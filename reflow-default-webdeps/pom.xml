@@ -129,7 +129,7 @@
           </execution>
           <execution>
             <id>get-cosmo-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -141,7 +141,7 @@
           </execution>
           <execution>
             <id>get-cyborg-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -153,7 +153,7 @@
           </execution>
           <execution>
             <id>get-darkly-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -165,7 +165,7 @@
           </execution>
           <execution>
             <id>get-flatly-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -177,7 +177,7 @@
           </execution>
           <execution>
             <id>get-journal-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -189,7 +189,7 @@
           </execution>
           <execution>
             <id>get-lumen-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -201,7 +201,7 @@
           </execution>
           <execution>
             <id>get-paper-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -213,7 +213,7 @@
           </execution>
           <execution>
             <id>get-readable-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -225,7 +225,7 @@
           </execution>
           <execution>
             <id>get-sandstone-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -237,7 +237,7 @@
           </execution>
           <execution>
             <id>get-simplex-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -249,7 +249,7 @@
           </execution>
           <execution>
             <id>get-slate-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -261,7 +261,7 @@
           </execution>
           <execution>
             <id>get-solar-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -273,7 +273,7 @@
           </execution>
           <execution>
             <id>get-spacelab-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -285,7 +285,7 @@
           </execution>
           <execution>
             <id>get-superhero-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -297,7 +297,7 @@
           </execution>
           <execution>
             <id>get-united-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -309,7 +309,7 @@
           </execution>
           <execution>
             <id>get-yeti-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -321,10 +321,7 @@
           </execution>
         </executions>
       </plugin>
-      <!--
-        The bootstrap uses "fonts" as directory for locating fonts and fontawesome uses "webfonts".
-        This plugin updates the css to also use "fonts".
-      -->
+
       <plugin>
         <groupId>com.google.code.maven-replacer-plugin</groupId>
         <artifactId>replacer</artifactId>
