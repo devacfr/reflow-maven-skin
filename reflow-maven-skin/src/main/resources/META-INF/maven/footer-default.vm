@@ -16,7 +16,7 @@
 ##
 #macro ( renderFooter )##
   <!-- Footer -->
-  <footer class="bg-light mt-3 p-3">
+  <footer class="bg-light mt-3 p-3 border border-gray">
     <div class="container">
       <div class="row">
 #*  *##if( $decoration.body.menus )#*
@@ -185,7 +185,7 @@
  * Creates a list menu with submenus
  *##macro ( listMenu $menus )#*
 *#
-                <ul class="nav flex-column">
+                <ul class="nav flex-column nav-list">
 #*
     *##foreach ( $menu in $menus )#*
         *##if ( $menu.name )##
@@ -231,22 +231,22 @@
 
         *##if ( $item.collapse == false )#*
 
-            *##set ( $collapseClass = "glyphicon glyphicon-chevron-down" )#*
+            *##set ( $collapseClass = "fas fa-angle-down" )#*
         *##else#*
                 ## By default collapsed
-            *##set ( $collapseClass = "glyphicon glyphicon-chevron-right" )#*
+            *##set ( $collapseClass = "fas fa-angle-right" )#*
         *##end#*
         ## check if one of the subtree items is the current one, if so, autoexpand
         *##set ( $displayTree = false )#displayTree ( $item )#*
         *##if ( $active || $displayTree )#*
-            *##set ( $collapseClass = "glyphicon glyphicon-chevron-down" )#*
+            *##set ( $collapseClass = "fas fa-angle-down" )#*
         *##end#*
 
     *##end##
                     <li class="nav-item $activeClass" )>#*
     *##fullLink ( $currentLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")#*
-    *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "glyphicon glyphicon-chevron-down" )##
-        <ul class="nav flex-column">
+    *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "fas fa-angle-down" )##
+        <ul class="nav flex-column nav-list">
 #*
     *##foreach ( $subitem in $item.items )#*
         *##menuItem ( $subitem )#*

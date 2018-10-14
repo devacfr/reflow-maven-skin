@@ -78,14 +78,14 @@
 #*              *##foreach ( $item in $menu.items )#*
                 *##activeLink ( $item.href)#*
                     *##if ($item.items.isEmpty())##
-                    <a href="$relativeLink" title="$item.name" target="$target" class="dropdown-item $activeClass">$item.name</a>
+                    <a href="$relativeLink" title="$item.name" #if( $target )target="$target"#end class="dropdown-item $activeClass">$item.name</a>
 #*                  *##else##
                     <div class="dropdown-submenu $activeClass">
     #*                  *##link ( $relativeLink $item.name $item.target "dropdown-item")##
                         <div class="dropdown-menu">
     #*                  *##foreach ($subitem in $item.items)#*
                         *##activeLink ( $subitem.href )##
-                            <a href="$relativeLink" title="$subitem.name" target="$subitem.target" class="dropdown-item $activeClass">$subitem.name</a>
+                            <a href="$relativeLink" title="$subitem.name" #if( $subitem.target )target="$subitem.target"#end class="dropdown-item $activeClass">$subitem.name</a>
     #*                  *##end##
                         </div>
                     </div>

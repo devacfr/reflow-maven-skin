@@ -515,22 +515,22 @@
     ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
         #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )##
     ## image is responsive by default
-        #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-responsive"] ) )##
+        #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-fluid"] ) )##
         #set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )##
     #end##
 ##
     #if ( !$config.not( "bootstrapIcons" ) )#*
         ## Bootstrap Icons are enabled by default, so check for false and negate
         *##depsCollapse ()#*
-        *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="glyphicon glyphicon-plus"></i>',
-                    'img[src$=images/remove.gif]' : '<i class="glyphicon glyphicon-remove"></i>',
-                    'img[src$=images/fix.gif]' : '<i class="glyphicon glyphicon-wrench"></i>',
-                    'img[src$=images/update.gif]' : '<i class="glyphicon glyphicon-refresh"></i>',
-                    'img[src$=images/icon_help_sml.gif]' : '<i class="glyphicon glyphicon-question-sign"></i>',
-                    'img[src$=images/icon_success_sml.gif]' : '<i class="glyphicon glyphicon-ok"></i>',
-                    'img[src$=images/icon_warning_sml.gif]' : '<i class="glyphicon glyphicon-sign"></i>',
-                    'img[src$=images/icon_error_sml.gif]' : '<i class="glyphicon glyphicon-exclamation-sign"></i>',
-                    'img[src$=images/icon_info_sml.gif]' : '<i class="glyphicon glyphicon-info-sign"></i>' } )#*
+        *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="fas fa-plus"></i>',
+                    'img[src$=images/remove.gif]' : '<i class="fas fa-minus"></i>',
+                    'img[src$=images/fix.gif]' : '<i class="fas fa-wrench"></i>',
+                    'img[src$=images/update.gif]' : '<i class="fas fa-redo"></i>',
+                    'img[src$=images/icon_help_sml.gif]' : '<i class="fas fa-question"></i>',
+                    'img[src$=images/icon_success_sml.gif]' : '<i class="fas fa-check-circle"></i>',
+                    'img[src$=images/icon_warning_sml.gif]' : '<i class="fas fa-exclamation-triangle"></i>',
+                    'img[src$=images/icon_error_sml.gif]' : '<i class="fas fa-exclamation-circle"></i>',
+                    'img[src$=images/icon_info_sml.gif]' : '<i class="fas fa-info"></i>' } )#*
       *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
   *##end#*
 

@@ -17,38 +17,38 @@
  * Render a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
  *
  *##macro( renderBreadcrumbs )#*
-  *##if ( !$config.not( "breadcrumbs" )
+    *##if ( !$config.not( "breadcrumbs" )
       && (( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0)
         || $datePosition == "left" || $versionPosition == "left"
         || $datePosition == "right" || $versionPosition == "right") )##
-    <div>
-      <ol class="breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
 #*
     ## left side version/date
-      *##if ( $versionPosition == "left" )##
-      <li class="projectVersion version-date">#version ()</li>
+        *##if ( $versionPosition == "left" )##
+            <li class="projectVersion version-date">#version ()</li>
 #*      *##end#*
-      *##if ( $datePosition == "left" )
-      <li class="publishDate version-date">#publishDate ()</li>
+        *##if ( $datePosition == "left" )
+            <li class="publishDate version-date">#publishDate ()</li>
 #*      *##end#*
 
     ## breadcrumbs
-    *##if ( !$config.not( "breadcrumbs" ) && $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0 )#*
-        *##foreach ( $item in  $decoration.body.breadcrumbs )#*
+        *##if ( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0 )#*
+            *##foreach ( $item in  $decoration.body.breadcrumbs )#*
             *##relativeLink ( $item.href )##
-                <li>#fullLink ( $relativeLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height false )</li>
-#*      *##end##
-                <li>#if ( $shortTitle )$shortTitle#else$title#end</li>
+            <li class="breadcrumb-item">#fullLink ( $relativeLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height false "")</li>
+#*          *##end##
+            <li class="breadcrumb-item active">#if ( $shortTitle )$shortTitle#else$title#end</li>
 
-#*  *##end#*
-    ## right side version/date
-      *##if ( $datePosition == "right" )##
-      <li class="publishDate version-date pull-right">#publishDate ()</li>
 #*      *##end#*
-      *##if ( $versionPosition == "right" )##
-      <li class="projectVersion version-date pull-right">#version ()</li>
+    ## right side version/date
+        *##if ( $datePosition == "right" )##
+            <li class="publishDate version-date pull-right">#publishDate ()</li>
+#*      *##end#*
+        *##if ( $versionPosition == "right" )##
+            <li class="projectVersion version-date pull-right">#version ()</li>
 #*      *##end
-      </ol>
-    </div>
+        </ol>
+    </nav>
 #*  *##end
 #end

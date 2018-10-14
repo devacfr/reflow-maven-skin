@@ -23,10 +23,6 @@
     </site>
   </distributionManagement>
 
-  <properties>
-    <main.basedir>${basedir}/..</main.basedir>
-  </properties>
-
   <build>
     <plugins>
       <plugin>
@@ -395,6 +391,32 @@
               <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/yeti/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/yeti</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <id>streamline-font-urls</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+            <configuration>
+              <basedir>${project.build.outputDirectory}/css/fontawesome</basedir>
+              <includes>
+                <include>**/*.css</include>
+              </includes>
+              <replacements>
+                <replacement>
+                  <token>../webfonts</token>
+                  <value>./webfonts</value>
+                </replacement>
+              </replacements>
             </configuration>
           </execution>
         </executions>

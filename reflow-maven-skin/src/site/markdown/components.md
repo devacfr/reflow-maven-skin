@@ -123,7 +123,7 @@ descriptor instead of using `<custom><reflowSkin>`:
       <span class="color-highlight">Reflow</span> Maven Skin
       ]]>
     </name>
-    <href>http://andriusvelykis.github.io/reflow-maven-skin</href>
+    <href>http://devacfr.github.io/reflow-maven-skin</href>
   </bannerLeft>
   ...
 </project>

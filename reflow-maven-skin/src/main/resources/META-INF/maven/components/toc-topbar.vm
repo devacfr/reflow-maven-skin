@@ -18,17 +18,13 @@
  *##macro( renderTopToc )
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")
     <hr class="toc-separator" />
-    <div id="m-toc-topbar" class="navbar navbar-default" data-spy="affix">
+    <div id="m-toc-topbar" class="navbar navbar-expand-lg navbar-light bg-light">
       <div id="toc-scroll-target" class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#m-toc-topnav-collapse" aria-expanded="false">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div> <!-- .navbar-header -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#m-toc-topnav-collapse" aria-controls="m-toc-topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         <div id="m-toc-topnav-collapse" class="collapse navbar-collapse">
-            <ul id="m-toc-topnav" class="nav navbar-nav">
+            <ul id="m-toc-topnav" class="navbar-nav">
             ## display Table of Contents in a top bar
             #renderTopTocItems ( $tocItems )
             </ul>
@@ -95,22 +91,22 @@
 
     *##foreach ( $topItem in $tocBarItems )#*
         *##if ( $topItems.contains( $topItem ) && $tocDivider )##
-                        <li class="divider-vertical"></li>
+                        <li class="nav-item divider-vertical"></li>
 #*      *##end#*
         *##if ( $topItem.items.isEmpty() )##
-                        <li class="toplevel"><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
+                        <li class="nav-item toplevel"><a class="nav-link" href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
 #*      *##elseif ( $topItems.contains( $topItem ) && $flattenLevel2 )##
             ## top level item, but flattened: put it as a link, because its children are also in top bar
-                        <li class="toplevel"><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
+                        <li class="nav-item toplevel"><a class="nav-link" href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
 #*      *##else##
-                        <li class="dropdown">
-                            <a href="#$topItem.id" title="$topItem.text" class="dropdown-toggle" role="button" data-toggle="dropdown">$topItem.text <b class="caret"></b></a>
-                            <ul class="dropdown-menu" role="menu">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" title="$topItem.text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$topItem.text</a>
+                            <div class="dropdown-menu">
                                 <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
-                                <li><a href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
-                                <li class="divider"></li>
+                                <a class="dropdown-item" href="#$topItem.id" title="$topItem.text">$topItem.text</a>
+                                <div class="dropdown-divider"></div>
                               #renderTopTocDropdown ( $topItem.items )
-                            </ul>
+                            </div>
                         </li>
 #*      *##end#*
         *##set ( $tocDivider = true )#*
@@ -118,12 +114,12 @@
 
     *##if ( $tocBarMaxItems.size() > 0 )##
         ## put the max items into an extra dropdown
-        <li class="divider-vertical"></li>
-        <li class="dropdown">
-            <a href="#" title="More&hellip;" class="dropdown-toggle" role="button" data-toggle="dropdown">&hellip; <b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu">
+        <li class="nav-item divider-vertical"></li>
+        <li class="nav-item dropdown">
+            <a class="dropdown-item" href="#" title="More&hellip;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&hellip;</a>
+            <div class="dropdown-menu">
 #*              *##renderTopTocDropdown ( $tocBarMaxItems )##
-            </ul>
+            </div>
         </li>
 #*  *##end##
 #end##
@@ -135,13 +131,13 @@
 
     *##foreach ( $subitem in $items )#*
         *##if ($subitem.items.isEmpty())##
-                <li><a href="#$subitem.id" title="$subitem.text">$subitem.text</a></li>
+                <a class="dropdown-item" href="#" title="$subitem.text">$subitem.text</a>
 #*      *##else##
                 <li class="dropdown-submenu">
                     <a href="#$subitem.id" title="$subitem.text">$subitem.text</a>
-                    <ul class="dropdown-menu" role="menu">
+                    <div class="dropdown-menu" role="menu">
 #*                      *##renderTopTocDropdown ( $subitem.items )##
-                    </ul>
+                    </div>
                 </li>
 #*      *##end#*
     *##end#*
