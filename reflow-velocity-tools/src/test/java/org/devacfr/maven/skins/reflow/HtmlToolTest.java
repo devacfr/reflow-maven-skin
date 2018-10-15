@@ -36,4 +36,11 @@ public class HtmlToolTest extends TestCase {
             Charsets.UTF_8)));
     }
 
+    @Test
+    public void replaceWith() {
+        final HtmlTool htmlTool = new HtmlTool();
+        String actual = htmlTool.replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
+        assertEquals("<p>text <code class=\"literal\">foo value</code> end text.</p>", actual);
+    }
+
 }

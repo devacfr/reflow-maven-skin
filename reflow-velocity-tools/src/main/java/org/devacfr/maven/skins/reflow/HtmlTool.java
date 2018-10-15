@@ -31,6 +31,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
+
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
@@ -39,7 +40,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
+import org.jsoup.select.Elements;
 
 /**
  * An Apache Velocity tool that provides utility methods to manipulate HTML code using
@@ -820,6 +823,52 @@ public class HtmlTool extends SafeConfig {
 
                     modified = true;
                 }
+            }
+        }
+
+        if (modified) {
+            return body.html();
+        } else {
+            // nothing changed
+            return content;
+        }
+    }
+
+
+    /**
+     * Replaces All elements in HTML corresponding to <code>selector</code> while preserving the content of this element.
+     *
+     * @param content
+     *            HTML content to modify
+     * @param selector
+     *            CSS selector for elements to replace
+     * @param newElement
+     *            HTML replacement (must parse to a single element)
+     * @return HTML content with replaced elements. If no elements are found, the original content is returned.
+     * @since 2.0
+     */
+    public String replaceWith(final String content, final String selector, final String newElement) {
+
+        final Element body = parseContent(content);
+
+        boolean modified = false;
+        final List<Element> elements = body.select(selector);
+        if (elements.size() > 0) {
+
+            // take the first child
+            final Element replacementElem = parseContent(newElement).child(0);
+
+            if (replacementElem != null) {
+                for (final Element element : elements) {
+                    List<Node> children = element.childNodes();
+                    Element el = replacementElem.clone();
+                    for (Node child : children) {
+                        el.appendChild(child.clone());
+                    }
+                    element.replaceWith(el);
+                }
+
+                modified = true;
             }
         }
 

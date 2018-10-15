@@ -17,8 +17,8 @@
  * Render NavSideMenu web element page
  *
  *##macro( renderNavSideMenu )##
-    <div class="nav-side-menu hidden-print" data-spy="affix">
-        <div class="brand">$config.context.menu.name</div>
+    <div class="nav-side-menu d-print-none">
+        <div class="brand font-weight-bold border-bottom mb-2">$config.context.menu.name</div>
         <i class="toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 #*      *##if( $config.context.menu.hasItems )##
         <div class="menu-list">

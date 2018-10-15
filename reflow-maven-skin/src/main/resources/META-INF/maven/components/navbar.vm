@@ -17,7 +17,7 @@
  * Outputs navbar
  *
  *##macro ( renderNavbar )##
-    <div id="m-top-navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div id="m-top-navbar" class="navbar navbar-expand-lg navbar-light bg-light border-bottom fixed-top">
         <div class="container">
 ##
 ## Insert brand if it is available
@@ -43,7 +43,7 @@
                 <ul class="nav navbar-nav ml-auto">
 #*
   *##if ( $decoration.body.links )#*
-      *##links ( $decoration.body.links "nav-link")#*
+      *##links ( $decoration.body.links)#*
   *##end#*
 
   *##if ( $decoration.body.menus )#*
@@ -96,3 +96,14 @@
 #*      *##end#*
   *##end#*
 *##end#*
+#*
+ *
+ * Outputs a list of links
+ *
+ *##macro ( links $links)#*
+
+  *##foreach ( $item in $links)#*
+      *##activeLink ( $item.href )#*
+      *#<li class="nav-item $activeClass" >#link ( $relativeLink $item.name $item.target "nav-link")</li>
+#*  *##end#*
+*##end

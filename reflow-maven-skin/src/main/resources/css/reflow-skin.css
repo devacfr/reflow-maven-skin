@@ -1,8 +1,12 @@
+body {
+	position: relative;
+}
+
 /* Jumps to in-page links (e.g. page.html#foo) do not honor fixed navbar.
    Use pseudo element to move them down.
    Taken from http://nicolasgallagher.com/jump-links-and-viewport-positioning/demo/#method-B
  */
-h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id]:before, a[name]:before {
+ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id]:before, a[name]:before {
     display: block;
     content: "";
     height: 100px;
@@ -118,77 +122,23 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     padding-top: 0;
 }
 
-/*--------------------------------------------------
- * navbar
- *--------------------------------------------------*/
-.navbar.affix {
-    position: fixed;
-    top: 50px;
-    right: 0;
-    left: 0;
-    z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
-    margin-bottom: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.navbar.affix .navbar-inner {
-    border-width: 0 0 1px;
-    padding-right: 0;
-    padding-left: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Other screen sizes navbar container width */
-@media ( min-width : 1200px) {
-    .navbar.affix .container {
-        width: 1170px;
-    }
-}
 
 /*--------------------------------------------------
  * toc top
  *--------------------------------------------------*/
 #m-toc-topbar {
     z-index:1010; /*must be < nav-bar bootstrap container  1020 */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
 }
 
-/*--------------------------------------------------
- * toc sidebar
- *--------------------------------------------------*/
 
-/* affix toc aside bar
-*/
-#toc-sidebar {
-    margin-top: 10px;
-    z-index: 1010; /*must be < nav-bar bootstrap container  1020 */
-}
-
-#m-toc-sidebar.affix {
-    top: 70px;
-    width: 360px;
-}
-
-#m-toc-sidebar.affix-bottom {
-    position: absolute;
-    width: 360px;
-}
-
-@media ( min-width : 1200px) {
-    #m-toc-sidebar.affix-bottom {
-        width: 360px;
-    }
-}
 
 #m-toc-sidebar {
-    font-size: 13px;
-    overflow-y: visible;
-    padding: 4px 0 0 5px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
 }
 
 .m-nav--sidebar {
@@ -208,7 +158,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
 
 
 
-#m-toc-sidebar li.active a:before {
+#m-toc-sidebar li a.active:before {
     content: "";
     border-radius: 50%;
     left: -3px;
@@ -232,18 +182,18 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     color: var(--gray);
 }
 
-#m-toc-sidebar .nav-item.active .nav-link {
+#m-toc-sidebar li .nav-link.active {
     color: var(--primary);
     font-weight: 500;
 }
 
-#m-toc-sidebar .nav-item:hover .nav-link {
-    color: var(--light);
-    background-color: transparent;
+#m-toc-sidebar li:hover .nav-link {
+    color: var(--dark);
+    background-color: var(--light);
 }
 
 
-#m-toc-sidebar  li:not(.active ):hover a:before {
+#m-toc-sidebar  li:hover a:not(.active ):before {
     content: "";
     border-radius: 50%;
     left: -3px;
@@ -254,13 +204,7 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     height: 6px;
 }
 
-#m-toc-sidebar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0 8px 0 0;
-    line-height: 24px;
-    font-size: 14px;
-}
+
 
 #m-toc-sidebar li {
     box-sizing: border-box;
@@ -305,46 +249,25 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
  * navbar side
  *--------------------------------------------------*/
 .nav-side-menu {
-    /*overflow: auto;*/
-    /*font-family: verdana;*/
-    /*font-size: 12px;*/
-    font-weight: 200;
-    /*background-color: #2e353d;*/
-    /*position: fixed;*/
-    top: 0px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
     width: 100%;
-    /*height: 100%;*/
-    color: #4d4b4b;
     font-weight: 400;
 }
 
-.nav-side-menu.affix {
-    top: 70px;
-    width: 300px;
-}
-
-.nav-side-menu.affix-bottom {
-    position: absolute;
-    width: 300px;
-}
-
-@media ( min-width : 1200px) {
-    .nav-side-menu.affix-bottom {
-        width: 300px;
-    }
-}
 
 .nav-side-menu .menu-list {
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 .nav-side-menu .brand {
-    background-color: #f8f8f8;
+    background-color: var(--light);
     line-height: 50px;
     display: block;
     text-align: center;
     font-size: 14px;
-    border-color: #e7e7e7;
+    border-color: var(--gray);
 }
 
 .nav-side-menu .toggle-btn {
@@ -386,17 +309,17 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     background-color: var(--light);
 }
 
+.nav-side-menu ul.sub-menu {
+    padding: 0px 0px 0px 25px;
+}
+
 .nav-side-menu ul .sub-menu li.active, .nav-side-menu li .sub-menu li.active {
     color: white;
     background-color: var(--primary);
 }
 
-.nav-side-menu ul .sub-menu li.active a, .nav-side-menu li .sub-menu li.active a {
-    color: white;
-}
 
 .nav-side-menu ul .sub-menu li, .nav-side-menu li .sub-menu li {
-    /* background-color: #ececec; */
     border: none;
     line-height: 28px;
     margin-left: 0px;
@@ -416,11 +339,6 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
     vertical-align: inherit;
     font-weight: 900;
     font-size: 10px;
-}
-
-.nav-side-menu li {
-    padding-left: 0px;
-    /* border-bottom: #e7e7e7 solid 1px;*/
 }
 
 .nav-side-menu li a {
@@ -491,7 +409,6 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
 }
 
 #m-doc-frame {
-    border-left: var(--secondary) solid 1px;
     /* for anchorJs */
     padding-left: 40px;
 }
@@ -521,7 +438,8 @@ h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id
  * Footer
  *--------------------------------------------------*/
 footer {
-    margin-top: 70px;
+    margin-top: 1rem;
+    padding: 1rem;
 }
 
 footer .nav .nav-link {

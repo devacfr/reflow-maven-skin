@@ -40,9 +40,9 @@
     *##if ( $banner )#*
         *##if ( $banner.href )#*
             *##relativeExtLink ( $banner.href )##
-                    <a href="$relativeExtLink" id="$id"#if ( $banner.alt ) title="$banner.alt"#end>
+                    <a href="$relativeExtLink" class="$id"#if ( $banner.alt ) title="$banner.alt"#end>
 #*      *##else##
-                    <div id="$id">
+                    <div class="$id">
 #*      *##end#*
 
         *##if ( $banner.src )#*

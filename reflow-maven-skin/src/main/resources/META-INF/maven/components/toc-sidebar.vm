@@ -17,14 +17,15 @@
  * Outputs ToC sidebar contents.
  * Does not do anything if ToC sidebar has already been added.
  *
- *##macro ( renderTocSidebar )
+ *#
+ #macro ( renderTocSidebar )##
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")
         #if ( !$tocSidebarAdded )##
             #set ( $isFixed = $pageContext.toc.fixed)
-            <div id="m-toc-sidebar" class="hidden-print hidden-xs hidden-sm ${pageContext.toc.cssClass}" #if ( $isFixed) data-spy="affix" #end>
-                <nav id="m-toc-sidebar-nav">
-                   #renderAsideTocMenu ( $tocItems )
-               </nav>
+            <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm ${pageContext.toc.cssClass}">
+                <nav id="m-toc-sidebar-nav flex-column">
+#*                  *##renderAsideTocMenu ( $tocItems )
+                </nav>
            </div>
 #*          *##set ( $tocSidebarAdded = true )#*
         *##end##
@@ -34,11 +35,12 @@
 #**
  * Outputs Table of Contents into a list menu
  *
- *##macro ( renderAsideTocMenu $menus )##
+ *#
+ #macro ( renderAsideTocMenu $menus )##
 ##
-                <ul class="m-nav--sidebar nav">
+                <ul class="m-nav--sidebar nav flex-column">
 #*  *##foreach ( $item in $menus )
-        #renderAsideTocItem ( $item )
+#*      *##renderAsideTocItem ( $item )
     #end##
                 </ul>
 #end##
@@ -46,20 +48,21 @@
 #**
  * Recursively outputs ToC item and its children
  *
- *##macro ( renderAsideTocItem $item )##
-    #set( $href = ${item.id} )
-    <li class="nav-item ${item.tagName}">
+ *#
+ #macro ( renderAsideTocItem $item )##
+    #set( $href = ${item.id} )##
+    <li class="${item.tagName}">
         <a class="nav-link" href="#${href}" title="${item.text}">$item.text</a>
     </li>
 #*  *##if ( $item.items.size() > 0 )##
-    #if ($item.headingLevel > 1)##
-    <ul class="nav nav-collapsible">
+#*  *##if ($item.headingLevel > 1)##
+    <ul class="nav flex-column nav-collapsible">
     #end##
 #*      *##foreach ( $subitem in $item.items )
-            #renderAsideTocItem ( $subitem )
+#*          *##renderAsideTocItem ( $subitem )
 #*      *##end##
-    #if ($item.headingLevel > 1)##
+#*  *##if ($item.headingLevel > 1)##
     </ul>
-    #end##
+#*  *##end##
 #*  *##end
 #end

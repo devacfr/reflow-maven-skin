@@ -123,9 +123,9 @@
         </toc-sidebar>
         <reflow-documentation type="doc">
           <menu name="Reflow Documentation" selectOnExpand="true">
-            <item name="Configuration" href="config.html" icon="fa fa-tachometer fa-fw"/>
-            <item name="Themes" href="themes/index.html" icon="fa fa-columns fa-fw"/>
-            <item name="Layouts" icon="fa fa-clone fa-fw">
+            <item name="Configuration" href="config.html" icon="fas fa-tachometer-alt"/>
+            <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
+            <item name="Layouts" icon="fas fa-clone">
               <item name="Overview" href="layouts.html"/>
               <item name="Body" href="body.html"/>
               <item name="Carousel" href="carousel.html"/>
@@ -134,10 +134,15 @@
               <item name="Sidebar" href="sidebar.html"/>
               <item name="Responsive Design" href="responsive-design.html"/>
             </item>
-            <item name="Components" href="components.html" icon="fa fa-suitcase fa-fw"/>
-            <item name="Other Configuration" href="misc.html" icon="fa fa-sliders fa-fw"/>
-            <item name="Multi-module Site" href="multi-module.html" icon="fa fa-window-restore fa-fw"/>
-            <item name="Local Resources" href="resources.html" icon="fa fa-bookmark fa-fw"/>
+            <item name="Components" icon="fas fa-suitcase" selectOnExpand="ture">
+              <item name="Overview" href="components/components.html"/>
+              <item name="Header" href="components/header.html"/>
+              <item name="Menus" href="components/menus.html"/>
+              <item name="Table of Contents" href="components/toc.html"/>
+            </item>
+            <item name="Other Configuration" href="misc.html" icon="fas fa-sliders"/>
+            <item name="Multi-module Site" href="multi-module.html" icon="fas fa-window-restore"/>
+            <item name="Local Resources" href="resources.html" icon="fas fa-bookmark"/>
           </menu>
         </reflow-documentation>
       </pages>

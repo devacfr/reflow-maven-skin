@@ -13,28 +13,27 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-    <div class="container-fluid">
-        <div class="main-body">
-            <div class="row">  
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
-                </div>              
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"> 
-                     <div class="header container-fluid">
-                        ## add a banner
-                        #renderBanner ()##   
-                        ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#  
-                        #renderBreadcrumbs ()##
-                        ## add top toc if enabled
-                        #renderTopToc ()
-                    </div> <!-- end : header -->
-                    #if ( $config.sections )
-                        #renderBodySections ( $bodyContent $config.sections )
-                    #else
-                        #bodyWithHeader ( $bodyContent )      
-                    #end        
-                </div>
-                <div class="hidden-xs hidden-sm col-md-3 col-lg-3">  
-                    #renderTocSidebar ()
-                </div>     
-            </div>
-    </div> <!-- /container-fluid -->
+<div class="main-body mt-2">
+    <div class="row">
+        <div class="hidden-xs hidden-sm col-lg-2">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="header container-fluid">
+                ## add a banner
+                #renderBanner ()##
+                ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
+                #renderBreadcrumbs ()##
+            </div> <!-- end : header -->
+            ## add top toc if enabled
+            #renderTopToc ()
+            #if ( $config.sections )
+                #renderBodySections ( $bodyContent $config.sections )
+            #else
+                #bodyWithHeader ( $bodyContent )
+            #end
+        </div>
+        <div class="hidden-xs hidden-sm col-lg-2">
+            #renderTocSidebar ()
+        </div>
+    </div> <!-- row: end -->
+</div> <!-- .main-body: end -->

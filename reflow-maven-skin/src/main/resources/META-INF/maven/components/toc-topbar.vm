@@ -18,7 +18,7 @@
  *##macro( renderTopToc )
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")
     <hr class="toc-separator" />
-    <div id="m-toc-topbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div id="m-toc-topbar" class="navbar navbar-expand-lg navbar-dark  bg-dark border rounded">
       <div id="toc-scroll-target" class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#m-toc-topnav-collapse" aria-controls="m-toc-topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -131,7 +131,7 @@
 
     *##foreach ( $subitem in $items )#*
         *##if ($subitem.items.isEmpty())##
-                <a class="dropdown-item" href="#" title="$subitem.text">$subitem.text</a>
+                <a class="dropdown-item" href="#$subitem.id" title="$subitem.text">$subitem.text</a>
 #*      *##else##
                 <li class="dropdown-submenu">
                     <a href="#$subitem.id" title="$subitem.text">$subitem.text</a>

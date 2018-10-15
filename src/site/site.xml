@@ -120,6 +120,9 @@
         <dependencies>
           <tocTopMax>4</tocTopMax>
         </dependencies>
+        <release-notes>
+          <toc>false</toc>
+        </release-notes>
       </pages>
     </reflowSkin>
   </custom>

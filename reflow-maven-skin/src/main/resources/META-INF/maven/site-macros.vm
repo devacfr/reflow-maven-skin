@@ -133,17 +133,6 @@
 *##end##
 #*
  *
- * Outputs a list of links
- *
- *##macro ( links $links $className)#*
-
-  *##foreach ( $item in $links)#*
-      *##activeLink ( $item.href )#*
-      *#<li #classAttr( $activeClass )>#link ( $relativeLink $item.name $item.target $className)</li>
-#*  *##end#*
-*##end#*
-
- *
  * Shortcut to display a basic hyperlink
  *
  *##macro ( link $href $name $target $className)#*
@@ -519,10 +508,10 @@
         #set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )##
     #end##
 ##
-    #if ( !$config.not( "bootstrapIcons" ) )#*
+    #if ( !$config.not( "bootstrapIcons" ) )##
         ## Bootstrap Icons are enabled by default, so check for false and negate
-        *##depsCollapse ()#*
-        *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="fas fa-plus"></i>',
+#*      *##depsCollapse ()##
+        #set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="fas fa-plus"></i>',
                     'img[src$=images/remove.gif]' : '<i class="fas fa-minus"></i>',
                     'img[src$=images/fix.gif]' : '<i class="fas fa-wrench"></i>',
                     'img[src$=images/update.gif]' : '<i class="fas fa-redo"></i>',
@@ -530,13 +519,15 @@
                     'img[src$=images/icon_success_sml.gif]' : '<i class="fas fa-check-circle"></i>',
                     'img[src$=images/icon_warning_sml.gif]' : '<i class="fas fa-exclamation-triangle"></i>',
                     'img[src$=images/icon_error_sml.gif]' : '<i class="fas fa-exclamation-circle"></i>',
-                    'img[src$=images/icon_info_sml.gif]' : '<i class="fas fa-info"></i>' } )#*
-      *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
-  *##end#*
+                    'img[src$=images/icon_info_sml.gif]' : '<i class="fas fa-info"></i>' } )##
+      #set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )##
+      ## The <tt> tag is not supported in HTML5 (see https://www.w3schools.com/tags/tag_tt.asp).
+      #set ( $bodyContent = $htmlTool.replaceWith( $bodyContent, 'tt', '<code class=\"literal\">' ) )##
+    #end##
 
-  *##if ( $pageContext.toc.enabled )#*
+    #if ( $pageContext.toc.enabled )##
     ## Ensure IDs on all headings to refer to them in TOC
-        *##set ( $bodyContent = $htmlTool.ensureHeadingIds( $pageContext.type, $config.fileId, $bodyContent, "_" ) )#*
-      *##set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )#*
-  *##end
-#end
+        #set ( $bodyContent = $htmlTool.ensureHeadingIds( $pageContext.type, $config.fileId, $bodyContent, "_" ) )##
+        #set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )##
+    #end##
+#end##

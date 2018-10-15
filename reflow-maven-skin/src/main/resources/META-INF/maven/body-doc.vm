@@ -13,14 +13,14 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-  <div class="main-body container-fluid ${pageContext.cssClass}">
+<div class="main-body ${pageContext.cssClass}">
     <div class="row">
-        <div class="col-md-2 col-lg-2">
+        <div class="col-md-2 col-lg-2 px-0">
            #renderNavSideMenu ()
         </div>
-        <div id="m-doc-frame" class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 px-0">
+            <div id="m-doc-frame" class="border-left">
+            </div>
         </div>
-  </div>
-##
-    </div> <!-- end : row -->
-</div> <!-- /container -->
+    </div>
+</div> <!-- main-body: end -->
