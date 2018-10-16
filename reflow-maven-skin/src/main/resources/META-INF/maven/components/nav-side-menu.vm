@@ -40,10 +40,10 @@
 #*                      *##foreach ( $subItem in $item.items )##
                     <li><a href="#${subItem.href}" slug-name="${subItem.slugName}">${subItem.name}</a></li>
 #*                      *##end##
-                    </ul>
+                </ul>
 #*                  *##end##
+#*                  *##set ( $counterMenu = $counterMenu + 1)##
 #*              *##end##
-#*              *##set ( $counterMenu = $counterMenu + 1)##
             </ul>
         </div>
 #*      *##end##
