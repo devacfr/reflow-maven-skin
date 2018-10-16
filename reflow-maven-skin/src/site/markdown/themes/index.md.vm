@@ -8,7 +8,7 @@ $h1 Themes
 Reflow skin builds on [Twitter Bootstrap][bootstrap] and supports predefined and custom
 Bootstrap themes. They are set using the `<theme>` element in the customization:
 
-[bootstrap]: http://twitter.github.com/bootstrap/
+[bootstrap]: http://getbootstrap.com/
 
 ```xml
 <custom>

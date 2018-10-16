@@ -26,7 +26,6 @@
   <custom>
     <reflowSkin>
       <toc>sidebar</toc>
-      <navbar cssClass="navbar-dark bg-dark border-bottom" />
       <pages>
         <index project="reflow-maven-skin" combine.self="override">
           <shortTitle>Get Started</shortTitle>
@@ -123,6 +122,7 @@
           <toc>sidebar</toc>
         </toc-sidebar>
         <reflow-documentation type="doc">
+          <navbar cssClass="navbar-dark bg-dark border-bottom" />
           <menu name="Reflow Documentation" selectOnExpand="true">
             <item name="Configuration" href="config.html" icon="fas fa-tachometer-alt"/>
             <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
