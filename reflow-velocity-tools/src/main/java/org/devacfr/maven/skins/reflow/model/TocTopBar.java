@@ -15,6 +15,10 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.SkinConfigTool;
+
 public class TocTopBar extends Toc<TocTopBar> {
 
     /** no <tocTopFlatten> element (default) - flatten if single top heading */
@@ -23,38 +27,55 @@ public class TocTopBar extends Toc<TocTopBar> {
     /** -1 or no <tocTopMax> element (default) - unlimited */
     private int topMax = -1;
 
-    public TocTopBar() {
+    public TocTopBar(final @Nonnull SkinConfigTool config) {
         super("top");
+        this.setCssClass(
+                config.getConfigAttribute("toc", "cssClass", String.class, "navbar-dark bg-dark border rounded"));
+        this.withFlatten(config.getConfigValue("tocTopFlatten", Boolean.class, false))
+                .withTopMax(config.getConfigValue("tocTopMax", Integer.class, -1)).withEnabled(true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCssOptions() {
         return isEnabled() ? "m-toc-top-enabled" : "";
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isFlatten() {
         return flatten;
     }
 
-    public void setFlatten(final boolean flatten) {
+    /**
+     *
+     * @param flatten
+     * @return
+     */
+    protected TocTopBar withFlatten(final boolean flatten) {
         this.flatten = flatten;
-    }
-
-    public TocTopBar withFlatten(final boolean flatten) {
-        setFlatten(flatten);
         return self();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTopMax() {
         return topMax;
     }
 
-    public void setTopMax(final int topMax) {
+    /**
+     *
+     * @param topMax
+     * @return
+     */
+    protected TocTopBar withTopMax(final int topMax) {
         this.topMax = topMax;
-    }
-
-    public TocTopBar withTopMax(final int topMax) {
-        setTopMax(topMax);
         return self();
     }
 

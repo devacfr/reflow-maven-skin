@@ -57,7 +57,7 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
                 toc = createTocSidebar(config);
                 break;
             case "top":
-                toc = createTocTopBar(config);
+                toc = new TocTopBar(config);
                 break;
             default:
                 // create a disabled empty toc
@@ -75,11 +75,6 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         return toc;
     }
 
-    private static Toc<?> createTocTopBar(final SkinConfigTool config) {
-        return new TocTopBar().withEnabled(true)
-                .withFlatten(config.getConfigValue("tocTopFlatten", Boolean.class, false))
-                .withTopMax(config.getConfigValue("tocTopMax", Integer.class, -1));
-    }
 
     private static Toc<?> createTocSidebar(final SkinConfigTool config) {
         final String position = config.getConfigAttribute("toc", "type", String.class, "fixed").toLowerCase();
@@ -106,12 +101,8 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         return enabled;
     }
 
-    public void setEnabled(final boolean enabled) {
+    protected T withEnabled(final boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public T withEnabled(final boolean enabled) {
-        setEnabled(enabled);
         return self();
     }
 

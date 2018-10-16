@@ -25,8 +25,6 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
 public class Navbar extends PageElement {
 
-    /** */
-    private String cssClass;
 
     /** */
     private String brandName;
@@ -51,25 +49,10 @@ public class Navbar extends PageElement {
         if( Strings.isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
-        this.cssClass = config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom");
+        this.setCssClass(config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom"));
     }
 
-    @Override
-    public String getCssClass() {
-        return this.cssClass;
-    }
 
-    /**
-     * @param cssClass the cssClass to set
-     */
-    public void setCssClass(String cssClass) {
-        this.cssClass = cssClass;
-    }
-
-    public Navbar withCssClass(String cssClass) {
-        this.cssClass = cssClass;
-        return this;
-    }
 
     /**
      * @return the brandName
