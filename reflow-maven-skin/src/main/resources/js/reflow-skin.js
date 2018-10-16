@@ -74,31 +74,6 @@ var mReflow = function () {
         target: '#m-toc-sidebar'
       });
 
-      /*
-      tocSidebar.on('activate.bs.scrollspy', function (evt) {
-        var el = $(evt.target);
-        if (timestampSideBar > 0 && evt.timeStamp < timestampSideBar + 100) {
-          return false;
-        }
-        timestampSideBar = evt.timeStamp;
-        var container = tocSidebar.find('.mCSB_container');
-        var offsetHeight = 0;
-        var elHeight = container.height();
-
-        var parent = $(el.offsetParent());
-        offsetHeight = el.position().top;
-        while (!parent.hasClass('mCSB_container')) {
-          offsetHeight +=
-            parent.position().top; parent = $(parent.offsetParent());
-        }
-        var offset = offsetHeight; // - (elHeight / 2); //
-        tocSidebar.mCustomScrollbar("scrollTo", el);
-        tocSidebar.mCustomScrollbar("scrollTo", offset);
-        evt.stopImmediatePropagation();
-        return false;
-      });
-      */
-
     }
 
 

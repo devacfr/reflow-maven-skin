@@ -179,7 +179,6 @@
 ##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
-    <link href="$resourcePath/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
 ##
 #*  *##if ( $config.highlightJsVersion )#*
       *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
@@ -251,9 +250,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js"></script>
 #*  *##end##
 ##
-  <script src="$resourcePath/js/jquery-ui-1.10.4.min.js"></script>
-  <script src="$resourcePath/js/jquery.mousewheel.min.js"></script>
-  <script src="$resourcePath/js/jquery.mCustomScrollbar.min.js"></script>
   <script src="$bootstrapJsPath/bootstrap.min.js"></script>
 
 #*
