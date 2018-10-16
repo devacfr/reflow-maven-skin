@@ -35,14 +35,15 @@
 #*                  *##end##
                   </a>
                 </li>
-#*              *##if( $item.hasItems)##
-                    <ul class="sub-menu collapse" id="$itemId">
+#*                  *##if( $item.hasItems)##
+                <ul class="sub-menu collapse" id="$itemId">
 #*                      *##foreach ( $subItem in $item.items )##
-                        <li><a href="#${subItem.href}" slug-name="${subItem.slugName}">${subItem.name}</a></li>
+                    <li><a href="#${subItem.href}" slug-name="${subItem.slugName}">${subItem.name}</a></li>
 #*                      *##end##
                     </ul>
 #*                  *##end##
 #*              *##end##
+#*              *##set ( $counterMenu = $counterMenu + 1)##
             </ul>
         </div>
 #*      *##end##

@@ -276,8 +276,6 @@ var mReflow = function () {
 
     $window.resize(resizeNavSidebar);
 
-    navSidebar.on('affixed.bs.affix', resizeNavSidebar);
-
 
     // init fragment url part
     var fragment = window.location.hash;
