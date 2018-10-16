@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>reflow-maven-skin</artifactId>
@@ -16,6 +16,7 @@
     a modern-looking Maven-generated website. Requires Reflow Velocity Tools.</description>
   <!-- Indicate that the site for skin plug-in is nested under `skin` -->
   <url>${site.url}/skin</url>
+
 
   <distributionManagement>
     <site>

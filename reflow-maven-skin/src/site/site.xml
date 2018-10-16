@@ -25,9 +25,10 @@
 
   <custom>
     <reflowSkin>
+      <toc>sidebar</toc>
       <pages>
         <index project="reflow-maven-skin" combine.self="override">
-          <shortTitle>Usage</shortTitle>
+          <shortTitle>Get Started</shortTitle>
           <breadcrumbs>true</breadcrumbs>
           <!-- no ToC on the main index page -->
           <toc>false</toc>
@@ -37,10 +38,10 @@
           </sections>
         </index>
         <config>
-          <toc>false</toc>
+          <toc expanded="false">sidebar</toc>
         </config>
         <layouts>
-          <tocTopMax>-1</tocTopMax>
+          <toc>false</toc>
         </layouts>
         <themes-index>
           <toc>false</toc>
@@ -55,24 +56,31 @@
         </themes-bootswatch-cerulean>
         <themes-bootswatch-cosmo>
           <theme>bootswatch-cosmo</theme>
+          <toc>top</toc>
         </themes-bootswatch-cosmo>
         <themes-bootswatch-cyborg>
           <theme>bootswatch-cyborg</theme>
+          <toc>top</toc>
         </themes-bootswatch-cyborg>
         <themes-bootswatch-darkly>
           <theme>bootswatch-darkly</theme>
+          <toc>top</toc>
         </themes-bootswatch-darkly>
         <themes-bootswatch-flatly>
           <theme>bootswatch-flatly</theme>
+          <toc>top</toc>
         </themes-bootswatch-flatly>
         <themes-bootswatch-journal>
           <theme>bootswatch-journal</theme>
+          <toc>top</toc>
         </themes-bootswatch-journal>
         <themes-bootswatch-lumen>
           <theme>bootswatch-lumen</theme>
+          <toc>top</toc>
         </themes-bootswatch-lumen>
         <themes-bootswatch-paper>
           <theme>bootswatch-paper</theme>
+          <toc>top</toc>
         </themes-bootswatch-paper>
         <themes-bootswatch-readable>
           <theme>bootswatch-readable</theme>
@@ -80,42 +88,63 @@
         </themes-bootswatch-readable>
         <themes-bootswatch-simplex>
           <theme>bootswatch-simplex</theme>
+          <toc>top</toc>
         </themes-bootswatch-simplex>
         <themes-bootswatch-slate>
           <theme>bootswatch-slate</theme>
+          <toc>top</toc>
         </themes-bootswatch-slate>
         <themes-bootswatch-solar>
           <theme>bootswatch-solar</theme>
+          <toc>top</toc>
         </themes-bootswatch-solar>
         <themes-bootswatch-spacelab>
           <theme>bootswatch-spacelab</theme>
+          <toc>top</toc>
         </themes-bootswatch-spacelab>
         <themes-bootswatch-sandstone>
           <theme>bootswatch-sandstone</theme>
+          <toc>top</toc>
         </themes-bootswatch-sandstone>
         <themes-bootswatch-superhero>
           <theme>bootswatch-superhero</theme>
+          <toc>top</toc>
         </themes-bootswatch-superhero>
         <themes-bootswatch-united>
           <theme>bootswatch-united</theme>
+          <toc>top</toc>
         </themes-bootswatch-united>
         <themes-bootswatch-yeti>
           <theme>bootswatch-yeti</theme>
+          <toc>top</toc>
         </themes-bootswatch-yeti>
-        <advanced>
-          <sections>
-            <body />
-            <columns>2</columns>
-            <body />
-          </sections>
-        </advanced>
         <toc-sidebar>
-          <toc type="fixed">sidebar</toc>
-          <sections>
-            <carousel />
-            <body />
-          </sections>
+          <toc>sidebar</toc>
         </toc-sidebar>
+        <reflow-documentation type="doc">
+          <menu name="Reflow Documentation" selectOnExpand="true">
+            <item name="Configuration" href="config.html" icon="fas fa-tachometer-alt"/>
+            <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
+            <item name="Layouts" icon="fas fa-clone">
+              <item name="Overview" href="layouts.html"/>
+              <item name="Body" href="body.html"/>
+              <item name="Carousel" href="carousel.html"/>
+              <item name="Columns" href="columns.html"/>
+              <item name="Thumbnails" href="thumbnails.html"/>
+              <item name="Sidebar" href="sidebar.html"/>
+              <item name="Responsive Design" href="responsive-design.html"/>
+            </item>
+            <item name="Components" icon="fas fa-suitcase" selectOnExpand="ture">
+              <item name="Overview" href="components/components.html"/>
+              <item name="Header" href="components/header.html"/>
+              <item name="Menus" href="components/menus.html"/>
+              <item name="Table of Contents" href="components/toc.html"/>
+            </item>
+            <item name="Other Configuration" href="misc.html" icon="fas fa-sliders"/>
+            <item name="Multi-module Site" href="multi-module.html" icon="fas fa-window-restore"/>
+            <item name="Local Resources" href="resources.html" icon="fas fa-bookmark"/>
+          </menu>
+        </reflow-documentation>
       </pages>
     </reflowSkin>
   </custom>

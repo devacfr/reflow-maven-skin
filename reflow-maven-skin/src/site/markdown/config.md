@@ -8,29 +8,25 @@ using the `<custom><reflowSkin>` element.
 
 The documentation is split over several pages, describing the various configuration options:
 
--   **[Themes]( themes/ )**
+- **[Themes]( #themes-index )**
 
     How to configure own theme or select one of the excellent [Bootswatch][bootswatch] themes.
--   **[Layouts]( layouts.html )**
+- **[Layouts]( #layouts.html )**
 
     Reflow the page with different layouts: multi-column text, carousel, thumbnails and others.
--   **[Components]( components.html )**
+- **[Components]( #components.html )**
 
     Enable and configure various existing and new components: table of contents, headers, menus,
     etc.
--   **[Other configuration]( misc.html )**
+- **[Other configuration]( #misc.html )**
 
     Various other configuration options: JavaScript goodies, CSS updates and more.
--   **[Multi-module site]( multi-module.html )**
+- **[Multi-module site]( #multi-module.html )**
 
     Additional support and notes for generating multi-module Maven sites.
 
 Note that all configuration options can be set on a per-page basis
-([see below](#Per-page_configuration)).
-
-[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
-[bootswatch]: http://bootswatch.com
-
+([see below](#config_toc_per-page_configuration)).
 
 ## Per-page configuration
 
@@ -78,8 +74,6 @@ For generated files that are in directories, `"-"` is used as the separator for 
 structure. So a file in _./subdir/foo.html_ is referred as `<subdir-foo>` in the
 configuration.
 
-[doxia-formats]: http://maven.apache.org/doxia/references/index.html
-
 
 ### Configuration inheritance
 
@@ -96,4 +90,8 @@ If you still encounter inheritance problems, try using
 [`combine.self="override"` attribute][mvn-merge] on the `site.xml` element to explicitly override
 it.
 
+
+[doxia-formats]: http://maven.apache.org/doxia/references/index.html
+[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
+[bootswatch]: http://bootswatch.com
 [mvn-merge]: http://www.sonatype.com/people/2011/01/maven-how-to-merging-plugin-configuration-in-complex-projects/

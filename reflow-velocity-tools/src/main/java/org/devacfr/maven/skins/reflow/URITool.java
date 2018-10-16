@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2018 Andrius Velykis
+ * Copyright 2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,23 +40,22 @@ public class URITool {
     /**
      * Resolves the link as relative to the base dir URI.
      * <p>
-     * Relativizes only absolute links, if the link has the same scheme, host and
-     * port as the base, it is made into a relative link as viewed from the base.
+     * Relativizes only absolute links, if the link has the same scheme, host and port as the base, it is made into a
+     * relative link as viewed from the base.
      * </p>
      * <p>
-     * This is the same method that's used to relativize project links in Maven
-     * site.
+     * This is the same method that's used to relativize project links in Maven site.
      * </p>
      *
-     * @param baseDirUri URI that will serve as the base to calculate the relative
-     *                   one
-     * @param link       The link to relativize (make it relative to the base URI if
-     *                   possible)
+     * @param baseDirUri
+     *            URI that will serve as the base to calculate the relative one
+     * @param link
+     *            The link to relativize (make it relative to the base URI if possible)
      * @return the relative link, if calculated, or the original link if not.
      * @since 1.0
      */
     @Nullable
-    public static String relativizeLink(@Nonnull String baseDirUri, @Nonnull final String link) {
+    public static String relativizeLink(@Nonnull final String baseDirUri, @Nonnull final String link) {
         // taken from
         // org.apache.maven.doxia.site.decoration.inheritance.DecorationModelInheritanceAssembler
 
@@ -74,11 +73,12 @@ public class URITool {
     /**
      * Creates a URI by parsing the given string.
      *
-     * @param uri The string to be parsed into a URI
+     * @param uri
+     *            The string to be parsed into a URI
      * @return Returns the new URI.
      */
     @Nonnull
-    public static URI toURI(@Nonnull String uri) {
+    public static URI toURI(@Nonnull final String uri) {
         return URI.create(uri);
     }
 
@@ -88,7 +88,7 @@ public class URITool {
      * @param baseUrl a base url
      * @return Returns new <code>String</code> base path instance.
      */
-    public static String normalisedBaseUrl(@Nonnull String baseUrl) {
+    public static String normalisedBaseUrl(@Nonnull final String baseUrl) {
         if (Strings.isNullOrEmpty(baseUrl)) {
             return baseUrl;
         }

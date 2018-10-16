@@ -7,8 +7,6 @@ $h2 Usage
 
 To use this Maven skin, include it in your [`site.xml` site descriptor][site-xml] file:
 
-[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
-
 ```xml
 <project>
   ...
@@ -29,8 +27,6 @@ on using the skin with Maven 2 site or other configurations.
 $h2 POM dependencies
 
 Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` in the POM file:
-
-[reflow-tools]: ../reflow-velocity-tools
 
 ```xml
 <build>
@@ -69,8 +65,6 @@ $h2 Configuration
 
 The skin is configurable using the `<custom>` element in your `site.xml` file. The available
 options are [described in the documentation][doc]. A sample configuration file is below:
-
-[doc]: config.html
 
 ```xml
 <project>
@@ -111,6 +105,24 @@ options are [described in the documentation][doc]. A sample configuration file i
         <developer-info>
           <toc>sidebar</toc>
         </developer-info>
+        <overview>
+            <toc>false</toc>
+            <sections>
+                <thumbs>3</thumbs>
+                <body />
+            </sections>
+        </overview>
+        <documentation type="doc">
+          <menu name="Documentation" selectOnExpand="false">
+            <item name="Overview" href="overview.html"/>
+            <item name="Installation">
+              <item name="Standalone Installation" href="standalone-installation.html"/>
+              <item name="Linux And Mac Options" href="linux-mac-options.html"/>
+              <item name="Windows Options" href="windows-options.html"/>
+            </item>
+            <item name="Develop" href="develop.html"/>
+          </menu>
+        </documentation>
       </pages>
     </reflowSkin>
   </custom>
@@ -127,4 +139,7 @@ The source code is [available on GitHub][reflow-src].
 Look for the site configuration and web page sources in `/src/site` of each module;
 and for plug-in configuration in respective POM files.
 
+[reflow-tools]: ../reflow-velocity-tools
+[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
+[doc]: reflow-documentation.html#config
 [reflow-src]: ${scm-url} "Reflow Maven skin source code"

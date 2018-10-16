@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>reflow-default-webdeps</artifactId>
 
   <name>Reflow Default Web Dependencies</name>
   <description>Reflow Default Web Dependencies contains all default web dependencies</description>
+  <url>${site.url}/${project.artifactId}</url>
+
+  <distributionManagement>
+    <site>
+      <id>${site.deploy.id}</id>
+      <!-- Note that GitHub does not like having leading slash, so make it explicit -->
+      <url>${site.deploy.url}${project.artifactId}</url>
+    </site>
+  </distributionManagement>
 
   <build>
     <plugins>
@@ -77,7 +87,6 @@
                   <includes>
                     <include>css/bootstrap.min.css</include>
                     <include>js/bootstrap.min.js</include>
-                    <include>fonts/**</include>
                   </includes>
                 </resource>
                 <resource>
@@ -96,6 +105,20 @@
                     <include>highlight.min.js</include>
                   </includes>
                 </resource>
+                <resource>
+                  <directory>${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web/css</directory>
+                  <targetPath>${project.build.outputDirectory}/css/fontawesome</targetPath>
+                  <includes>
+                    <include>all.min.css</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web</directory>
+                  <targetPath>${project.build.outputDirectory}/css/fontawesome</targetPath>
+                  <includes>
+                    <include>webfonts/*</include>
+                  </includes>
+                </resource>
               </resources>
             </configuration>
           </execution>
@@ -106,6 +129,18 @@
         <artifactId>download-maven-plugin</artifactId>
         <version>${maven-download-plugin.version}</version>
         <executions>
+          <execution>
+            <id>get-fontawesome</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://use.fontawesome.com/releases/v${fontawesomeVersion}/fontawesome-free-${fontawesomeVersion}-web.zip</url>
+              <unpack>true</unpack>
+              <outputDirectory>${project.build.directory}/dependency/fontawesome</outputDirectory>
+            </configuration>
+          </execution>
           <execution>
             <id>get-cerulean-bootstrap-theme</id>
             <phase>generate-resources</phase>
@@ -120,7 +155,7 @@
           </execution>
           <execution>
             <id>get-cosmo-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -132,7 +167,7 @@
           </execution>
           <execution>
             <id>get-cyborg-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -156,7 +191,7 @@
           </execution>
           <execution>
             <id>get-flatly-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -179,8 +214,20 @@
             </configuration>
           </execution>
           <execution>
+            <id>get-litera-bootstrap-theme</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/litera/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/litera</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
             <id>get-lumen-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -191,32 +238,56 @@
             </configuration>
           </execution>
           <execution>
-            <id>get-paper-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <id>get-lux-bootstrap-theme</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/paper/bootstrap.min.css</url>
-              <outputDirectory>${project.build.outputDirectory}/css/themes/paper</outputDirectory>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/lux/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/lux</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
           <execution>
-            <id>get-readable-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <id>get-materia-bootstrap-theme</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/readable/bootstrap.min.css</url>
-              <outputDirectory>${project.build.outputDirectory}/css/themes/readable</outputDirectory>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/materia/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/materia</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-minty-bootstrap-theme</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/minty/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/minty</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-pulse-bootstrap-theme</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/pulse/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/pulse</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
           <execution>
             <id>get-sandstone-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -228,7 +299,7 @@
           </execution>
           <execution>
             <id>get-simplex-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -239,8 +310,20 @@
             </configuration>
           </execution>
           <execution>
+            <id>get-sketchy-bootstrap-theme</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/sketchy/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/sketchy</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
             <id>get-slate-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -252,7 +335,7 @@
           </execution>
           <execution>
             <id>get-solar-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -264,7 +347,7 @@
           </execution>
           <execution>
             <id>get-spacelab-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -288,7 +371,7 @@
           </execution>
           <execution>
             <id>get-united-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -300,7 +383,7 @@
           </execution>
           <execution>
             <id>get-yeti-bootstrap-theme</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <goals>
               <goal>wget</goal>
             </goals>
@@ -312,10 +395,6 @@
           </execution>
         </executions>
       </plugin>
-      <!--
-        The bootstrap uses "fonts" as directory for locating fonts and fontawesome uses "webfonts".
-        This plugin updates the css to also use "fonts".
-      -->
       <plugin>
         <groupId>com.google.code.maven-replacer-plugin</groupId>
         <artifactId>replacer</artifactId>
@@ -328,26 +407,19 @@
               <goal>replace</goal>
             </goals>
             <configuration>
-              <basedir>${project.build.outputDirectory}/css/themes</basedir>
+              <basedir>${project.build.outputDirectory}/css/fontawesome</basedir>
               <includes>
                 <include>**/*.css</include>
               </includes>
               <replacements>
                 <replacement>
-                  <token>../fonts</token>
-                  <value>../../../fonts</value>
+                  <token>../webfonts</token>
+                  <value>./webfonts</value>
                 </replacement>
               </replacements>
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
       </plugin>
     </plugins>
 
@@ -372,7 +444,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>

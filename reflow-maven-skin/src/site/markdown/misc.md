@@ -14,8 +14,8 @@ highlighting functionality. To enable it, use `<highlightJs>` flag:
 <highlightJs>true|false</highlightJs>
 ```
 
--   **true** - Source code is highlighted (syntax colouring) - requires JavaScript
--   **false (default)** - Source code is displayed in fixed font without syntax colouring
+- **true** - Source code is highlighted (syntax colouring) - requires JavaScript
+- **false (default)** - Source code is displayed in fixed font without syntax colouring
 
 Code highlighting theme can be changed to match your website theme. Available themes are listed in
 [highlight.js website][highlight-js-themes]. The theme can be selected using `<highlightJsTheme>`
@@ -25,12 +25,11 @@ element:
 <highlightJsTheme>default|*</highlightJsTheme>
 ```
 
--   **default (default)** - Default code highlighting theme is used
--   **theme name** - Entered theme is used
+- **default (default)** - Default code highlighting theme is used
+- **theme name** - Entered theme is used
 
 [highlight-js]: http://softwaremaniacs.org/soft/highlight/en/
 [highlight-js-themes]: http://softwaremaniacs.org/media/soft/highlight/test.html#styleswitcher
-
 
 ### Image previews (lightbox)
 
@@ -42,13 +41,12 @@ default but can be disabled using `<imgLightbox>` flag:
 <imgLightbox>true|false</imgLightbox>
 ```
 
--   **true (default)** - when image link is opened in the website, opens a lightweight CSS pop-up
+- **true (default)** - when image link is opened in the website, opens a lightweight CSS pop-up
     with the image over the page
--   **false** - disable lightbox, image link will open the image itself
+- **false** - disable lightbox, image link will open the image itself
 
 [lightbox]: http://lokeshdhakar.com/projects/lightbox2/
 [lightbox-test]: images/snowdon.jpg "Lightbox example - climbing Snowdon in Wales, UK"
-
 
 ### Smooth scroll
 
@@ -59,15 +57,13 @@ Smooth scrolling can be disabled using `<smoothScroll>` flag:
 <smoothScroll>true|false</smoothScroll>
 ```
 
--   **true (default)** - smooth scrolling for in-page navigation (requires JavaScript)
--   **false** - default in-page jumps
-
+- **true (default)** - smooth scrolling for in-page navigation (requires JavaScript)
+- **false** - default in-page jumps
 
 ## Bootstrap
 
 The generated Maven site code is updated by default, e.g. update CSS of generated tables, use
 Bootstrap icons and other goodies. The flags to disable these updates are described below.
-
 
 ### Bootstrap CSS
 
@@ -79,11 +75,10 @@ This can be disabled using `bootstrapCSS` flag:
 <bootstrapCSS>true|false</bootstrapCSS>
 ```
 
--   **true (default)** - adds Bootstrap CSS classes to tables; fixes table headings
--   **false** - keep original table HTML
+- **true (default)** - adds Bootstrap CSS classes to tables; fixes table headings
+- **false** - keep original table HTML
 
 [bootstrap]: http://twitter.github.com/bootstrap/
-
 
 ### Bootstrap icons
 
@@ -101,10 +96,9 @@ This can be disabled using `bootstrapIcons` flag:
 <bootstrapIcons>true|false</bootstrapIcons>
 ```
 
--   **true (default)** - replaces images (add, remove, warning, info etc) with corresponding
+- **true (default)** - replaces images (add, remove, warning, info etc) with corresponding
     Bootstrap icons
--   **false** - keep original images
-
+- **false** - keep original images
 
 ### HTML5-style anchors
 
@@ -116,12 +110,13 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 <html5Anchor>true|false</html5Anchor>
 ```
 
--   **true (default)** - HTML4-style anchors `<a name="...">` are replaced with `id` attributes
+- **true (default)** - HTML4-style anchors `<a name="...">` are replaced with `id` attributes
     where applicable
--   **false** - keep the original anchors
-
+- **false** - keep the original anchors
 
 ## Navbar colour
+
+<navbar theme="" bgcolor="" />
 
 Bootstrap themes provide an [alternative colour for top navigation bar][navbar-inverse].
 To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
@@ -130,11 +125,10 @@ To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
 <navbarInverse>true|false</navbarInverse>
 ```
 
--   **true** - Inverted navigation bar colour is used
--   **false (default)** - Default Bootstrap theme colour is used for navigation bar
+- **true** - Inverted navigation bar colour is used
+- **false (default)** - Default Bootstrap theme colour is used for navigation bar
 
 [navbar-inverse]: http://twitter.github.com/bootstrap/components.html#navbar
-
 
 ## Mark page header
 
@@ -146,29 +140,21 @@ marked, use the `<markPageHeader>` flag:
 <markPageHeader>true|false</markPageHeader>
 ```
 
--   **true (default)** - The first heading (`<h1>` or else `<h2>`) in page is marked
--   **false** - Page content is unchanged
-
-
--   **true** - Bootstrap CSS, JS and other resources are referenced using protocol-relative
-    URLs: `//`
--   **false (default)** - Resources are referenced using `http://` protocol
-
-[protocol-url]: http://paulirish.com/2010/the-protocol-relative-url/
-
+- **true (default)** - The first heading (`<h1>` or else `<h2>`) in page is marked
+- **false** - Page content is unchanged
 
 ## Skin attribution
 
 The Reflow skin is released under the [Apache license][apache-license] and thus can be used freely.
 By default, a link to the skin website and the author homepage is added at the bottom of the skin:
-_Reflow Maven skin by devcfr_. I would appreciate if you kept the link - it will help with
+_Reflow Maven skin by devacfr_. I would appreciate if you kept the link - it will help with
 the popularity of the skin. If you want, it can be disabled using `<skinAttribution>` flag:
 
 ```xml
 <skinAttribution>true|false</skinAttribution>
 ```
 
--   **true (default)** - Include links to Reflow skin homepage and author's website
--   **false** - Remove skin attribution text and links
+- **true (default)** - Include links to Reflow skin homepage and author's website
+- **false** - Remove skin attribution text and links
 
 [apache-license]: http://www.apache.org/licenses/LICENSE-2.0

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Andrius Velykis
+ * Copyright 2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
  */
 package org.devacfr.maven.skins.reflow;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
@@ -26,6 +24,9 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.context.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
@@ -73,26 +74,36 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 @DefaultKey("config")
 public class SkinConfigTool extends SafeConfig {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
+
     public static final String DEFAULT_KEY = "config";
 
     /** By default use Reflow skin configuration tag */
     public static final String SKIN_KEY = "reflowSkin";
 
+    /** */
     private String key = DEFAULT_KEY;
 
+    /** */
     private String skinKey = SKIN_KEY;
 
     /* Create dummy nodes to avoid null checks */
     private Xpp3Dom globalProperties = new Xpp3Dom("");
 
+    /** */
     private Xpp3Dom pageProperties = new Xpp3Dom("");
 
+    /** */
     private String namespace = "";
 
+    /** */
     private String projectId = null;
 
+    /** */
     private String fileId = null;
-    // private String fileShortId = null;
+
+    /** */
+    private Context<?> context = null;
 
     /**
      * {@inheritDoc}
@@ -132,22 +143,7 @@ public class SkinConfigTool extends SafeConfig {
         // calculate the page ID from the current file name
         final Object currentFileObj = ctxt.get("currentFileName");
         if (currentFileObj instanceof String) {
-
-            String currentFile = (String) currentFileObj;
-
-            // drop the extension
-            final int lastDot = currentFile.lastIndexOf(".");
-            if (lastDot >= 0) {
-                currentFile = currentFile.substring(0, lastDot);
-            }
-
-            // get the short ID (in case of nested files)
-            // String fileName = new File(currentFile).getName();
-            // fileShortId = HtmlTool.slug(fileName);
-
-            // full file ID includes the nested dirs
-            // replace nesting "/" with "-"
-            fileId = HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
+            fileId = slugFilename((String) currentFileObj);
         }
 
         final Object decorationObj = ctxt.get("decoration");
@@ -189,12 +185,11 @@ public class SkinConfigTool extends SafeConfig {
 
             // for page properties, retrieve the file name and drop the `.html`
             // extension - this will be used, i.e. `index` instead of `index.html`
-            final Xpp3Dom pagesNode = getChild(skinNode, "pages");
+            final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(skinNode, "pages", namespace);
             if (pagesNode != null) {
 
                 // Get the page for the file
-                // TODO try fileShortId as well?
-                Xpp3Dom page = getChild(pagesNode, fileId);
+                Xpp3Dom page = Xpp3Utils.getFirstChild(pagesNode, fileId, namespace);
 
                 // Now check if the project artifact ID is set, and if so, if it matches the
                 // current project. This allows preventing accidental reuse of parent page
@@ -210,49 +205,17 @@ public class SkinConfigTool extends SafeConfig {
                 if (page != null) {
                     pageProperties = page;
                 }
+
             }
+            this.context = Context.buildContext(this);
         }
-    }
-
-    /**
-     * Retrieves the child node. Tests both default name and with namespace.
-     *
-     * @param parentNode
-     * @param name
-     * @return
-     */
-    private Xpp3Dom getChild(final Xpp3Dom parentNode, final String name) {
-        final Xpp3Dom child = parentNode.getChild(name);
-        if (child != null) {
-            return child;
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Current Filename: " + currentFileObj);
+            LOGGER.info("Project id: " + projectId);
+            LOGGER.info("File id: " + fileId);
+            LOGGER.info("Context: " + this.context);
+            LOGGER.info("---------------------------------------------------");
         }
-
-        return parentNode.getChild(namespace + name);
-    }
-
-    /**
-     * Gets the list of all children name for the {@code parentNode}.
-     *
-     * @param parentNode the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all children,
-     *          which may be empty but never {@code null}.
-     *
-     * @since 1.3
-     */
-    public List<String> getChildren(final Xpp3Dom parentNode) {
-        if (parentNode == null) {
-            return Collections.emptyList();
-        }
-        final Xpp3Dom[] children = parentNode.getChildren();
-        if (children == null) {
-            return Collections.emptyList();
-        }
-        List<String> list = new ArrayList<>(children.length);
-        for (Xpp3Dom child : children) {
-            list.add(child.getName());
-        }
-
-        return list;
     }
 
     /**
@@ -293,10 +256,10 @@ public class SkinConfigTool extends SafeConfig {
     public Xpp3Dom get(final String property) {
 
         // first try page properties
-        Xpp3Dom propNode = getChild(pageProperties, property);
+        Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
         if (propNode == null) {
             // try global
-            propNode = getChild(globalProperties, property);
+            propNode = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
         }
 
         return propNode;
@@ -321,6 +284,86 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         return propNode.getValue();
+    }
+
+    /**
+     * Gets the text value of the given {@code property}.
+     *
+     * @param property
+     *            the property to use
+     * @param targetType
+     *            the returned target type use to convert value.
+     * @param defaultValue
+     *            the default value used if property doesn't exist.
+     * @return Returns a converted value of the given {@code property}.
+     * @since 2.0
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getConfigValue(final String property, final Class<T> targetType, final T defaultValue) {
+        final String value = value(property);
+        if (value == null) {
+            return defaultValue;
+        }
+        Object returnedValue = value;
+        if (targetType.isAssignableFrom(Boolean.class)) {
+            returnedValue = Boolean.valueOf(value);
+        } else if (targetType.isAssignableFrom(Integer.class)) {
+            returnedValue = Integer.valueOf(value);
+        } else if (targetType.isAssignableFrom(Long.class)) {
+            returnedValue = Long.valueOf(value);
+        }
+        return (T) returnedValue;
+    }
+
+    /**
+     * Gets the list of all children name for the {@code parentNode}.
+     *
+     * @param parentNode
+     *            the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
+     *         {@code null}.
+     * @since 1.3
+     */
+    public List<String> getChildren(final Xpp3Dom parentNode) {
+        return Xpp3Utils.getChildren(parentNode);
+    }
+
+    /**
+     * Gets the attribute value of the given {@code attribute} of {@code property}.
+     *
+     * @param property
+     *            the property to use
+     * @param attribute
+     *            the attribute to use.
+     * @param targetType
+     *            the returned target type use to convert value.
+     * @param defaultValue
+     *            the default value used if property doesn't exist.
+     * @return Returns a converted value of the given {@code property}.
+     * @since 2.0
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getConfigAttribute(final String property,
+        final String attribute,
+        final Class<T> targetType,
+        final T defaultValue) {
+        final Xpp3Dom element = get(property);
+        if (element == null) {
+            return defaultValue;
+        }
+        final String value = element.getAttribute(attribute);
+        if (value == null) {
+            return defaultValue;
+        }
+        Object returnedValue = value;
+        if (targetType.isAssignableFrom(Boolean.class)) {
+            returnedValue = Boolean.valueOf(value);
+        } else if (targetType.isAssignableFrom(Integer.class)) {
+            returnedValue = Integer.valueOf(value);
+        } else if (targetType.isAssignableFrom(Long.class)) {
+            returnedValue = Long.valueOf(value);
+        }
+        return (T) returnedValue;
     }
 
     /**
@@ -373,6 +416,47 @@ public class SkinConfigTool extends SafeConfig {
 
     public String getFileId() {
         return fileId;
+    }
+
+    public Context<?> getContext() {
+        return context;
+    }
+
+    public Xpp3Dom getPageProperties() {
+        return pageProperties;
+    }
+
+    public Xpp3Dom getGlobalProperties() {
+        return globalProperties;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    /**
+     * @param fileName
+     * @return
+     */
+    public static String slugFilename(final String fileName) {
+        if (fileName == null) {
+            return null;
+        }
+        String currentFile = fileName;
+
+        // drop the extension
+        final int lastDot = currentFile.lastIndexOf(".");
+        if (lastDot >= 0) {
+            currentFile = currentFile.substring(0, lastDot);
+        }
+
+        // get the short ID (in case of nested files)
+        // String fileName = new File(currentFile).getName();
+        // fileShortId = HtmlTool.slug(fileName);
+
+        // full file ID includes the nested dirs
+        // replace nesting "/" with "-"
+        return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
     }
 
 }
