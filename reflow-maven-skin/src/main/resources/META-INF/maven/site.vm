@@ -100,8 +100,10 @@
                     'img[src$=images/icon_warning_sml.gif]' : '<i class="glyphicon glyphicon-sign"></i>',
                     'img[src$=images/icon_error_sml.gif]' : '<i class="glyphicon glyphicon-exclamation-sign"></i>',
                     'img[src$=images/icon_info_sml.gif]' : '<i class="glyphicon glyphicon-info-sign"></i>' } )#*
-      *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
-  *##end#*
+      *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )##
+      ## The <tt> tag is not supported in HTML5 (see https://www.w3schools.com/tags/tag_tt.asp).
+      #set ( $bodyContent = $htmlTool.replaceWith( $bodyContent, 'tt', '<code class=\"literal\">' ) )##
+    #end#*
 
   *##if ( $tocTop || $tocSidebar )#*
     ## Ensure IDs on all headings to refer to them in TOC

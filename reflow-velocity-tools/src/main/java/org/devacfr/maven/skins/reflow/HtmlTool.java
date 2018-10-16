@@ -39,6 +39,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
 
 /**
@@ -784,6 +785,51 @@ public class HtmlTool extends SafeConfig {
         return replaceAll(content, Collections.singletonMap(selector, replacement));
     }
 
+        /**
+     * Replaces All elements in HTML corresponding to <code>selector</code> while preserving the content of this element.
+     *
+     * @param content
+     *            HTML content to modify
+     * @param selector
+     *            CSS selector for elements to replace
+     * @param newElement
+     *            HTML replacement (must parse to a single element)
+     * @return HTML content with replaced elements. If no elements are found, the original content is returned.
+     * @since 1.5
+     */
+    public String replaceWith(final String content, final String selector, final String newElement) {
+
+        final Element body = parseContent(content);
+
+        boolean modified = false;
+        final List<Element> elements = body.select(selector);
+        if (elements.size() > 0) {
+
+            // take the first child
+            final Element replacementElem = parseContent(newElement).child(0);
+
+            if (replacementElem != null) {
+                for (final Element element : elements) {
+                    List<Node> children = element.childNodes();
+                    Element el = replacementElem.clone();
+                    for (Node child : children) {
+                        el.appendChild(child.clone());
+                    }
+                    element.replaceWith(el);
+                }
+
+                modified = true;
+            }
+        }
+
+        if (modified) {
+            return body.html();
+        } else {
+            // nothing changed
+            return content;
+        }
+    }
+
     /**
      * Replaces elements in HTML.
      *
@@ -1165,29 +1211,29 @@ public class HtmlTool extends SafeConfig {
      * ones, e.g. {@code
      *
     <h2>} is nested under preceding {@code
-                           * 
-                          
-                         
-                        
-                       
-                      
-                     
-                    
-                   
-                  
-                 
-                
-               
-              
-             
-            
-           
-          
-         
-        
-       
-      
-     
+                           *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <h1>}.
      * <p>
      * Only headings with IDs are included in the hierarchy. The result elements contain ID and heading text for each
