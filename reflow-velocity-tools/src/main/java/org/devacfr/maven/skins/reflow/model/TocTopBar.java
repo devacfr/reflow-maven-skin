@@ -28,7 +28,7 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     @Override
-    public String getCssClass() {
+    public String getCssOptions() {
         return isEnabled() ? "m-toc-top-enabled" : "";
     }
 

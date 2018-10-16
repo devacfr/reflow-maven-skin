@@ -13,7 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-<div class="main-body ${pageContext.cssClass}">
+<div class="main-body ${pageContext.cssOptions}">
     <div class="row">
         <div class="col-md-2 col-lg-2 px-0">
            #renderNavSideMenu ()

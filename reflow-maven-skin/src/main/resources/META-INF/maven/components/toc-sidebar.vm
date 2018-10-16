@@ -22,7 +22,7 @@
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")
         #if ( !$tocSidebarAdded )##
             #set ( $isFixed = $pageContext.toc.fixed)
-            <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm ${pageContext.toc.cssClass}">
+            <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm ${pageContext.toc.cssOptions}">
                 <nav id="m-toc-sidebar-nav flex-column">
 #*                  *##renderAsideTocMenu ( $tocItems )
                 </nav>

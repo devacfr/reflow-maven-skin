@@ -105,6 +105,9 @@ public class SkinConfigTool extends SafeConfig {
     /** */
     private Context<?> context = null;
 
+    /** */
+    private MavenProject project = null;
+
     /**
      * {@inheritDoc}
      *
@@ -134,7 +137,7 @@ public class SkinConfigTool extends SafeConfig {
 
         final Object projectObj = ctxt.get("project");
         if (projectObj instanceof MavenProject) {
-            final MavenProject project = (MavenProject) projectObj;
+            this.project = (MavenProject) projectObj;
             final String artifactId = project.getArtifactId();
             // use artifactId "sluggified" as the projectId
             projectId = HtmlTool.slug(artifactId);
@@ -418,8 +421,18 @@ public class SkinConfigTool extends SafeConfig {
         return fileId;
     }
 
+    /**
+     * @return the context
+     */
     public Context<?> getContext() {
         return context;
+    }
+
+    /**
+     * @return the project
+     */
+    public MavenProject getProject() {
+        return project;
     }
 
     public Xpp3Dom getPageProperties() {

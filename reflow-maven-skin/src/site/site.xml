@@ -26,6 +26,7 @@
   <custom>
     <reflowSkin>
       <toc>sidebar</toc>
+      <navbar cssClass="navbar-dark bg-dark border-bottom" />
       <pages>
         <index project="reflow-maven-skin" combine.self="override">
           <shortTitle>Get Started</shortTitle>

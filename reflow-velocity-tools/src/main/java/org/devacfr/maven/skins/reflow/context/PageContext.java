@@ -15,6 +15,9 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
+import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.Toc;
 
 /**
@@ -25,15 +28,16 @@ public class PageContext extends Context<PageContext> {
 
     private Toc<?> toc;
 
-    public PageContext() {
+    public PageContext(final @Nonnull SkinConfigTool config) {
+        super(config);
         setType("page");
     }
 
     @Override
-    public String getCssClass() {
-        String css = super.getCssClass();
+    public String getCssOptions() {
+        String css = super.getCssOptions();
         if (getToc() != null) {
-            css += " " + getToc().getCssClass();
+            css += " " + getToc().getCssOptions();
         }
         return css;
     }

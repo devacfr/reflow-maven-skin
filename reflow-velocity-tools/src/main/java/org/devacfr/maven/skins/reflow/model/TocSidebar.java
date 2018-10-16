@@ -31,7 +31,7 @@ public class TocSidebar extends Toc<TocSidebar> {
     }
 
     @Override
-    public String getCssClass() {
+    public String getCssOptions() {
         String css = isEnabled() ? "m-toc-sidebar-enabled" : "";
         if (isExpanded()) {
             css += " m-toc-sidebar-expanded";

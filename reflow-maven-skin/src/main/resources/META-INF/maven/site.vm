@@ -26,8 +26,8 @@
 #parse( "footer-default.vm")
 ##
 ##
-#set( $pageType = $config.context.type)
 #set( $pageContext = $config.context)
+#set( $pageType = $pageContext.type)
 #if( $pageType == "frame" )
     #parse( "frame-default.vm")
 #else

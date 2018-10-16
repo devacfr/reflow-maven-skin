@@ -36,20 +36,6 @@ public class SideNavMenu extends PageElement {
 
     private boolean selectOnExpand = false;
 
-    public static SideNavMenu createSideNavMenu(final SkinConfigTool config) {
-        final Xpp3Dom pageNode = config.getPageProperties();
-        final Xpp3Dom menu = pageNode.getChild("menu");
-        if (menu == null) {
-            return null;
-        }
-        final String pageName = pageNode.getName();
-        final List<SideNavMenuItem> items = new ArrayList<>();
-        final SideNavMenu documentMenu = new SideNavMenu().withName(menu.getAttribute("name"))
-                .withItems(items)
-                .withSelectOnExpand(config.getConfigAttribute("menu", "selectOnExpand", Boolean.class, false));
-        addMenuItemRecursively(items, menu, pageName, false);
-        return documentMenu;
-    }
 
     /**
      * @param pagesNode
@@ -75,11 +61,22 @@ public class SideNavMenu extends PageElement {
         return includePages;
     }
 
-    public SideNavMenu() {
+    public SideNavMenu(final SkinConfigTool config) {
+
+        final Xpp3Dom pageNode = config.getPageProperties();
+        final Xpp3Dom menu = pageNode.getChild("menu");
+        if (menu == null) {
+            return;
+        }
+        final String pageName = pageNode.getName();
+        final List<SideNavMenuItem> items = new ArrayList<>();
+        this.withName(menu.getAttribute("name")).withItems(items)
+                .withSelectOnExpand(config.getConfigAttribute("menu", "selectOnExpand", Boolean.class, false));
+        addMenuItemRecursively(items, menu, pageName, false);
     }
 
     @Override
-    public String getCssClass() {
+    public String getCssOptions() {
         String css = "m-sidenav-enabled";
 
         if (isSelectOnExpand()) {
@@ -141,16 +138,12 @@ public class SideNavMenu extends PageElement {
      * @param includePages
      * @param parentNode
      */
-    private static void addMenuItemRecursively(final List<SideNavMenuItem> includePages,
-        final Xpp3Dom parentNode,
-        final String pageName,
-        final boolean includSameList) {
+    private static void addMenuItemRecursively(final List<SideNavMenuItem> includePages, final Xpp3Dom parentNode,
+            final String pageName, final boolean includSameList) {
         for (final Xpp3Dom item : Xpp3Utils.getChildrenNodes(parentNode, "item")) {
             final String href = item.getAttribute("href");
             final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
-                    .withParent(pageName)
-                    .withHref(href)
-                    .withIcon(item.getAttribute("icon"));
+                    .withParent(pageName).withHref(href).withIcon(item.getAttribute("icon"));
             includePages.add(menuItem);
             if (includSameList) {
                 addMenuItemRecursively(includePages, item, pageName, true);

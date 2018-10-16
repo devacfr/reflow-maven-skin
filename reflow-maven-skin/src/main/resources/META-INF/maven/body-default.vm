@@ -13,11 +13,11 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-<div class="main-body mt-2">
+<div class="main-body container-fuild mt-2">
     <div class="row">
         <div class="hidden-xs hidden-sm col-lg-2">
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+        <main class="col-xs-12 col-sm-12 col-md-12 col-lg-8" role="main">
                 <div class="header container-fluid">
                 ## add a banner
                 #renderBanner ()##

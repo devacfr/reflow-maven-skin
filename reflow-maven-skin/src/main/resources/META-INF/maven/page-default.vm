@@ -19,14 +19,9 @@
  Rendered using Reflow Maven Skin @project.version@ (http://devacfr.github.io/reflow-maven-skin)
 -->
 <html #if ( $locale ) xml:lang="$locale.language" lang="$locale.language"#end>
-#*  *##if ( $project.name && $project.name != '' )#*
-  *##set ( $defaultProjectName = $project.name )#*
-    *##else#*
-  *##set ( $defaultProjectName = $project.artifactId )#*
-  *##end#*
   ## resolve date position, or set the default otherwise (bottom)
   ## Note, that currently we do not support "navigation-top" position for either publishDate or version.
-  *##set ( $datePosition = "bottom" )#*
+  #set ( $datePosition = "bottom" )#*
   *##if ( $decoration.publishDate.position )#*
   *##set ( $datePosition = $decoration.publishDate.position )#*
     *##end#*
@@ -224,7 +219,7 @@
 ##
 ##
 ## put page and project slugs as classes to the <body>. This allows page-specific CSS customizations.
-<body class="page-${config.fileId} project-${config.projectId} ${config.context.cssClass}">
+<body class="page-${config.fileId} project-${config.projectId} ${config.context.cssOptions}">
 #renderNavbar ()
 #if( $pageType == "doc")
     #parse( "body-doc.vm")

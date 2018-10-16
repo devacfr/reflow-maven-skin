@@ -64,7 +64,7 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
                 toc = new Toc<Toc<?>>("") {
 
                     @Override
-                    public String getCssClass() {
+                    public String getCssOptions() {
                         return "";
                     }
                 };

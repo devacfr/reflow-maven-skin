@@ -18,13 +18,13 @@
  *
  *##macro( renderNavSideMenu )##
     <div class="nav-side-menu d-print-none">
-        <div class="brand font-weight-bold border-bottom mb-2">$config.context.menu.name</div>
+        <div class="brand font-weight-bold border-bottom mb-2">${pageContext.menu.name}</div>
         <i class="toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-#*      *##if( $config.context.menu.hasItems )##
+#*      *##if( $pageContext.menu.hasItems )##
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
 #*              *##set ( $counterMenu = 1)##
-#*              *##foreach ( $item in $config.context.menu.items )##
+#*              *##foreach ( $item in $pageContext.menu.items )##
 #*                  *##set ( $itemId = "m-navbar-menu_"+ $counterMenu)##
                 <li #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" class="collapsed" #end>
                   <a #if( !$item.hasItems ) href="#${item.href}" slug-name="${item.slugName}" #{else}href="#"#{end}>

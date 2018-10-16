@@ -15,6 +15,8 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
+import javax.annotation.Nonnull;
+
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.devacfr.maven.skins.reflow.model.Toc;
@@ -33,15 +35,17 @@ public class FrameContext extends Context<FrameContext> {
 
     private Toc<?> toc;
 
-    public FrameContext() {
+    public FrameContext(final @Nonnull SkinConfigTool config) {
+        super(config);
         setType("frame");
+        toc = Toc.createToc(config, "sidebar");
     }
 
     @Override
-    public String getCssClass() {
-        String css = super.getCssClass();
+    public String getCssOptions() {
+        String css = super.getCssOptions();
         if (getToc() != null) {
-            css += " " + getToc().getCssClass();
+            css += " " + getToc().getCssOptions();
         }
         return css;
     }

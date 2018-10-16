@@ -42,7 +42,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
-import org.jsoup.select.Elements;
+
 
 /**
  * An Apache Velocity tool that provides utility methods to manipulate HTML code using

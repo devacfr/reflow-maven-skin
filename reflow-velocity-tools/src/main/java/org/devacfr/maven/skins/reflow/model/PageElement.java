@@ -20,4 +20,9 @@ public class PageElement {
     public String getCssClass() {
         return "";
     }
+
+    public String getCssOptions() {
+        return "";
+    }
+
 }
