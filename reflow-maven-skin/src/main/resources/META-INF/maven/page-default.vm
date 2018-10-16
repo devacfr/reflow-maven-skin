@@ -262,6 +262,11 @@
         #end##
     #end##
 ##
+#if ( $config.endContent )#*
+    ## custom HTML (e.g. JavaScript) to place at the end of the document before </body>
+#*  *##htmlContent ( $config.endContent.getChildren() )##
+#end##
+##
   <script src="$resourcePath/js/reflow-skin.js"></script>
 #*
     *##if ( $localResources )##
