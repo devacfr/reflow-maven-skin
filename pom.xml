@@ -351,7 +351,8 @@
             <artifactId>reflow-velocity-tools</artifactId>
             <version>${project.version}</version>
           </dependency>
-          <dependency>            <!-- Reflow skin requires velocity 1.7 -->
+          <!-- Reflow skin requires velocity 1.7 -->
+          <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>${maven-velocity.version}</version>
