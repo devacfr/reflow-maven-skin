@@ -20,7 +20,7 @@ These include newer versions of the used libraries as well as arbitrary scripts.
 
 $h2 Local Bootstrap & jQuery
 
-**Requires Reflow Maven skin &ge; v1.1.0.**
+support <span class="badge badge-dark">v1.1+</span> element <span class="badge badge-secondary">reflow</span>
 
 To force the generated site use only local CSS/JavaScript resources, use the `<localResources>`
 flag:
@@ -104,6 +104,8 @@ these files will have to be repeated for each sub-module.
 
 $h2 Additional CSS files
 
+element <span class="badge badge-primary">site.xml</span>
+
 Additional CSS files (or other resources) can be added to the page head using [`<body><head>`
 configuration][body-head-config] in the `site.xml` site descriptor.
 This configuration is available to all Maven site skins and is part of the standard
@@ -156,7 +158,7 @@ variable, e.g.:
 
 $h2 Additional JavaScript files
 
-**Requires Reflow Maven skin &ge; v1.1.0.**
+support <span class="badge badge-dark">v1.1+</span> element <span class="badge badge-secondary">reflow</span>
 
 JavaScript files can be added to the page head together with CSS files. However, for performance
 reasons, it can be better to reference JavaScript files at the end of the document.

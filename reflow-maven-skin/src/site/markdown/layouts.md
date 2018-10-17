@@ -51,7 +51,12 @@ sections after this in the text, they will have usual _body_ text layout.
 Note that the layout actually defines how the _subsections_ of each section are laid out.
 _Subsections_ currently are produced by splitting the section at the inner headings.
 
+## Responsive design
+
+Reflow skin is built on [Bootstrap][bootstrap] and provides responsive design features out of the
+box. The page layouts are rearranged for smaller screens to provide a good viewing experience.
+
 [apt-ref]: http://maven.apache.org/doxia/references/apt-format.html
 [markdown-hr-ref]: http://daringfireball.net/projects/markdown/syntax#hr
-
 [themes-reflow]: themes/#theme-bootswatch
+[bootstrap]: http://getbootstrap.com

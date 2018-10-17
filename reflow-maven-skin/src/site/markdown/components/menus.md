@@ -27,6 +27,8 @@ are displayed there:
 
 ## Links
 
+element <span class="badge badge-primary">site.xml</span>
+
 All links from defined in [`<body><links>` element][mvn-site-links] of `site.xml` site descriptor
 are placed in the top navigation bar. This allows having top-level links in navigation (menus are
 always drop-down).
@@ -34,6 +36,8 @@ always drop-down).
 [mvn-site-links]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links
 
 ## Bottom navigation
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
 
 The bottom navigation is placed in the footer, to the left of website description. It can feature
 a number of columns with menu items. The columns are indicated using the `bottomNav` element.

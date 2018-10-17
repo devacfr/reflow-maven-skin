@@ -1,5 +1,6 @@
 # Table of contents
 
+
 The skin supports automatic generation of table of contents (ToC) for any page based on the headings
 appearing in the page. Clicking on the ToC item jumps to the corresponding heading in the page.
 
@@ -22,7 +23,9 @@ The ToC style can be chosen with `<toc>` element:
 Both styles are exclusive: either the top or the sidebar can be used in a single page. The
 different styles and their further options are explained below.
 
-## Top ToC
+## Top TOC bar
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 Top ToC displays the table of contents as a horizontal menu just below the site header. Top items
 provide drop-down menus for subsections. Such menu is used throughout the whole site here.
@@ -35,6 +38,8 @@ The ToC snaps to the top of the screen to allow easy navigation in long pages.
 
 ### Limit the number of top ToC items
 
+support <span class="badge badge-dark">v2.0+</span>
+
 Top ToC can be limited to a certain number of items in configuration. All menu entries exceeding
 that number are grouped under the last dropdown menu. Exclude the option if unlimited.
 
@@ -46,6 +51,8 @@ that number are grouped under the last dropdown menu. Exclude the option if unli
 - **-1 or no `numberItems` attribute (default)** - unlimited
 
 ### Flatten first 2 levels of ToC
+
+support <span class="badge badge-dark">v2.0+</span>
 
 Top ToC for pages that have only a single top heading (e.g. `h1`) also includes the 2nd level
 headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise
@@ -60,7 +67,9 @@ disable altogether.
 - **false** - never flatten, always just use 1st level ToC items
 - **no `flatten` attribute (default)** - flatten if single top heading
 
-## Sidebar ToC
+## ToC Sidebar
+
+support <span class="badge badge-dark">v1.3+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
 

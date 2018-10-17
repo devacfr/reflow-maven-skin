@@ -5,6 +5,8 @@ the site header: _brand_ and _slogan_.
 
 ## Banner
 
+element <span class="badge badge-primary">site.xml</span>
+
 The banner (big _Reflow Maven Skin_ text on this website) is defined using 
 [standard `<bannerLeft>` or `<bannerRight>` elements][mvn-site-banner] in `site.xml` site
 descriptor instead of using `<custom><reflowSkin>`:
@@ -30,6 +32,8 @@ in the banner.
 [mvn-site-banner]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner
 
 ## Brand
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
 
 The brand text (or image) appearing in the left of the top navigation bar can be customised using
 `<brand>` element. You can set both the contents and the link.
@@ -62,6 +66,8 @@ The above example is taken from this website, in order to have the _Reflow_ part
 colour. Images could also be added there in a similar manner.
 
 ## Slogan
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
 
 The skin allows setting a website slogan in the banner. It would appear underneath the website
 title, either on the left or the right side.

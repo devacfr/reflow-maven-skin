@@ -43,6 +43,21 @@
         <layouts>
           <toc>false</toc>
         </layouts>
+        <body>
+          <toc>false</toc>
+        </body>
+        <carousel>
+          <toc>false</toc>
+        </carousel>
+        <columns>
+          <toc>false</toc>
+        </columns>
+        <thumbnails>
+          <toc>false</toc>
+        </thumbnails>
+        <sidebar>
+          <toc>false</toc>
+        </sidebar>
         <themes-index>
           <toc>false</toc>
           <sections>
@@ -149,11 +164,11 @@
               <item name="Columns" href="columns.html"/>
               <item name="Thumbnails" href="thumbnails.html"/>
               <item name="Sidebar" href="sidebar.html"/>
-              <item name="Responsive Design" href="responsive-design.html"/>
             </item>
             <item name="Components" icon="fas fa-suitcase" selectOnExpand="ture">
               <item name="Overview" href="components/components.html"/>
               <item name="Header" href="components/header.html"/>
+              <item name="Navbar" href="components/navbar.html"/>
               <item name="Menus" href="components/menus.html"/>
               <item name="Table of Contents" href="components/toc.html"/>
             </item>

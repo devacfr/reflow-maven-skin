@@ -6,6 +6,8 @@ This page lists various other configuration options for Reflow Maven skin.
 
 ### Code highlight
 
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+
 Code highlighting can be provided for source code sections in pages using
 [highlight.js][highlight-js]. It detects the language automatically and provides code
 highlighting functionality. To enable it, use `<highlightJs>` flag:
@@ -33,6 +35,8 @@ element:
 
 ### Image previews (lightbox)
 
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+
 Reflow skin enables CSS pop-ups for image links on the website using [Lightbox 2][lightbox].
 See one in action by opening [this link to an image][lightbox-test]. The previews are enabled by
 default but can be disabled using `<imgLightbox>` flag:
@@ -49,6 +53,8 @@ default but can be disabled using `<imgLightbox>` flag:
 [lightbox-test]: images/snowdon.jpg "Lightbox example - climbing Snowdon in Wales, UK"
 
 ### Smooth scroll
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
 
 Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of contents links).
 Smooth scrolling can be disabled using `<smoothScroll>` flag:
@@ -75,6 +81,8 @@ skin rewrites some Maven site generated elements to add Bootstrap classes and co
 
 ### Bootstrap icons
 
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+
 To match [Bootstrap][bootstrap] themes, Reflow skin replaces some icons used by Maven site with
 corresponding Bootstrap icons, e.g. in change log page and others:
 
@@ -95,6 +103,8 @@ This can be disabled using `bootstrapIcons` flag:
 
 ### HTML5-style anchors
 
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+
 Anchors (links to page elements) in HTML5 are defined using `id` attribute on any element.
 Previously anchors used the `<a name="...">` element. Reflow transforms these `<a>` anchors
 to HTML5 equivalents where applicable by default. Disable with `html5Anchor` flag.
@@ -107,13 +117,9 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
     where applicable
 - **false** - keep the original anchors
 
-## Navbar colour
-
-```xml
-<navbar cssClass="" />
-```
-
 ## Mark page header
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
 
 By default, the first `<h1>` or `<h2>` heading in the page body is marked as _page header_.
 It allows Bootstrap CSS to give it an emphasised presentation. To disable page header being
@@ -127,6 +133,8 @@ marked, use the `<markPageHeader>` flag:
 - **false** - Page content is unchanged
 
 ## Skin attribution
+
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
 
 The Reflow skin is released under the [Apache license][apache-license] and thus can be used freely.
 By default, a link to the skin website and the author homepage is added at the bottom of the skin:

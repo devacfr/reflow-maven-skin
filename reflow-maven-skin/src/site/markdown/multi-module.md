@@ -5,6 +5,8 @@ several options enhancing such configurations.
 
 ## Reuse resources
 
+support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+
 In a multi-module project, the Maven site for each submodule is generated separately, and only then
 brought together for deployment. Reflow skin allows reusing resources of top-level module using
 `<absoluteResourceURL>` element:
