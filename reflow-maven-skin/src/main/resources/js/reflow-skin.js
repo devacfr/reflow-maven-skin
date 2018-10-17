@@ -45,37 +45,31 @@ var mReflow = function () {
       tocSidebar.find('.nav-collapsible').addClass('collapse').attr('aria-expanded', 'false');
     }
 
+    // apply scrollspy to #m-toc-sidebar
+    $body.scrollspy({
+      target: '#m-toc-sidebar'
+    });
+
+
     // add auto collapse on scrollspy
     if (tocSidebar.hasClass('m-toc-sidebar-autoexpandable')) {
 
-      tocSidebar.on('activate.bs.scrollspy', function () {
-        var active = $('#m-toc-sidebar li.active');
-        var collapsePanel = active.next('ul.nav.nav-collapsible');
+      $window.on('activate.bs.scrollspy', function () {
+        var active = $('#m-toc-sidebar a.active');
+        var collapsePanel = active.parent().next('ul.nav.nav-collapsible');
         tocSidebar.find('ul.nav.nav-collapsible').each(function (index, element) {
           var el = $(element);
           if (el.is(collapsePanel))
             return;
-          var children = el.find('li.active');
+          var children = el.find('a.active');
           if (children.length == 0) {
             el.collapse('hide');
           }
         });
         collapsePanel.collapse('show');
-        active.parent('ul.nav.nav-collapsible').collapse('show');
+        active.parent().parent('ul.nav.nav-collapsible').collapse('show');
       });
     }
-
-
-    // apply affix to #m-toc-sidebar
-    if (tocSidebar.length) {
-
-      // apply scrollspy to #m-toc-sidebar
-      $body.scrollspy({
-        target: '#m-toc-sidebar'
-      });
-
-    }
-
 
   }
 

@@ -38,7 +38,7 @@
  *#
  #macro ( renderAsideTocMenu $menus )##
 ##
-                <ul class="m-nav--sidebar nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
 #*  *##foreach ( $item in $menus )
 #*      *##renderAsideTocItem ( $item )
     #end##
@@ -56,7 +56,7 @@
     </li>
 #*  *##if ( $item.items.size() > 0 )##
 #*  *##if ($item.headingLevel > 1)##
-    <ul class="nav flex-column nav-collapsible">
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
     #end##
 #*      *##foreach ( $subitem in $item.items )
 #*          *##renderAsideTocItem ( $subitem )
