@@ -17,20 +17,21 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 
 #### Bootswatch Themes
 
-- Add new themes. <span class="badge badge-secondary">MISSING DOC</span>
+- Add new themes.
 - Remove `reflow-maven-skin/src/main/resources/css/bootswatch.css`
 
 #### Using customized Bootstrap
 
 - Remove `css/bootstrap-responsive.min.css` link
 - Remove `js/html5.js` link
-- Add css/bootstrap-theme.min.css
+- Add `css/bootstrap.min.css`, default Bootstrap css file
+- Add `css/bootstrap-theme.min.css`, specific customize theme
 
 ### Documentary support
 
 ### Local resources
 
-- Add new 'reflow-default-webdeps' module containing all required web dependencies to work locally.
+- Add new `reflow-default-webdeps` module containing all required web dependencies to work locally.
 
 #### Using default Bootstrap theme
 

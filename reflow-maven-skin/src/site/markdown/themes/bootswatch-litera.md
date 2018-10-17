@@ -1,6 +1,6 @@
-# Bootswatch Readable theme
+# Bootswatch Litera theme
 
-This page is using a free [Readable theme][bootswatch-theme], courtesy of
+This page is using a free [Litera theme][bootswatch-theme], courtesy of
 [Bootswatch][bootswatch].
 
 To use this theme with Reflow Maven skin, use the following `<theme>` configuration
@@ -10,7 +10,7 @@ in the [`site.xml` site descriptor][site-xml] file:
 <custom>
   <reflowSkin>
     ...
-    <theme>bootswatch-readable</theme>
+    <theme>bootswatch-litera</theme>
     ...
   </reflowSkin>
 </custom>
@@ -18,7 +18,7 @@ in the [`site.xml` site descriptor][site-xml] file:
 
 Find other theme options for Reflow Maven skin [here][reflow-themes].
 
-[bootswatch-theme]: http://bootswatch.com/readable/
+[bootswatch-theme]: http://bootswatch.com/litera/
 [bootswatch]: http://bootswatch.com
 [site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
 [reflow-themes]: ../config.html#Themes

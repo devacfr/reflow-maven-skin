@@ -131,6 +131,16 @@ $h3 [Journal][theme-journal]
 
 [theme-journal]: themes/bootswatch-journal.html
 
+$h3 [Litera][theme-litera]
+
+[![Litera Bootswatch theme](images/bootswatch-litera.png)][theme-litera]
+
+```xml
+<theme>bootswatch-litera</theme>
+```
+
+[theme-litera]: themes/bootswatch-litera.html
+
 $h3 [Lumen][theme-lumen]
 
 [![Lumen Bootswatch theme](images/bootswatch-lumen.png)][theme-lumen]
@@ -142,27 +152,46 @@ $h3 [Lumen][theme-lumen]
 [theme-lumen]: themes/bootswatch-lumen.html
 
 
-$h3 [Paper][theme-paper]
+$h3 [Lux][theme-lux]
 
-[![Paper Bootswatch theme](images/bootswatch-paper.png)][theme-paper]
-
-```xml
-<theme>bootswatch-paper</theme>
-```
-
-[theme-paper]: themes/bootswatch-paper.html
-
-
-$h3 [Readable][theme-readable]
-
-[![Readable Bootswatch theme](images/bootswatch-readable.png)][theme-readable]
+[![Lux Bootswatch theme](images/bootswatch-lux.png)][theme-lux]
 
 ```xml
-<theme>bootswatch-readable</theme>
+<theme>bootswatch-lux</theme>
 ```
 
-[theme-readable]: themes/bootswatch-readable.html
+[theme-lux]: themes/bootswatch-lux.html
 
+
+$h3 [Materia][theme-materia]
+
+[![Materia Bootswatch theme](images/bootswatch-materia.png)][theme-materia]
+
+```xml
+<theme>bootswatch-materia</theme>
+```
+
+[theme-materia]: themes/bootswatch-materia.html
+
+$h3 [Minty][theme-minty]
+
+[![Minty Bootswatch theme](images/bootswatch-minty.png)][theme-minty]
+
+```xml
+<theme>bootswatch-minty</theme>
+```
+
+[theme-minty]: themes/bootswatch-minty.html
+
+$h3 [Pulse][theme-pulse]
+
+[![Pulse Bootswatch theme](images/bootswatch-pulse.png)][theme-pulse]
+
+```xml
+<theme>bootswatch-pulse</theme>
+```
+
+[theme-pulse]: themes/bootswatch-pulse.html
 
 $h3 [Sandstone][theme-sandstone]
 
@@ -184,6 +213,16 @@ $h3 [Simplex][theme-simplex]
 ```
 
 [theme-simplex]: themes/bootswatch-simplex.html
+
+$h3 [Sketchy][theme-sketchy]
+
+[![sketchy Bootswatch theme](images/bootswatch-sketchy.png)][theme-sketchy]
+
+```xml
+<theme>bootswatch-sketchy</theme>
+```
+
+[theme-sketchy]: themes/bootswatch-sketchy.html
 
 
 $h3 [Slate][theme-slate]

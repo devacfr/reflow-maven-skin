@@ -74,22 +74,42 @@
           <theme>bootswatch-journal</theme>
           <toc>top</toc>
         </themes-bootswatch-journal>
+        <themes-bootswatch-litera>
+          <theme>bootswatch-litera</theme>
+          <toc>top</toc>
+        </themes-bootswatch-litera>
         <themes-bootswatch-lumen>
           <theme>bootswatch-lumen</theme>
           <toc>top</toc>
         </themes-bootswatch-lumen>
-        <themes-bootswatch-paper>
-          <theme>bootswatch-paper</theme>
+        <themes-bootswatch-lux>
+          <theme>bootswatch-lux</theme>
           <toc>top</toc>
-        </themes-bootswatch-paper>
-        <themes-bootswatch-readable>
-          <theme>bootswatch-readable</theme>
+        </themes-bootswatch-lux>
+        <themes-bootswatch-materia>
+          <theme>bootswatch-materia</theme>
           <toc>top</toc>
-        </themes-bootswatch-readable>
+        </themes-bootswatch-materia>
+        <themes-bootswatch-minty>
+          <theme>bootswatch-minty</theme>
+          <toc>top</toc>
+        </themes-bootswatch-minty>
+        <themes-bootswatch-pulse>
+          <theme>bootswatch-pulse</theme>
+          <toc>top</toc>
+        </themes-bootswatch-pulse>
+        <themes-bootswatch-sandstone>
+          <theme>bootswatch-sandstone</theme>
+          <toc>top</toc>
+        </themes-bootswatch-sandstone>
         <themes-bootswatch-simplex>
           <theme>bootswatch-simplex</theme>
           <toc>top</toc>
         </themes-bootswatch-simplex>
+        <themes-bootswatch-sketchy>
+          <theme>bootswatch-sketchy</theme>
+          <toc>top</toc>
+        </themes-bootswatch-sketchy>
         <themes-bootswatch-slate>
           <theme>bootswatch-slate</theme>
           <toc>top</toc>
@@ -102,10 +122,6 @@
           <theme>bootswatch-spacelab</theme>
           <toc>top</toc>
         </themes-bootswatch-spacelab>
-        <themes-bootswatch-sandstone>
-          <theme>bootswatch-sandstone</theme>
-          <toc>top</toc>
-        </themes-bootswatch-sandstone>
         <themes-bootswatch-superhero>
           <theme>bootswatch-superhero</theme>
           <toc>top</toc>
@@ -141,7 +157,7 @@
               <item name="Menus" href="components/menus.html"/>
               <item name="Table of Contents" href="components/toc.html"/>
             </item>
-            <item name="Other Configuration" href="misc.html" icon="fas fa-sliders"/>
+            <item name="Other Configuration" href="misc.html" icon="fas fa-sliders-h"/>
             <item name="Multi-module Site" href="multi-module.html" icon="fas fa-window-restore"/>
             <item name="Local Resources" href="resources.html" icon="fas fa-bookmark"/>
             <item name="Migration" href="migration.html" icon="fas fa-wrench"/>
