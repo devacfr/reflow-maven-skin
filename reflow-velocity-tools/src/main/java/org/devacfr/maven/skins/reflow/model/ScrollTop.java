@@ -13,42 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devacfr.maven.skins.reflow.context;
+package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
+import com.google.common.base.Strings;
+
+import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
-import org.devacfr.maven.skins.reflow.model.Toc;
 
-/**
- * @author Christophe Friederich
- * @since 2.0
- */
-public class PageContext extends Context<PageContext> {
+public class ScrollTop extends PageElement {
 
-    private Toc<?> toc;
 
-    public PageContext(final @Nonnull SkinConfigTool config) {
-        super(config);
-        this.withType("page");
+    /** */
+    private boolean smooth;
+
+    public ScrollTop(final @Nonnull SkinConfigTool config) {
+
+        this.smooth = config.getConfigValue("smoothScroll", Boolean.class, true);
     }
 
     @Override
     public String getCssOptions() {
-        String css = super.getCssOptions();
-        if (getToc() != null) {
-            css += " " + getToc().getCssOptions();
+        if (isSmooth()) {
+            return "scroll-top-smooth-enabled";
         }
-        return css;
-    }
-
-    public Toc<?> getToc() {
-        return toc;
+        return super.getCssOptions();
     }
 
 
-    public PageContext withToc(final Toc<?> toc) {
-        this.toc = toc;
-        return self();
+    /**
+     * @return the smooth
+     */
+    public boolean isSmooth() {
+        return smooth;
     }
 }

@@ -37,7 +37,7 @@ public class FrameContext extends Context<FrameContext> {
 
     public FrameContext(final @Nonnull SkinConfigTool config) {
         super(config);
-        setType("frame");
+        this.withType("frame");
         toc = Toc.createToc(config, "sidebar");
     }
 
@@ -58,12 +58,9 @@ public class FrameContext extends Context<FrameContext> {
         return SkinConfigTool.slugFilename(documentParent);
     }
 
-    public void setDocumentParent(final String documentParent) {
-        this.documentParent = documentParent;
-    }
 
     public FrameContext withDocumentParent(final String documentParent) {
-        setDocumentParent(documentParent);
+        this.documentParent = documentParent;
         return self();
     }
 
@@ -71,12 +68,8 @@ public class FrameContext extends Context<FrameContext> {
         return item;
     }
 
-    public void setItem(final SideNavMenuItem item) {
-        this.item = item;
-    }
-
     public FrameContext withItem(final SideNavMenuItem item) {
-        this.setItem(item);
+        this.item = item;
         return self();
     }
 
@@ -84,12 +77,8 @@ public class FrameContext extends Context<FrameContext> {
         return toc;
     }
 
-    public void setToc(final Toc<?> toc) {
-        this.toc = toc;
-    }
-
     public FrameContext withToc(final Toc<?> toc) {
-        setToc(toc);
+        this.toc = toc;
         return self();
     }
 

@@ -31,7 +31,7 @@ public class DocumentContext extends Context<DocumentContext> {
 
     public DocumentContext(final @Nonnull SkinConfigTool config) {
         super(config);
-        setType("doc");
+        this.withType("doc");
         this.menu = new SideNavMenu(config);
     }
 

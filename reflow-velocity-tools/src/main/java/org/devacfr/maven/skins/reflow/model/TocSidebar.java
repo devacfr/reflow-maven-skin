@@ -15,6 +15,10 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.SkinConfigTool;
+
 public class TocSidebar extends Toc<TocSidebar> {
 
     /** static position by default */
@@ -26,8 +30,12 @@ public class TocSidebar extends Toc<TocSidebar> {
     /** auto expandable by default. */
     private boolean autoExpandable = true;
 
-    public TocSidebar() {
+    public TocSidebar(final @Nonnull SkinConfigTool config) {
         super("sidebar");
+        final String position = config.getConfigAttribute("toc", "type", String.class, "fixed").toLowerCase();
+        this.withEnabled(true).withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
+                .withAutoExpandable(config.getConfigAttribute("toc", "auto-expandable", Boolean.class, true))
+                .withFixed("fixed".equals(position));
     }
 
     @Override
@@ -47,12 +55,8 @@ public class TocSidebar extends Toc<TocSidebar> {
         return fixed;
     }
 
-    public void setFixed(final boolean fixed) {
+    protected TocSidebar withFixed(final boolean fixed) {
         this.fixed = fixed;
-    }
-
-    public TocSidebar withFixed(final boolean fixed) {
-        setFixed(fixed);
         return self();
     }
 
@@ -61,12 +65,8 @@ public class TocSidebar extends Toc<TocSidebar> {
     }
 
 
-    public void setExpanded(final boolean expanded) {
+    protected TocSidebar withExpanded(final boolean expanded) {
         this.expanded = expanded;
-    }
-
-    public TocSidebar withExpanded(final boolean expanded) {
-        setExpanded(expanded);
         return self();
     }
 
@@ -74,12 +74,9 @@ public class TocSidebar extends Toc<TocSidebar> {
         return autoExpandable;
     }
 
-    public void setAutoExpandable(final boolean autoExpandable) {
-        this.autoExpandable = autoExpandable;
-    }
 
-    public TocSidebar withAutoExpandable(final boolean autoExpandable) {
-        setAutoExpandable(autoExpandable);
+    protected TocSidebar withAutoExpandable(final boolean autoExpandable) {
+        this.autoExpandable = autoExpandable;
         return self();
     }
 

@@ -28,6 +28,7 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 import org.devacfr.maven.skins.reflow.model.Navbar;
 import org.devacfr.maven.skins.reflow.model.PageElement;
+import org.devacfr.maven.skins.reflow.model.ScrollTop;
 import org.devacfr.maven.skins.reflow.model.SideNavMenu;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
@@ -46,6 +47,9 @@ public class Context<T extends Context<?>> extends PageElement {
 
     /** */
     private Navbar navbar;
+
+    /** */
+    private ScrollTop scrollTop;
 
     public static Context<?> buildContext(final SkinConfigTool config) {
         final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(config.getGlobalProperties(), "pages", config.getNamespace());
@@ -90,8 +94,16 @@ public class Context<T extends Context<?>> extends PageElement {
 
     public Context(final @Nonnull SkinConfigTool config) {
         this.navbar = new Navbar(config);
+        this.scrollTop = new ScrollTop(config);
     }
 
+    @Override
+    public String getCssOptions() {
+        String css = super.getCssOptions();
+        css += " " + getNavbar().getCssOptions() +
+        " " + getScrollTop().getCssOptions();
+        return css;
+    }
     /**
      * @return the navbar
      */
@@ -99,12 +111,15 @@ public class Context<T extends Context<?>> extends PageElement {
         return navbar;
     }
 
-    public void setType(final String type) {
-        this.type = type;
+    /**
+     * @return the scrollTop
+     */
+    public ScrollTop getScrollTop() {
+        return scrollTop;
     }
 
     public T withType(final String type) {
-        setType(type);
+        this.type = type;
         return self();
     }
 

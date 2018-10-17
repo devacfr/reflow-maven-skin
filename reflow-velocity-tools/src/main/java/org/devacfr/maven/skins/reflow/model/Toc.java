@@ -54,7 +54,7 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         }
         switch (type) {
             case "sidebar":
-                toc = createTocSidebar(config);
+                toc = new TocSidebar(config);
                 break;
             case "top":
                 toc = new TocTopBar(config);
@@ -73,15 +73,6 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         }
 
         return toc;
-    }
-
-
-    private static Toc<?> createTocSidebar(final SkinConfigTool config) {
-        final String position = config.getConfigAttribute("toc", "type", String.class, "fixed").toLowerCase();
-        return new TocSidebar().withEnabled(true)
-                .withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
-                .withAutoExpandable(config.getConfigAttribute("toc", "auto-expandable", Boolean.class, true))
-                .withFixed("fixed".equals(position));
     }
 
     protected Toc(final String type) {

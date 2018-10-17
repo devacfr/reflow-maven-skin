@@ -139,7 +139,11 @@ var mReflow = function () {
       }
     });
     el.click(function () {
-      window.scrollTo(0, 0);
+      if ($body.hasClass('scroll-top-smooth-enabled')) {
+        scrollTo(0,0);
+      } else {
+        $window.scrollTo(0, 0);
+      }
     });
   }
 

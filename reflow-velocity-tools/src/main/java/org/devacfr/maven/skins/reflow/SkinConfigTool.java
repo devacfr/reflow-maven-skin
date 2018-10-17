@@ -212,12 +212,12 @@ public class SkinConfigTool extends SafeConfig {
             }
             this.context = Context.buildContext(this);
         }
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Current Filename: " + currentFileObj);
-            LOGGER.info("Project id: " + projectId);
-            LOGGER.info("File id: " + fileId);
-            LOGGER.info("Context: " + this.context);
-            LOGGER.info("---------------------------------------------------");
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("Current Filename: " + currentFileObj);
+            LOGGER.trace("Project id: " + projectId);
+            LOGGER.trace("File id: " + fileId);
+            LOGGER.trace("Context: " + this.context);
+            LOGGER.trace("---------------------------------------------------");
         }
     }
 
