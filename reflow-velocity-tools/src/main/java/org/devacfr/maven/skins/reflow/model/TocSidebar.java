@@ -21,7 +21,7 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
 public class TocSidebar extends Toc<TocSidebar> {
 
-    /** static position by default */
+    /** fixed position by default */
     private boolean fixed = true;
 
     /** expanded by default. */
@@ -32,7 +32,7 @@ public class TocSidebar extends Toc<TocSidebar> {
 
     public TocSidebar(final @Nonnull SkinConfigTool config) {
         super("sidebar");
-        final String position = config.getConfigAttribute("toc", "type", String.class, "fixed").toLowerCase();
+        final String position = config.getConfigAttribute("toc", "position", String.class, "fixed").toLowerCase();
         this.withEnabled(true).withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
                 .withAutoExpandable(config.getConfigAttribute("toc", "auto-expandable", Boolean.class, true))
                 .withFixed("fixed".equals(position));

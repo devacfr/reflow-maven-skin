@@ -39,11 +39,11 @@ Top ToC can be limited to a certain number of items in configuration. All menu e
 that number are grouped under the last dropdown menu. Exclude the option if unlimited.
 
 ```xml
-<tocTopMax>6</tocTopMax>
+<toc numberItems="number">top</toc>
 ```
 
 - **number** - limit to this number of items
-- **-1 or no `<tocTopMax>` element (default)** - unlimited
+- **-1 or no `numberItems` attribute (default)** - unlimited
 
 ### Flatten first 2 levels of ToC
 
@@ -53,19 +53,19 @@ only the top level headings are included. This option can be overridden to force
 disable altogether.
 
 ```xml
-<tocTopFlatten>true|false</tocTopFlatten>
+<toc flatten="true|false">top</toc>
 ```
 
 - **true** - force flattening 2 ToC levels
 - **false** - never flatten, always just use 1st level ToC items
-- **no `<tocTopFlatten>` element (default)** - flatten if single top heading
+- **no `flatten` attribute (default)** - flatten if single top heading
 
 ## Sidebar ToC
 
-The ToC can be displayed as a tree in the sidebar. This default style `static` does not snap to the page when scrolling, but scrolls with the whole page. The type `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
+The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
 
 ```xml
-<toc type="fixed|static">sidebar</toc>
+<toc position="fixed|relative">sidebar</toc>
 ```
 
 [toc-sidebar]: toc-sidebar.html

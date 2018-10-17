@@ -61,8 +61,7 @@
       <slogan>Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
-      <toc cssClass="navbar-dark bg-primary border rounded">top</toc>
-      <tocTopMax>6</tocTopMax>
+      <toc numberItems="6" cssClass="navbar-dark bg-primary border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
       <topNav>Tools|Contribute|Maven documentation</topNav>
       <!-- Split menus in the bottom navigation -->
@@ -118,7 +117,7 @@
           <toc>false</toc>
         </github-report>
         <dependencies>
-          <tocTopMax>4</tocTopMax>
+          <toc numberItems="4">top</toc>
         </dependencies>
         <release-notes>
           <toc>false</toc>

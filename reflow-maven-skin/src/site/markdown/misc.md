@@ -69,14 +69,7 @@ Bootstrap icons and other goodies. The flags to disable these updates are descri
 
 [Bootstrap][bootstrap] provides nice CSS effects for certain elements, such as tables, etc. Reflow
 skin rewrites some Maven site generated elements to add Bootstrap classes and configurations.
-This can be disabled using `bootstrapCSS` flag:
 
-```xml
-<bootstrapCSS>true|false</bootstrapCSS>
-```
-
-- **true (default)** - adds Bootstrap CSS classes to tables; fixes table headings
-- **false** - keep original table HTML
 
 [bootstrap]: http://twitter.github.com/bootstrap/
 
@@ -116,19 +109,9 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 
 ## Navbar colour
 
-<navbar theme="" bgcolor="" />
-
-Bootstrap themes provide an [alternative colour for top navigation bar][navbar-inverse].
-To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
-
 ```xml
-<navbarInverse>true|false</navbarInverse>
+<navbar cssClass="" />
 ```
-
-- **true** - Inverted navigation bar colour is used
-- **false (default)** - Default Bootstrap theme colour is used for navigation bar
-
-[navbar-inverse]: http://twitter.github.com/bootstrap/components.html#navbar
 
 ## Mark page header
 

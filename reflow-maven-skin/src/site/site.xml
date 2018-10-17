@@ -38,7 +38,7 @@
           </sections>
         </index>
         <config>
-          <toc expanded="false">sidebar</toc>
+          <toc expanded="false" position="relative">sidebar</toc>
         </config>
         <layouts>
           <toc>false</toc>
@@ -144,6 +144,7 @@
             <item name="Other Configuration" href="misc.html" icon="fas fa-sliders"/>
             <item name="Multi-module Site" href="multi-module.html" icon="fas fa-window-restore"/>
             <item name="Local Resources" href="resources.html" icon="fas fa-bookmark"/>
+            <item name="Migration" href="migration.html" icon="fas fa-wrench"/>
           </menu>
         </reflow-documentation>
       </pages>

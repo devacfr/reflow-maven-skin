@@ -37,7 +37,7 @@
  * Outputs the top Table of Contents ( subnav )
  *
  *##macro ( renderTopTocItems $topItems )
-    #set ( $tocMax = $pageContext.toc.topMax )#*
+    #set ( $tocMax = $pageContext.toc.numberItems )#*
     ## check if we flatten the first 2 levels of ToC:
     *##set ( $flattenConfig = $pageContext.toc.flatten )#*
     *##if ( !$flattenConfig )#*

@@ -42,8 +42,8 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
     public static Toc<?> createToc(final SkinConfigTool config, final String preferredType) {
         Toc<?> toc = null;
         String type = config.value("toc");
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Page '{}' Find Toc: {}", config.getFileId(), type);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("Page '{}' Find Toc: {}", config.getFileId(), type);
         }
         final Set<String> types = new HashSet<>(Arrays.asList("sidebar", "top", "false"));
         if (!types.contains(type)) {
