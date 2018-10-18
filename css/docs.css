@@ -5,6 +5,12 @@
   Special styles for presenting Bootstrap's documentation and examples
 */
 
+/* Body and structure
+-------------------------------------------------- */
+body {
+	position: relative;
+	padding-top: 70px;
+}
 
 /* Code in headings */
 h3 code {
@@ -53,7 +59,7 @@ h3 code {
 .subhead {
 	padding-bottom: 0;
 	margin-bottom: 9px;
-	padding-top: 10px;
+	padding-top: 0px;
 }
 
 .subhead h1 {
