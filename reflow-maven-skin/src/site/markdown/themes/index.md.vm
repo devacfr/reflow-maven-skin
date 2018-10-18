@@ -5,7 +5,8 @@
 #set($h5 = '#####')
 $h1 Themes
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span>
 
 Reflow skin builds on [Twitter Bootstrap][bootstrap] and supports predefined and custom
 Bootstrap themes. They are set using the `<theme>` element in the customization:

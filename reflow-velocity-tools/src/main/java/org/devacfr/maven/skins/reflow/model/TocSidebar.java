@@ -34,7 +34,7 @@ public class TocSidebar extends Toc<TocSidebar> {
         super("sidebar");
         final String position = config.getConfigAttribute("toc", "position", String.class, "fixed").toLowerCase();
         this.withEnabled(true).withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
-                .withAutoExpandable(config.getConfigAttribute("toc", "auto-expandable", Boolean.class, true))
+                .withAutoExpandable(config.getConfigAttribute("toc", "autoExpandable", Boolean.class, true))
                 .withFixed("fixed".equals(position));
     }
 

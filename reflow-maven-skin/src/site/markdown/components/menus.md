@@ -1,4 +1,4 @@
-# Menus
+# Menus Component
 
 Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation
 columns. The menus themselves are defined as normally in Maven site, 
@@ -13,6 +13,9 @@ menu item and its `ref` value, e.g. to match `<menu ref="modules" inherit="botto
 
 ## Top navigation
 
+support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
+element <span class="badge badge-secondary">reflow</span>
+
 Top navigation is right-aligned at the top of the screen. It sticks to the screen when scrolling.
 The menu items can be filtered using regular expression to indicate which of the menu items
 are displayed there:
@@ -21,13 +24,18 @@ are displayed there:
 <topNav>RegEx<topNav>
 ```
 
-- **RegEx** - applies the regular expression to menu names and `ref` attributes. If the regular
-    expression matches, adds the menu to the top navigation.
+- **RegEx** - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
 - **no `<topNav>` element (default)** - list all menus
+
+<div class="alert alert-info">
+    <strong>Reflow version 2</strong>
+    <p>Use <code>filterMenu</code> attribute in <code>navbar</code> element instead.</p>
+</div>
+
 
 ## Links
 
-element <span class="badge badge-primary">site.xml</span>
+element <span class="badge badge-secondary">site.xml</span>
 
 All links from defined in [`<body><links>` element][mvn-site-links] of `site.xml` site descriptor
 are placed in the top navigation bar. This allows having top-level links in navigation (menus are
@@ -37,7 +45,8 @@ always drop-down).
 
 ## Bottom navigation
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span>
 
 The bottom navigation is placed in the footer, to the left of website description. It can feature
 a number of columns with menu items. The columns are indicated using the `bottomNav` element.

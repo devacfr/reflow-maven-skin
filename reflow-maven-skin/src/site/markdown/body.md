@@ -1,6 +1,7 @@
 # Body
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">layout</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">layout</span>
 
 _Body_ layout just outputs the page contents as they are. The subsections are output sequentially.
 If no _sidebar_ (or sidebar ToC) is indicated, the _body_ text occupies full page width. Otherwise

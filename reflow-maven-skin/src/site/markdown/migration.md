@@ -6,7 +6,7 @@ Reflow is a major rewrite of the entire project. The most notable changes are su
 
 Moving from v1 to stable v2 release, there are no breaking changes, but there are some notable changes.
 
-### Upgrade to Bootstrap v4
+## Upgrade to Bootstrap v4
 
 See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin on changes.
 
@@ -15,25 +15,25 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 - Remove `<navbarInverse>` element, replace by `cssClass` attribute (see [Navbar component](#migration_toc_navbar_component)
 - Dropped the Affix jQuery plugin, replaced by position `sticky` (can remove all affix css).
 
-#### Bootswatch Themes
+### Bootswatch Themes
 
 - Add new themes.
 - Remove `reflow-maven-skin/src/main/resources/css/bootswatch.css`
 
-#### Using customized Bootstrap
+### Using customized Bootstrap
 
 - Remove `css/bootstrap-responsive.min.css` link
 - Remove `js/html5.js` link
 - Add `css/bootstrap.min.css`, default Bootstrap css file
 - Add `css/bootstrap-theme.min.css`, specific customize theme
 
-### Documentary support
+## Documentary support
 
-### Local resources
+## Local resources
 
 - Add new `reflow-default-webdeps` module containing all required web dependencies to work locally.
 
-#### Using default Bootstrap theme
+### Using default Bootstrap theme
 
 ```xml
 <plugin>
@@ -71,7 +71,7 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 
 **Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see https://devacfr.github.io/reflow-maven-skin/skin/multi-module.html )
 
-#### Using Bootswatch theme
+### Using Bootswatch theme
 
 ```xml
 <plugin>
@@ -108,12 +108,11 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 </plugin>
 ```
 
-
-### By component
+## By component
 
 This list highlights key changes by component between v1.4 and v2.0.0.
 
-#### TOC topbar component
+### Toc topbar component
 
 ```xml
 <toc cssClass="navbar-dark bg-dark border rounded|bootstrap classes" numberItems="number|-1" flatten="false|true">top</toc>
@@ -123,21 +122,26 @@ This list highlights key changes by component between v1.4 and v2.0.0.
 - Replace `tocTopMax` element by `numberItems` attribute to `<toc>` element.
 - Replace `tocTopFlatten` element by `flatten` attribute to `<toc>` element.
 
-#### TOC sidebar component
+### Toc sidebar component
+
+Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content.
 
 ```xml
-<toc position="fixed|relative" >sidebar</toc>
+<toc position="fixed|relative" autoExpandable="true|false" expanded="true|false">sidebar</toc>
 ```
 
 - Change `type` attribure by `position` attribute.
 - Replace `static` option of `position` attribute by `relative`.
+- Now, the new Toc sidebar supports page with 1st level heading `<h1>`.
 
-#### Navbar component
+### Navbar component
 
 ```xml
-<navbar cssClass="navbar-light bg-light border-bottom|bootstrap classes">
+<navbar filterMenu="Regex filter" cssClass="navbar-light bg-light border-bottom|bootstrap classes">
 ```
 
+- Replace `<topNav>` element by `filterMenu` attribute.
+- Remove `<navbarInverse>` element. use `cssClass` instead.
 - Add `cssClass` attribute (default value `navbar-light bg-light border-bottom`)
 
 [bootstrap-migration]: https://getbootstrap.com/docs/4.1/migration

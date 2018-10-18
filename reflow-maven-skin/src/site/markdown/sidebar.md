@@ -1,6 +1,7 @@
 # Sidebar
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">layout</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">layout</span>
 
 _Sidebar_ layout places the section contents into a sidebar with shaded background. If the sidebar
 follows _body_ section, it is placed side-by-side with the body text. Otherwise it occupies a whole

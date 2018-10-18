@@ -35,7 +35,7 @@ Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` in
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>3.6</version>
+      <version>${maven-site-plugin-version}</version>
       <dependencies>
         ...
         <dependency>
@@ -55,8 +55,6 @@ Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` in
 Reflow Velocity tools ([`reflow-velocity-tools`][reflow-tools]) are required by the Reflow skin
 to read skin configuration and provides other functionality. The library must be available when
 generating Maven site.
-
-Note that _Velocity 1.7_ is also required by the template.
 
 ---
 
@@ -80,7 +78,7 @@ options are [described in the documentation][doc]. A sample configuration file i
       <slogan>Super interesting project doing good things.</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
       <toc>top</toc>
-      <topNav>Download|reports</topNav>
+      <navbar filterMenu="Download|reports" />
       <bottomNav>
         <column>Main|Download</column>
         <column>Documentation</column>
@@ -103,6 +101,8 @@ options are [described in the documentation][doc]. A sample configuration file i
           </sections>
         </index>
         <developer-info>
+            <!-- inherit of parent value -->
+            <navbar filterMenu="inherit" cssClass="navbar-dark bg-dark " />
           <toc>sidebar</toc>
         </developer-info>
         <overview>

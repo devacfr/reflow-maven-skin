@@ -1,8 +1,6 @@
-# Table of contents
+# Table of Contents Component
 
-
-The skin supports automatic generation of table of contents (ToC) for any page based on the headings
-appearing in the page. Clicking on the ToC item jumps to the corresponding heading in the page.
+The skin supports automatic generation of table of contents (ToC) for any page based on the headings appearing in the page. Clicking on the ToC item jumps to the corresponding heading in the page.
 
 The ToC style can be chosen with `<toc>` element:
 
@@ -10,7 +8,14 @@ The ToC style can be chosen with `<toc>` element:
 <custom>
   <reflowSkin>
     ...
-    <toc>top|sidebar</theme>
+    <!-- global -->
+    <toc>top|sidebar</toc>
+    <pages>
+        <page>
+            <!-- specific one page -->
+            <toc>top|sidebar</toc>
+        </page>
+    </pages>
     ...
   </reflowSkin>
 </custom>
@@ -23,36 +28,58 @@ The ToC style can be chosen with `<toc>` element:
 Both styles are exclusive: either the top or the sidebar can be used in a single page. The
 different styles and their further options are explained below.
 
-## Top TOC bar
+## Top Toc Bar
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
-Top ToC displays the table of contents as a horizontal menu just below the site header. Top items
-provide drop-down menus for subsections. Such menu is used throughout the whole site here.
+Top ToC displays the table of contents as a horizontal menu just below the site header. Top items provide drop-down menus for subsections. Such menu s used throughout the whole site here.
 
 The ToC snaps to the top of the screen to allow easy navigation in long pages.
 
 ```xml
-<toc>top</toc>
+<toc numberItems="number|-1" flatten="true|false" cssClass="bootstrap classes">top</toc>
 ```
+
+- **numberItems** <span class="badge badge-light">v2.0</span> -  Sets a integer greater than 0 to limit the number of top ToC items. All menu entries exceeding that number are grouped under the last dropdown menu. `-1` or no attribute (default) displays all items.
+- **flatten** <span class="badge badge-light">v2.0</span> - Sets to `true` flatten first 2 levels of ToC. Top ToC for pages that have only a single top heading (e.g. h1) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether, otherwise `false` to always just use 1st level ToC items. this attribute replace `<tocTopFlatten>` element.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class of Top Toc with built-in Bootstrap support. `navbar-dark bg-dark border rounded` is the default value if value is empty or `null`.
+
+## ToC Sidebar
+
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+
+```xml
+<toc position="fixed|relative" type="fixed|static" autoExpandable="true|false" expanded="true|false">sidebar</toc>
+```
+
+- **position** <span class="badge badge-light">v2.0</span> - The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
+- **type** <span class="badge badge-light">v1.3</span> - Indentical to attribute `position`. Option `static` is similar to `relative` option in attribute `position`. _Attribute removed in version_ <span class="badge badge-light">v2.0</span>
+- **autoExpandable** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollsp, otherwise `false`.
+- **expanded** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to expand all menus in tree, otherwise `false` to show only 1st level Toc items.
+
+[toc-sidebar]: toc-sidebar.html
 
 ### Limit the number of top ToC items
 
-support <span class="badge badge-dark">v2.0+</span>
+support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
+element <span class="badge badge-secondary">reflow</span><br/>
 
 Top ToC can be limited to a certain number of items in configuration. All menu entries exceeding
 that number are grouped under the last dropdown menu. Exclude the option if unlimited.
 
 ```xml
-<toc numberItems="number">top</toc>
+<tocTopMax>6</tocTopMax>
 ```
 
 - **number** - limit to this number of items
-- **-1 or no `numberItems` attribute (default)** - unlimited
+- **-1 or no `<tocTopMax>` element (default)** - unlimited
 
 ### Flatten first 2 levels of ToC
 
-support <span class="badge badge-dark">v2.0+</span>
+support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
+element <span class="badge badge-secondary">reflow</span><br/>
 
 Top ToC for pages that have only a single top heading (e.g. `h1`) also includes the 2nd level
 headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise
@@ -60,21 +87,9 @@ only the top level headings are included. This option can be overridden to force
 disable altogether.
 
 ```xml
-<toc flatten="true|false">top</toc>
+<tocTopFlatten>true|false</tocTopFlatten>
 ```
 
 - **true** - force flattening 2 ToC levels
 - **false** - never flatten, always just use 1st level ToC items
-- **no `flatten` attribute (default)** - flatten if single top heading
-
-## ToC Sidebar
-
-support <span class="badge badge-dark">v1.3+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
-
-The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
-
-```xml
-<toc position="fixed|relative">sidebar</toc>
-```
-
-[toc-sidebar]: toc-sidebar.html
+- **no `<tocTopFlatten>` element (default)** - flatten if single top heading

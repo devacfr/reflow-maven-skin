@@ -151,6 +151,8 @@
     <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+    <!-- used in site generation -->
+    <maven-site-plugin-version>${maven-site-plugin.version}</maven-site-plugin-version>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <maven-velocity.version>1.7</maven-velocity.version>
     <maven-velocity-tools.version>2.0</maven-velocity-tools.version>

@@ -80,7 +80,7 @@ A sample configuration file is given below:
       <slogan>Super interesting project doing good things.</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
       <toc>top</toc>
-      <topNav>Download|reports</topNav>
+      <navbar filterMenu="Download|reports" />
       <bottomNav>
         <column>Main|Download</column>
         <column>Documentation</column>

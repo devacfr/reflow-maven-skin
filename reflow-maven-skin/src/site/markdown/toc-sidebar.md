@@ -3,7 +3,7 @@
 An example page showing the table of contents rendered as a sidebar tree menu.
 
 This ToC style can be chosen with `<toc>sidebar</toc>` element:
-  
+
 ```xml
 <custom>
   <reflowSkin>
@@ -16,13 +16,11 @@ This ToC style can be chosen with `<toc>sidebar</toc>` element:
 
 The rest of the page is just placeholder text to demonstrate a bigger menu.
 
-
-
 ## Placeholder text
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quare ad ea primum, si videtur; Hunc vos beatum; Nam ista vestra: Si gravis, brevis; Sed haec in pueris; Duo Reges: constructio interrete. An eiusdem modi?
 
-#### Et ex maxima
+### Et ex maxima
 
 Vestri haec verecundius, illi fortasse constantius. Quibus ego vehementer assentior. Quantum Aristoxeni ingenium consumptum videmus in musicis?
 
@@ -56,7 +54,7 @@ Tum mihi Piso: Quid ergo? Quod vestri non item. Falli igitur possumus. Ut id ali
 
 Iam contemni non poteris. Comprehensum, quod cognitum non habet? Ergo, inquit, tibi Q. Nihil sane. Sed nimis multa. Qualem igitur hominem natura inchoavit? Nulla erit controversia. Quae est igitur causa istarum angustiarum?
 
-### Est summum 
+### Est summum
 
 Peccata paria. Scrupulum, inquam, abeunti; Hoc mihi cum tuo fratre convenit. Occultum facinus esse potuerit, gaudebit; Bonum integritas corporis: misera debilitas.
 
@@ -86,7 +84,7 @@ Graccho, eius fere, aequalí? Nos commodius agimus. Moriatur, inquit. Ego vero i
 
 Itaque his sapiens semper vacabit. Nihil opus est exemplis hoc facere longius. At multis malis affectus.
 
-#### Ostendit pedes et pectus
+### Ostendit pedes et pectus
 
 Quis est, qui non oderit libidinosam, protervam adolescentiam? Respondeat totidem verbis.
 

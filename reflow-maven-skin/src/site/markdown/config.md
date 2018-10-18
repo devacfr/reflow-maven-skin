@@ -65,15 +65,14 @@ Each element within `<pages>` indicates the name of the page file being customiz
 ### Page ID
 
 Each page configuration is set within a `<pages><[pageId]>` element.
-    
+
 The page ID is its file name without extension. This is because the pages may be generated
 from different file formats, e.g. [APT, XDoc, Markdown, etc][doxia-formats]. The page ID
 characters must be of the same case as the generated file name.
-    
+
 For generated files that are in directories, `"-"` is used as the separator for directory
 structure. So a file in _./subdir/foo.html_ is referred as `<subdir-foo>` in the
 configuration.
-
 
 ### Configuration inheritance
 
@@ -81,7 +80,7 @@ The page configuration is applied to all generated pages that have the indicated
 For multi-module builds, child sites will inherit the configuration from parent site.
 So if the parent has defined a configuration for `<index>`, it will also be applied to
 _index.html_ in the child project.
-    
+
 Sometimes this is undesirable, so one can use `project` attribute to indicate the project
 that the page applies to. For child pages, the project will be different from indicated
 and thus the configuration will not apply. The project is identified using its `artifactId`.
@@ -89,7 +88,6 @@ and thus the configuration will not apply. The project is identified using its `
 If you still encounter inheritance problems, try using
 [`combine.self="override"` attribute][mvn-merge] on the `site.xml` element to explicitly override
 it.
-
 
 [doxia-formats]: http://maven.apache.org/doxia/references/index.html
 [site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html

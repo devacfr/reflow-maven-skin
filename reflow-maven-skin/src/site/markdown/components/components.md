@@ -4,7 +4,8 @@
 
 ### Generate or set short title
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 Short title is used in site breadcrumbs and other places. In some cases it is created by Maven
 site (e.g. when set in APT), etc. In other cases, however, it is missing - a glaring omission
@@ -26,7 +27,8 @@ explicitly using `<shortTitle>` element:
 
 ### Custom page title
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 By default, the page title is generated from the project name and its short title. The skin allows
 setting own page title, e.g. to allow for titles such as "_My Page | My Super Website_", etc.
@@ -45,7 +47,8 @@ setting own page title, e.g. to allow for titles such as "_My Page | My Super We
 
 ## Bottom description
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 The bottom navigation provides space for site description, logo or other content. It is placed on
 the right of the bottom navigation area. Site description takes up space remaining after the bottom
@@ -71,7 +74,7 @@ Note that the bottom description must be enabled if Maven site
 
 ## Breadcrumbs
 
-element <span class="badge badge-primary">site.xml</span>
+element <span class="badge badge-secondary">site.xml</span>
 
 Breadcrumbs are defined using standard Maven site element
 [`<body><breadcrumbs>`][mvn-site-breadcrumbs] in `site.xml`.
@@ -91,7 +94,7 @@ Note that the breadcrumbs bar must be enabled if Maven site
 
 ## Date and version
 
-element <span class="badge badge-primary">site.xml</span>
+element <span class="badge badge-secondary">site.xml</span>
 
 Reflow skin supports displaying Maven site publish date and version. They are defined using
 standard Maven site elements [`<publishDate>`][mvn-site-date] and [`<version>`][mvn-site-version].
@@ -114,7 +117,7 @@ Note that **navigation-top** position is not supported by Reflow skin.
 
 ### Override publish date
 
-element <span class="badge badge-primary">site.xml</span>
+element <span class="badge badge-secondary">site.xml</span>
 
 The website publish date can be indicated explicitly in the configuration by using `<publishDate>`
 element:

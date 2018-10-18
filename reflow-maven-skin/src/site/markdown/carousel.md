@@ -1,6 +1,7 @@
 # Carousel
 
-support <span class="badge badge-dark">v1.0+</span> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">layout</span>
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">layout</span>
 
 _Carousel_ component provides a slideshow of images with captions. It is normally used in front page
 to advertise main features or showcase a portfolio, etc. See one in action at the top of the
