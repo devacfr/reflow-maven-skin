@@ -3,10 +3,6 @@
 }
 
 
-body[class*="page-themes-bootswatch"] {
-	background-image: none;
-}
-
 body[class*="page-themes-bootswatch"] .color-highlight {
 	color: inherit;
 }
