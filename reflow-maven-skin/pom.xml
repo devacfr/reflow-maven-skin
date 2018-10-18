@@ -23,7 +23,7 @@
       <id>${site.deploy.id}</id>
       <!-- Nest the actual skin plug-in under `skin` -->
       <!-- Note that GitHub does not like having leading slash here -->
-      <url>${site.deploy.url}skin</url>
+      <url>${site.deploy.path}skin</url>
     </site>
   </distributionManagement>
 
