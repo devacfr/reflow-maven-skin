@@ -72,7 +72,7 @@
     <site>
       <id>${site.deploy.id}</id>
       <name>${site.deploy.name}</name>
-      <url>${site.deploy.url}</url>
+      <url>${site.deploy.url}v2/</url>
     </site>
   </distributionManagement>
 
