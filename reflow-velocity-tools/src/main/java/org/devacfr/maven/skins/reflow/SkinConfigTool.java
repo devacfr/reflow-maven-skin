@@ -212,12 +212,12 @@ public class SkinConfigTool extends SafeConfig {
             }
             this.context = Context.buildContext(this);
         }
-        if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("Current Filename: " + currentFileObj);
-            LOGGER.trace("Project id: " + projectId);
-            LOGGER.trace("File id: " + fileId);
-            LOGGER.trace("Context: " + this.context);
-            LOGGER.trace("---------------------------------------------------");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Current Filename: " + currentFileObj);
+            LOGGER.debug("Project id: " + projectId);
+            LOGGER.debug("File id: " + fileId);
+            LOGGER.debug("Context: " + this.context);
+            LOGGER.debug("---------------------------------------------------");
         }
     }
 
@@ -350,14 +350,29 @@ public class SkinConfigTool extends SafeConfig {
         final String attribute,
         final Class<T> targetType,
         final T defaultValue) {
-        final Xpp3Dom element = get(property);
+        Xpp3Dom element = get(property);
         if (element == null) {
             return defaultValue;
         }
-        final String value = element.getAttribute(attribute);
+        String value = element.getAttribute(attribute);
         if (value == null) {
             return defaultValue;
         }
+
+        if ("inherit".equals(value)) {
+            element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Inherit value property '{}': {}", property, element);
+            }
+        }
+        if (element == null) {
+            return defaultValue;
+        }
+        value = element.getAttribute(attribute);
+        if (value == null) {
+            return defaultValue;
+        }
+
         Object returnedValue = value;
         if (targetType.isAssignableFrom(Boolean.class)) {
             returnedValue = Boolean.valueOf(value);

@@ -41,9 +41,9 @@
   *##end#*
 
   *##if ( $decoration.body.menus )#*
-    ## filter menus into the list if <topNav>regex<topNav> is configured
-      *##if ( $config.topNav )#*
-          *##filterMenus ( $decoration.body.menus, $config.topNav.getValue() )#*
+    ## filter menus into the list if filterMenu="regex" is configured
+      *##if ( $pageContext.navbar.filterMenu )#*
+          *##filterMenus ( $decoration.body.menus, $pageContext.navbar.filterMenu )#*
       *##else#*
           *##set ( $filterMenus = $decoration.body.menus )#*
       *##end#*

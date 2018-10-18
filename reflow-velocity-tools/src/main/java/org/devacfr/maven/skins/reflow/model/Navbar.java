@@ -25,11 +25,14 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
 public class Navbar extends PageElement {
 
-
     /** */
     private String brandName;
 
+    /** */
     private String brandHref;
+
+    /** */
+    private String filterMenu;
 
     public Navbar(final @Nonnull SkinConfigTool config) {
         MavenProject project = config.getProject();
@@ -46,13 +49,13 @@ public class Navbar extends PageElement {
         } else {
             brandName = project.getName();
         }
-        if( Strings.isNullOrEmpty(brandName)) {
+        if (Strings.isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
-        this.setCssClass(config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom"));
+        this.setCssClass(
+                config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom"));
+        this.filterMenu = config.getConfigAttribute("navbar", "filterMenu", String.class, null);
     }
-
-
 
     /**
      * @return the brandName
@@ -66,5 +69,12 @@ public class Navbar extends PageElement {
      */
     public String getBrandHref() {
         return brandHref;
+    }
+
+    /**
+     * @return the filterMenu
+     */
+    public String getFilterMenu() {
+        return filterMenu;
     }
 }
