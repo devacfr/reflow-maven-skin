@@ -1,0 +1,77 @@
+
+
+ 
+
+ 
+ 
+ 
+
+     <div class="row">
+                                                      
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 py-3">
+                         <h1 id="components-menus_toc_menus_component1">Menus Component</h1> 
+<p>Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation columns. The menus themselves are defined as normally in Maven site, <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content">using <code class="\&quot;literal\&quot;">&lt;project&gt;&lt;body&gt;&lt;menu&gt;</code> XML items</a>. The skin allows customizing where which menu items are placed in the website.</p> 
+<p>Both top and bottom navigation allows specifying regular expressions that filter the menus to be displayed in the particular place. The regular expressions can match both the name of the menu item and its <code class="\&quot;literal\&quot;">ref</code> value, e.g. to match <code class="\&quot;literal\&quot;">&lt;menu ref="modules" inherit="bottom" /&gt;</code>.</p> 
+<div class="section"> 
+ <h2 id="components-menus_toc_top_navigation">Top navigation</h2> 
+ <p>support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+ <p>Top navigation is right-aligned at the top of the screen. It sticks to the screen when scrolling. The menu items can be filtered using regular expression to indicate which of the menu items are displayed there:</p> 
+ <div> 
+  <div> 
+   <pre class="source">&lt;topNav&gt;RegEx&lt;topNav&gt;
+</pre> 
+  </div> 
+ </div> 
+ <ul> 
+  <li><b>RegEx</b> - applies the regular expression to menu names and <code class="\&quot;literal\&quot;">ref</code> attributes. If the regular expression matches, adds the menu to the top navigation.</li> 
+  <li><b>no <code class="\&quot;literal\&quot;">&lt;topNav&gt;</code> element (default)</b> - list all menus</li> 
+ </ul> 
+ <div class="alert alert-info"> 
+  <b>Reflow version 2</b> 
+  <p>Use <code class="\&quot;literal\&quot;">filterMenu</code> attribute in <code class="\&quot;literal\&quot;">navbar</code> element instead.</p> 
+ </div> 
+</div> 
+<div class="section"> 
+ <h2 id="components-menus_toc_links">Links</h2> 
+ <p>element <span class="badge badge-secondary">site.xml</span></p> 
+ <p>All links from defined in <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links"><code class="\&quot;literal\&quot;">&lt;body&gt;&lt;links&gt;</code> element</a> of <code class="\&quot;literal\&quot;">site.xml</code> site descriptor are placed in the top navigation bar. This allows having top-level links in navigation (menus are always drop-down).</p> 
+</div> 
+<div class="section"> 
+ <h2 id="components-menus_toc_bottom_navigation">Bottom navigation</h2> 
+ <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+ <p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the <code class="\&quot;literal\&quot;">bottomNav</code> element. If configuration is not available, lists all menus in a single column.</p> 
+ <div> 
+  <div> 
+   <pre class="source">&lt;bottomNav maxSpan="8"&gt;
+  &lt;column&gt;RegEx&lt;/column&gt;
+  &lt;column&gt;RegEx&lt;/column&gt;
+  &lt;column&gt;RegEx&lt;/column&gt;
+&lt;/bottomNav&gt;
+</pre> 
+  </div> 
+ </div> 
+ <p>The <code class="\&quot;literal\&quot;">maxSpan</code> attribute defines the total width that bottom navigation columns can take (out of 12). By default, the <b><code class="\&quot;literal\&quot;">maxSpan = 9</code></b>. The columns are then placed equally within this span.</p> 
+ <p>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use <code class="\&quot;literal\&quot;">Home|Download</code> for the regular expression.</p> 
+</div>
+        </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                                <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable" >
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#components-menus_toc_menus_component1" title="Menus Component">Menus Component</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#components-menus_toc_top_navigation" title="Top navigation">Top navigation</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#components-menus_toc_links" title="Links">Links</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#components-menus_toc_bottom_navigation" title="Bottom navigation">Bottom navigation</a>
+    </li>
+                    </ul>
+                </nav>
+           </div>
+        </div>
+</div>
