@@ -67,87 +67,121 @@
         </themes-index>
         <themes-bootswatch-cerulean>
           <theme>bootswatch-cerulean</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cerulean>
         <themes-bootswatch-cosmo>
           <theme>bootswatch-cosmo</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cosmo>
         <themes-bootswatch-cyborg>
           <theme>bootswatch-cyborg</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cyborg>
         <themes-bootswatch-darkly>
           <theme>bootswatch-darkly</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-primary" />
         </themes-bootswatch-darkly>
         <themes-bootswatch-flatly>
           <theme>bootswatch-flatly</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-primary" />
         </themes-bootswatch-flatly>
         <themes-bootswatch-journal>
           <theme>bootswatch-journal</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-journal>
         <themes-bootswatch-litera>
           <theme>bootswatch-litera</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-litera>
         <themes-bootswatch-lumen>
           <theme>bootswatch-lumen</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-lumen>
         <themes-bootswatch-lux>
           <theme>bootswatch-lux</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
         </themes-bootswatch-lux>
         <themes-bootswatch-materia>
           <theme>bootswatch-materia</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
         </themes-bootswatch-materia>
         <themes-bootswatch-minty>
           <theme>bootswatch-minty</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
         </themes-bootswatch-minty>
         <themes-bootswatch-pulse>
           <theme>bootswatch-pulse</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
         </themes-bootswatch-pulse>
         <themes-bootswatch-sandstone>
           <theme>bootswatch-sandstone</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-sandstone>
         <themes-bootswatch-simplex>
           <theme>bootswatch-simplex</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-simplex>
         <themes-bootswatch-sketchy>
           <theme>bootswatch-sketchy</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-sketchy>
         <themes-bootswatch-slate>
           <theme>bootswatch-slate</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-secondary"/>
         </themes-bootswatch-slate>
         <themes-bootswatch-solar>
           <theme>bootswatch-solar</theme>
-          <toc>top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark"/>
         </themes-bootswatch-solar>
         <themes-bootswatch-spacelab>
           <theme>bootswatch-spacelab</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-spacelab>
         <themes-bootswatch-superhero>
           <theme>bootswatch-superhero</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-superhero>
         <themes-bootswatch-united>
           <theme>bootswatch-united</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-united>
         <themes-bootswatch-yeti>
           <theme>bootswatch-yeti</theme>
           <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-yeti>
         <toc-sidebar>
           <toc>sidebar</toc>
