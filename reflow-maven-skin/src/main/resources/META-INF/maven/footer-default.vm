@@ -16,7 +16,7 @@
 ##
 #macro ( renderFooter )##
   <!-- Footer -->
-  <footer class="bg-light border">
+  <footer class="$pageContext.footer.cssClass">
     <div class="container">
       <div class="row">
 #*  *##if( $decoration.body.menus )#*

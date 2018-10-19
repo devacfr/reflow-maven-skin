@@ -76,8 +76,7 @@ public class NavSideMenu extends PageElement {
                 .withItems(items)
                 .withSelectOnExpand(config.getConfigAttribute("menu", "selectOnExpand", Boolean.class, false));
         addMenuItemRecursively(items, menu, pageName, false);
-        this.setCssClass(
-            config.getConfigAttribute("navside-menu", "cssClass", String.class, "navside-dark bg-secondary"));
+        this.setCssClass(config.getConfigAttribute("navside-menu", "cssClass", String.class, "navside-light bg-light"));
     }
 
     @Override

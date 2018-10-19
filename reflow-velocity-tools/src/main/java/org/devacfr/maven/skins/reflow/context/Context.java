@@ -26,10 +26,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
+import org.devacfr.maven.skins.reflow.model.Footer;
+import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 import org.devacfr.maven.skins.reflow.model.Navbar;
 import org.devacfr.maven.skins.reflow.model.PageElement;
 import org.devacfr.maven.skins.reflow.model.ScrollTop;
-import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,10 +47,13 @@ public class Context<T extends Context<?>> extends PageElement {
     private String type;
 
     /** */
-    private Navbar navbar;
+    private final Navbar navbar;
 
     /** */
-    private ScrollTop scrollTop;
+    private final Footer footer;
+
+    /** */
+    private final ScrollTop scrollTop;
 
     public static Context<?> buildContext(final SkinConfigTool config) {
         final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(config.getGlobalProperties(), "pages", config.getNamespace());
@@ -96,6 +100,7 @@ public class Context<T extends Context<?>> extends PageElement {
     public Context(final @Nonnull SkinConfigTool config) {
         this.navbar = new Navbar(config);
         this.scrollTop = new ScrollTop(config);
+        this.footer = new Footer(config);
     }
 
     @Override
@@ -119,11 +124,25 @@ public class Context<T extends Context<?>> extends PageElement {
         return scrollTop;
     }
 
+    /**
+     * @return
+     */
+    public Footer getFooter() {
+        return footer;
+    }
+
+    /**
+     * @param type
+     * @return
+     */
     public T withType(final String type) {
         this.type = type;
         return self();
     }
 
+    /**
+     * @return
+     */
     public String getType() {
         return type;
     }
