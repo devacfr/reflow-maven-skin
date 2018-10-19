@@ -93,8 +93,8 @@ var mReflow = function () {
         size = navbar.outerHeight();
       }
       $('body').css('padding-top', size);
-      $('.nav-side-menu').css('top', size);
-      $('#m-toc-sidebar').css('top', size);
+      $('.navside-menu').css('top', size);
+      $('.toc-sidebar-fixed').css('top', size);
       $('#m-toc-topbar').css('top', size);
     }
     $window.resize(resizeTopNavBar);
@@ -151,9 +151,9 @@ var mReflow = function () {
     $('#m-doc-frame').load(href, function () {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
-      var item = $('.nav-side-menu a[slug-name$="' + slugName + '"]').parent();
+      var item = $('.navside-menu a[slug-name$="' + slugName + '"]').parent();
       // remove all active item
-      $('.nav-side-menu li').removeClass('active');
+      $('.navside-menu li').removeClass('active');
       // activate current item
       item.addClass('active');
 
@@ -181,7 +181,7 @@ var mReflow = function () {
   }
 
   function initNavSidebar() {
-    var navSidebar = $('.nav-side-menu');
+    var navSidebar = $('.navside-menu');
     if (navSidebar.length == 0) {
       return;
     }
@@ -190,7 +190,7 @@ var mReflow = function () {
      * Gets the slug name of first &lt;a&gt; element in nav sidebar.
      */
     function findFirstMenu() {
-      var href = $('.nav-side-menu a').first();
+      var href = $('.navside-menu a').first();
       return href.attr('slug-name');
     }
 
@@ -206,9 +206,7 @@ var mReflow = function () {
       }
       return hash;
     }
-    function resizeNavSidebar() {
-      navSidebar.width(navSidebar.parent().width());
-    }
+
 
     /**
      * Split the fragement of url and returns an array containing following info:
@@ -256,9 +254,9 @@ var mReflow = function () {
 
       // search the item in nav sidebar corresponding to section
       if (section.endsWith('html')) {
-        item = $('.nav-side-menu a[href$="' + section + '"]');
+        item = $('.navside-menu a[href$="' + section + '"]');
       } else {
-        item = $('.nav-side-menu a[slug-name$="' + section + '"]');
+        item = $('.navside-menu a[slug-name$="' + section + '"]');
       }
       // expand the parent of item if it is sub-section menu.
       var collapsible = item.parents('ul.collapse');
@@ -271,8 +269,6 @@ var mReflow = function () {
       loadFrame(href, slugName);
 
     });
-
-    $window.resize(resizeNavSidebar);
 
 
     // init fragment url part
