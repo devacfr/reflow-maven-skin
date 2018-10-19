@@ -499,7 +499,8 @@ footer .nav .nav-link {
 }
 
 footer blockquote {
-    border-left: 5px solid #eee;
+    border-left-width: 5px;
+    border-left-style: solid;
     padding: 0px 20px;
 }
 
@@ -513,6 +514,60 @@ footer p, .subfooter p {
 }
 
 /*--------------------------------------------------
+ * Footer - theme light
+ *--------------------------------------------------*/
+.footer-light {
+    color: var(--dark);
+}
+
+.footer-light .nav-header {
+    color: var(--dark) !important;
+    opacity: 0.7;
+}
+.footer-light blockquote {
+    border-left-color: var(--secondary);
+}
+
+
+.footer-light a.nav-link:hover {
+    background-color: var(--dark);
+    opacity: 0.2;
+    color: var(--white);
+}
+
+.footer-light .nav-list>.active>a, .footer-light .nav-list>.active>a:focus {
+    color: var(--white);
+    background-color: var(--primary);
+}
+
+/*--------------------------------------------------
+ * Footer - theme dark
+ *--------------------------------------------------*/
+.footer-dark {
+    color: var(--light);
+}
+
+.footer-dark .nav-header {
+    color: var(--light) !important;
+    opacity: 0.7;
+}
+
+.footer-dark blockquote {
+    border-left-color: var(--secondary);
+}
+
+.footer-dark a.nav-link:hover {
+    background-color: var(--light);
+    opacity: 0.2;
+    color: var(--dark);
+}
+
+.footer-dark .nav-list>.active>a, .footer-dark .nav-list>.active>a:focus {
+    color: var(--dark);
+    background-color: var(--primary);
+}
+
+/*--------------------------------------------------
  * nav list in footer
  *--------------------------------------------------*/
  .nav-list .nav-header {
@@ -523,7 +578,6 @@ footer p, .subfooter p {
     font-size: 12px;
     font-weight: bold;
     line-height: 20px;
-    color: var(--secondary);
     text-transform: uppercase;
 }
 
@@ -546,16 +600,9 @@ footer p, .subfooter p {
     padding: 3px 15px;
 }
 
-.nav-list>.active>a, .nav-list>.active>a:focus {
-    color: var(--white);
-    background-color: var(--primary);
-}
 
-.nav-list>.nav-item>a.nav-link:hover {
-    color: var(--dark);
-    background-color: var( --light);
-    filter: brightness(90%);
-}
+
+
 
 .nav-list [class^="fas"], .nav-list [class*=" fas"] {
     margin-right: 2px;
