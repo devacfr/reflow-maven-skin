@@ -64,6 +64,7 @@
       <toc numberItems="6" cssClass="navbar-dark bg-primary border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
       <navbar filterMenu="Tools|Contribute|Maven documentation" />
+      <navside-menu cssClass="navside-light bg-light"/>
       <!-- Split menus in the bottom navigation -->
       <bottomNav maxSpan="9">
         <column>Main|Tools</column>
@@ -78,6 +79,7 @@
           modern-looking Maven-generated website.
         ]]>
       </bottomDescription>
+      <markPageHeader>false</markPageHeader>
       <pages>
         <index project="reflow-parent">
           <!-- Override the title -->
@@ -86,7 +88,6 @@
           <breadcrumbs>false</breadcrumbs>
           <!-- no ToC on the main index page -->
           <toc>false</toc>
-          <markPageHeader>false</markPageHeader>
           <sections>
             <carousel />
             <columns>2</columns>

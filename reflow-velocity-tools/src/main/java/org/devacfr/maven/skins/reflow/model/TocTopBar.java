@@ -19,11 +19,14 @@ import javax.annotation.Nonnull;
 
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
+/**
+ * @author devacfr
+ * @since 2.0
+ */
 public class TocTopBar extends Toc<TocTopBar> {
 
     /** no flatten attribute (default) - flatten if single top heading */
     private boolean flatten = false;
-
 
     /** -1 or no numberItems attribute (default) - unlimited */
     private int numberItems = -1;
@@ -31,9 +34,10 @@ public class TocTopBar extends Toc<TocTopBar> {
     public TocTopBar(final @Nonnull SkinConfigTool config) {
         super("top");
         this.setCssClass(
-                config.getConfigAttribute("toc", "cssClass", String.class, "navbar-dark bg-dark border rounded"));
+            config.getConfigAttribute("toc", "cssClass", String.class, "navbar-dark bg-dark border rounded"));
         this.withFlatten(config.getConfigAttribute("toc", "flatten", Boolean.class, false))
-                .withNumberItems(config.getConfigAttribute("toc" ,"numberItems", Integer.class, -1)).withEnabled(true);
+                .withNumberItems(config.getConfigAttribute("toc", "numberItems", Integer.class, -1))
+                .withEnabled(true);
     }
 
     /**
@@ -45,7 +49,6 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     *
      * @return
      */
     public boolean isFlatten() {
@@ -53,7 +56,6 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     *
      * @param flatten
      * @return
      */
@@ -63,7 +65,6 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     *
      * @return
      */
     public int getNumberItems() {
@@ -71,7 +72,6 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     *
      * @param numberItems
      * @return
      */

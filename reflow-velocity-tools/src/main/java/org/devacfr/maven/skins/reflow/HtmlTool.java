@@ -31,7 +31,6 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
-
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
@@ -42,7 +41,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
-
 
 /**
  * An Apache Velocity tool that provides utility methods to manipulate HTML code using
@@ -834,9 +832,9 @@ public class HtmlTool extends SafeConfig {
         }
     }
 
-
     /**
-     * Replaces All elements in HTML corresponding to <code>selector</code> while preserving the content of this element.
+     * Replaces All elements in HTML corresponding to <code>selector</code> while preserving the content of this
+     * element.
      *
      * @param content
      *            HTML content to modify

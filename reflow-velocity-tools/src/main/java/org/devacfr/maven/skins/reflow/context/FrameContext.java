@@ -58,7 +58,6 @@ public class FrameContext extends Context<FrameContext> {
         return SkinConfigTool.slugFilename(documentParent);
     }
 
-
     public FrameContext withDocumentParent(final String documentParent) {
         this.documentParent = documentParent;
         return self();

@@ -17,17 +17,16 @@ package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
-import com.google.common.base.Strings;
-
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
+/**
+ * @author devacfr
+ * @since 2.0
+ */
 public class ScrollTop extends PageElement {
 
-
     /** */
-    private boolean smooth;
+    private final boolean smooth;
 
     public ScrollTop(final @Nonnull SkinConfigTool config) {
 
@@ -41,7 +40,6 @@ public class ScrollTop extends PageElement {
         }
         return super.getCssOptions();
     }
-
 
     /**
      * @return the smooth

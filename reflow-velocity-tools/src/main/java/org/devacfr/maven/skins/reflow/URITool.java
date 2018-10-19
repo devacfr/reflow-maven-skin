@@ -26,8 +26,7 @@ import org.apache.maven.doxia.site.decoration.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
 
 /**
- * An Apache Velocity tool that provides utility methods to work with URIs/URLs
- * and links.
+ * An Apache Velocity tool that provides utility methods to work with URIs/URLs and links.
  *
  * @author Andrius Velykis
  * @since 1.0
@@ -85,7 +84,8 @@ public class URITool {
     /**
      * remove url path separator ('/') to the end of path.
      *
-     * @param baseUrl a base url
+     * @param baseUrl
+     *            a base url
      * @return Returns new <code>String</code> base path instance.
      */
     public static String normalisedBaseUrl(@Nonnull final String baseUrl) {

@@ -28,7 +28,7 @@ The ToC style can be chosen with `<toc>` element:
 Both styles are exclusive: either the top or the sidebar can be used in a single page. The
 different styles and their further options are explained below.
 
-## Top Toc Bar
+## ToC Top Bar
 
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>

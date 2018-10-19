@@ -33,6 +33,9 @@ public class PageContext extends Context<PageContext> {
         this.withType("page");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCssOptions() {
         String css = super.getCssOptions();
@@ -45,7 +48,6 @@ public class PageContext extends Context<PageContext> {
     public Toc<?> getToc() {
         return toc;
     }
-
 
     public PageContext withToc(final Toc<?> toc) {
         this.toc = toc;

@@ -17,12 +17,16 @@ package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
-import com.google.common.base.Strings;
-
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
+import com.google.common.base.Strings;
+
+/**
+ * @author devacfr
+ * @since 2.0
+ */
 public class Navbar extends PageElement {
 
     /** */
@@ -32,17 +36,17 @@ public class Navbar extends PageElement {
     private String brandHref;
 
     /** */
-    private String filterMenu;
+    private final String filterMenu;
 
     public Navbar(final @Nonnull SkinConfigTool config) {
-        MavenProject project = config.getProject();
-        Xpp3Dom brand = config.get("brand");
+        final MavenProject project = config.getProject();
+        final Xpp3Dom brand = config.get("brand");
         if (brand != null) {
-            Xpp3Dom name = brand.getChild("name");
+            final Xpp3Dom name = brand.getChild("name");
             if (name != null) {
                 brandName = name.getValue();
             }
-            Xpp3Dom href = brand.getChild("href");
+            final Xpp3Dom href = brand.getChild("href");
             if (href != null) {
                 brandHref = href.getValue();
             }
@@ -53,7 +57,7 @@ public class Navbar extends PageElement {
             brandName = project.getArtifactId();
         }
         this.setCssClass(
-                config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom"));
+            config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom"));
         this.filterMenu = config.getConfigAttribute("navbar", "filterMenu", String.class, null);
     }
 

@@ -24,6 +24,10 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author devacfr
+ * @since 2.0
+ */
 public abstract class Toc<T extends Toc<?>> extends PageElement {
 
     private static Logger LOGGER = LoggerFactory.getLogger(Toc.class);

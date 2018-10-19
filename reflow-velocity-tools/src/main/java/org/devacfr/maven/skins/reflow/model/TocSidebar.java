@@ -19,6 +19,10 @@ import javax.annotation.Nonnull;
 
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
+/**
+ * @author devacfr
+ * @since 2.0
+ */
 public class TocSidebar extends Toc<TocSidebar> {
 
     /** fixed position by default */
@@ -33,7 +37,8 @@ public class TocSidebar extends Toc<TocSidebar> {
     public TocSidebar(final @Nonnull SkinConfigTool config) {
         super("sidebar");
         final String position = config.getConfigAttribute("toc", "position", String.class, "fixed").toLowerCase();
-        this.withEnabled(true).withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
+        this.withEnabled(true)
+                .withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
                 .withAutoExpandable(config.getConfigAttribute("toc", "autoExpandable", Boolean.class, true))
                 .withFixed("fixed".equals(position));
     }
@@ -46,6 +51,11 @@ public class TocSidebar extends Toc<TocSidebar> {
         }
         if (isAutoExpandable()) {
             css += " m-toc-sidebar-autoexpandable";
+        }
+        if (isFixed()) {
+            css += " toc-sidebar-fixed";
+        } else {
+            css += " toc-sidebar-relative";
         }
 
         return css;
@@ -64,7 +74,6 @@ public class TocSidebar extends Toc<TocSidebar> {
         return expanded;
     }
 
-
     protected TocSidebar withExpanded(final boolean expanded) {
         this.expanded = expanded;
         return self();
@@ -73,7 +82,6 @@ public class TocSidebar extends Toc<TocSidebar> {
     public boolean isAutoExpandable() {
         return autoExpandable;
     }
-
 
     protected TocSidebar withAutoExpandable(final boolean autoExpandable) {
         this.autoExpandable = autoExpandable;

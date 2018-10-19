@@ -18,7 +18,7 @@ package org.devacfr.maven.skins.reflow.context;
 import javax.annotation.Nonnull;
 
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
-import org.devacfr.maven.skins.reflow.model.SideNavMenu;
+import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 
 /**
  * @author Christophe Friederich
@@ -27,33 +27,29 @@ import org.devacfr.maven.skins.reflow.model.SideNavMenu;
 public class DocumentContext extends Context<DocumentContext> {
 
     /** */
-    private SideNavMenu menu;
+    private NavSideMenu navSideMenu;
 
     public DocumentContext(final @Nonnull SkinConfigTool config) {
         super(config);
         this.withType("doc");
-        this.menu = new SideNavMenu(config);
+        this.navSideMenu = new NavSideMenu(config);
     }
 
     @Override
     public String getCssOptions() {
         String css = super.getCssOptions();
-        if (getMenu() != null) {
-            css += " " + getMenu().getCssOptions();
+        if (getNavSideMenu() != null) {
+            css += " " + getNavSideMenu().getCssOptions();
         }
         return css;
     }
 
-    public SideNavMenu getMenu() {
-        return menu;
+    public NavSideMenu getNavSideMenu() {
+        return navSideMenu;
     }
 
-    public void setMenu(final SideNavMenu menu) {
-        this.menu = menu;
-    }
-
-    public DocumentContext withMenu(final SideNavMenu menu) {
-        this.menu = menu;
+    public DocumentContext withNavSideMenu(final NavSideMenu menu) {
+        this.navSideMenu = menu;
         return self();
     }
 

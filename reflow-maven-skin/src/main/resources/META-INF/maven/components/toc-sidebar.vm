@@ -19,10 +19,9 @@
  *
  *#
  #macro ( renderTocSidebar )##
-    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")
+    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
         #if ( !$tocSidebarAdded )##
-            #set ( $isFixed = $pageContext.toc.fixed)
-            <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm ${pageContext.toc.cssOptions}" #if ( !$isFixed )style="position: relative;top:unset"#end>
+            <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm ${pageContext.toc.cssOptions}">
                 <nav id="m-toc-sidebar-nav flex-column">
 #*                  *##renderAsideTocMenu ( $tocItems )
                 </nav>

@@ -15,6 +15,10 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+/**
+ * @author devacfr
+ * @since 2.0
+ */
 public class PageElement {
 
     /** */
@@ -25,16 +29,15 @@ public class PageElement {
     }
 
     /**
-     * @param cssClass the cssClass to set
+     * @param cssClass
+     *            the cssClass to set
      */
-    protected void setCssClass(String cssClass) {
+    protected void setCssClass(final String cssClass) {
         this.cssClass = cssClass;
     }
-
 
     public String getCssOptions() {
         return "";
     }
-
 
 }
