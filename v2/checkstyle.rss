@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2012 - 2018 Friederich Christophe</copyright>
     <item>
-      <title>File: 16,
+      <title>File: 17,
              Errors: 0,
-             Warnings: 139,
+             Warnings: 142,
              Infos: 0
       </title>
             <link>https://devacfr.github.io/reflow-maven-skin/v2//checkstyle.html</link>
@@ -228,13 +228,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin/v2//checkstyle.html#org.devacfr.maven.skins.reflow.model.Footer.java">org/devacfr/maven/skins/reflow/model/Footer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://devacfr.github.io/reflow-maven-skin/v2//checkstyle.html#org.devacfr.maven.skins.reflow.context.Context.java">org/devacfr/maven/skins/reflow/context/Context.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  8
+                  10
                 </td>
                 <td>
                   0
