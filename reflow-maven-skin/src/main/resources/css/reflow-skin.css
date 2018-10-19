@@ -326,7 +326,7 @@ body {
     cursor: pointer;
 }
 
-.navside-menu ul :not(collapsed) .arrow:before, .navside-menu li :not(collapsed) .arrow:before {
+.navside-menu ul li.navside-item:not(.collapsed) .arrow:before {
     font-family: 'Font Awesome 5 Free';
     content: "\f107"; /* angle-down */
     display: inline-block;
@@ -337,7 +337,7 @@ body {
     font-weight: 900;
 }
 
-.navside-menu ul.collapsed .arrow:before, .navside-menu li.collapsed .arrow:before {
+.navside-menu ul li.navside-item.collapsed .arrow:before {
     font-family: 'Font Awesome 5 Free';
     content: "\f105"; /* angle-right */
     display: inline-block;
@@ -347,7 +347,6 @@ body {
     float: right;
     font-weight: 900;
 }
-
 
 .navside-menu ul.sub-menu {
     padding: 0px 0px 0px 25px;

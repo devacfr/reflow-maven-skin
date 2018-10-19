@@ -28,7 +28,7 @@
 #*              *##set ( $counterMenu = 1)##
 #*              *##foreach ( $item in $pageContext.navSideMenu.items )##
 #*                  *##set ( $itemId = "m-navside-menu_"+ $counterMenu)##
-                <li class="navside-item" #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" aria-controls="${itemId}" aria-expanded="false"#end>
+                <li class="navside-item collapsed" #if( $item.hasItems ) data-toggle="collapse" data-target="#${itemId}" aria-controls="${itemId}" aria-expanded="false"#end>
                   <a class="navside-link" #if( !$item.hasItems ) href="#${item.href}" slug-name="${item.slugName}" #{else}href="#"#{end}>
                     #if ( ${item.icon} )<i class="${item.icon}" aria-hidden="true"></i>#{end}&nbsp;
                     $item.name
