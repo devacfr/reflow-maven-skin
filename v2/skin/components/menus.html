@@ -8,7 +8,7 @@
 
      <div class="row">
                                                       
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 py-3">
+                <div class="col py-3">
                          <h1 id="components-menus_toc_menus_component1">Menus Component</h1> 
 <p>Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation columns. The menus themselves are defined as normally in Maven site, <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content">using <code class="\&quot;literal\&quot;">&lt;project&gt;&lt;body&gt;&lt;menu&gt;</code> XML items</a>. The skin allows customizing where which menu items are placed in the website.</p> 
 <p>Both top and bottom navigation allows specifying regular expressions that filter the menus to be displayed in the particular place. The regular expressions can match both the name of the menu item and its <code class="\&quot;literal\&quot;">ref</code> value, e.g. to match <code class="\&quot;literal\&quot;">&lt;menu ref="modules" inherit="bottom" /&gt;</code>.</p> 
@@ -54,7 +54,7 @@
  <p>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use <code class="\&quot;literal\&quot;">Home|Download</code> for the regular expression.</p> 
 </div>
         </div>
-    <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+    <div class="d-none d-xl-block col-3">
                                 <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
