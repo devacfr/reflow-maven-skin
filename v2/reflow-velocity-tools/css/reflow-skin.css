@@ -326,7 +326,7 @@ body {
     cursor: pointer;
 }
 
-.navside-menu ul :not(collapsed) .arrow:before, .navside-menu li :not(collapsed) .arrow:before {
+.navside-menu ul li.navside-item:not(.collapsed) .arrow:before {
     font-family: 'Font Awesome 5 Free';
     content: "\f107"; /* angle-down */
     display: inline-block;
@@ -337,7 +337,7 @@ body {
     font-weight: 900;
 }
 
-.navside-menu ul.collapsed .arrow:before, .navside-menu li.collapsed .arrow:before {
+.navside-menu ul li.navside-item.collapsed .arrow:before {
     font-family: 'Font Awesome 5 Free';
     content: "\f105"; /* angle-right */
     display: inline-block;
@@ -347,7 +347,6 @@ body {
     float: right;
     font-weight: 900;
 }
-
 
 .navside-menu ul.sub-menu {
     padding: 0px 0px 0px 25px;
@@ -498,6 +497,10 @@ footer .nav .nav-link {
     padding: 0.1rem 1rem !important;
 }
 
+footer .bottom-description {
+    display: none;
+}
+
 footer blockquote {
     border-left-width: 5px;
     border-left-style: solid;
@@ -511,6 +514,16 @@ footer p, .subfooter p {
 .subfooter {
     margin-top: 30px;
     margin-bottom: 30px;
+    font-size: .9rem;
+}
+
+@media (min-width: 992px) {
+    footer .bottom-description {
+        display: inherit;
+    }
+    .subfooter {
+        font-size: 1rem;
+    }
 }
 
 /*--------------------------------------------------
@@ -601,17 +614,7 @@ footer p, .subfooter p {
 }
 
 
-
-
-
 .nav-list [class^="fas"], .nav-list [class*=" fas"] {
     margin-right: 2px;
 }
 
-
-
-@media ( max-width : 768px) {
-    .bottom-description {
-        margin-top: 15px;
-    }
-}
