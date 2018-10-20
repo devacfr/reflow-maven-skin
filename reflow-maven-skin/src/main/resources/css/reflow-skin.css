@@ -497,6 +497,10 @@ footer .nav .nav-link {
     padding: 0.1rem 1rem !important;
 }
 
+footer .bottom-description {
+    display: none;
+}
+
 footer blockquote {
     border-left-width: 5px;
     border-left-style: solid;
@@ -510,6 +514,16 @@ footer p, .subfooter p {
 .subfooter {
     margin-top: 30px;
     margin-bottom: 30px;
+    font-size: .9rem;
+}
+
+@media (min-width: 992px) {
+    footer .bottom-description {
+        display: inherit;
+    }
+    .subfooter {
+        font-size: 1rem;
+    }
 }
 
 /*--------------------------------------------------
@@ -600,17 +614,7 @@ footer p, .subfooter p {
 }
 
 
-
-
-
 .nav-list [class^="fas"], .nav-list [class*=" fas"] {
     margin-right: 2px;
 }
 
-
-
-@media ( max-width : 768px) {
-    .bottom-description {
-        margin-top: 15px;
-    }
-}

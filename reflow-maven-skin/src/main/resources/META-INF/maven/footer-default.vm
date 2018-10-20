@@ -18,27 +18,21 @@
   <!-- Footer -->
   <footer class="$pageContext.footer.cssClass">
     <div class="container">
-      <div class="row">
+        <div class="row">
 #*  *##if( $decoration.body.menus )#*
     ## if menus are available, display bottom navigation
-    *##bottomNav ()#*
-  *##else#*
-      *##set ( $totalNavSpan = 0 )#*
-  *##end#*
+#*      *##bottomNav ()#*
+    *##end#*
 
-  *##if ( $config.bottomDescription )#*
-      *##set ( $bottomSpanRemainder = 12 - $totalNavSpan )#*
-      *##if ( $bottomSpanRemainder < 0 )#*
-          *##set ( $bottomSpanRemainder = 1 )#*
-      *##end##
-        <div class="col-md-${bottomSpanRemainder} bottom-description">
+    *##if ( $config.bottomDescription )##
+        <div class="col bottom-description">
 #*      *##if ( $config.bottomDescription.getChildCount() > 0 )#*
           *##htmlContent ( $config.bottomDescription.getChildren() )#*
       *##elseif ( $config.bottomDescription.getAttribute("quote") && 'false' == $config.bottomDescription.getAttribute("quote") )#*
             ## no quote
             *#$config.bottomDescription.getValue()#*
       *##else##
-          <blockquote class="blockquote">$config.bottomDescription.getValue()</blockquote>
+            <blockquote class="blockquote">$config.bottomDescription.getValue()</blockquote>
 #*    *##end#*
 
     ## add version and publish date if the position is "navigation-bottom"
@@ -127,8 +121,7 @@
  * (The above produces a 3-column navigation with `span2` for each column (because max is 8)).
  *
  *##macro ( bottomNav )#*
-    ## by default, max span for bottom navigation is 9
-    *##set ( $maxNavSpan = 9 )#*
+
     *##if ( $config.bottomNav && $config.bottomNav.getChildCount() > 0 )#*
         ## Bottom navigation config is available - filter menus for each column and collect
         *##set ( $menuColumns = [] )#*
@@ -136,49 +129,18 @@
             *##filterMenus ( $decoration.body.menus, $bottomNavCol.getValue() )#*
             *##call ( $menuColumns.add( $filterMenus ) )#*
         *##end#*
-        ## read max span for bottom navigation from the config
-        *##if ( $config.bottomNav.getAttribute("maxSpan") )#*
-            *##set ( $maxNavSpanStr = $config.bottomNav.getAttribute("maxSpan") )#*
-            *##set ( $maxNavSpan = $convert.toNumber($maxNavSpanStr) )#*
-        *##end#*
     *##else#*
         ## No bottom navigation config - just use all menus in a single column
         *##set ( $menuColumns = [ $decoration.body.menus ] )#*
-    *##end#*
-
-    *##if ( $maxNavSpan > 12 )#*
-        *##set ( $maxNavSpan = 12 )#*
-    *##end#*
-    ## Determine the column widths (aim for max span of 9 (default), and max width of 4)
-    *##set ( $navSpan = $maxNavSpan / $menuColumns.size() )#*
-    *##if ( $navSpan > 4 )#*
-        *##set ( $navSpan = 4 )#*
-    *##end#*
-    *##if ( $navSpan <= 0 )#*
-        *##set ( $navSpan = 1 )#*
-    *##end#*
-
-    *##if ( $maxNavSpan <= 0 )#*
-        *##set ( $maxNavSpan = $navSpan * $menuColumns.size() )#*
-    *##end#*
-
-    ## mark total span taken by the bottomNav (needed to add other components to the footer)
-    *##set ( $lastNavSpan = $maxNavSpan - ($navSpan * ($menuColumns.size() - 1)) )#*
-    *##set ( $totalNavSpan = $maxNavSpan )#*
-
-    *##set ( $navColIndex = 0 )#*
-    *##foreach ( $menuCol in $menuColumns )#*
-        *##if ( $navColIndex == $menuColumns.size() - 1 )#*
-            *##set ( $navSpan = $lastNavSpan )#*
-        *##end##
-            <div class="col-md-$navSpan bottom-nav">
-#*
-    *##listMenu ( $menuCol )#*
-*#
-            </div>
-#*
-    *##set ( $navColIndex = $navColIndex + 1 )#*
     *##end##
+    ##
+    ## mark total span taken by the bottomNav (needed to add other components to the footer)
+
+#*  *##foreach ( $menuCol in $menuColumns )##
+            <div class="col bottom-nav">
+#*              *##listMenu ( $menuCol )##
+            </div>
+#*  *##end##
 #end##
 ##
 #**
@@ -198,17 +160,15 @@
                 *##end#*
             *##else#*
                 *#$menu.name#*
-            *##end#*
-                    *#</li>
+            *##end##
+                    </li>
 #*      *##end#*
 
         *##if ( $menu.items && $menu.items.size() > 0 )#*
             *##foreach ( $item in $menu.items )#*
                 *##menuItem ( $item )#*
             *##end#*
-
         *##end#*
-
     *##end##
                 </ul>
 #end##
