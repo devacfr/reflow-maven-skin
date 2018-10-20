@@ -15,7 +15,7 @@
 ##
 <div class="row">
     #adaptBodyContent ()
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 py-3">
+    <div class="col py-3">
         #renderTopToc ()
     #if ( $config.sections )
         #renderBodySections ( $bodyContent $config.sections )
@@ -23,7 +23,7 @@
         $bodyContent
     #end
     </div>
-    <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+    <div class="d-none d-xl-block col-3">
         #renderTocSidebar ()
     </div>
 </div>
