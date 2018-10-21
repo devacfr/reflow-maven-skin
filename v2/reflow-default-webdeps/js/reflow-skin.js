@@ -28,7 +28,8 @@ var mReflow = function () {
   function initTocTop() {
     if ($('#m-toc-topbar').length) {
       $body.scrollspy({
-        target: '#m-toc-topbar'
+        target: '#m-toc-topbar',
+        offset: $('#m-top-navbar').outerHeight() + $('#m-toc-topbar').outerHeight()
       });
     }
   }
@@ -47,7 +48,8 @@ var mReflow = function () {
 
     // apply scrollspy to #m-toc-sidebar
     $body.scrollspy({
-      target: '#m-toc-sidebar'
+      target: '#m-toc-sidebar',
+      offset: 0
     });
 
 
