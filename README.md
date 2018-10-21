@@ -63,7 +63,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
 The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
 Refer to [documentation][reflow-config] for all configuration options.
 
-[reflow-config]: http://devacfr.github.io/reflow-maven-skin/v2/skin/config.html
+[reflow-config]: https://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#config.html
 
 A sample configuration file is given below:
 
@@ -152,7 +152,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 **Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation)
 
-[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/skin/v2/multi-module.html
+[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#multi-module.html
 
 ## Bug tracker
 
