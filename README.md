@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 
-# [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/ )
+# [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/v2 )
 
-Reflow is an Apache Maven site skin built on [Bootstrap][bootstrap]. It allows various structural
+Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
 and stylistic customizations to create a modern-looking Maven-generated website.
 
 To get started and see how the skin looks by default, check out
-http://devacfr.github.io/reflow-maven-skin!
+http://devacfr.github.io/reflow-maven-skin/v2!
 
 [bootstrap]: http://getbootstrap.com
 
@@ -20,7 +20,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.4.2</version>
+    <version>2.0.0-beta1</version>
   </skin>
   ...
 </project>
@@ -36,13 +36,13 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>3.6</version>
+      <version>3.7.1</version>
       <dependencies>
         ...
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>1.4.2</version>
+          <version>2.0.0-beta1</version>
         </dependency>
         ...
       </dependencies>
@@ -63,7 +63,7 @@ on using the skin with Maven 2 site or other configurations.
 The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
 Refer to [documentation][reflow-config] for all configuration options.
 
-[reflow-config]: http://andriusvelykis.github.io/reflow-maven-skin/skin/config.html
+[reflow-config]: http://devacfr.github.io/reflow-maven-skin/v2/skin/config.html
 
 A sample configuration file is given below:
 
@@ -75,7 +75,7 @@ A sample configuration file is given below:
       <theme>bootswatch-spacelab</theme>
       <brand>
         <name>My Project</name>
-        <href>http://andriusvelykis.github.io/reflow-maven-skin/</href>
+        <href>http://devacfr.github.io/reflow-maven-skin/</href>
       </brand>
       <slogan>Super interesting project doing good things.</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
@@ -111,7 +111,47 @@ A sample configuration file is given below:
 </project>
 ```
 
+Note that when using `<localResources>`, you need to provide the necessary local versions of
+Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module `reflow-default-webdeps`. this package should be unpack as following example:
 
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <executions>
+        <execution>
+        <id>unpack</id>
+        <phase>pre-site</phase>
+        <goals>
+            <goal>unpack</goal>
+        </goals>
+        <configuration>
+            <artifactItems>
+                <artifactItem>
+                    <groupId>io.github.devacfr.maven.skins</groupId>
+                    <artifactId>reflow-default-webdeps</artifactId>
+                    <version>2.0.0</version>
+                    <type>jar</type>
+                    <overWrite>false</overWrite>
+                    <includes>
+                        **/css/bootstrap.min.css,
+                        **/fonts/*,
+                        **/js/*.js,
+                        **/js/languages/*,
+                        **/js/styles/github.min.css
+                    </includes>
+                </artifactItem>
+            </artifactItems>
+            <outputDirectory>${main.basedir}/site</outputDirectory>
+        </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+**Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation)
+
+[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/skin/v2/multi-module.html
 
 ## Bug tracker
 
@@ -156,7 +196,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-
-<a href='https://bintray.com/devacfr/maven/reflow-maven-skin?source=watch' alt='Get automatic notifications about new "reflow-maven-skin" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
 
 [release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management
