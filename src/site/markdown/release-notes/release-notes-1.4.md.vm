@@ -1,0 +1,21 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 1.4 Release Notes
+**2018-10-05**
+
+$h2 Minor enhancements
+
+- Add ability to explicitly load custom Velocity tools
+- If "publishDate position" is set to "none" also exclude the generation date from the automatically generated comment in the header [Pull Request #24][PR-24] ([chrisdutz](https://github.com/chrisdutz)).
+- Add auto-adjust placement of sub dropdown menu when out of window.
+
+$h2 Bug fixes
+
+- Fix missing highlightjs javascript call
+
+[PR-24]: https://github.com/devacfr/reflow-maven-skin/pull/24
+

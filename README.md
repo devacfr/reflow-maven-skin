@@ -10,7 +10,7 @@ http://devacfr.github.io/reflow-maven-skin/v2!
 
 > **Reflow supported version**
 >
-> - **1.5.0** - using Bootrap 3, http://devacfr.github.io/reflow-maven-skin
+> - **1.5.0** - uilt in on Bootrap 3, http://devacfr.github.io/reflow-maven-skin
 > - **2.0.0-beta1** - built in on Bootrap 4, http://devacfr.github.io/reflow-maven-skin/v2
 
 [bootstrap]: http://getbootstrap.com
@@ -57,11 +57,6 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
   </plugins>
 </build>
 ```
-
-The skin is provided on the "works on my computer" basis at the moment. I am using the newest
-versions of `maven-site-plugin` and other components and at the moment do not have any feedback
-on using the skin with Maven 2 site or other configurations.
-
 
 ### Configuration
 
@@ -135,12 +130,11 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                 <artifactItem>
                     <groupId>io.github.devacfr.maven.skins</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.0.0</version>
+                    <version>2.0.0-beta1</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css,
-                        **/fonts/*,
                         **/js/*.js,
                         **/js/languages/*,
                         **/js/styles/github.min.css
@@ -170,7 +164,7 @@ http://github.com/devacfr/reflow-maven-skin/issues
 
 Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release Management Documentation][release-management] for more information).
 
-    Pull request on master will be refused.
+> Pull request on master will be refused.
 
 
 ## Author

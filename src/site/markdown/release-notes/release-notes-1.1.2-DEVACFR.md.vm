@@ -1,0 +1,17 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 1.1.2-DEVACFR Release Notes
+**2014-09-17**
+
+$h4 Minor enhancements
+
+- Bump Bootstrap version to 3.3.6 (default version) ([#2][])
+- Bump HighlightJs version to 9.12.0 (default version) ([#3][])
+
+[#2]: ${issue-url}/2
+[#3]: ${issue-url}/3
+

@@ -189,6 +189,7 @@
         <reflow-documentation type="doc">
           <navbar cssClass="navbar-dark bg-dark border-bottom" filterMenu="inherit" />
           <menu name="Reflow Documentation" selectOnExpand="true">
+            <item name="Get Started" href="index.html" icon="fas fa-book-open"/>
             <item name="Configuration" href="config.html" icon="fas fa-tachometer-alt"/>
             <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
             <item name="Layouts" icon="fas fa-clone">

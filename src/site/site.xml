@@ -69,7 +69,7 @@
       <bottomNav maxSpan="9">
         <column>Main|Tools</column>
         <column>Contribute</column>
-        <column>reports</column>
+        <column>Documentation|reports</column>
       </bottomNav>
       <bottomDescription>
         <![CDATA[
@@ -121,9 +121,9 @@
         <dependencies>
           <toc numberItems="4">top</toc>
         </dependencies>
-        <release-notes>
+        <release-notes-release-notes>
           <toc>false</toc>
-        </release-notes>
+        </release-notes-release-notes>
       </pages>
     </reflowSkin>
   </custom>
@@ -138,7 +138,7 @@
 
     <links>
       <item name="GitHub project" href="${this.scm-url}" />
-      <item name="Get Started" href="skin/index.html" />
+      <item name="Get Started" href="skin/reflow-documentation.html#index.html" />
       <item name="Documentation" href="skin/reflow-documentation.html" />
     </links>
 
@@ -149,7 +149,7 @@
     <menu name="Main" inherit="top">
       <item name="Home" href="./" />
       <item name="GitHub project" href="${this.scm-url}" />
-      <item name="Release notes" href="release-notes.html" />
+      <item name="Release notes" href="release-notes/release-notes.html" />
       <item name="Licenses" href="licenses.html" />
     </menu>
     <menu name="Tools" inherit="bottom">
@@ -160,6 +160,10 @@
       <item name="Contribute" href="contribute.html" />
       <item name="Issues" href="${this.issueManagement.url}" />
       <item name="Fork on GitHub" href="${this.scm-url}" />
+    </menu>
+    <menu name="Documentation" inherit="bottom">
+      <item name="Get Started" href="skin/reflow-documentation.html#index.html" />
+      <item name="Documentation" href="skin/reflow-documentation.html" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>
