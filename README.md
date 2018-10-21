@@ -8,6 +8,11 @@ and stylistic customizations to create a modern-looking Maven-generated website.
 To get started and see how the skin looks by default, check out
 http://devacfr.github.io/reflow-maven-skin/v2!
 
+> **Reflow supported version**
+>
+> - **1.5.0** - using Bootrap 3, http://devacfr.github.io/reflow-maven-skin
+> - **2.0.0-beta1** - built in on Bootrap 4, http://devacfr.github.io/reflow-maven-skin/v2
+
 [bootstrap]: http://getbootstrap.com
 
 ## Usage
