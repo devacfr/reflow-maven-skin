@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -106,7 +105,7 @@
 
     <site.url>https://devacfr.github.io/reflow-maven-skin/${site.deploy.path}</site.url>
     <site.deploy.id>github</site.deploy.id>
-    <site.deploy.path></site.deploy.path>
+    <site.deploy.path />
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
     <!-- ================================================================================ -->
