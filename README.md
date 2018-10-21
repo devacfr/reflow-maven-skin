@@ -10,8 +10,8 @@ http://devacfr.github.io/reflow-maven-skin/v2!
 
 > **Reflow supported version**
 >
-> - **1.5.0** - uilt in on Bootrap 3, http://devacfr.github.io/reflow-maven-skin
-> - **2.0.0-beta1** - built in on Bootrap 4, http://devacfr.github.io/reflow-maven-skin/v2
+> - **1.5.0** - uilt in on Boostrap 3, http://devacfr.github.io/reflow-maven-skin
+> - **2.0.0-beta1** - built in on Boostrap 4, http://devacfr.github.io/reflow-maven-skin/v2
 
 [bootstrap]: http://getbootstrap.com
 
