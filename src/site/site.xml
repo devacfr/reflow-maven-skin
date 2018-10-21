@@ -31,7 +31,6 @@
 
   <publishDate position="none" />
   <version position="bottom" />
-  <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
 
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
@@ -97,6 +96,7 @@
           </sections>
         </index>
         <contribute>
+          <toc>false</toc>
           <breadcrumbs>false</breadcrumbs>
         </contribute>
         <!-- Disable source highlighting for Maven reports -->
@@ -107,10 +107,10 @@
           <highlightJs>false</highlightJs>
           <toc>false</toc>
         </issue-tracking>
-        <license>
+        <licenses>
           <highlightJs>false</highlightJs>
           <toc>false</toc>
-        </license>
+        </licenses>
         <!-- Disable ToC for some Maven reports -->
         <project-info>
           <toc>false</toc>
@@ -133,7 +133,6 @@
     <head>
         <![CDATA[
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="author" href="https://plus.google.com/103421057435787675572" />
         ]]>
     </head>
 
@@ -151,7 +150,7 @@
       <item name="Home" href="./" />
       <item name="GitHub project" href="${this.scm-url}" />
       <item name="Release notes" href="release-notes.html" />
-      <item name="License" href="license.html" />
+      <item name="Licenses" href="licenses.html" />
     </menu>
     <menu name="Tools" inherit="bottom">
       <item name="Reflow Velocity tools" href="reflow-velocity-tools/" />

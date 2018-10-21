@@ -11,15 +11,12 @@ please state that the contribution is your original work and that you license th
 Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email,
 or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.
 
-
 $h2 Issues (bug and feature tracker)
 
 Please report any bugs found, feature requests or other issues on
 [Reflow skin GitHub tracker][reflow-issues].
 
 [reflow-issues]: ${issue-url}
-
-
 
 $h2 Fork, patch and contribute code
 
@@ -32,24 +29,19 @@ Contribute your fixes and new features back to the main codebase using
 [reflow-github]: ${scm-url}
 [github-pull-req]: http://help.github.com/articles/using-pull-requests
 
-
 $h2 Support
 
 Let me know if you are using Reflow skin in your project. I may get around to creating a showcase
 page listing skin user sites.
 
 [Contact me][av-site] if you have questions about the skin, or just like to say something about it.
-If you _really really_ like the skin and want to support the author, I will be glad to
-[accept a small donation][donate].
 
-[av-site]: http://andrius.velykis.lt
-[donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=QWKNRFZH52828
-
+[av-site]: https://devacfr.github.io/
 
 $h2 Acknowledgements
 
 Reflow skin is built on [Bootstrap][bootstrap] and uses themes from [Bootswatch][bootswatch].
-These include icons from [Glyphicons][glyphicons] and web fonts from [Google][webfonts].
+These include icons from [Font Awesome][fontawesome] and web fonts from [Google][webfonts].
 
 JavaScript goodies with [jQuery][jquery].
 
@@ -67,7 +59,7 @@ Inspired by [Maven Fluido Skin][fluido].
 
 [bootstrap]: http://getbootstrap.com/
 [bootswatch]: http://bootswatch.com/
-[glyphicons]: http://glyphicons.com/
+[fontawesome]: https://fontawesome.com/
 [webfonts]: http://www.google.com/webfonts/
 [jquery]: http://jquery.org
 [lightbox2]: http://lokeshdhakar.com/projects/lightbox2
@@ -76,7 +68,6 @@ Inspired by [Maven Fluido Skin][fluido].
 [jsoup]: http://jsoup.org/
 [medialoot]: http://medialoot.com/
 [fluido]: http://maven.apache.org/skins/maven-fluido-skin/
-
 
 $h2 Copyright and license
 

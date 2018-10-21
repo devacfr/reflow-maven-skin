@@ -60,10 +60,9 @@ If configuration is not available, lists all menus in a single column.
 </bottomNav>
 ```
 
-The `maxSpan` attribute defines the total width that bottom navigation columns can take
+- **maxSpan** <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take
 (out of 12). By default, the **`maxSpan = 9`**. The columns are then placed equally within
-this span.
-
-Each column in the configuration defines a regular expression for menu items that will be listed
+this span (removed in <span class="badge badge-danger">v2.0</span>).
+- Each column in the configuration defines a regular expression for menu items that will be listed
 in said column. For example, to include only _Home_ and _Download_ items, use `Home|Download`
 for the regular expression.
