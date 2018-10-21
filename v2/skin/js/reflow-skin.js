@@ -149,11 +149,17 @@ var mReflow = function () {
     });
   }
 
+  var currentMenu = null;
+
   function loadFrame(href, slugName) {
+    if (href === currentMenu) {
+      return;
+    }
+    currentMenu = href;
     $('#m-doc-frame').load(href, function () {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
-      var item = $('.navside-menu a[slug-name$="' + slugName + '"]').parent();
+      var item = $('.navside-menu a[slug-name="' + slugName + '"]').parent();
       // remove all active item
       $('.navside-menu li').removeClass('active');
       // activate current item
