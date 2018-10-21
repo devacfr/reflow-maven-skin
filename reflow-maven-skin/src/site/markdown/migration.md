@@ -56,6 +56,7 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
                 <overWrite>false</overWrite>
                 <includes>
                 **/css/*, <!-- add bootstrap and awesome font -->
+                **/css/fontawesome/**/*, <!-- add awesome font -->
                 **/js/*.js,  <!-- add all javascripts -->
                 **/js/languages/*,  <!-- add all highlight languages -->
                 **/js/styles/default.min.css <!-- add 'default' highlight style -->
@@ -69,7 +70,7 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 </plugin>
 ```
 
-**Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see https://devacfr.github.io/reflow-maven-skin/skin/multi-module.html )
+**Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see [Multi-module site][multi-module] )
 
 ### Using Bootswatch theme
 
@@ -93,7 +94,7 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
                 <type>jar</type>
                 <overWrite>false</overWrite>
                 <includes>
-                **/css/fontawesome/*, <!-- add all awesome -->
+                **/css/fontawesome/**/*, <!-- add all awesome -->
                 **/css/themes/cerulean/*.css, <!-- add specific theme -->
                 **/js/*.js,  <!-- add all javascripts -->
                 **/js/languages/*,  <!-- add all highlight languages -->
@@ -144,4 +145,5 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 - Remove `<navbarInverse>` element. use `cssClass` instead.
 - Add `cssClass` attribute (default value `navbar-light bg-light border-bottom`)
 
+[multi-module]: reflow-documentation.html#multi-module.html
 [bootstrap-migration]: https://getbootstrap.com/docs/4.1/migration

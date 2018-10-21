@@ -3,19 +3,20 @@
 
 [maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
 
-# [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/v2 )
+# [Reflow Maven skin](  )
 
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
 and stylistic customizations to create a modern-looking Maven-generated website.
 
-To get started and see how the skin looks by default, check out
-http://devacfr.github.io/reflow-maven-skin/v2!
+To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow-v2]!
 
 > **Reflow supported version**
 >
-> - **1.5.0** - uilt in on Boostrap 3, http://devacfr.github.io/reflow-maven-skin
-> - **2.0.0-beta1** - built in on Boostrap 4, http://devacfr.github.io/reflow-maven-skin/v2
+> - **1.5.0** - built in on Boostrap 3, [Reflow 1 Documentation](http://devacfr.github.io/reflow-maven-skin).
+> - **2.0.0-beta1** - built in on Boostrap 4, Reflow 2 is a major rewrite of the entire project, read [Migration documentation][migration] to upgrade your site.
 
+[reflow-v2]: http://devacfr.github.io/reflow-maven-skin/v2
+[migration]: http://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#migration.html
 [bootstrap]: http://getbootstrap.com
 
 ## Usage
@@ -137,9 +138,9 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
-                        **/css/bootstrap.min.css,
+                        **/css/bootstrap.min.css, <!-- can be remove if use bootswatch theme-->
                         **/css/fontawesome/**/*,                        
-                        **/css/themes/flaty/*.css, <!-- use flaty theme-->
+                        **/css/themes/flaty/*.css, <!-- use flaty bootswatch theme-->
                         **/js/*.js,
                         **/js/languages/*,
                         **/js/styles/github.min.css <!-- use github highlight theme-->

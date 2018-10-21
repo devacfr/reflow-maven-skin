@@ -189,9 +189,8 @@
         <reflow-documentation type="doc">
           <navbar cssClass="navbar-dark bg-dark border-bottom" filterMenu="inherit" />
           <menu name="Reflow Documentation" selectOnExpand="true">
-            <item name="Get Started" href="index.html" icon="fas fa-book-open"/>
+            <item name="Get Started" href="get-started.html" icon="fas fa-book-open"/>
             <item name="Configuration" href="config.html" icon="fas fa-tachometer-alt"/>
-            <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
             <item name="Layouts" icon="fas fa-clone">
               <item name="Overview" href="layouts.html"/>
               <item name="Body" href="body.html"/>
@@ -207,6 +206,7 @@
               <item name="Navbar" href="components/navbar.html"/>
               <item name="Menus" href="components/menus.html"/>
             </item>
+            <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
             <item name="Other Configuration" href="misc.html" icon="fas fa-sliders-h"/>
             <item name="Multi-module Site" href="multi-module.html" icon="fas fa-window-restore"/>
             <item name="Local Resources" href="resources.html" icon="fas fa-bookmark"/>

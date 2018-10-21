@@ -138,7 +138,6 @@
 
     <links>
       <item name="GitHub project" href="${this.scm-url}" />
-      <item name="Get Started" href="skin/reflow-documentation.html#index.html" />
       <item name="Documentation" href="skin/reflow-documentation.html" />
     </links>
 
@@ -162,8 +161,8 @@
       <item name="Fork on GitHub" href="${this.scm-url}" />
     </menu>
     <menu name="Documentation" inherit="bottom">
-      <item name="Get Started" href="skin/reflow-documentation.html#index.html" />
-      <item name="Documentation" href="skin/reflow-documentation.html" />
+      <item name="Get Started" href="skin/reflow-documentation.html#get-started.html" />
+      <item name="Migration" href="skin/reflow-documentation.html#migration.html" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>
