@@ -56,7 +56,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 - **position** <span class="badge badge-light">v2.0</span> - The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
 - **type** <span class="badge badge-light">v1.3</span> - Indentical to attribute `position`. Option `static` is similar to `relative` option in attribute `position`. _Attribute removed in version_ <span class="badge badge-light">v2.0</span>
-- **autoExpandable** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollsp, otherwise `false`.
+- **autoExpandable** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise `false`.
 - **expanded** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to expand all menus in tree, otherwise `false` to show only 1st level Toc items.
 
 [toc-sidebar]: toc-sidebar.html
