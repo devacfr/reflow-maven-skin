@@ -1,0 +1,37 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 1.3 Release Notes
+**2017-12-01**
+
+$h2 Minor enhancements
+
+- Update JQuery version to 3.3.1
+- Update Bootstrap version to 3.3.7
+- Update LightBox version to 2.10.0
+- Add affix on toc side bar.
+- Change groupId to io.github.devacfr to deploy on maven central repository.
+- Add CI on master branch
+- Add AnchorJs javascript library.
+- Exclude heading in carousel section(s) for TOC bar and sidebar.
+- Add gpg signature,
+- Remove white space in generate html.
+- Double 'well' in TOC is fixed [Pull request #11](https://github.com/devacfr/reflow-maven-skin/pull/8) (Maxim Solodovnik <solomax666@gmail.com>).
+- Sidebar should be hidden for small devices [Pull request #8](https://github.com/devacfr/reflow-maven-skin/pull/8) (Maxim Solodovnik <solomax666@gmail.com>).
+
+$h2 Bug fixes
+
+- TOC block overlapping carousel element ([#23][]).
+- Fix jquery error: jquery.min.js:2 Uncaught Error: Syntax error, unrecognized expression: #
+- Fix the method fixTableHeads (for Tag List Report), now convert table containing only one head row.
+- Second level menu on mobile devices #20 (Maxim Solodovnik <solomax666@gmail.com>).
+- In checkstyle report link on detail of file doesn't work.
+- Can not click on breadcrumb.
+- Fix Top navbar overlaps with header.
+- Fix scroll to Top.
+- Fix url project in copyright.
+
+[#23]: ${issue-url}/23

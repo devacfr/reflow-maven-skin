@@ -1,0 +1,25 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 2.0 Release Notes
+
+$h2 Highlights of this release
+
+This focus of this release is:
+
+- Reflow Maven skin provides package `reflow-default-webdeps` containing the default web dependencies used when using `<localResources>`.
+- Built in on Bootstrap 4.
+- Add Bootstrap theming on main component as `navbar`, `toc`, `navside-menu`...
+- Remove support of customized bootstrap theme.
+
+$h2 Changelog
+**???**
+
+$h3 Minor enhancements
+
+- Add local resources easily during site generation ([#28][]).
+
+[#28]: ${issue-url}/28
