@@ -1,12 +1,15 @@
 [![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg)][maven-repo]
 
+[![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
+
 [maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
+[gitter]: https://gitter.im/reflow-maven-skin/public
 
 # [Reflow Maven skin](  )
 
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
-and stylistic customizations to create a modern-looking Maven-generated website.
+and stylistic customizations to create a modern-looking Maven-generated website and documentatin generation.
 
 To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow-v2]!
 
