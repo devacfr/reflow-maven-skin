@@ -135,9 +135,11 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css,
+                        **/css/fontawesome/**/*,                        
+                        **/css/themes/flaty/*.css, <!-- use flaty theme-->
                         **/js/*.js,
                         **/js/languages/*,
-                        **/js/styles/github.min.css
+                        **/js/styles/github.min.css <!-- use github highlight theme-->
                     </includes>
                 </artifactItem>
             </artifactItems>
