@@ -85,7 +85,7 @@ When using `<localResources>`, the following files need to be available in the c
 directories within your project's `src/site/resources` folder:
 
 - **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap ${bootstrapVersion}
-- **`css/fontawesome/`**/* - fonts used by Bootstrap ${bootstrapVersion}
+- **`css/fontawesome/`**/* - font Awesome ${fontawesomeVersion}
 - **`js/bootstrap.min.js`** - Bootstrap ${bootstrapVersion}
 - **`js/jquery.min.js`** - jQuery ${jqueryVersion}
 - **`js/anchor.min.js`** - anchorJs ${anchorJsVesrion}
