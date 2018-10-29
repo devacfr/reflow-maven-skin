@@ -31,7 +31,7 @@
 
   <publishDate position="none" />
   <version position="bottom" />
-
+  <edit>${project.scm.url}</edit>
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>

@@ -16,7 +16,7 @@
 <div class="row">
     #adaptBodyContent ()
     <div class="col py-3">
-        #renderTopToc ()
+#*  *##renderTopToc ()
     #if ( $config.sections )
         #renderBodySections ( $bodyContent $config.sections )
     #else
@@ -24,6 +24,7 @@
     #end
     </div>
     <div class="d-none d-xl-block col-3">
-        #renderTocSidebar ()
+#*  *##renderFeedbackLink()
+#*  *##renderTocSidebar ()
     </div>
 </div>

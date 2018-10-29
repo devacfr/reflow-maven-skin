@@ -343,9 +343,9 @@
     *##end##
 #end##
 #*
- *
  * Adapt bodyContent.
-*##macro ( adaptBodyContent )#*
+*#
+#macro ( adaptBodyContent )#*
   *##if ( !$config.not( "imgLightbox" ) )#*
     ## lightbox is enabled by default, so check for false and negate
     ## TODO explain more?
@@ -387,4 +387,19 @@
         #set ( $bodyContent = $htmlTool.ensureHeadingIds( $pageContext.type, $config.fileId, $bodyContent, "_" ) )##
         #set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )##
     #end##
+#end##
+
+#*
+ * Add Edit button if content is editable
+*#
+#macro ( renderFeedbackLink )
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+#*  *##if( $decoration.edit && $docRenderingContext.editable )
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
+#*  *##end
+                </li>
+            </ul>
+        </div>
 #end##

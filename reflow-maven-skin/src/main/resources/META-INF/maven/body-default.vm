@@ -33,7 +33,7 @@
             #end
         </main>
         <div class="hidden-xs hidden-sm col-lg-2">
-#*           *##renderTocSidebar ()
+#*          *##renderTocSidebar ()
         </div>
     </div> <!-- row: end -->
 </div> <!-- .main-body: end -->

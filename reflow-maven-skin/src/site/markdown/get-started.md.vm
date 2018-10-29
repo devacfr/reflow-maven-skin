@@ -3,6 +3,11 @@
 #set($h3 = '###')
 #set($h4 = '####')
 #set($h5 = '#####')
+
+$h1 Get Started
+
+This section explains how use reflow skin and the basic configurations.
+
 $h2 Usage
 
 To use this Maven skin, include it in your [`site.xml` site descriptor][site-xml] file:
