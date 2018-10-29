@@ -529,8 +529,8 @@ footer p, .subfooter p {
 }
 
 .subfooter {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: .9rem;
 }
 

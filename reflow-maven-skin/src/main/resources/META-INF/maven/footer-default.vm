@@ -62,22 +62,21 @@
   <div class="container subfooter">
     <div class="row">
       <div class="col-md-12">
+##
+#*  *##if ( $decoration.body.footer )#*
+        *#$render.eval( $decoration.body.footer )#*
+#*  *##else
         <p class="copyright">Copyright &copy;#copyright (). All Rights Reserved.</p>
 #*  *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )##
         <p class="version-date">
-#*                  *##if ( $versionPosition == "bottom" )<span class="projectVersion">#version (). </span>#end##
-#*                  *##if ( $datePosition == "bottom" )<span class="publishDate">#publishDate (). </span>#end##
+#*          *##if ( $versionPosition == "bottom" )<span class="projectVersion">#version (). </span>#end##
+#*          *##if ( $datePosition == "bottom" )<span class="publishDate">#publishDate (). </span>#end##
         </p>
-#*  *##end#*
-
-    *##if ( !$config.not("skinAttribution") )##
+#*  *##end
+#*      *##if ( !$config.not("skinAttribution") )##
         <p><a href="@scm-url@" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://devacfr.github.io" target="_blank" title="devacfr">devacfr</a>.</p>
-#*  *##end#*
-
-    *##if ( $decoration.body.footer )#*
-        *#$render.eval( $decoration.body.footer )#*
-    *##end#*
-*#
+#*      *##end
+#*  *##end
       </div>
     </div>
   </div>
