@@ -1,5 +1,8 @@
 
 
+
+
+
  
 
  
@@ -9,7 +12,7 @@
      <div class="row">
                                                       
                 <div class="col py-3">
-                         <h1 id="resources_toc_localcustom_resources1">Local/custom resources</h1> 
+                 <h1 id="resources_toc_localcustom_resources1">Local/custom resources</h1> 
 <p>Reflow Maven skin utilises content delivery networks (CDN) for a number of CSS and JavaScript resources. These include Bootstrap files, themes, the jQuery library, etc. The reuse of popular resources via CDN provides better performance. However, such resources may not be accessible when the site is used in an offline/intranet setting.</p> 
 <p>To support such deployments of Reflow skin, the configuration allows using local resources. Furthermore, custom resources can also be easily added to the generated website. These include newer versions of the used libraries as well as arbitrary scripts.</p> 
 <div class="section"> 
@@ -68,7 +71,7 @@
  <p>When using <code class="\&quot;literal\&quot;">&lt;localResources&gt;</code>, the following files need to be available in the corresponding directories within your project’s <code class="\&quot;literal\&quot;">src/site/resources</code> folder:</p> 
  <ul> 
   <li><b><code class="\&quot;literal\&quot;">css/bootstrap.min.css</code></b> - Reflow skin currently uses Bootstrap 4.1.3</li> 
-  <li><b><code class="\&quot;literal\&quot;">fonts/glyphicons-halflings-regular.*</code></b> - fonts used by Bootstrap 4.1.3</li> 
+  <li><b><code class="\&quot;literal\&quot;">css/fontawesome/</code></b>/* - font Awesome 5.2.0</li> 
   <li><b><code class="\&quot;literal\&quot;">js/bootstrap.min.js</code></b> - Bootstrap 4.1.3</li> 
   <li><b><code class="\&quot;literal\&quot;">js/jquery.min.js</code></b> - jQuery 3.3.1</li> 
   <li><b><code class="\&quot;literal\&quot;">js/anchor.min.js</code></b> - anchorJs 3.2.2</li> 
@@ -139,7 +142,14 @@
 </div>
         </div>
     <div class="d-none d-xl-block col-3">
-                                <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src\site\markdown/resources.md.vm"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
+                </li>
+            </ul>
+        </div>
+                        <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
     <li class="h1">
