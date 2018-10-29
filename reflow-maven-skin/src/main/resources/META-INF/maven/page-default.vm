@@ -161,30 +161,25 @@
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 ##
 ##
-    #if ( $localResources )##
+#*  *##if ( $localResources )
     <link href="$resourcePath/css/fontawesome/all.min.css" rel="stylesheet" />
-    #else
+#*  *##else
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    #end
-    ## for 'site' theme, use local CSS/Javascript. This allows users to use their own Bootstrap configs.
-    ## Otherwise, load the default or Bootswatch themes from BootstrapCDN
-    #if ( $config.theme && "site" == $config.theme.getValue() )##
-      <link href="$resourcePath/css/bootstrap-theme.min.css" rel="stylesheet" />
-    #end##
+#*  *##end
 ##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
 ##
-#*  *##if ( $config.highlightJsVersion )#*
-      *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
-    *##else#*
-      *##set ( $highlightJsVersion = "@highlightJsVersion@" )#*
-    *##end#*
-
-
-    *##if ( $config.is( "highlightJs" ) )#*
+#*  *##if ( $config.highlightJsVersion )
+#*      *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )
+#*  *##else
+#*      *##set ( $highlightJsVersion = "@highlightJsVersion@" )
+#*  *##end
+##
+##
+#*  *##if ( $config.is( "highlightJs" ) )
     ## get the configured theme, or use default if not explicitly specified
-        *##if ( $config.highlightJsTheme )#*
+#*      *##if ( $config.highlightJsTheme )#*
           *##set ( $highlightJsTheme = $config.highlightJsTheme.getValue() )#*
         *##else#*
           *##set ( $highlightJsTheme = 'default' )#*

@@ -14,20 +14,16 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 - Remove `<bootstrapCSS>` element
 - Remove `<navbarInverse>` element, replace by `cssClass` attribute (see [Navbar component](#migration_toc_navbar_component)
 - Dropped the Affix jQuery plugin, replaced by position `sticky` (can remove all affix css).
+- Remove support of customized Bootsrap theme:
+  - Remove `css/bootstrap-responsive.min.css` link
+  - Remove `js/html5.js` link
 
 ### Bootswatch Themes
 
 - Add new themes.
 - Remove `reflow-maven-skin/src/main/resources/css/bootswatch.css`
 
-### Using customized Bootstrap
-
-- Remove `css/bootstrap-responsive.min.css` link
-- Remove `js/html5.js` link
-- Add `css/bootstrap.min.css`, default Bootstrap css file
-- Add `css/bootstrap-theme.min.css`, specific customize theme
-
-## Documentary support
+## Documention page support
 
 ## Local resources
 
