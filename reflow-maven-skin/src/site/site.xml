@@ -189,9 +189,9 @@
         <reflow-documentation type="doc">
           <navbar cssClass="navbar-dark bg-dark border-bottom" filterMenu="inherit" />
           <menu name="Reflow Documentation" selectOnExpand="true">
-            <item name="Get Started" href="get-started.html" icon="fas fa-book-open"/>
-            <item name="Configuration" href="config.html" icon="fas fa-tachometer-alt"/>
-            <item name="Layouts" icon="fas fa-clone">
+            <item name="Get Started" href="get-started.html" />
+            <item name="Configuration" href="config.html" />
+            <item name="Layouts" >
               <item name="Overview" href="layouts.html"/>
               <item name="Body" href="body.html"/>
               <item name="Carousel" href="carousel.html"/>
@@ -199,18 +199,18 @@
               <item name="Thumbnails" href="thumbnails.html"/>
               <item name="Sidebar" href="sidebar.html"/>
             </item>
-            <item name="Components" icon="fas fa-suitcase" selectOnExpand="ture">
+            <item name="Components"  selectOnExpand="ture">
               <item name="Overview" href="components/components.html"/>
               <item name="Table of Contents" href="components/toc.html"/>
               <item name="Header" href="components/header.html"/>
               <item name="Navbar" href="components/navbar.html"/>
               <item name="Menus" href="components/menus.html"/>
             </item>
-            <item name="Themes" href="themes/index.html" icon="fas fa-columns"/>
-            <item name="Other Configuration" href="misc.html" icon="fas fa-sliders-h"/>
-            <item name="Multi-module Site" href="multi-module.html" icon="fas fa-window-restore"/>
-            <item name="Local Resources" href="resources.html" icon="fas fa-bookmark"/>
-            <item name="Migration" href="migration.html" icon="fas fa-wrench"/>
+            <item name="Themes" href="themes/index.html" />
+            <item name="Other Configuration" href="misc.html" />
+            <item name="Multi-module Site" href="multi-module.html" />
+            <item name="Local Resources" href="resources.html"/>
+            <item name="Migration" href="migration.html"/>
           </menu>
         </reflow-documentation>
       </pages>

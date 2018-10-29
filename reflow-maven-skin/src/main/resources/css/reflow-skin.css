@@ -342,6 +342,10 @@ body {
     cursor: pointer;
 }
 
+.navside-menu ul.menu-content>li.navside-item {
+    padding-left: 5px;
+}
+
 .navside-menu ul li.navside-item:not(.collapsed) .arrow:before {
     font-family: 'Font Awesome 5 Free';
     content: "\f107"; /* angle-down */
@@ -364,9 +368,7 @@ body {
     font-weight: 900;
 }
 
-.navside-menu ul.sub-menu {
-    padding: 0px 0px 0px 25px;
-}
+
 
 .navside-menu ul .sub-menu .navside-item, .navside-menu li.navside-item .sub-menu .navside-item {
     border: none;
@@ -393,7 +395,6 @@ body {
 }
 
 .navside-menu li.navside-item a i {
-    padding-left: 10px;
     width: 20px;
     padding-right: 20px;
 }
