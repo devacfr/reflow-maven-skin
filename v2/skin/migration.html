@@ -26,6 +26,9 @@
   <li>Remove <code class="\&quot;literal\&quot;">&lt;bootstrapCSS&gt;</code> element</li> 
   <li>Remove <code class="\&quot;literal\&quot;">&lt;navbarInverse&gt;</code> element, replace by <code class="\&quot;literal\&quot;">cssClass</code> attribute (see <a href="#migration_toc_navbar_component">Navbar component</a></li> 
   <li>Dropped the Affix jQuery plugin, replaced by position <code class="\&quot;literal\&quot;">sticky</code> (can remove all affix css).</li> 
+  <li>Remove support of customized Bootsrap theme:</li> 
+  <li>Remove <code class="\&quot;literal\&quot;">css/bootstrap-responsive.min.css</code> link</li> 
+  <li>Remove <code class="\&quot;literal\&quot;">js/html5.js</code> link</li> 
  </ul> 
  <div class="section"> 
   <h3 id="migration_toc_bootswatch_themes">Bootswatch Themes</h3> 
@@ -34,18 +37,9 @@
    <li>Remove <code class="\&quot;literal\&quot;">reflow-maven-skin/src/main/resources/css/bootswatch.css</code></li> 
   </ul> 
  </div> 
- <div class="section"> 
-  <h3 id="migration_toc_using_customized_bootstrap">Using customized Bootstrap</h3> 
-  <ul> 
-   <li>Remove <code class="\&quot;literal\&quot;">css/bootstrap-responsive.min.css</code> link</li> 
-   <li>Remove <code class="\&quot;literal\&quot;">js/html5.js</code> link</li> 
-   <li>Add <code class="\&quot;literal\&quot;">css/bootstrap.min.css</code>, default Bootstrap css file</li> 
-   <li>Add <code class="\&quot;literal\&quot;">css/bootstrap-theme.min.css</code>, specific customize theme</li> 
-  </ul> 
- </div> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_documentary_support">Documentary support</h2> 
+ <h2 id="migration_toc_documention_page_support">Documention page support</h2> 
 </div> 
 <div class="section"> 
  <h2 id="migration_toc_local_resources">Local resources</h2> 
@@ -141,12 +135,12 @@
   <h3 id="migration_toc_toc_topbar_component">Toc topbar component</h3> 
   <div> 
    <div> 
-    <pre class="source">&lt;toc cssClass="navbar-dark bg-dark border rounded|bootstrap classes" numberItems="number|-1" flatten="false|true"&gt;top&lt;/toc&gt;
+    <pre class="source">&lt;toc cssClass="navbar-dark bg-dark|bootstrap classes" numberItems="number|-1" flatten="false|true"&gt;top&lt;/toc&gt;
 </pre> 
    </div> 
   </div> 
   <ul> 
-   <li>Add ccsClass attribute (default value <code class="\&quot;literal\&quot;">navbar-dark bg-dark border rounded</code>) to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
+   <li>Add ccsClass attribute (default value <code class="\&quot;literal\&quot;">navbar-dark bg-dark</code>) to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
    <li>Replace <code class="\&quot;literal\&quot;">tocTopMax</code> element by <code class="\&quot;literal\&quot;">numberItems</code> attribute to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
    <li>Replace <code class="\&quot;literal\&quot;">tocTopFlatten</code> element by <code class="\&quot;literal\&quot;">flatten</code> attribute to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
   </ul> 
@@ -170,14 +164,14 @@
   <h3 id="migration_toc_navbar_component">Navbar component</h3> 
   <div> 
    <div> 
-    <pre class="source">&lt;navbar filterMenu="Regex filter" cssClass="navbar-light bg-light border-bottom|bootstrap classes"&gt;
+    <pre class="source">&lt;navbar filterMenu="Regex filter" cssClass="navbar-light bg-light|bootstrap classes"&gt;
 </pre> 
    </div> 
   </div> 
   <ul> 
    <li>Replace <code class="\&quot;literal\&quot;">&lt;topNav&gt;</code> element by <code class="\&quot;literal\&quot;">filterMenu</code> attribute.</li> 
    <li>Remove <code class="\&quot;literal\&quot;">&lt;navbarInverse&gt;</code> element. use <code class="\&quot;literal\&quot;">cssClass</code> instead.</li> 
-   <li>Add <code class="\&quot;literal\&quot;">cssClass</code> attribute (default value <code class="\&quot;literal\&quot;">navbar-light bg-light border-bottom</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">cssClass</code> attribute (default value <code class="\&quot;literal\&quot;">navbar-light bg-light</code>)</li> 
   </ul> 
  </div> 
 </div>
@@ -206,12 +200,9 @@
         <li class="h3">
         <a class="nav-link" href="#migration_toc_bootswatch_themes" title="Bootswatch Themes">Bootswatch Themes</a>
     </li>
-    <li class="h3">
-        <a class="nav-link" href="#migration_toc_using_customized_bootstrap" title="Using customized Bootstrap">Using customized Bootstrap</a>
-    </li>
     </ul>
     <li class="h2">
-        <a class="nav-link" href="#migration_toc_documentary_support" title="Documentary support">Documentary support</a>
+        <a class="nav-link" href="#migration_toc_documention_page_support" title="Documention page support">Documention page support</a>
     </li>
     <li class="h2">
         <a class="nav-link" href="#migration_toc_local_resources" title="Local resources">Local resources</a>
