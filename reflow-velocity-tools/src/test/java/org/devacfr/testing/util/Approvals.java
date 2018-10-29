@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.junit.Assert;
 
 import com.google.common.base.Charsets;
@@ -50,7 +51,7 @@ public class Approvals {
         @Nullable final String actual) {
         final String fileName = String.format("%s.%s.approved", testClass.getSimpleName(), testName);
         final String expected = readFile(location.resolve(fileName));
-        Assert.assertEquals(expected, actual);
+        Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
     /**

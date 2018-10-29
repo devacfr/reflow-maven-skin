@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void replaceWith() {
         final HtmlTool htmlTool = new HtmlTool();
-        String actual = htmlTool
+        final String actual = htmlTool
                 .replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
         assertEquals("<p>text <code class=\"literal\">foo value</code> end text.</p>", actual);
     }

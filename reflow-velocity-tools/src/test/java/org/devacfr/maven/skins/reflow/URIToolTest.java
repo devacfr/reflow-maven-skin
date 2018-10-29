@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,34 +24,34 @@ public class URIToolTest extends TestCase {
 
     @Test
     public void relativeRootLink() throws IOException {
-        String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
-        String currentFilename = "index.html";
-        String projectUrl = "https://devacfr.github.io/reflow-maven-skin/";
+        final String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
+        final String currentFilename = "index.html";
+        final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/";
 
-        String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
-        String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals(".", actual);
     }
 
     @Test
     public void relativeSubModuleLink() throws IOException {
-        String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
-        String currentFilename = "index.html";
-        String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
+        final String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
+        final String currentFilename = "index.html";
+        final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
 
-        String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
-        String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("..", actual);
     }
 
     @Test
     public void relativeSubFolderLink() throws IOException {
-        String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
-        String currentFilename = "themes/index.html";
-        String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
+        final String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
+        final String currentFilename = "themes/index.html";
+        final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
 
-        String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
-        String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("../..", actual);
     }
 
