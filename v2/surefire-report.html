@@ -22,10 +22,10 @@
     <meta name="description" content="" />
       <meta http-equiv="content-language" content="en" />
                                                                 <link href="./css/bootstrap.min.css" rel="stylesheet" />
-        <link href="./css/fontawesome/all.min.css" rel="stylesheet" />
-                    <link href="./css/docs.css" rel="stylesheet" />
+    <link href="./css/fontawesome/all.min.css" rel="stylesheet" />
+    <link href="./css/docs.css" rel="stylesheet" />
     <link href="./css/reflow-skin.css" rel="stylesheet" />
-
+    
     <link rel="stylesheet" href="./js/styles/github.min.css" />
 
     <link href="./css/lightbox.css" rel="stylesheet" />
@@ -34,7 +34,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         </head> <!-- end : head -->
 <body class="page-surefire-report project-reflow-parent   scroll-top-smooth-enabled m-toc-top-enabled">
-    <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top navbar-light bg-light border-bottom">
+    <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         <div class="container">
                                 <a class="navbar-brand mb-0 h1" href="."><span class="color-highlight">Reflow</span> Maven Skin</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,6 +133,27 @@
                                                 <li class="nav-item toplevel"><a class="nav-link" href="#_toc_surefire_report" title="Surefire Report">Surefire Report</a></li>
                         <li class="nav-item divider-vertical"></li>
                         <li class="nav-item toplevel"><a class="nav-link" href="#_toc_summary" title="Summary">Summary</a></li>
+                        <li class="nav-item divider-vertical"></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" title="Package List" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Package List</a>
+                            <div class="dropdown-menu">
+                                <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
+                                <a class="dropdown-item" href="#_toc_package_list" title="Package List">Package List</a>
+                                <div class="dropdown-divider"></div>
+                                              <a class="dropdown-item" href="#_toc_orgdevacfrmavenskinsreflow1" title="org.devacfr.maven.skins.reflow">org.devacfr.maven.skins.reflow</a>
+                            </div>
+                        </li>
+                        <li class="nav-item divider-vertical"></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" title="Test Cases" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Test Cases</a>
+                            <div class="dropdown-menu">
+                                <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
+                                <a class="dropdown-item" href="#_toc_test_cases" title="Test Cases">Test Cases</a>
+                                <div class="dropdown-divider"></div>
+                                              <a class="dropdown-item" href="#_toc_htmltooltest" title="HtmlToolTest">HtmlToolTest</a>
+                <a class="dropdown-item" href="#_toc_uritooltest" title="URIToolTest">URIToolTest</a>
+                            </div>
+                        </li>
             </ul>
         </div>
       </div> <!-- .container -->
@@ -160,6 +181,7 @@ function toggleDisplay(elementId) {
 <div class="section"> 
  <h2 id="_toc_summary">Summary</h2> 
  <a name="Summary"></a> 
+ <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p> 
  <br> 
  <table border="1" class="bodyTable table table-striped table-hover"> 
   <thead> 
@@ -174,17 +196,137 @@ function toggleDisplay(elementId) {
   </thead> 
   <tbody> 
    <tr class="b"> 
+    <td>5</td> 
     <td>0</td> 
     <td>0</td> 
     <td>0</td> 
-    <td>0</td> 
-    <td>0%</td> 
-    <td>0</td> 
+    <td>100%</td> 
+    <td>0.114</td> 
    </tr> 
   </tbody> 
  </table> 
  <br> 
  <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p> 
+ <br> 
+</div> 
+<div class="section"> 
+ <h2 id="_toc_package_list">Package List</h2> 
+ <a name="Package_List"></a> 
+ <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p> 
+ <br> 
+ <table border="1" class="bodyTable table table-striped table-hover"> 
+  <thead> 
+   <tr class="a"> 
+    <th>Package</th> 
+    <th>Tests</th> 
+    <th>Errors </th> 
+    <th>Failures</th> 
+    <th>Skipped</th> 
+    <th>Success Rate</th> 
+    <th>Time</th> 
+   </tr> 
+  </thead> 
+  <tbody> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow">org.devacfr.maven.skins.reflow</a></td> 
+    <td>5</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>0</td> 
+    <td>100%</td> 
+    <td>0.114</td> 
+   </tr> 
+  </tbody> 
+ </table> 
+ <br> 
+ <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p> 
+ <div class="section"> 
+  <h3 id="_toc_orgdevacfrmavenskinsreflow1">org.devacfr.maven.skins.reflow</h3> 
+  <a name="org.devacfr.maven.skins.reflow"></a> 
+  <table border="1" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th></th> 
+     <th>Class</th> 
+     <th>Tests</th> 
+     <th>Errors </th> 
+     <th>Failures</th> 
+     <th>Skipped</th> 
+     <th>Success Rate</th> 
+     <th>Time</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td><a href="#org.devacfr.maven.skins.reflowHtmlToolTest"><i class="fas fa-check-circle"></i></a></td> 
+     <td><a href="#org.devacfr.maven.skins.reflowHtmlToolTest">HtmlToolTest</a></td> 
+     <td>2</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>100%</td> 
+     <td>0.114</td> 
+    </tr> 
+    <tr class="a"> 
+     <td><a href="#org.devacfr.maven.skins.reflowURIToolTest"><i class="fas fa-check-circle"></i></a></td> 
+     <td><a href="#org.devacfr.maven.skins.reflowURIToolTest">URIToolTest</a></td> 
+     <td>3</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>0</td> 
+     <td>100%</td> 
+     <td>0</td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </div> 
+ <br> 
+</div> 
+<div class="section"> 
+ <h2 id="_toc_test_cases">Test Cases</h2> 
+ <a name="Test_Cases"></a> 
+ <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p> 
+ <div class="section"> 
+  <h3 id="_toc_htmltooltest">HtmlToolTest</h3> 
+  <a name="org.devacfr.maven.skins.reflowHtmlToolTest"></a> 
+  <table border="1" class="bodyTable table table-striped table-hover"> 
+   <tbody> 
+    <tr class="a"> 
+     <td><i class="fas fa-check-circle"></i></td> 
+     <td><a name="TC_org.devacfr.maven.skins.reflow.HtmlToolTest.fixTableHeadsWithTagListReportOuput"></a>fixTableHeadsWithTagListReportOuput</td> 
+     <td>0.114</td> 
+    </tr> 
+    <tr class="b"> 
+     <td><i class="fas fa-check-circle"></i></td> 
+     <td><a name="TC_org.devacfr.maven.skins.reflow.HtmlToolTest.replaceWith"></a>replaceWith</td> 
+     <td>0</td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </div> 
+ <div class="section"> 
+  <h3 id="_toc_uritooltest">URIToolTest</h3> 
+  <a name="org.devacfr.maven.skins.reflowURIToolTest"></a> 
+  <table border="1" class="bodyTable table table-striped table-hover"> 
+   <tbody> 
+    <tr class="a"> 
+     <td><i class="fas fa-check-circle"></i></td> 
+     <td><a name="TC_org.devacfr.maven.skins.reflow.URIToolTest.relativeSubModuleLink"></a>relativeSubModuleLink</td> 
+     <td>0</td> 
+    </tr> 
+    <tr class="b"> 
+     <td><i class="fas fa-check-circle"></i></td> 
+     <td><a name="TC_org.devacfr.maven.skins.reflow.URIToolTest.relativeSubFolderLink"></a>relativeSubFolderLink</td> 
+     <td>0</td> 
+    </tr> 
+    <tr class="a"> 
+     <td><i class="fas fa-check-circle"></i></td> 
+     <td><a name="TC_org.devacfr.maven.skins.reflow.URIToolTest.relativeRootLink"></a>relativeRootLink</td> 
+     <td>0</td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </div> 
  <br> 
 </div>                    </main>
         <div class="hidden-xs hidden-sm col-lg-2">
@@ -283,7 +425,6 @@ function toggleDisplay(elementId) {
         <p class="version-date">
 <span class="projectVersion">Version: 2.0.0-beta2-SNAPSHOT. </span>        </p>
         <p><a href="https://github.com/devacfr/reflow-maven-skin" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://devacfr.github.io" target="_blank" title="devacfr">devacfr</a>.</p>
-
       </div>
     </div>
   </div>

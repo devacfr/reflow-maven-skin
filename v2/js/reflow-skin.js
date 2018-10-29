@@ -171,7 +171,7 @@ var mReflow = function () {
       return;
     }
     currentMenu = href;
-    $('#m-doc-frame').load(href, function () {
+    $('#m-doc-frame').load(href, function (evt) {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
       var item = $('.navside-menu a[slug-name="' + slugName + '"]').parent();
@@ -189,7 +189,10 @@ var mReflow = function () {
       refreshScrollSpy();
 
       var hash = window.location.hash;
-      scrollTo($(hash));
+      // scroll to anchor if toc separator exists
+      if (hash && hash.indexOf(TOC_SEPARATOR)>0) {
+        scrollTo($(hash));
+      }
     });
   }
 
