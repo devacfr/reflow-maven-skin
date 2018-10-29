@@ -34,7 +34,7 @@ public class TocTopBar extends Toc<TocTopBar> {
     public TocTopBar(final @Nonnull SkinConfigTool config) {
         super("top");
         this.setCssClass(
-            config.getConfigAttribute("toc", "cssClass", String.class, "navbar-dark bg-dark border rounded"));
+            config.getConfigAttribute("toc", "cssClass", String.class, "navbar-dark bg-dark"));
         this.withFlatten(config.getConfigAttribute("toc", "flatten", Boolean.class, false))
                 .withNumberItems(config.getConfigAttribute("toc", "numberItems", Integer.class, -1))
                 .withEnabled(true);

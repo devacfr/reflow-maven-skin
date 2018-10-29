@@ -57,7 +57,7 @@ public class Navbar extends PageElement {
             brandName = project.getArtifactId();
         }
         this.setCssClass(
-            config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light border-bottom"));
+            config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light"));
         this.filterMenu = config.getConfigAttribute("navbar", "filterMenu", String.class, null);
     }
 

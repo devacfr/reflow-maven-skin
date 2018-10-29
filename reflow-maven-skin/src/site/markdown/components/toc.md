@@ -43,7 +43,7 @@ The ToC snaps to the top of the screen to allow easy navigation in long pages.
 
 - **numberItems** <span class="badge badge-light">v2.0</span> -  Sets a integer greater than 0 to limit the number of top ToC items. All menu entries exceeding that number are grouped under the last dropdown menu. `-1` or no attribute (default) displays all items.
 - **flatten** <span class="badge badge-light">v2.0</span> - Sets to `true` flatten first 2 levels of ToC. Top ToC for pages that have only a single top heading (e.g. h1) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether, otherwise `false` to always just use 1st level ToC items. this attribute replace `<tocTopFlatten>` element.
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class of Top Toc with built-in Bootstrap support. `navbar-dark bg-dark border rounded` is the default value if value is empty or `null`.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class of Top Toc with built-in Bootstrap support. `navbar-dark bg-dark` is the default value if value is empty or `null`.
 
 ## ToC Sidebar
 

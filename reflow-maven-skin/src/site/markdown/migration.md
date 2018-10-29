@@ -116,10 +116,10 @@ This list highlights key changes by component between v1.4 and v2.0.0.
 ### Toc topbar component
 
 ```xml
-<toc cssClass="navbar-dark bg-dark border rounded|bootstrap classes" numberItems="number|-1" flatten="false|true">top</toc>
+<toc cssClass="navbar-dark bg-dark|bootstrap classes" numberItems="number|-1" flatten="false|true">top</toc>
 ```
 
-- Add ccsClass attribute (default value `navbar-dark bg-dark border rounded`) to `<toc>` element.
+- Add ccsClass attribute (default value `navbar-dark bg-dark`) to `<toc>` element.
 - Replace `tocTopMax` element by `numberItems` attribute to `<toc>` element.
 - Replace `tocTopFlatten` element by `flatten` attribute to `<toc>` element.
 
@@ -138,12 +138,12 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 ### Navbar component
 
 ```xml
-<navbar filterMenu="Regex filter" cssClass="navbar-light bg-light border-bottom|bootstrap classes">
+<navbar filterMenu="Regex filter" cssClass="navbar-light bg-light|bootstrap classes">
 ```
 
 - Replace `<topNav>` element by `filterMenu` attribute.
 - Remove `<navbarInverse>` element. use `cssClass` instead.
-- Add `cssClass` attribute (default value `navbar-light bg-light border-bottom`)
+- Add `cssClass` attribute (default value `navbar-light bg-light`)
 
 [multi-module]: reflow-documentation.html#multi-module.html
 [bootstrap-migration]: https://getbootstrap.com/docs/4.1/migration

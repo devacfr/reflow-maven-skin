@@ -24,7 +24,7 @@ Navbar is Bootstrap responsive navigation header component fixed to the top of p
 
 - **filterMenu** <span class="badge badge-light">v2.0</span> - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
     expression matches, adds the menu to the top navigation.
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class of navbar with built-in Bootstrap support. `navbar-light bg-light border-bottom` is the default value if value is empty or `null`.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class of navbar with built-in Bootstrap support. `navbar-light bg-light` is the default value if value is empty or `null`.
 
 [site-menus]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content
 [site-links]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links
