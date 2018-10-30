@@ -518,10 +518,11 @@ footer .bottom-description {
     display: none;
 }
 
-footer blockquote {
+footer .blockquote {
     border-left-width: 5px;
     border-left-style: solid;
     padding: 0px 20px;
+    font-size: 1rem !important;
 }
 
 footer p, .subfooter p {
@@ -554,7 +555,7 @@ footer p, .subfooter p {
     color: var(--dark) !important;
     opacity: 0.7;
 }
-.footer-light blockquote {
+.footer-light .blockquote {
     border-left-color: var(--secondary);
 }
 
@@ -582,7 +583,7 @@ footer p, .subfooter p {
     opacity: 0.7;
 }
 
-.footer-dark blockquote {
+.footer-dark .blockquote {
     border-left-color: var(--secondary);
 }
 
