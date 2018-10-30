@@ -26,7 +26,7 @@
   </div> 
  </div> 
  <ul> 
-  <li> <p><b>true</b> - Locally provided Bootstrap and jQuery files will be used in the generated site, not the CDN versions. This forces <a href="themes/"><code class="\&quot;literal\&quot;">site</code> Bootstrap theme</a>, which uses local Bootstrap files. Furthermore, other non-local resources such as <i>highlight.js</i> are disabled and their <a href="#Additional_CSS_files">local versions need to be added manually</a>. See below for the list of files that need to be available locally.</p> </li> 
+  <li> <p><b>true</b> - Locally provided Bootstrap and jQuery files will be used in the generated site, not the CDN versions. This forces <a href="reflow-documentation.html#themes-index"><code class="\&quot;literal\&quot;">site</code> Bootstrap theme</a>, which uses local Bootstrap files. Furthermore, other non-local resources such as <i>highlight.js</i> are disabled and their <a href="reflow-documentation.html#resources_toc_additional_css_files">local versions need to be added manually</a>. See below for the list of files that need to be available locally.</p> </li> 
   <li> <p><b>false (default)</b> - CDN delivered resources are used, where available.</p> </li> 
  </ul> 
  <p>Note that when using <code class="\&quot;literal\&quot;">&lt;localResources&gt;</code>, you need to provide the necessary local versions of Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module <code class="\&quot;literal\&quot;">reflow-default-webdeps</code>. this package should be unpack as following example:</p> 
@@ -67,25 +67,26 @@
 </pre> 
   </div> 
  </div> 
- <p>Therefore it is easier to get appropriate Bootstrap files directly from the <a class="externalLink" href="https://getbootstrap.com/docs/3.3/customize/">customiser</a> or <a class="externalLink" href="http://bootswatch.com/3/">Bootswatch</a> and use them with the Reflow skin. Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used. Use at your own risk, however, as major version changes are likely to break the website!</p> 
+ <p>Therefore it is easier to get appropriate Bootstrap files directly from the <a class="externalLink" href="http://bootswatch.com/">Bootswatch</a> and use them with the Reflow skin. Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used. Use at your own risk, however, as major version changes are likely to break the website!</p> 
  <p>When using <code class="\&quot;literal\&quot;">&lt;localResources&gt;</code>, the following files need to be available in the corresponding directories within your project’s <code class="\&quot;literal\&quot;">src/site/resources</code> folder:</p> 
  <ul> 
-  <li><b><code class="\&quot;literal\&quot;">css/bootstrap.min.css</code></b> - Reflow skin currently uses Bootstrap 4.1.3</li> 
-  <li><b><code class="\&quot;literal\&quot;">css/fontawesome/</code></b>/* - font Awesome 5.2.0</li> 
+  <li><b><code class="\&quot;literal\&quot;">css/bootstrap.min.css</code></b> - Reflow skin currently uses Bootstrap 4.1.3 or <b><code class="\&quot;literal\&quot;">css/themes/[bootswatch theme]/bootstrap.min.css</code></b>, specific bootswatch 4.1.3 theme (see <a href="reflow-documentation.html#themes-index">Themes Section</a> for more information)</li> 
+  <li><b><code class="\&quot;literal\&quot;">css/fontawesome/all.min.css</code></b>, <b><code class="\&quot;literal\&quot;">css/fontawesome/webfonts/*.[eot|ttf|woff|woff2]</code></b> - font Awesome 5.2.0</li> 
   <li><b><code class="\&quot;literal\&quot;">js/bootstrap.min.js</code></b> - Bootstrap 4.1.3</li> 
   <li><b><code class="\&quot;literal\&quot;">js/jquery.min.js</code></b> - jQuery 3.3.1</li> 
   <li><b><code class="\&quot;literal\&quot;">js/anchor.min.js</code></b> - anchorJs 3.2.2</li> 
+  <li><b><code class="\&quot;literal\&quot;">js/popper.min.js</code></b> - anchorJs 1.14.3</li> 
   <li><b><code class="\&quot;literal\&quot;">js/highlight.min.js</code></b> - highlightJs 9.8.0</li> 
   <li><b><code class="\&quot;literal\&quot;">js/languages/*.js</code></b> - folder containing highlightJs languages</li> 
   <li><b><code class="\&quot;literal\&quot;">js/styles/*.js</code></b> - folder containing highlightJs styles</li> 
  </ul> 
- <p>For multi-module site, remember to enable <a href="multi-module.html#Reuse_resources">resource reuse flag</a>, otherwise these files will have to be repeated for each sub-module.</p> 
+ <p>For multi-module site, remember to enable <a href="reflow-documentation.html#multi-module_toc_reuse_resources">resource reuse flag</a>, otherwise these files will have to be repeated for each sub-module.</p> 
 </div> 
 <div class="section"> 
  <h2 id="resources_toc_additional_css_files">Additional CSS files</h2> 
  <p>element <span class="badge badge-secondary">site.xml</span></p> 
  <p>Additional CSS files (or other resources) can be added to the page head using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head"><code class="\&quot;literal\&quot;">&lt;body&gt;&lt;head&gt;</code> configuration</a> in the <code class="\&quot;literal\&quot;">site.xml</code> site descriptor. This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.</p> 
- <p>The <code class="\&quot;literal\&quot;">&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="misc.html#Code_highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code class="\&quot;literal\&quot;">&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p> 
+ <p>The <code class="\&quot;literal\&quot;">&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="reflow-documentation.html#misc.html_toc_code_highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code class="\&quot;literal\&quot;">&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;project&gt;
@@ -95,7 +96,6 @@
     &lt;head&gt;
       &lt;![CDATA[
       &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
-      &lt;link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" /&gt;
       &lt;link rel="stylesheet" href="http://yandex.st/highlightjs/9.8.0/styles/default.min.css"&gt;
       &lt;script src="http://yandex.st/highlightjs/9.8.0/highlight.min.js"&gt;&lt;/script&gt;
       ]]&gt;
@@ -108,7 +108,7 @@
   </div> 
  </div> 
  <p>Note: the <code class="\&quot;literal\&quot;">&lt;head&gt;</code> element is within <code class="\&quot;literal\&quot;">&lt;body&gt;</code>, not <code class="\&quot;literal\&quot;">&lt;custom&gt;</code> element of <code class="\&quot;literal\&quot;">site.xml</code> site descriptor.</p> 
- <p>Furthermore, the injected XHTML allows using Velocity variables. Therefore you can <a href="multi-module.html#Reuse_resources">reuse a local version of the library</a> by indicating its path with a <code class="\&quot;literal\&quot;">$resourcePath</code> variable, e.g.:</p> 
+ <p>Furthermore, the injected XHTML allows using Velocity variables. Therefore you can <a href="reflow-documentation.html#multi-module_toc_reuse_resources">reuse a local version of the library</a> by indicating its path with a <code class="\&quot;literal\&quot;">$resourcePath</code> variable, e.g.:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;head&gt;
