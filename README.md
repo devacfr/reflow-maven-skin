@@ -70,7 +70,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
 The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
 Refer to [documentation][reflow-config] for all configuration options.
 
-[reflow-config]: https://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#config.html
+[reflow-config]: https://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#get-started_toc_configuration
 
 A sample configuration file is given below:
 

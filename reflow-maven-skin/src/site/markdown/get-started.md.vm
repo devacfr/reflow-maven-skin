@@ -87,7 +87,7 @@ The documentation is split over several pages, describing the various configurat
 
     Additional support and notes for generating multi-module Maven sites.
 
-Note that all configuration options can be set on a per-page basis ([see below](#config_toc_per-page_configuration)).
+Note that all configuration options can be set on a per-page basis ([see below](#get-started_toc_per-page_configuration)).
 
 The skin is configurable using the `<custom>` element in your `site.xml` file. The available options are [described in the documentation][doc]. A sample configuration file is below:
 
@@ -221,5 +221,5 @@ and for plug-in configuration in respective POM files.
 
 [reflow-tools]: ../reflow-velocity-tools
 [site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
-[doc]: reflow-documentation.html#config
+[doc]: reflow-documentation.html#get-started
 [reflow-src]: ${scm-url} "Reflow Maven skin source code"
