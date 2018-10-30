@@ -1,10 +1,8 @@
 # Configuration
 
-Reflow skin supports extensive configuration options, including theme, layout, new/updated
-page components and a large number of various other flags.
+Reflow skin supports extensive configuration options, including theme, layout, new/updated page components and a large number of various other flags.
 
-The configuration is specified in the [`site.xml` site descriptor][site-xml] file,
-using the `<custom><reflowSkin>` element.
+The configuration is specified in the [`site.xml` site descriptor][site-xml] file, using the `<custom><reflowSkin>` element.
 
 The documentation is split over several pages, describing the various configuration options:
 
@@ -30,15 +28,11 @@ Note that all configuration options can be set on a per-page basis
 
 ## Per-page configuration
 
-Reflow skin has quite a number of configuration options, which can be applied either globally or
-limited to a specific page. The _per-page configuration_ allows setting page-specific layouts,
-disable breadcrumbs or table of contents, or even change the theme for a single page.
+Reflow skin has quite a number of configuration options, which can be applied either globally or limited to a specific page. The _per-page configuration_ allows setting page-specific layouts, disable breadcrumbs or table of contents, or even change the theme for a single page.
 
-All configuration options can be specified _per-page_. If the same configuration is specified
-both _globally_ and _per-page_, the _per-page_ one overrides the global option.
+All configuration options can be specified _per-page_. If the same configuration is specified both _globally_ and _per-page_, the _per-page_ one overrides the global option.
 
-The configuration of a page is set using the `<pages>` element of the skin configuration.
-Each element within `<pages>` indicates the name of the page file being customized.
+The configuration of a page is set using the `<pages>` element of the skin configuration. Each element within `<pages>` indicates the name of the page file being customized.
 
 ```xml
 <custom>
@@ -60,7 +54,6 @@ Each element within `<pages>` indicates the name of the page file being customiz
   </reflowSkin>
 </custom>
 ```
-
 
 ### Page ID
 

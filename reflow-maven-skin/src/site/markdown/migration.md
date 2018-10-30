@@ -13,15 +13,19 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 - Dropped the Glyphicons icon font, use Font Awesome free 5.2.
 - Remove `<bootstrapCSS>` element
 - Remove `<navbarInverse>` element, replace by `cssClass` attribute (see [Navbar component](#migration_toc_navbar_component)
-- Dropped the Affix jQuery plugin, replaced by position `sticky` (can remove all affix css).
+- Dropped the Affix jQuery plugin, replaced by position `sticky` (can remove all affix reference in your css).
 - Remove support of customized Bootsrap theme:
-  - Remove `css/bootstrap-responsive.min.css` link
-  - Remove `js/html5.js` link
+    - Remove `css/bootstrap-responsive.min.css` link
+    - Remove `js/html5.js` link
 
 ### Bootswatch Themes
 
-- Add new themes.
+- Add new bootswatch supported themes.
 - Remove `reflow-maven-skin/src/main/resources/css/bootswatch.css`
+
+## Css Changes
+
+- Replace `#bannerRight` `#bannerLeft` by `.bannerRight` and `.bannerLeft`.
 
 ## Documention page support
 

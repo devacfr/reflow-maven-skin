@@ -114,7 +114,7 @@ enhancements enabled using [configuration in `site.xml`][reflow-config]:
 Check out the [documentation][reflow-config] for all the features. Every configuration option
 can be applied on a _per-page_ basis!
 
-[reflow-config]:  skin/reflow-documentation.html#config.html
+[reflow-config]: skin/reflow-documentation.html#get-started_toc_configuration
 
 
 ---
