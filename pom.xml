@@ -127,6 +127,7 @@
     <highlightJsTheme>github</highlightJsTheme>
     <jqueryVersion>3.3.1</jqueryVersion>
     <fontawesomeVersion>5.2.0</fontawesomeVersion>
+    <popperVersion>1.14.3</popperVersion>
 
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->

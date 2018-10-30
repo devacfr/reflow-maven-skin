@@ -17,6 +17,7 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 - Remove support of customized Bootsrap theme:
     - Remove `css/bootstrap-responsive.min.css` link
     - Remove `js/html5.js` link
+- Add `popper.js` library required by Bootstrap
 
 ### Bootswatch Themes
 

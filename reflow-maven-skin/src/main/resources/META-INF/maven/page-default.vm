@@ -144,19 +144,21 @@
     #end##
 ##
     #if ( $localResources )##
-        #set ( $bootstrapCssPath = "$resourcePath/css" )##
-        #set ( $bootstrapJsPath = "$resourcePath/js" )##
+        #set ( $bootstrapCssPath = "$resourcePath/css" )
+        #set ( $bootstrapJsPath = "$resourcePath/js" )
+        #set ( $popperJsPath = "$resourcePath/js" )
         #if ( $bootswatchTheme )##
             #set ( $bootstrapCssPath = "$resourcePath/css/themes/$bootswatchTheme" )##
         #end##
-    #else##
-        #if ( $bootswatchTheme )##
-          #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )##
-        #else##
-            #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )##
-        #end##
-        #set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )##
-    #end##
+    #else
+        #if ( $bootswatchTheme )
+          #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )
+        #else
+            #set ( $bootstrapCssPath = "https://stackpath.bootstrapcdn.com/bootstrap/${bootstrapVersion}/css" )
+        #end
+        #set ( $bootstrapJsPath = "https://stackpath.bootstrapcdn.com/bootstrap/${bootstrapVersion}/js" )
+        #set ( $popperJsPath = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/${popperVersion}/umd/" )
+    #end
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 ##
@@ -240,8 +242,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js"></script>
 #*  *##end##
 ##
-  <script src="$bootstrapJsPath/bootstrap.min.js"></script>
-
+    <script src="$popperJsPath/popper.min.js"></script>
+    <script src="$bootstrapJsPath/bootstrap.min.js"></script>
 #*
     *##if ( !$config.not( "imgLightbox" ) )#*
     ## if not disabled, include lightbox for showing images *#

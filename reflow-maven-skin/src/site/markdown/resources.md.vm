@@ -75,6 +75,7 @@ When using `<localResources>`, the following files need to be available in the c
 - **`js/bootstrap.min.js`** - Bootstrap ${bootstrapVersion}
 - **`js/jquery.min.js`** - jQuery ${jqueryVersion}
 - **`js/anchor.min.js`** - anchorJs ${anchorJsVesrion}
+- **`js/popper.min.js`** - anchorJs ${popperVersion}
 - **`js/highlight.min.js`** - highlightJs ${highlightJsVersion}
 - **`js/languages/*.js`** - folder containing highlightJs languages
 - **`js/styles/*.js`** - folder containing highlightJs styles
