@@ -60,10 +60,10 @@
      href="https://github.com/devacfr/reflow-maven-skin"  title="GitHub project"   class="externalink nav-link" >GitHub project</a></li>
 <li class="nav-item " ><a     
      href="../skin/reflow-documentation.html"  title="Documentation"  class="nav-link" >Documentation</a></li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools <b class="caret"></b></a>
                 <div class="dropdown-menu">
-                    <a href="." title="Reflow Velocity tools"  class="dropdown-item ">Reflow Velocity tools</a>
+                    <a href="." title="Reflow Velocity tools"  class="dropdown-item active">Reflow Velocity tools</a>
                     <a href="apidocs" title="Tools Javadoc"  class="dropdown-item ">Tools Javadoc</a>
                 </div>
             </li>
@@ -137,7 +137,7 @@
                              <h1>Reflow Velocity tools</h1> 
 <p>Reflow skin provides custom tools for <a class="externalLink" href="http://velocity.apache.org/">Apache Velocity</a> to be used in Maven site template. These objects are contributed to Velocity context and can be used within the template. Refer to <a href="apidocs/">Javadoc</a> for each tool for more information.</p> 
 <ul> 
- <li><b><a href="apidocs/org/devacfr/maven/skins/reflow/SkinConfigTool.html"><code class="\&quot;literal\&quot;">SkinConfigTool</code></a></b> (key <b>$config</b>) <p>Provides a uniform access to Maven site custom configuration options. Supports global and per-page configuration. See info on <a href="../skin/reflow-documentation.html#config.html_toc_per-page_configuration"><i>per-page configuration</i></a> in Reflow skin for an example of features it brings.</p></li> 
+ <li><b><a href="apidocs/org/devacfr/maven/skins/reflow/SkinConfigTool.html"><code class="\&quot;literal\&quot;">SkinConfigTool</code></a></b> (key <b>$config</b>) <p>Provides a uniform access to Maven site custom configuration options. Supports global and per-page configuration. See info on <a href="../skin/reflow-documentation.html#get-started_toc_per-page_configuration"><i>per-page configuration</i></a> in Reflow skin for an example of features it brings.</p></li> 
  <li><b><a href="apidocs/org/devacfr/maven/skins/reflow/HtmlTool.html"><code class="\&quot;literal\&quot;">HtmlTool</code></a></b> (key <b>$htmlTool</b>) <p>Provides methods to modify and query HTML text using <a class="externalLink" href="http://jsoup.org/">jsoup</a> library.</p></li> 
  <li><b><a href="apidocs/org/devacfr/maven/skins/reflow/URITool.html"><code class="\&quot;literal\&quot;">URITool</code></a></b> (key <b>$uriTool</b>) <p>Provides URI utilities that expose URIs to the template.</p></li> 
 </ul> 
@@ -199,8 +199,8 @@
                     <li class="nav-item " )><a     
      href="../licenses.html"  title="Licenses"  class="nav-link" >Licenses</a></li>
                     <li class="nav-header">Tools                    </li>
-                    <li class="nav-item " )><a     
-     href="."  title="Reflow Velocity tools"  class="nav-link" >Reflow Velocity tools</a></li>
+                    <li class="nav-item active" )><a     
+     href="#"  title="Reflow Velocity tools"  class="nav-link" >Reflow Velocity tools</a></li>
                     <li class="nav-item " )><a     
      href="apidocs"  title="Tools Javadoc"  class="nav-link" >Tools Javadoc</a></li>
                 </ul>
@@ -240,7 +240,7 @@
           <div class="m-1">
             <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary"><i class="fab fa-github"></i></a>
             <a href="https://twitter.com/devacfr" class="p-1 text-secondary"><i class="fab fa-twitter"></i></a>
-            <a href="devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-envelope"></i></a>
             <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary"><i class="fab fa-gitter"></i></a>
           </div></blockquote>
         </div>
@@ -263,8 +263,8 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
     <script src="../js/jquery.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
   <script src="../js/lightbox.min.js"></script>
             	<script src="../js/highlight.min.js"></script>
