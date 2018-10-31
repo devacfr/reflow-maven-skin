@@ -21,20 +21,30 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 
 /**
+ * The context associate to page of doc page.
+ *
  * @author Christophe Friederich
  * @since 2.0
  */
 public class DocumentContext extends Context<DocumentContext> {
 
     /** */
-    private NavSideMenu navSideMenu;
+    private final NavSideMenu navSideMenu;
 
+    /**
+     * Default constructor.
+     *
+     * @param config
+     *            a config (can not be {@code null}).
+     */
     public DocumentContext(final @Nonnull SkinConfigTool config) {
-        super(config);
-        this.withType("doc");
+        super(config, ContextType.doc);
         this.navSideMenu = new NavSideMenu(config);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCssOptions() {
         String css = super.getCssOptions();
@@ -44,13 +54,11 @@ public class DocumentContext extends Context<DocumentContext> {
         return css;
     }
 
+    /**
+     * @return Returns the {@link NavSideMenu}.
+     */
     public NavSideMenu getNavSideMenu() {
         return navSideMenu;
-    }
-
-    public DocumentContext withNavSideMenu(final NavSideMenu menu) {
-        this.navSideMenu = menu;
-        return self();
     }
 
 }

@@ -51,6 +51,7 @@ import org.jsoup.parser.Tag;
  * </p>
  *
  * @author Andrius Velykis
+ * @author Christophe Friederich
  * @since 1.0
  * @see <a href="http://jsoup.org/">jsoup HTML parser</a>
  * @see <a href="http://jsoup.org/cookbook/extracting-data/selector-syntax">jsoup CSS selectors</a>
@@ -79,6 +80,7 @@ public class HtmlTool extends SafeConfig {
         NO
     }
 
+    /** */
     private String outputEncoding = "UTF-8";
 
     /**
@@ -540,10 +542,15 @@ public class HtmlTool extends SafeConfig {
         String getRemainder();
     }
 
+    /**
+     * @author Christophe Friederich
+     */
     private static final class DefaultExtractResult implements ExtractResult {
 
+        /** */
         private final List<String> extracted;
 
+        /** */
         private final String remainder;
 
         private DefaultExtractResult(final List<String> extracted, final String remainder) {
@@ -858,9 +865,9 @@ public class HtmlTool extends SafeConfig {
 
             if (replacementElem != null) {
                 for (final Element element : elements) {
-                    List<Node> children = element.childNodes();
-                    Element el = replacementElem.clone();
-                    for (Node child : children) {
+                    final List<Node> children = element.childNodes();
+                    final Element el = replacementElem.clone();
+                    for (final Node child : children) {
                         el.appendChild(child.clone());
                     }
                     element.replaceWith(el);
@@ -903,6 +910,7 @@ public class HtmlTool extends SafeConfig {
         return texts;
     }
 
+    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Transforms the given HTML content by moving anchor ({@code <a name="myheading">}) names to IDs for heading
      * elements.
@@ -1133,10 +1141,10 @@ public class HtmlTool extends SafeConfig {
         return id;
     }
 
+    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
-     * Fixes table heads: wraps rows with {@code
-     *
-    <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
+     * Fixes table heads: wraps rows with {@code 
+     * <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
      *
      * @param content
      *            HTML content to modify
@@ -1173,8 +1181,10 @@ public class HtmlTool extends SafeConfig {
 
     }
 
+    /** */
     private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
 
+    /** */
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
     /**
@@ -1302,16 +1312,24 @@ public class HtmlTool extends SafeConfig {
         }
     }
 
-    private static class HeadingItem implements IdElement {
+    /**
+     * @author Christophe Friederich
+     */
+    private static final class HeadingItem implements IdElement {
 
+        /** */
         private final String id;
 
+        /** */
         private final String tagName;
 
+        /** */
         private final String text;
 
+        /** */
         private final int headingLevel;
 
+        /** */
         private final List<HeadingItem> children = new ArrayList<>();
 
         private HeadingItem(final String id, final String tagName, final String text, final int headingLevel) {
@@ -1363,12 +1381,12 @@ public class HtmlTool extends SafeConfig {
         String getId();
 
         /**
-         * @return Returns the tag name of element
+         * @return Returns the tag name of element.
          */
-        public String getTagName();
+        String getTagName();
 
         /**
-         * Retrieves the text contents of the HTML element (rendered for display)
+         * Retrieves the text contents of the HTML element (rendered for display).
          *
          * @return text contents of the element
          */
@@ -1380,7 +1398,7 @@ public class HtmlTool extends SafeConfig {
         int getHeadingLevel();
 
         /**
-         * Retrieves the children of the HTML element (nested within the element)
+         * Retrieves the children of the HTML element (nested within the element).
          *
          * @return nested items within the element
          */

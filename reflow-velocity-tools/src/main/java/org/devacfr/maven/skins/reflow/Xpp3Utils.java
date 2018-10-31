@@ -15,11 +15,15 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
@@ -39,11 +43,20 @@ public final class Xpp3Utils {
      * Retrieves the child node. Tests both default name and with namespace.
      *
      * @param parentNode
+     *            the parent
      * @param name
-     * @return
+     *            the child name
+     * @param namespace
+     *            the namespace
+     * @return Returns Returns {@link Xpp3Dom} representing the child of {@code parentNode} if exists, otherwise returns
+     *         {@code null}.
      */
-    public static Xpp3Dom getFirstChild(final Xpp3Dom parentNode, final String name, final String namespace) {
-        final Xpp3Dom child = parentNode.getChild(name);
+    @Nullable
+    public static Xpp3Dom getFirstChild(@Nonnull final Xpp3Dom parentNode,
+        @Nonnull final String name,
+        @Nonnull final String namespace) {
+        requireNonNull(namespace);
+        final Xpp3Dom child = requireNonNull(parentNode).getChild(requireNonNull(name));
         if (child != null) {
             return child;
         }

@@ -15,6 +15,8 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import static java.util.Objects.requireNonNull;
+
 import javax.annotation.Nonnull;
 
 import org.apache.maven.project.MavenProject;
@@ -24,6 +26,8 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import com.google.common.base.Strings;
 
 /**
+ * Represents the navbar component.
+ *
  * @author devacfr
  * @since 2.0
  */
@@ -38,7 +42,14 @@ public class Navbar extends PageElement {
     /** */
     private final String filterMenu;
 
-    public Navbar(final @Nonnull SkinConfigTool config) {
+    /**
+     * Default constructor.
+     *
+     * @param config
+     *            a config (can not be {@code null}).
+     */
+    public Navbar(@Nonnull final SkinConfigTool config) {
+        requireNonNull(config);
         final MavenProject project = config.getProject();
         final Xpp3Dom brand = config.get("brand");
         if (brand != null) {
@@ -56,8 +67,7 @@ public class Navbar extends PageElement {
         if (Strings.isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
-        this.setCssClass(
-            config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light"));
+        this.setCssClass(config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light"));
         this.filterMenu = config.getConfigAttribute("navbar", "filterMenu", String.class, null);
     }
 

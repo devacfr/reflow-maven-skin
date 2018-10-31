@@ -31,10 +31,14 @@ import com.google.common.io.Resources;
  * @author Christophe Friederich
  * @since 1.0
  */
-public class Approvals {
+public final class Approvals {
+
+    private Approvals() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
      *            path location of expected file.
@@ -55,7 +59,7 @@ public class Approvals {
     }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
      *            path location of expected file.

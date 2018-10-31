@@ -15,6 +15,8 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
@@ -28,6 +30,7 @@ import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings({ "checkstyle:javadocstyle" })
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
  * <p>
@@ -69,16 +72,19 @@ import org.slf4j.LoggerFactory;
  * </p>
  *
  * @author Andrius Velykis
+ * @author Christophe Friederich
  * @since 1.0
  */
 @DefaultKey("config")
 public class SkinConfigTool extends SafeConfig {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
+    /** */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
 
+    /** */
     public static final String DEFAULT_KEY = "config";
 
-    /** By default use Reflow skin configuration tag */
+    /** By default use Reflow skin configuration tag. */
     public static final String SKIN_KEY = "reflowSkin";
 
     /** */
@@ -87,7 +93,7 @@ public class SkinConfigTool extends SafeConfig {
     /** */
     private String skinKey = SKIN_KEY;
 
-    /* Create dummy nodes to avoid null checks */
+    /** Create dummy nodes to avoid null checks. */
     private Xpp3Dom globalProperties = new Xpp3Dom("");
 
     /** */
@@ -224,18 +230,16 @@ public class SkinConfigTool extends SafeConfig {
     /**
      * Sets the key under which this tool has been configured.
      *
+     * @param key
+     *            the key of config
      * @since 1.0
      */
     protected void setKey(final String key) {
-        if (key == null) {
-            throw new NullPointerException("SkinConfigTool key cannot be null");
-        }
-        this.key = key;
+        this.key = requireNonNull(key, "SkinConfigTool key cannot be null");
     }
 
     /**
-     * Should return the key under which this tool has been configured. The default is `config`.
-     *
+     * @return Returns the key under which this tool has been configured. The default is `config`.
      * @since 1.0
      */
     public String getKey() {
@@ -300,6 +304,8 @@ public class SkinConfigTool extends SafeConfig {
      *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
+     * @param <T>
+     *            the type of returned object.
      */
     @SuppressWarnings("unchecked")
     public <T> T getConfigValue(final String property, final Class<T> targetType, final T defaultValue) {
@@ -344,6 +350,8 @@ public class SkinConfigTool extends SafeConfig {
      *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
+     * @param <T>
+     *            the type of returned object.
      */
     @SuppressWarnings("unchecked")
     public <T> T getConfigAttribute(final String property,
@@ -428,10 +436,16 @@ public class SkinConfigTool extends SafeConfig {
         return value != null && value.equals(value(property));
     }
 
+    /**
+     * @return Returns the {@link String} representing the projectId.
+     */
     public String getProjectId() {
         return projectId;
     }
 
+    /**
+     * @return Returns the {@link String} representing the fileId.
+     */
     public String getFileId() {
         return fileId;
     }
@@ -450,14 +464,23 @@ public class SkinConfigTool extends SafeConfig {
         return project;
     }
 
+    /**
+     * @return
+     */
     public Xpp3Dom getPageProperties() {
         return pageProperties;
     }
 
+    /**
+     * @return
+     */
     public Xpp3Dom getGlobalProperties() {
         return globalProperties;
     }
 
+    /**
+     * @return Returns a {@link String} representing the namespace.
+     */
     public String getNamespace() {
         return namespace;
     }

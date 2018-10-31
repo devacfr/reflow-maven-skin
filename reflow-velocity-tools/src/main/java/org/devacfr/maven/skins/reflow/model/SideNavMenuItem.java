@@ -38,8 +38,12 @@ public class SideNavMenuItem {
     /** */
     private List<SideNavMenuItem> items;
 
+    /** */
     private String parent;
 
+    /**
+     * Default constructor.
+     */
     public SideNavMenuItem() {
     }
 
@@ -60,12 +64,8 @@ public class SideNavMenuItem {
         return parent;
     }
 
-    public void setParent(final String parent) {
-        this.parent = parent;
-    }
-
     public SideNavMenuItem withParent(final String parent) {
-        setParent(parent);
+        this.parent = parent;
         return this;
     }
 
@@ -73,12 +73,8 @@ public class SideNavMenuItem {
         return href;
     }
 
-    public void setHref(final String href) {
-        this.href = href;
-    }
-
     public SideNavMenuItem withHref(final String href) {
-        setHref(href);
+        this.href = href;
         return this;
     }
 
@@ -90,12 +86,8 @@ public class SideNavMenuItem {
         return icon;
     }
 
-    public void setIcon(final String icon) {
-        this.icon = icon;
-    }
-
     public SideNavMenuItem withIcon(final String icon) {
-        setIcon(icon);
+        this.icon = icon;
         return this;
     }
 
@@ -107,12 +99,8 @@ public class SideNavMenuItem {
         return items;
     }
 
-    public void setItems(final List<SideNavMenuItem> items) {
-        this.items = items;
-    }
-
     public SideNavMenuItem withItems(final List<SideNavMenuItem> items) {
-        setItems(items);
+        this.items = items;
         return this;
     }
 

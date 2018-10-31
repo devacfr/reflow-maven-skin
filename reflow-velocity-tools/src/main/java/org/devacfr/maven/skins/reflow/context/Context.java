@@ -15,7 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
-import static org.devacfr.maven.skins.reflow.model.Toc.createToc;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,15 +36,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * The base class of all contexts depending type of page.
+ *
  * @author Christophe Friederich
  * @since 2.0
+ * @param <T>
+ *            type of inherrit context object.
  */
 public class Context<T extends Context<?>> extends PageElement {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(Context.class);
+    /** */
+    private static final Logger LOGGER = LoggerFactory.getLogger(Context.class);
 
     /** */
-    private String type;
+    private ContextType type;
 
     /** */
     private final Navbar navbar;
@@ -55,9 +60,18 @@ public class Context<T extends Context<?>> extends PageElement {
     /** */
     private final ScrollTop scrollTop;
 
-    public static Context<?> buildContext(final SkinConfigTool config) {
+    /**
+     * Build a context depending of current type of page.
+     *
+     * @param config
+     *            a config (can not be {@code null}).
+     * @return Returns a new instance of {@link Context} depending of current page.
+     */
+    @Nonnull
+    public static Context<?> buildContext(@Nonnull final SkinConfigTool config) {
+        requireNonNull(config);
         final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(config.getGlobalProperties(), "pages", config.getNamespace());
-        String type = "page";
+        ContextType type = ContextType.page;
         final List<SideNavMenuItem> pagesInDocuments = NavSideMenu.findAllDocumentMenuItems(pagesNode);
         if (LOGGER.isTraceEnabled()) {
             LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
@@ -67,42 +81,56 @@ public class Context<T extends Context<?>> extends PageElement {
 
         if (pageProperties != null) {
             if (pageProperties.getAttribute("type") != null) {
-                type = pageProperties.getAttribute("type");
+                type = ContextType.valueOf(pageProperties.getAttribute("type"));
             }
 
             // frame type whether page associates to document page
             if (pagesInDocuments.stream().filter(item -> fileId.equals(item.getSlugName())).count() > 0) {
-                type = "frame";
+                type = ContextType.frame;
             }
         }
         Context<?> context = null;
         switch (type) {
-            case "doc":
+            case doc:
                 context = new DocumentContext(config);
                 break;
 
-            case "frame":
+            case frame:
+                // search the parent document page
                 final Optional<SideNavMenuItem> menuItem = pagesInDocuments.stream()
                         .filter(item -> fileId.equals(item.getSlugName()))
                         .findFirst();
                 final SideNavMenuItem item = menuItem.get();
                 final String documentParent = item.getParent();
-                context = new FrameContext(config).withDocumentParent(documentParent).withItem(item);
+                context = new FrameContext(config, documentParent);
                 break;
-            case "page":
+            case page:
             default:
-                context = new PageContext(config).withToc(createToc(config, null));
+                context = new PageContext(config);
                 break;
         }
         return context;
     }
 
-    public Context(final @Nonnull SkinConfigTool config) {
+    /**
+     * Default constructor.
+     *
+     * @param config
+     *            a config (can not be {@code null}).
+     * @param type
+     *            the type of context (can not be {@code null}).
+     */
+    public Context(@Nonnull final SkinConfigTool config, @Nonnull final ContextType type) {
+        requireNonNull(config);
+        this.withType(requireNonNull(type));
         this.navbar = new Navbar(config);
         this.scrollTop = new ScrollTop(config);
         this.footer = new Footer(config);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCssOptions() {
         String css = super.getCssOptions();
@@ -111,47 +139,56 @@ public class Context<T extends Context<?>> extends PageElement {
     }
 
     /**
-     * @return the navbar
+     * @return Returns the {@link Navbar}.
      */
     public Navbar getNavbar() {
         return navbar;
     }
 
     /**
-     * @return the scrollTop
+     * @return Returns the {@link ScrollTop}.
      */
     public ScrollTop getScrollTop() {
         return scrollTop;
     }
 
     /**
-     * @return
+     * @return Returns the {@link Footer}.
      */
     public Footer getFooter() {
         return footer;
     }
 
     /**
+     * Sets the type of context.
+     *
      * @param type
-     * @return
+     *            the of context.
+     * @return Returns the fluent instance context.
      */
-    public T withType(final String type) {
+    protected T withType(final ContextType type) {
         this.type = type;
         return self();
     }
 
     /**
-     * @return
+     * @return Returns the type of context of page.
      */
     public String getType() {
-        return type;
+        return type.name();
     }
 
+    /**
+     * @return Returns the fluent instance.
+     */
     @SuppressWarnings("unchecked")
     protected T self() {
         return (T) this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

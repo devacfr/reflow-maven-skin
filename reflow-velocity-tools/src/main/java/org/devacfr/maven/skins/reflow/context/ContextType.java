@@ -13,31 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devacfr.maven.skins.reflow.model;
-
-import static java.util.Objects.requireNonNull;
-
-import javax.annotation.Nonnull;
-
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+package org.devacfr.maven.skins.reflow.context;
 
 /**
- * Represents the footer component.
+ * Type of context depending of type of page.
  *
- * @author devacfr
+ * @author Christophe Friederich
  * @since 2.0
  */
-public class Footer extends PageElement {
-
-    /**
-     * Default constructor.
-     *
-     * @param config
-     *            a config (can not be {@code null}).
-     */
-    public Footer(@Nonnull final SkinConfigTool config) {
-        requireNonNull(config);
-        this.setCssClass(config.getConfigAttribute("footer", "cssClass", String.class, "footer-light bg-light border"));
-    }
+public enum ContextType {
+    /** context manage page (default format). */
+    page,
+    /** context manage document page. */
+    doc,
+    /** context manage frame used in document page. */
+    frame
 
 }

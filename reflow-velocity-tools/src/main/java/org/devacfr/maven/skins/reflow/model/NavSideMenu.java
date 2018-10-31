@@ -63,6 +63,9 @@ public class NavSideMenu extends PageElement {
         return includePages;
     }
 
+    /**
+     * @param config
+     */
     public NavSideMenu(final SkinConfigTool config) {
 
         final Xpp3Dom pageNode = config.getPageProperties();
@@ -89,37 +92,64 @@ public class NavSideMenu extends PageElement {
         return css;
     }
 
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }
 
-    public NavSideMenu withName(final String name) {
+    /**
+     * @param name
+     * @return
+     */
+    protected NavSideMenu withName(final String name) {
         this.name = name;
         return this;
     }
 
+    /**
+     * @return
+     */
     public boolean isHasItems() {
         return items != null && items.size() > 0;
     }
 
+    /**
+     * @return
+     */
     public List<SideNavMenuItem> getItems() {
         return items;
     }
 
-    public NavSideMenu withItems(final List<SideNavMenuItem> items) {
+    /**
+     * @param items
+     * @return
+     */
+    protected NavSideMenu withItems(final List<SideNavMenuItem> items) {
         this.items = items;
         return this;
     }
 
+    /**
+     * @return
+     */
     public boolean isSelectOnExpand() {
         return selectOnExpand;
     }
 
-    public NavSideMenu withSelectOnExpand(final boolean selectOnExpand) {
+    /**
+     * @param selectOnExpand
+     * @return
+     */
+    protected NavSideMenu withSelectOnExpand(final boolean selectOnExpand) {
         this.selectOnExpand = selectOnExpand;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
