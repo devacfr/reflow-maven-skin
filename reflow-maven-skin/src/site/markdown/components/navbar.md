@@ -10,11 +10,11 @@ Navbar is Bootstrap responsive navigation header component fixed to the top of p
   <reflowSkin>
     ...
     <!-- global -->
-    <navbar filterMenu="Regex filter" cssClass="bootstrap classes">
+    <navbar filterMenu="Regex filter" cssClass="bootstrap classes" />
     <pages>
         <page>
             <!-- specific one page -->
-            <navbar cssClass="bootstrap classes">
+            <navbar cssClass="bootstrap classes" />
         </page>
     </pages>
     ...

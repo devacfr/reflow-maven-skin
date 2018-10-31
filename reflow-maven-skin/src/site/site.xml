@@ -203,6 +203,7 @@
               <item name="Table of Contents" href="components/toc.html"/>
               <item name="Header" href="components/header.html"/>
               <item name="Navbar" href="components/navbar.html"/>
+              <item name="Navside Menu" href="components/navside-menu.html"/>
               <item name="Menus" href="components/menus.html"/>
             </item>
             <item name="Themes" href="themes/index.html" />
