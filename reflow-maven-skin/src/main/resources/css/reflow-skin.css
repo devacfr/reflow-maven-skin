@@ -248,6 +248,10 @@ body {
     padding-left: 20px;
 }
 
+#m-toc-sidebar li.h5 {
+    padding-left: 30px;
+}
+
 #m-toc-sidebar .nav li:before {
     border-left: 1px solid #dbdbdb;
     bottom: 0;
@@ -506,7 +510,6 @@ body {
  * Footer
  *--------------------------------------------------*/
 footer {
-    margin-top: 1rem;
     padding: 1rem;
 }
 
