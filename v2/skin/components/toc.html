@@ -11,7 +11,7 @@
 
      <div class="row">
                                                       
-                <div class="col py-3">
+                <div class="col-lg-12 col-xl-9 py-3">
                  <h1 id="components-toc_toc_table_of_contents_component1">Table of Contents Component</h1> 
 <p>The skin supports automatic generation of table of contents (ToC) for any page based on the headings appearing in the page. Clicking on the ToC item jumps to the corresponding heading in the page.</p> 
 <p>The ToC style can be chosen with <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element:</p> 
@@ -47,14 +47,20 @@
  <p>The ToC snaps to the top of the screen to allow easy navigation in long pages.</p> 
  <div> 
   <div> 
-   <pre class="source">&lt;toc numberItems="number|-1" flatten="true|false" cssClass="bootstrap classes"&gt;top&lt;/toc&gt;
+   <pre class="source">&lt;toc numberItems="number|-1" 
+     flatten="true|false"
+     cssClass="bootstrap classes"
+     theme="light|dark"
+     background="bootstrap colour theme"&gt;top&lt;/toc&gt;
 </pre> 
   </div> 
  </div> 
  <ul> 
   <li><b>numberItems</b> <span class="badge badge-light">v2.0</span> - Sets a integer greater than 0 to limit the number of top ToC items. All menu entries exceeding that number are grouped under the last dropdown menu. <code class="\&quot;literal\&quot;">-1</code> or no attribute (default) displays all items.</li> 
   <li><b>flatten</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="\&quot;literal\&quot;">true</code> flatten first 2 levels of ToC. Top ToC for pages that have only a single top heading (e.g. h1) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether, otherwise <code class="\&quot;literal\&quot;">false</code> to always just use 1st level ToC items. this attribute replace <code class="\&quot;literal\&quot;">&lt;tocTopFlatten&gt;</code> element.</li> 
-  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class of Top Toc with built-in Bootstrap support. <code class="\&quot;literal\&quot;">navbar-dark bg-dark</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. <code class="\&quot;literal\&quot;">navbar-light bg-light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>. <b>note</b>: <code class="\&quot;literal\&quot;">cssClass</code> override attributes <code class="\&quot;literal\&quot;">theme</code> and <code class="\&quot;literal\&quot;">background</code> if is filled.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code class="\&quot;literal\&quot;">light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code class="\&quot;literal\&quot;">light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
  </ul> 
 </div> 
 <div class="section"> 
@@ -62,7 +68,10 @@
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
  <div> 
   <div> 
-   <pre class="source">&lt;toc position="fixed|relative" type="fixed|static" autoExpandable="true|false" expanded="true|false"&gt;sidebar&lt;/toc&gt;
+   <pre class="source">&lt;toc position="fixed|relative"
+     type="fixed|static"
+     autoExpandable="true|false"
+     expanded="true|false"&gt;sidebar&lt;/toc&gt;
 </pre> 
   </div> 
  </div> 
@@ -105,15 +114,15 @@
  </div> 
 </div>
         </div>
-    <div class="d-none d-xl-block col-3">
+    <div class="d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src\site\markdown/components\toc.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src/site/markdown/components/toc.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
                 </li>
             </ul>
         </div>
-                        <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
     <li class="h1">

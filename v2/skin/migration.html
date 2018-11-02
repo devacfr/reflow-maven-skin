@@ -11,7 +11,7 @@
 
      <div class="row">
                                                       
-                <div class="col py-3">
+                <div class="col-lg-12 col-xl-9 py-3">
                  <h1 id="migration_toc_migration_to_v21">Migration to v2</h1> 
 <p>Reflow is a major rewrite of the entire project. The most notable changes are summarized below, followed by more specific changes to relevant components.</p> 
 <div class="section"> 
@@ -141,15 +141,33 @@
  <h2 id="migration_toc_by_component">By component</h2> 
  <p>This list highlights key changes by component between v1.4 and v2.0.0.</p> 
  <div class="section"> 
+  <h3 id="migration_toc_navside_menu">Navside menu</h3> 
+  <p>It is a new component used in documentation page support. (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation )</p> 
+  <div> 
+   <div> 
+    <pre class="source">&lt;navside-menu cssClass="bootstrap classes"
+              theme="light|dark"
+              background="bootstrap colour theme" /&gt;
+</pre> 
+   </div> 
+  </div> 
+ </div> 
+ <div class="section"> 
   <h3 id="migration_toc_toc_topbar_component">Toc topbar component</h3> 
   <div> 
    <div> 
-    <pre class="source">&lt;toc cssClass="navbar-dark bg-dark|bootstrap classes" numberItems="number|-1" flatten="false|true"&gt;top&lt;/toc&gt;
+    <pre class="source">&lt;toc cssClass="navbar-dark bg-dark|bootstrap classes"
+     theme="light|dark"
+     background="bootstrap colour theme"
+     numberItems="number|-1" 
+     flatten="false|true"&gt;top&lt;/toc&gt;
 </pre> 
    </div> 
   </div> 
   <ul> 
    <li>Add ccsClass attribute (default value <code class="\&quot;literal\&quot;">navbar-dark bg-dark</code>) to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
+   <li>Add <code class="\&quot;literal\&quot;">theme</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">background</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
    <li>Replace <code class="\&quot;literal\&quot;">tocTopMax</code> element by <code class="\&quot;literal\&quot;">numberItems</code> attribute to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
    <li>Replace <code class="\&quot;literal\&quot;">tocTopFlatten</code> element by <code class="\&quot;literal\&quot;">flatten</code> attribute to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
   </ul> 
@@ -173,7 +191,10 @@
   <h3 id="migration_toc_navbar_component">Navbar component</h3> 
   <div> 
    <div> 
-    <pre class="source">&lt;navbar filterMenu="Regex filter" cssClass="navbar-light bg-light|bootstrap classes"&gt;
+    <pre class="source">&lt;navbar filterMenu="Regex filter"
+        cssClass="navbar-light bg-light|bootstrap classes"
+        theme="light|dark"
+        background="bootstrap colour theme"&gt;
 </pre> 
    </div> 
   </div> 
@@ -181,19 +202,27 @@
    <li>Replace <code class="\&quot;literal\&quot;">&lt;topNav&gt;</code> element by <code class="\&quot;literal\&quot;">filterMenu</code> attribute.</li> 
    <li>Remove <code class="\&quot;literal\&quot;">&lt;navbarInverse&gt;</code> element. use <code class="\&quot;literal\&quot;">cssClass</code> instead.</li> 
    <li>Add <code class="\&quot;literal\&quot;">cssClass</code> attribute (default value <code class="\&quot;literal\&quot;">navbar-light bg-light</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">theme</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">background</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
+  </ul> 
+ </div> 
+ <div class="section"> 
+  <h3 id="migration_toc_bottom_navigation">Bottom navigation</h3> 
+  <ul> 
+   <li>Remove <code class="\&quot;literal\&quot;">maxSpan</code> attribute, use auto-layout Bootstrap columns.</li> 
   </ul> 
  </div> 
 </div>
         </div>
-    <div class="d-none d-xl-block col-3">
+    <div class="d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src\site\markdown/migration.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src/site/markdown/migration.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
                 </li>
             </ul>
         </div>
-                        <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
     <li class="h1">
@@ -232,6 +261,9 @@
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
         <li class="h3">
+        <a class="nav-link" href="#migration_toc_navside_menu" title="Navside menu">Navside menu</a>
+    </li>
+    <li class="h3">
         <a class="nav-link" href="#migration_toc_toc_topbar_component" title="Toc topbar component">Toc topbar component</a>
     </li>
     <li class="h3">
@@ -239,6 +271,9 @@
     </li>
     <li class="h3">
         <a class="nav-link" href="#migration_toc_navbar_component" title="Navbar component">Navbar component</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#migration_toc_bottom_navigation" title="Bottom navigation">Bottom navigation</a>
     </li>
     </ul>
                     </ul>
