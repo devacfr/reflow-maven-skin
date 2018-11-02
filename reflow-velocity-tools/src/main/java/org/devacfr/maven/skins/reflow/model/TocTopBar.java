@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,12 +31,19 @@ public class TocTopBar extends Toc<TocTopBar> {
     /** -1 or no numberItems attribute (default) - unlimited */
     private int numberItems = -1;
 
+    /**
+     * Default constructor.
+     *
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
+     */
     public TocTopBar(final @Nonnull SkinConfigTool config) {
-        super("top");
-        this.setCssClass(
-            config.getConfigAttribute("toc", "cssClass", String.class, "navbar-dark bg-dark"));
-        this.withFlatten(config.getConfigAttribute("toc", "flatten", Boolean.class, false))
-                .withNumberItems(config.getConfigAttribute("toc", "numberItems", Integer.class, -1))
+        super("top", "navbar");
+        this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
+        this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
+        this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));
+        this.withFlatten(config.getConfigAttribute(COMPONENT, "flatten", Boolean.class, false))
+                .withNumberItems(config.getConfigAttribute(COMPONENT, "numberItems", Integer.class, -1))
                 .withEnabled(true);
     }
 

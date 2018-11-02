@@ -140,7 +140,7 @@ The skin is configurable using the `<custom>` element in your `site.xml` file. T
             </sections>
         </overview>
         <documentation type="doc">
-          <menu name="Documentation" selectOnExpand="false">
+          <menu name="Documentation" selectFirstOnExpand="false">
             <item name="Overview" href="overview.html"/>
             <item name="Installation">
               <item name="Standalone Installation" href="standalone-installation.html"/>

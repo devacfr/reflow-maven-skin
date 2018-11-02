@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,11 +25,10 @@ import javax.annotation.Nonnull;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
-import org.devacfr.maven.skins.reflow.Xpp3Utils;
 import org.devacfr.maven.skins.reflow.model.Footer;
 import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 import org.devacfr.maven.skins.reflow.model.Navbar;
-import org.devacfr.maven.skins.reflow.model.PageElement;
+import org.devacfr.maven.skins.reflow.model.Component;
 import org.devacfr.maven.skins.reflow.model.ScrollTop;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
@@ -43,7 +42,7 @@ import org.slf4j.LoggerFactory;
  * @param <T>
  *            type of inherrit context object.
  */
-public class Context<T extends Context<?>> extends PageElement {
+public class Context<T extends Context<?>> extends Component {
 
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(Context.class);
@@ -70,11 +69,11 @@ public class Context<T extends Context<?>> extends PageElement {
     @Nonnull
     public static Context<?> buildContext(@Nonnull final SkinConfigTool config) {
         requireNonNull(config);
-        final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(config.getGlobalProperties(), "pages", config.getNamespace());
+
         ContextType type = ContextType.page;
-        final List<SideNavMenuItem> pagesInDocuments = NavSideMenu.findAllDocumentMenuItems(pagesNode);
+        final List<SideNavMenuItem> allSideNaveMenuItems = NavSideMenu.findAllSideNavMenuItems(config);
         if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("findPagesIncludeInDocument: " + pagesInDocuments);
+            LOGGER.trace("findAllSideNavMenuItems: " + allSideNaveMenuItems);
         }
         final Xpp3Dom pageProperties = config.getPageProperties();
         final String fileId = config.getFileId();
@@ -85,7 +84,7 @@ public class Context<T extends Context<?>> extends PageElement {
             }
 
             // frame type whether page associates to document page
-            if (pagesInDocuments.stream().filter(item -> fileId.equals(item.getSlugName())).count() > 0) {
+            if (allSideNaveMenuItems.stream().filter(item -> fileId.equals(item.getSlugName())).count() > 0) {
                 type = ContextType.frame;
             }
         }
@@ -97,7 +96,7 @@ public class Context<T extends Context<?>> extends PageElement {
 
             case frame:
                 // search the parent document page
-                final Optional<SideNavMenuItem> menuItem = pagesInDocuments.stream()
+                final Optional<SideNavMenuItem> menuItem = allSideNaveMenuItems.stream()
                         .filter(item -> fileId.equals(item.getSlugName()))
                         .findFirst();
                 final SideNavMenuItem item = menuItem.get();

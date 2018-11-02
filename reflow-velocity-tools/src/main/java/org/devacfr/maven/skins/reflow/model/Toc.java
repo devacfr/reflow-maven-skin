@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,12 +25,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Represents the base of Table of content component.
+ *
  * @author devacfr
  * @since 2.0
+ * @param <T>
+ *            the type of inherit of {@link Toc}.
  */
-public abstract class Toc<T extends Toc<?>> extends PageElement {
+public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(Toc.class);
+    /** */
+    protected static final String COMPONENT = "toc";
+
+    /** */
+    private static final Logger LOGGER = LoggerFactory.getLogger(Toc.class);
 
     /** enable by default */
     private boolean enabled = true;
@@ -40,12 +48,14 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
 
     /**
      * @param config
+     *            a config (can <b>not</b> be {@code null}).
      * @param preferredType
-     * @return
+     *            the default type of Toc to use.
+     * @return Returns new instance corresponding {@link Toc} to configuration.
      */
     public static Toc<?> createToc(final SkinConfigTool config, final String preferredType) {
         Toc<?> toc = null;
-        String type = config.value("toc");
+        String type = config.value(COMPONENT);
         if (LOGGER.isTraceEnabled()) {
             LOGGER.trace("Page '{}' Find Toc: {}", config.getFileId(), type);
         }
@@ -65,7 +75,7 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
                 break;
             default:
                 // create a disabled empty toc
-                toc = new Toc<Toc<?>>("") {
+                toc = new Toc<Toc<?>>("", "") {
 
                     @Override
                     public String getCssOptions() {
@@ -79,28 +89,51 @@ public abstract class Toc<T extends Toc<?>> extends PageElement {
         return toc;
     }
 
-    protected Toc(final String type) {
+    /**
+     * @param type
+     *            the {@link String} representation of Toc.
+     * @param component
+     *            the bootstrap component name.
+     */
+    protected Toc(final String type, final String component) {
+        super(component);
         this.type = type;
     }
 
+    /**
+     * @return Returns the fluent instance.
+     */
     @SuppressWarnings("unchecked")
     protected T self() {
         return (T) this;
     }
 
+    /**
+     * @return Returns the {@link String} reprensenting the type of {@link Toc}.
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * @return
+     */
     public boolean isEnabled() {
         return enabled;
     }
 
+    /**
+     * @param enabled
+     * @return
+     */
     protected T withEnabled(final boolean enabled) {
         this.enabled = enabled;
         return self();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

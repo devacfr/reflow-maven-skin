@@ -148,3 +148,7 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 
 [multi-module]: reflow-documentation.html#multi-module.html
 [bootstrap-migration]: https://getbootstrap.com/docs/4.1/migration
+
+### Bottom navigation
+
+- Remove `maxSpan` attribute, use auto-layout Bootstrap columns.

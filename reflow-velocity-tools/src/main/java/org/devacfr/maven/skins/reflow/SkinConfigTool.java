@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,6 +19,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
@@ -30,7 +32,6 @@ import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings({ "checkstyle:javadocstyle" })
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
  * <p>
@@ -465,14 +466,14 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @return
+     * @return Returns the page level {@link Xpp3Dom}.
      */
     public Xpp3Dom getPageProperties() {
         return pageProperties;
     }
 
     /**
-     * @return
+     * @return Returns the root level {@link Xpp3Dom}.
      */
     public Xpp3Dom getGlobalProperties() {
         return globalProperties;
@@ -486,10 +487,14 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
+     * Converts a filename to pageId format.
+     *
      * @param fileName
-     * @return
+     *            the filename to convert
+     * @return Returns a {@link String} representing the pageId of {@code filename}.
      */
-    public static String slugFilename(final String fileName) {
+    @Nullable
+    public static String slugFilename(@Nullable final String fileName) {
         if (fileName == null) {
             return null;
         }

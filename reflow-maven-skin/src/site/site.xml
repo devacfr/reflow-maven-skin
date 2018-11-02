@@ -188,7 +188,7 @@
         </toc-sidebar>
         <reflow-documentation type="doc">
           <navbar cssClass="navbar-dark bg-dark border-bottom" filterMenu="inherit" />
-          <menu name="Reflow Documentation" selectOnExpand="true">
+          <menu name="Reflow Documentation" selectFirstOnExpand="true">
             <item name="Get Started" href="get-started.html" />
             <item name="Layouts" >
               <item name="Overview" href="layouts.html"/>
@@ -198,7 +198,7 @@
               <item name="Thumbnails" href="thumbnails.html"/>
               <item name="Sidebar" href="sidebar.html"/>
             </item>
-            <item name="Components"  selectOnExpand="ture">
+            <item name="Components">
               <item name="Overview" href="components/components.html"/>
               <item name="Table of Contents" href="components/toc.html"/>
               <item name="Header" href="components/header.html"/>

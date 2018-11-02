@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,7 +27,10 @@ import org.devacfr.maven.skins.reflow.SkinConfigTool;
  * @author devacfr
  * @since 2.0
  */
-public class Footer extends PageElement {
+public class Footer extends BsComponent {
+
+    /** */
+    private static final String COMPONENT = "footer";
 
     /**
      * Default constructor.
@@ -36,8 +39,11 @@ public class Footer extends PageElement {
      *            a config (can not be {@code null}).
      */
     public Footer(@Nonnull final SkinConfigTool config) {
+        super(COMPONENT);
         requireNonNull(config);
-        this.setCssClass(config.getConfigAttribute("footer", "cssClass", String.class, "footer-light bg-light border"));
+        this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
+        this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
+        this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));
     }
 
 }

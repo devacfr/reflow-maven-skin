@@ -6,20 +6,11 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 Navside menu component fixed to the left of page. It is a part of document page.
 
 ```xml
-<custom>
-  <reflowSkin>
-    ...
-    <!-- global -->
-    <navside-menu cssClass="bootstrap classes" />
-    <pages>
-        <page>
-            <!-- specific one page -->
-            <navside-menu cssClass="bootstrap classes" />
-        </page>
-    </pages>
-    ...
-  </reflowSkin>
-</custom>
+<navside-menu cssClass="bootstrap classes"
+              theme="light|dark"
+              background="bootstrap colour theme" />
 ```
 
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class of navside menu with built-in Bootstrap support. `navside-light bg-light` is the default value if value is empty or `null`.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. `navside-light bg-light` is the default value if value is empty or `null`. **note**: `cssClass` override attributes `theme` and `background` if is filled.
+- **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
+- **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.

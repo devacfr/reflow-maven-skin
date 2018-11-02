@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,7 +31,10 @@ import com.google.common.base.Strings;
  * @author devacfr
  * @since 2.0
  */
-public class Navbar extends PageElement {
+public class Navbar extends BsComponent {
+
+    /** */
+    private static final String COMPONENT = "navbar";
 
     /** */
     private String brandName;
@@ -46,9 +49,10 @@ public class Navbar extends PageElement {
      * Default constructor.
      *
      * @param config
-     *            a config (can not be {@code null}).
+     *            a config (can <b>not</b> be {@code null}).
      */
     public Navbar(@Nonnull final SkinConfigTool config) {
+        super(COMPONENT);
         requireNonNull(config);
         final MavenProject project = config.getProject();
         final Xpp3Dom brand = config.get("brand");
@@ -67,8 +71,10 @@ public class Navbar extends PageElement {
         if (Strings.isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
-        this.setCssClass(config.getConfigAttribute("navbar", "cssClass", String.class, "navbar-light bg-light"));
-        this.filterMenu = config.getConfigAttribute("navbar", "filterMenu", String.class, null);
+        this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
+        this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
+        this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));
+        this.filterMenu = config.getConfigAttribute(COMPONENT, "filterMenu", String.class, null);
     }
 
     /**

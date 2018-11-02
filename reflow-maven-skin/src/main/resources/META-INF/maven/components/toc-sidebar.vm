@@ -21,7 +21,7 @@
  #macro ( renderTocSidebar )##
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
         #if ( !$tocSidebarAdded )##
-            <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm ${pageContext.toc.cssOptions}">
+            <div id="m-toc-sidebar" class="d-print-none ${pageContext.toc.cssOptions}">
                 <nav id="m-toc-sidebar-nav flex-column">
 #*                  *##renderAsideTocMenu ( $tocItems )
                 </nav>

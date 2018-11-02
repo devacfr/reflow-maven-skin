@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,58 +47,95 @@ public class SideNavMenuItem {
     public SideNavMenuItem() {
     }
 
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
-
+    /**
+     * @param name
+     * @return
+     */
     public SideNavMenuItem withName(final String name) {
-        setName(name);
+        this.name = name;
         return this;
     }
 
+    /**
+     * @return
+     */
     public String getParent() {
         return parent;
     }
 
+    /***
+     * @param parent
+     * @return
+     */
     public SideNavMenuItem withParent(final String parent) {
         this.parent = parent;
         return this;
     }
 
+    /**
+     * @return
+     */
     public String getHref() {
         return href;
     }
 
+    /**
+     * @param href
+     * @return
+     */
     public SideNavMenuItem withHref(final String href) {
         this.href = href;
         return this;
     }
 
+    /**
+     * @return
+     */
     public String getSlugName() {
         return SkinConfigTool.slugFilename(href);
     }
 
+    /**
+     * @return
+     */
     public String getIcon() {
         return icon;
     }
 
+    /**
+     * @param icon
+     * @return
+     */
     public SideNavMenuItem withIcon(final String icon) {
         this.icon = icon;
         return this;
     }
 
+    /**
+     * @return
+     */
     public boolean isHasItems() {
         return items != null && items.size() > 0;
     }
 
+    /**
+     * @return
+     */
     public List<SideNavMenuItem> getItems() {
         return items;
     }
 
+    /**
+     * @param items
+     * @return
+     */
     public SideNavMenuItem withItems(final List<SideNavMenuItem> items) {
         this.items = items;
         return this;
