@@ -114,13 +114,31 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 
 This list highlights key changes by component between v1.4 and v2.0.0.
 
+### Navside menu
+
+It is a new component used in documentation page support. (see [Navside Menu Component][navside-doc] documentation )
+
+```xml
+<navside-menu cssClass="bootstrap classes"
+              theme="light|dark"
+              background="bootstrap colour theme" />
+```
+
+[navside-doc]: reflow-documentation.html#components-navside-menu
+
 ### Toc topbar component
 
 ```xml
-<toc cssClass="navbar-dark bg-dark|bootstrap classes" numberItems="number|-1" flatten="false|true">top</toc>
+<toc cssClass="navbar-dark bg-dark|bootstrap classes"
+     theme="light|dark"
+     background="bootstrap colour theme"
+     numberItems="number|-1" 
+     flatten="false|true">top</toc>
 ```
 
 - Add ccsClass attribute (default value `navbar-dark bg-dark`) to `<toc>` element.
+- Add `theme` attribute (default value `light`)
+- Add `background` attribute (default value `light`)
 - Replace `tocTopMax` element by `numberItems` attribute to `<toc>` element.
 - Replace `tocTopFlatten` element by `flatten` attribute to `<toc>` element.
 
@@ -139,12 +157,17 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 ### Navbar component
 
 ```xml
-<navbar filterMenu="Regex filter" cssClass="navbar-light bg-light|bootstrap classes">
+<navbar filterMenu="Regex filter"
+        cssClass="navbar-light bg-light|bootstrap classes"
+        theme="light|dark"
+        background="bootstrap colour theme">
 ```
 
 - Replace `<topNav>` element by `filterMenu` attribute.
 - Remove `<navbarInverse>` element. use `cssClass` instead.
 - Add `cssClass` attribute (default value `navbar-light bg-light`)
+- Add `theme` attribute (default value `light`)
+- Add `background` attribute (default value `light`)
 
 [multi-module]: reflow-documentation.html#multi-module.html
 [bootstrap-migration]: https://getbootstrap.com/docs/4.1/migration

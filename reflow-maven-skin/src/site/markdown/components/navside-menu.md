@@ -1,6 +1,6 @@
 # Navside Menu Component
 
-support <span class="badge badge-primary">v2.0</span><br/>
+support <span class="badge badge-primary">v2.0</span> <span class="badge badge-success">new</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 Navside menu component fixed to the left of page. It is a part of document page.
