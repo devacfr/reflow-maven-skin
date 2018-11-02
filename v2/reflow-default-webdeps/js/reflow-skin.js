@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -308,7 +308,7 @@ var mReflow = function () {
     }
 
     // select first menu item on expand
-    if ($body.hasClass('m-sidenav-select-onexpand')) {
+    if ($body.hasClass('m-sidenav-select-first-on-select')) {
       navSidebar.on('shown.bs.collapse', function (ev) {
         var el = $(ev.target);
         // break if have already active item
