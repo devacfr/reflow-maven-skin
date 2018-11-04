@@ -198,6 +198,7 @@ The page ID is its file name without extension. This is because the pages may be
 
 For generated files that are in directories, `"-"` is used as the separator for directory structure. So a file in _./subdir/foo.html_ is referred as `<subdir-foo>` in the configuration.
 
+
 $h3 Configuration inheritance
 
 The page configuration is applied to all generated pages that have the indicated file name. For multi-module builds, child sites will inherit the configuration from parent site. So if the parent has defined a configuration for `<index>`, it will also be applied to _index.html_ in the child project.

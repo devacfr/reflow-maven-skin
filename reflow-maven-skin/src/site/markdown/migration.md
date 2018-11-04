@@ -28,8 +28,6 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 
 - Replace `#bannerRight` `#bannerLeft` by `.bannerRight` and `.bannerLeft`.
 
-## Documention page support
-
 ## Local resources
 
 - Add new `reflow-default-webdeps` module containing all required web dependencies to work locally.

@@ -105,22 +105,32 @@
           <toc>false</toc>
           <breadcrumbs>false</breadcrumbs>
         </contribute>
-        <!-- Disable source highlighting for Maven reports -->
-        <source-repository>
-          <highlightJs>false</highlightJs>
-        </source-repository>
-        <issue-tracking>
-          <highlightJs>false</highlightJs>
-          <toc>false</toc>
-        </issue-tracking>
         <licenses>
           <highlightJs>false</highlightJs>
           <toc>false</toc>
         </licenses>
-        <!-- Disable ToC for some Maven reports -->
-        <project-info>
+        <modules>
           <toc>false</toc>
-        </project-info>
+        </modules>
+        <summary>
+          <toc>false</toc>
+        </summary>
+        <team>
+          <toc>false</toc>
+        </team>
+        <scm>
+          <toc>false</toc>
+        </scm>
+        <issue-management>
+          <highlightJs>false</highlightJs>
+          <toc>false</toc>
+        </issue-management>
+        <dependency-convergence>
+          <toc>false</toc>
+        </dependency-convergence>
+        <plugins>
+          <toc>false</toc>
+        </plugins>
         <github-report>
           <toc>false</toc>
         </github-report>
@@ -130,6 +140,9 @@
         <release-notes-release-notes>
           <toc>false</toc>
         </release-notes-release-notes>
+        <rat-report>
+          <toc>false</toc>
+        </rat-report>
       </pages>
     </reflowSkin>
   </custom>
