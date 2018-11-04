@@ -14,7 +14,7 @@
 ## limitations under the License.
 ##
 <div class="main-body ${pageContext.cssOptions}">
-    <div class="row no-gutters m-0">
+    <div class="row m-0">
         <div class="navside-col col-lg-2 px-0">
 #*          *##renderNavSideMenu ()##
         </div>
