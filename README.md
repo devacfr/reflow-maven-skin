@@ -15,8 +15,8 @@ To get started and see how the skin looks by default, check out [reflow-maven-sk
 
 > **Reflow supported version**
 >
-> - **1.5.0** - built in on Boostrap 3, [Reflow 1 Documentation](http://devacfr.github.io/reflow-maven-skin).
-> - **2.0.0-beta1** - built in on Boostrap 4, Reflow 2 is a major rewrite of the entire project, read [Migration documentation][migration] to upgrade your site.
+> - **1.5.0** - built on Boostrap 3, [Reflow 1 Documentation](http://devacfr.github.io/reflow-maven-skin).
+> - **2.0.0-beta2** - built on Boostrap 4, Reflow 2 is a major rewrite of the entire project, read [Migration documentation][migration] to upgrade your site.
 
 [reflow-v2]: http://devacfr.github.io/reflow-maven-skin/v2
 [migration]: http://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#migration.html
@@ -32,7 +32,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>2.0.0-beta1</version>
+    <version>2.0.0-beta2</version>
   </skin>
   ...
 </project>
@@ -54,7 +54,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>2.0.0-beta1</version>
+          <version>2.0.0-beta2</version>
         </dependency>
         ...
       </dependencies>

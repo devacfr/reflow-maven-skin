@@ -60,7 +60,7 @@ To use Reflow skin in your Maven site, [add it to site.xml][reflow-usage]:
 
 [Full usage instructions &raquo;][reflow-usage]
 
-[reflow-usage]: skin/
+[reflow-usage]: skin/reflow-documentation.html#get-started_toc_usage
 
 
 $h2 Responsive layouts
@@ -105,11 +105,12 @@ $h2 Configure
 Reflow is very configurable: many features and components can be disabled, and optional
 enhancements enabled using [configuration in `site.xml`][reflow-config]:
 
--   **Table of contents** - display ToC for each page: top bar or sidebar
--   **Menus** - filter Maven menus and select what to display in top or bottom navigation
--   **Code highlight** - syntax colouring for code snippets
--   **Image preview** - display images in pop-ups
--   ... [and more][reflow-config]
+- **Table of contents** - display ToC for each page: top bar or sidebar
+- **Menus** - filter Maven menus and select what to display in top or bottom navigation
+- **Code highlight** - syntax colouring for code snippets
+- **Image preview** - display images in pop-ups
+- **Documentation support** - organize easier your multi-section documentation.
+- ... [and more][reflow-config]
 
 Check out the [documentation][reflow-config] for all the features. Every configuration option
 can be applied on a _per-page_ basis!
