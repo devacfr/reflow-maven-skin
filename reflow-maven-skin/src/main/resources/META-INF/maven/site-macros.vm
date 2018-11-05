@@ -397,7 +397,7 @@
             <ul class="nav flex-column flex-nowrap">
                 <li class="nav-item">
 #*  *##if( $decoration.edit && $docRenderingContext.editable )
-                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Edit this page</a>
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
 #*  *##end
                 </li>
             </ul>
