@@ -6,7 +6,7 @@
 [maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
 [gitter]: https://gitter.im/reflow-maven-skin/public
 
-# [Reflow Maven skin](  )
+# Reflow Maven skin
 
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
 and stylistic customizations to create a modern-looking Maven-generated website and documentatin generation.
@@ -16,7 +16,7 @@ To get started and see how the skin looks by default, check out [reflow-maven-sk
 > **Reflow supported version**
 >
 > - **1.5.0** - built on Boostrap 3, [Reflow 1 Documentation](http://devacfr.github.io/reflow-maven-skin).
-> - **2.0.0-beta2** - built on Boostrap 4, Reflow 2 is a major rewrite of the entire project, read [Migration documentation][migration] to upgrade your site.
+> - **2.0.0-beta2** - built on Boostrap 4, Reflow 2 is a major rewrite of the entire project and maybe the best maven skin to organize your documentation, read [Migration documentation][migration] to upgrade your site.
 
 [reflow-v2]: http://devacfr.github.io/reflow-maven-skin/v2
 [migration]: http://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#migration.html
@@ -142,7 +142,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css, <!-- can be remove if use bootswatch theme-->
-                        **/css/fontawesome/**/*,                        
+                        **/css/fontawesome/**/*,
                         **/css/themes/flaty/*.css, <!-- use flaty bootswatch theme-->
                         **/js/*.js,
                         **/js/languages/*,
@@ -166,8 +166,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 Have a bug or a feature request? Please create an issue here on GitHub that conforms with
 [necolas's guidelines](http://github.com/necolas/issue-guidelines).
 
-http://github.com/devacfr/reflow-maven-skin/issues
-
+[http://github.com/devacfr/reflow-maven-skin/issues](http://github.com/devacfr/reflow-maven-skin/issues)
 
 ## Contributing
 
@@ -175,18 +174,16 @@ Fork the repository and submit pull requests on **develop** branch. Reflow use g
 
 > Pull request on master will be refused.
 
-
 ## Author
 
 **Andrius Velykis**
 
-+ http://andrius.velykis.lt
-+ http://github.com/andriusvelykis
+- [http://andrius.velykis.lt](http://andrius.velykis.lt)
+- [http://github.com/andriusvelykis](http://github.com/andriusvelykis)
 
 **Christophe Friederich**
 
-+ http://devacfr.github.io/
-
+- [http://devacfr.github.io/](http://devacfr.github.io/)
 
 ## Copyright and license
 
@@ -203,6 +200,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
 
 [release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management
