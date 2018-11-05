@@ -152,7 +152,7 @@
 #*  *##if ( $target ) target="$target" #end##
 #*  *##checkExtLink ( $href )##
     #set($css = $className)
-#*  *##if ( $checkExtLink ) #set($css = "externalink " + $className) #end##
+#*  *##if ( $checkExtLink ) #set($css = "externalLink " + $className) #end##
  class="$css" >##
 #*
     *##if ( $img && $position == "left" )#*
