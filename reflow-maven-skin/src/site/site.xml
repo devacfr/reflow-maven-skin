@@ -205,7 +205,6 @@
               <item name="Header" href="components/header.html"/>
               <item name="Navbar" href="components/navbar.html"/>
               <item name="Navside Menu" href="components/navside-menu.html"/>
-              <item name="Menus" href="components/menus.html"/>
             </item>
             <item name="Documentation support" href="documentation-support.html" />
             <item name="Themes" href="themes/index.html" />
