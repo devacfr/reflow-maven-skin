@@ -50,10 +50,7 @@ setting own page title, e.g. to allow for titles such as "_My Page | My Super We
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
-The bottom navigation provides space for site description, logo or other content. It is placed on
-the right of the bottom navigation area. Site description takes up space remaining after the bottom
-navigation (controlled via [`maxSpan` attribute](#Bottom_navigation), site description occupies
-`12 - maxSpan` then). The bottom description is set using `<bottomDescription>` element:
+It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using `<bottomDescription>` element:
 
 ```xml
 <bottomDescription quote="true|false">description</bottomDescription>

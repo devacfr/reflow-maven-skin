@@ -66,7 +66,7 @@
       <navside-menu cssClass="navside-light bg-light"/>
       <footer theme="dark" background="dark"/>
       <!-- Split menus in the bottom navigation -->
-      <bottomNav maxSpan="9">
+      <bottomNav>
         <column>Main|Tools</column>
         <column>Contribute</column>
         <column>Documentation|reports</column>
