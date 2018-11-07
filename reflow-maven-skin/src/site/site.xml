@@ -187,9 +187,10 @@
           <toc>sidebar</toc>
         </toc-sidebar>
         <reflow-documentation type="doc">
-          <navbar cssClass="navbar-dark bg-dark border-bottom" filterMenu="inherit" />
+          <navbar cssClass="navbar-light bg-light border-bottom" filterMenu="inherit" />
           <menu name="Reflow Documentation" selectFirstOnExpand="true">
             <item name="Get Started" href="get-started.html" />
+            <item name="General Configuration" href="configuration.html" />
             <item name="Page" href="page.html"/>
             <item name="Layouts" >
               <item name="Overview" href="layouts.html"/>
@@ -206,12 +207,13 @@
               <item name="Navbar" href="components/navbar.html"/>
               <item name="Navside Menu" href="components/navside-menu.html"/>
             </item>
-            <item name="Documentation support" href="documentation-support.html" />
-            <item name="Themes" href="themes/index.html" />
-            <item name="Other configuration" href="misc.html" />
-            <item name="Multi-module site" href="multi-module.html" />
-            <item name="Local resources" href="resources.html"/>
-            <item name="Migration" href="migration.html"/>
+            <item name="Learning">
+              <item name="Documentation support" href="documentation-support.html" />
+              <item name="Themes" href="themes/index.html" />
+              <item name="Multi-module site" href="multi-module.html" />
+              <item name="Local resources" href="resources.html"/>
+              <item name="Migration" href="migration.html"/>
+            </item>
           </menu>
         </reflow-documentation>
       </pages>
