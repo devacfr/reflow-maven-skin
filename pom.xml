@@ -515,7 +515,7 @@
                     **/css/**/*,
                     **/js/*.js,
                     **/js/languages/*,
-                    **/js/styles/${highlightJsTheme}.min.css
+                    **/js/styles/*.min.css
                   </includes>
                 </artifactItem>
               </artifactItems>

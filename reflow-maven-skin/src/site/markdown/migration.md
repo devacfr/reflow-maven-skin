@@ -108,12 +108,11 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 </plugin>
 ```
 
-## Documentation page support
+## Documentation layout
 
-[Documentation page][documentation-page] is new feature to organize your documentation and maybe give an opportunity to include new feature as [docsearch][docsearch], suggest edit, dark mode...
+[Documentation layout][documentation-layout] is new feature to organize your documentation in single page to facilitate the navigation and reduce the size of dropdown list in navbar.
 
-[documentation-page]: #documentation-support
-[docsearch]: [https://community.algolia.com/docsearch/]
+[documentation-layout]: #documentation-layout
 
 ### Improve documentation
 

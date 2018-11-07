@@ -17,8 +17,8 @@
  limitations under the License.
 
  -->
-<project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <!-- Google Analytics not inherited for some reason -->
   <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
@@ -80,12 +80,14 @@
         <themes-bootswatch-cyborg>
           <theme>bootswatch-cyborg</theme>
           <toc cssClass="navbar-light bg-light">top</toc>
+          <highlightJsTheme>atelier-seaside-dark</highlightJsTheme>
           <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
           <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cyborg>
         <themes-bootswatch-darkly>
           <theme>bootswatch-darkly</theme>
           <toc cssClass="navbar-light bg-light">top</toc>
+          <highlightJsTheme>dark</highlightJsTheme>
           <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
           <footer cssClass="footer-light bg-primary" />
         </themes-bootswatch-darkly>
@@ -190,30 +192,25 @@
           <navbar cssClass="navbar-light bg-light border-bottom" filterMenu="inherit" />
           <menu name="Reflow Documentation" selectFirstOnExpand="true">
             <item name="Get Started" href="get-started.html" />
-            <item name="General Configuration" href="configuration.html" />
-            <item name="Page" href="page.html"/>
-            <item name="Layouts" >
+            <item name="Layouts">
               <item name="Overview" href="layouts.html"/>
-              <item name="Body" href="body.html"/>
-              <item name="Carousel" href="carousel.html"/>
-              <item name="Columns" href="columns.html"/>
-              <item name="Thumbnails" href="thumbnails.html"/>
-              <item name="Sidebar" href="sidebar.html"/>
+              <item name="Page Layout" href="page-layout.html"/>
+              <item name="Documentation Layout" href="documentation-layout.html" />
+              <item name="Section Layout" href="section-layout.html"/>
             </item>
             <item name="Components">
               <item name="Overview" href="components/components.html"/>
               <item name="Table of Contents" href="components/toc.html"/>
               <item name="Header" href="components/header.html"/>
+              <item name="Footer" href="components/footer.html"/>
               <item name="Navbar" href="components/navbar.html"/>
               <item name="Navside Menu" href="components/navside-menu.html"/>
             </item>
-            <item name="Learning">
-              <item name="Documentation support" href="documentation-support.html" />
-              <item name="Themes" href="themes/index.html" />
-              <item name="Multi-module site" href="multi-module.html" />
-              <item name="Local resources" href="resources.html"/>
-              <item name="Migration" href="migration.html"/>
-            </item>
+            <item name="Other Configuration" href="configuration.html" />
+            <item name="Themes" href="themes/index.html" />
+            <item name="Multi-module Site" href="multi-module.html" />
+            <item name="Local Resources" href="resources.html"/>
+            <item name="Migration" href="migration.html"/>
           </menu>
         </reflow-documentation>
       </pages>

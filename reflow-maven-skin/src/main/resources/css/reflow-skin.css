@@ -18,6 +18,29 @@ body {
 	position: relative;
 }
 
+/* Hack the sticky header */
+.main-body h2[id],
+.main-body h3[id],
+.main-body h4[id] {
+  pointer-events: none;
+}
+.main-body h2[id] > div,
+.main-body h2[id] > a,
+.main-body h3[id] > div,
+.main-body h3[id] > a,
+.main-body h4[id] > div,
+.main-body h4[id] > a {
+  pointer-events: auto;
+}
+.main-body h2[id]::before,
+.main-body h3[id]::before,
+.main-body h4[id]::before {
+  display: block;
+  height: 4rem;
+  margin-top: -4rem;
+  visibility: hidden;
+  content: "";
+}
 
 /**
 * back to top

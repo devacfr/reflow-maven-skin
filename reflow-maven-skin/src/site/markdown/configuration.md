@@ -1,4 +1,4 @@
-# General configuration
+# Other configuration
 
 This page lists various general configuration options for Reflow Maven skin.
 
@@ -9,94 +9,40 @@ This page lists various general configuration options for Reflow Maven skin.
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
-Short title is used in site breadcrumbs and other places. In some cases it is created by Maven
-site (e.g. when set in APT), etc. In other cases, however, it is missing - a glaring omission
-from Markdown pages.
+Short title is used in site breadcrumbs and other places. In some cases it is created by Maven site (e.g. when set in APT), etc. In other cases, however, it is missing - a glaring omission from Markdown pages.
 
-Reflow skin provides a couple options to circumvent this, either generate or set the short title
-explicitly using `<shortTitle>` element:
+Reflow skin provides a couple options to circumvent this, either generate or set the short title explicitly using `<shortTitle>` element:
 
 ```xml
 <shortTitle>generate|*</shortTitle>
 ```
 
-- **generate** - a short title will always be generated from the headings in the page. If `<h1>`
-    heading is available, it is used. Otherwise first `<h2>` heading is used.
+- **generate** - a short title will always be generated from the headings in the page. If `<h1>` heading is available, it is used. Otherwise first `<h2>` heading is used.
 - **Some short title** - use this explicitly indicated short title
 - **false** - disable any short title generation altogether
-- **no `<shortTitle>` element (default)** - short title will be generated (as above) if one is
-    not available
+- **no `<shortTitle>` element (default)** - short title will be generated (as above) if one is not available
 
 ### Custom page title
 
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
-By default, the page title is generated from the project name and its short title. The skin allows
-setting own page title, e.g. to allow for titles such as "_My Page | My Super Website_", etc.
+By default, the page title is generated from the project name and its short title. The skin allows setting own page title, e.g. to allow for titles such as "_My Page | My Super Website_", etc.
 
 ```xml
 <titleTemplate>template</titleTemplate>
 ```
 
-- **Some template** - use [Java format String][java-format] here, where `%1$s` is the project
-    name and `%2$s` is the short title of the page.
-    This allows omitting any of these names, or just specifying custom uniform title for pages
-    without any of the variables.
+- **Some template** - use [Java format String][java-format] here, where `%1$s` is the project name and `%2$s` is the short title of the page. This allows omitting any of these names, or just specifying custom uniform title for pages without any of the variables.
 - **no `<titleTemplate>` element (default)** - default title template `%1$s - %2$s` is used
 
 [java-format]: http://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
-
-## Bottom description
-
-support <span class="badge badge-primary">v1.0</span><br/>
-element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
-
-It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using `<bottomDescription>` element:
-
-```xml
-<bottomDescription quote="true|false">description</bottomDescription>
-```
-
-The `quote` attribute wraps the text into a `<blockquote>` element:
-
-- **true (default)** - Text is wrapped into a `<blockquote>` element
-- **false** - Text is printed as-is
-
-The **description** can be plain text or a `CDATA` element and thus wrap the text with HTML formatting.
-
-Alternatively, `<bottomDescription>` can contain HTML elements directly, which will be embedded
-in the bottom description area.
-
-Note that the bottom description must be enabled if Maven site
-[date or version are set to position **navigation-bottom**](#Date_and_version).
-
-## Breadcrumbs
-
-element <span class="badge badge-secondary">site.xml</span>
-
-Breadcrumbs are defined using standard Maven site element
-[`<body><breadcrumbs>`][mvn-site-breadcrumbs] in `site.xml`.
-Reflow skin provides a `<breadcrumbs>` flag to enable/disable them:
-
-```xml
-<breadcrumbs>true|false</breadcrumbs>
-```
-
-- **true (default)** - Breadcrumb trail is displayed below the banner
-- **false** - Do not display breadcrumbs
-
-Note that the breadcrumbs bar must be enabled if Maven site
-[date or version are set to position **left** or **right**](#Date_and_version).
-
-[mvn-site-breadcrumbs]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Breadcrumbs
 
 ## Date and version
 
 element <span class="badge badge-secondary">site.xml</span>
 
-Reflow skin supports displaying Maven site publish date and version. They are defined using
-standard Maven site elements [`<publishDate>`][mvn-site-date] and [`<version>`][mvn-site-version].
+Reflow skin supports displaying Maven site publish date and version. They are defined using standard Maven site elements [`<publishDate>`][mvn-site-date] and [`<version>`][mvn-site-version].
 
 Reflow skin supports the following values for `position` of these components:
 
@@ -104,8 +50,7 @@ Reflow skin supports the following values for `position` of these components:
     to be enabled)
 - **right** - Right in breadcrumbs bar (requires [`<breadcrumbs>` flag](#Breadcrumbs)
     to be enabled)
-- **navigation-bottom** - Bottom right in the bottom navigation (requires 
-    [`<bottomDescription>`](#Bottom_description) to be enabled)
+- **navigation-bottom** - Bottom right in the bottom navigation (requires [`<bottomDescription>`](#Bottom_description) to be enabled)
 - **bottom (default)** - Subfooter (the last part of the page, as in this website)
 - **none** - Date or version are disabled
 
@@ -127,14 +72,9 @@ element:
 
 ## Menus
 
-Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation
-columns. The menus themselves are defined as normally in Maven site, 
-[using `<project><body><menu>` XML items][mvn-site-menus]. The skin allows customizing where which
-menu items are placed in the website.
+Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation columns. The menus themselves are defined as normally in Maven site, [using `<project><body><menu>` XML items][mvn-site-menus]. The skin allows customizing where which menu items are placed in the website.
 
-Both top and bottom navigation allows specifying regular expressions that filter the menus
-to be displayed in the particular place. The regular expressions can match both the name of the
-menu item and its `ref` value, e.g. to match `<menu ref="modules" inherit="bottom" />`.
+Both top and bottom navigation allows specifying regular expressions that filter the menus to be displayed in the particular place. The regular expressions can match both the name of the menu item and its `ref` value, e.g. to match `<menu ref="modules" inherit="bottom" />`.
 
 [mvn-site-menus]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content
 
@@ -143,9 +83,7 @@ menu item and its `ref` value, e.g. to match `<menu ref="modules" inherit="botto
 support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-Top navigation is right-aligned at the top of the screen. It sticks to the screen when scrolling.
-The menu items can be filtered using regular expression to indicate which of the menu items
-are displayed there:
+Top navigation is right-aligned at the top of the screen. It sticks to the screen when scrolling. The menu items can be filtered using regular expression to indicate which of the menu items are displayed there:
 
 ```xml
 <topNav>RegEx<topNav>
@@ -159,41 +97,13 @@ are displayed there:
     <p>Use <code>filterMenu</code> attribute in <code>navbar</code> element instead.</p>
 </div>
 
-
 ### Links
 
 element <span class="badge badge-secondary">site.xml</span>
 
-All links from defined in [`<body><links>` element][mvn-site-links] of `site.xml` site descriptor
-are placed in the top navigation bar. This allows having top-level links in navigation (menus are
-always drop-down).
+All links from defined in [`<body><links>` element][mvn-site-links] of `site.xml` site descriptor are placed in the top navigation bar. This allows having top-level links in navigation (menus are always drop-down).
 
 [mvn-site-links]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links
-
-### Bottom navigation
-
-support <span class="badge badge-primary">v1.0</span><br/>
-element <span class="badge badge-secondary">reflow</span>
-
-The bottom navigation is placed in the footer, to the left of website description. It can feature
-a number of columns with menu items. The columns are indicated using the `bottomNav` element.
-If configuration is not available, lists all menus in a single column.
-
-```xml
-<bottomNav maxSpan="8">
-  <column>RegEx</column>
-  <column>RegEx</column>
-  <column>RegEx</column>
-</bottomNav>
-```
-
-- **maxSpan** <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take
-(out of 12). By default, the **`maxSpan = 9`**. The columns are then placed equally within
-this span (removed in <span class="badge badge-danger">v2.0</span>).
-- Each column in the configuration defines a regular expression for menu items that will be listed
-in said column. For example, to include only _Home_ and _Download_ items, use `Home|Download`
-for the regular expression.
-
 
 ## JavaScript goodies
 
@@ -202,9 +112,7 @@ for the regular expression.
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-Code highlighting can be provided for source code sections in pages using
-[highlight.js][highlight-js]. It detects the language automatically and provides code
-highlighting functionality. To enable it, use `<highlightJs>` flag:
+Code highlighting can be provided for source code sections in pages using [highlight.js][highlight-js]. It detects the language automatically and provides code highlighting functionality. To enable it, use `<highlightJs>` flag:
 
 ```xml
 <highlightJs>true|false</highlightJs>
@@ -213,9 +121,7 @@ highlighting functionality. To enable it, use `<highlightJs>` flag:
 - **true** - Source code is highlighted (syntax colouring) - requires JavaScript
 - **false (default)** - Source code is displayed in fixed font without syntax colouring
 
-Code highlighting theme can be changed to match your website theme. Available themes are listed in
-[highlight.js website][highlight-js-themes]. The theme can be selected using `<highlightJsTheme>`
-element:
+Code highlighting theme can be changed to match your website theme. Available themes are listed in [highlight.js website][highlight-js-themes]. The theme can be selected using `<highlightJsTheme>` element:
 
 ```xml
 <highlightJsTheme>default|*</highlightJsTheme>
@@ -232,9 +138,7 @@ element:
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-Reflow skin enables CSS pop-ups for image links on the website using [Lightbox 2][lightbox].
-See one in action by opening [this link to an image][lightbox-test]. The previews are enabled by
-default but can be disabled using `<imgLightbox>` flag:
+Reflow skin enables CSS pop-ups for image links on the website using [Lightbox 2][lightbox]. See one in action by opening [this link to an image][lightbox-test]. The previews are enabled by default but can be disabled using `<imgLightbox>` flag:
 
 ```xml
 <imgLightbox>true|false</imgLightbox>
@@ -252,8 +156,7 @@ default but can be disabled using `<imgLightbox>` flag:
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of contents links).
-Smooth scrolling can be disabled using `<smoothScroll>` flag:
+Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of contents links). Smooth scrolling can be disabled using `<smoothScroll>` flag:
 
 ```xml
 <smoothScroll>true|false</smoothScroll>
@@ -264,14 +167,11 @@ Smooth scrolling can be disabled using `<smoothScroll>` flag:
 
 ## Bootstrap
 
-The generated Maven site code is updated by default, e.g. update CSS of generated tables, use
-Bootstrap icons and other goodies. The flags to disable these updates are described below.
+The generated Maven site code is updated by default, e.g. update CSS of generated tables, use Bootstrap icons and other goodies. The flags to disable these updates are described below.
 
 ### Bootstrap CSS
 
-[Bootstrap][bootstrap] provides nice CSS effects for certain elements, such as tables, etc. Reflow
-skin rewrites some Maven site generated elements to add Bootstrap classes and configurations.
-
+[Bootstrap][bootstrap] provides nice CSS effects for certain elements, such as tables, etc. Reflow skin rewrites some Maven site generated elements to add Bootstrap classes and configurations.
 
 [bootstrap]: http://twitter.github.com/bootstrap/
 
@@ -280,8 +180,7 @@ skin rewrites some Maven site generated elements to add Bootstrap classes and co
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-To match [Bootstrap][bootstrap] themes, Reflow skin replaces some icons used by Maven site with
-corresponding Bootstrap icons, e.g. in change log page and others:
+To match [Bootstrap][bootstrap] themes, Reflow skin replaces some icons used by Maven site with corresponding Bootstrap icons, e.g. in change log page and others:
 
 ![Add](images/add.gif)
 ![Fix](images/fix.gif)
@@ -294,8 +193,7 @@ This can be disabled using `bootstrapIcons` flag:
 <bootstrapIcons>true|false</bootstrapIcons>
 ```
 
-- **true (default)** - replaces images (add, remove, warning, info etc) with corresponding
-    Bootstrap icons
+- **true (default)** - replaces images (add, remove, warning, info etc) with corresponding Bootstrap icons
 - **false** - keep original images
 
 ### HTML5-style anchors
@@ -311,8 +209,7 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 <html5Anchor>true|false</html5Anchor>
 ```
 
-- **true (default)** - HTML4-style anchors `<a name="...">` are replaced with `id` attributes
-    where applicable
+- **true (default)** - HTML4-style anchors `<a name="...">` are replaced with `id` attributes where applicable
 - **false** - keep the original anchors
 
 ## Navbar colour
@@ -320,8 +217,7 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-Bootstrap 3 themes provide an [alternative colour for top navigation bar][navbar-inverse].
-To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
+Bootstrap 3 themes provide an [alternative colour for top navigation bar][navbar-inverse]. To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
 
 ```xml
 <navbarInverse>true|false</navbarInverse>
@@ -342,9 +238,7 @@ To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-By default, the first `<h1>` or `<h2>` heading in the page body is marked as _page header_.
-It allows Bootstrap CSS to give it an emphasised presentation. To disable page header being
-marked, use the `<markPageHeader>` flag:
+By default, the first `<h1>` or `<h2>` heading in the page body is marked as _page header_. It allows Bootstrap CSS to give it an emphasised presentation. To disable page header being marked, use the `<markPageHeader>` flag:
 
 ```xml
 <markPageHeader>true|false</markPageHeader>
@@ -358,10 +252,7 @@ marked, use the `<markPageHeader>` flag:
 support <span class="badge badge-primary">v1.0</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-The Reflow skin is released under the [Apache license][apache-license] and thus can be used freely.
-By default, a link to the skin website and the author homepage is added at the bottom of the skin:
-_Reflow Maven skin by devacfr_. I would appreciate if you kept the link - it will help with
-the popularity of the skin. If you want, it can be disabled using `<skinAttribution>` flag:
+The Reflow skin is released under the [Apache license][apache-license] and thus can be used freely. By default, a link to the skin website and the author homepage is added at the bottom of the skin: _Reflow Maven skin by devacfr_. I would appreciate if you kept the link - it will help with the popularity of the skin. If you want, it can be disabled using `<skinAttribution>` flag:
 
 ```xml
 <skinAttribution>true|false</skinAttribution>

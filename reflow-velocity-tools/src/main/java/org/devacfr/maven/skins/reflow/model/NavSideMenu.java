@@ -126,7 +126,7 @@ public class NavSideMenu extends BsComponent {
         this.withName(menu.getAttribute("name"))
                 .withItems(items)
                 .withSelectFirstOnSelect(
-                    config.getConfigAttribute("menu", "selectFirstOnExpand", Boolean.class, false));
+                    config.getConfigAttribute("menu", "selectFirstOnExpand", Boolean.class, true));
         this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
         this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
         this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));

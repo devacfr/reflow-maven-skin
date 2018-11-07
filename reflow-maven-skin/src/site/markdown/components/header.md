@@ -1,7 +1,8 @@
 # Header Component
 
-Standard Maven site allows customising the website _banner_. Reflow skin adds further components to
-the site header: _brand_ and _slogan_.
+Standard Maven site allows customising the website _banner_.
+
+![header scheme](images/header-scheme.png)
 
 ## Banner
 
@@ -26,45 +27,12 @@ descriptor instead of using `<custom><reflowSkin>`:
 </project>
 ```
 
-Note that `<name>` element can have `CDATA` element as its contents, allowing custom HTML content
-in the banner.
+<div class="alert alert-info">
+    <strong>Note</strong>
+    <p><code>&lt;name&gt;</code> element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p>
+</div>
 
 [mvn-site-banner]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner
-
-## Brand
-
-support <span class="badge badge-primary">v1.0</span><br/>
-element <span class="badge badge-secondary">reflow</span>
-
-The brand text (or image) appearing in the left of the top navigation bar can be customised using
-`<brand>` element. You can set both the contents and the link.
-
-```xml
-<brand>
-  <name>text</name>
-  <href>link</href>
-</brand>
-```
-
-- **name** element sets the text of the top-left brand
-- **href** element sets the link to open when the brand text is clicked
-
-Note that the `<name>` element can be used to embed custom HTML content. To do that, use `CDATA`
-element as the contents of `<name>` (writing HTML without `CDATA` will not work):
-
-```xml
-<brand>
-  <name>
-    <![CDATA[
-    <span class="color-highlight">Reflow</span> Maven Skin
-    ]]>
-  </name>
-  ..
-</brand>
-```
-
-The above example is taken from this website, in order to have the _Reflow_ part in different
-colour. Images could also be added there in a similar manner.
 
 ## Slogan
 
@@ -85,3 +53,26 @@ The `position` attribute indicates where to place the slogan:
 
 - **bannerLeft (default)** - aligned to the left (as in this website)
 - **bannerRight** - aligned to the right
+
+## Breadcrumb
+
+element <span class="badge badge-secondary">site.xml</span>
+
+Breadcrumbs are defined using standard Maven site element
+[`<body><breadcrumbs>`][mvn-site-breadcrumbs] in `site.xml`.
+Reflow skin provides a `<breadcrumbs>` flag to enable/disable them:
+
+```xml
+<breadcrumbs>true|false</breadcrumbs>
+```
+
+- **true (default)** - Breadcrumb trail is displayed below the banner
+- **false** - Do not display breadcrumbs
+
+<div class="alert alert-info">
+    <strong>Note</strong>
+    <p>The breadcrumbs bar must be enabled if Maven site date or version are set to position <b>left</b> or <b>right</b>.</p>
+</div>
+
+
+[mvn-site-breadcrumbs]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Breadcrumbs
