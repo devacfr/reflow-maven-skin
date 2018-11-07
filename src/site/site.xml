@@ -28,6 +28,7 @@
     </name>
     <href>${this.site.url}</href>
   </bannerLeft>
+  <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
 
   <publishDate position="none" />
   <version position="bottom" />
