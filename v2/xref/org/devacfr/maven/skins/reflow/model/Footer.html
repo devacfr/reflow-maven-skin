@@ -49,9 +49,9 @@
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/model/Footer.html">Footer</a>(@Nonnull <strong class="jxr_keyword">final</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/SkinConfigTool.html">SkinConfigTool</a> config) {
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>          <strong class="jxr_keyword">super</strong>(COMPONENT);
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>          requireNonNull(config);
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">this</strong>.setTheme(config.getConfigAttribute(COMPONENT, <span class="jxr_string">"theme"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">this</strong>.setBackground(config.getConfigAttribute(COMPONENT, <span class="jxr_string">"background"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">this</strong>.setCssClass(config.getConfigAttribute(COMPONENT, <span class="jxr_string">"cssClass"</span>, String.<strong class="jxr_keyword">class</strong>, <strong class="jxr_keyword">null</strong>));
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">this</strong>.setTheme(config.getAttributeValue(COMPONENT, <span class="jxr_string">"theme"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">this</strong>.setBackground(config.getAttributeValue(COMPONENT, <span class="jxr_string">"background"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">this</strong>.setCssClass(config.getAttributeValue(COMPONENT, <span class="jxr_string">"cssClass"</span>, String.<strong class="jxr_keyword">class</strong>, <strong class="jxr_keyword">null</strong>));
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  }

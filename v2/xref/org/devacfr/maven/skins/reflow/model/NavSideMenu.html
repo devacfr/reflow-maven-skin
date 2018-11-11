@@ -134,10 +134,10 @@
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>         <strong class="jxr_keyword">this</strong>.withName(menu.getAttribute(<span class="jxr_string">"name"</span>))
 <a class="jxr_linenumber" name="L127" href="#L127">127</a>                 .withItems(items)
 <a class="jxr_linenumber" name="L128" href="#L128">128</a>                 .withSelectFirstOnSelect(
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>                     config.getConfigAttribute(<span class="jxr_string">"menu"</span>, <span class="jxr_string">"selectFirstOnExpand"</span>, Boolean.<strong class="jxr_keyword">class</strong>, false));
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>         <strong class="jxr_keyword">this</strong>.setTheme(config.getConfigAttribute(COMPONENT, <span class="jxr_string">"theme"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>         <strong class="jxr_keyword">this</strong>.setBackground(config.getConfigAttribute(COMPONENT, <span class="jxr_string">"background"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>         <strong class="jxr_keyword">this</strong>.setCssClass(config.getConfigAttribute(COMPONENT, <span class="jxr_string">"cssClass"</span>, String.<strong class="jxr_keyword">class</strong>, <strong class="jxr_keyword">null</strong>));
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>                     config.getAttributeValue(<span class="jxr_string">"menu"</span>, <span class="jxr_string">"selectFirstOnExpand"</span>, Boolean.<strong class="jxr_keyword">class</strong>, <strong class="jxr_keyword">true</strong>));
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>         <strong class="jxr_keyword">this</strong>.setTheme(config.getAttributeValue(COMPONENT, <span class="jxr_string">"theme"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>         <strong class="jxr_keyword">this</strong>.setBackground(config.getAttributeValue(COMPONENT, <span class="jxr_string">"background"</span>, String.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"light"</span>));
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         <strong class="jxr_keyword">this</strong>.setCssClass(config.getAttributeValue(COMPONENT, <span class="jxr_string">"cssClass"</span>, String.<strong class="jxr_keyword">class</strong>, <strong class="jxr_keyword">null</strong>));
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>     }
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> 
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>     <em class="jxr_javadoccomment">/**</em>
