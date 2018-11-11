@@ -52,18 +52,13 @@ h3 code {
 }
 
 .jumbotron h1 {
-	font-size: 80px;
+	font-size: 3rem;
 	font-weight: bold;
 	letter-spacing: -1px;
-	line-height: 1;
+    line-height: 1;
+    color: var(--dark);
 }
 
-.jumbotron p {
-	font-size: 24px;
-	font-weight: 300;
-	line-height: 30px;
-	margin-bottom: 30px;
-}
 
 .jumbotron .btn-large {
 	font-size: 20px;
@@ -83,14 +78,12 @@ h3 code {
 ------------------------- */
 /* supporting docs pages */
 .subhead {
-	padding-bottom: 0;
+	padding-bottom: 5px;
 	margin-bottom: 9px;
 	padding-top: 10px;
 }
 
-.subhead h1 {
-	font-size: 54px;
-}
+
 
 
 /*--------------------------------------------------
