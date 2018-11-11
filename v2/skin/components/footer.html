@@ -1,0 +1,104 @@
+
+
+
+
+
+ 
+
+ 
+ 
+ 
+
+     <div class="row no-gutters">
+                                                      
+                <div class="col-lg-12 col-xl-9 py-3">
+                 <h1 id="components-footer_toc_footer_component1">Footer Component</h1> 
+<p><img src="images/footer-scheme.png" alt="footer scheme" class="img-fluid"></p> 
+<div class="section"> 
+ <h2 id="components-footer_toc_usage">Usage</h2> 
+ <div> 
+  <div> 
+   <pre class="source">&lt;footer cssClass="bootstrap classes"
+        theme="light|dark"
+        background="bootstrap colour theme" /&gt;
+</pre> 
+  </div> 
+ </div> 
+ <ul> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. <code class="\&quot;literal\&quot;">footer-light bg-light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>. <b>note</b>: <code class="\&quot;literal\&quot;">cssClass</code> override attributes <code class="\&quot;literal\&quot;">theme</code> and <code class="\&quot;literal\&quot;">background</code> if is filled.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code class="\&quot;literal\&quot;">light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code class="\&quot;literal\&quot;">light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
+ </ul> 
+ <div class="section"> 
+  <h3 id="components-footer_toc_bottom_navigation">Bottom navigation</h3> 
+  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+  <p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the <code class="\&quot;literal\&quot;">bottomNav</code> element. If configuration is not available, lists all menus in a single column.</p> 
+  <div> 
+   <div> 
+    <pre class="source">&lt;bottomNav maxSpan="8"&gt;
+  &lt;column&gt;RegEx&lt;/column&gt;
+  &lt;column&gt;RegEx&lt;/column&gt;
+  &lt;column&gt;RegEx&lt;/column&gt;
+&lt;/bottomNav&gt;
+</pre> 
+   </div> 
+  </div> 
+  <ul> 
+   <li><b>maxSpan</b> <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take (out of 12). By default, the <b><code class="\&quot;literal\&quot;">maxSpan = 9</code></b>. The columns are then placed equally within this span (removed in <span class="badge badge-danger">v2.0</span>).</li> 
+   <li>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use <code class="\&quot;literal\&quot;">Home|Download</code> for the regular expression.</li> 
+  </ul> 
+ </div> 
+</div> 
+<div class="section"> 
+ <h2 id="components-footer_toc_bottom_description">Bottom description</h2> 
+ <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
+ <p>It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using <code class="\&quot;literal\&quot;">&lt;bottomDescription&gt;</code> element:</p> 
+ <div> 
+  <div> 
+   <pre class="source">&lt;bottomDescription quote="true|false"&gt;description&lt;/bottomDescription&gt;
+</pre> 
+  </div> 
+ </div> 
+ <p>The <code class="\&quot;literal\&quot;">quote</code> attribute wraps the text into a <code class="\&quot;literal\&quot;">&lt;blockquote&gt;</code> element:</p> 
+ <ul> 
+  <li><b>true (default)</b> - Text is wrapped into a <code class="\&quot;literal\&quot;">&lt;blockquote&gt;</code> element</li> 
+  <li><b>false</b> - Text is printed as-is</li> 
+ </ul> 
+ <p>The <b>description</b> can be plain text or a <code class="\&quot;literal\&quot;">CDATA</code> element and thus wrap the text with HTML formatting.</p> 
+ <p>Alternatively, <code class="\&quot;literal\&quot;">&lt;bottomDescription&gt;</code> can contain HTML elements directly, which will be embedded in the bottom description area.</p> 
+ <div class="alert alert-info"> 
+  <b>Note</b> 
+  <p>the bottom description must be enabled if Maven site date or version are set to position <b>navigation-bottom</b>.</p> 
+ </div> 
+</div>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src/site/markdown/components/footer.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#components-footer_toc_footer_component1" title="Footer Component">Footer Component</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#components-footer_toc_usage" title="Usage">Usage</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3">
+        <a class="nav-link" href="#components-footer_toc_bottom_navigation" title="Bottom navigation">Bottom navigation</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#components-footer_toc_bottom_description" title="Bottom description">Bottom description</a>
+    </li>
+                    </ul>
+                </nav>
+           </div>
+        </div>
+</div>

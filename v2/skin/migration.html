@@ -135,8 +135,8 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_documentation_page_support">Documentation page support</h2> 
- <p><a href="#documentation-support">Documentation page</a> is new feature to organize your documentation and maybe give an opportunity to include new feature as <a class="externalLink" href="[https://community.algolia.com/docsearch/]">docsearch</a>, suggest edit, dark mode…</p> 
+ <h2 id="migration_toc_documentation_layout">Documentation layout</h2> 
+ <p><a href="#documentation-layout">Documentation layout</a> is new feature to organize your documentation in single page to facilitate the navigation and reduce the size of dropdown list in navbar.</p> 
  <div class="section"> 
   <h3 id="migration_toc_improve_documentation">Improve documentation</h3> 
   <p>Doxia Sitetools has introduce the edit source feature in <a class="externalLink" href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html">decoration model 1.8</a> adding <code class="\&quot;literal\&quot;">&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a class="externalLink" href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183">DOXIASITETOOLS-183</a>).</p> 
@@ -146,6 +146,13 @@
 <div class="section"> 
  <h2 id="migration_toc_by_component">By component</h2> 
  <p>This list highlights key changes by component between v1.4 and v2.0.0.</p> 
+ <div class="section"> 
+  <h3 id="migration_toc_banner">Banner</h3> 
+  <p>Before, you had the solution to display either a logo or a title. Now you have the choice to display a logo and a title.</p> 
+  <ul> 
+   <li><code class="\&quot;literal\&quot;">name</code> is used to display title heading in elements <b>bannerLeft</b> and <b>bannerRight</b>, use <code class="\&quot;literal\&quot;">alt</code> element instead <code class="\&quot;literal\&quot;">name</code>.</li> 
+  </ul> 
+ </div> 
  <div class="section"> 
   <h3 id="migration_toc_navside_menu">Navside menu</h3> 
   <p>It is a new component used in documentation page support. (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation )</p> 
@@ -260,7 +267,7 @@
     </li>
     </ul>
     <li class="h2">
-        <a class="nav-link" href="#migration_toc_documentation_page_support" title="Documentation page support">Documentation page support</a>
+        <a class="nav-link" href="#migration_toc_documentation_layout" title="Documentation layout">Documentation layout</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
         <li class="h3">
@@ -272,6 +279,9 @@
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
         <li class="h3">
+        <a class="nav-link" href="#migration_toc_banner" title="Banner">Banner</a>
+    </li>
+    <li class="h3">
         <a class="nav-link" href="#migration_toc_navside_menu" title="Navside menu">Navside menu</a>
     </li>
     <li class="h3">

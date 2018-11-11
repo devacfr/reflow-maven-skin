@@ -71,14 +71,14 @@
  <p>The configuration is specified in the <a class="externalLink" href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html"><code class="\&quot;literal\&quot;">site.xml</code> site descriptor</a> file, using the <code class="\&quot;literal\&quot;">&lt;custom&gt;&lt;reflowSkin&gt;</code> element.</p> 
  <p>The documentation is split over several pages, describing the various configuration options:</p> 
  <ul> 
-  <li><b><a href="#configuration.html">General configuration</a></b> Various configuration options: page title, menus, javaScript goodies, CSS updates and more.</li> 
   <li><b><a href="#themes-index">Themes</a></b> How to configure own theme or select one of the excellent <a class="externalLink" href="http://bootswatch.com">Bootswatch</a> themes.</li> 
   <li><b><a href="#layouts.html">Layouts</a></b> Reflow the page with different layouts: multi-column text, carousel, thumbnails and others.</li> 
   <li><b><a href="#components.html">Components</a></b> Enable and configure various existing and new components: table of contents, headers, menus, etc.</li> 
+  <li><b><a href="#configuration.html">Other configuration</a></b> Various configuration options: page title, menus, javaScript goodies, CSS updates and more.</li> 
   <li><b><a href="#multi-module.html">Multi-module site</a></b> Additional support and notes for generating multi-module Maven sites.</li> 
  </ul> 
  <p>Note that all configuration options can be set on a per-page basis (<a href="#get-started_toc_per-page_configuration">see below</a>).</p> 
- <p>The skin is configurable using the <code class="\&quot;literal\&quot;">&lt;custom&gt;</code> element in your <code class="\&quot;literal\&quot;">site.xml</code> file. The available options are <a href="reflow-documentation.html#get-started">described in the documentation</a>. A sample configuration file is below:</p> 
+ <p>The skin is configurable using the <code class="\&quot;literal\&quot;">&lt;custom&gt;</code> element in your <code class="\&quot;literal\&quot;">site.xml</code> file. The available options are described in this documentation. A sample configuration file is below:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;project&gt;
@@ -177,9 +177,9 @@
   </div> 
  </div> 
  <div class="section"> 
-  <h3 id="get-started_toc_page_id">Page ID</h3> 
+  <h3 id="get-started_toc_page_id">Page Id</h3> 
   <p>Each page configuration is set within a <code class="\&quot;literal\&quot;">&lt;pages&gt;&lt;[pageId]&gt;</code> element.</p> 
-  <p>The page ID is its file name without extension. This is because the pages may be generated from different file formats, e.g. <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">APT, XDoc, Markdown, etc</a>. The page ID characters must be of the same case as the generated file name.</p> 
+  <p>The page Id is its file name without extension. This is because the pages may be generated from different file formats, e.g. <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">APT, XDoc, Markdown, etc</a>. The page ID characters must be of the same case as the generated file name.</p> 
   <p>For generated files that are in directories, <code class="\&quot;literal\&quot;">"-"</code> is used as the separator for directory structure. So a file in <i>./subdir/foo.html</i> is referred as <code class="\&quot;literal\&quot;">&lt;subdir-foo&gt;</code> in the configuration.</p> 
  </div> 
  <div class="section"> 
@@ -188,6 +188,10 @@
   <p>Sometimes this is undesirable, so one can use <code class="\&quot;literal\&quot;">project</code> attribute to indicate the project that the page applies to. For child pages, the project will be different from indicated and thus the configuration will not apply. The project is identified using its <code class="\&quot;literal\&quot;">artifactId</code>.</p> 
   <p>If you still encounter inheritance problems, try using <a class="externalLink" href="http://www.sonatype.com/people/2011/01/maven-how-to-merging-plugin-configuration-in-complex-projects/"><code class="\&quot;literal\&quot;">combine.self="override"</code> attribute</a> on the <code class="\&quot;literal\&quot;">site.xml</code> element to explicitly override it.</p> 
  </div> 
+</div> 
+<div class="section"> 
+ <h2 id="get-started_toc_responsive_design">Responsive design</h2> 
+ <p>Reflow skin is built on <a class="externalLink" href="http://getbootstrap.com">Bootstrap</a> and provides responsive design features out of the box. The page layouts are rearranged for smaller screens to provide a good viewing experience.</p> 
 </div> 
 <div class="section"> 
  <h2 id="get-started_toc_learn_by_example">Learn by example</h2> 
@@ -223,12 +227,15 @@
         <a class="nav-link" href="#get-started_toc_per-page_configuration" title="Per-page configuration">Per-page configuration</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#get-started_toc_page_id" title="Page ID">Page ID</a>
+        <a class="nav-link" href="#get-started_toc_page_id" title="Page Id">Page Id</a>
     </li>
     <li class="h3">
         <a class="nav-link" href="#get-started_toc_configuration_inheritance" title="Configuration inheritance">Configuration inheritance</a>
     </li>
     </ul>
+    <li class="h2">
+        <a class="nav-link" href="#get-started_toc_responsive_design" title="Responsive design">Responsive design</a>
+    </li>
     <li class="h2">
         <a class="nav-link" href="#get-started_toc_learn_by_example" title="Learn by example">Learn by example</a>
     </li>
