@@ -17,11 +17,14 @@ package org.devacfr.maven.skins.reflow.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import javax.annotation.Nonnull;
 
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
 import com.google.common.base.Strings;
 
@@ -44,6 +47,9 @@ public class Navbar extends BsComponent {
 
     /** */
     private final String filterMenu;
+
+    /** */
+    private final ImageBrand image;
 
     /**
      * Default constructor.
@@ -71,10 +77,17 @@ public class Navbar extends BsComponent {
         if (Strings.isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
-        this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
-        this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
-        this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));
-        this.filterMenu = config.getConfigAttribute(COMPONENT, "filterMenu", String.class, null);
+        this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
+        this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
+        this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
+        this.filterMenu = config.getAttributeValue(COMPONENT, "filterMenu", String.class, null);
+        Xpp3Dom element = config.get(COMPONENT);
+        Xpp3Dom img = Xpp3Utils.getFirstChild(element, "image", config.getNamespace());
+        if (img != null) {
+            this.image =  new ImageBrand(config, img);
+        } else {
+            this.image = null;
+        }
     }
 
     /**
@@ -92,9 +105,65 @@ public class Navbar extends BsComponent {
     }
 
     /**
+     * @return the image
+     */
+    public ImageBrand getImage() {
+        return image;
+    }
+
+    /**
      * @return the filterMenu
      */
     public String getFilterMenu() {
         return filterMenu;
+    }
+
+    public static class ImageBrand {
+
+        /** */
+        private final String href;
+
+        /** */
+        private final int width;
+
+        /** */
+        private final int height;
+
+        /**
+         *
+         * @param config a config (can <b>not</b> be {@code null}).
+         * @param element the element assiciated to image brand.
+         */
+        ImageBrand(@Nonnull final SkinConfigTool config, @Nonnull  Xpp3Dom element) {
+            Objects.requireNonNull(config);
+            Objects.requireNonNull(element);
+            href = config.getAttributeValue(element, "href", String.class, null);
+            if (Strings.isNullOrEmpty(href)) {
+                throw new IllegalArgumentException("the attribute 'href' of image element is required");
+            }
+            width = config.getAttributeValue(element, "width", Integer.class, 30);
+            height = config.getAttributeValue(element, "height", Integer.class, 30);
+        }
+
+        /**
+         * @return the href
+         */
+        public String getHref() {
+            return href;
+        }
+
+        /**
+         * @return the height
+         */
+        public int getHeight() {
+            return height;
+        }
+
+        /**
+         * @return the width
+         */
+        public int getWidth() {
+            return width;
+        }
     }
 }

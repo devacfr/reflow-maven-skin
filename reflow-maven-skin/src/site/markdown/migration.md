@@ -127,6 +127,12 @@ Doxia Sitetools has introduce the edit source feature in [decoration model 1.8][
 
 This list highlights key changes by component between v1.4 and v2.0.0.
 
+### Banner
+
+Before, you had the solution to display either a logo or a title. Now you have the choice to display a logo and a title.
+
+- `name` is used to display title heading in elements **bannerLeft** and **bannerRight**, use `alt` element instead `name`.
+
 ### Navside menu
 
 It is a new component used in documentation page support. (see [Navside Menu Component][navside-doc] documentation )

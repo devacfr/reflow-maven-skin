@@ -26,6 +26,10 @@
       <span class="color-highlight">Reflow</span> Maven Skin
       ]]>
     </name>
+    <src>./images/reflow.png</src>
+    <width>144</width>
+    <height>144</height>
+    <alt>Reflow skin</alt>
     <href>${this.site.url}</href>
   </bannerLeft>
   <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
@@ -63,7 +67,9 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" cssClass="navbar-dark bg-dark border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Tools|Contribute|Maven documentation" />
+      <navbar filterMenu="Tools|Contribute|Maven documentation">
+        <image href="./images/reflow.png" />
+      </navbar>
       <navside-menu cssClass="navside-light bg-light"/>
       <footer theme="dark" background="dark"/>
       <!-- Split menus in the bottom navigation -->
@@ -153,6 +159,15 @@
     <head>
         <![CDATA[
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="apple-touch-icon" sizes="144x144" href="./apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+        <link rel="manifest" href="./site.webmanifest">
+        <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="apple-mobile-web-app-title" content="Reflow Skin">
+        <meta name="application-name" content="Reflow Skin">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
         ]]>
     </head>
 

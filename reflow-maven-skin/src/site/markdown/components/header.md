@@ -8,8 +8,7 @@ Standard Maven site allows customising the website _banner_.
 
 element <span class="badge badge-secondary">site.xml</span>
 
-The banner (big _Reflow Maven Skin_ text on this website) is defined using 
-[standard `<bannerLeft>` or `<bannerRight>` elements][mvn-site-banner] in `site.xml` site
+The banner (big _Reflow Maven Skin_ text on this website) is defined using [standard `<bannerLeft>` or `<bannerRight>` elements][mvn-site-banner] in `site.xml` site
 descriptor instead of using `<custom><reflowSkin>`:
 
 ```xml
@@ -21,6 +20,7 @@ descriptor instead of using `<custom><reflowSkin>`:
       <span class="color-highlight">Reflow</span> Maven Skin
       ]]>
     </name>
+    <src>./logo.png</src>
     <href>http://devacfr.github.io/reflow-maven-skin</href>
   </bannerLeft>
   ...
@@ -29,6 +29,7 @@ descriptor instead of using `<custom><reflowSkin>`:
 
 <div class="alert alert-info">
     <strong>Note</strong>
+    <p>Unlike the **maven fluido skin**, <code>&lt;name&gt;</code> is used to display h1 heading title.</p>
     <p><code>&lt;name&gt;</code> element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p>
 </div>
 

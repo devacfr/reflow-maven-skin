@@ -21,14 +21,22 @@
         <div class="container">
 ##
 ## Insert brand if it is available
-    #if ( $pageContext.navbar.brandName )#*
-        *##if ( $pageContext.navbar.brandHref )#*
-            *##currentFileRelativeLink ( $pageContext.navbar.brandHref )##
-            <a class="navbar-brand mb-0 h1" href="$currentFileRelativeLink">${pageContext.navbar.brandName}</a>
-    #*  *##else##
-            <div class="navbar-brand mb-0 h1">${pageContext.navbar.brandName}</div>
-    #*  *##end##
-    #end##
+#*      *##if ( $pageContext.navbar.brandHref )
+#*          *##currentFileRelativeLink ( $pageContext.navbar.brandHref )
+            <a class="navbar-brand mb-0 h1" href="$currentFileRelativeLink">
+#*          *##if ( $pageContext.navbar.image )
+                <img src="$pageContext.navbar.image.href" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top">
+#*          *##end
+                ${pageContext.navbar.brandName}
+            </a>
+#*      *##else
+            <div class="navbar-brand mb-0 h1">
+#*          *##if ( $pageContext.navbar.image )
+                <img src="$pageContext.navbar.image.href" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top">
+#*          *##end
+                ${pageContext.navbar.brandName}
+            </div>
+#*      *##end##
 ##
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

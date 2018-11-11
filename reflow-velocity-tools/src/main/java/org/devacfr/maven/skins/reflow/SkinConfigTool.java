@@ -309,7 +309,7 @@ public class SkinConfigTool extends SafeConfig {
      *            the type of returned object.
      */
     @SuppressWarnings("unchecked")
-    public <T> T getConfigValue(final String property, final Class<T> targetType, final T defaultValue) {
+    public <T> T getPropertyValue(final String property, final Class<T> targetType, final T defaultValue) {
         final String value = value(property);
         if (value == null) {
             return defaultValue;
@@ -355,7 +355,7 @@ public class SkinConfigTool extends SafeConfig {
      *            the type of returned object.
      */
     @SuppressWarnings("unchecked")
-    public <T> T getConfigAttribute(final String property,
+    public <T> T getAttributeValue(final String property,
         final String attribute,
         final Class<T> targetType,
         final T defaultValue) {
@@ -382,6 +382,29 @@ public class SkinConfigTool extends SafeConfig {
             return defaultValue;
         }
 
+        Object returnedValue = value;
+        if (targetType.isAssignableFrom(Boolean.class)) {
+            returnedValue = Boolean.valueOf(value);
+        } else if (targetType.isAssignableFrom(Integer.class)) {
+            returnedValue = Integer.valueOf(value);
+        } else if (targetType.isAssignableFrom(Long.class)) {
+            returnedValue = Long.valueOf(value);
+        }
+        return (T) returnedValue;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getAttributeValue(final Xpp3Dom element,
+        final String attribute,
+        final Class<T> targetType,
+        final T defaultValue) {
+        if (element == null) {
+            return defaultValue;
+        }
+        String value = element.getAttribute(attribute);
+        if (value == null) {
+            return defaultValue;
+        }
         Object returnedValue = value;
         if (targetType.isAssignableFrom(Boolean.class)) {
             returnedValue = Boolean.valueOf(value);

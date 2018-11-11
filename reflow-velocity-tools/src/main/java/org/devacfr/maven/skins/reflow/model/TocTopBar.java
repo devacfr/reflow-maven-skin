@@ -39,11 +39,11 @@ public class TocTopBar extends Toc<TocTopBar> {
      */
     public TocTopBar(final @Nonnull SkinConfigTool config) {
         super("top", "navbar");
-        this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
-        this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
-        this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));
-        this.withFlatten(config.getConfigAttribute(COMPONENT, "flatten", Boolean.class, false))
-                .withNumberItems(config.getConfigAttribute(COMPONENT, "numberItems", Integer.class, -1))
+        this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
+        this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
+        this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
+        this.withFlatten(config.getAttributeValue(COMPONENT, "flatten", Boolean.class, false))
+                .withNumberItems(config.getAttributeValue(COMPONENT, "numberItems", Integer.class, -1))
                 .withEnabled(true);
     }
 

@@ -41,9 +41,9 @@ public class Footer extends BsComponent {
     public Footer(@Nonnull final SkinConfigTool config) {
         super(COMPONENT);
         requireNonNull(config);
-        this.setTheme(config.getConfigAttribute(COMPONENT, "theme", String.class, "light"));
-        this.setBackground(config.getConfigAttribute(COMPONENT, "background", String.class, "light"));
-        this.setCssClass(config.getConfigAttribute(COMPONENT, "cssClass", String.class, null));
+        this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
+        this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
+        this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
     }
 
 }
