@@ -16,7 +16,9 @@
 package org.devacfr.maven.skins.reflow;
 
 import java.io.IOException;
+import java.net.URI;
 
+import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.testing.TestCase;
 import org.junit.Test;
 
@@ -53,6 +55,35 @@ public class URIToolTest extends TestCase {
         final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
         final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("../..", actual);
+    }
+
+    @Test
+    public void rebaseUrlOnRootProject() {
+        final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
+        final String relativePath = ".";
+        final URI parent = URI.create(childBaseUrl);
+        final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
+        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        assertEquals("images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
+    }
+
+    @Test
+    public void rebaseUrlOnChildProject() {
+        final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
+        final String relativePath = "..";
+        final URI parent = URI.create(childBaseUrl);
+        final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
+        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        assertEquals("../images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
+    }
+
+    @Test
+    public void rebaseUrlWithParentNullValue() {
+        final String childBaseUrl = null;
+        final String parentBaseUrl = null;
+
+        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        assertEquals("images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
     }
 
 }

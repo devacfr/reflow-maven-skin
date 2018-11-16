@@ -14,7 +14,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
         cssClass="bootstrap classes"
         theme="light|dark"
         background="bootstrap colour theme">
-    <image href="image path" width="number|30" height="number|30" />
+    <image src="image path" width="number|30" height="number|30" />
 </navbar>
 ```
 
@@ -28,7 +28,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 Add image to the brand part of navbar.
 
-- **href** <span class="badge badge-light">v2.0</span> - the path location of image to use.
+- **src** <span class="badge badge-light">v2.0</span> - the path location of image to use.
 - **width** <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or `null`.
 - **height** <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or `null`.
 

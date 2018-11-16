@@ -81,10 +81,10 @@ public class Navbar extends BsComponent {
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
         this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
         this.filterMenu = config.getAttributeValue(COMPONENT, "filterMenu", String.class, null);
-        Xpp3Dom element = config.get(COMPONENT);
-        Xpp3Dom img = Xpp3Utils.getFirstChild(element, "image", config.getNamespace());
+        final Xpp3Dom element = config.get(COMPONENT);
+        final Xpp3Dom img = Xpp3Utils.getFirstChild(element, "image", config.getNamespace());
         if (img != null) {
-            this.image =  new ImageBrand(config, img);
+            this.image = new ImageBrand(config, img);
         } else {
             this.image = null;
         }
@@ -118,10 +118,14 @@ public class Navbar extends BsComponent {
         return filterMenu;
     }
 
+    /**
+     * @author devacfr
+     * @since 2.0
+     */
     public static class ImageBrand {
 
         /** */
-        private final String href;
+        private final String src;
 
         /** */
         private final int width;
@@ -130,26 +134,28 @@ public class Navbar extends BsComponent {
         private final int height;
 
         /**
-         *
-         * @param config a config (can <b>not</b> be {@code null}).
-         * @param element the element assiciated to image brand.
+         * @param config
+         *            a config (can <b>not</b> be {@code null}).
+         * @param element
+         *            the element assiciated to image brand.
          */
-        ImageBrand(@Nonnull final SkinConfigTool config, @Nonnull  Xpp3Dom element) {
+        ImageBrand(@Nonnull final SkinConfigTool config, @Nonnull final Xpp3Dom element) {
             Objects.requireNonNull(config);
             Objects.requireNonNull(element);
-            href = config.getAttributeValue(element, "href", String.class, null);
-            if (Strings.isNullOrEmpty(href)) {
+            final String link = config.getAttributeValue(element, "src", String.class, null);
+            if (Strings.isNullOrEmpty(link)) {
                 throw new IllegalArgumentException("the attribute 'href' of image element is required");
             }
+            src = config.createURLRebaser().rebaseLink(link);
             width = config.getAttributeValue(element, "width", Integer.class, 30);
             height = config.getAttributeValue(element, "height", Integer.class, 30);
         }
 
         /**
-         * @return the href
+         * @return the src
          */
-        public String getHref() {
-            return href;
+        public String getSrc() {
+            return src;
         }
 
         /**

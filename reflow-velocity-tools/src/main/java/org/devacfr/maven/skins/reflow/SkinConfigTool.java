@@ -17,6 +17,7 @@ package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -28,9 +29,12 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Strings;
 
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
@@ -115,6 +119,12 @@ public class SkinConfigTool extends SafeConfig {
     /** */
     private MavenProject project = null;
 
+    /** */
+    private DecorationModel decoration;
+
+    /** */
+    private ToolContext velocityContext;
+
     /**
      * {@inheritDoc}
      *
@@ -134,15 +144,15 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // retrieve the decoration model from Velocity context
-        final Object velocityContext = values.get("velocityContext");
+        final Object vc = values.get("velocityContext");
 
-        if (!(velocityContext instanceof ToolContext)) {
+        if (!(vc instanceof ToolContext)) {
             return;
         }
 
-        final ToolContext ctxt = (ToolContext) velocityContext;
+        this.velocityContext = (ToolContext) vc;
 
-        final Object projectObj = ctxt.get("project");
+        final Object projectObj = velocityContext.get("project");
         if (projectObj instanceof MavenProject) {
             this.project = (MavenProject) projectObj;
             final String artifactId = project.getArtifactId();
@@ -151,18 +161,18 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // calculate the page ID from the current file name
-        final Object currentFileObj = ctxt.get("currentFileName");
+        final Object currentFileObj = velocityContext.get("currentFileName");
         if (currentFileObj instanceof String) {
             fileId = slugFilename((String) currentFileObj);
         }
 
-        final Object decorationObj = ctxt.get("decoration");
+        final Object decorationObj = velocityContext.get("decoration");
 
         if (!(decorationObj instanceof DecorationModel)) {
             return;
         }
 
-        final DecorationModel decoration = (DecorationModel) decorationObj;
+        this.decoration = (DecorationModel) decorationObj;
         final Object customObj = decoration.getCustom();
 
         if (!(customObj instanceof Xpp3Dom)) {
@@ -401,7 +411,7 @@ public class SkinConfigTool extends SafeConfig {
         if (element == null) {
             return defaultValue;
         }
-        String value = element.getAttribute(attribute);
+        final String value = element.getAttribute(attribute);
         if (value == null) {
             return defaultValue;
         }
@@ -489,6 +499,13 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
+     * @return the decoration
+     */
+    public DecorationModel getDecoration() {
+        return decoration;
+    }
+
+    /**
      * @return Returns the page level {@link Xpp3Dom}.
      */
     public Xpp3Dom getPageProperties() {
@@ -507,6 +524,49 @@ public class SkinConfigTool extends SafeConfig {
      */
     public String getNamespace() {
         return namespace;
+    }
+
+    /**
+     * @return Returns a {@link String} representing the relative path to root site.
+     */
+    public String getResourcePath() {
+        final String absoluteResourceURL = this.value("absoluteResourceURL");
+        String projectUrl = getProject().getUrl();
+        final String currentFileName = (String) velocityContext.get("currentFileName");
+        if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
+            if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
+                projectUrl += '/';
+            }
+            final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
+            return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        }
+        return (String) velocityContext.get("relativePath");
+    }
+
+    /**
+     * @return Returns new instance of {@link URLRebaser}.
+     */
+    public URLRebaser createURLRebaser() {
+        String childBaseUrl = this.getProject().getUrl();
+        if (Strings.isNullOrEmpty(childBaseUrl)) {
+            childBaseUrl = null;
+        }
+        final String relativePath = getResourcePath();
+        String parentBaseUrl = relativePath;
+        if (childBaseUrl != null && childBaseUrl.length() > 0) {
+            if (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
+                childBaseUrl += '/';
+            }
+            final URI child = URI.create(childBaseUrl);
+            parentBaseUrl = child.resolve(relativePath).normalize().toString();
+        }
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("parentBaseUrl: {}", parentBaseUrl);
+            LOGGER.debug("childBaseUrl: {}", childBaseUrl);
+            LOGGER.debug("relativePath: {}", relativePath);
+        }
+
+        return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
     /**

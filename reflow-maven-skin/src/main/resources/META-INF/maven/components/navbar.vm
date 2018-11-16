@@ -25,14 +25,16 @@
 #*          *##currentFileRelativeLink ( $pageContext.navbar.brandHref )
             <a class="navbar-brand mb-0 h1" href="$currentFileRelativeLink">
 #*          *##if ( $pageContext.navbar.image )
-                <img src="$pageContext.navbar.image.href" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top">
+#*              *##currentFileRelativeLink( $pageContext.navbar.image.src )
+                <img src="$currentFileRelativeLink" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top" />
 #*          *##end
                 ${pageContext.navbar.brandName}
             </a>
 #*      *##else
             <div class="navbar-brand mb-0 h1">
 #*          *##if ( $pageContext.navbar.image )
-                <img src="$pageContext.navbar.image.href" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top">
+#*              *##relativeLink( $pageContext.navbar.image.src )
+                <img src="$relativeLink" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top" />
 #*          *##end
                 ${pageContext.navbar.brandName}
             </div>

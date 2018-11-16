@@ -189,7 +189,6 @@
           <toc>sidebar</toc>
         </toc-sidebar>
         <reflow-documentation type="doc">
-          <navbar cssClass="navbar-light bg-light border-bottom" filterMenu="inherit" />
           <menu name="Reflow Documentation" selectFirstOnExpand="true">
             <item name="Get Started" href="get-started.html" />
             <item name="Layouts">

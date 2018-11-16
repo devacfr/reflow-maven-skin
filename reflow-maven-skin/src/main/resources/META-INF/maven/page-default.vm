@@ -111,16 +111,12 @@
 
   *##if ( $locale )##
       <meta http-equiv="content-language" content="$locale.language" />
-#*  *##end#*
-  ## Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
-  *##if ( $config.absoluteResourceURL && $config.absoluteResourceURL.getValue() != '' )#*
-      *##currentFileRelativeLink ( $config.absoluteResourceURL.getValue() )#*
-      *##set ( $resourcePath = $currentFileRelativeLink )#*
-  *##else#*
-      *##set ( $resourcePath = $relativePath )#*
-  *##end#*
+#*  *##end
+    ## Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+    #set ( $resourcePath = $config.resourcePath )
+
   ## Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
-  *##if ( $config.is( "localResources" ) )#*
+  #if ( $config.is( "localResources" ) )#*
       *##set ( $localResources = true )#*
   *##else#*
       *##set ( $localResources = false )#*
