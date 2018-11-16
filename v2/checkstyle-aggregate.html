@@ -21,7 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
       <meta http-equiv="content-language" content="en" />
-                                                                <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    
+                                                    <link href="./css/bootstrap.min.css" rel="stylesheet" />
     <link href="./css/fontawesome/all.min.css" rel="stylesheet" />
     <link href="./css/docs.css" rel="stylesheet" />
     <link href="./css/reflow-skin.css" rel="stylesheet" />
@@ -60,7 +61,7 @@
     <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         <div class="container">
                             <a class="navbar-brand mb-0 h1" href=".">
-                <img src="./images/reflow.png" width="30" height="30" class="d-inline-block align-top">
+                                <img src="images/reflow.png" width="30" height="30" class="d-inline-block align-top" />
                 <span class="color-highlight">Reflow</span> Maven Skin
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,7 +131,7 @@
         <div class="row m-1" id="banner">
           <div class="col-md-12">
             <div class="float-left">
-                                          <a href="https://devacfr.github.io/reflow-maven-skin/v2/" class="bannerLeft">
+                                          <a href="." class="bannerLeft">
                     <img class="d-inline-block float-left m-2" src="images/reflow.png" alt="Reflow skin" width="144" height="144" />
             <h1><span class="color-highlight">Reflow</span> Maven Skin</h1>
             </a>
@@ -172,7 +173,7 @@
                                 <div class="dropdown-divider"></div>
                                               <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.HtmlTool.java" title="org/devacfr/maven/skins/reflow/HtmlTool.java">org/devacfr/maven/skins/reflow/HtmlTool.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.SkinConfigTool.java" title="org/devacfr/maven/skins/reflow/SkinConfigTool.java">org/devacfr/maven/skins/reflow/SkinConfigTool.java</a>
-                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Navbar.java" title="org/devacfr/maven/skins/reflow/model/Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.URITool.java" title="org/devacfr/maven/skins/reflow/URITool.java">org/devacfr/maven/skins/reflow/URITool.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.SideNavMenuItem.java" title="org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java">org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Toc.java" title="org/devacfr/maven/skins/reflow/model/Toc.java">org/devacfr/maven/skins/reflow/model/Toc.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.TocSidebar.java" title="org/devacfr/maven/skins/reflow/model/TocSidebar.java">org/devacfr/maven/skins/reflow/model/TocSidebar.java</a>
@@ -202,7 +203,7 @@
    <tr class="b"> 
     <td>19</td> 
     <td>0</td> 
-    <td>39</td> 
+    <td>41</td> 
     <td>0</td> 
    </tr> 
   </tbody> 
@@ -233,9 +234,9 @@
     <td>0</td> 
    </tr> 
    <tr class="b"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.model.Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</a></td> 
+    <td><a href="#org.devacfr.maven.skins.reflow.URITool.java">org/devacfr/maven/skins/reflow/URITool.java</a></td> 
     <td>0</td> 
-    <td>1</td> 
+    <td>3</td> 
     <td>0</td> 
    </tr> 
    <tr class="a"> 
@@ -336,13 +337,13 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/SkinConfigTool.html#L396">396</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/SkinConfigTool.html#L406">406</a></td> 
     </tr> 
    </tbody> 
   </table> 
  </div> 
  <div class="section"> 
-  <h3 id="org.devacfr.maven.skins.reflow.model.Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</h3> 
+  <h3 id="org.devacfr.maven.skins.reflow.URITool.java">org/devacfr/maven/skins/reflow/URITool.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
     <tr class="a"> 
@@ -357,9 +358,23 @@
     <tr class="b"> 
      <td><i class="fas fa-exclamation-triangle"></i>&nbsp;Warning</td> 
      <td>javadoc</td> 
-     <td>JavadocType</td> 
-     <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Navbar.html#L121">121</a></td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @return tag.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/URITool.html#L87">87</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td><i class="fas fa-exclamation-triangle"></i>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'parentBaseUrl'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/URITool.html#L87">87</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td><i class="fas fa-exclamation-triangle"></i>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'childBaseUrl'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/URITool.html#L87">87</a></td> 
     </tr> 
    </tbody> 
   </table> 
