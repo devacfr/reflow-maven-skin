@@ -6,7 +6,8 @@
   in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
   ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -79,7 +80,7 @@
     <site>
       <id>${site.deploy.id}</id>
       <name>${site.deploy.name}</name>
-      <url>${site.deploy.path}</url>
+      <url>${site.url}</url>
     </site>
   </distributionManagement>
 
@@ -93,9 +94,6 @@
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-    <!-- A common location in which a surefire report from 'test' and failsafe report from 'integration-test' phase will
-      be stored. See also the clover-report.xml file which refers to this location -->
-    <surefire.and.failsafe.report.dir>${project.build.directory}/surefire-reports</surefire.and.failsafe.report.dir>
 
     <!-- Set compiler source and target versions (m-compiler-p) -->
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -111,9 +109,11 @@
     <ci.system>Travis</ci.system>
     <ci.contact-admin>christophefriederich@mac.com</ci.contact-admin>
 
-    <site.url>https://devacfr.github.io/reflow-maven-skin/${site.deploy.path}</site.url>
+    <siteMainDirectory>${user.home}</siteMainDirectory>
+    <pubScmUrl>scm:git:ssh://git@github.com/devacfr/reflow-maven-skin.git</pubScmUrl>
+    <scmPubCheckoutDirectory>\${siteMainDirectory}/Development/maven/reflow-maven-skin-scm</scmPubCheckoutDirectory>
+    <site.url>https://devacfr.github.io/reflow-maven-skin/</site.url>
     <site.deploy.id>github</site.deploy.id>
-    <site.deploy.path />
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
     <!-- ================================================================================ -->
@@ -162,6 +162,7 @@
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
     <!-- used in site generation -->
+    <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
     <maven-site-plugin-version>${maven-site-plugin.version}</maven-site-plugin-version>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <maven-velocity.version>1.7</maven-velocity.version>
@@ -322,7 +323,6 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-plugin.version}</version>
           <configuration>
-            <reportsDirectory>${surefire.and.failsafe.report.dir}</reportsDirectory>
             <argLine>-Xmx512m</argLine>
             <includes>
               <include>**/*Test.java</include>
@@ -474,21 +474,27 @@
             <artifactId>reflow-velocity-tools</artifactId>
             <version>${project.version}</version>
           </dependency>
-          <!-- Reflow skin requires velocity 1.7 -->
-          <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>${maven-velocity.version}</version>
-          </dependency>
         </dependencies>
         <configuration>
+          <skipDeploy>true</skipDeploy>
           <relativizeDecorationLinks>true</relativizeDecorationLinks>
           <generateReports>true</generateReports>
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-          <!-- Site deployment done using GitHub site plugin -->
-          <skipDeploy>true</skipDeploy>
           <topSiteURL>${site.url}</topSiteURL>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <version>${maven-scm-publish-plugin.version}</version>
+        <configuration>
+          <pubScmUrl>${pubScmUrl}</pubScmUrl>
+          <checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory>
+          <checkinComment>Publishing Site Docs for Reflow Maven Skin ${project.version} </checkinComment>
+          <tryUpdate>true</tryUpdate>
+          <skipDeletedFiles>false</skipDeletedFiles>
+          <scmBranch>gh-pages</scmBranch>
         </configuration>
       </plugin>
       <!-- copy default web dependencies -->
@@ -520,27 +526,6 @@
               </artifactItems>
               <outputDirectory>${main.basedir}/target/site</outputDirectory>
             </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin><!-- GitHub site plug-in for deployment to GitHub pages -->
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.12</version>
-        <configuration>
-          <message>Creating site for ${project.artifactId}, ${project.version}</message>
-          <merge>true</merge>
-          <server>github</server>
-          <!-- this does the trick to place every module in the correct subfolder -->
-          <path>${project.distributionManagement.site.url}</path>
-        </configuration>
-        <executions>
-          <execution>
-            <id>github-site</id>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>site-deploy</phase>
           </execution>
         </executions>
       </plugin>
@@ -679,9 +664,6 @@
           <reportSet>
             <id>aggregate</id>
             <configuration>
-              <reportsDirectories>
-                <reportsDirectory>${surefire.and.failsafe.report.dir}</reportsDirectory>
-              </reportsDirectories>
               <aggregate>true</aggregate>
             </configuration>
             <reports>
@@ -781,12 +763,6 @@
       </activation>
       <properties>
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
-      </properties>
-    </profile>
-    <profile>
-      <id>v2</id>
-      <properties>
-        <site.deploy.path>v2/</site.deploy.path>
       </properties>
     </profile>
   </profiles>

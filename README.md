@@ -1,8 +1,27 @@
+<!---
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+[![Apache License, Version 2.0](https://img.shields.io/github/license/apache/maven.svg?label=License)][license]
 [![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg)][maven-repo]
 
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
 
+[license]: https://www.apache.org/licenses/LICENSE-2.0
 [maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
 [gitter]: https://gitter.im/reflow-maven-skin/public
 
@@ -11,15 +30,10 @@
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
 and stylistic customizations to create a modern-looking Maven-generated website and documentatin generation.
 
-To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow-v2]!
+To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow]!
 
-> **Reflow supported version**
->
-> - **1.5.0** - built on Boostrap 3, [Reflow 1 Documentation](http://devacfr.github.io/reflow-maven-skin).
-> - **2.0.0-beta2** - built on Boostrap 4, Reflow 2 is a major rewrite of the entire project and maybe the best maven skin to organize your documentation, read [Migration documentation][migration] to upgrade your site.
-
-[reflow-v2]: http://devacfr.github.io/reflow-maven-skin/v2
-[migration]: http://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#migration.html
+[reflow]: http://devacfr.github.io/reflow-maven-skin/
+[migration]: http://devacfr.github.io/reflow-maven-skin/skin/reflow-documentation.html#migration.html
 [bootstrap]: http://getbootstrap.com
 
 ## Usage
@@ -70,7 +84,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
 The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
 Refer to [documentation][reflow-config] for all configuration options.
 
-[reflow-config]: https://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#get-started_toc_configuration
+[reflow-config]: https://devacfr.github.io/reflow-maven-skin/skin/reflow-documentation.html#get-started_toc_configuration
 
 A sample configuration file is given below:
 
@@ -159,7 +173,15 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 **Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation)
 
-[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/v2/skin/reflow-documentation.html#multi-module.html
+[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/skin/reflow-documentation.html#multi-module.html
+
+## Site Deployment
+
+Use following command to deploy site.
+
+```bash
+$ ./mvnw clean package site site:stage scm-publish:publish-scm
+```
 
 ## Bug tracker
 
