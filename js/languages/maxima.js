@@ -409,4 +409,3 @@ function(hljs) {
     illegal: /@/
   }
 }
-

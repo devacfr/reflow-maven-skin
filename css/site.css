@@ -2,61 +2,26 @@
 	color: #225E9B;
 }
 
-
-body[class*="page-themes-bootswatch"] {
-	background-image: none;
+.color-highlight:after {
+    content :"2";
+    font-weight: 900;
+    color: var(--danger);
+    position: relative;
 }
 
-body[class*="page-themes-bootswatch"] .color-highlight {
-	color: inherit;
+.navbar-brand .color-highlight:after {
+    left: -3px;
 }
 
-.thumbnail-row {
-	margin-top: 10px;
+.subhead .color-highlight:after {
+    left: -8px;
 }
 
-/*h1, */h2 {
-  margin-top: 30px;
+.navside-col {
+    /* same color of navsidemenu (bg-light) */
+    background-color: var(--light);
 }
 
-h3, h4, h5, h6 {
-  margin-top: 20px;
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
 }
-
-.carousel-caption a {
-  color: white;
-}
-
-/* A bit of workaround for links being not clickable due to :before element in headings */
-.project-reflow-parent.page-index h2[id]:before {
-  height: 30px;
-  margin-top: -30px;
-}
-
-.project-reflow-parent.page-index .sidebar {
-  margin-top: 10px;
-}
-
-.project-reflow-parent.page-index .sidebar {
-  margin-top: 10px;
-}
-
-.project-reflow-parent.page-index .sidebar h3 {
-  margin-top: 10px;
-}
-
-
-@media (min-width: 980px) {
-  .page-themes-bootswatch-readable .navbar.affix {
-    top: 60px;
-  }
-
-  .page-themes-bootswatch-cerulean .navbar.affix {
-    top: 50px;
-  }
-
-  .page-themes-bootswatch-spruce .navbar.affix {
-    top: 55px;
-  }
-}
-
