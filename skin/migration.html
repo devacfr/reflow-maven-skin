@@ -1,15 +1,18 @@
 
 
+
+
+
  
 
  
  
  
 
-     <div class="row">
+     <div class="row no-gutters">
                                                       
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 py-3">
-                         <h1 id="migration_toc_migration_to_v21">Migration to v2</h1> 
+                <div class="col-lg-12 col-xl-9 py-3">
+                 <h1 id="migration_toc_migration_to_v21">Migration to v2</h1> 
 <p>Reflow is a major rewrite of the entire project. The most notable changes are summarized below, followed by more specific changes to relevant components.</p> 
 <div class="section"> 
  <h2 id="migration_toc_stable_changes">Stable changes</h2> 
@@ -22,27 +25,27 @@
   <li>Dropped the Glyphicons icon font, use Font Awesome free 5.2.</li> 
   <li>Remove <code class="\&quot;literal\&quot;">&lt;bootstrapCSS&gt;</code> element</li> 
   <li>Remove <code class="\&quot;literal\&quot;">&lt;navbarInverse&gt;</code> element, replace by <code class="\&quot;literal\&quot;">cssClass</code> attribute (see <a href="#migration_toc_navbar_component">Navbar component</a></li> 
-  <li>Dropped the Affix jQuery plugin, replaced by position <code class="\&quot;literal\&quot;">sticky</code> (can remove all affix css).</li> 
+  <li>Dropped the Affix jQuery plugin, replaced by position <code class="\&quot;literal\&quot;">sticky</code> (can remove all affix reference in your css).</li> 
+  <li>Remove support of customized Bootsrap theme: 
+   <ul> 
+    <li>Remove <code class="\&quot;literal\&quot;">css/bootstrap-responsive.min.css</code> link</li> 
+    <li>Remove <code class="\&quot;literal\&quot;">js/html5.js</code> link</li> 
+   </ul> </li> 
+  <li>Add <code class="\&quot;literal\&quot;">popper.js</code> library required by Bootstrap</li> 
  </ul> 
  <div class="section"> 
   <h3 id="migration_toc_bootswatch_themes">Bootswatch Themes</h3> 
   <ul> 
-   <li>Add new themes.</li> 
+   <li>Add new bootswatch supported themes.</li> 
    <li>Remove <code class="\&quot;literal\&quot;">reflow-maven-skin/src/main/resources/css/bootswatch.css</code></li> 
-  </ul> 
- </div> 
- <div class="section"> 
-  <h3 id="migration_toc_using_customized_bootstrap">Using customized Bootstrap</h3> 
-  <ul> 
-   <li>Remove <code class="\&quot;literal\&quot;">css/bootstrap-responsive.min.css</code> link</li> 
-   <li>Remove <code class="\&quot;literal\&quot;">js/html5.js</code> link</li> 
-   <li>Add <code class="\&quot;literal\&quot;">css/bootstrap.min.css</code>, default Bootstrap css file</li> 
-   <li>Add <code class="\&quot;literal\&quot;">css/bootstrap-theme.min.css</code>, specific customize theme</li> 
   </ul> 
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_documentary_support">Documentary support</h2> 
+ <h2 id="migration_toc_css_changes">Css Changes</h2> 
+ <ul> 
+  <li>Replace <code class="\&quot;literal\&quot;">#bannerRight</code> <code class="\&quot;literal\&quot;">#bannerLeft</code> by <code class="\&quot;literal\&quot;">.bannerRight</code> and <code class="\&quot;literal\&quot;">.bannerLeft</code>.</li> 
+ </ul> 
 </div> 
 <div class="section"> 
  <h2 id="migration_toc_local_resources">Local resources</h2> 
@@ -73,6 +76,7 @@
                 &lt;overWrite&gt;false&lt;/overWrite&gt;
                 &lt;includes&gt;
                 **/css/*, &lt;!-- add bootstrap and awesome font --&gt;
+                **/css/fontawesome/**/*, &lt;!-- add awesome font --&gt;
                 **/js/*.js,  &lt;!-- add all javascripts --&gt;
                 **/js/languages/*,  &lt;!-- add all highlight languages --&gt;
                 **/js/styles/default.min.css &lt;!-- add 'default' highlight style --&gt;
@@ -87,7 +91,7 @@
 </pre> 
    </div> 
   </div> 
-  <p><b>Note</b>: <code class="\&quot;literal\&quot;">${main.basedir}</code> equals to <code class="\&quot;literal\&quot;">${session.executionRootDirectory}</code> for relativize url (see <a class="externalLink" href="https://devacfr.github.io/reflow-maven-skin/skin/multi-module.html">https://devacfr.github.io/reflow-maven-skin/skin/multi-module.html</a> )</p> 
+  <p><b>Note</b>: <code class="\&quot;literal\&quot;">${main.basedir}</code> equals to <code class="\&quot;literal\&quot;">${session.executionRootDirectory}</code> for relativize url (see <a href="reflow-documentation.html#multi-module.html">Multi-module site</a> )</p> 
  </div> 
  <div class="section"> 
   <h3 id="migration_toc_using_bootswatch_theme">Using Bootswatch theme</h3> 
@@ -112,7 +116,7 @@
                 &lt;type&gt;jar&lt;/type&gt;
                 &lt;overWrite&gt;false&lt;/overWrite&gt;
                 &lt;includes&gt;
-                **/css/fontawesome/*, &lt;!-- add all awesome --&gt;
+                **/css/fontawesome/**/*, &lt;!-- add all awesome --&gt;
                 **/css/themes/cerulean/*.css, &lt;!-- add specific theme --&gt;
                 **/js/*.js,  &lt;!-- add all javascripts --&gt;
                 **/js/languages/*,  &lt;!-- add all highlight languages --&gt;
@@ -131,18 +135,52 @@
  </div> 
 </div> 
 <div class="section"> 
+ <h2 id="migration_toc_documentation_layout">Documentation layout</h2> 
+ <p><a href="#documentation-layout">Documentation layout</a> is new feature to organize your documentation in single page to facilitate the navigation and reduce the size of dropdown list in navbar.</p> 
+ <div class="section"> 
+  <h3 id="migration_toc_improve_documentation">Improve documentation</h3> 
+  <p>Doxia Sitetools has introduce the edit source feature in <a class="externalLink" href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html">decoration model 1.8</a> adding <code class="\&quot;literal\&quot;">&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a class="externalLink" href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183">DOXIASITETOOLS-183</a>).</p> 
+  <p><img src="images/improve-this-page.png" alt="Improve this page" class="img-fluid"></p> 
+ </div> 
+</div> 
+<div class="section"> 
  <h2 id="migration_toc_by_component">By component</h2> 
  <p>This list highlights key changes by component between v1.4 and v2.0.0.</p> 
+ <div class="section"> 
+  <h3 id="migration_toc_banner">Banner</h3> 
+  <p>Before, you had the solution to display either a logo or a title. Now you have the choice to display a logo and a title.</p> 
+  <ul> 
+   <li><code class="\&quot;literal\&quot;">name</code> is used to display title heading in elements <b>bannerLeft</b> and <b>bannerRight</b>, use <code class="\&quot;literal\&quot;">alt</code> element instead <code class="\&quot;literal\&quot;">name</code>.</li> 
+  </ul> 
+ </div> 
+ <div class="section"> 
+  <h3 id="migration_toc_navside_menu">Navside menu</h3> 
+  <p>It is a new component used in documentation page support. (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation )</p> 
+  <div> 
+   <div> 
+    <pre class="source">&lt;navside-menu cssClass="bootstrap classes"
+              theme="light|dark"
+              background="bootstrap colour theme" /&gt;
+</pre> 
+   </div> 
+  </div> 
+ </div> 
  <div class="section"> 
   <h3 id="migration_toc_toc_topbar_component">Toc topbar component</h3> 
   <div> 
    <div> 
-    <pre class="source">&lt;toc cssClass="navbar-dark bg-dark border rounded|bootstrap classes" numberItems="number|-1" flatten="false|true"&gt;top&lt;/toc&gt;
+    <pre class="source">&lt;toc cssClass="navbar-dark bg-dark|bootstrap classes"
+     theme="light|dark"
+     background="bootstrap colour theme"
+     numberItems="number|-1" 
+     flatten="false|true"&gt;top&lt;/toc&gt;
 </pre> 
    </div> 
   </div> 
   <ul> 
-   <li>Add ccsClass attribute (default value <code class="\&quot;literal\&quot;">navbar-dark bg-dark border rounded</code>) to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
+   <li>Add ccsClass attribute (default value <code class="\&quot;literal\&quot;">navbar-dark bg-dark</code>) to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
+   <li>Add <code class="\&quot;literal\&quot;">theme</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">background</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
    <li>Replace <code class="\&quot;literal\&quot;">tocTopMax</code> element by <code class="\&quot;literal\&quot;">numberItems</code> attribute to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
    <li>Replace <code class="\&quot;literal\&quot;">tocTopFlatten</code> element by <code class="\&quot;literal\&quot;">flatten</code> attribute to <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element.</li> 
   </ul> 
@@ -166,20 +204,38 @@
   <h3 id="migration_toc_navbar_component">Navbar component</h3> 
   <div> 
    <div> 
-    <pre class="source">&lt;navbar filterMenu="Regex filter" cssClass="navbar-light bg-light border-bottom|bootstrap classes"&gt;
+    <pre class="source">&lt;navbar filterMenu="Regex filter"
+        cssClass="navbar-light bg-light|bootstrap classes"
+        theme="light|dark"
+        background="bootstrap colour theme"&gt;
 </pre> 
    </div> 
   </div> 
   <ul> 
    <li>Replace <code class="\&quot;literal\&quot;">&lt;topNav&gt;</code> element by <code class="\&quot;literal\&quot;">filterMenu</code> attribute.</li> 
    <li>Remove <code class="\&quot;literal\&quot;">&lt;navbarInverse&gt;</code> element. use <code class="\&quot;literal\&quot;">cssClass</code> instead.</li> 
-   <li>Add <code class="\&quot;literal\&quot;">cssClass</code> attribute (default value <code class="\&quot;literal\&quot;">navbar-light bg-light border-bottom</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">cssClass</code> attribute (default value <code class="\&quot;literal\&quot;">navbar-light bg-light</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">theme</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
+   <li>Add <code class="\&quot;literal\&quot;">background</code> attribute (default value <code class="\&quot;literal\&quot;">light</code>)</li> 
+  </ul> 
+ </div> 
+ <div class="section"> 
+  <h3 id="migration_toc_bottom_navigation">Bottom navigation</h3> 
+  <ul> 
+   <li>Remove <code class="\&quot;literal\&quot;">maxSpan</code> attribute, use auto-layout Bootstrap columns.</li> 
   </ul> 
  </div> 
 </div>
         </div>
-    <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
-                                <div id="m-toc-sidebar" class="d-print-none hidden-xs hidden-sm m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable" >
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/reflow-maven-skin/src/site/markdown/migration.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
     <li class="h1">
@@ -195,12 +251,9 @@
         <li class="h3">
         <a class="nav-link" href="#migration_toc_bootswatch_themes" title="Bootswatch Themes">Bootswatch Themes</a>
     </li>
-    <li class="h3">
-        <a class="nav-link" href="#migration_toc_using_customized_bootstrap" title="Using customized Bootstrap">Using customized Bootstrap</a>
-    </li>
     </ul>
     <li class="h2">
-        <a class="nav-link" href="#migration_toc_documentary_support" title="Documentary support">Documentary support</a>
+        <a class="nav-link" href="#migration_toc_css_changes" title="Css Changes">Css Changes</a>
     </li>
     <li class="h2">
         <a class="nav-link" href="#migration_toc_local_resources" title="Local resources">Local resources</a>
@@ -214,10 +267,24 @@
     </li>
     </ul>
     <li class="h2">
+        <a class="nav-link" href="#migration_toc_documentation_layout" title="Documentation layout">Documentation layout</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3">
+        <a class="nav-link" href="#migration_toc_improve_documentation" title="Improve documentation">Improve documentation</a>
+    </li>
+    </ul>
+    <li class="h2">
         <a class="nav-link" href="#migration_toc_by_component" title="By component">By component</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
         <li class="h3">
+        <a class="nav-link" href="#migration_toc_banner" title="Banner">Banner</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#migration_toc_navside_menu" title="Navside menu">Navside menu</a>
+    </li>
+    <li class="h3">
         <a class="nav-link" href="#migration_toc_toc_topbar_component" title="Toc topbar component">Toc topbar component</a>
     </li>
     <li class="h3">
@@ -225,6 +292,9 @@
     </li>
     <li class="h3">
         <a class="nav-link" href="#migration_toc_navbar_component" title="Navbar component">Navbar component</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#migration_toc_bottom_navigation" title="Bottom navigation">Bottom navigation</a>
     </li>
     </ul>
                     </ul>
