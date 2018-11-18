@@ -22,8 +22,8 @@
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
-  <description>Reflow Maven skin and supporting libraries parent</description>
   <url>${site.url}</url>
+  <description>Reflow Maven skin and supporting libraries parent</description>
   <inceptionYear>2012</inceptionYear>
   <organization>
     <name>Friederich Christophe</name>
@@ -80,7 +80,7 @@
     <site>
       <id>${site.deploy.id}</id>
       <name>${site.deploy.name}</name>
-      <url>${site.url}</url>
+      <url>${pubScmUrl}</url>
     </site>
   </distributionManagement>
 
@@ -481,7 +481,7 @@
           <generateReports>true</generateReports>
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-          <topSiteURL>${site.url}</topSiteURL>
+          <topSiteURL>${pubScmUrl}</topSiteURL>
         </configuration>
       </plugin>
       <plugin>

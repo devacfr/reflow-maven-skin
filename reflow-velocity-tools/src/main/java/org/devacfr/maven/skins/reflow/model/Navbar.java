@@ -17,16 +17,20 @@ package org.devacfr.maven.skins.reflow.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import org.apache.maven.doxia.site.decoration.DecorationModel;
+import org.apache.maven.doxia.site.decoration.LinkItem;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 /**
  * Represents the navbar component.
@@ -51,6 +55,9 @@ public class Navbar extends BsComponent {
     /** */
     private final ImageBrand image;
 
+    /** */
+    private final List<Menu> menus = Lists.newArrayList();
+
     /**
      * Default constructor.
      *
@@ -69,7 +76,7 @@ public class Navbar extends BsComponent {
             }
             final Xpp3Dom href = brand.getChild("href");
             if (href != null) {
-                brandHref = href.getValue();
+                brandHref = config.relativeLink(href.getValue());
             }
         } else {
             brandName = project.getName();
@@ -87,6 +94,24 @@ public class Navbar extends BsComponent {
             this.image = new ImageBrand(config, img);
         } else {
             this.image = null;
+        }
+        final DecorationModel decoration = config.getDecoration();
+        if (decoration.getBody() != null && decoration.getBody().getLinks() != null) {
+            final List<LinkItem> items = decoration.getBody().getLinks();
+            for (final LinkItem item : items) {
+                this.menus.add(new Menu(config, item));
+            }
+        }
+        if (decoration.getBody() != null && decoration.getBody().getMenus() != null) {
+            final List<org.apache.maven.doxia.site.decoration.Menu> menus = decoration.getBody().getMenus();
+            for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
+                if (Strings.isNullOrEmpty(this.filterMenu)) {
+                    this.menus.add(new Menu(config, menu));
+                } else if (menu.getRef() != null && menu.getRef().matches(this.filterMenu)
+                        || menu.getName() != null && menu.getName().matches(this.filterMenu)) {
+                    this.menus.add(new Menu(config, menu));
+                }
+            }
         }
     }
 
@@ -119,6 +144,13 @@ public class Navbar extends BsComponent {
     }
 
     /**
+     * @return the menus
+     */
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    /**
      * @author devacfr
      * @since 2.0
      */
@@ -146,7 +178,7 @@ public class Navbar extends BsComponent {
             if (Strings.isNullOrEmpty(link)) {
                 throw new IllegalArgumentException("the attribute 'href' of image element is required");
             }
-            src = config.createURLRebaser().rebaseLink(link);
+            src = config.relativeLink(config.rebaseLink(link));
             width = config.getAttributeValue(element, "width", Integer.class, 30);
             height = config.getAttributeValue(element, "height", Integer.class, 30);
         }
@@ -172,4 +204,5 @@ public class Navbar extends BsComponent {
             return width;
         }
     }
+
 }

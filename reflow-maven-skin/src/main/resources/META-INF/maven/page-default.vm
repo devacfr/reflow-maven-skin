@@ -36,22 +36,11 @@
   *##else#*
       *##set ( $datePosition = "bottom" )#*
   *##end##
-  ##
-  ## Try resolving site URL from the POM.
-  ## This can help with resolution of relative links, needed for 'active' link calculations,
-  ## e.g. to normalise the relative links in menus.
-  #if ( $project.url && $project.url != '' )#*
-        *##set ( $projectSiteLoc = $project.url )#*
-        *##if ( !$projectSiteLoc.endsWith("/") )#*
-          ## ensure that the directory is uniform
-          *##set ( $projectSiteLoc = "$projectSiteLoc/" )#*
-        *##end#*
-  *##else
-    ## dummy project URL is used to provide a good base to resolve relative links with ../
-    #set ( $projectSiteLoc = "http://dummy.parent.url/" )#*
-  *##end
+##
+#*  *##set ( $projectSiteLoc = $config.projectLocation )
+#*  *##set ( $currentFileLoc = $config.currentFileLocation )
+##
   ## absolute location of the current
-  #set ( $currentFileLoc = $uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString() )
   #adaptBodyContent ()
   ## generate a short title if one does not exist or is specified explicitly
   #* if specified explicitly, use that

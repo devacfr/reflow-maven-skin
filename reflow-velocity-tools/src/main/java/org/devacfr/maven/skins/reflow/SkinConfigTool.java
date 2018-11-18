@@ -22,12 +22,14 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
+import org.codehaus.plexus.util.PathTool;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.maven.skins.reflow.context.Context;
@@ -230,10 +232,10 @@ public class SkinConfigTool extends SafeConfig {
             this.context = Context.buildContext(this);
         }
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Current Filename: " + currentFileObj);
-            LOGGER.debug("Project id: " + projectId);
-            LOGGER.debug("File id: " + fileId);
-            LOGGER.debug("Context: " + this.context);
+            LOGGER.debug("Current Filename: {}", currentFileObj);
+            LOGGER.debug("Project id: {}", projectId);
+            LOGGER.debug("File id: {}", fileId);
+            LOGGER.debug("Context: {}", this.context);
             LOGGER.debug("---------------------------------------------------");
         }
     }
@@ -531,7 +533,7 @@ public class SkinConfigTool extends SafeConfig {
      */
     public String getResourcePath() {
         final String absoluteResourceURL = this.value("absoluteResourceURL");
-        String projectUrl = getProject().getUrl();
+        String projectUrl = getProjectLocation();
         final String currentFileName = (String) velocityContext.get("currentFileName");
         if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
             if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
@@ -543,30 +545,111 @@ public class SkinConfigTool extends SafeConfig {
         return (String) velocityContext.get("relativePath");
     }
 
-    /**
-     * @return Returns new instance of {@link URLRebaser}.
-     */
-    public URLRebaser createURLRebaser() {
-        String childBaseUrl = this.getProject().getUrl();
-        if (Strings.isNullOrEmpty(childBaseUrl)) {
-            childBaseUrl = null;
-        }
-        final String relativePath = getResourcePath();
-        String parentBaseUrl = relativePath;
-        if (childBaseUrl != null && childBaseUrl.length() > 0) {
-            if (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
-                childBaseUrl += '/';
+    public String getProjectLocation() {
+        String projectSiteLoc = getProject().getUrl();
+        if (!Strings.isNullOrEmpty(projectSiteLoc)) {
+
+            if (!projectSiteLoc.endsWith("/")) {
+                projectSiteLoc += "/";
             }
-            final URI child = URI.create(childBaseUrl);
-            parentBaseUrl = child.resolve(relativePath).normalize().toString();
+        }
+        return projectSiteLoc;
+    }
+
+    public String getCurrentFileLocation() {
+        final String projectSiteLoc = getProjectLocation();
+        final String currentFileName = (String) velocityContext.get("currentFileName");
+        return URITool.toURI(projectSiteLoc).resolve(currentFileName).toString();
+    }
+
+    /**
+     * @param href
+     *            link to relative.
+     * @return Returns Relativizes the link.
+     */
+    public String relativeLink(final String href) {
+        if (href == null) {
+            return null;
+        }
+        if (isExternalLink(href)) {
+            return href;
+        }
+        final String relativePath = (String) velocityContext.get("relativePath");
+        String relativeLink = PathTool.calculateLink(href, relativePath);
+        relativeLink = relativeLink.replaceAll("\\\\", "/");
+        if (Strings.isNullOrEmpty(relativeLink)) {
+            relativeLink = "./";
+        }
+        // Attempt to normalise the relative link - this is useful for active link
+        // calculations and better relative links for subdirectories.
+        //
+        // The issue is particularly visible with pages in subdirectories,
+        // so that if you are in <root>/dev/index.html, the relative menu link to
+        // the _same_ page would likely be ../dev/index.html instead of '' or
+        // 'index.html'.
+        final String currentFileLoc = getCurrentFileLocation();
+        final String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
+        if (currentFileLoc.equals(absoluteLink)) {
+            // for matching link, use empty relative link
+            relativeLink = StringUtils.EMPTY;
+        } else {
+            // relativize the absolute link based on current directory
+            // (uses Maven project link relativization)
+            final String currentFileDir = PathTool.getDirectoryComponent(currentFileLoc);
+            relativeLink = URITool.relativizeLink(currentFileDir, absoluteLink);
         }
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("parentBaseUrl: {}", parentBaseUrl);
-            LOGGER.debug("childBaseUrl: {}", childBaseUrl);
-            LOGGER.debug("relativePath: {}", relativePath);
+            LOGGER.debug("-- Relative Link ----------------------------------");
+            LOGGER.debug("link: {}", href);
+            LOGGER.debug("currentFileLoc: {}", currentFileLoc);
+            LOGGER.debug("absoluteLink: {}", absoluteLink);
+            LOGGER.debug("relativeLink: {}", relativeLink);
+            LOGGER.debug("---------------------------------------------------");
         }
+        return relativeLink;
+    }
 
-        return new URLRebaser(parentBaseUrl, childBaseUrl);
+    /**
+     * @param url
+     *            a url.
+     * @return Returns {@code true} whether the link is a external link to the site.
+     */
+    public boolean isExternalLink(final String url) {
+        if (url == null) {
+            return false;
+        }
+        final String absoluteResourceURL = this.value("absoluteResourceURL");
+        if (!Strings.isNullOrEmpty(absoluteResourceURL) && url.startsWith(absoluteResourceURL)) {
+            return false;
+        }
+        return url.toLowerCase().startsWith("http:/") || url.toLowerCase().startsWith("https:/")
+                || url.toLowerCase().startsWith("ftp:/") || url.toLowerCase().startsWith("mailto:")
+                || url.toLowerCase().startsWith("file:/") || url.toLowerCase().indexOf("://") != -1;
+    }
+
+    /**
+     *
+     */
+    public boolean isActiveLink(final String href) {
+        final String alignedFileName = (String) velocityContext.get("alignedFileName");
+        if (href == null) {
+            return false;
+        }
+        // either empty link (pointing to a page), or if the current file is index.html,
+        // the link may point to the whole directory
+        return Strings.isNullOrEmpty(href) || alignedFileName.endsWith("index.html") && ".".equals(href);
+    }
+
+    /**
+     * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same
+     * location as viewed from a new base.
+     *
+     * @param link
+     *            link to rebase
+     * @return Returns a {@link String} representing link rebased.
+     */
+    public String rebaseLink(final String link) {
+        return createURLRebaser().rebaseLink(link);
     }
 
     /**
@@ -596,6 +679,32 @@ public class SkinConfigTool extends SafeConfig {
         // full file ID includes the nested dirs
         // replace nesting "/" with "-"
         return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
+    }
+
+    /**
+     * @return Returns new instance of {@link URLRebaser}.
+     */
+    private URLRebaser createURLRebaser() {
+        String childBaseUrl = this.getProject().getUrl();
+        if (Strings.isNullOrEmpty(childBaseUrl)) {
+            childBaseUrl = null;
+        }
+        final String relativePath = getResourcePath();
+        String parentBaseUrl = relativePath;
+        if (childBaseUrl != null && childBaseUrl.length() > 0) {
+            if (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
+                childBaseUrl += '/';
+            }
+            final URI child = URI.create(childBaseUrl);
+            parentBaseUrl = child.resolve(relativePath).normalize().toString();
+        }
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("parentBaseUrl: {}", parentBaseUrl);
+            LOGGER.debug("childBaseUrl: {}", childBaseUrl);
+            LOGGER.debug("relativePath: {}", relativePath);
+        }
+
+        return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
 }

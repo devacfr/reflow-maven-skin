@@ -176,33 +176,33 @@
  * Recursively outputs menu item and its children
  *
  *##macro ( menuItem $item )#*
-    *##set ( $collapseClass = false )#*
-    *##activeLink ( $item.href )#*
+    *##set ( $collapseClass = false )
     ## store value (if active) for later
-    *##set ( $active = $activeLink )#*
+#*  *##set ( $href = $config.relativeLink( $item.href ) )#*
+#*  *##set ( $active = $config.isActiveLink( $href ) )#*
     *##if ( $active )#*
         *##set ( $currentLink = "#" )#*
     *##else#*
-        *##set ( $currentLink = $relativeLink )#*
+        *##set ( $currentLink = $href )#*
     *##end#*
 
     *##if ( $item.items && $item.items.size() > 0 )#*
 
         *##if ( $item.collapse == false )#*
-
             *##set ( $collapseClass = "fas fa-angle-down" )#*
         *##else#*
                 ## By default collapsed
             *##set ( $collapseClass = "fas fa-angle-right" )#*
         *##end#*
         ## check if one of the subtree items is the current one, if so, autoexpand
-        *##set ( $displayTree = false )#displayTree ( $item )#*
+        *##set ( $displayTree = false )
+        #displayTree ( $item )#*
         *##if ( $active || $displayTree )#*
             *##set ( $collapseClass = "fas fa-angle-down" )#*
         *##end#*
 
     *##end##
-                    <li class="nav-item $activeClass" )>#*
+                    <li class="nav-item #if( $active )active#end" )>#*
     *##fullLink ( $currentLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")#*
     *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "fas fa-angle-down" )##
         <ul class="nav flex-column nav-list">

@@ -172,8 +172,8 @@
     </head>
 
     <links>
-      <item name="GitHub project" href="${this.scm-url}" />
-      <item name="Documentation" href="skin/reflow-documentation.html" />
+      <item name="GitHub project" href="${this.scm-url}" target="_blank"/>
+      <item name="Documentation" href="reflow-maven-skin/reflow-documentation.html" />
     </links>
 
     <breadcrumbs>
@@ -196,8 +196,8 @@
       <item name="Fork on GitHub" href="${this.scm-url}" />
     </menu>
     <menu name="Documentation" inherit="bottom">
-      <item name="Get Started" href="skin/reflow-documentation.html#get-started.html" />
-      <item name="Migration" href="skin/reflow-documentation.html#migration.html" />
+      <item name="Get Started" href="reflow-maven-skin/reflow-documentation.html#get-started.html" />
+      <item name="Migration" href="reflow-maven-skin/reflow-documentation.html#migration.html" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>

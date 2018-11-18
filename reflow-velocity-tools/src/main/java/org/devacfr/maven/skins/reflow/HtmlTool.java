@@ -1143,8 +1143,9 @@ public class HtmlTool extends SafeConfig {
 
     @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
-     * Fixes table heads: wraps rows with {@code 
-     * <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
+     * Fixes table heads: wraps rows with {@code
+     * 
+    <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
      *
      * @param content
      *            HTML content to modify
