@@ -202,7 +202,7 @@
         *##end#*
 
     *##end##
-                    <li class="nav-item #if( $active )active#end" )>#*
+                    <li class="nav-item #if( $active )active#end">#*
     *##fullLink ( $currentLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")#*
     *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "fas fa-angle-down" )##
         <ul class="nav flex-column nav-list">
