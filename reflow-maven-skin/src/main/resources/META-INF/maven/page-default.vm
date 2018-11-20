@@ -101,15 +101,6 @@
   *##if ( $locale )##
       <meta http-equiv="content-language" content="$locale.language" />
 #*  *##end
-    ## Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
-    #set ( $resourcePath = $config.resourcePath )
-
-  ## Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
-  #if ( $config.is( "localResources" ) )#*
-      *##set ( $localResources = true )#*
-  *##else#*
-      *##set ( $localResources = false )#*
-  *##end##
 ##
     ## use Bootstrap theme from BootstrapCDN (loaded over network)
     #if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )##

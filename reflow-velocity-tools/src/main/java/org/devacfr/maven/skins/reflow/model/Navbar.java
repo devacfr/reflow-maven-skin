@@ -178,9 +178,9 @@ public class Navbar extends BsComponent {
             if (Strings.isNullOrEmpty(link)) {
                 throw new IllegalArgumentException("the attribute 'href' of image element is required");
             }
-            src = config.relativeLink(config.rebaseLink(link));
-            width = config.getAttributeValue(element, "width", Integer.class, 30);
-            height = config.getAttributeValue(element, "height", Integer.class, 30);
+            this.src = config.eval(link, String.class);
+            this.width = config.getAttributeValue(element, "width", Integer.class, 30);
+            this.height = config.getAttributeValue(element, "height", Integer.class, 30);
         }
 
         /**

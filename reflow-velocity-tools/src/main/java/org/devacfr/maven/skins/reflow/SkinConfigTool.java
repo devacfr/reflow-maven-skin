@@ -20,6 +20,7 @@ import static java.util.Objects.requireNonNull;
 import java.net.URI;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.StringUtils;
@@ -27,6 +28,7 @@ import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
+import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.PathTool;
@@ -229,6 +231,12 @@ public class SkinConfigTool extends SafeConfig {
                 }
 
             }
+
+            // Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
+            this.velocityContext.put("localResources", is("localResources"));
+            // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+            this.velocityContext.put("resourcePath", getResourcePath());
+
             this.context = Context.buildContext(this);
         }
         if (LOGGER.isDebugEnabled()) {
@@ -494,6 +502,13 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
+     * @return the velocity Context
+     */
+    public ToolContext getVelocityContext() {
+        return velocityContext;
+    }
+
+    /**
      * @return the project
      */
     public MavenProject getProject() {
@@ -524,27 +539,12 @@ public class SkinConfigTool extends SafeConfig {
     /**
      * @return Returns a {@link String} representing the namespace.
      */
+    @Nonnull
     public String getNamespace() {
         return namespace;
     }
 
-    /**
-     * @return Returns a {@link String} representing the relative path to root site.
-     */
-    public String getResourcePath() {
-        final String absoluteResourceURL = this.value("absoluteResourceURL");
-        String projectUrl = getProjectLocation();
-        final String currentFileName = (String) velocityContext.get("currentFileName");
-        if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
-            if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
-                projectUrl += '/';
-            }
-            final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
-            return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
-        }
-        return (String) velocityContext.get("relativePath");
-    }
-
+    @Nonnull
     public String getProjectLocation() {
         String projectSiteLoc = getProject().getUrl();
         if (!Strings.isNullOrEmpty(projectSiteLoc)) {
@@ -556,10 +556,24 @@ public class SkinConfigTool extends SafeConfig {
         return projectSiteLoc;
     }
 
+    @Nonnull
     public String getCurrentFileLocation() {
         final String projectSiteLoc = getProjectLocation();
         final String currentFileName = (String) velocityContext.get("currentFileName");
         return URITool.toURI(projectSiteLoc).resolve(currentFileName).toString();
+    }
+
+    @Nullable
+    public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
+        if (vtl == null) {
+            return null;
+        }
+        final RenderTool renderTool = (RenderTool) getVelocityContext().get("render");
+        try {
+            return (T) renderTool.eval(getVelocityContext(), vtl);
+        } catch (final Exception ex) {
+            throw new RuntimeException("error when try evaluate '" + vtl + "'", ex);
+        }
     }
 
     /**
@@ -567,6 +581,7 @@ public class SkinConfigTool extends SafeConfig {
      *            link to relative.
      * @return Returns Relativizes the link.
      */
+    @Nullable
     public String relativeLink(final String href) {
         if (href == null) {
             return null;
@@ -682,8 +697,27 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
+     * @return Returns a {@link String} representing the relative path to root site.
+     */
+    @Nonnull
+    private String getResourcePath() {
+        final String absoluteResourceURL = this.value("absoluteResourceURL");
+        String projectUrl = getProjectLocation();
+        final String currentFileName = (String) velocityContext.get("currentFileName");
+        if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
+            if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
+                projectUrl += '/';
+            }
+            final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
+            return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        }
+        return (String) velocityContext.get("relativePath");
+    }
+
+    /**
      * @return Returns new instance of {@link URLRebaser}.
      */
+    @Nonnull
     private URLRebaser createURLRebaser() {
         String childBaseUrl = this.getProject().getUrl();
         if (Strings.isNullOrEmpty(childBaseUrl)) {
