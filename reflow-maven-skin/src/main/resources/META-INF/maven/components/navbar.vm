@@ -24,14 +24,14 @@
 #*      *##if ( $pageContext.navbar.brandHref )
             <a class="navbar-brand mb-0 h1" href="$pageContext.navbar.brandHref">
 #*          *##if ( $pageContext.navbar.image )
-                <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top" />
+                <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
 #*          *##end
                 ${pageContext.navbar.brandName}
             </a>
 #*      *##else
             <div class="navbar-brand mb-0 h1">
 #*          *##if ( $pageContext.navbar.image )
-                <img src=$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block align-top" />
+                <img src=$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
 #*          *##end
                 ${pageContext.navbar.brandName}
             </div>
