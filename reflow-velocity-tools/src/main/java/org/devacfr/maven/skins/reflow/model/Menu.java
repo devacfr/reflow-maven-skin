@@ -15,6 +15,8 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -221,6 +223,24 @@ public class Menu {
      */
     public String getWidth() {
         return width;
+    }
+
+    /**
+     * Gets indicating whether menu by their ref or name, and returns the matching results. The regex is used to check
+     * the match.
+     *
+     * @param regex
+     *            regex to use.
+     * @param menu
+     *            the menu to check
+     * @return Returns {@code true} whether menu matches with regex.
+     */
+    public static boolean matches(@Nonnull final String regex,
+        @Nonnull final org.apache.maven.doxia.site.decoration.Menu menu) {
+        requireNonNull(regex);
+        requireNonNull(menu);
+        return menu.getRef() != null && menu.getRef().matches(regex)
+                || menu.getName() != null && menu.getName().matches(regex);
     }
 
 }

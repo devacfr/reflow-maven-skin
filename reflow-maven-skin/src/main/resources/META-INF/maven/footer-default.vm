@@ -16,96 +16,93 @@
 ##
 #macro ( renderFooter )##
   <!-- Footer -->
-  <footer class="$pageContext.footer.cssClass">
+<footer class="$pageContext.footer.cssClass">
     <div class="container">
         <div class="row">
-#*  *##if( $decoration.body.menus )#*
-    ## if menus are available, display bottom navigation
-#*      *##bottomNav ()#*
-    *##end#*
+            ## if menus are available, display bottom navigation
+#*          *##bottomNav ()
+##
+#*  *##if ( $config.bottomDescription )
+            <div class="col bottom-description">
+#*      *##if ( $config.bottomDescription.getChildCount() > 0 )
+#*              *##htmlContent ( $config.bottomDescription.getChildren() )
+#*      *##elseif ( $config.bottomDescription.getAttribute("quote") && 'false' == $config.bottomDescription.getAttribute("quote") )
+                ## no quote
+#*              *#$config.bottomDescription.getValue()
+#*      *##else
+                <blockquote class="blockquote">$config.bottomDescription.getValue()</blockquote>
+#*      *##end
 
-    *##if ( $config.bottomDescription )##
-        <div class="col bottom-description">
-#*      *##if ( $config.bottomDescription.getChildCount() > 0 )#*
-          *##htmlContent ( $config.bottomDescription.getChildren() )#*
-      *##elseif ( $config.bottomDescription.getAttribute("quote") && 'false' == $config.bottomDescription.getAttribute("quote") )#*
-            ## no quote
-            *#$config.bottomDescription.getValue()#*
-      *##else##
-            <blockquote class="blockquote">$config.bottomDescription.getValue()</blockquote>
-#*    *##end#*
-
-    ## add version and publish date if the position is "navigation-bottom"
-    ## (note that 'bottomDescription' needs to be enabled)
-    *##if ( $datePosition == "navigation-bottom" || $versionPosition == "navigation-bottom" )##
-          <blockquote class="version-date">
-#*          *##if ( $versionPosition == "navigation-bottom" )##
-        <span class="projectVersion">#version ()</span>
-        ## add a line break if date is also displayed here
-#*              *##if ( $datePosition == "navigation-bottom" )##
-          <br/>
-#*              *##end#*
-          *##end#*
-
-      ## now add the date
-      *##if ( $datePosition == "navigation-bottom" )##
-            <span class="publishDate">#publishDate ()</span>
+        ## add version and publish date if the position is "navigation-bottom"
+        ## (note that 'bottomDescription' needs to be enabled)
+#*      *##if ( $datePosition == "navigation-bottom" || $versionPosition == "navigation-bottom" )
+                <blockquote class="version-date">
+#*          *##if ( $versionPosition == "navigation-bottom" )
+                    <span class="projectVersion">#version ()</span>
+                ## add a line break if date is also displayed here
+#*              *##if ( $datePosition == "navigation-bottom" )
+                    <br/>
+#*              *##end
+#*          *##end
+##
+            ## now add the date
+#*          *##if ( $datePosition == "navigation-bottom" )
+                    <span class="publishDate">#publishDate ()</span>
 #*          *##end#*
-          *#</blockquote>#*
-      *##end##
-        </div>
+                *#</blockquote>
+#*      *##end
+            </div> <!-- col: .container -->
 #*  *##end##
-      </div>
-    </div>
-  </footer>
+        </div> <!-- END: .row -->
+    </div> <!-- END: .container -->
+</footer>
 ##
   <div class="container subfooter">
     <div class="row">
       <div class="col-md-12">
 ##
-#*  *##if ( $decoration.body.footer )#*
-        *#$render.eval( $decoration.body.footer )#*
+#*  *##if ( $decoration.body.footer )
+#*      *#$render.eval( $decoration.body.footer )
 #*  *##else
         <p class="copyright">Copyright &copy;#copyright (). All Rights Reserved.</p>
-#*  *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )##
+#*      *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )
         <p class="version-date">
-#*          *##if ( $versionPosition == "bottom" )<span class="projectVersion">#version (). </span>#end##
-#*          *##if ( $datePosition == "bottom" )<span class="publishDate">#publishDate (). </span>#end##
+#*          *##if ( $versionPosition == "bottom" )<span class="projectVersion">#version (). </span>#end
+#*          *##if ( $datePosition == "bottom" )<span class="publishDate">#publishDate (). </span>#end
         </p>
 #*  *##end
-#*      *##if ( !$config.not("skinAttribution") )##
+#*      *##if ( !$config.not("skinAttribution") )
         <p><a href="@scm-url@" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://devacfr.github.io" target="_blank" title="devacfr">devacfr</a>.</p>
 #*      *##end
 #*  *##end
       </div>
     </div>
   </div>
-#end##
+#end
 ##
 #**
  * Renders copyright year (inception-currentDate) and organization.
  *
- *##macro ( copyright )#*
-
-    *##if ( $project )#*
-        *##set ( $currentYear = ${currentDate.year} + 1900 )#*
-
-        *##if ( ${project.inceptionYear} && ( ${project.inceptionYear} != ${currentYear.toString()} ) )#*
-            *#${project.inceptionYear}-${currentYear}#*
-        *##else#*
-            *#${currentYear}#*
-        *##end#*
-
-        *##if ( ${project.organization} && ${project.organization.name} )#*
-            *##if ( ${project.organization.url} )##
+ *#
+#macro ( copyright )#*
+#*  *##if ( $project )
+#*      *##set ( $currentYear = ${currentDate.year} + 1900 )
+#*      *##if ( ${project.inceptionYear} && ( ${project.inceptionYear} != ${currentYear.toString()} ) )
+#*            *#${project.inceptionYear}-${currentYear}
+#*      *##else
+#*          *#${currentYear}
+#*      *##end
+##
+#*      *##if ( ${project.organization} && ${project.organization.name} )
+#*          *##if ( ${project.organization.url} )
                  <a href="$project.organization.url">${project.organization.name}</a>
-#*
-            *##else#*
-                *#${project.organization.name}#*
-            *##end#*
-        *##end#*
-    *##end##
-#end##
+##
+#*          *##else
+#*              *#${project.organization.name}
+#*          *##end
+#*      *##end
+#*  *##end
+#end
 ##
 #**
  * Outputs bottom navigation columns. The menus can be split into columns to be
@@ -119,99 +116,79 @@
  *
  * (The above produces a 3-column navigation with `span2` for each column (because max is 8)).
  *
- *##macro ( bottomNav )#*
-
-    *##if ( $config.bottomNav && $config.bottomNav.getChildCount() > 0 )#*
-        ## Bottom navigation config is available - filter menus for each column and collect
-        *##set ( $menuColumns = [] )#*
-        *##foreach ( $bottomNavCol in $config.bottomNav.getChildren() )#*
-            *##filterMenus ( $decoration.body.menus, $bottomNavCol.getValue() )#*
-            *##call ( $menuColumns.add( $filterMenus ) )#*
-        *##end#*
-    *##else#*
-        ## No bottom navigation config - just use all menus in a single column
-        *##set ( $menuColumns = [ $decoration.body.menus ] )#*
-    *##end##
-    ##
-    ## mark total span taken by the bottomNav (needed to add other components to the footer)
-
-#*  *##foreach ( $menuCol in $menuColumns )##
+ *#
+ #macro ( bottomNav )
+#*  *##foreach ( $col in $pageContext.footer.columns )
             <div class="col bottom-nav">
-#*              *##listMenu ( $menuCol )##
+#*              *##listMenu ( $col.menus )
             </div>
-#*  *##end##
-#end##
+#*  *##end
+#end
 ##
 #**
  * Creates a list menu with submenus
- *##macro ( listMenu $menus )#*
-*#
+ *#
+ #macro ( listMenu $menus )
+##
                 <ul class="nav flex-column nav-list">
-#*
-    *##foreach ( $menu in $menus )#*
-        *##if ( $menu.name )##
-                    <li class="nav-header">#*
-            *##if ( $menu.img )#*
-                *##if ( !$menu.position || $menu.position == "left" )#*
-                    *##image ($menu.img $menu.alt $menu.border $menu.width $menu.height) $menu.name#*
-                *##else#*
-                    *#$menu.name #image ($menu.img $menu.alt $menu.border $menu.width $menu.height)#*
-                *##end#*
-            *##else#*
-                *#$menu.name#*
-            *##end##
+##
+#*  *##foreach ( $menu in $menus )
+#*      *##if ( $menu.name )
+                    <li class="nav-header">
+#*          *##if ( $menu.image )
+#*              *##if ( !$menu.position || $menu.position == "left" )
+#*                  *##image ($menu.image $menu.alt $menu.border $menu.width $menu.height) $menu.name
+#*              *##else
+#*                  *#$menu.name #image ($menu.image $menu.alt $menu.border $menu.width $menu.height)
+#*              *##end
+#*          *##else
+#*              *#$menu.name
+#*          *##end##
                     </li>
-#*      *##end#*
-
-        *##if ( $menu.items && $menu.items.size() > 0 )#*
-            *##foreach ( $item in $menu.items )#*
-                *##menuItem ( $item )#*
-            *##end#*
-        *##end#*
-    *##end##
+#*      *##end
+#*      *##foreach ( $item in $menu.menuItems )
+#*          *##menuItem ( $item )
+#*      *##end
+#*  *##end
                 </ul>
-#end##
+#end
 ##
 #**
  * Recursively outputs menu item and its children
  *
- *##macro ( menuItem $item )#*
+ *#
+ #macro ( menuItem $item )#*
     *##set ( $collapseClass = false )
-    ## store value (if active) for later
-#*  *##set ( $href = $config.relativeLink( $item.href ) )#*
-#*  *##set ( $active = $config.isActiveLink( $href ) )#*
-    *##if ( $active )#*
-        *##set ( $currentLink = "#" )#*
-    *##else#*
-        *##set ( $currentLink = $href )#*
-    *##end#*
-
-    *##if ( $item.items && $item.items.size() > 0 )#*
-
-        *##if ( $item.collapse == false )#*
-            *##set ( $collapseClass = "fas fa-angle-down" )#*
-        *##else#*
-                ## By default collapsed
-            *##set ( $collapseClass = "fas fa-angle-right" )#*
-        *##end#*
-        ## check if one of the subtree items is the current one, if so, autoexpand
-        *##set ( $displayTree = false )
-        #displayTree ( $item )#*
-        *##if ( $active || $displayTree )#*
-            *##set ( $collapseClass = "fas fa-angle-down" )#*
-        *##end#*
-
-    *##end##
-                    <li class="nav-item #if( $active )active#end">#*
-    *##fullLink ( $currentLink $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")#*
-    *##if ( $item.items && $item.items.size() > 0 && $collapseClass == "fas fa-angle-down" )##
+#*  *##set ( $href = $config.relativeLink( $item.href ) )
+#*  *##if ( $item.active )
+#*      *##set ( $currentLink = "#" )
+#*  *##else
+#*      *##set ( $currentLink = $href )
+#*  *##end
+##
+#*  *##if ( $item.menuItems && $item.menuItems.size() > 0 )
+##
+#*      *##if ( $item.collapse == false )
+#*          *##set ( $collapseClass = "fas fa-angle-down" )
+#*      *##else
+            ## By default collapsed
+#*          *##set ( $collapseClass = "fas fa-angle-right" )
+#*      *##end
+#*      *##if ( $item.active )
+#*          *##set ( $collapseClass = "fas fa-angle-down" )
+#*      *##end
+##
+#*  *##end
+                    <li class="nav-item #if( $item.active )active#end">#*
+#*  *##fullLink ( $currentLink $item.name $item.target $item.inage $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")
+#*  *##if ( $item.menuItems.size() > 0 && $collapseClass == "fas fa-angle-down" )
         <ul class="nav flex-column nav-list">
-#*
-    *##foreach ( $subitem in $item.items )#*
-        *##menuItem ( $subitem )#*
-    *##end##
+##
+#*  *##foreach ( $subitem in $item.menuItems )
+#*      *##menuItem ( $subitem )
+#*  *##end
         </ul>
-#*
-    *##end#*
-    *#</li>
-#end##
+##
+#*  *##end
+#*  *#</li>
+#end

@@ -93,33 +93,6 @@
         *# />#*
     *##end
 #end
-#**
- * Recursively checks if any of the submenu items is the current one
- *
- *##macro ( displayTree $item )#*
-    *##if ( $item && $item.items && $item.items.size() > 0 )#*
-        *##foreach ( $subitem in $item.items )#*
-            *##set ( $href = $config.relativeLink( $subitem.href ) )#*
-            *##if ( $config.isActiveLink( $href ) )#*
-                *##set ( $displayTree = true )#*
-            *##end#*
-            *##displayTree ( $subitem )#*
-        *##end#*
-    *##end
-#end
-#**
- * Filters menus by their ref or name, and returns the matching results.
- * The regex is used to check the match
- *
- *##macro ( filterMenus $menus $filterRegex )#*
-
-    *##set ( $filterMenus = [] )#*
-    *##foreach ($menu in $menus)#*
-        *##if ( ( $menu.ref && $menu.ref.matches($filterRegex) ) || ( $menu.name && $menu.name.matches($filterRegex) ) )#*
-            *##call ( $filterMenus.add( $menu ) )#*
-        *##end#*
-    *##end##
-#end##
 ##
 #**
  * Displays a 'Last published' date message.
@@ -263,9 +236,9 @@
     #end
 ##
     #if ( !$config.not( "bootstrapCss" ) )##
-    ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
+        ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
         #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )##
-    ## image is responsive by default
+        ## image is responsive by default
         #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-fluid"] ) )##
         #set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )##
     #end

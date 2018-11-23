@@ -95,6 +95,7 @@ public class Navbar extends BsComponent {
         } else {
             this.image = null;
         }
+        // add links
         final DecorationModel decoration = config.getDecoration();
         if (decoration.getBody() != null && decoration.getBody().getLinks() != null) {
             final List<LinkItem> items = decoration.getBody().getLinks();
@@ -102,13 +103,13 @@ public class Navbar extends BsComponent {
                 this.menus.add(new Menu(config, item));
             }
         }
+        // add menus
         if (decoration.getBody() != null && decoration.getBody().getMenus() != null) {
             final List<org.apache.maven.doxia.site.decoration.Menu> menus = decoration.getBody().getMenus();
             for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
                 if (Strings.isNullOrEmpty(this.filterMenu)) {
                     this.menus.add(new Menu(config, menu));
-                } else if (menu.getRef() != null && menu.getRef().matches(this.filterMenu)
-                        || menu.getName() != null && menu.getName().matches(this.filterMenu)) {
+                } else if (Menu.matches(this.filterMenu, menu)) {
                     this.menus.add(new Menu(config, menu));
                 }
             }
