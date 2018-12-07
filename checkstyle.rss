@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 22,
              Errors: 0,
-             Warnings: 45,
+             Warnings: 46,
              Infos: 0
       </title>
             <link>https://devacfr.github.io/reflow-maven-skin//checkstyle.html</link>
@@ -220,7 +220,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  6
                 </td>
                 <td>
                   0

@@ -589,7 +589,7 @@ footer p, .subfooter p {
 }
 
 
-.footer-light a.nav-link:hover {
+.footer-light i:not(.active)>a.nav-link:hover {
     background-color: var(--dark);
     opacity: 0.2;
     color: var(--white);
@@ -616,7 +616,7 @@ footer p, .subfooter p {
     border-left-color: var(--secondary);
 }
 
-.footer-dark a.nav-link:hover {
+.footer-dark li:not(.active)>a.nav-link:hover  {
     background-color: var(--light);
     opacity: 0.2;
     color: var(--dark);
