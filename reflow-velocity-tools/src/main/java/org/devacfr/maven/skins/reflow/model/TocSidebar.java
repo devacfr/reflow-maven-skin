@@ -34,19 +34,21 @@ public class TocSidebar extends Toc<TocSidebar> {
     /** auto expandable by default. */
     private boolean autoExpandable = true;
 
+    /** heading level to display. all by default */
+    private int level = 0;
+
     /**
      * Default constructor.
      *
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
+     * @param config a config (can <b>not</b> be {@code null}).
      */
     public TocSidebar(final @Nonnull SkinConfigTool config) {
         super("sidebar", "");
         final String position = config.getAttributeValue("toc", "position", String.class, "fixed").toLowerCase();
-        this.withEnabled(true)
-                .withExpanded(config.getAttributeValue("toc", "expanded", Boolean.class, true))
+        this.withEnabled(true).withExpanded(config.getAttributeValue("toc", "expanded", Boolean.class, true))
                 .withAutoExpandable(config.getAttributeValue("toc", "autoExpandable", Boolean.class, true))
-                .withFixed("fixed".equals(position));
+                .withFixed("fixed".equals(position))
+                .withLevel(config.getAttributeValue("toc", "level", Integer.class, 0));
     }
 
     @Override
@@ -91,6 +93,19 @@ public class TocSidebar extends Toc<TocSidebar> {
 
     protected TocSidebar withAutoExpandable(final boolean autoExpandable) {
         this.autoExpandable = autoExpandable;
+        return self();
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    protected TocSidebar withLevel(final int level) {
+        if (level < 1) {
+            this.level = Integer.MAX_VALUE;
+        } else {
+            this.level = level;
+        }
         return self();
     }
 

@@ -27,37 +27,6 @@
     <reflowSkin>
       <toc>sidebar</toc>
       <pages>
-        <index project="reflow-maven-skin" combine.self="override">
-          <shortTitle>Get Started</shortTitle>
-          <breadcrumbs>true</breadcrumbs>
-          <!-- no ToC on the main index page -->
-          <toc>false</toc>
-          <sections>
-            <columns>2</columns>
-            <body />
-          </sections>
-        </index>
-        <config>
-          <toc expanded="false" position="relative">sidebar</toc>
-        </config>
-        <layouts>
-          <toc>false</toc>
-        </layouts>
-        <body>
-          <toc>false</toc>
-        </body>
-        <carousel>
-          <toc>false</toc>
-        </carousel>
-        <columns>
-          <toc>false</toc>
-        </columns>
-        <thumbnails>
-          <toc>false</toc>
-        </thumbnails>
-        <sidebar>
-          <toc>false</toc>
-        </sidebar>
         <themes-index>
           <toc>false</toc>
           <sections>
@@ -185,10 +154,8 @@
           <toc>top</toc>
           <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-yeti>
-        <toc-sidebar>
-          <toc>sidebar</toc>
-        </toc-sidebar>
         <reflow-documentation type="doc">
+          <!-- Declare the specific nav menu -->
           <menu name="Reflow Documentation" selectFirstOnExpand="true">
             <item name="Get Started" href="get-started.html" />
             <item name="Layouts">
@@ -212,6 +179,16 @@
             <item name="Migration" href="migration.html"/>
           </menu>
         </reflow-documentation>
+        <get-started>
+          <!-- Display only h1,h2 level heading in TOC -->
+          <toc level="2" autoExpandable="false" expanded="true">sidebar</toc>
+        </get-started>
+        <layouts>
+          <toc>false</toc>
+        </layouts>
+        <toc-sidebar>
+          <toc>sidebar</toc>
+        </toc-sidebar>
       </pages>
     </reflowSkin>
   </custom>
