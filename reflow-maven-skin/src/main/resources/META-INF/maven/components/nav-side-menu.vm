@@ -17,7 +17,7 @@
  * Render NavSideMenu web element page
  *
  *##macro( renderNavSideMenu )##
-    <div class="navside-menu navside-expand-lg d-print-none $pageContext.navSideMenu.cssClass">
+    <div class="col-lg-2 navside-menu navside-expand-lg d-print-none $pageContext.navSideMenu.cssClass">
         <div class="navside-brand">${pageContext.navSideMenu.name}</div>
         <button class="navside-toggler" type="button" data-toggle="collapse" data-target="#menu-list" aria-controls="menu-list" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navside-toggler-icon"></span>
