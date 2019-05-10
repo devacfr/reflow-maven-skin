@@ -28,14 +28,14 @@
 <div class="section"> 
  <h2 id="documentation-layout_toc_usage">Usage</h2> 
  <p>support <span class="badge badge-primary">v2.0</span> <span class="badge badge-success">new</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
- <p>To declare a page as documentation layout, set <code class="\&quot;literal\&quot;">type</code> attribute with value <code class="\&quot;literal\&quot;">doc</code> and add a <b>required</b> <code class="\&quot;literal\&quot;">&lt;menu&gt;</code> element as example below.</p> 
+ <p>To declare a page as documentation layout, create an empty page (<code class="\&quot;literal\&quot;">documentation.html</code> in example below) and set <code class="\&quot;literal\&quot;">type</code> attribute with value <code class="\&quot;literal\&quot;">doc</code> and add a <b>required</b> <code class="\&quot;literal\&quot;">&lt;menu&gt;</code> element as example below.</p> 
  <div> 
   <div> 
    <pre class="source">&lt;pages&gt;
     ...
     &lt;documentation type="doc"&gt;
         &lt;menu name="Documentation" selectFirstOnExpand="true|false"&gt;
-            &lt;item name="One page" href="on-page.html" /&gt;
+            &lt;item name="One page" href="one-page.html" /&gt;
             &lt;item name="First level" &gt;
                 &lt;item name="Second level" href="second-level.html"/&gt;
             &lt;/item&gt;
