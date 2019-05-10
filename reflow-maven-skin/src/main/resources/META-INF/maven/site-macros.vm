@@ -193,33 +193,6 @@
 #*  *##end
 #end
 ##
-#**
- * Fixes info collapse for Dependencies report.
- *
- * Uses Javascript toggle for "more information" in the dependency tree.
- *
- *##macro ( depsCollapse )#*
-    *##set( $collapseCalls = $htmlTool.getAttr( $bodyContent, 'img[onclick^=toggleDependencyDetail]', "onclick") )#*
-    *##set( $iconReplacements = {} )#*
-    *##set( $collapseSelector = "" )#*
-    *##foreach ( $collapseCall in $collapseCalls )#*
-        *##set ( $funSplit = $collapseCall.split("'") )#*
-        *##if ( $funSplit.size() >= 4 )#*
-            *##set ( $divId = $funSplit.get(1) )#*
-            *##set ( $imgId = $funSplit.get(3) )#*
-            *##set ( $replBefore = '<button title="Information" class="btn btn-link btn-small" type="button" data-toggle="collapse" data-target="#' )#*
-            *##set ( $replAfter = '"><i class="glyphicon glyphicon-info-sign"></i></button>' )#*
-            *##call ( $iconReplacements.put("#$imgId", "$replBefore$divId$replAfter") )#*
-            *##set ( $collapseSelector = "${collapseSelector}, #$divId" )#*
-        *##end#*
-    *##end#*
-
-    *##if ( $iconReplacements.size() > 0 )#*
-        *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
-        *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, $collapseSelector, "collapse" ) )#*
-        *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, $collapseSelector, "style", "" ) )#*
-    *##end
-#end
 #*
  * Adapt bodyContent.
 *#
@@ -245,7 +218,6 @@
 ##
     #if ( !$config.not( "bootstrapIcons" ) )##
         ## Bootstrap Icons are enabled by default, so check for false and negate
-#*      *##depsCollapse ()##
         #set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="fas fa-plus"></i>',
                     'img[src$=images/remove.gif]' : '<i class="fas fa-minus"></i>',
                     'img[src$=images/fix.gif]' : '<i class="fas fa-wrench"></i>',

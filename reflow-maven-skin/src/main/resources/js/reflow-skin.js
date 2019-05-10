@@ -110,7 +110,6 @@ var mReflow = function () {
         size = navbar.outerHeight();
       }
       $('body').css('padding-top', size);
-      $('.navside-menu').css('top', size);
       $('.toc-sidebar-fixed').css('top', size);
       $('#m-toc-topbar').css('top', size);
     }
