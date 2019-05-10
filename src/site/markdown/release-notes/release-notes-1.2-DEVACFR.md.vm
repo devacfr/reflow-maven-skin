@@ -1,0 +1,27 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 1.2-DEVACFR Release Notes
+**2014-09-18**
+
+$h2 Highlights of this release
+
+This release covers all features targeted for 1.2-DEVACFR Some of the highlights include:
+
+* The site documentation use maven properties to keep up to date after each release.
+
+$h2 Minor enhancements
+
+* Add maven properties in site documentation ([#17][])
+
+$h2 Bug fixes
+
+* Rename Rename `index.md.mv` to `index.md.vm`
+* Maven Site Plugin 3.6 compatibility ([#1][])
+
+[#1]: ${issue-url}/1
+[#17]: ${issue-url}/17
+

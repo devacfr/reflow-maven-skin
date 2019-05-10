@@ -1,0 +1,82 @@
+##
+## Copyright 2012-2018 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#**
+ * Outputs navbar
+ *
+ *##macro ( renderNavbar )##
+    <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}">
+        <div class="container">
+##
+## Insert brand if it is available
+#*      *##if ( $pageContext.navbar.brandHref )
+            <a class="navbar-brand mb-0 h1" href="$pageContext.navbar.brandHref">
+#*          *##if ( $pageContext.navbar.image )
+                <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
+#*          *##end
+                ${pageContext.navbar.brandName}
+            </a>
+#*      *##else
+            <div class="navbar-brand mb-0 h1">
+#*          *##if ( $pageContext.navbar.image )
+                <img src=$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
+#*          *##end
+                ${pageContext.navbar.brandName}
+            </div>
+#*      *##end##
+##
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
+                <ul class="nav navbar-nav ml-auto">
+##
+#*  *##foreach ( $menu in $pageContext.navbar.menus)
+#*      *##if( $menu.menuItems.isEmpty() )
+                    <li class="nav-item #if( $menu.active)active#end" >#link ( $menu.href $menu.name $menu.target "nav-link")</li>
+#*      *##else
+#*          *##if ( $menu.name )
+                    <li class="nav-item dropdown#if ( $menu.active ) active#end">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$menu.name <b class="caret"></b></a>
+                        <div class="dropdown-menu">
+#*              *##foreach ( $item in $menu.menuItems )
+#*                  *##if ($item.menuItems.isEmpty())
+                            <a href="$item.href" title="$item.name" #if( $item.target )target="$item.target"#end class="dropdown-item #if( $item.active )active#end">$item.name</a>
+#*                  *##else##
+                            <div class="dropdown-submenu">
+#*                      *##set( $cssClass = "dropdown-item")
+#*                      *##if( $item.active )
+#*                          *##set( $cssClass = "$cssClass active")
+#*                      *##end
+#*                      *##link ( $item.href $item.name $item.target "$cssClass")
+                                <div class="dropdown-menu">
+#*                      *##foreach ($subitem in $item.menuItems)
+                                    <a href="$subitem.href" title="$subitem.name" #if( $subitem.target )target="$subitem.target"#end class="dropdown-item #if( $subitem.active )active#end">$subitem.name</a>
+#*                      *##end
+                                </div>
+                            </div>
+#*                  *##end ## item empty
+#*              *##end ## foreach
+                        </div>
+                    </li>
+#*          *##end ## if name empty
+#*      *##end ## if item empty
+#*  *##end ## foreach
+##
+                </ul><!--/ul.navbar-nav -->
+            </div><!--/.nav-collapse -->
+        </div> <!--/.container -->
+    </nav> <!--/.navbar -->
+#end

@@ -1,11 +1,11 @@
 /*
- * Copyright 2012 Andrius Velykis
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,6 +39,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
 
 /**
@@ -50,12 +51,16 @@ import org.jsoup.parser.Tag;
  * </p>
  *
  * @author Andrius Velykis
+ * @author Christophe Friederich
  * @since 1.0
  * @see <a href="http://jsoup.org/">jsoup HTML parser</a>
  * @see <a href="http://jsoup.org/cookbook/extracting-data/selector-syntax">jsoup CSS selectors</a>
  */
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
+
+    /** prefix heading id associated to table of contents. */
+    private static final String SEPARATOR_TOC = "_toc_";
 
     /** A list of all HTML heading classes (h1-6). */
     private static final List<String> HEADINGS = Collections
@@ -75,6 +80,7 @@ public class HtmlTool extends SafeConfig {
         NO
     }
 
+    /** */
     private String outputEncoding = "UTF-8";
 
     /**
@@ -536,10 +542,15 @@ public class HtmlTool extends SafeConfig {
         String getRemainder();
     }
 
+    /**
+     * @author Christophe Friederich
+     */
     private static final class DefaultExtractResult implements ExtractResult {
 
+        /** */
         private final List<String> extracted;
 
+        /** */
         private final String remainder;
 
         private DefaultExtractResult(final List<String> extracted, final String remainder) {
@@ -829,6 +840,52 @@ public class HtmlTool extends SafeConfig {
     }
 
     /**
+     * Replaces All elements in HTML corresponding to <code>selector</code> while preserving the content of this
+     * element.
+     *
+     * @param content
+     *            HTML content to modify
+     * @param selector
+     *            CSS selector for elements to replace
+     * @param newElement
+     *            HTML replacement (must parse to a single element)
+     * @return HTML content with replaced elements. If no elements are found, the original content is returned.
+     * @since 2.0
+     */
+    public String replaceWith(final String content, final String selector, final String newElement) {
+
+        final Element body = parseContent(content);
+
+        boolean modified = false;
+        final List<Element> elements = body.select(selector);
+        if (elements.size() > 0) {
+
+            // take the first child
+            final Element replacementElem = parseContent(newElement).child(0);
+
+            if (replacementElem != null) {
+                for (final Element element : elements) {
+                    final List<Node> children = element.childNodes();
+                    final Element el = replacementElem.clone();
+                    for (final Node child : children) {
+                        el.appendChild(child.clone());
+                    }
+                    element.replaceWith(el);
+                }
+
+                modified = true;
+            }
+        }
+
+        if (modified) {
+            return body.html();
+        } else {
+            // nothing changed
+            return content;
+        }
+    }
+
+    /**
      * Retrieves text content of the selected elements in HTML. Renders the element's text as it would be displayed on
      * the web page (including its children).
      *
@@ -853,6 +910,7 @@ public class HtmlTool extends SafeConfig {
         return texts;
     }
 
+    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Transforms the given HTML content by moving anchor ({@code <a name="myheading">}) names to IDs for heading
      * elements.
@@ -989,7 +1047,10 @@ public class HtmlTool extends SafeConfig {
      *         already, the original content is returned.
      * @since 1.0
      */
-    public String ensureHeadingIds(final String currentPage, final String content, final String idSeparator) {
+    public String ensureHeadingIds(final String pageType,
+        final String currentPage,
+        final String content,
+        final String idSeparator) {
         final List<String> excludedPages = Arrays.asList("checkstyle-aggregate", "checkstyle");
 
         final Element body = parseContent(content);
@@ -1028,7 +1089,7 @@ public class HtmlTool extends SafeConfig {
                 if (headingSlug.length() > 50) {
                     headingSlug = headingSlug.substring(0, 50);
                 }
-                final String headingId = generateUniqueId(ids, headingSlug);
+                final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
 
                 heading.attr("id", headingId);
             }
@@ -1046,7 +1107,7 @@ public class HtmlTool extends SafeConfig {
             if (headingSlug.length() > 50) {
                 headingSlug = headingSlug.substring(0, 50);
             }
-            final String headingId = "_toc_" + generateUniqueId(ids, headingSlug);
+            final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
 
             heading.attr("id", headingId);
         }
@@ -1061,7 +1122,10 @@ public class HtmlTool extends SafeConfig {
      * @param idBase
      * @return
      */
-    private static String generateUniqueId(final Set<String> ids, final String idBase) {
+    private static String generateUniqueId(final String pageType,
+        final String currentPage,
+        final Set<String> ids,
+        final String idBase) {
         String id = idBase;
         int counter = 1;
         while (ids.contains(id)) {
@@ -1070,12 +1134,17 @@ public class HtmlTool extends SafeConfig {
 
         // put the newly generated one into the set
         ids.add(id);
+        id = SEPARATOR_TOC + id;
+        if ("frame".equals(pageType)) {
+            id = currentPage + id;
+        }
         return id;
     }
 
+    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Fixes table heads: wraps rows with {@code
-     *
+     * 
     <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
      *
      * @param content
@@ -1113,8 +1182,10 @@ public class HtmlTool extends SafeConfig {
 
     }
 
+    /** */
     private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
 
+    /** */
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
     /**
@@ -1162,33 +1233,7 @@ public class HtmlTool extends SafeConfig {
 
     /**
      * Reads all headings in the given HTML content as a hierarchy. Subsequent smaller headings are nested within bigger
-     * ones, e.g. {@code
-     *
-    <h2>} is nested under preceding {@code
-                           * 
-                          
-                         
-                        
-                       
-                      
-                     
-                    
-                   
-                  
-                 
-                
-               
-              
-             
-            
-           
-          
-         
-        
-       
-      
-     
-    <h1>}.
+     * ones, e.g. <code>&lt;h2&gt;</code> is nested under preceding <code>&lt;h1&gt;</code>.
      * <p>
      * Only headings with IDs are included in the hierarchy. The result elements contain ID and heading text for each
      * heading. The hierarchy is useful to generate a Table of Contents for a page.
@@ -1220,7 +1265,8 @@ public class HtmlTool extends SafeConfig {
             // select all headings that have an ID
             final List<Element> headings = body.select(StringUtil.join(headIds, ", "));
             for (final Element heading : headings) {
-                headingItems.add(new HeadingItem(heading.id(), heading.text(), headingIndex(heading)));
+                headingItems
+                        .add(new HeadingItem(heading.id(), heading.nodeName(), heading.text(), headingIndex(heading)));
             }
         }
 
@@ -1229,7 +1275,7 @@ public class HtmlTool extends SafeConfig {
 
         for (final HeadingItem heading : headingItems) {
 
-            while (!parentHeadings.isEmpty() && parentHeadings.peek().headingIndex >= heading.headingIndex) {
+            while (!parentHeadings.isEmpty() && parentHeadings.peek().headingLevel >= heading.headingLevel) {
                 parentHeadings.pop();
             }
 
@@ -1267,25 +1313,41 @@ public class HtmlTool extends SafeConfig {
         }
     }
 
-    private static class HeadingItem implements IdElement {
+    /**
+     * @author Christophe Friederich
+     */
+    private static final class HeadingItem implements IdElement {
 
+        /** */
         private final String id;
 
+        /** */
+        private final String tagName;
+
+        /** */
         private final String text;
 
-        private final int headingIndex;
+        /** */
+        private final int headingLevel;
 
+        /** */
         private final List<HeadingItem> children = new ArrayList<>();
 
-        private HeadingItem(final String id, final String text, final int headingIndex) {
+        private HeadingItem(final String id, final String tagName, final String text, final int headingLevel) {
             this.id = id;
+            this.tagName = tagName;
             this.text = text;
-            this.headingIndex = headingIndex;
+            this.headingLevel = headingLevel;
         }
 
         @Override
         public String getId() {
             return id;
+        }
+
+        @Override
+        public String getTagName() {
+            return tagName;
         }
 
         @Override
@@ -1296,6 +1358,11 @@ public class HtmlTool extends SafeConfig {
         @Override
         public List<HeadingItem> getItems() {
             return Collections.unmodifiableList(children);
+        }
+
+        @Override
+        public int getHeadingLevel() {
+            return headingLevel;
         }
     }
 
@@ -1315,11 +1382,21 @@ public class HtmlTool extends SafeConfig {
         String getId();
 
         /**
+         * @return Returns the tag name of element.
+         */
+        String getTagName();
+
+        /**
          * Retrieves the text contents of the HTML element (rendered for display).
          *
          * @return text contents of the element
          */
         String getText();
+
+        /**
+         * @return Returns the level of heading.
+         */
+        int getHeadingLevel();
 
         /**
          * Retrieves the children of the HTML element (nested within the element).

@@ -22,7 +22,7 @@ Refer to [Javadoc][javadoc-all] for each tool for more information.
     Provides URI utilities that expose URIs to the template.
 
 [velocity]: http://velocity.apache.org/
-[per-page-info]: ../skin/config.html#Per-page_configuration
+[per-page-info]: ../reflow-maven-skin/reflow-documentation.html#get-started_toc_per-page_configuration
 [jsoup]: http://jsoup.org/
 
 [javadoc-all]: apidocs/
@@ -43,7 +43,7 @@ file:
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>3.6</version>
+      <version>${maven-site-plugin-version}</version>
       <dependencies>
         ...
         <dependency>

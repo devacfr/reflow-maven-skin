@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/DECORATION/1.7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd">
+<!--
+
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+ -->
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <!-- Google Analytics not inherited for some reason -->
   <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
 
   <custom>
     <reflowSkin>
+      <toc>sidebar</toc>
       <pages>
-        <index project="reflow-maven-skin" combine.self="override">
-          <shortTitle>Usage</shortTitle>
-          <breadcrumbs>true</breadcrumbs>
-          <!-- no ToC on the main index page -->
-          <toc>false</toc>
-          <sections>
-            <columns>2</columns>
-            <body />
-          </sections>
-        </index>
-        <config>
-          <toc>false</toc>
-        </config>
-        <layouts>
-          <tocTopMax>-1</tocTopMax>
-        </layouts>
         <themes-index>
           <toc>false</toc>
           <sections>
@@ -33,70 +36,161 @@
         </themes-index>
         <themes-bootswatch-cerulean>
           <theme>bootswatch-cerulean</theme>
-          <toc offsetTop="225">top</toc>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cerulean>
         <themes-bootswatch-cosmo>
           <theme>bootswatch-cosmo</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cosmo>
         <themes-bootswatch-cyborg>
           <theme>bootswatch-cyborg</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <highlightJsTheme>atelier-seaside-dark</highlightJsTheme>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-cyborg>
         <themes-bootswatch-darkly>
           <theme>bootswatch-darkly</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <highlightJsTheme>dark</highlightJsTheme>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-primary" />
         </themes-bootswatch-darkly>
         <themes-bootswatch-flatly>
           <theme>bootswatch-flatly</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-primary" />
         </themes-bootswatch-flatly>
         <themes-bootswatch-journal>
           <theme>bootswatch-journal</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
         </themes-bootswatch-journal>
+        <themes-bootswatch-litera>
+          <theme>bootswatch-litera</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark" />
+        </themes-bootswatch-litera>
         <themes-bootswatch-lumen>
           <theme>bootswatch-lumen</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-lumen>
-        <themes-bootswatch-paper>
-          <theme>bootswatch-paper</theme>
-        </themes-bootswatch-paper>
-        <themes-bootswatch-readable>
-          <theme>bootswatch-readable</theme>
-          <toc offsetTop="250">top</toc>
-        </themes-bootswatch-readable>
+        <themes-bootswatch-lux>
+          <theme>bootswatch-lux</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
+        </themes-bootswatch-lux>
+        <themes-bootswatch-materia>
+          <theme>bootswatch-materia</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
+        </themes-bootswatch-materia>
+        <themes-bootswatch-minty>
+          <theme>bootswatch-minty</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
+        </themes-bootswatch-minty>
+        <themes-bootswatch-pulse>
+          <theme>bootswatch-pulse</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-light bg-light" />
+        </themes-bootswatch-pulse>
+        <themes-bootswatch-sandstone>
+          <theme>bootswatch-sandstone</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+        </themes-bootswatch-sandstone>
         <themes-bootswatch-simplex>
           <theme>bootswatch-simplex</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-simplex>
+        <themes-bootswatch-sketchy>
+          <theme>bootswatch-sketchy</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+        </themes-bootswatch-sketchy>
         <themes-bootswatch-slate>
           <theme>bootswatch-slate</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-secondary"/>
         </themes-bootswatch-slate>
         <themes-bootswatch-solar>
           <theme>bootswatch-solar</theme>
+          <toc cssClass="navbar-light bg-light">top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
+          <footer cssClass="footer-dark bg-dark"/>
         </themes-bootswatch-solar>
         <themes-bootswatch-spacelab>
           <theme>bootswatch-spacelab</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-spacelab>
-        <themes-bootswatch-sandstone>
-          <theme>bootswatch-sandstone</theme>
-        </themes-bootswatch-sandstone>
         <themes-bootswatch-superhero>
           <theme>bootswatch-superhero</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-superhero>
         <themes-bootswatch-united>
           <theme>bootswatch-united</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-united>
         <themes-bootswatch-yeti>
           <theme>bootswatch-yeti</theme>
+          <toc>top</toc>
+          <navbar cssClass="navbar-dark bg-primary" filterMenu="inherit" />
         </themes-bootswatch-yeti>
-        <advanced>
-          <sections>
-            <body />
-            <columns>2</columns>
-            <body />
-          </sections>
-        </advanced>
+        <reflow-documentation type="doc">
+          <!-- Declare the specific nav menu -->
+          <menu name="Reflow Documentation" selectFirstOnExpand="true">
+            <item name="Get Started" href="get-started.html" />
+            <item name="Layouts">
+              <item name="Overview" href="layouts.html"/>
+              <item name="Page Layout" href="page-layout.html"/>
+              <item name="Documentation Layout" href="documentation-layout.html" />
+              <item name="Section Layout" href="section-layout.html"/>
+            </item>
+            <item name="Components">
+              <item name="Overview" href="components/components.html"/>
+              <item name="Table of Contents" href="components/toc.html"/>
+              <item name="Header" href="components/header.html"/>
+              <item name="Footer" href="components/footer.html"/>
+              <item name="Navbar" href="components/navbar.html"/>
+              <item name="Navside Menu" href="components/navside-menu.html"/>
+            </item>
+            <item name="Other Configuration" href="configuration.html" />
+            <item name="Themes" href="themes/index.html" />
+            <item name="Multi-module Site" href="multi-module.html" />
+            <item name="Local Resources" href="resources.html"/>
+            <item name="Migration" href="migration.html"/>
+          </menu>
+        </reflow-documentation>
+        <get-started>
+          <!-- Display only h1,h2 level heading in TOC -->
+          <toc level="2" autoExpandable="false" expanded="true">sidebar</toc>
+        </get-started>
+        <layouts>
+          <toc>false</toc>
+        </layouts>
+        <components-components>
+          <toc>false</toc>
+        </components-components>
         <toc-sidebar>
-          <toc type="fixed">sidebar</toc>
-          <sections>
-            <carousel />
-            <body />
-          </sections>
+          <toc>sidebar</toc>
         </toc-sidebar>
       </pages>
     </reflowSkin>
@@ -105,7 +199,7 @@
   <body>
 
     <breadcrumbs>
-      <item name="Maven skin" href="/" />
+      <item name="Maven skin" href="/reflow-documentation.html" />
     </breadcrumbs>
 
   </body>

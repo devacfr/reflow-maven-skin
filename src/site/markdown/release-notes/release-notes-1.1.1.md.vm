@@ -1,0 +1,21 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 1.1.1 Release Notes
+**2014-06-22**
+
+$h4 Bug fixes
+
+- Image previews (lightbox) don't work anymore ([#35][])
+- Smooth scrolling does not work ([#36][])
+
+See [all GitHub issues for 1.1.1][reflow-issues-111] for further details.
+
+[#35]: http://github.com/andriusvelykis/reflow-maven-skin/issues/35
+[#36]: http://github.com/andriusvelykis/reflow-maven-skin/issues/36
+
+[reflow-issues-111]: http://github.com/andriusvelykis/reflow-maven-skin/issues?milestone=2&amp;state=closed
+

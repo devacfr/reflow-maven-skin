@@ -15,3 +15,6 @@ nbproject
 # Maven output dirs
 target/
 *.log
+velocity.log
+velocity.log.*
+.checkstyle

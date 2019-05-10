@@ -1,50 +1,9 @@
-#### [Bootstrap themes from Bootswatch][themes]
-
-[![Bootswatch themes](images/carousel-themes.png)][themes]
-
-Select a free theme for your website from an excellent gallery at [Bootswatch][bootswatch].
-Out of the box support for these and other custom [Bootstrap][bootstrap] themes.
-
-
-#### [Page layouts][reflow-layouts]
-
-[![Page layouts](images/carousel-layouts.jpg)][reflow-layouts]
-
-Write plain text in Markdown or APT, then set different layouts to your page sections.
-
-
-#### [Modern skin][reflow-misc]
-
-[![Modern skin](images/carousel-components.jpg)][reflow-misc]
-
-Reflow skin uses modern components from Bootstrap and other libraries, upgrades Maven generated
-site and provides further enhancements.
-
-
-#### [New Velocity tools][reflow-tools]
-
-[![Reflow Velocity tools](images/carousel-tools.png)][reflow-tools]
-
-The skin adds a library of new Velocity tools to use in your own Maven template: rewrite HTML code,
-support per-page configurations and more!
-
-
-[bootswatch]: http://bootswatch.com
-[bootstrap]: http://getbootstrap.com
-[themes]: skin/themes/
-[reflow-layouts]: skin/layouts.html
-[reflow-misc]: skin/misc.html
-[reflow-tools]: reflow-velocity-tools/
-
-
----
-
-## Sidebar table of contents
+# Sidebar table of contents
 
 An example page showing the table of contents rendered as a sidebar tree menu.
 
 This ToC style can be chosen with `<toc>sidebar</toc>` element:
-  
+
 ```xml
 <custom>
   <reflowSkin>
@@ -57,13 +16,11 @@ This ToC style can be chosen with `<toc>sidebar</toc>` element:
 
 The rest of the page is just placeholder text to demonstrate a bigger menu.
 
-
-
 ## Placeholder text
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quare ad ea primum, si videtur; Hunc vos beatum; Nam ista vestra: Si gravis, brevis; Sed haec in pueris; Duo Reges: constructio interrete. An eiusdem modi?
 
-#### Et ex maxima
+### Et ex maxima
 
 Vestri haec verecundius, illi fortasse constantius. Quibus ego vehementer assentior. Quantum Aristoxeni ingenium consumptum videmus in musicis?
 
@@ -97,7 +54,7 @@ Tum mihi Piso: Quid ergo? Quod vestri non item. Falli igitur possumus. Ut id ali
 
 Iam contemni non poteris. Comprehensum, quod cognitum non habet? Ergo, inquit, tibi Q. Nihil sane. Sed nimis multa. Qualem igitur hominem natura inchoavit? Nulla erit controversia. Quae est igitur causa istarum angustiarum?
 
-### Est summum 
+### Est summum
 
 Peccata paria. Scrupulum, inquam, abeunti; Hoc mihi cum tuo fratre convenit. Occultum facinus esse potuerit, gaudebit; Bonum integritas corporis: misera debilitas.
 
@@ -127,7 +84,7 @@ Graccho, eius fere, aequalí? Nos commodius agimus. Moriatur, inquit. Ego vero i
 
 Itaque his sapiens semper vacabit. Nihil opus est exemplis hoc facere longius. At multis malis affectus.
 
-#### Ostendit pedes et pectus
+### Ostendit pedes et pectus
 
 Quis est, qui non oderit libidinosam, protervam adolescentiam? Respondeat totidem verbis.
 

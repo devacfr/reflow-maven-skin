@@ -21,4 +21,4 @@ Find other theme options for Reflow Maven skin [here][reflow-themes].
 [bootswatch-theme]: http://bootswatch.com/darkly/
 [bootswatch]: http://bootswatch.com
 [site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
-[reflow-themes]: ../config.html#Themes
+[reflow-themes]: ../reflow-documentation.html#themes-index

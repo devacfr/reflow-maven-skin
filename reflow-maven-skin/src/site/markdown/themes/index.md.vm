@@ -5,16 +5,19 @@
 #set($h5 = '#####')
 $h1 Themes
 
+support <span class="badge badge-primary">v1.0</span><br/>
+element <span class="badge badge-secondary">reflow</span>
+
 Reflow skin builds on [Twitter Bootstrap][bootstrap] and supports predefined and custom
 Bootstrap themes. They are set using the `<theme>` element in the customization:
 
-[bootstrap]: http://twitter.github.com/bootstrap/
+[bootstrap]: http://getbootstrap.com/
 
 ```xml
 <custom>
   <reflowSkin>
     ...
-    <theme>default|site|bootswatch-*</theme>
+    <theme>default|bootswatch-*</theme>
     ...
   </reflowSkin>
 </custom>
@@ -22,7 +25,7 @@ Bootstrap themes. They are set using the `<theme>` element in the customization:
 
 There are several options for the `<theme>` value:
 
--   **`default`**
+- **`default`**
 
     (**Default**: will be used if `<theme>` is not set).
 
@@ -33,19 +36,7 @@ There are several options for the `<theme>` value:
     [BootstrapCDN Content Delivery Network][bootstrapcdn], which improves website loading
     by hosting the Bootstrap CSS and JavaScript files.
 
--   **`site`**
-
-    A customized (local) Bootstrap theme. This option should be used when a custom Bootstrap
-    theme is developed and included with the Maven site. The theme expects the following
-    Bootstrap CSS and JavaScript files to be available in `src/site/resources`:
-
-    -   `css/bootstrap.min.css`
-    -   `css/bootstrap-responsive.min.css`
-    -   `js/bootstrap.min.js`
-
-    The files can be customized and generated at [Bootstrap's Customize page][bootstrap-custom].
-
--   **`bootswatch-*`**<span id="theme-bootswatch"></span>
+- **`bootswatch-*`**<span id="theme-bootswatch"></span>
 
     One of free Bootstrap themes from [Bootswatch][bootswatch]. Append the lowercase theme name
     in the [Bootswatch gallery][bootswatch-gallery], e.g. `bootswatch-readable`.
@@ -63,193 +54,217 @@ There are several options for the `<theme>` value:
 
 ---
 
-
 $h3 [Cerulean][theme-cerulean]
 
-[![Cerulean Bootswatch theme](../images/bootswatch-cerulean.png)][theme-cerulean]
+[![Cerulean Bootswatch theme](images/bootswatch-cerulean.png)][theme-cerulean]
 
 ```xml
 <theme>bootswatch-cerulean</theme>
 ```
 
-[theme-cerulean]: bootswatch-cerulean.html
-
+[theme-cerulean]: themes/bootswatch-cerulean.html
 
 $h3 [Cosmo][theme-cosmo]
 
-[![Cosmo Bootswatch theme](../images/bootswatch-cosmo.png)][theme-cosmo]
+[![Cosmo Bootswatch theme](images/bootswatch-cosmo.png)][theme-cosmo]
 
 ```xml
 <theme>bootswatch-cosmo</theme>
 ```
 
-[theme-cosmo]: bootswatch-cosmo.html
-
+[theme-cosmo]: themes/bootswatch-cosmo.html
 
 $h3 [Cyborg][theme-cyborg]
 
-[![Cyborg Bootswatch theme](../images/bootswatch-cyborg.png)][theme-cyborg]
+[![Cyborg Bootswatch theme](images/bootswatch-cyborg.png)][theme-cyborg]
 
 ```xml
 <theme>bootswatch-cyborg</theme>
 ```
 
-[theme-cyborg]: bootswatch-cyborg.html
-
-
+[theme-cyborg]: themes/bootswatch-cyborg.html
 
 $h3 [Darkly][theme-darkly]
 
-[![Darkly Bootswatch theme](../images/bootswatch-darkly.png)][theme-darkly]
+[![Darkly Bootswatch theme](images/bootswatch-darkly.png)][theme-darkly]
 
 ```xml
 <theme>bootswatch-darkly</theme>
 ```
 
-[theme-darkly]: bootswatch-darkly.html
+[theme-darkly]: themes/bootswatch-darkly.html
 
 
 $h3 [Flatly][theme-flatly]
 
-[![Flatly Bootswatch theme](../images/bootswatch-flatly.png)][theme-flatly]
+[![Flatly Bootswatch theme](images/bootswatch-flatly.png)][theme-flatly]
 
 ```xml
 <theme>bootswatch-flatly</theme>
 ```
 
-[theme-flatly]: bootswatch-flatly.html
-
+[theme-flatly]: themes/bootswatch-flatly.html
 
 $h3 [Journal][theme-journal]
 
-[![Journal Bootswatch theme](../images/bootswatch-journal.png)][theme-journal]
+[![Journal Bootswatch theme](images/bootswatch-journal.png)][theme-journal]
 
 ```xml
 <theme>bootswatch-journal</theme>
 ```
 
+[theme-journal]: themes/bootswatch-journal.html
+
+$h3 [Litera][theme-litera]
+
+[![Litera Bootswatch theme](images/bootswatch-litera.png)][theme-litera]
+
+```xml
+<theme>bootswatch-litera</theme>
+```
+
+[theme-litera]: themes/bootswatch-litera.html
 
 $h3 [Lumen][theme-lumen]
 
-[![Lumen Bootswatch theme](../images/bootswatch-lumen.png)][theme-lumen]
+[![Lumen Bootswatch theme](images/bootswatch-lumen.png)][theme-lumen]
 
 ```xml
 <theme>bootswatch-lumen</theme>
 ```
 
-[theme-lumen]: bootswatch-lumen.html
+[theme-lumen]: themes/bootswatch-lumen.html
 
+$h3 [Lux][theme-lux]
 
-$h3 [Paper][theme-paper]
-
-[![Paper Bootswatch theme](../images/bootswatch-paper.png)][theme-paper]
-
-```xml
-<theme>bootswatch-paper</theme>
-```
-
-[theme-paper]: bootswatch-paper.html
-
-
-[theme-journal]: bootswatch-journal.html
-$h3 [Readable][theme-readable]
-
-[![Readable Bootswatch theme](../images/bootswatch-readable.png)][theme-readable]
+[![Lux Bootswatch theme](images/bootswatch-lux.png)][theme-lux]
 
 ```xml
-<theme>bootswatch-readable</theme>
+<theme>bootswatch-lux</theme>
 ```
 
-[theme-readable]: bootswatch-readable.html
+[theme-lux]: themes/bootswatch-lux.html
 
+$h3 [Materia][theme-materia]
+
+[![Materia Bootswatch theme](images/bootswatch-materia.png)][theme-materia]
+
+```xml
+<theme>bootswatch-materia</theme>
+```
+
+[theme-materia]: themes/bootswatch-materia.html
+
+$h3 [Minty][theme-minty]
+
+[![Minty Bootswatch theme](images/bootswatch-minty.png)][theme-minty]
+
+```xml
+<theme>bootswatch-minty</theme>
+```
+
+[theme-minty]: themes/bootswatch-minty.html
+
+$h3 [Pulse][theme-pulse]
+
+[![Pulse Bootswatch theme](images/bootswatch-pulse.png)][theme-pulse]
+
+```xml
+<theme>bootswatch-pulse</theme>
+```
+
+[theme-pulse]: themes/bootswatch-pulse.html
 
 $h3 [Sandstone][theme-sandstone]
 
-[![Sandstone Bootswatch theme](../images/bootswatch-sandstone.png)][theme-sandstone]
+[![Sandstone Bootswatch theme](images/bootswatch-sandstone.png)][theme-sandstone]
 
 ```xml
 <theme>bootswatch-sandstone</theme>
 ```
 
-[theme-sandstone]: bootswatch-sandstone.html
-
+[theme-sandstone]: themes/bootswatch-sandstone.html
 
 $h3 [Simplex][theme-simplex]
 
-[![Simplex Bootswatch theme](../images/bootswatch-simplex.png)][theme-simplex]
+[![Simplex Bootswatch theme](images/bootswatch-simplex.png)][theme-simplex]
 
 ```xml
 <theme>bootswatch-simplex</theme>
 ```
 
-[theme-simplex]: bootswatch-simplex.html
+[theme-simplex]: themes/bootswatch-simplex.html
 
+$h3 [Sketchy][theme-sketchy]
+
+[![sketchy Bootswatch theme](images/bootswatch-sketchy.png)][theme-sketchy]
+
+```xml
+<theme>bootswatch-sketchy</theme>
+```
+
+[theme-sketchy]: themes/bootswatch-sketchy.html
 
 $h3 [Slate][theme-slate]
 
-[![Slate Bootswatch theme](../images/bootswatch-slate.png)][theme-slate]
+[![Slate Bootswatch theme](images/bootswatch-slate.png)][theme-slate]
 
 ```xml
 <theme>bootswatch-slate</theme>
 ```
 
-[theme-slate]: bootswatch-slate.html
-
+[theme-slate]: themes/bootswatch-slate.html
 
 $h3 [Solar][theme-solar]
 
-[![Solar Bootswatch theme](../images/bootswatch-solar.png)][theme-solar]
+[![Solar Bootswatch theme](images/bootswatch-solar.png)][theme-solar]
 
 ```xml
 <theme>bootswatch-solar</theme>
 ```
 
-[theme-solar]: bootswatch-solar.html
-
+[theme-solar]: themes/bootswatch-solar.html
 
 $h3 [Spacelab][theme-spacelab]
 
-[![Spacelab Bootswatch theme](../images/bootswatch-spacelab.png)][theme-spacelab]
+[![Spacelab Bootswatch theme](images/bootswatch-spacelab.png)][theme-spacelab]
 
 ```xml
 <theme>bootswatch-spacelab</theme>
 ```
 
-[theme-spacelab]: bootswatch-spacelab.html
+[theme-spacelab]: themes/bootswatch-spacelab.html
 
 
 $h3 [Superhero][theme-superhero]
 
-[![Superhero Bootswatch theme](../images/bootswatch-superhero.png)][theme-superhero]
+[![Superhero Bootswatch theme](images/bootswatch-superhero.png)][theme-superhero]
 
 ```xml
 <theme>bootswatch-superhero</theme>
 ```
 
-[theme-superhero]: bootswatch-superhero.html
-
+[theme-superhero]: themes/bootswatch-superhero.html
 
 $h3 [United][theme-united]
 
-[![United Bootswatch theme](../images/bootswatch-united.png)][theme-united]
+[![United Bootswatch theme](images/bootswatch-united.png)][theme-united]
 
 ```xml
 <theme>bootswatch-united</theme>
 ```
 
-[theme-united]: bootswatch-united.html
-
+[theme-united]: themes/bootswatch-united.html
 
 $h3 [Yeti][theme-yeti]
 
-[![Yeti Bootswatch theme](../images/bootswatch-yeti.png)][theme-yeti]
+[![Yeti Bootswatch theme](images/bootswatch-yeti.png)][theme-yeti]
 
 ```xml
 <theme>bootswatch-yeti</theme>
 ```
 
-[theme-yeti]: bootswatch-yeti.html
-
+[theme-yeti]: themes/bootswatch-yeti.html
 
 $h3 [And more..][bootswatch-gallery]
 
@@ -259,8 +274,6 @@ Check out all themes at [Bootswatch gallery][bootswatch-gallery].
 <theme>bootswatch-*</theme>
 ```
 
-
 ---
 
 All theme images above are from the [Bootswatch gallery][bootswatch-gallery].
-

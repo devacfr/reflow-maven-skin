@@ -1,0 +1,36 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 1.5 Release Notes
+**2018-10-21**
+
+$h2 Highlights of this release
+
+This focus of this release is:
+
+- Reflow Maven skin provides package `reflow-default-webdeps` containing the default web dependencies used when using `<localResources>`.
+- Update the support of customized bootstrap 3 theme.
+
+$h2 Changelog
+
+$h3 Minor enhancements
+
+- Update to use customized Bootstrap theme 3.x ([#29][]).
+- Add local resources easily during site generation ([#28][]).
+- Share the same site.css by default for all modules ([#5][]).
+- Remove unused relative URL on external link ([#25][]).
+- Remove unsused offsetTop attibute on toc element ([#26][]).
+
+$h3 Bug fixes
+
+- Remove using of awesome font in toc sidebar ([#27][]).
+
+[#29]: ${issue-url}/29
+[#28]: ${issue-url}/28
+[#5]: ${issue-url}/5
+[#25]: ${issue-url}/25
+[#26]: ${issue-url}/26
+[#27]: ${issue-url}/27

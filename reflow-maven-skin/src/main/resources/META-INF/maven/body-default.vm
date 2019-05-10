@@ -1,0 +1,39 @@
+##
+## Copyright 2012-2018 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+<div class="main-body container-fuild my-3">
+    <div class="row m-0">
+        <div class="d-xs-none d-sm-none d-md-none d-lg-block col-lg-2">
+        </div>
+        <main class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" role="main">
+            <div class="header container-fluid">
+                ## add a banner
+#*              *##renderBanner ()##
+                ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
+#*              *##renderBreadcrumbs ()##
+            </div> <!-- end : header -->
+            ## add top toc if enabled
+#*          *##renderTopToc ()
+            #if ( $config.sections )
+#*              *##renderBodySections ( $bodyContent $config.sections )
+            #else
+#*              *##bodyWithHeader ( $bodyContent )
+            #end
+        </main>
+        <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-2">
+#*          *##renderTocSidebar ()
+        </div>
+    </div> <!-- row: end -->
+</div> <!-- .main-body: end -->
