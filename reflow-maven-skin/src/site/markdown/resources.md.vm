@@ -106,7 +106,7 @@ The `<head>` element allows arbitrary XHTML, which will be injected in the gener
       <![CDATA[
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <link rel="stylesheet" href="http://yandex.st/highlightjs/${highlightJsVersion}/styles/default.min.css">
-      <script src="http://yandex.st/highlightjs/${highlightJsVersion}/highlight.min.js"></script>
+      <script src="http://yandex.st/highlightjs/${highlightJsVersion}/highlight.min.js" crossorigin="anonymous"></script>
       ]]>
     </head>
     ...
@@ -144,7 +144,7 @@ JavaScript files can be added to the page head together with CSS files. However,
   <reflowSkin>
     ...
     <endContent>
-      <script src="$resourcePath/js/highlight.min.js"></script>
+      <script src="$resourcePath/js/highlight.min.js" crossorigin="anonymous"></script>
     </endContent>
     ...
   </reflowSkin>

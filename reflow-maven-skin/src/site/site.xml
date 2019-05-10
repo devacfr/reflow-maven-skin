@@ -186,6 +186,9 @@
         <layouts>
           <toc>false</toc>
         </layouts>
+        <components-components>
+          <toc>false</toc>
+        </components-components>
         <toc-sidebar>
           <toc>sidebar</toc>
         </toc-sidebar>

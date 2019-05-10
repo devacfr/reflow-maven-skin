@@ -14,14 +14,14 @@ The layout is centered on a `navside` menu. Navside menu is vertical multi level
 support <span class="badge badge-primary">v2.0</span> <span class="badge badge-success">new</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span>
 
-To declare a page as documentation layout, set `type` attribute with value `doc` and add a **required** `<menu>` element as example below.
+To declare a page as documentation layout, create an empty page (`documentation.html` in example below) and set `type` attribute with value `doc` and add a **required** `<menu>` element as example below.
 
 ```xml
 <pages>
     ...
     <documentation type="doc">
         <menu name="Documentation" selectFirstOnExpand="true|false">
-            <item name="One page" href="on-page.html" />
+            <item name="One page" href="one-page.html" />
             <item name="First level" >
                 <item name="Second level" href="second-level.html"/>
             </item>

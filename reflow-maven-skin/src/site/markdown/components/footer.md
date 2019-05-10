@@ -1,7 +1,5 @@
 # Footer Component
 
-![footer scheme](images/footer-scheme.png)
-
 ## Usage
 
 ```xml

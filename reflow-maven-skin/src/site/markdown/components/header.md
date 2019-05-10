@@ -1,4 +1,4 @@
-# Header Component
+# Header Components
 
 Standard Maven site allows customising the website _banner_.
 

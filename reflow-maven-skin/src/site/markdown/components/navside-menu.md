@@ -2,8 +2,6 @@
 
 Navside menu component is a part of page [documentation layout][documentation-layout] to the left of page. Navside menu is vertical multi level menus for both desktop and mobile modes initialized with the `<menu>` element declared in a page with documentation layout type.
 
-![navside menu scheme](images/navside-menu-scheme.png)
-
 ## Usage
 
 support <span class="badge badge-primary">v2.0</span> <span class="badge badge-success">new</span><br/>
