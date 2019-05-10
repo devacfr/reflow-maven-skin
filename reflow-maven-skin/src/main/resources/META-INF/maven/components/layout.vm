@@ -69,7 +69,6 @@
             *##if ( $lastBody )##
             </div>
         </div>
-    </div>
 #*          *##end#*
 
             ## Print the subsections into columns
@@ -102,10 +101,10 @@
     <div class="row">
 #*              *##if ( $hasSidebar)#*
         ## has a sidebar - take part width *#
-      <div class="col-md-8">
+      <div class="col-8">
 #*              *##else#*
             ## no sidebar - take full width *#
-      <div class="col-md-12">
+      <div class="col-12">
 #*              *##end##
             <div class="body-content">
 #*          *##else#*
@@ -130,8 +129,6 @@
     *##end#*
     ## After the loop, check if body section still needs closing (if it was the last section)
     *##if ( $lastBody )##
-            </div>
         </div>
-    </div>
 #*  *##end##
 #end##

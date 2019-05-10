@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,7 +16,9 @@
 package org.devacfr.maven.skins.reflow;
 
 import java.io.IOException;
+import java.net.URI;
 
+import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.testing.TestCase;
 import org.junit.Test;
 
@@ -24,35 +26,64 @@ public class URIToolTest extends TestCase {
 
     @Test
     public void relativeRootLink() throws IOException {
-        String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
-        String currentFilename = "index.html";
-        String projectUrl = "https://devacfr.github.io/reflow-maven-skin/";
+        final String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
+        final String currentFilename = "index.html";
+        final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/";
 
-        String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
-        String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals(".", actual);
     }
 
     @Test
     public void relativeSubModuleLink() throws IOException {
-        String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
-        String currentFilename = "index.html";
-        String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
+        final String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
+        final String currentFilename = "index.html";
+        final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
 
-        String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
-        String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("..", actual);
     }
 
     @Test
     public void relativeSubFolderLink() throws IOException {
-        String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
-        String currentFilename = "themes/index.html";
-        String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
+        final String absoluteResourceURL = "https://devacfr.github.io/reflow-maven-skin";
+        final String currentFilename = "themes/index.html";
+        final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
 
-        String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
-        String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("../..", actual);
+    }
+
+    @Test
+    public void rebaseUrlOnRootProject() {
+        final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
+        final String relativePath = ".";
+        final URI parent = URI.create(childBaseUrl);
+        final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
+        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        assertEquals("images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
+    }
+
+    @Test
+    public void rebaseUrlOnChildProject() {
+        final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
+        final String relativePath = "..";
+        final URI parent = URI.create(childBaseUrl);
+        final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
+        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        assertEquals("../images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
+    }
+
+    @Test
+    public void rebaseUrlWithParentNullValue() {
+        final String childBaseUrl = null;
+        final String parentBaseUrl = null;
+
+        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        assertEquals("images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
     }
 
 }

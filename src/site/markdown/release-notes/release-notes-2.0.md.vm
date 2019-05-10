@@ -11,15 +11,32 @@ $h2 Highlights of this release
 This focus of this release is:
 
 - Reflow Maven skin provides package `reflow-default-webdeps` containing the default web dependencies used when using `<localResources>`.
-- Built in on Bootstrap 4.
-- Add Bootstrap theming on main component as `navbar`, `toc`, `navside-menu`...
-- Remove support of customized bootstrap theme.
+- Built on Bootstrap 4.
+- Add Bootstrap theming on main component as `navbar`, `toc`, `footer`, `navside-menu`...
+- Introduce new layout `documentation` to organize your documentation in single page to facilitate the navigation.
+
+For facilitate the migration from version 1x, read [Migration to v2](../reflow-maven-skin/reflow-documentation.html#migration).
 
 $h2 Changelog
-**???**
+**2019-05-10**
 
 $h3 Minor enhancements
 
+- Add documentation support ([#19][]).
+- Bump Bootstrap version to 4.1.3 ([#7][]).
+- Add popper.js bootsrap dependency ([#34][]).
 - Add local resources easily during site generation ([#28][]).
+- Remove support of customized Bootsrap theme ([#32][]).
 
+$h3 Bug fixes
+
+- Unexpected velocity.log file created during site generation ([#30][]) [Pull request #31](https://github.com/devacfr/reflow-maven-skin/pull/31) (Maxim Solodovnik <solomax666@gmail.com>).
+- Fix active link on menu item when link is index.html page ([#35][]).
+
+[#7]: ${issue-url}/7
+[#19]: ${issue-url}/19
 [#28]: ${issue-url}/28
+[#30]: ${issue-url}/30
+[#32]: ${issue-url}/32
+[#34]: ${issue-url}/34
+[#35]: ${issue-url}/35

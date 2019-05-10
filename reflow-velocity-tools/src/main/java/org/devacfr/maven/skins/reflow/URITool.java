@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,10 +20,10 @@ import java.net.URI;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.google.common.base.Strings;
-
 import org.apache.maven.doxia.site.decoration.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
+
+import com.google.common.base.Strings;
 
 /**
  * An Apache Velocity tool that provides utility methods to work with URIs/URLs and links.
@@ -82,6 +82,13 @@ public class URITool {
     }
 
     /**
+     * @return
+     */
+    public static URLRebaser createURLRebaser(final String parentBaseUrl, final String childBaseUrl) {
+        return new URLRebaser(parentBaseUrl, childBaseUrl);
+    }
+
+    /**
      * remove url path separator ('/') to the end of path.
      *
      * @param baseUrl
@@ -97,5 +104,72 @@ public class URITool {
         }
 
         return baseUrl;
+    }
+
+    /**
+     * URL rebaser: based on an old and a new path, can rebase a link based on old path to a value based on the new
+     * path.
+     */
+    public static class URLRebaser {
+
+        /** */
+        private final String oldPath;
+
+        /** */
+        private final String newPath;
+
+        /**
+         * Construct a URL rebaser.
+         *
+         * @param oldPath
+         *            the old path.
+         * @param newPath
+         *            the new path.
+         */
+        URLRebaser(final String oldPath, final String newPath) {
+            this.oldPath = oldPath;
+            this.newPath = newPath;
+        }
+
+        /**
+         * Get the new path.
+         *
+         * @return the new path.
+         */
+        public String getNewPath() {
+            return this.newPath;
+        }
+
+        /**
+         * Get the old path.
+         *
+         * @return the old path.
+         */
+        public String getOldPath() {
+            return this.oldPath;
+        }
+
+        /**
+         * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same
+         * location as viewed from a new base.
+         *
+         * @param link
+         *            link to rebase
+         * @return Returns a {@link String} representing link rebased.
+         */
+        public String rebaseLink(final String link) {
+            if (link == null || getOldPath() == null) {
+                return link;
+            }
+
+            if (link.contains("${project.")) {
+                throw new IllegalArgumentException("site.xml late interpolation ${project.*} expression found"
+                        + " in link: '" + link + "'. Use early interpolation ${this.*}");
+            }
+
+            final URIPathDescriptor oldPath = new URIPathDescriptor(getOldPath(), link);
+
+            return oldPath.rebaseLink(getNewPath()).toString();
+        }
     }
 }

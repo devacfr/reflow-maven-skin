@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,19 +20,30 @@ import javax.annotation.Nonnull;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
 /**
+ * Represents the scoll top component.
+ *
  * @author devacfr
  * @since 2.0
  */
-public class ScrollTop extends PageElement {
+public class ScrollTop extends Component {
 
     /** */
     private final boolean smooth;
 
+    /**
+     * Default constructor.
+     *
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
+     */
     public ScrollTop(final @Nonnull SkinConfigTool config) {
 
-        this.smooth = config.getConfigValue("smoothScroll", Boolean.class, true);
+        this.smooth = config.getPropertyValue("smoothScroll", Boolean.class, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getCssOptions() {
         if (isSmooth()) {
@@ -42,7 +53,9 @@ public class ScrollTop extends PageElement {
     }
 
     /**
-     * @return the smooth
+     * Gets the indicating whether the scrolling is smooth.
+     *
+     * @return Returns {@code true} whether the scrolling is smooth, otherwise returns {@code false}.
      */
     public boolean isSmooth() {
         return smooth;

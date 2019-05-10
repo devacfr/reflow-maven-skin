@@ -38,26 +38,24 @@
  *
  *##macro ( banner $banner $id )#*
     *##if ( $banner )#*
-        *##if ( $banner.href )#*
-            *##relativeExtLink ( $banner.href )##
-                    <a href="$relativeExtLink" class="$id"#if ( $banner.alt ) title="$banner.alt"#end>
+        *##if ( $banner.href )
+                    <a href="$config.relativeLink( $banner.href )" class="$id">
 #*      *##else##
                     <div class="$id">
-#*      *##end#*
-
-        *##if ( $banner.src )#*
-            *##relativeExtLink ( $banner.src )##
-            <img src="$relativeExtLink"
-                 alt='"'#if ( $banner.alt )$banner.alt#elseif ( $banner.name )$banner.name#end'"'
+#*      *##end
+##
+#*      *##if ( $banner.src )
+            <img class="d-inline-block float-left m-2" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end
 #*              *##if ( $banner.border ) border="$banner.border"#end##
 #*              *##if ( $banner.width ) width="$banner.width"#end##
 #*              *##if ( $banner.height ) height="$banner.height"#end##
-#*          *# />#*
-        *##else##
+#*          *# />
+#*      *##end
+#*      *##if ( $banner.name )
             <h1>$banner.name</h1>
-#*      *##end#*
-
-        *##if ( $banner.href )##
+#*      *##end
+##
+#*      *##if ( $banner.href )
             </a>
 #*      *##else##
             </div>

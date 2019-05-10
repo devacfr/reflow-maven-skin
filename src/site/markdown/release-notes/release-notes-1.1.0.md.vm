@@ -9,18 +9,18 @@ $h1 Reflow Maven skin 1.1.0 Release Notes
 
 $h2 Major enhancements
 
--   Support for custom/local resources (vs. hardcoded CDN-based jQuery and Bootstrap), which enables use of Reflow skin in a local/intranet setting ([#24][])
+- Support for custom/local resources (vs. hardcoded CDN-based jQuery and Bootstrap), which enables use of Reflow skin in a local/intranet setting ([#24][])
 
 $h2 Minor enhancements
 
--   Upgraded to Bootstrap 2.3 ([#9][])
--   Bumped versions of other skin components (e.g. [#22][])
+- Upgraded to Bootstrap 2.3 ([#9][])
+- Bumped versions of other skin components (e.g. [#22][])
 
 $h2 Bug fixes
 
--   Fixed ToC snapping when banner is not available/is of custom size ([#1][])
--   NPE when menu item href is not set ([#8][])
--   Other various fixes (see [GitHub issues][reflow-issues-110])
+- Fixed ToC snapping when banner is not available/is of custom size ([#1][])
+- NPE when menu item href is not set ([#8][])
+- Other various fixes (see [GitHub issues][reflow-issues-110])
 
 See [all GitHub issues for 1.1.0][reflow-issues-110] for further details.
 
@@ -32,11 +32,7 @@ See [all GitHub issues for 1.1.0][reflow-issues-110] for further details.
 
 [reflow-issues-110]: http://github.com/andriusvelykis/reflow-maven-skin/issues?milestone=1&amp;state=closed
 
-
 $h2 Reflow Maven skin 1.0.0 Release Notes
 **2013-01-15**
 
--   Initial release of Reflow Maven skin and Reflow Velocity tools.
-
-
-
+- Initial release of Reflow Maven skin and Reflow Velocity tools.

@@ -1,18 +1,39 @@
-[![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
+<!---
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
 
-# [Reflow Maven skin]( http://devacfr.github.io/reflow-maven-skin/v2 )
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+[![Apache License, Version 2.0](https://img.shields.io/github/license/apache/maven.svg?label=License)][license]
+[![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg)][maven-repo]
+
+[![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
+
+[license]: https://www.apache.org/licenses/LICENSE-2.0
+[maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
+[gitter]: https://gitter.im/reflow-maven-skin/public
+
+# Reflow Maven skin
 
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
-and stylistic customizations to create a modern-looking Maven-generated website.
+and stylistic customizations to create a modern-looking Maven-generated website and documentatin generation.
 
-To get started and see how the skin looks by default, check out
-http://devacfr.github.io/reflow-maven-skin/v2!
+To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow]!
 
-> **Reflow supported version**
->
-> - **1.5.0** - uilt in on Boostrap 3, http://devacfr.github.io/reflow-maven-skin
-> - **2.0.0-beta1** - built in on Boostrap 4, http://devacfr.github.io/reflow-maven-skin/v2
-
+[reflow]: http://devacfr.github.io/reflow-maven-skin/
+[migration]: http://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#migration.html
 [bootstrap]: http://getbootstrap.com
 
 ## Usage
@@ -25,7 +46,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>2.0.0-beta1</version>
+    <version>2.0.0</version>
   </skin>
   ...
 </project>
@@ -47,7 +68,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>2.0.0-beta1</version>
+          <version>2.0.0</version>
         </dependency>
         ...
       </dependencies>
@@ -63,7 +84,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
 The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
 Refer to [documentation][reflow-config] for all configuration options.
 
-[reflow-config]: http://devacfr.github.io/reflow-maven-skin/v2/skin/config.html
+[reflow-config]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration
 
 A sample configuration file is given below:
 
@@ -130,14 +151,16 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                 <artifactItem>
                     <groupId>io.github.devacfr.maven.skins</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.0.0-beta1</version>
+                    <version>2.0.0</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
-                        **/css/bootstrap.min.css,
+                        **/css/bootstrap.min.css, <!-- can be remove if use bootswatch theme-->
+                        **/css/fontawesome/**/*,
+                        **/css/themes/flaty/*.css, <!-- use flaty bootswatch theme-->
                         **/js/*.js,
                         **/js/languages/*,
-                        **/js/styles/github.min.css
+                        **/js/styles/github.min.css <!-- use github highlight theme-->
                     </includes>
                 </artifactItem>
             </artifactItems>
@@ -150,15 +173,22 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 **Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation)
 
-[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/skin/v2/multi-module.html
+[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#multi-module.html
+
+## Site Deployment
+
+Use following command to deploy site.
+
+```bash
+$ ./mvnw clean package site site:stage scm-publish:publish-scm
+```
 
 ## Bug tracker
 
 Have a bug or a feature request? Please create an issue here on GitHub that conforms with
 [necolas's guidelines](http://github.com/necolas/issue-guidelines).
 
-http://github.com/devacfr/reflow-maven-skin/issues
-
+[http://github.com/devacfr/reflow-maven-skin/issues](http://github.com/devacfr/reflow-maven-skin/issues)
 
 ## Contributing
 
@@ -166,18 +196,16 @@ Fork the repository and submit pull requests on **develop** branch. Reflow use g
 
 > Pull request on master will be refused.
 
-
 ## Author
 
 **Andrius Velykis**
 
-+ http://andrius.velykis.lt
-+ http://github.com/andriusvelykis
+- [http://andrius.velykis.lt](http://andrius.velykis.lt)
+- [http://github.com/andriusvelykis](http://github.com/andriusvelykis)
 
 **Christophe Friederich**
 
-+ http://devacfr.github.io/
-
+- [http://devacfr.github.io/](http://devacfr.github.io/)
 
 ## Copyright and license
 
@@ -194,6 +222,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
 
 [release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management

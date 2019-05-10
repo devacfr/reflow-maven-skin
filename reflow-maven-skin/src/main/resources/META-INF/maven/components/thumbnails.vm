@@ -19,8 +19,9 @@
  *##macro ( renderThumbnails $colCount $subsections )##
 #*  *##set ( $colCount = $convert.toNumber($colCount) )##
 #*  *##set ( $colSpan = 12 / $colCount )#*
-#*  *##set ( $index = 0 )#*
-    *##foreach ( $subsection in $subsections )##
+#*  *##set ( $index = 0 )
+    <div class="col-12">
+#*  *##foreach ( $subsection in $subsections )##
 #*      *##if ( $index == 0)
         <div class="row thumbnail-row">
 #*      *##end
@@ -43,4 +44,8 @@
 #*          *##set ( $index = 0)##
 #*      *##end##
 #*  *##end##
+#*  *##if ( $index != 0)##
+        </div>
+#*  *##end##
+    </div>
 #end##

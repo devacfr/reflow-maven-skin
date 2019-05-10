@@ -17,3 +17,4 @@ target/
 *.log
 velocity.log
 velocity.log.*
+.checkstyle

@@ -17,7 +17,7 @@ Bootstrap themes. They are set using the `<theme>` element in the customization:
 <custom>
   <reflowSkin>
     ...
-    <theme>default|site|bootswatch-*</theme>
+    <theme>default|bootswatch-*</theme>
     ...
   </reflowSkin>
 </custom>
@@ -25,7 +25,7 @@ Bootstrap themes. They are set using the `<theme>` element in the customization:
 
 There are several options for the `<theme>` value:
 
--   **`default`**
+- **`default`**
 
     (**Default**: will be used if `<theme>` is not set).
 
@@ -36,20 +36,7 @@ There are several options for the `<theme>` value:
     [BootstrapCDN Content Delivery Network][bootstrapcdn], which improves website loading
     by hosting the Bootstrap CSS and JavaScript files.
 
--   **`site`**
-
-    A customized (local) Bootstrap theme. This option should be used when a custom Bootstrap
-    theme is developed and included with the Maven site. The theme expects the following
-    Bootstrap CSS and JavaScript files to be available in `src/site/resources`:
-
-    - `css/bootstrap.min.css`
-    - `css/bootstrap-theme.min.css`
-    - `js/bootstrap.min.js`
-    - `fonts/glyphicons-halflings-regular.*`
-
-    The files can be customized and generated at [Bootstrap's Customize page][bootstrap-custom].
-
--   **`bootswatch-*`**<span id="theme-bootswatch"></span>
+- **`bootswatch-*`**<span id="theme-bootswatch"></span>
 
     One of free Bootstrap themes from [Bootswatch][bootswatch]. Append the lowercase theme name
     in the [Bootswatch gallery][bootswatch-gallery], e.g. `bootswatch-readable`.
@@ -67,7 +54,6 @@ There are several options for the `<theme>` value:
 
 ---
 
-
 $h3 [Cerulean][theme-cerulean]
 
 [![Cerulean Bootswatch theme](images/bootswatch-cerulean.png)][theme-cerulean]
@@ -77,7 +63,6 @@ $h3 [Cerulean][theme-cerulean]
 ```
 
 [theme-cerulean]: themes/bootswatch-cerulean.html
-
 
 $h3 [Cosmo][theme-cosmo]
 
@@ -89,7 +74,6 @@ $h3 [Cosmo][theme-cosmo]
 
 [theme-cosmo]: themes/bootswatch-cosmo.html
 
-
 $h3 [Cyborg][theme-cyborg]
 
 [![Cyborg Bootswatch theme](images/bootswatch-cyborg.png)][theme-cyborg]
@@ -99,8 +83,6 @@ $h3 [Cyborg][theme-cyborg]
 ```
 
 [theme-cyborg]: themes/bootswatch-cyborg.html
-
-
 
 $h3 [Darkly][theme-darkly]
 
@@ -122,7 +104,6 @@ $h3 [Flatly][theme-flatly]
 ```
 
 [theme-flatly]: themes/bootswatch-flatly.html
-
 
 $h3 [Journal][theme-journal]
 
@@ -154,7 +135,6 @@ $h3 [Lumen][theme-lumen]
 
 [theme-lumen]: themes/bootswatch-lumen.html
 
-
 $h3 [Lux][theme-lux]
 
 [![Lux Bootswatch theme](images/bootswatch-lux.png)][theme-lux]
@@ -164,7 +144,6 @@ $h3 [Lux][theme-lux]
 ```
 
 [theme-lux]: themes/bootswatch-lux.html
-
 
 $h3 [Materia][theme-materia]
 
@@ -206,7 +185,6 @@ $h3 [Sandstone][theme-sandstone]
 
 [theme-sandstone]: themes/bootswatch-sandstone.html
 
-
 $h3 [Simplex][theme-simplex]
 
 [![Simplex Bootswatch theme](images/bootswatch-simplex.png)][theme-simplex]
@@ -227,7 +205,6 @@ $h3 [Sketchy][theme-sketchy]
 
 [theme-sketchy]: themes/bootswatch-sketchy.html
 
-
 $h3 [Slate][theme-slate]
 
 [![Slate Bootswatch theme](images/bootswatch-slate.png)][theme-slate]
@@ -238,7 +215,6 @@ $h3 [Slate][theme-slate]
 
 [theme-slate]: themes/bootswatch-slate.html
 
-
 $h3 [Solar][theme-solar]
 
 [![Solar Bootswatch theme](images/bootswatch-solar.png)][theme-solar]
@@ -248,7 +224,6 @@ $h3 [Solar][theme-solar]
 ```
 
 [theme-solar]: themes/bootswatch-solar.html
-
 
 $h3 [Spacelab][theme-spacelab]
 
@@ -271,7 +246,6 @@ $h3 [Superhero][theme-superhero]
 
 [theme-superhero]: themes/bootswatch-superhero.html
 
-
 $h3 [United][theme-united]
 
 [![United Bootswatch theme](images/bootswatch-united.png)][theme-united]
@@ -281,7 +255,6 @@ $h3 [United][theme-united]
 ```
 
 [theme-united]: themes/bootswatch-united.html
-
 
 $h3 [Yeti][theme-yeti]
 
@@ -293,7 +266,6 @@ $h3 [Yeti][theme-yeti]
 
 [theme-yeti]: themes/bootswatch-yeti.html
 
-
 $h3 [And more..][bootswatch-gallery]
 
 Check out all themes at [Bootswatch gallery][bootswatch-gallery].
@@ -302,8 +274,6 @@ Check out all themes at [Bootswatch gallery][bootswatch-gallery].
 <theme>bootswatch-*</theme>
 ```
 
-
 ---
 
 All theme images above are from the [Bootswatch gallery][bootswatch-gallery].
-

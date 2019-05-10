@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,18 +15,30 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static java.util.Objects.requireNonNull;
+
+import java.net.URI;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
+import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
+import org.codehaus.plexus.util.PathTool;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Strings;
 
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
@@ -69,16 +81,19 @@ import org.slf4j.LoggerFactory;
  * </p>
  *
  * @author Andrius Velykis
+ * @author Christophe Friederich
  * @since 1.0
  */
 @DefaultKey("config")
 public class SkinConfigTool extends SafeConfig {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
+    /** */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
 
+    /** */
     public static final String DEFAULT_KEY = "config";
 
-    /** By default use Reflow skin configuration tag */
+    /** By default use Reflow skin configuration tag. */
     public static final String SKIN_KEY = "reflowSkin";
 
     /** */
@@ -87,7 +102,7 @@ public class SkinConfigTool extends SafeConfig {
     /** */
     private String skinKey = SKIN_KEY;
 
-    /* Create dummy nodes to avoid null checks */
+    /** Create dummy nodes to avoid null checks. */
     private Xpp3Dom globalProperties = new Xpp3Dom("");
 
     /** */
@@ -108,6 +123,12 @@ public class SkinConfigTool extends SafeConfig {
     /** */
     private MavenProject project = null;
 
+    /** */
+    private DecorationModel decoration;
+
+    /** */
+    private ToolContext velocityContext;
+
     /**
      * {@inheritDoc}
      *
@@ -127,15 +148,15 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // retrieve the decoration model from Velocity context
-        final Object velocityContext = values.get("velocityContext");
+        final Object vc = values.get("velocityContext");
 
-        if (!(velocityContext instanceof ToolContext)) {
+        if (!(vc instanceof ToolContext)) {
             return;
         }
 
-        final ToolContext ctxt = (ToolContext) velocityContext;
+        this.velocityContext = (ToolContext) vc;
 
-        final Object projectObj = ctxt.get("project");
+        final Object projectObj = velocityContext.get("project");
         if (projectObj instanceof MavenProject) {
             this.project = (MavenProject) projectObj;
             final String artifactId = project.getArtifactId();
@@ -144,18 +165,18 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // calculate the page ID from the current file name
-        final Object currentFileObj = ctxt.get("currentFileName");
+        final Object currentFileObj = velocityContext.get("currentFileName");
         if (currentFileObj instanceof String) {
             fileId = slugFilename((String) currentFileObj);
         }
 
-        final Object decorationObj = ctxt.get("decoration");
+        final Object decorationObj = velocityContext.get("decoration");
 
         if (!(decorationObj instanceof DecorationModel)) {
             return;
         }
 
-        final DecorationModel decoration = (DecorationModel) decorationObj;
+        this.decoration = (DecorationModel) decorationObj;
         final Object customObj = decoration.getCustom();
 
         if (!(customObj instanceof Xpp3Dom)) {
@@ -210,13 +231,19 @@ public class SkinConfigTool extends SafeConfig {
                 }
 
             }
+
+            // Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
+            this.velocityContext.put("localResources", is("localResources"));
+            // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+            this.velocityContext.put("resourcePath", getResourcePath());
+
             this.context = Context.buildContext(this);
         }
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Current Filename: " + currentFileObj);
-            LOGGER.debug("Project id: " + projectId);
-            LOGGER.debug("File id: " + fileId);
-            LOGGER.debug("Context: " + this.context);
+            LOGGER.debug("Current Filename: {}", currentFileObj);
+            LOGGER.debug("Project id: {}", projectId);
+            LOGGER.debug("File id: {}", fileId);
+            LOGGER.debug("Context: {}", this.context);
             LOGGER.debug("---------------------------------------------------");
         }
     }
@@ -224,18 +251,16 @@ public class SkinConfigTool extends SafeConfig {
     /**
      * Sets the key under which this tool has been configured.
      *
+     * @param key
+     *            the key of config
      * @since 1.0
      */
     protected void setKey(final String key) {
-        if (key == null) {
-            throw new NullPointerException("SkinConfigTool key cannot be null");
-        }
-        this.key = key;
+        this.key = requireNonNull(key, "SkinConfigTool key cannot be null");
     }
 
     /**
-     * Should return the key under which this tool has been configured. The default is `config`.
-     *
+     * @return Returns the key under which this tool has been configured. The default is `config`.
      * @since 1.0
      */
     public String getKey() {
@@ -300,9 +325,11 @@ public class SkinConfigTool extends SafeConfig {
      *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
+     * @param <T>
+     *            the type of returned object.
      */
     @SuppressWarnings("unchecked")
-    public <T> T getConfigValue(final String property, final Class<T> targetType, final T defaultValue) {
+    public <T> T getPropertyValue(final String property, final Class<T> targetType, final T defaultValue) {
         final String value = value(property);
         if (value == null) {
             return defaultValue;
@@ -344,9 +371,11 @@ public class SkinConfigTool extends SafeConfig {
      *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
+     * @param <T>
+     *            the type of returned object.
      */
     @SuppressWarnings("unchecked")
-    public <T> T getConfigAttribute(final String property,
+    public <T> T getAttributeValue(final String property,
         final String attribute,
         final Class<T> targetType,
         final T defaultValue) {
@@ -373,6 +402,29 @@ public class SkinConfigTool extends SafeConfig {
             return defaultValue;
         }
 
+        Object returnedValue = value;
+        if (targetType.isAssignableFrom(Boolean.class)) {
+            returnedValue = Boolean.valueOf(value);
+        } else if (targetType.isAssignableFrom(Integer.class)) {
+            returnedValue = Integer.valueOf(value);
+        } else if (targetType.isAssignableFrom(Long.class)) {
+            returnedValue = Long.valueOf(value);
+        }
+        return (T) returnedValue;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getAttributeValue(final Xpp3Dom element,
+        final String attribute,
+        final Class<T> targetType,
+        final T defaultValue) {
+        if (element == null) {
+            return defaultValue;
+        }
+        final String value = element.getAttribute(attribute);
+        if (value == null) {
+            return defaultValue;
+        }
         Object returnedValue = value;
         if (targetType.isAssignableFrom(Boolean.class)) {
             returnedValue = Boolean.valueOf(value);
@@ -428,10 +480,16 @@ public class SkinConfigTool extends SafeConfig {
         return value != null && value.equals(value(property));
     }
 
+    /**
+     * @return Returns the {@link String} representing the projectId.
+     */
     public String getProjectId() {
         return projectId;
     }
 
+    /**
+     * @return Returns the {@link String} representing the fileId.
+     */
     public String getFileId() {
         return fileId;
     }
@@ -444,29 +502,180 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
+     * @return the velocity Context
+     */
+    public ToolContext getVelocityContext() {
+        return velocityContext;
+    }
+
+    /**
      * @return the project
      */
     public MavenProject getProject() {
         return project;
     }
 
+    /**
+     * @return the decoration
+     */
+    public DecorationModel getDecoration() {
+        return decoration;
+    }
+
+    /**
+     * @return Returns the page level {@link Xpp3Dom}.
+     */
     public Xpp3Dom getPageProperties() {
         return pageProperties;
     }
 
+    /**
+     * @return Returns the root level {@link Xpp3Dom}.
+     */
     public Xpp3Dom getGlobalProperties() {
         return globalProperties;
     }
 
+    /**
+     * @return Returns a {@link String} representing the namespace.
+     */
+    @Nonnull
     public String getNamespace() {
         return namespace;
     }
 
+    @Nonnull
+    public String getProjectLocation() {
+        String projectSiteLoc = getProject().getUrl();
+        if (!Strings.isNullOrEmpty(projectSiteLoc)) {
+
+            if (!projectSiteLoc.endsWith("/")) {
+                projectSiteLoc += "/";
+            }
+        }
+        return projectSiteLoc;
+    }
+
+    @Nonnull
+    public String getCurrentFileLocation() {
+        final String projectSiteLoc = getProjectLocation();
+        final String currentFileName = (String) velocityContext.get("currentFileName");
+        return URITool.toURI(projectSiteLoc).resolve(currentFileName).toString();
+    }
+
+    @Nullable
+    public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
+        if (vtl == null) {
+            return null;
+        }
+        final RenderTool renderTool = (RenderTool) getVelocityContext().get("render");
+        try {
+            return (T) renderTool.eval(getVelocityContext(), vtl);
+        } catch (final Exception ex) {
+            throw new RuntimeException("error when try evaluate '" + vtl + "'", ex);
+        }
+    }
+
     /**
-     * @param fileName
-     * @return
+     * @param href
+     *            link to relative.
+     * @return Returns Relativizes the link.
      */
-    public static String slugFilename(final String fileName) {
+    @Nullable
+    public String relativeLink(final String href) {
+        if (href == null) {
+            return null;
+        }
+        if (isExternalLink(href)) {
+            return href;
+        }
+        final String relativePath = (String) velocityContext.get("relativePath");
+        String relativeLink = PathTool.calculateLink(href, relativePath);
+        relativeLink = relativeLink.replaceAll("\\\\", "/");
+        if (Strings.isNullOrEmpty(relativeLink)) {
+            relativeLink = "./";
+        }
+        // Attempt to normalise the relative link - this is useful for active link
+        // calculations and better relative links for subdirectories.
+        //
+        // The issue is particularly visible with pages in subdirectories,
+        // so that if you are in <root>/dev/index.html, the relative menu link to
+        // the _same_ page would likely be ../dev/index.html instead of '' or
+        // 'index.html'.
+        final String currentFileLoc = getCurrentFileLocation();
+        final String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
+        if (currentFileLoc.equals(absoluteLink)) {
+            // for matching link, use empty relative link
+            relativeLink = StringUtils.EMPTY;
+        } else {
+            // relativize the absolute link based on current directory
+            // (uses Maven project link relativization)
+            final String currentFileDir = PathTool.getDirectoryComponent(currentFileLoc);
+            relativeLink = URITool.relativizeLink(currentFileDir, absoluteLink);
+        }
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("-- Relative Link ----------------------------------");
+            LOGGER.debug("link: {}", href);
+            LOGGER.debug("currentFileLoc: {}", currentFileLoc);
+            LOGGER.debug("absoluteLink: {}", absoluteLink);
+            LOGGER.debug("relativeLink: {}", relativeLink);
+            LOGGER.debug("---------------------------------------------------");
+        }
+        return relativeLink;
+    }
+
+    /**
+     * @param url
+     *            a url.
+     * @return Returns {@code true} whether the link is a external link to the site.
+     */
+    public boolean isExternalLink(final String url) {
+        if (url == null) {
+            return false;
+        }
+        final String absoluteResourceURL = this.value("absoluteResourceURL");
+        if (!Strings.isNullOrEmpty(absoluteResourceURL) && url.startsWith(absoluteResourceURL)) {
+            return false;
+        }
+        return url.toLowerCase().startsWith("http:/") || url.toLowerCase().startsWith("https:/")
+                || url.toLowerCase().startsWith("ftp:/") || url.toLowerCase().startsWith("mailto:")
+                || url.toLowerCase().startsWith("file:/") || url.toLowerCase().indexOf("://") != -1;
+    }
+
+    /**
+     *
+     */
+    public boolean isActiveLink(final String href) {
+        final String alignedFileName = (String) velocityContext.get("alignedFileName");
+        if (href == null) {
+            return false;
+        }
+        // either empty link (pointing to a page), or if the current file is index.html,
+        // the link may point to the whole directory
+        return Strings.isNullOrEmpty(href) || alignedFileName.endsWith("index.html") && ".".equals(href);
+    }
+
+    /**
+     * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same
+     * location as viewed from a new base.
+     *
+     * @param link
+     *            link to rebase
+     * @return Returns a {@link String} representing link rebased.
+     */
+    public String rebaseLink(final String link) {
+        return createURLRebaser().rebaseLink(link);
+    }
+
+    /**
+     * Converts a filename to pageId format.
+     *
+     * @param fileName
+     *            the filename to convert
+     * @return Returns a {@link String} representing the pageId of {@code filename}.
+     */
+    @Nullable
+    public static String slugFilename(@Nullable final String fileName) {
         if (fileName == null) {
             return null;
         }
@@ -485,6 +694,51 @@ public class SkinConfigTool extends SafeConfig {
         // full file ID includes the nested dirs
         // replace nesting "/" with "-"
         return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
+    }
+
+    /**
+     * @return Returns a {@link String} representing the relative path to root site.
+     */
+    @Nonnull
+    private String getResourcePath() {
+        final String absoluteResourceURL = this.value("absoluteResourceURL");
+        String projectUrl = getProjectLocation();
+        final String currentFileName = (String) velocityContext.get("currentFileName");
+        if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
+            if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
+                projectUrl += '/';
+            }
+            final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
+            return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+        }
+        return (String) velocityContext.get("relativePath");
+    }
+
+    /**
+     * @return Returns new instance of {@link URLRebaser}.
+     */
+    @Nonnull
+    private URLRebaser createURLRebaser() {
+        String childBaseUrl = this.getProject().getUrl();
+        if (Strings.isNullOrEmpty(childBaseUrl)) {
+            childBaseUrl = null;
+        }
+        final String relativePath = getResourcePath();
+        String parentBaseUrl = relativePath;
+        if (childBaseUrl != null && childBaseUrl.length() > 0) {
+            if (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
+                childBaseUrl += '/';
+            }
+            final URI child = URI.create(childBaseUrl);
+            parentBaseUrl = child.resolve(relativePath).normalize().toString();
+        }
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("parentBaseUrl: {}", parentBaseUrl);
+            LOGGER.debug("childBaseUrl: {}", childBaseUrl);
+            LOGGER.debug("relativePath: {}", relativePath);
+        }
+
+        return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
 }

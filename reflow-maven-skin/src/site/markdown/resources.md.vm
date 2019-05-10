@@ -9,14 +9,9 @@
 
 $h1 Local/custom resources
 
-Reflow Maven skin utilises content delivery networks (CDN) for a number of CSS and JavaScript
-resources. These include Bootstrap files, themes, the jQuery library, etc. The reuse of
-popular resources via CDN provides better performance. However, such resources may not be
-accessible when the site is used in an offline/intranet setting.
+Reflow Maven skin utilises content delivery networks (CDN) for a number of CSS and JavaScript resources. These include Bootstrap files, themes, the jQuery library, etc. The reuse of popular resources via CDN provides better performance. However, such resources may not be accessible when the site is used in an offline/intranet setting.
 
-To support such deployments of Reflow skin, the configuration allows using local resources.
-Furthermore, custom resources can also be easily added to the generated website.
-These include newer versions of the used libraries as well as arbitrary scripts.
+To support such deployments of Reflow skin, the configuration allows using local resources. Furthermore, custom resources can also be easily added to the generated website. These include newer versions of the used libraries as well as arbitrary scripts.
 
 $h2 Local Bootstrap & jQuery
 
@@ -30,16 +25,11 @@ flag:
 <localResources>true|false</localResources>
 ```
 
-- **true** - Locally provided Bootstrap and jQuery files will be used in the generated site,
-    not the CDN versions. This forces [`site` Bootstrap theme][bootstrap-theme], which
-    uses local Bootstrap files. Furthermore, other non-local resources such as _highlight.js_
-    are disabled and their [local versions need to be added manually][local-css].
-    See below for the list of files that need to be available locally.
+- **true** - Locally provided Bootstrap and jQuery files will be used in the generated site, not the CDN versions. This forces [`site` Bootstrap theme][bootstrap-theme], which uses local Bootstrap files. Furthermore, other non-local resources such as _highlight.js_ are disabled and their [local versions need to be added manually][local-css]. See below for the list of files that need to be available locally.
 
 - **false (default)** - CDN delivered resources are used, where available.
 
-Note that when using `<localResources>`, you need to provide the necessary local versions of
-Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module `reflow-default-webdeps`. this package should be unpack as following example:
+Note that when using `<localResources>`, you need to provide the necessary local versions of Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module `reflow-default-webdeps`. this package should be unpack as following example:
 
 ```xml
 <plugin>
@@ -76,19 +66,16 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 </plugin>
 ```
 
-Therefore it is easier to get appropriate Bootstrap files directly from the
-[customiser][bootstrap-cust] or [Bootswatch][bootswatch3] and use them with the Reflow skin.
-Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used.
-Use at your own risk, however, as major version changes are likely to break the website!
+Therefore it is easier to get appropriate Bootstrap files directly from the [Bootswatch][bootswatch] and use them with the Reflow skin. Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used. Use at your own risk, however, as major version changes are likely to break the website!
 
-When using `<localResources>`, the following files need to be available in the corresponding
-directories within your project's `src/site/resources` folder:
+When using `<localResources>`, the following files need to be available in the corresponding directories within your project's `src/site/resources` folder:
 
-- **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap ${bootstrapVersion}
-- **`fonts/glyphicons-halflings-regular.*`** - fonts used by Bootstrap ${bootstrapVersion}
+- **`css/bootstrap.min.css`** - Reflow skin currently uses Bootstrap ${bootstrapVersion} or **`css/themes/[bootswatch theme]/bootstrap.min.css`**, specific bootswatch ${bootswatchVersion} theme (see [Themes Section][bootstrap-theme] for more information)
+- **`css/fontawesome/all.min.css`**, **`css/fontawesome/webfonts/*.[eot|ttf|woff|woff2]`** - font Awesome ${fontawesomeVersion}
 - **`js/bootstrap.min.js`** - Bootstrap ${bootstrapVersion}
 - **`js/jquery.min.js`** - jQuery ${jqueryVersion}
 - **`js/anchor.min.js`** - anchorJs ${anchorJsVesrion}
+- **`js/popper.min.js`** - anchorJs ${popperVersion}
 - **`js/highlight.min.js`** - highlightJs ${highlightJsVersion}
 - **`js/languages/*.js`** - folder containing highlightJs languages
 - **`js/styles/*.js`** - folder containing highlightJs styles
@@ -96,27 +83,19 @@ directories within your project's `src/site/resources` folder:
 For multi-module site, remember to enable [resource reuse flag][resource-reuse], otherwise
 these files will have to be repeated for each sub-module.
 
-
-[bootstrap-theme]: themes/
-[local-css]: #Additional_CSS_files
-[bootstrap-cust]: https://getbootstrap.com/docs/3.3/customize/
-[bootswatch3]: http://bootswatch.com/3/
+[bootstrap-theme]: reflow-documentation.html#themes-index
+[local-css]: reflow-documentation.html#resources_toc_additional_css_files
+[bootswatch]: http://bootswatch.com/
 
 
 $h2 Additional CSS files
 
 element <span class="badge badge-secondary">site.xml</span>
 
-Additional CSS files (or other resources) can be added to the page head using [`<body><head>`
-configuration][body-head-config] in the `site.xml` site descriptor.
-This configuration is available to all Maven site skins and is part of the standard
-site descriptor configuration.
+Additional CSS files (or other resources) can be added to the page head using [`<body><head>` configuration][body-head-config] in the `site.xml` site descriptor.
+This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.
 
-The `<head>` element allows arbitrary XHTML, which will be injected in the generated page.
-Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources.
-For example, to use a custom version of [highlight.js syntax highlighting][highlight-js-config],
-you can disable the default configuration (`<highlightJs>false</highlightJs>`) and
-add the relevant CSS and JavaScript manually:
+The `<head>` element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of [highlight.js syntax highlighting][highlight-js-config], you can disable the default configuration (`<highlightJs>false</highlightJs>`) and add the relevant CSS and JavaScript manually:
 
 ```xml
 <project>
@@ -126,9 +105,8 @@ add the relevant CSS and JavaScript manually:
     <head>
       <![CDATA[
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
       <link rel="stylesheet" href="http://yandex.st/highlightjs/${highlightJsVersion}/styles/default.min.css">
-      <script src="http://yandex.st/highlightjs/${highlightJsVersion}/highlight.min.js"></script>
+      <script src="http://yandex.st/highlightjs/${highlightJsVersion}/highlight.min.js" crossorigin="anonymous"></script>
       ]]>
     </head>
     ...
@@ -137,12 +115,9 @@ add the relevant CSS and JavaScript manually:
 </project>
 ```
 
-Note: the `<head>` element is within `<body>`, not `<custom>` element of `site.xml` site
-descriptor.
+Note: the `<head>` element is within `<body>`, not `<custom>` element of `site.xml` site descriptor.
 
-Furthermore, the injected XHTML allows using Velocity variables. Therefore you can [reuse
-a local version of the library][resource-reuse] by indicating its path with a `$resourcePath`
-variable, e.g.:
+Furthermore, the injected XHTML allows using Velocity variables. Therefore you can [reuse a local version of the library][resource-reuse] by indicating its path with a `$resourcePath` variable, e.g.:
 
 ```xml
 <head>
@@ -153,8 +128,8 @@ variable, e.g.:
 ```
 
 [body-head-config]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head
-[highlight-js-config]: misc.html#Code_highlight
-[resource-reuse]: multi-module.html#Reuse_resources
+[highlight-js-config]: reflow-documentation.html#misc.html_toc_code_highlight
+[resource-reuse]: reflow-documentation.html#multi-module_toc_reuse_resources
 
 
 $h2 Additional JavaScript files
@@ -162,22 +137,18 @@ $h2 Additional JavaScript files
 support <span class="badge badge-primary">v1.1</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-JavaScript files can be added to the page head together with CSS files. However, for performance
-reasons, it can be better to reference JavaScript files at the end of the document.
-To place custom XHTML at the end of the page (before the `</body>` tag), use the `<endContent>`
-element, which also supports Velocity variables, e.g.:
+JavaScript files can be added to the page head together with CSS files. However, for performance reasons, it can be better to reference JavaScript files at the end of the document. To place custom XHTML at the end of the page (before the `</body>` tag), use the `<endContent>` element, which also supports Velocity variables, e.g.:
 
 ```xml
 <custom>
   <reflowSkin>
     ...
     <endContent>
-      <script src="$resourcePath/js/highlight.min.js"></script>
+      <script src="$resourcePath/js/highlight.min.js" crossorigin="anonymous"></script>
     </endContent>
     ...
   </reflowSkin>
 </custom>
 ```
 
-Note: the `<endContent>` element is specific to Reflow skin and needs to be placed within the
-`<custom><reflowSkin>` element.
+Note: the `<endContent>` element is specific to Reflow skin and needs to be placed within the `<custom><reflowSkin>` element.

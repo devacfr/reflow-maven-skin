@@ -15,10 +15,8 @@
 ##
 <div class="main-body ${pageContext.cssOptions}">
     <div class="row m-0">
-        <div class="navside-col col-lg-2 px-0">
-#*          *##renderNavSideMenu ()##
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 pl-0">
+#*      *##renderNavSideMenu ()##
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 pl-0">
             <div id="m-doc-frame" class="border-left">
             </div>
         </div>

@@ -1,3 +1,18 @@
+/*
+ * Copyright 2018 Christophe Friederich
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 "use strict";
 
 function getViewPort() {
@@ -95,7 +110,6 @@ var mReflow = function () {
         size = navbar.outerHeight();
       }
       $('body').css('padding-top', size);
-      $('.navside-menu').css('top', size);
       $('.toc-sidebar-fixed').css('top', size);
       $('#m-toc-topbar').css('top', size);
     }
@@ -156,7 +170,7 @@ var mReflow = function () {
       return;
     }
     currentMenu = href;
-    $('#m-doc-frame').load(href, function () {
+    $('#m-doc-frame').load(href, function (evt) {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
       var item = $('.navside-menu a[slug-name="' + slugName + '"]').parent();
@@ -174,7 +188,10 @@ var mReflow = function () {
       refreshScrollSpy();
 
       var hash = window.location.hash;
-      scrollTo($(hash));
+      // scroll to anchor if toc separator exists
+      if (hash && hash.indexOf(TOC_SEPARATOR)>0) {
+        scrollTo($(hash));
+      }
     });
   }
 
@@ -182,9 +199,12 @@ var mReflow = function () {
     if (anchors && $body.hasClass('m-toc-sidebar-enabled') || $body.hasClass('m-toc-top-enabled')
       || $body.hasClass('m-sidenav-enabled')) {
       anchors.options = {
-        placement: 'left',
+        placement: 'right',
+        class: 'fas fa-link',
+        icon: ''
       };
-      anchors.add('h1,h2, h3, h4, h5, h6');
+      anchors.add('.main-body h2, .main-body h3, .main-body h4, .main-body h5, .main-body h6');
+      $(".main-body h2, .main-body h3, .main-body h4, .main-body h5, .main-body h6").wrapInner("<div></div>");
     }
   }
 
@@ -290,7 +310,7 @@ var mReflow = function () {
     }
 
     // select first menu item on expand
-    if ($body.hasClass('m-sidenav-select-onexpand')) {
+    if ($body.hasClass('m-sidenav-select-first-on-select')) {
       navSidebar.on('shown.bs.collapse', function (ev) {
         var el = $(ev.target);
         // break if have already active item

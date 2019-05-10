@@ -2,43 +2,25 @@
 	color: #225E9B;
 }
 
-
-body[class*="page-themes-bootswatch"] .color-highlight {
-	color: inherit;
+.color-highlight:after {
+    content :"2";
+    font-weight: 900;
+    color: var(--danger);
+    position: relative;
 }
 
-.thumbnail-row {
-	margin-top: 10px;
+.navbar-brand .color-highlight:after {
+    left: -3px;
 }
 
-/*h1, */h2 {
-  margin-top: 30px;
-}
-
-h3, h4, h5, h6 {
-  margin-top: 20px;
-}
-
-.carousel-caption a {
-  color: white;
+.subhead .color-highlight:after {
+    left: -8px;
 }
 
 
-.project-reflow-parent.page-index .sidebar {
-  margin-top: 10px;
-}
-
-.project-reflow-parent.page-index .sidebar {
-  margin-top: 10px;
-}
-
-.project-reflow-parent.page-index .sidebar h3 {
-  margin-top: 10px;
-}
-
-.navside-col {
-    /* same color of navsidemenu (bg-light) */
-    background-color: var(--light);
+h2, h3, h4, h5, h6 {
+    margin-top: 2rem;
+    margin-bottom: 1.6rem;
 }
 
 

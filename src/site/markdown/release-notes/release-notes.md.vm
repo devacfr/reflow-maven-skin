@@ -12,16 +12,18 @@ The history of Reflow Maven skin releases is documented below. For details of ch
 [github-report]: github-report.html
 
 $h2 Reflow Maven skin 2.0 Release Notes
-**???**
+**2019-05-10**
 
 $h3 Highlights of this release
 
 This focus of this release is:
 
 - Reflow Maven skin provides package `reflow-default-webdeps` containing the default web dependencies used when using `<localResources>`.
-- Built in on Bootstrap 4.
-- Add Bootstrap theming on main component as `navbar`, `toc`, `navside-menu`...
-- Remove support of customized bootstrap theme.
+- Built on Bootstrap 4.
+- Add Bootstrap theming on main component as `navbar`, `toc`, `footer`, `navside-menu`...
+- Introduce new layout `documentation` to organize your documentation in single page to facilitate the navigation.
+
+For facilitate the migration from version 1x, read [Migration to v2](../reflow-maven-skin/reflow-documentation.html#migration).
 
 Read more in the [Reflow Maven skin 2.0 Release Notes and changeslog](release-notes-2.0.html).
 

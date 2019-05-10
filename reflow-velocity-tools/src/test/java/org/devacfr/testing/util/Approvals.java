@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.junit.Assert;
 
 import com.google.common.base.Charsets;
@@ -30,10 +31,14 @@ import com.google.common.io.Resources;
  * @author Christophe Friederich
  * @since 1.0
  */
-public class Approvals {
+public final class Approvals {
+
+    private Approvals() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
      *            path location of expected file.
@@ -50,11 +55,11 @@ public class Approvals {
         @Nullable final String actual) {
         final String fileName = String.format("%s.%s.approved", testClass.getSimpleName(), testName);
         final String expected = readFile(location.resolve(fileName));
-        Assert.assertEquals(expected, actual);
+        Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
      *            path location of expected file.

@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,30 +15,37 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
+import static java.util.Objects.requireNonNull;
+
 import javax.annotation.Nonnull;
 
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
-import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.devacfr.maven.skins.reflow.model.Toc;
 
 /**
+ * The context associate to page of frame page.
+ *
  * @author Christophe Friederich
  * @since 2.0
  */
 public class FrameContext extends Context<FrameContext> {
 
     /** */
-    private String documentParent;
+    private final String documentParent;
 
     /** */
-    private SideNavMenuItem item;
+    private final Toc<?> toc;
 
-    private Toc<?> toc;
-
-    public FrameContext(final @Nonnull SkinConfigTool config) {
-        super(config);
-        this.withType("frame");
+    /**
+     * @param config
+     *            a config (can not be {@code null}).
+     * @param documentParent
+     *            name of parent.
+     */
+    public FrameContext(final @Nonnull SkinConfigTool config, @Nonnull final String documentParent) {
+        super(config, ContextType.frame);
         toc = Toc.createToc(config, "sidebar");
+        this.documentParent = requireNonNull(documentParent);
     }
 
     @Override
@@ -50,35 +57,25 @@ public class FrameContext extends Context<FrameContext> {
         return css;
     }
 
+    /**
+     * @return Returns a {@link String} representing the name of parent page.
+     */
     public String getDocumentParent() {
         return documentParent;
     }
 
+    /**
+     * @return Returns a {@link String} representing the slugged name(pageId) of parent page.
+     */
     public String getSlugDocumentParent() {
         return SkinConfigTool.slugFilename(documentParent);
     }
 
-    public FrameContext withDocumentParent(final String documentParent) {
-        this.documentParent = documentParent;
-        return self();
-    }
-
-    public SideNavMenuItem getItem() {
-        return item;
-    }
-
-    public FrameContext withItem(final SideNavMenuItem item) {
-        this.item = item;
-        return self();
-    }
-
+    /**
+     * @return returns the {@link Toc}.
+     */
     public Toc<?> getToc() {
         return toc;
-    }
-
-    public FrameContext withToc(final Toc<?> toc) {
-        this.toc = toc;
-        return self();
     }
 
 }

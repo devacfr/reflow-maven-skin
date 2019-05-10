@@ -36,22 +36,11 @@
   *##else#*
       *##set ( $datePosition = "bottom" )#*
   *##end##
-  ##
-  ## Try resolving site URL from the POM.
-  ## This can help with resolution of relative links, needed for 'active' link calculations,
-  ## e.g. to normalise the relative links in menus.
-  #if ( $project.url && $project.url != '' )#*
-        *##set ( $projectSiteLoc = $project.url )#*
-        *##if ( !$projectSiteLoc.endsWith("/") )#*
-          ## ensure that the directory is uniform
-          *##set ( $projectSiteLoc = "$projectSiteLoc/" )#*
-        *##end#*
-  *##else
-    ## dummy project URL is used to provide a good base to resolve relative links with ../
-    #set ( $projectSiteLoc = "http://dummy.parent.url/" )#*
-  *##end
+##
+#*  *##set ( $projectSiteLoc = $config.projectLocation )
+#*  *##set ( $currentFileLoc = $config.currentFileLocation )
+##
   ## absolute location of the current
-  #set ( $currentFileLoc = $uriTool.toURI( "$projectSiteLoc" ).resolve( "$currentFileName" ).toString() )
   #adaptBodyContent ()
   ## generate a short title if one does not exist or is specified explicitly
   #* if specified explicitly, use that
@@ -111,20 +100,7 @@
 
   *##if ( $locale )##
       <meta http-equiv="content-language" content="$locale.language" />
-#*  *##end#*
-  ## Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
-  *##if ( $config.absoluteResourceURL && $config.absoluteResourceURL.getValue() != '' )#*
-      *##currentFileRelativeLink ( $config.absoluteResourceURL.getValue() )#*
-      *##set ( $resourcePath = $currentFileRelativeLink )#*
-  *##else#*
-      *##set ( $resourcePath = $relativePath )#*
-  *##end#*
-  ## Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
-  *##if ( $config.is( "localResources" ) )#*
-      *##set ( $localResources = true )#*
-  *##else#*
-      *##set ( $localResources = false )#*
-  *##end##
+#*  *##end
 ##
     ## use Bootstrap theme from BootstrapCDN (loaded over network)
     #if ( $config.theme && $config.theme.getValue().startsWith("bootswatch-") )##
@@ -144,47 +120,44 @@
     #end##
 ##
     #if ( $localResources )##
-        #set ( $bootstrapCssPath = "$resourcePath/css" )##
-        #set ( $bootstrapJsPath = "$resourcePath/js" )##
+        #set ( $bootstrapCssPath = "$resourcePath/css" )
+        #set ( $bootstrapJsPath = "$resourcePath/js" )
+        #set ( $popperJsPath = "$resourcePath/js" )
         #if ( $bootswatchTheme )##
             #set ( $bootstrapCssPath = "$resourcePath/css/themes/$bootswatchTheme" )##
         #end##
-    #else##
-        #if ( $bootswatchTheme )##
-          #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )##
-        #else##
-            #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/css" )##
-        #end##
-        #set ( $bootstrapJsPath = "https://netdna.bootstrapcdn.com/twitter-bootstrap/${bootstrapVersion}/js" )##
-    #end##
+    #else
+        #if ( $bootswatchTheme )
+          #set ( $bootstrapCssPath = "https://netdna.bootstrapcdn.com/bootswatch/${bootswatchVersion}/$bootswatchTheme" )
+        #else
+            #set ( $bootstrapCssPath = "https://stackpath.bootstrapcdn.com/bootstrap/${bootstrapVersion}/css" )
+        #end
+        #set ( $bootstrapJsPath = "https://stackpath.bootstrapcdn.com/bootstrap/${bootstrapVersion}/js" )
+        #set ( $popperJsPath = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/${popperVersion}/umd/" )
+    #end
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 ##
 ##
-    #if ( $localResources )##
+#*  *##if ( $localResources )
     <link href="$resourcePath/css/fontawesome/all.min.css" rel="stylesheet" />
-    #else
+#*  *##else
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    #end
-    ## for 'site' theme, use local CSS/Javascript. This allows users to use their own Bootstrap configs.
-    ## Otherwise, load the default or Bootswatch themes from BootstrapCDN
-    #if ( $config.theme && "site" == $config.theme.getValue() )##
-      <link href="$resourcePath/css/bootstrap-theme.min.css" rel="stylesheet" />
-    #end##
+#*  *##end
 ##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
 ##
-#*  *##if ( $config.highlightJsVersion )#*
-      *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )#*
-    *##else#*
-      *##set ( $highlightJsVersion = "@highlightJsVersion@" )#*
-    *##end#*
-
-
-    *##if ( $config.is( "highlightJs" ) )#*
+#*  *##if ( $config.highlightJsVersion )
+#*      *##set ( $highlightJsVersion = $config.highlightJsVersion.getValue() )
+#*  *##else
+#*      *##set ( $highlightJsVersion = "@highlightJsVersion@" )
+#*  *##end
+##
+##
+#*  *##if ( $config.is( "highlightJs" ) )
     ## get the configured theme, or use default if not explicitly specified
-        *##if ( $config.highlightJsTheme )#*
+#*      *##if ( $config.highlightJsTheme )#*
           *##set ( $highlightJsTheme = $config.highlightJsTheme.getValue() )#*
         *##else#*
           *##set ( $highlightJsTheme = 'default' )#*
@@ -235,30 +208,30 @@
 ##
 #*
     *##if ( $localResources )##
-    <script src="$resourcePath/js/jquery.min.js"></script>
+    <script src="$resourcePath/js/jquery.min.js" crossorigin="anonymous"></script>
 #*  *##else#*
         *##if ( $config.jqueryVersion )#*
             *##set ( $jqueryVersion = $config.jqueryVersion.getValue() )#*
         *##else#*
             *##set ( $jqueryVersion = "@jqueryVersion@" )#*
         *##end##
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/${jqueryVersion}/jquery.min.js" crossorigin="anonymous"></script>
 #*  *##end##
 ##
-  <script src="$bootstrapJsPath/bootstrap.min.js"></script>
-
+    <script src="$popperJsPath/popper.min.js" crossorigin="anonymous"></script>
+    <script src="$bootstrapJsPath/bootstrap.min.js" crossorigin="anonymous"></script>
 #*
     *##if ( !$config.not( "imgLightbox" ) )#*
     ## if not disabled, include lightbox for showing images *#
-  <script src="$resourcePath/js/lightbox.min.js"></script>
+  <script src="$resourcePath/js/lightbox.min.js" crossorigin="anonymous"></script>
 #* *##end##
 ##
     #if ( $config.is( "highlightJs" ) )##
         #if ( $localResources )##
-	<script src="$resourcePath/js/highlight.min.js"></script>
+	<script src="$resourcePath/js/highlight.min.js" crossorigin="anonymous"></script>
         #else##
 	## use a hosted version of highlight.js for syntax highlighting	*###
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${highlightJsVersion}/highlight.min.js" crossorigin="anonymous"></script>
         #end##
     #end##
 ##
@@ -267,17 +240,17 @@
 #*  *##htmlContent ( $config.endContent.getChildren() )##
 #end##
 ##
-  <script src="$resourcePath/js/reflow-skin.js"></script>
+  <script src="$resourcePath/js/reflow-skin.js" crossorigin="anonymous"></script>
 #*
     *##if ( $localResources )##
-    <script src="$resourcePath/js/anchor.min.js"></script>
+    <script src="$resourcePath/js/anchor.min.js" crossorigin="anonymous"></script>
 #*  *##else#*
         *##if ( $config.anchorJsVesrion )#*
             *##set ( $anchorJsVesrion = $config.anchorJsVesrion.getValue() )#*
         *##else#*
             *##set ( $anchorJsVesrion = "@anchorJsVesrion@" )#*
         *##end##
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${anchorJsVesrion}/anchor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${anchorJsVesrion}/anchor.min.js" crossorigin="anonymous"></script>
 #*  *##end##
 ##
     </body>

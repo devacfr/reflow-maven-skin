@@ -1,11 +1,11 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -34,13 +34,21 @@ public class TocSidebar extends Toc<TocSidebar> {
     /** auto expandable by default. */
     private boolean autoExpandable = true;
 
+    /** heading level to display. all by default */
+    private int level = 0;
+
+    /**
+     * Default constructor.
+     *
+     * @param config a config (can <b>not</b> be {@code null}).
+     */
     public TocSidebar(final @Nonnull SkinConfigTool config) {
-        super("sidebar");
-        final String position = config.getConfigAttribute("toc", "position", String.class, "fixed").toLowerCase();
-        this.withEnabled(true)
-                .withExpanded(config.getConfigAttribute("toc", "expanded", Boolean.class, true))
-                .withAutoExpandable(config.getConfigAttribute("toc", "autoExpandable", Boolean.class, true))
-                .withFixed("fixed".equals(position));
+        super("sidebar", "");
+        final String position = config.getAttributeValue("toc", "position", String.class, "fixed").toLowerCase();
+        this.withEnabled(true).withExpanded(config.getAttributeValue("toc", "expanded", Boolean.class, true))
+                .withAutoExpandable(config.getAttributeValue("toc", "autoExpandable", Boolean.class, true))
+                .withFixed("fixed".equals(position))
+                .withLevel(config.getAttributeValue("toc", "level", Integer.class, 0));
     }
 
     @Override
@@ -85,6 +93,19 @@ public class TocSidebar extends Toc<TocSidebar> {
 
     protected TocSidebar withAutoExpandable(final boolean autoExpandable) {
         this.autoExpandable = autoExpandable;
+        return self();
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    protected TocSidebar withLevel(final int level) {
+        if (level < 1) {
+            this.level = Integer.MAX_VALUE;
+        } else {
+            this.level = level;
+        }
         return self();
     }
 

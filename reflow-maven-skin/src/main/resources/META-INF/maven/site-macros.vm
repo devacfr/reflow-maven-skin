@@ -28,121 +28,31 @@
   *##if ($foo)#*
     ## do nothing - the 'if' is for ignoring the return value#*
   *##end#*
-*##end#*
+*##end
 #*
- *
- * Checks if the given link is an external one.
-*##macro ( checkExtLink $href )#*
-  *##set ( $checkExtLink = false )#*
-  *##if ( $href && ($href.toLowerCase().startsWith("http:/") || $href.toLowerCase().startsWith("https:/")
-        || $href.toLowerCase().startsWith("ftp:/") || $href.toLowerCase().startsWith("mailto:")
-        || $href.toLowerCase().startsWith("file:/") || ($href.toLowerCase().indexOf("://") != -1) ))#*
-  *##set ( $checkExtLink = true )#*
-  *##end#*
-*##end#*
- *
- * Relativizes the link
- *
-*##macro ( relativeLink $href )#*
-    *##if ( $href )#*
-        *##set ( $relativeLink = $PathTool.calculateLink( $href, $relativePath ) )#*
-        *##set ( $relativeLink = $relativeLink.replaceAll( "\\", "/" ) )#*
-        *##if ( ( $relativeLink == '' ) )#*
-            *##set ( $relativeLink = './' )#*
-        *##end#*
-            ## Attempt to normalise the relative link - this is useful for active link
-            ## calculations and better relative links for subdirectories.
-            ##
-            ## The issue is particularly visible with pages in subdirectories,
-            ## so that if you are in <root>/dev/index.html, the relative menu link to
-            ## the _same_ page would likely be ../dev/index.html instead of '' or 'index.html'.
-        *##set ( $absoluteLink = $uriTool.toURI( "$currentFileLoc" ).resolve( "$relativeLink" ).normalize().toString() )#*
-        *##if ( $currentFileLoc == $absoluteLink )##
-                #* for matching link, use empty relative link#*
-            *##set ( $relativeLink = '' )#*
-        *##else#*
-                ## relativize the absolute link based on current directory
-                ## (uses Maven project link relativization)
-            *##set ( $currentFileDir = $PathTool.getDirectoryComponent( $currentFileLoc ) )#*
-            *##set ( $relativeLink = $uriTool.relativizeLink( $currentFileDir, $absoluteLink ) )#*
-        *##end#*
-
-    *##else##
-        #* null $href
-        *##set ( $relativeLink = false )#*
-    *##end#*
-*##end#*
- *
- * Checks if the given link is an external one. If not, calculates a relative link.
- *
- *##macro ( relativeExtLink $href )#*
-  *##checkExtLink ( $href )#*
-  *##if ( $checkExtLink )##
-        #* if external, keep the original#*
-      *##set ( $relativeExtLink = $href )#*
-  *##else##
-        #* if not external link, calculate an return the relative link#*
-      *##relativeLink ( $href )#*
-      *##set ( $relativeExtLink = $relativeLink )#*
-  *##end#*
-*##end#*
- *
- * Makes the link relative to the project URL, if one is set.
- *
- *##macro ( currentFileRelativeLink $href )#*
-
-  *##if ( $project.url && $project.url != '' && $currentFileName )##
-        ## if project URL is available, relativize the link using it as a base dir
-        #* note that the current file can be nested under project URL, so take that into account
-        *##set ( $currentFileDir = $uriTool.toURI( "$project.url/" ).resolve( "$currentFileName" ).resolve(".").toString() )#*
-      *##set ( $currentFileRelativeLink = $uriTool.relativizeLink( $currentFileDir, $href ) )#*
-  *##else##
-        #* otherwise just keep the original link#*
-      *##set ( $currentFileRelativeLink = $href )#*
-  *##end#*
-*##end#*
- *
- * Checks if the given link is the currently active one
- *
- *##macro ( activeLink $href )#*
-  *##relativeLink ( $href )#*
-    *##if ( $href )#*
-        either empty link (pointing to a page), or if the current file is index.html,
-        the link may point to the whole directory
-        *##if ( '' == $relativeLink || ( $alignedFileName.endsWith("index.html") && './' == $relativeLink ) )#*
-            *##set ( $activeLink = true )#*
-            *##set ( $activeClass = 'active' )#*
-        *##else#*
-            *##set ( $activeLink = false )#*
-            *##set ( $activeClass = '' )#*
-        *##end#*
-    *##else#*
-        null href - disable the link
-        *##set ( $activeLink = false )#*
-        *##set ( $activeClass = 'disabled' )#*
-    *##end#*
-*##end#*
  *
  * Creates a class="name" attribute if the given name exists
  *
- *##macro ( classAttr $name )#*
+ *#
+#macro ( classAttr $name )#*
 
   *##if ( $name && '' != $name )#*
       *# class="$name" #*
   *##end#*
-*##end##
+*##end
 #*
  *
  * Shortcut to display a basic hyperlink
  *
  *##macro ( link $href $name $target $className)#*
   *##fullLink ( $href $name $target false false false false false false false $className)#*
-*##end#*
-
+*##end
+#*
  *
  * Outputs a hyperlink with image and other attributes
  *
- *##macro ( fullLink $href $name $target $img $position $alt $border $width $height $icon $className)##
+ *#
+#macro ( fullLink $href $name $target $img $position $alt $border $width $height $icon $className)##
 ##
 ## The opening <a> tag
 <a ##
@@ -150,9 +60,8 @@
     #if ( $href ) href="$href" #end##
 #*  *##if ( $name ) title="$name" #end##
 #*  *##if ( $target ) target="$target" #end##
-#*  *##checkExtLink ( $href )##
     #set($css = $className)
-#*  *##if ( $checkExtLink ) #set($css = "externalink " + $className) #end##
+#*  *##if ( $config.isExternalLink( $href ) ) #set($css = "externalLink " + $className) #end##
  class="$css" >##
 #*
     *##if ( $img && $position == "left" )#*
@@ -167,8 +76,8 @@
     *##end##
 ##
 </a>##
-#end#*
-
+#end
+#*
  *
  * Outputs an image with attributes
  *
@@ -176,44 +85,14 @@
 
     *##if ( $img )#*
         *#<img class="imageLink" #*
-            *##relativeExtLink ( $img ) #*
-            *# src="$relativeExtLink" alt='"' #*
+            *# src="$config.relativeLink( $img )" alt='"' #*
             *##if ( $alt )$alt#end'"' #*
             *##if ( $border ) border="$border" #end#*
             *##if ( $width ) width="$width" #end#*
             *##if ( $height ) height="$height" #end#*
         *# />#*
-    *##end##
-#end##
-##
-#**
- * Recursively checks if any of the submenu items is the current one
- *
- *##macro ( displayTree $item )#*
-    *##if ( $item && $item.items && $item.items.size() > 0 )#*
-        *##foreach ( $subitem in $item.items )#*
-            *##activeLink ( $subitem.href )#*
-            *##if ( $activeLink )#*
-                *##set ( $displayTree = true )#*
-            *##end#*
-            *##displayTree ( $subitem )#*
-        *##end#*
-    *##end##
-#end##
-##
-#**
- * Filters menus by their ref or name, and returns the matching results.
- * The regex is used to check the match
- *
- *##macro ( filterMenus $menus $filterRegex )#*
-
-    *##set ( $filterMenus = [] )#*
-    *##foreach ($menu in $menus)#*
-        *##if ( ( $menu.ref && $menu.ref.matches($filterRegex) ) || ( $menu.name && $menu.name.matches($filterRegex) ) )#*
-            *##call ( $filterMenus.add( $menu ) )#*
-        *##end#*
-    *##end##
-#end##
+    *##end
+#end
 ##
 #**
  * Displays a 'Last published' date message.
@@ -236,7 +115,7 @@
     *##end#*
     ## render with internationalization support *#
     $i18n.getString( "site-renderer", $locale, "template.lastpublished" ): $dateValue
-#end##
+#end
 ##
 #**
  * Displays a site version message.
@@ -244,7 +123,7 @@
  *##macro ( version )#*
     ## render with internationalization support
     *#$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}##
-#end##
+#end
 ##
 #**
  * Outputs XML DOM objects as html elements into the rendered document.
@@ -262,7 +141,7 @@
         ## eval the HTML - this will allow users to specify Velocity variables
         *##evaluate ( $itemHtml )#*
     *##end##
-#end##
+#end
 ##
 #**
  * Marks the first header inside the content as page header, by wrapping it into
@@ -311,63 +190,34 @@
             })();
 
         </script>
-#*
-    *##end##
-#end##
+#*  *##end
+#end
 ##
-#**
- * Fixes info collapse for Dependencies report.
- *
- * Uses Javascript toggle for "more information" in the dependency tree.
- *
- *##macro ( depsCollapse )#*
-    *##set( $collapseCalls = $htmlTool.getAttr( $bodyContent, 'img[onclick^=toggleDependencyDetail]', "onclick") )#*
-    *##set( $iconReplacements = {} )#*
-    *##set( $collapseSelector = "" )#*
-    *##foreach ( $collapseCall in $collapseCalls )#*
-        *##set ( $funSplit = $collapseCall.split("'") )#*
-        *##if ( $funSplit.size() >= 4 )#*
-            *##set ( $divId = $funSplit.get(1) )#*
-            *##set ( $imgId = $funSplit.get(3) )#*
-            *##set ( $replBefore = '<button title="Information" class="btn btn-link btn-small" type="button" data-toggle="collapse" data-target="#' )#*
-            *##set ( $replAfter = '"><i class="glyphicon glyphicon-info-sign"></i></button>' )#*
-            *##call ( $iconReplacements.put("#$imgId", "$replBefore$divId$replAfter") )#*
-            *##set ( $collapseSelector = "${collapseSelector}, #$divId" )#*
-        *##end#*
-    *##end#*
-
-    *##if ( $iconReplacements.size() > 0 )#*
-        *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )#*
-        *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, $collapseSelector, "collapse" ) )#*
-        *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, $collapseSelector, "style", "" ) )#*
-    *##end##
-#end##
 #*
- *
  * Adapt bodyContent.
-*##macro ( adaptBodyContent )#*
+*#
+#macro ( adaptBodyContent )#*
   *##if ( !$config.not( "imgLightbox" ) )#*
     ## lightbox is enabled by default, so check for false and negate
     ## TODO explain more?
         *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)", "data-lightbox", "page" ))#*
-  *##end##
+  *##end
 ##
     #if ( !$config.not( "html5Anchor" ) )##
     ## HTML5-style anchors are enabled by default, so check for false and negate
         #set ( $bodyContent = $htmlTool.headingAnchorToId( $bodyContent ) )##
-    #end##
+    #end
 ##
     #if ( !$config.not( "bootstrapCss" ) )##
-    ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
+        ## Bootstrap CSS class conversion is enabled by default, so check for false and negate
         #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )##
-    ## image is responsive by default
+        ## image is responsive by default
         #set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-fluid"] ) )##
         #set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )##
-    #end##
+    #end
 ##
     #if ( !$config.not( "bootstrapIcons" ) )##
         ## Bootstrap Icons are enabled by default, so check for false and negate
-#*      *##depsCollapse ()##
         #set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="fas fa-plus"></i>',
                     'img[src$=images/remove.gif]' : '<i class="fas fa-minus"></i>',
                     'img[src$=images/fix.gif]' : '<i class="fas fa-wrench"></i>',
@@ -386,5 +236,19 @@
     ## Ensure IDs on all headings to refer to them in TOC
         #set ( $bodyContent = $htmlTool.ensureHeadingIds( $pageContext.type, $config.fileId, $bodyContent, "_" ) )##
         #set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )##
-    #end##
-#end##
+    #end
+#end
+#*
+ * Add Edit button if content is editable
+*#
+#macro ( renderFeedbackLink )
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+#*  *##if( $decoration.edit && $docRenderingContext.editable )
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+#*  *##end
+                </li>
+            </ul>
+        </div>
+#end
