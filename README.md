@@ -165,7 +165,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     </includes>
                 </artifactItem>
             </artifactItems>
-            <outputDirectory>${main.basedir}/site</outputDirectory>
+            <outputDirectory>${main.basedir}/target/site</outputDirectory>
         </configuration>
         </execution>
     </executions>
