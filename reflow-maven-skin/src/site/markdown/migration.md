@@ -55,7 +55,8 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
                 <overWrite>false</overWrite>
                 <includes>
                 **/css/*, <!-- add bootstrap and awesome font -->
-                **/css/fontawesome/**/*, <!-- add awesome font -->
+                **/css/fontawesome/*, <!-- add awesome font -->
+                **/css/fontawesome/webfonts/*,
                 **/js/*.js,  <!-- add all javascripts -->
                 **/js/languages/*,  <!-- add all highlight languages -->
                 **/js/styles/default.min.css <!-- add 'default' highlight style -->

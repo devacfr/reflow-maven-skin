@@ -52,7 +52,8 @@ Note that when using `<localResources>`, you need to provide the necessary local
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css,
-                        **/fonts/*,
+                        **/css/fontawesome/*,
+                        **/css/fontawesome/webfonts/*,
                         **/js/*.js,
                         **/js/languages/*,
                         **/js/styles/github.min.css
