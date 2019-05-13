@@ -52,11 +52,14 @@ public final class Xpp3Utils {
      *         {@code null}.
      */
     @Nullable
-    public static Xpp3Dom getFirstChild(@Nonnull final Xpp3Dom parentNode,
+    public static Xpp3Dom getFirstChild(@Nullable final Xpp3Dom parentNode,
         @Nonnull final String name,
         @Nonnull final String namespace) {
+        if (parentNode == null) {
+            return null;
+        }
         requireNonNull(namespace);
-        final Xpp3Dom child = requireNonNull(parentNode).getChild(requireNonNull(name));
+        final Xpp3Dom child = parentNode.getChild(requireNonNull(name));
         if (child != null) {
             return child;
         }
@@ -73,7 +76,8 @@ public final class Xpp3Utils {
      *         {@code null}.
      * @since 1.3
      */
-    public static List<String> getChildren(final Xpp3Dom parentNode) {
+    @Nonnull
+    public static List<String> getChildren(@Nullable final Xpp3Dom parentNode) {
         return getChildrenNodes(parentNode, null).stream().map(node -> node.getName()).collect(Collectors.toList());
     }
 
@@ -87,7 +91,8 @@ public final class Xpp3Utils {
      * @return Returns a list of {@link Xpp3Dom} representing all children element filtered by {@code name} of
      *         {@code parentNode}.
      */
-    public static List<Xpp3Dom> getChildrenNodes(final Xpp3Dom parentNode, final String name) {
+    @Nonnull
+    public static List<Xpp3Dom> getChildrenNodes(@Nullable final Xpp3Dom parentNode, final String name) {
         if (parentNode == null) {
             return Collections.emptyList();
         }
