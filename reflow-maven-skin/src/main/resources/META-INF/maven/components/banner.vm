@@ -22,11 +22,11 @@
       <div class="jumbotron subhead">
         <div class="row m-1" id="banner">
           <div class="col-md-12">
-            <div class="float-left">
-              #banner ( $decoration.bannerLeft "bannerLeft" )
+            <div class="float-left bannerLeft">
+              #banner ( $decoration.bannerLeft )
             </div>
-            <div class="float-right">
-              #banner ( $decoration.bannerRight "bannerRight" )
+            <div class="float-right bannerRight">
+              #banner ( $decoration.bannerRight )
             </div>
           </div>
         </div>
@@ -36,10 +36,10 @@
 #**
  * Outputs the top banner contents
  *
- *##macro ( banner $banner $id )#*
+ *##macro ( banner $banner)#*
     *##if ( $banner )#*
         *##if ( $banner.href )
-                    <a href="$config.relativeLink( $banner.href )" class="$id">
+                    <a href="$config.relativeLink( $banner.href )">
 #*      *##else##
                     <div class="$id">
 #*      *##end
