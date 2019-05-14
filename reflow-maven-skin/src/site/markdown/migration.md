@@ -15,8 +15,8 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 - Remove `<navbarInverse>` element, replace by `cssClass` attribute (see [Navbar component](#migration_toc_navbar_component)
 - Dropped the Affix jQuery plugin, replaced by position `sticky` (can remove all affix reference in your css).
 - Remove support of customized Bootsrap theme:
-    - Remove `css/bootstrap-responsive.min.css` link
-    - Remove `js/html5.js` link
+  - Remove `css/bootstrap-responsive.min.css` link
+  - Remove `js/html5.js` link
 - Add `popper.js` library required by Bootstrap
 
 ### Bootswatch Themes
@@ -130,13 +130,14 @@ This list highlights key changes by component between v1.4 and v2.0.0.
 
 ### Banner
 
-Before, you had the solution to display either a logo or a title. Now you have the choice to display a logo and a title.
+Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.
 
 - `name` is used to display title heading in elements **bannerLeft** and **bannerRight**, use `alt` element instead `name`.
+- `.bannerRight` and `.bannerLeft` class has been move to div container parent.
 
 ### Navside menu
 
-It is a new component used in documentation page support. (see [Navside Menu Component][navside-doc] documentation )
+It is a new component used in documentation page support (see [Navside Menu Component][navside-doc] documentation for more information).
 
 ```xml
 <navside-menu cssClass="bootstrap classes"
@@ -152,7 +153,7 @@ It is a new component used in documentation page support. (see [Navside Menu Com
 <toc cssClass="navbar-dark bg-dark|bootstrap classes"
      theme="light|dark"
      background="bootstrap colour theme"
-     numberItems="number|-1" 
+     numberItems="number|-1"
      flatten="false|true">top</toc>
 ```
 
@@ -164,7 +165,7 @@ It is a new component used in documentation page support. (see [Navside Menu Com
 
 ### Toc sidebar component
 
-Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content.
+Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content (see [Table of Contents Component][toc-doc] documentation for more information).
 
 ```xml
 <toc position="fixed|relative" autoExpandable="true|false" expanded="true|false">sidebar</toc>
@@ -174,7 +175,11 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 - Replace `static` option of `position` attribute by `relative`.
 - Now, the new Toc sidebar supports page with 1st level heading `<h1>`.
 
+[toc-doc]: reflow-documentation.html#components-toc
+
 ### Navbar component
+
+(see [Top Navbar Component][navbar-doc] documentation for more information).
 
 ```xml
 <navbar filterMenu="Regex filter"
@@ -191,6 +196,7 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 
 [multi-module]: reflow-documentation.html#multi-module.html
 [bootstrap-migration]: https://getbootstrap.com/docs/4.1/migration
+[navbar-doc]: reflow-documentation.html#components-navbar
 
 ### Bottom navigation
 
