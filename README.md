@@ -156,7 +156,8 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css, <!-- can be remove if use bootswatch theme-->
-                        **/css/fontawesome/**/*,
+                        **/css/fontawesome/*,
+                        **/css/fontawesome/webfonts/*,
                         **/css/themes/flaty/*.css, <!-- use flaty bootswatch theme-->
                         **/js/*.js,
                         **/js/languages/*,
@@ -164,7 +165,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     </includes>
                 </artifactItem>
             </artifactItems>
-            <outputDirectory>${main.basedir}/site</outputDirectory>
+            <outputDirectory>${main.basedir}/target/site</outputDirectory>
         </configuration>
         </execution>
     </executions>

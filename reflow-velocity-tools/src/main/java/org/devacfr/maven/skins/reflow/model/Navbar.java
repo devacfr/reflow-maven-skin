@@ -161,10 +161,10 @@ public class Navbar extends BsComponent {
         private final String src;
 
         /** */
-        private final int width;
+        private final String width;
 
         /** */
-        private final int height;
+        private final String height;
 
         /**
          * @param config
@@ -180,8 +180,8 @@ public class Navbar extends BsComponent {
                 throw new IllegalArgumentException("the attribute 'href' of image element is required");
             }
             this.src = config.eval(link, String.class);
-            this.width = config.getAttributeValue(element, "width", Integer.class, 30);
-            this.height = config.getAttributeValue(element, "height", Integer.class, 30);
+            this.width = config.getAttributeValue(element, "width", String.class, "30");
+            this.height = config.getAttributeValue(element, "height", String.class, "30");
         }
 
         /**
@@ -194,14 +194,14 @@ public class Navbar extends BsComponent {
         /**
          * @return the height
          */
-        public int getHeight() {
+        public String getHeight() {
             return height;
         }
 
         /**
          * @return the width
          */
-        public int getWidth() {
+        public String getWidth() {
             return width;
         }
     }

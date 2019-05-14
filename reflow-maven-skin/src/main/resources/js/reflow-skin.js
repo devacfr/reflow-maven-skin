@@ -96,7 +96,8 @@ var mReflow = function () {
     if (typeof hljs !== 'undefined') {
       // classic encoding with <div class="source"><pre></pre></div>
       // and HTML5 version with <pre><code></code></pre>
-      $('pre.source, div.source pre, pre code').each(function (i, e) {
+      // asciidoc with <div class="content"><pre></pre></div>
+      $('pre.source, div.source pre, pre code, div.content pre').each(function (i, e) {
         hljs.highlightBlock(e);
       });
     }

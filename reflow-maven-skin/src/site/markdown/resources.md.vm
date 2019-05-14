@@ -52,7 +52,8 @@ Note that when using `<localResources>`, you need to provide the necessary local
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css,
-                        **/fonts/*,
+                        **/css/fontawesome/*,
+                        **/css/fontawesome/webfonts/*,
                         **/js/*.js,
                         **/js/languages/*,
                         **/js/styles/github.min.css
@@ -65,6 +66,8 @@ Note that when using `<localResources>`, you need to provide the necessary local
     </executions>
 </plugin>
 ```
+
+**Note**: You can use `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation).
 
 Therefore it is easier to get appropriate Bootstrap files directly from the [Bootswatch][bootswatch] and use them with the Reflow skin. Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used. Use at your own risk, however, as major version changes are likely to break the website!
 
