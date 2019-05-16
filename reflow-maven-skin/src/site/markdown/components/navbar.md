@@ -13,7 +13,9 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 <navbar filterMenu="Regex filter"
         cssClass="bootstrap classes"
         theme="light|dark"
-        background="bootstrap colour theme">
+        background="bootstrap colour theme"
+        center="true|false"
+        alignMenu="left|right">
     <image src="image path" width="number|30" height="number|30" />
 </navbar>
 ```
@@ -23,6 +25,8 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 - **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. `navbar-light bg-light` is the default value if value is empty or `null`. **note**: `cssClass` override attributes `theme` and `background` if is filled.
 - **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
 - **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
+- **center** <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
+- **alignMenu** <span class="badge badge-light">v2.1</span> - Sets the alignment of menu to the `left` or pushing to the `right` (**default**).
 
 **Image element**
 

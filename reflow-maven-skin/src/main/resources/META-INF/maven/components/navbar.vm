@@ -18,7 +18,7 @@
  *
  *##macro ( renderNavbar )##
     <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}">
-        <div class="container">
+        #if ( $pageContext.navbar.center )<div class="container">#end
 ##
 ## Insert brand if it is available
 #*      *##if ( $pageContext.navbar.brandHref )
@@ -41,7 +41,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
-                <ul class="nav navbar-nav ml-auto">
+                <ul class="nav navbar-nav #if( $pageContext.navbar.alignMenu== 'right' )ml-auto#end">
 ##
 #*  *##foreach ( $menu in $pageContext.navbar.menus)
 #*      *##if( $menu.menuItems.isEmpty() && $menu.name)
@@ -77,6 +77,6 @@
 ##
                 </ul><!--/ul.navbar-nav -->
             </div><!--/.nav-collapse -->
-        </div> <!--/.container -->
+        #if ( $pageContext.navbar.center )</div> <!--/.container -->#end
     </nav> <!--/.navbar -->
 #end

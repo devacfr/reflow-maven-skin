@@ -53,6 +53,12 @@ public class Navbar extends BsComponent {
     private final String filterMenu;
 
     /** */
+    private final boolean center;
+
+    /** */
+    private final String alignMenu;
+
+    /** */
     private final ImageBrand image;
 
     /** */
@@ -84,6 +90,8 @@ public class Navbar extends BsComponent {
         if (Strings.isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
+        this.center = config.getAttributeValue(COMPONENT, "center", Boolean.class, true);
+        this.alignMenu = config.getAttributeValue(COMPONENT, "alignMenu", String.class, "right");
         this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
         this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
@@ -128,6 +136,20 @@ public class Navbar extends BsComponent {
      */
     public String getBrandHref() {
         return brandHref;
+    }
+
+    /**
+     * @return the center
+     */
+    public boolean isCenter() {
+        return center;
+    }
+
+    /**
+     * @return the alignMenu
+     */
+    public String getAlignMenu() {
+        return alignMenu;
     }
 
     /**
