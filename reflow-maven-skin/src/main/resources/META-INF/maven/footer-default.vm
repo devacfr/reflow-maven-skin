@@ -159,7 +159,7 @@
  *#
  #macro ( menuItem $item )#*
     *##set ( $collapseClass = false )
-#*  *##set ( $href = $config.relativeLink( $item.href ) )
+#*  *##set ( $href =  $item.href  )
 #*  *##if ( $item.active )
 #*      *##set ( $currentLink = "#" )
 #*  *##else
