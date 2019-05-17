@@ -33,7 +33,7 @@
   <div> 
    <pre class="source">&lt;pages&gt;
     ...
-    &lt;documentation type="doc"&gt;
+    &lt;documentation type="doc" project="project-id"&gt;
         &lt;menu name="Documentation" selectFirstOnExpand="true|false"&gt;
             &lt;item name="One page" href="one-page.html" /&gt;
             &lt;item name="First level" &gt;
@@ -47,10 +47,15 @@
   </div> 
  </div> 
  <ul> 
+  <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code class="\&quot;literal\&quot;">project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code class="\&quot;literal\&quot;">name</code> attribute in root <code class="\&quot;literal\&quot;">&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
   <li><b>selectFirstOnExpand</b> <span class="badge badge-light">v2.0</span> - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is <code class="\&quot;literal\&quot;">true</code>.</li> 
  </ul> 
  <p>The example above produces the following <code class="\&quot;literal\&quot;">navside</code> menu:</p> 
  <p><img src="images/navside-menu-preview.png" alt="navside menu preview" class="img-fluid"></p> 
+ <div class="alert alert-warning"> 
+  <p class="alert-heading"><b>You are a page in other project module displaying bizarrely</b></p> 
+  <p>This page has maybe the same filename as declared page used in documentation layout. You can resolve this problem by adding <code class="\&quot;literal\&quot;">project</code> attribute or change the filename of one of the files.</p> 
+ </div> 
 </div> 
 <div class="section"> 
  <h2 id="documentation-layout_toc_improve_documentation">Improve documentation</h2> 

@@ -173,7 +173,7 @@
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>         }
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> 
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>         <em class="jxr_comment">// calculate the page ID from the current file name</em>
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>         <strong class="jxr_keyword">final</strong> Object currentFileObj = velocityContext.get(<span class="jxr_string">"currentFileName"</span>);
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>         <strong class="jxr_keyword">final</strong> Object currentFileObj = getCurrentFileName();
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>         <strong class="jxr_keyword">if</strong> (currentFileObj instanceof String) {
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>             fileId = slugFilename((String) currentFileObj);
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>         }
@@ -252,504 +252,509 @@
 <a class="jxr_linenumber" name="L244" href="#L244">244</a>             LOGGER.debug(<span class="jxr_string">"Project id: {}"</span>, projectId);
 <a class="jxr_linenumber" name="L245" href="#L245">245</a>             LOGGER.debug(<span class="jxr_string">"File id: {}"</span>, fileId);
 <a class="jxr_linenumber" name="L246" href="#L246">246</a>             LOGGER.debug(<span class="jxr_string">"Context: {}"</span>, <strong class="jxr_keyword">this</strong>.context);
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>             LOGGER.debug(<span class="jxr_string">"---------------------------------------------------"</span>);
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>         }
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     }
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> 
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">     * Sets the key under which this tool has been configured.</em>
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> <em class="jxr_javadoccomment">     * @param key</em>
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> <em class="jxr_javadoccomment">     *            the key of config</em>
-<a class="jxr_linenumber" name="L256" href="#L256">256</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> setKey(<strong class="jxr_keyword">final</strong> String key) {
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>         <strong class="jxr_keyword">this</strong>.key = requireNonNull(key, <span class="jxr_string">"SkinConfigTool key cannot be null"</span>);
-<a class="jxr_linenumber" name="L260" href="#L260">260</a>     }
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 
-<a class="jxr_linenumber" name="L262" href="#L262">262</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">     * @return Returns the key under which this tool has been configured. The default is `config`.</em>
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L266" href="#L266">266</a>     <strong class="jxr_keyword">public</strong> String getKey() {
-<a class="jxr_linenumber" name="L267" href="#L267">267</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.key;
-<a class="jxr_linenumber" name="L268" href="#L268">268</a>     }
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> 
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L271" href="#L271">271</a> <em class="jxr_javadoccomment">     * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise</em>
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">     * Velocity fallback onto the default getter and use {@code $config.myproperty}.</em>
-<a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
-<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     * @return configuration node if found in the following sequence:</em>
-<a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">     *         &lt;ol&gt;</em>
-<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     *         &lt;li&gt;In page configuration&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">     *         &lt;li&gt;In global configuration&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">     *         &lt;li&gt;{@code null} otherwise&lt;/li&gt;</em>
-<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">     *         &lt;/ol&gt;</em>
-<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>     <strong class="jxr_keyword">public</strong> Xpp3Dom get(<strong class="jxr_keyword">final</strong> String property) {
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> 
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>         <em class="jxr_comment">// first try page properties</em>
-<a class="jxr_linenumber" name="L287" href="#L287">287</a>         Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
-<a class="jxr_linenumber" name="L288" href="#L288">288</a>         <strong class="jxr_keyword">if</strong> (propNode == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L289" href="#L289">289</a>             <em class="jxr_comment">// try global</em>
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>             propNode = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
-<a class="jxr_linenumber" name="L291" href="#L291">291</a>         }
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> 
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>         <strong class="jxr_keyword">return</strong> propNode;
-<a class="jxr_linenumber" name="L294" href="#L294">294</a>     }
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> 
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">     * Retrieves the text value of the given {@code property}, e.g. as in {@code &lt;myprop&gt;value&lt;/myprop&gt;}.</em>
-<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L300" href="#L300">300</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
-<a class="jxr_linenumber" name="L301" href="#L301">301</a> <em class="jxr_javadoccomment">     * @return the configuration value if found in page or globally, {@code null} otherwise.</em>
-<a class="jxr_linenumber" name="L302" href="#L302">302</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
-<a class="jxr_linenumber" name="L303" href="#L303">303</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L304" href="#L304">304</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>     <strong class="jxr_keyword">public</strong> String value(<strong class="jxr_keyword">final</strong> String property) {
-<a class="jxr_linenumber" name="L306" href="#L306">306</a> 
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>         <strong class="jxr_keyword">final</strong> Xpp3Dom propNode = get(property);
-<a class="jxr_linenumber" name="L308" href="#L308">308</a> 
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>         <strong class="jxr_keyword">if</strong> (propNode == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L310" href="#L310">310</a>             <em class="jxr_comment">// not found</em>
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>         }
-<a class="jxr_linenumber" name="L313" href="#L313">313</a> 
-<a class="jxr_linenumber" name="L314" href="#L314">314</a>         <strong class="jxr_keyword">return</strong> propNode.getValue();
-<a class="jxr_linenumber" name="L315" href="#L315">315</a>     }
-<a class="jxr_linenumber" name="L316" href="#L316">316</a> 
-<a class="jxr_linenumber" name="L317" href="#L317">317</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> <em class="jxr_javadoccomment">     * Gets the text value of the given {@code property}.</em>
-<a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L320" href="#L320">320</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L321" href="#L321">321</a> <em class="jxr_javadoccomment">     *            the property to use</em>
-<a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">     * @param targetType</em>
-<a class="jxr_linenumber" name="L323" href="#L323">323</a> <em class="jxr_javadoccomment">     *            the returned target type use to convert value.</em>
-<a class="jxr_linenumber" name="L324" href="#L324">324</a> <em class="jxr_javadoccomment">     * @param defaultValue</em>
-<a class="jxr_linenumber" name="L325" href="#L325">325</a> <em class="jxr_javadoccomment">     *            the default value used if property doesn't exist.</em>
-<a class="jxr_linenumber" name="L326" href="#L326">326</a> <em class="jxr_javadoccomment">     * @return Returns a converted value of the given {@code property}.</em>
-<a class="jxr_linenumber" name="L327" href="#L327">327</a> <em class="jxr_javadoccomment">     * @since 2.0</em>
-<a class="jxr_linenumber" name="L328" href="#L328">328</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L329" href="#L329">329</a> <em class="jxr_javadoccomment">     *            the type of returned object.</em>
-<a class="jxr_linenumber" name="L330" href="#L330">330</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L331" href="#L331">331</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L332" href="#L332">332</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T getPropertyValue(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> Class&lt;T&gt; targetType, <strong class="jxr_keyword">final</strong> T defaultValue) {
-<a class="jxr_linenumber" name="L333" href="#L333">333</a>         <strong class="jxr_keyword">final</strong> String value = value(property);
-<a class="jxr_linenumber" name="L334" href="#L334">334</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L335" href="#L335">335</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L336" href="#L336">336</a>         }
-<a class="jxr_linenumber" name="L337" href="#L337">337</a>         Object returnedValue = value;
-<a class="jxr_linenumber" name="L338" href="#L338">338</a>         <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Boolean.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L339" href="#L339">339</a>             returnedValue = Boolean.valueOf(value);
-<a class="jxr_linenumber" name="L340" href="#L340">340</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Integer.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L341" href="#L341">341</a>             returnedValue = Integer.valueOf(value);
-<a class="jxr_linenumber" name="L342" href="#L342">342</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Long.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L343" href="#L343">343</a>             returnedValue = Long.valueOf(value);
-<a class="jxr_linenumber" name="L344" href="#L344">344</a>         }
-<a class="jxr_linenumber" name="L345" href="#L345">345</a>         <strong class="jxr_keyword">return</strong> (T) returnedValue;
-<a class="jxr_linenumber" name="L346" href="#L346">346</a>     }
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> 
-<a class="jxr_linenumber" name="L348" href="#L348">348</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L349" href="#L349">349</a> <em class="jxr_javadoccomment">     * Gets the list of all children name for the {@code parentNode}.</em>
-<a class="jxr_linenumber" name="L350" href="#L350">350</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L351" href="#L351">351</a> <em class="jxr_javadoccomment">     * @param parentNode</em>
-<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">     *            the parent node to use (can be {@code null}.</em>
-<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never</em>
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">     *         {@code null}.</em>
-<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">     * @since 1.3</em>
-<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L357" href="#L357">357</a>     <strong class="jxr_keyword">public</strong> List&lt;String&gt; getChildren(<strong class="jxr_keyword">final</strong> Xpp3Dom parentNode) {
-<a class="jxr_linenumber" name="L358" href="#L358">358</a>         <strong class="jxr_keyword">return</strong> Xpp3Utils.getChildren(parentNode);
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>     }
-<a class="jxr_linenumber" name="L360" href="#L360">360</a> 
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">     * Gets the attribute value of the given {@code attribute} of {@code property}.</em>
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">     *            the property to use</em>
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">     * @param attribute</em>
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">     *            the attribute to use.</em>
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">     * @param targetType</em>
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">     *            the returned target type use to convert value.</em>
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">     * @param defaultValue</em>
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">     *            the default value used if property doesn't exist.</em>
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     * @return Returns a converted value of the given {@code property}.</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * @since 2.0</em>
-<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">     *            the type of returned object.</em>
-<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T getAttributeValue(<strong class="jxr_keyword">final</strong> String property,
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>         <strong class="jxr_keyword">final</strong> String attribute,
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>         <strong class="jxr_keyword">final</strong> Class&lt;T&gt; targetType,
-<a class="jxr_linenumber" name="L381" href="#L381">381</a>         <strong class="jxr_keyword">final</strong> T defaultValue) {
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>         Xpp3Dom element = get(property);
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>         <strong class="jxr_keyword">if</strong> (element == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>         }
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>         String value = element.getAttribute(attribute);
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>         }
-<a class="jxr_linenumber" name="L390" href="#L390">390</a> 
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>         <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"inherit"</span>.equals(value)) {
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>             element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>             <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>                 LOGGER.debug(<span class="jxr_string">"Inherit value property '{}': {}"</span>, property, element);
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>             }
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>         }
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>         <strong class="jxr_keyword">if</strong> (element == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>         }
-<a class="jxr_linenumber" name="L400" href="#L400">400</a>         value = element.getAttribute(attribute);
-<a class="jxr_linenumber" name="L401" href="#L401">401</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>         }
-<a class="jxr_linenumber" name="L404" href="#L404">404</a> 
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>         Object returnedValue = value;
-<a class="jxr_linenumber" name="L406" href="#L406">406</a>         <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Boolean.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>             returnedValue = Boolean.valueOf(value);
-<a class="jxr_linenumber" name="L408" href="#L408">408</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Integer.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L409" href="#L409">409</a>             returnedValue = Integer.valueOf(value);
-<a class="jxr_linenumber" name="L410" href="#L410">410</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Long.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>             returnedValue = Long.valueOf(value);
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>         }
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>         <strong class="jxr_keyword">return</strong> (T) returnedValue;
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>     }
-<a class="jxr_linenumber" name="L415" href="#L415">415</a> 
-<a class="jxr_linenumber" name="L416" href="#L416">416</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T getAttributeValue(<strong class="jxr_keyword">final</strong> Xpp3Dom element,
-<a class="jxr_linenumber" name="L418" href="#L418">418</a>         <strong class="jxr_keyword">final</strong> String attribute,
-<a class="jxr_linenumber" name="L419" href="#L419">419</a>         <strong class="jxr_keyword">final</strong> Class&lt;T&gt; targetType,
-<a class="jxr_linenumber" name="L420" href="#L420">420</a>         <strong class="jxr_keyword">final</strong> T defaultValue) {
-<a class="jxr_linenumber" name="L421" href="#L421">421</a>         <strong class="jxr_keyword">if</strong> (element == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L422" href="#L422">422</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L423" href="#L423">423</a>         }
-<a class="jxr_linenumber" name="L424" href="#L424">424</a>         <strong class="jxr_keyword">final</strong> String value = element.getAttribute(attribute);
-<a class="jxr_linenumber" name="L425" href="#L425">425</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>             <strong class="jxr_keyword">return</strong> defaultValue;
-<a class="jxr_linenumber" name="L427" href="#L427">427</a>         }
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>         Object returnedValue = value;
-<a class="jxr_linenumber" name="L429" href="#L429">429</a>         <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Boolean.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L430" href="#L430">430</a>             returnedValue = Boolean.valueOf(value);
-<a class="jxr_linenumber" name="L431" href="#L431">431</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Integer.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>             returnedValue = Integer.valueOf(value);
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Long.<strong class="jxr_keyword">class</strong>)) {
-<a class="jxr_linenumber" name="L434" href="#L434">434</a>             returnedValue = Long.valueOf(value);
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>         }
-<a class="jxr_linenumber" name="L436" href="#L436">436</a>         <strong class="jxr_keyword">return</strong> (T) returnedValue;
-<a class="jxr_linenumber" name="L437" href="#L437">437</a>     }
-<a class="jxr_linenumber" name="L438" href="#L438">438</a> 
-<a class="jxr_linenumber" name="L439" href="#L439">439</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     * A convenience method to check if the value of the {@code property} is {@code "true"}.</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     * @return {@code true} if the configuration value is set either in page or globally, and is equal to</em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     *         {@code "true"}.</em>
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L449" href="#L449">449</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> is(<strong class="jxr_keyword">final</strong> String property) {
-<a class="jxr_linenumber" name="L450" href="#L450">450</a>         <strong class="jxr_keyword">return</strong> <span class="jxr_string">"true"</span>.equals(value(property));
-<a class="jxr_linenumber" name="L451" href="#L451">451</a>     }
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> 
-<a class="jxr_linenumber" name="L453" href="#L453">453</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * A convenience method to check if the value of the {@code property} is {@code "false"}. Useful for properties that</em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * are enabled by default - checks if the property is set to {@code "false"} explicitly.</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
-<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     * @return {@code true} if the configuration value is set either in page or globally, and is equal to</em>
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     *         {@code "false"}. Note that this will return {@code false} if property is not set at all.</em>
-<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
-<a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L464" href="#L464">464</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> not(<strong class="jxr_keyword">final</strong> String property) {
-<a class="jxr_linenumber" name="L465" href="#L465">465</a>         <strong class="jxr_keyword">return</strong> <span class="jxr_string">"false"</span>.equals(value(property));
-<a class="jxr_linenumber" name="L466" href="#L466">466</a>     }
-<a class="jxr_linenumber" name="L467" href="#L467">467</a> 
-<a class="jxr_linenumber" name="L468" href="#L468">468</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     * A convenience method to check if the {@code property} is set to a specific value.</em>
-<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L471" href="#L471">471</a> <em class="jxr_javadoccomment">     * @param property</em>
-<a class="jxr_linenumber" name="L472" href="#L472">472</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
-<a class="jxr_linenumber" name="L473" href="#L473">473</a> <em class="jxr_javadoccomment">     * @param value</em>
-<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">     *            the property value to check</em>
-<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">     * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.</em>
-<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
-<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
-<a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isValue(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> String value) {
-<a class="jxr_linenumber" name="L480" href="#L480">480</a>         <strong class="jxr_keyword">return</strong> value != <strong class="jxr_keyword">null</strong> &amp;&amp; value.equals(value(property));
-<a class="jxr_linenumber" name="L481" href="#L481">481</a>     }
-<a class="jxr_linenumber" name="L482" href="#L482">482</a> 
-<a class="jxr_linenumber" name="L483" href="#L483">483</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * @return Returns the {@link String} representing the projectId.</em>
-<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L486" href="#L486">486</a>     <strong class="jxr_keyword">public</strong> String getProjectId() {
-<a class="jxr_linenumber" name="L487" href="#L487">487</a>         <strong class="jxr_keyword">return</strong> projectId;
-<a class="jxr_linenumber" name="L488" href="#L488">488</a>     }
-<a class="jxr_linenumber" name="L489" href="#L489">489</a> 
-<a class="jxr_linenumber" name="L490" href="#L490">490</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L491" href="#L491">491</a> <em class="jxr_javadoccomment">     * @return Returns the {@link String} representing the fileId.</em>
-<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L493" href="#L493">493</a>     <strong class="jxr_keyword">public</strong> String getFileId() {
-<a class="jxr_linenumber" name="L494" href="#L494">494</a>         <strong class="jxr_keyword">return</strong> fileId;
-<a class="jxr_linenumber" name="L495" href="#L495">495</a>     }
-<a class="jxr_linenumber" name="L496" href="#L496">496</a> 
-<a class="jxr_linenumber" name="L497" href="#L497">497</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * @return the context</em>
-<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L500" href="#L500">500</a>     <strong class="jxr_keyword">public</strong> Context&lt;?&gt; getContext() {
-<a class="jxr_linenumber" name="L501" href="#L501">501</a>         <strong class="jxr_keyword">return</strong> context;
-<a class="jxr_linenumber" name="L502" href="#L502">502</a>     }
-<a class="jxr_linenumber" name="L503" href="#L503">503</a> 
-<a class="jxr_linenumber" name="L504" href="#L504">504</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     * @return the velocity Context</em>
-<a class="jxr_linenumber" name="L506" href="#L506">506</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L507" href="#L507">507</a>     <strong class="jxr_keyword">public</strong> ToolContext getVelocityContext() {
-<a class="jxr_linenumber" name="L508" href="#L508">508</a>         <strong class="jxr_keyword">return</strong> velocityContext;
-<a class="jxr_linenumber" name="L509" href="#L509">509</a>     }
-<a class="jxr_linenumber" name="L510" href="#L510">510</a> 
-<a class="jxr_linenumber" name="L511" href="#L511">511</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L512" href="#L512">512</a> <em class="jxr_javadoccomment">     * @return the project</em>
-<a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L514" href="#L514">514</a>     <strong class="jxr_keyword">public</strong> MavenProject getProject() {
-<a class="jxr_linenumber" name="L515" href="#L515">515</a>         <strong class="jxr_keyword">return</strong> project;
-<a class="jxr_linenumber" name="L516" href="#L516">516</a>     }
-<a class="jxr_linenumber" name="L517" href="#L517">517</a> 
-<a class="jxr_linenumber" name="L518" href="#L518">518</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L519" href="#L519">519</a> <em class="jxr_javadoccomment">     * @return the decoration</em>
-<a class="jxr_linenumber" name="L520" href="#L520">520</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L521" href="#L521">521</a>     <strong class="jxr_keyword">public</strong> DecorationModel getDecoration() {
-<a class="jxr_linenumber" name="L522" href="#L522">522</a>         <strong class="jxr_keyword">return</strong> decoration;
-<a class="jxr_linenumber" name="L523" href="#L523">523</a>     }
-<a class="jxr_linenumber" name="L524" href="#L524">524</a> 
-<a class="jxr_linenumber" name="L525" href="#L525">525</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L526" href="#L526">526</a> <em class="jxr_javadoccomment">     * @return Returns the page level {@link Xpp3Dom}.</em>
-<a class="jxr_linenumber" name="L527" href="#L527">527</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L528" href="#L528">528</a>     <strong class="jxr_keyword">public</strong> Xpp3Dom getPageProperties() {
-<a class="jxr_linenumber" name="L529" href="#L529">529</a>         <strong class="jxr_keyword">return</strong> pageProperties;
-<a class="jxr_linenumber" name="L530" href="#L530">530</a>     }
-<a class="jxr_linenumber" name="L531" href="#L531">531</a> 
-<a class="jxr_linenumber" name="L532" href="#L532">532</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L533" href="#L533">533</a> <em class="jxr_javadoccomment">     * @return Returns the root level {@link Xpp3Dom}.</em>
-<a class="jxr_linenumber" name="L534" href="#L534">534</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>     <strong class="jxr_keyword">public</strong> Xpp3Dom getGlobalProperties() {
-<a class="jxr_linenumber" name="L536" href="#L536">536</a>         <strong class="jxr_keyword">return</strong> globalProperties;
-<a class="jxr_linenumber" name="L537" href="#L537">537</a>     }
-<a class="jxr_linenumber" name="L538" href="#L538">538</a> 
-<a class="jxr_linenumber" name="L539" href="#L539">539</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L540" href="#L540">540</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the namespace.</em>
-<a class="jxr_linenumber" name="L541" href="#L541">541</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L542" href="#L542">542</a>     @Nonnull
-<a class="jxr_linenumber" name="L543" href="#L543">543</a>     <strong class="jxr_keyword">public</strong> String getNamespace() {
-<a class="jxr_linenumber" name="L544" href="#L544">544</a>         <strong class="jxr_keyword">return</strong> namespace;
-<a class="jxr_linenumber" name="L545" href="#L545">545</a>     }
-<a class="jxr_linenumber" name="L546" href="#L546">546</a> 
-<a class="jxr_linenumber" name="L547" href="#L547">547</a>     @Nonnull
-<a class="jxr_linenumber" name="L548" href="#L548">548</a>     <strong class="jxr_keyword">public</strong> String getProjectLocation() {
-<a class="jxr_linenumber" name="L549" href="#L549">549</a>         String projectSiteLoc = getProject().getUrl();
-<a class="jxr_linenumber" name="L550" href="#L550">550</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(projectSiteLoc)) {
-<a class="jxr_linenumber" name="L551" href="#L551">551</a> 
-<a class="jxr_linenumber" name="L552" href="#L552">552</a>             <strong class="jxr_keyword">if</strong> (!projectSiteLoc.endsWith(<span class="jxr_string">"/"</span>)) {
-<a class="jxr_linenumber" name="L553" href="#L553">553</a>                 projectSiteLoc += <span class="jxr_string">"/"</span>;
-<a class="jxr_linenumber" name="L554" href="#L554">554</a>             }
-<a class="jxr_linenumber" name="L555" href="#L555">555</a>         }
-<a class="jxr_linenumber" name="L556" href="#L556">556</a>         <strong class="jxr_keyword">return</strong> projectSiteLoc;
-<a class="jxr_linenumber" name="L557" href="#L557">557</a>     }
-<a class="jxr_linenumber" name="L558" href="#L558">558</a> 
-<a class="jxr_linenumber" name="L559" href="#L559">559</a>     @Nonnull
-<a class="jxr_linenumber" name="L560" href="#L560">560</a>     <strong class="jxr_keyword">public</strong> String getCurrentFileLocation() {
-<a class="jxr_linenumber" name="L561" href="#L561">561</a>         <strong class="jxr_keyword">final</strong> String projectSiteLoc = getProjectLocation();
-<a class="jxr_linenumber" name="L562" href="#L562">562</a>         <strong class="jxr_keyword">final</strong> String currentFileName = (String) velocityContext.get(<span class="jxr_string">"currentFileName"</span>);
-<a class="jxr_linenumber" name="L563" href="#L563">563</a>         <strong class="jxr_keyword">return</strong> URITool.toURI(projectSiteLoc).resolve(currentFileName).toString();
-<a class="jxr_linenumber" name="L564" href="#L564">564</a>     }
-<a class="jxr_linenumber" name="L565" href="#L565">565</a> 
-<a class="jxr_linenumber" name="L566" href="#L566">566</a>     @Nullable
-<a class="jxr_linenumber" name="L567" href="#L567">567</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T eval(@Nullable <strong class="jxr_keyword">final</strong> String vtl, @Nonnull <strong class="jxr_keyword">final</strong> Class&lt;T&gt; requiredClass) {
-<a class="jxr_linenumber" name="L568" href="#L568">568</a>         <strong class="jxr_keyword">if</strong> (vtl == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L569" href="#L569">569</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L570" href="#L570">570</a>         }
-<a class="jxr_linenumber" name="L571" href="#L571">571</a>         <strong class="jxr_keyword">final</strong> RenderTool renderTool = (RenderTool) getVelocityContext().get(<span class="jxr_string">"render"</span>);
-<a class="jxr_linenumber" name="L572" href="#L572">572</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L573" href="#L573">573</a>             <strong class="jxr_keyword">return</strong> (T) renderTool.eval(getVelocityContext(), vtl);
-<a class="jxr_linenumber" name="L574" href="#L574">574</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception ex) {
-<a class="jxr_linenumber" name="L575" href="#L575">575</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"error when try evaluate '"</span> + vtl + <span class="jxr_string">"'"</span>, ex);
-<a class="jxr_linenumber" name="L576" href="#L576">576</a>         }
-<a class="jxr_linenumber" name="L577" href="#L577">577</a>     }
-<a class="jxr_linenumber" name="L578" href="#L578">578</a> 
-<a class="jxr_linenumber" name="L579" href="#L579">579</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L580" href="#L580">580</a> <em class="jxr_javadoccomment">     * @param href</em>
-<a class="jxr_linenumber" name="L581" href="#L581">581</a> <em class="jxr_javadoccomment">     *            link to relative.</em>
-<a class="jxr_linenumber" name="L582" href="#L582">582</a> <em class="jxr_javadoccomment">     * @return Returns Relativizes the link.</em>
-<a class="jxr_linenumber" name="L583" href="#L583">583</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L584" href="#L584">584</a>     @Nullable
-<a class="jxr_linenumber" name="L585" href="#L585">585</a>     <strong class="jxr_keyword">public</strong> String relativeLink(<strong class="jxr_keyword">final</strong> String href) {
-<a class="jxr_linenumber" name="L586" href="#L586">586</a>         <strong class="jxr_keyword">if</strong> (href == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L587" href="#L587">587</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L588" href="#L588">588</a>         }
-<a class="jxr_linenumber" name="L589" href="#L589">589</a>         <strong class="jxr_keyword">if</strong> (isExternalLink(href)) {
-<a class="jxr_linenumber" name="L590" href="#L590">590</a>             <strong class="jxr_keyword">return</strong> href;
-<a class="jxr_linenumber" name="L591" href="#L591">591</a>         }
-<a class="jxr_linenumber" name="L592" href="#L592">592</a>         <strong class="jxr_keyword">final</strong> String relativePath = (String) velocityContext.get(<span class="jxr_string">"relativePath"</span>);
-<a class="jxr_linenumber" name="L593" href="#L593">593</a>         String relativeLink = PathTool.calculateLink(href, relativePath);
-<a class="jxr_linenumber" name="L594" href="#L594">594</a>         relativeLink = relativeLink.replaceAll(<span class="jxr_string">"&#92;&#92;&#92;&#92;"</span>, <span class="jxr_string">"/"</span>);
-<a class="jxr_linenumber" name="L595" href="#L595">595</a>         <strong class="jxr_keyword">if</strong> (Strings.isNullOrEmpty(relativeLink)) {
-<a class="jxr_linenumber" name="L596" href="#L596">596</a>             relativeLink = <span class="jxr_string">"./"</span>;
-<a class="jxr_linenumber" name="L597" href="#L597">597</a>         }
-<a class="jxr_linenumber" name="L598" href="#L598">598</a>         <em class="jxr_comment">// Attempt to normalise the relative link - this is useful for active link</em>
-<a class="jxr_linenumber" name="L599" href="#L599">599</a>         <em class="jxr_comment">// calculations and better relative links for subdirectories.</em>
-<a class="jxr_linenumber" name="L600" href="#L600">600</a>         <em class="jxr_comment">//</em>
-<a class="jxr_linenumber" name="L601" href="#L601">601</a>         <em class="jxr_comment">// The issue is particularly visible with pages in subdirectories,</em>
-<a class="jxr_linenumber" name="L602" href="#L602">602</a>         <em class="jxr_comment">// so that if you are in &lt;root&gt;/dev/index.html, the relative menu link to</em>
-<a class="jxr_linenumber" name="L603" href="#L603">603</a>         <em class="jxr_comment">// the _same_ page would likely be ../dev/index.html instead of '' or</em>
-<a class="jxr_linenumber" name="L604" href="#L604">604</a>         <em class="jxr_comment">// 'index.html'.</em>
-<a class="jxr_linenumber" name="L605" href="#L605">605</a>         <strong class="jxr_keyword">final</strong> String currentFileLoc = getCurrentFileLocation();
-<a class="jxr_linenumber" name="L606" href="#L606">606</a>         <strong class="jxr_keyword">final</strong> String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
-<a class="jxr_linenumber" name="L607" href="#L607">607</a>         <strong class="jxr_keyword">if</strong> (currentFileLoc.equals(absoluteLink)) {
-<a class="jxr_linenumber" name="L608" href="#L608">608</a>             <em class="jxr_comment">// for matching link, use empty relative link</em>
-<a class="jxr_linenumber" name="L609" href="#L609">609</a>             relativeLink = StringUtils.EMPTY;
-<a class="jxr_linenumber" name="L610" href="#L610">610</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L611" href="#L611">611</a>             <em class="jxr_comment">// relativize the absolute link based on current directory</em>
-<a class="jxr_linenumber" name="L612" href="#L612">612</a>             <em class="jxr_comment">// (uses Maven project link relativization)</em>
-<a class="jxr_linenumber" name="L613" href="#L613">613</a>             <strong class="jxr_keyword">final</strong> String currentFileDir = PathTool.getDirectoryComponent(currentFileLoc);
-<a class="jxr_linenumber" name="L614" href="#L614">614</a>             relativeLink = URITool.relativizeLink(currentFileDir, absoluteLink);
-<a class="jxr_linenumber" name="L615" href="#L615">615</a>         }
-<a class="jxr_linenumber" name="L616" href="#L616">616</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
-<a class="jxr_linenumber" name="L617" href="#L617">617</a>             LOGGER.debug(<span class="jxr_string">"-- Relative Link ----------------------------------"</span>);
-<a class="jxr_linenumber" name="L618" href="#L618">618</a>             LOGGER.debug(<span class="jxr_string">"link: {}"</span>, href);
-<a class="jxr_linenumber" name="L619" href="#L619">619</a>             LOGGER.debug(<span class="jxr_string">"currentFileLoc: {}"</span>, currentFileLoc);
-<a class="jxr_linenumber" name="L620" href="#L620">620</a>             LOGGER.debug(<span class="jxr_string">"absoluteLink: {}"</span>, absoluteLink);
-<a class="jxr_linenumber" name="L621" href="#L621">621</a>             LOGGER.debug(<span class="jxr_string">"relativeLink: {}"</span>, relativeLink);
-<a class="jxr_linenumber" name="L622" href="#L622">622</a>             LOGGER.debug(<span class="jxr_string">"---------------------------------------------------"</span>);
-<a class="jxr_linenumber" name="L623" href="#L623">623</a>         }
-<a class="jxr_linenumber" name="L624" href="#L624">624</a>         <strong class="jxr_keyword">return</strong> relativeLink;
-<a class="jxr_linenumber" name="L625" href="#L625">625</a>     }
-<a class="jxr_linenumber" name="L626" href="#L626">626</a> 
-<a class="jxr_linenumber" name="L627" href="#L627">627</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L628" href="#L628">628</a> <em class="jxr_javadoccomment">     * @param url</em>
-<a class="jxr_linenumber" name="L629" href="#L629">629</a> <em class="jxr_javadoccomment">     *            a url.</em>
-<a class="jxr_linenumber" name="L630" href="#L630">630</a> <em class="jxr_javadoccomment">     * @return Returns {@code true} whether the link is a external link to the site.</em>
-<a class="jxr_linenumber" name="L631" href="#L631">631</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L632" href="#L632">632</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isExternalLink(<strong class="jxr_keyword">final</strong> String url) {
-<a class="jxr_linenumber" name="L633" href="#L633">633</a>         <strong class="jxr_keyword">if</strong> (url == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L634" href="#L634">634</a>             <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L635" href="#L635">635</a>         }
-<a class="jxr_linenumber" name="L636" href="#L636">636</a>         <strong class="jxr_keyword">final</strong> String absoluteResourceURL = <strong class="jxr_keyword">this</strong>.value(<span class="jxr_string">"absoluteResourceURL"</span>);
-<a class="jxr_linenumber" name="L637" href="#L637">637</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(absoluteResourceURL) &amp;&amp; url.startsWith(absoluteResourceURL)) {
-<a class="jxr_linenumber" name="L638" href="#L638">638</a>             <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L639" href="#L639">639</a>         }
-<a class="jxr_linenumber" name="L640" href="#L640">640</a>         <strong class="jxr_keyword">return</strong> url.toLowerCase().startsWith(<span class="jxr_string">"http:/"</span>) || url.toLowerCase().startsWith(<span class="jxr_string">"https:/"</span>)
-<a class="jxr_linenumber" name="L641" href="#L641">641</a>                 || url.toLowerCase().startsWith(<span class="jxr_string">"ftp:/"</span>) || url.toLowerCase().startsWith(<span class="jxr_string">"mailto:"</span>)
-<a class="jxr_linenumber" name="L642" href="#L642">642</a>                 || url.toLowerCase().startsWith(<span class="jxr_string">"file:/"</span>) || url.toLowerCase().indexOf(<span class="jxr_string">"://"</span>) != -1;
-<a class="jxr_linenumber" name="L643" href="#L643">643</a>     }
-<a class="jxr_linenumber" name="L644" href="#L644">644</a> 
-<a class="jxr_linenumber" name="L645" href="#L645">645</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L646" href="#L646">646</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L647" href="#L647">647</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L648" href="#L648">648</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isActiveLink(<strong class="jxr_keyword">final</strong> String href) {
-<a class="jxr_linenumber" name="L649" href="#L649">649</a>         <strong class="jxr_keyword">final</strong> String alignedFileName = (String) velocityContext.get(<span class="jxr_string">"alignedFileName"</span>);
-<a class="jxr_linenumber" name="L650" href="#L650">650</a>         <strong class="jxr_keyword">if</strong> (href == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L651" href="#L651">651</a>             <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L652" href="#L652">652</a>         }
-<a class="jxr_linenumber" name="L653" href="#L653">653</a>         <em class="jxr_comment">// either empty link (pointing to a page), or if the current file is index.html,</em>
-<a class="jxr_linenumber" name="L654" href="#L654">654</a>         <em class="jxr_comment">// the link may point to the whole directory</em>
-<a class="jxr_linenumber" name="L655" href="#L655">655</a>         <strong class="jxr_keyword">return</strong> Strings.isNullOrEmpty(href) || alignedFileName.endsWith(<span class="jxr_string">"index.html"</span>) &amp;&amp; <span class="jxr_string">"."</span>.equals(href);
-<a class="jxr_linenumber" name="L656" href="#L656">656</a>     }
-<a class="jxr_linenumber" name="L657" href="#L657">657</a> 
-<a class="jxr_linenumber" name="L658" href="#L658">658</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L659" href="#L659">659</a> <em class="jxr_javadoccomment">     * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same</em>
-<a class="jxr_linenumber" name="L660" href="#L660">660</a> <em class="jxr_javadoccomment">     * location as viewed from a new base.</em>
-<a class="jxr_linenumber" name="L661" href="#L661">661</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L662" href="#L662">662</a> <em class="jxr_javadoccomment">     * @param link</em>
-<a class="jxr_linenumber" name="L663" href="#L663">663</a> <em class="jxr_javadoccomment">     *            link to rebase</em>
-<a class="jxr_linenumber" name="L664" href="#L664">664</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing link rebased.</em>
-<a class="jxr_linenumber" name="L665" href="#L665">665</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L666" href="#L666">666</a>     <strong class="jxr_keyword">public</strong> String rebaseLink(<strong class="jxr_keyword">final</strong> String link) {
-<a class="jxr_linenumber" name="L667" href="#L667">667</a>         <strong class="jxr_keyword">return</strong> createURLRebaser().rebaseLink(link);
-<a class="jxr_linenumber" name="L668" href="#L668">668</a>     }
-<a class="jxr_linenumber" name="L669" href="#L669">669</a> 
-<a class="jxr_linenumber" name="L670" href="#L670">670</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L671" href="#L671">671</a> <em class="jxr_javadoccomment">     * Converts a filename to pageId format.</em>
-<a class="jxr_linenumber" name="L672" href="#L672">672</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L673" href="#L673">673</a> <em class="jxr_javadoccomment">     * @param fileName</em>
-<a class="jxr_linenumber" name="L674" href="#L674">674</a> <em class="jxr_javadoccomment">     *            the filename to convert</em>
-<a class="jxr_linenumber" name="L675" href="#L675">675</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the pageId of {@code filename}.</em>
-<a class="jxr_linenumber" name="L676" href="#L676">676</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L677" href="#L677">677</a>     @Nullable
-<a class="jxr_linenumber" name="L678" href="#L678">678</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String slugFilename(@Nullable <strong class="jxr_keyword">final</strong> String fileName) {
-<a class="jxr_linenumber" name="L679" href="#L679">679</a>         <strong class="jxr_keyword">if</strong> (fileName == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L680" href="#L680">680</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L681" href="#L681">681</a>         }
-<a class="jxr_linenumber" name="L682" href="#L682">682</a>         String currentFile = fileName;
-<a class="jxr_linenumber" name="L683" href="#L683">683</a> 
-<a class="jxr_linenumber" name="L684" href="#L684">684</a>         <em class="jxr_comment">// drop the extension</em>
-<a class="jxr_linenumber" name="L685" href="#L685">685</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lastDot = currentFile.lastIndexOf(<span class="jxr_string">"."</span>);
-<a class="jxr_linenumber" name="L686" href="#L686">686</a>         <strong class="jxr_keyword">if</strong> (lastDot &gt;= 0) {
-<a class="jxr_linenumber" name="L687" href="#L687">687</a>             currentFile = currentFile.substring(0, lastDot);
-<a class="jxr_linenumber" name="L688" href="#L688">688</a>         }
-<a class="jxr_linenumber" name="L689" href="#L689">689</a> 
-<a class="jxr_linenumber" name="L690" href="#L690">690</a>         <em class="jxr_comment">// get the short ID (in case of nested files)</em>
-<a class="jxr_linenumber" name="L691" href="#L691">691</a>         <em class="jxr_comment">// String fileName = new File(currentFile).getName();</em>
-<a class="jxr_linenumber" name="L692" href="#L692">692</a>         <em class="jxr_comment">// fileShortId = HtmlTool.slug(fileName);</em>
-<a class="jxr_linenumber" name="L693" href="#L693">693</a> 
-<a class="jxr_linenumber" name="L694" href="#L694">694</a>         <em class="jxr_comment">// full file ID includes the nested dirs</em>
-<a class="jxr_linenumber" name="L695" href="#L695">695</a>         <em class="jxr_comment">// replace nesting "/" with "-"</em>
-<a class="jxr_linenumber" name="L696" href="#L696">696</a>         <strong class="jxr_keyword">return</strong> HtmlTool.slug(currentFile.replace(<span class="jxr_string">"/"</span>, <span class="jxr_string">"-"</span>).replace(<span class="jxr_string">"&#92;&#92;"</span>, <span class="jxr_string">"-"</span>));
-<a class="jxr_linenumber" name="L697" href="#L697">697</a>     }
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>             LOGGER.debug(<span class="jxr_string">"Namespace: {}"</span>, <strong class="jxr_keyword">this</strong>.namespace);
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>             LOGGER.debug(<span class="jxr_string">"---------------------------------------------------"</span>);
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>         }
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>     }
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> 
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">     * Sets the key under which this tool has been configured.</em>
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> <em class="jxr_javadoccomment">     * @param key</em>
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> <em class="jxr_javadoccomment">     *            the key of config</em>
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L259" href="#L259">259</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> setKey(<strong class="jxr_keyword">final</strong> String key) {
+<a class="jxr_linenumber" name="L260" href="#L260">260</a>         <strong class="jxr_keyword">this</strong>.key = requireNonNull(key, <span class="jxr_string">"SkinConfigTool key cannot be null"</span>);
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>     }
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> 
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     * @return Returns the key under which this tool has been configured. The default is `config`.</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>     <strong class="jxr_keyword">public</strong> String getKey() {
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.key;
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>     }
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> 
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">     * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise</em>
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">     * Velocity fallback onto the default getter and use {@code $config.myproperty}.</em>
+<a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
+<a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">     * @return configuration node if found in the following sequence:</em>
+<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     *         &lt;ol&gt;</em>
+<a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">     *         &lt;li&gt;In page configuration&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">     *         &lt;li&gt;In global configuration&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">     *         &lt;li&gt;{@code null} otherwise&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     *         &lt;/ol&gt;</em>
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>     <strong class="jxr_keyword">public</strong> Xpp3Dom get(<strong class="jxr_keyword">final</strong> String property) {
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> 
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>         <em class="jxr_comment">// first try page properties</em>
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>         Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>         <strong class="jxr_keyword">if</strong> (propNode == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>             <em class="jxr_comment">// try global</em>
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>             propNode = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
+<a class="jxr_linenumber" name="L292" href="#L292">292</a>         }
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> 
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>         <strong class="jxr_keyword">return</strong> propNode;
+<a class="jxr_linenumber" name="L295" href="#L295">295</a>     }
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> 
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">     * Retrieves the text value of the given {@code property}, e.g. as in {@code &lt;myprop&gt;value&lt;/myprop&gt;}.</em>
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
+<a class="jxr_linenumber" name="L302" href="#L302">302</a> <em class="jxr_javadoccomment">     * @return the configuration value if found in page or globally, {@code null} otherwise.</em>
+<a class="jxr_linenumber" name="L303" href="#L303">303</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
+<a class="jxr_linenumber" name="L304" href="#L304">304</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L305" href="#L305">305</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>     <strong class="jxr_keyword">public</strong> String value(<strong class="jxr_keyword">final</strong> String property) {
+<a class="jxr_linenumber" name="L307" href="#L307">307</a> 
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>         <strong class="jxr_keyword">final</strong> Xpp3Dom propNode = get(property);
+<a class="jxr_linenumber" name="L309" href="#L309">309</a> 
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>         <strong class="jxr_keyword">if</strong> (propNode == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L311" href="#L311">311</a>             <em class="jxr_comment">// not found</em>
+<a class="jxr_linenumber" name="L312" href="#L312">312</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>         }
+<a class="jxr_linenumber" name="L314" href="#L314">314</a> 
+<a class="jxr_linenumber" name="L315" href="#L315">315</a>         <strong class="jxr_keyword">return</strong> propNode.getValue();
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>     }
+<a class="jxr_linenumber" name="L317" href="#L317">317</a> 
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     * Gets the text value of the given {@code property}.</em>
+<a class="jxr_linenumber" name="L320" href="#L320">320</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L321" href="#L321">321</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">     *            the property to use</em>
+<a class="jxr_linenumber" name="L323" href="#L323">323</a> <em class="jxr_javadoccomment">     * @param targetType</em>
+<a class="jxr_linenumber" name="L324" href="#L324">324</a> <em class="jxr_javadoccomment">     *            the returned target type use to convert value.</em>
+<a class="jxr_linenumber" name="L325" href="#L325">325</a> <em class="jxr_javadoccomment">     * @param defaultValue</em>
+<a class="jxr_linenumber" name="L326" href="#L326">326</a> <em class="jxr_javadoccomment">     *            the default value used if property doesn't exist.</em>
+<a class="jxr_linenumber" name="L327" href="#L327">327</a> <em class="jxr_javadoccomment">     * @return Returns a converted value of the given {@code property}.</em>
+<a class="jxr_linenumber" name="L328" href="#L328">328</a> <em class="jxr_javadoccomment">     * @since 2.0</em>
+<a class="jxr_linenumber" name="L329" href="#L329">329</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L330" href="#L330">330</a> <em class="jxr_javadoccomment">     *            the type of returned object.</em>
+<a class="jxr_linenumber" name="L331" href="#L331">331</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L332" href="#L332">332</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L333" href="#L333">333</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T getPropertyValue(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> Class&lt;T&gt; targetType, <strong class="jxr_keyword">final</strong> T defaultValue) {
+<a class="jxr_linenumber" name="L334" href="#L334">334</a>         <strong class="jxr_keyword">final</strong> String value = value(property);
+<a class="jxr_linenumber" name="L335" href="#L335">335</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L336" href="#L336">336</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L337" href="#L337">337</a>         }
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>         Object returnedValue = value;
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>         <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Boolean.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>             returnedValue = Boolean.valueOf(value);
+<a class="jxr_linenumber" name="L341" href="#L341">341</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Integer.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>             returnedValue = Integer.valueOf(value);
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Long.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>             returnedValue = Long.valueOf(value);
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>         }
+<a class="jxr_linenumber" name="L346" href="#L346">346</a>         <strong class="jxr_keyword">return</strong> (T) returnedValue;
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>     }
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> 
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L350" href="#L350">350</a> <em class="jxr_javadoccomment">     * Gets the list of all children name for the {@code parentNode}.</em>
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">     * @param parentNode</em>
+<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">     *            the parent node to use (can be {@code null}.</em>
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never</em>
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">     *         {@code null}.</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">     * @since 1.3</em>
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>     <strong class="jxr_keyword">public</strong> List&lt;String&gt; getChildren(<strong class="jxr_keyword">final</strong> Xpp3Dom parentNode) {
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>         <strong class="jxr_keyword">return</strong> Xpp3Utils.getChildren(parentNode);
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>     }
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> 
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">     * Gets the attribute value of the given {@code attribute} of {@code property}.</em>
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">     *            the property to use</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">     * @param attribute</em>
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">     *            the attribute to use.</em>
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">     * @param targetType</em>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">     *            the returned target type use to convert value.</em>
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">     * @param defaultValue</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     *            the default value used if property doesn't exist.</em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * @return Returns a converted value of the given {@code property}.</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     * @since 2.0</em>
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">     *            the type of returned object.</em>
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T getAttributeValue(<strong class="jxr_keyword">final</strong> String property,
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>         <strong class="jxr_keyword">final</strong> String attribute,
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>         <strong class="jxr_keyword">final</strong> Class&lt;T&gt; targetType,
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>         <strong class="jxr_keyword">final</strong> T defaultValue) {
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>         Xpp3Dom element = get(property);
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>         <strong class="jxr_keyword">if</strong> (element == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>         }
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>         String value = element.getAttribute(attribute);
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>         }
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> 
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>         <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"inherit"</span>.equals(value)) {
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>             element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>             <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>                 LOGGER.debug(<span class="jxr_string">"Inherit value property '{}': {}"</span>, property, element);
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>             }
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>         }
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>         <strong class="jxr_keyword">if</strong> (element == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>         }
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>         value = element.getAttribute(attribute);
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>         }
+<a class="jxr_linenumber" name="L405" href="#L405">405</a> 
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>         Object returnedValue = value;
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>         <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Boolean.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>             returnedValue = Boolean.valueOf(value);
+<a class="jxr_linenumber" name="L409" href="#L409">409</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Integer.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>             returnedValue = Integer.valueOf(value);
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Long.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>             returnedValue = Long.valueOf(value);
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         }
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>         <strong class="jxr_keyword">return</strong> (T) returnedValue;
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>     }
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> 
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T getAttributeValue(<strong class="jxr_keyword">final</strong> Xpp3Dom element,
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>         <strong class="jxr_keyword">final</strong> String attribute,
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>         <strong class="jxr_keyword">final</strong> Class&lt;T&gt; targetType,
+<a class="jxr_linenumber" name="L421" href="#L421">421</a>         <strong class="jxr_keyword">final</strong> T defaultValue) {
+<a class="jxr_linenumber" name="L422" href="#L422">422</a>         <strong class="jxr_keyword">if</strong> (element == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L423" href="#L423">423</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L424" href="#L424">424</a>         }
+<a class="jxr_linenumber" name="L425" href="#L425">425</a>         <strong class="jxr_keyword">final</strong> String value = element.getAttribute(attribute);
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>             <strong class="jxr_keyword">return</strong> defaultValue;
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>         }
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>         Object returnedValue = value;
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>         <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Boolean.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>             returnedValue = Boolean.valueOf(value);
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Integer.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>             returnedValue = Integer.valueOf(value);
+<a class="jxr_linenumber" name="L434" href="#L434">434</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (targetType.isAssignableFrom(Long.<strong class="jxr_keyword">class</strong>)) {
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>             returnedValue = Long.valueOf(value);
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>         }
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>         <strong class="jxr_keyword">return</strong> (T) returnedValue;
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>     }
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> 
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * A convenience method to check if the value of the {@code property} is {@code "true"}.</em>
+<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     * @return {@code true} if the configuration value is set either in page or globally, and is equal to</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     *         {@code "true"}.</em>
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> is(<strong class="jxr_keyword">final</strong> String property) {
+<a class="jxr_linenumber" name="L451" href="#L451">451</a>         <strong class="jxr_keyword">return</strong> <span class="jxr_string">"true"</span>.equals(value(property));
+<a class="jxr_linenumber" name="L452" href="#L452">452</a>     }
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> 
+<a class="jxr_linenumber" name="L454" href="#L454">454</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * A convenience method to check if the value of the {@code property} is {@code "false"}. Useful for properties that</em>
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     * are enabled by default - checks if the property is set to {@code "false"} explicitly.</em>
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
+<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     * @return {@code true} if the configuration value is set either in page or globally, and is equal to</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     *         {@code "false"}. Note that this will return {@code false} if property is not set at all.</em>
+<a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
+<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> not(<strong class="jxr_keyword">final</strong> String property) {
+<a class="jxr_linenumber" name="L466" href="#L466">466</a>         <strong class="jxr_keyword">return</strong> <span class="jxr_string">"false"</span>.equals(value(property));
+<a class="jxr_linenumber" name="L467" href="#L467">467</a>     }
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> 
+<a class="jxr_linenumber" name="L469" href="#L469">469</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     * A convenience method to check if the {@code property} is set to a specific value.</em>
+<a class="jxr_linenumber" name="L471" href="#L471">471</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L472" href="#L472">472</a> <em class="jxr_javadoccomment">     * @param property</em>
+<a class="jxr_linenumber" name="L473" href="#L473">473</a> <em class="jxr_javadoccomment">     *            the property of interest</em>
+<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">     * @param value</em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">     *            the property value to check</em>
+<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">     * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.</em>
+<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     * @see #get(String)</em>
+<a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">     * @since 1.0</em>
+<a class="jxr_linenumber" name="L479" href="#L479">479</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L480" href="#L480">480</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isValue(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> String value) {
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>         <strong class="jxr_keyword">return</strong> value != <strong class="jxr_keyword">null</strong> &amp;&amp; value.equals(value(property));
+<a class="jxr_linenumber" name="L482" href="#L482">482</a>     }
+<a class="jxr_linenumber" name="L483" href="#L483">483</a> 
+<a class="jxr_linenumber" name="L484" href="#L484">484</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     * @return Returns the {@link String} representing the projectId.</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a>     <strong class="jxr_keyword">public</strong> String getProjectId() {
+<a class="jxr_linenumber" name="L488" href="#L488">488</a>         <strong class="jxr_keyword">return</strong> projectId;
+<a class="jxr_linenumber" name="L489" href="#L489">489</a>     }
+<a class="jxr_linenumber" name="L490" href="#L490">490</a> 
+<a class="jxr_linenumber" name="L491" href="#L491">491</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     * @return Returns the {@link String} representing the fileId.</em>
+<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>     <strong class="jxr_keyword">public</strong> String getFileId() {
+<a class="jxr_linenumber" name="L495" href="#L495">495</a>         <strong class="jxr_keyword">return</strong> fileId;
+<a class="jxr_linenumber" name="L496" href="#L496">496</a>     }
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> 
+<a class="jxr_linenumber" name="L498" href="#L498">498</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     * @return the context</em>
+<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L501" href="#L501">501</a>     <strong class="jxr_keyword">public</strong> Context&lt;?&gt; getContext() {
+<a class="jxr_linenumber" name="L502" href="#L502">502</a>         <strong class="jxr_keyword">return</strong> context;
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>     }
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> 
+<a class="jxr_linenumber" name="L505" href="#L505">505</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> <em class="jxr_javadoccomment">     * @return the velocity Context</em>
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>     <strong class="jxr_keyword">public</strong> ToolContext getVelocityContext() {
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>         <strong class="jxr_keyword">return</strong> velocityContext;
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>     }
+<a class="jxr_linenumber" name="L511" href="#L511">511</a> 
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">     * @return the project</em>
+<a class="jxr_linenumber" name="L514" href="#L514">514</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>     <strong class="jxr_keyword">public</strong> MavenProject getProject() {
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>         <strong class="jxr_keyword">return</strong> project;
+<a class="jxr_linenumber" name="L517" href="#L517">517</a>     }
+<a class="jxr_linenumber" name="L518" href="#L518">518</a> 
+<a class="jxr_linenumber" name="L519" href="#L519">519</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L520" href="#L520">520</a> <em class="jxr_javadoccomment">     * @return the decoration</em>
+<a class="jxr_linenumber" name="L521" href="#L521">521</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L522" href="#L522">522</a>     <strong class="jxr_keyword">public</strong> DecorationModel getDecoration() {
+<a class="jxr_linenumber" name="L523" href="#L523">523</a>         <strong class="jxr_keyword">return</strong> decoration;
+<a class="jxr_linenumber" name="L524" href="#L524">524</a>     }
+<a class="jxr_linenumber" name="L525" href="#L525">525</a> 
+<a class="jxr_linenumber" name="L526" href="#L526">526</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L527" href="#L527">527</a> <em class="jxr_javadoccomment">     * @return Returns the page level {@link Xpp3Dom}.</em>
+<a class="jxr_linenumber" name="L528" href="#L528">528</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L529" href="#L529">529</a>     <strong class="jxr_keyword">public</strong> Xpp3Dom getPageProperties() {
+<a class="jxr_linenumber" name="L530" href="#L530">530</a>         <strong class="jxr_keyword">return</strong> pageProperties;
+<a class="jxr_linenumber" name="L531" href="#L531">531</a>     }
+<a class="jxr_linenumber" name="L532" href="#L532">532</a> 
+<a class="jxr_linenumber" name="L533" href="#L533">533</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L534" href="#L534">534</a> <em class="jxr_javadoccomment">     * @return Returns the root level {@link Xpp3Dom}.</em>
+<a class="jxr_linenumber" name="L535" href="#L535">535</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L536" href="#L536">536</a>     <strong class="jxr_keyword">public</strong> Xpp3Dom getGlobalProperties() {
+<a class="jxr_linenumber" name="L537" href="#L537">537</a>         <strong class="jxr_keyword">return</strong> globalProperties;
+<a class="jxr_linenumber" name="L538" href="#L538">538</a>     }
+<a class="jxr_linenumber" name="L539" href="#L539">539</a> 
+<a class="jxr_linenumber" name="L540" href="#L540">540</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L541" href="#L541">541</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the namespace.</em>
+<a class="jxr_linenumber" name="L542" href="#L542">542</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L543" href="#L543">543</a>     @Nonnull
+<a class="jxr_linenumber" name="L544" href="#L544">544</a>     <strong class="jxr_keyword">public</strong> String getNamespace() {
+<a class="jxr_linenumber" name="L545" href="#L545">545</a>         <strong class="jxr_keyword">return</strong> namespace;
+<a class="jxr_linenumber" name="L546" href="#L546">546</a>     }
+<a class="jxr_linenumber" name="L547" href="#L547">547</a> 
+<a class="jxr_linenumber" name="L548" href="#L548">548</a>     @Nonnull
+<a class="jxr_linenumber" name="L549" href="#L549">549</a>     <strong class="jxr_keyword">public</strong> String getProjectLocation() {
+<a class="jxr_linenumber" name="L550" href="#L550">550</a>         String projectSiteLoc = getProject().getUrl();
+<a class="jxr_linenumber" name="L551" href="#L551">551</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(projectSiteLoc)) {
+<a class="jxr_linenumber" name="L552" href="#L552">552</a> 
+<a class="jxr_linenumber" name="L553" href="#L553">553</a>             <strong class="jxr_keyword">if</strong> (!projectSiteLoc.endsWith(<span class="jxr_string">"/"</span>)) {
+<a class="jxr_linenumber" name="L554" href="#L554">554</a>                 projectSiteLoc += <span class="jxr_string">"/"</span>;
+<a class="jxr_linenumber" name="L555" href="#L555">555</a>             }
+<a class="jxr_linenumber" name="L556" href="#L556">556</a>         }
+<a class="jxr_linenumber" name="L557" href="#L557">557</a>         <strong class="jxr_keyword">return</strong> projectSiteLoc;
+<a class="jxr_linenumber" name="L558" href="#L558">558</a>     }
+<a class="jxr_linenumber" name="L559" href="#L559">559</a> 
+<a class="jxr_linenumber" name="L560" href="#L560">560</a>     @Nonnull
+<a class="jxr_linenumber" name="L561" href="#L561">561</a>     <strong class="jxr_keyword">public</strong> String getCurrentFileName() {
+<a class="jxr_linenumber" name="L562" href="#L562">562</a>         <strong class="jxr_keyword">return</strong> (String)velocityContext.get(<span class="jxr_string">"currentFileName"</span>);
+<a class="jxr_linenumber" name="L563" href="#L563">563</a>     }
+<a class="jxr_linenumber" name="L564" href="#L564">564</a> 
+<a class="jxr_linenumber" name="L565" href="#L565">565</a>     @Nonnull
+<a class="jxr_linenumber" name="L566" href="#L566">566</a>     <strong class="jxr_keyword">public</strong> String getCurrentFileLocation() {
+<a class="jxr_linenumber" name="L567" href="#L567">567</a>         <strong class="jxr_keyword">final</strong> String projectSiteLoc = getProjectLocation();
+<a class="jxr_linenumber" name="L568" href="#L568">568</a>         <strong class="jxr_keyword">return</strong> URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
+<a class="jxr_linenumber" name="L569" href="#L569">569</a>     }
+<a class="jxr_linenumber" name="L570" href="#L570">570</a> 
+<a class="jxr_linenumber" name="L571" href="#L571">571</a>     @Nullable
+<a class="jxr_linenumber" name="L572" href="#L572">572</a>     <strong class="jxr_keyword">public</strong> &lt;T&gt; T eval(@Nullable <strong class="jxr_keyword">final</strong> String vtl, @Nonnull <strong class="jxr_keyword">final</strong> Class&lt;T&gt; requiredClass) {
+<a class="jxr_linenumber" name="L573" href="#L573">573</a>         <strong class="jxr_keyword">if</strong> (vtl == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L574" href="#L574">574</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L575" href="#L575">575</a>         }
+<a class="jxr_linenumber" name="L576" href="#L576">576</a>         <strong class="jxr_keyword">final</strong> RenderTool renderTool = (RenderTool) getVelocityContext().get(<span class="jxr_string">"render"</span>);
+<a class="jxr_linenumber" name="L577" href="#L577">577</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L578" href="#L578">578</a>             <strong class="jxr_keyword">return</strong> (T) renderTool.eval(getVelocityContext(), vtl);
+<a class="jxr_linenumber" name="L579" href="#L579">579</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception ex) {
+<a class="jxr_linenumber" name="L580" href="#L580">580</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"error when try evaluate '"</span> + vtl + <span class="jxr_string">"'"</span>, ex);
+<a class="jxr_linenumber" name="L581" href="#L581">581</a>         }
+<a class="jxr_linenumber" name="L582" href="#L582">582</a>     }
+<a class="jxr_linenumber" name="L583" href="#L583">583</a> 
+<a class="jxr_linenumber" name="L584" href="#L584">584</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L585" href="#L585">585</a> <em class="jxr_javadoccomment">     * @param href</em>
+<a class="jxr_linenumber" name="L586" href="#L586">586</a> <em class="jxr_javadoccomment">     *            link to relative.</em>
+<a class="jxr_linenumber" name="L587" href="#L587">587</a> <em class="jxr_javadoccomment">     * @return Returns Relativizes the link.</em>
+<a class="jxr_linenumber" name="L588" href="#L588">588</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L589" href="#L589">589</a>     @Nullable
+<a class="jxr_linenumber" name="L590" href="#L590">590</a>     <strong class="jxr_keyword">public</strong> String relativeLink(<strong class="jxr_keyword">final</strong> String href) {
+<a class="jxr_linenumber" name="L591" href="#L591">591</a>         <strong class="jxr_keyword">if</strong> (href == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L592" href="#L592">592</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L593" href="#L593">593</a>         }
+<a class="jxr_linenumber" name="L594" href="#L594">594</a>         <strong class="jxr_keyword">if</strong> (isExternalLink(href)) {
+<a class="jxr_linenumber" name="L595" href="#L595">595</a>             <strong class="jxr_keyword">return</strong> href;
+<a class="jxr_linenumber" name="L596" href="#L596">596</a>         }
+<a class="jxr_linenumber" name="L597" href="#L597">597</a>         <strong class="jxr_keyword">final</strong> String relativePath = (String) velocityContext.get(<span class="jxr_string">"relativePath"</span>);
+<a class="jxr_linenumber" name="L598" href="#L598">598</a>         String relativeLink = PathTool.calculateLink(href, relativePath);
+<a class="jxr_linenumber" name="L599" href="#L599">599</a>         relativeLink = relativeLink.replaceAll(<span class="jxr_string">"&#92;&#92;&#92;&#92;"</span>, <span class="jxr_string">"/"</span>);
+<a class="jxr_linenumber" name="L600" href="#L600">600</a>         <strong class="jxr_keyword">if</strong> (Strings.isNullOrEmpty(relativeLink)) {
+<a class="jxr_linenumber" name="L601" href="#L601">601</a>             relativeLink = <span class="jxr_string">"./"</span>;
+<a class="jxr_linenumber" name="L602" href="#L602">602</a>         }
+<a class="jxr_linenumber" name="L603" href="#L603">603</a>         <em class="jxr_comment">// Attempt to normalise the relative link - this is useful for active link</em>
+<a class="jxr_linenumber" name="L604" href="#L604">604</a>         <em class="jxr_comment">// calculations and better relative links for subdirectories.</em>
+<a class="jxr_linenumber" name="L605" href="#L605">605</a>         <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L606" href="#L606">606</a>         <em class="jxr_comment">// The issue is particularly visible with pages in subdirectories,</em>
+<a class="jxr_linenumber" name="L607" href="#L607">607</a>         <em class="jxr_comment">// so that if you are in &lt;root&gt;/dev/index.html, the relative menu link to</em>
+<a class="jxr_linenumber" name="L608" href="#L608">608</a>         <em class="jxr_comment">// the _same_ page would likely be ../dev/index.html instead of '' or</em>
+<a class="jxr_linenumber" name="L609" href="#L609">609</a>         <em class="jxr_comment">// 'index.html'.</em>
+<a class="jxr_linenumber" name="L610" href="#L610">610</a>         <strong class="jxr_keyword">final</strong> String currentFileLoc = getCurrentFileLocation();
+<a class="jxr_linenumber" name="L611" href="#L611">611</a>         <strong class="jxr_keyword">final</strong> String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
+<a class="jxr_linenumber" name="L612" href="#L612">612</a>         <strong class="jxr_keyword">if</strong> (currentFileLoc.equals(absoluteLink)) {
+<a class="jxr_linenumber" name="L613" href="#L613">613</a>             <em class="jxr_comment">// for matching link, use empty relative link</em>
+<a class="jxr_linenumber" name="L614" href="#L614">614</a>             relativeLink = StringUtils.EMPTY;
+<a class="jxr_linenumber" name="L615" href="#L615">615</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L616" href="#L616">616</a>             <em class="jxr_comment">// relativize the absolute link based on current directory</em>
+<a class="jxr_linenumber" name="L617" href="#L617">617</a>             <em class="jxr_comment">// (uses Maven project link relativization)</em>
+<a class="jxr_linenumber" name="L618" href="#L618">618</a>             <strong class="jxr_keyword">final</strong> String currentFileDir = PathTool.getDirectoryComponent(currentFileLoc);
+<a class="jxr_linenumber" name="L619" href="#L619">619</a>             relativeLink = URITool.relativizeLink(currentFileDir, absoluteLink);
+<a class="jxr_linenumber" name="L620" href="#L620">620</a>         }
+<a class="jxr_linenumber" name="L621" href="#L621">621</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L622" href="#L622">622</a>             LOGGER.debug(<span class="jxr_string">"-- Relative Link ----------------------------------"</span>);
+<a class="jxr_linenumber" name="L623" href="#L623">623</a>             LOGGER.debug(<span class="jxr_string">"link: {}"</span>, href);
+<a class="jxr_linenumber" name="L624" href="#L624">624</a>             LOGGER.debug(<span class="jxr_string">"currentFileLoc: {}"</span>, currentFileLoc);
+<a class="jxr_linenumber" name="L625" href="#L625">625</a>             LOGGER.debug(<span class="jxr_string">"absoluteLink: {}"</span>, absoluteLink);
+<a class="jxr_linenumber" name="L626" href="#L626">626</a>             LOGGER.debug(<span class="jxr_string">"relativeLink: {}"</span>, relativeLink);
+<a class="jxr_linenumber" name="L627" href="#L627">627</a>             LOGGER.debug(<span class="jxr_string">"---------------------------------------------------"</span>);
+<a class="jxr_linenumber" name="L628" href="#L628">628</a>         }
+<a class="jxr_linenumber" name="L629" href="#L629">629</a>         <strong class="jxr_keyword">return</strong> relativeLink;
+<a class="jxr_linenumber" name="L630" href="#L630">630</a>     }
+<a class="jxr_linenumber" name="L631" href="#L631">631</a> 
+<a class="jxr_linenumber" name="L632" href="#L632">632</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L633" href="#L633">633</a> <em class="jxr_javadoccomment">     * @param url</em>
+<a class="jxr_linenumber" name="L634" href="#L634">634</a> <em class="jxr_javadoccomment">     *            a url.</em>
+<a class="jxr_linenumber" name="L635" href="#L635">635</a> <em class="jxr_javadoccomment">     * @return Returns {@code true} whether the link is a external link to the site.</em>
+<a class="jxr_linenumber" name="L636" href="#L636">636</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L637" href="#L637">637</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isExternalLink(<strong class="jxr_keyword">final</strong> String url) {
+<a class="jxr_linenumber" name="L638" href="#L638">638</a>         <strong class="jxr_keyword">if</strong> (url == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L639" href="#L639">639</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L640" href="#L640">640</a>         }
+<a class="jxr_linenumber" name="L641" href="#L641">641</a>         <strong class="jxr_keyword">final</strong> String absoluteResourceURL = <strong class="jxr_keyword">this</strong>.value(<span class="jxr_string">"absoluteResourceURL"</span>);
+<a class="jxr_linenumber" name="L642" href="#L642">642</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(absoluteResourceURL) &amp;&amp; url.startsWith(absoluteResourceURL)) {
+<a class="jxr_linenumber" name="L643" href="#L643">643</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L644" href="#L644">644</a>         }
+<a class="jxr_linenumber" name="L645" href="#L645">645</a>         <strong class="jxr_keyword">return</strong> url.toLowerCase().startsWith(<span class="jxr_string">"http:/"</span>) || url.toLowerCase().startsWith(<span class="jxr_string">"https:/"</span>)
+<a class="jxr_linenumber" name="L646" href="#L646">646</a>                 || url.toLowerCase().startsWith(<span class="jxr_string">"ftp:/"</span>) || url.toLowerCase().startsWith(<span class="jxr_string">"mailto:"</span>)
+<a class="jxr_linenumber" name="L647" href="#L647">647</a>                 || url.toLowerCase().startsWith(<span class="jxr_string">"file:/"</span>) || url.toLowerCase().indexOf(<span class="jxr_string">"://"</span>) != -1;
+<a class="jxr_linenumber" name="L648" href="#L648">648</a>     }
+<a class="jxr_linenumber" name="L649" href="#L649">649</a> 
+<a class="jxr_linenumber" name="L650" href="#L650">650</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L651" href="#L651">651</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L652" href="#L652">652</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L653" href="#L653">653</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isActiveLink(<strong class="jxr_keyword">final</strong> String href) {
+<a class="jxr_linenumber" name="L654" href="#L654">654</a>         <strong class="jxr_keyword">final</strong> String alignedFileName = (String) velocityContext.get(<span class="jxr_string">"alignedFileName"</span>);
+<a class="jxr_linenumber" name="L655" href="#L655">655</a>         <strong class="jxr_keyword">if</strong> (href == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L656" href="#L656">656</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L657" href="#L657">657</a>         }
+<a class="jxr_linenumber" name="L658" href="#L658">658</a>         <em class="jxr_comment">// either empty link (pointing to a page), or if the current file is index.html,</em>
+<a class="jxr_linenumber" name="L659" href="#L659">659</a>         <em class="jxr_comment">// the link may point to the whole directory</em>
+<a class="jxr_linenumber" name="L660" href="#L660">660</a>         <strong class="jxr_keyword">return</strong> Strings.isNullOrEmpty(href) || alignedFileName.endsWith(<span class="jxr_string">"index.html"</span>) &amp;&amp; <span class="jxr_string">"."</span>.equals(href);
+<a class="jxr_linenumber" name="L661" href="#L661">661</a>     }
+<a class="jxr_linenumber" name="L662" href="#L662">662</a> 
+<a class="jxr_linenumber" name="L663" href="#L663">663</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L664" href="#L664">664</a> <em class="jxr_javadoccomment">     * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same</em>
+<a class="jxr_linenumber" name="L665" href="#L665">665</a> <em class="jxr_javadoccomment">     * location as viewed from a new base.</em>
+<a class="jxr_linenumber" name="L666" href="#L666">666</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L667" href="#L667">667</a> <em class="jxr_javadoccomment">     * @param link</em>
+<a class="jxr_linenumber" name="L668" href="#L668">668</a> <em class="jxr_javadoccomment">     *            link to rebase</em>
+<a class="jxr_linenumber" name="L669" href="#L669">669</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing link rebased.</em>
+<a class="jxr_linenumber" name="L670" href="#L670">670</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L671" href="#L671">671</a>     <strong class="jxr_keyword">public</strong> String rebaseLink(<strong class="jxr_keyword">final</strong> String link) {
+<a class="jxr_linenumber" name="L672" href="#L672">672</a>         <strong class="jxr_keyword">return</strong> createURLRebaser().rebaseLink(link);
+<a class="jxr_linenumber" name="L673" href="#L673">673</a>     }
+<a class="jxr_linenumber" name="L674" href="#L674">674</a> 
+<a class="jxr_linenumber" name="L675" href="#L675">675</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L676" href="#L676">676</a> <em class="jxr_javadoccomment">     * Converts a filename to pageId format.</em>
+<a class="jxr_linenumber" name="L677" href="#L677">677</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L678" href="#L678">678</a> <em class="jxr_javadoccomment">     * @param fileName</em>
+<a class="jxr_linenumber" name="L679" href="#L679">679</a> <em class="jxr_javadoccomment">     *            the filename to convert</em>
+<a class="jxr_linenumber" name="L680" href="#L680">680</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the pageId of {@code filename}.</em>
+<a class="jxr_linenumber" name="L681" href="#L681">681</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L682" href="#L682">682</a>     @Nullable
+<a class="jxr_linenumber" name="L683" href="#L683">683</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String slugFilename(@Nullable <strong class="jxr_keyword">final</strong> String fileName) {
+<a class="jxr_linenumber" name="L684" href="#L684">684</a>         <strong class="jxr_keyword">if</strong> (fileName == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L685" href="#L685">685</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L686" href="#L686">686</a>         }
+<a class="jxr_linenumber" name="L687" href="#L687">687</a>         String currentFile = fileName;
+<a class="jxr_linenumber" name="L688" href="#L688">688</a> 
+<a class="jxr_linenumber" name="L689" href="#L689">689</a>         <em class="jxr_comment">// drop the extension</em>
+<a class="jxr_linenumber" name="L690" href="#L690">690</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lastDot = currentFile.lastIndexOf(<span class="jxr_string">"."</span>);
+<a class="jxr_linenumber" name="L691" href="#L691">691</a>         <strong class="jxr_keyword">if</strong> (lastDot &gt;= 0) {
+<a class="jxr_linenumber" name="L692" href="#L692">692</a>             currentFile = currentFile.substring(0, lastDot);
+<a class="jxr_linenumber" name="L693" href="#L693">693</a>         }
+<a class="jxr_linenumber" name="L694" href="#L694">694</a> 
+<a class="jxr_linenumber" name="L695" href="#L695">695</a>         <em class="jxr_comment">// get the short ID (in case of nested files)</em>
+<a class="jxr_linenumber" name="L696" href="#L696">696</a>         <em class="jxr_comment">// String fileName = new File(currentFile).getName();</em>
+<a class="jxr_linenumber" name="L697" href="#L697">697</a>         <em class="jxr_comment">// fileShortId = HtmlTool.slug(fileName);</em>
 <a class="jxr_linenumber" name="L698" href="#L698">698</a> 
-<a class="jxr_linenumber" name="L699" href="#L699">699</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L700" href="#L700">700</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the relative path to root site.</em>
-<a class="jxr_linenumber" name="L701" href="#L701">701</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L702" href="#L702">702</a>     @Nonnull
-<a class="jxr_linenumber" name="L703" href="#L703">703</a>     <strong class="jxr_keyword">private</strong> String getResourcePath() {
-<a class="jxr_linenumber" name="L704" href="#L704">704</a>         <strong class="jxr_keyword">final</strong> String absoluteResourceURL = <strong class="jxr_keyword">this</strong>.value(<span class="jxr_string">"absoluteResourceURL"</span>);
-<a class="jxr_linenumber" name="L705" href="#L705">705</a>         String projectUrl = getProjectLocation();
-<a class="jxr_linenumber" name="L706" href="#L706">706</a>         <strong class="jxr_keyword">final</strong> String currentFileName = (String) velocityContext.get(<span class="jxr_string">"currentFileName"</span>);
-<a class="jxr_linenumber" name="L707" href="#L707">707</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(projectUrl) &amp;&amp; currentFileName != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L708" href="#L708">708</a>             <strong class="jxr_keyword">if</strong> (projectUrl.charAt(projectUrl.length() - 1) != '/') {
-<a class="jxr_linenumber" name="L709" href="#L709">709</a>                 projectUrl += '/';
-<a class="jxr_linenumber" name="L710" href="#L710">710</a>             }
-<a class="jxr_linenumber" name="L711" href="#L711">711</a>             <strong class="jxr_keyword">final</strong> String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(<span class="jxr_string">"."</span>).toString();
-<a class="jxr_linenumber" name="L712" href="#L712">712</a>             <strong class="jxr_keyword">return</strong> URITool.relativizeLink(currentFileDir, absoluteResourceURL);
-<a class="jxr_linenumber" name="L713" href="#L713">713</a>         }
-<a class="jxr_linenumber" name="L714" href="#L714">714</a>         <strong class="jxr_keyword">return</strong> (String) velocityContext.get(<span class="jxr_string">"relativePath"</span>);
-<a class="jxr_linenumber" name="L715" href="#L715">715</a>     }
-<a class="jxr_linenumber" name="L716" href="#L716">716</a> 
-<a class="jxr_linenumber" name="L717" href="#L717">717</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L718" href="#L718">718</a> <em class="jxr_javadoccomment">     * @return Returns new instance of {@link URLRebaser}.</em>
-<a class="jxr_linenumber" name="L719" href="#L719">719</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L720" href="#L720">720</a>     @Nonnull
-<a class="jxr_linenumber" name="L721" href="#L721">721</a>     <strong class="jxr_keyword">private</strong> <a href="../../../../../org/devacfr/maven/skins/reflow/URITool.html">URLRebaser</a> createURLRebaser() {
-<a class="jxr_linenumber" name="L722" href="#L722">722</a>         String childBaseUrl = <strong class="jxr_keyword">this</strong>.getProject().getUrl();
-<a class="jxr_linenumber" name="L723" href="#L723">723</a>         <strong class="jxr_keyword">if</strong> (Strings.isNullOrEmpty(childBaseUrl)) {
-<a class="jxr_linenumber" name="L724" href="#L724">724</a>             childBaseUrl = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L725" href="#L725">725</a>         }
-<a class="jxr_linenumber" name="L726" href="#L726">726</a>         <strong class="jxr_keyword">final</strong> String relativePath = getResourcePath();
-<a class="jxr_linenumber" name="L727" href="#L727">727</a>         String parentBaseUrl = relativePath;
-<a class="jxr_linenumber" name="L728" href="#L728">728</a>         <strong class="jxr_keyword">if</strong> (childBaseUrl != <strong class="jxr_keyword">null</strong> &amp;&amp; childBaseUrl.length() &gt; 0) {
-<a class="jxr_linenumber" name="L729" href="#L729">729</a>             <strong class="jxr_keyword">if</strong> (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
-<a class="jxr_linenumber" name="L730" href="#L730">730</a>                 childBaseUrl += '/';
-<a class="jxr_linenumber" name="L731" href="#L731">731</a>             }
-<a class="jxr_linenumber" name="L732" href="#L732">732</a>             <strong class="jxr_keyword">final</strong> URI child = URI.create(childBaseUrl);
-<a class="jxr_linenumber" name="L733" href="#L733">733</a>             parentBaseUrl = child.resolve(relativePath).normalize().toString();
-<a class="jxr_linenumber" name="L734" href="#L734">734</a>         }
-<a class="jxr_linenumber" name="L735" href="#L735">735</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
-<a class="jxr_linenumber" name="L736" href="#L736">736</a>             LOGGER.debug(<span class="jxr_string">"parentBaseUrl: {}"</span>, parentBaseUrl);
-<a class="jxr_linenumber" name="L737" href="#L737">737</a>             LOGGER.debug(<span class="jxr_string">"childBaseUrl: {}"</span>, childBaseUrl);
-<a class="jxr_linenumber" name="L738" href="#L738">738</a>             LOGGER.debug(<span class="jxr_string">"relativePath: {}"</span>, relativePath);
+<a class="jxr_linenumber" name="L699" href="#L699">699</a>         <em class="jxr_comment">// full file ID includes the nested dirs</em>
+<a class="jxr_linenumber" name="L700" href="#L700">700</a>         <em class="jxr_comment">// replace nesting "/" with "-"</em>
+<a class="jxr_linenumber" name="L701" href="#L701">701</a>         <strong class="jxr_keyword">return</strong> HtmlTool.slug(currentFile.replace(<span class="jxr_string">"/"</span>, <span class="jxr_string">"-"</span>).replace(<span class="jxr_string">"&#92;&#92;"</span>, <span class="jxr_string">"-"</span>));
+<a class="jxr_linenumber" name="L702" href="#L702">702</a>     }
+<a class="jxr_linenumber" name="L703" href="#L703">703</a> 
+<a class="jxr_linenumber" name="L704" href="#L704">704</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L705" href="#L705">705</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the relative path to root site.</em>
+<a class="jxr_linenumber" name="L706" href="#L706">706</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L707" href="#L707">707</a>     @Nonnull
+<a class="jxr_linenumber" name="L708" href="#L708">708</a>     <strong class="jxr_keyword">private</strong> String getResourcePath() {
+<a class="jxr_linenumber" name="L709" href="#L709">709</a>         <strong class="jxr_keyword">final</strong> String absoluteResourceURL = <strong class="jxr_keyword">this</strong>.value(<span class="jxr_string">"absoluteResourceURL"</span>);
+<a class="jxr_linenumber" name="L710" href="#L710">710</a>         String projectUrl = getProjectLocation();
+<a class="jxr_linenumber" name="L711" href="#L711">711</a>         <strong class="jxr_keyword">final</strong> String currentFileName = getCurrentFileName();
+<a class="jxr_linenumber" name="L712" href="#L712">712</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(projectUrl) &amp;&amp; currentFileName != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L713" href="#L713">713</a>             <strong class="jxr_keyword">if</strong> (projectUrl.charAt(projectUrl.length() - 1) != '/') {
+<a class="jxr_linenumber" name="L714" href="#L714">714</a>                 projectUrl += '/';
+<a class="jxr_linenumber" name="L715" href="#L715">715</a>             }
+<a class="jxr_linenumber" name="L716" href="#L716">716</a>             <strong class="jxr_keyword">final</strong> String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(<span class="jxr_string">"."</span>).toString();
+<a class="jxr_linenumber" name="L717" href="#L717">717</a>             <strong class="jxr_keyword">return</strong> URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+<a class="jxr_linenumber" name="L718" href="#L718">718</a>         }
+<a class="jxr_linenumber" name="L719" href="#L719">719</a>         <strong class="jxr_keyword">return</strong> (String) velocityContext.get(<span class="jxr_string">"relativePath"</span>);
+<a class="jxr_linenumber" name="L720" href="#L720">720</a>     }
+<a class="jxr_linenumber" name="L721" href="#L721">721</a> 
+<a class="jxr_linenumber" name="L722" href="#L722">722</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L723" href="#L723">723</a> <em class="jxr_javadoccomment">     * @return Returns new instance of {@link URLRebaser}.</em>
+<a class="jxr_linenumber" name="L724" href="#L724">724</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L725" href="#L725">725</a>     @Nonnull
+<a class="jxr_linenumber" name="L726" href="#L726">726</a>     <strong class="jxr_keyword">private</strong> <a href="../../../../../org/devacfr/maven/skins/reflow/URITool.html">URLRebaser</a> createURLRebaser() {
+<a class="jxr_linenumber" name="L727" href="#L727">727</a>         String childBaseUrl = <strong class="jxr_keyword">this</strong>.getProject().getUrl();
+<a class="jxr_linenumber" name="L728" href="#L728">728</a>         <strong class="jxr_keyword">if</strong> (Strings.isNullOrEmpty(childBaseUrl)) {
+<a class="jxr_linenumber" name="L729" href="#L729">729</a>             childBaseUrl = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L730" href="#L730">730</a>         }
+<a class="jxr_linenumber" name="L731" href="#L731">731</a>         <strong class="jxr_keyword">final</strong> String relativePath = getResourcePath();
+<a class="jxr_linenumber" name="L732" href="#L732">732</a>         String parentBaseUrl = relativePath;
+<a class="jxr_linenumber" name="L733" href="#L733">733</a>         <strong class="jxr_keyword">if</strong> (childBaseUrl != <strong class="jxr_keyword">null</strong> &amp;&amp; childBaseUrl.length() &gt; 0) {
+<a class="jxr_linenumber" name="L734" href="#L734">734</a>             <strong class="jxr_keyword">if</strong> (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
+<a class="jxr_linenumber" name="L735" href="#L735">735</a>                 childBaseUrl += '/';
+<a class="jxr_linenumber" name="L736" href="#L736">736</a>             }
+<a class="jxr_linenumber" name="L737" href="#L737">737</a>             <strong class="jxr_keyword">final</strong> URI child = URI.create(childBaseUrl);
+<a class="jxr_linenumber" name="L738" href="#L738">738</a>             parentBaseUrl = child.resolve(relativePath).normalize().toString();
 <a class="jxr_linenumber" name="L739" href="#L739">739</a>         }
-<a class="jxr_linenumber" name="L740" href="#L740">740</a> 
-<a class="jxr_linenumber" name="L741" href="#L741">741</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../org/devacfr/maven/skins/reflow/URITool.html">URLRebaser</a>(parentBaseUrl, childBaseUrl);
-<a class="jxr_linenumber" name="L742" href="#L742">742</a>     }
-<a class="jxr_linenumber" name="L743" href="#L743">743</a> 
-<a class="jxr_linenumber" name="L744" href="#L744">744</a> }
+<a class="jxr_linenumber" name="L740" href="#L740">740</a>         <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L741" href="#L741">741</a>             LOGGER.debug(<span class="jxr_string">"parentBaseUrl: {}"</span>, parentBaseUrl);
+<a class="jxr_linenumber" name="L742" href="#L742">742</a>             LOGGER.debug(<span class="jxr_string">"childBaseUrl: {}"</span>, childBaseUrl);
+<a class="jxr_linenumber" name="L743" href="#L743">743</a>             LOGGER.debug(<span class="jxr_string">"relativePath: {}"</span>, relativePath);
+<a class="jxr_linenumber" name="L744" href="#L744">744</a>         }
+<a class="jxr_linenumber" name="L745" href="#L745">745</a> 
+<a class="jxr_linenumber" name="L746" href="#L746">746</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../org/devacfr/maven/skins/reflow/URITool.html">URLRebaser</a>(parentBaseUrl, childBaseUrl);
+<a class="jxr_linenumber" name="L747" href="#L747">747</a>     }
+<a class="jxr_linenumber" name="L748" href="#L748">748</a> 
+<a class="jxr_linenumber" name="L749" href="#L749">749</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2012&#x2013;2019 <a href="http://devacfr.github.io">Friederich Christophe</a>. All rights reserved.</div>
