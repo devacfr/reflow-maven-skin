@@ -29,7 +29,8 @@ descriptor instead of using `<custom><reflowSkin>`:
 
 <div class="alert alert-info">
     <strong>Note</strong>
-    <p>Unlike the **maven fluido skin**, <code>&lt;name&gt;</code> is used to display h1 heading title.</p>
+    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p>
+    <p>Unlike maven fluido skin plugin, <code>&lt;name&gt;</code> is used to display h1 heading title. Use <code>alt</code> element instead <code>name</code>.</p>
     <p><code>&lt;name&gt;</code> element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p>
 </div>
 

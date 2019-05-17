@@ -61,7 +61,7 @@
     <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
     <url>${scm-url}/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>v2.0.0</tag>
   </scm>
   <issueManagement>
     <system>${issue-system}</system>

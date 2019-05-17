@@ -131,7 +131,7 @@ Furthermore, the injected XHTML allows using Velocity variables. Therefore you c
 ```
 
 [body-head-config]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head
-[highlight-js-config]: reflow-documentation.html#misc.html_toc_code_highlight
+[highlight-js-config]: reflow-documentation.html#configuration_toc_code_highlight
 [resource-reuse]: reflow-documentation.html#multi-module_toc_reuse_resources
 
 

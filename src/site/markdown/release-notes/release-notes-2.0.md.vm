@@ -17,7 +17,20 @@ This focus of this release is:
 
 For facilitate the migration from version 1x, read [Migration to v2](../reflow-maven-skin/reflow-documentation.html#migration).
 
-$h2 Changelog
+$h2 Changelog 2.0.1
+**2019-05-17**
+
+$h3 Minor enhancements
+
+- Move .bannerRight and .bannerLeft class to div container parent.
+- Allow to set width and height of navbar image with string value as 'auto'
+
+$h3 Bug fixes
+
+- Fix highlighting with asciidoc rendering.
+- Fix wrong documentation concerning unpack fontawesome dependency
+
+$h2 Changelog 2.0.0
 **2019-05-10**
 
 $h3 Minor enhancements
@@ -27,11 +40,14 @@ $h3 Minor enhancements
 - Add popper.js bootsrap dependency ([#34][]).
 - Add local resources easily during site generation ([#28][]).
 - Remove support of customized Bootsrap theme ([#32][]).
+- Move .bannerRight and .bannerLeft class to div container parent.
 
 $h3 Bug fixes
 
 - Unexpected velocity.log file created during site generation ([#30][]) [Pull request #31](https://github.com/devacfr/reflow-maven-skin/pull/31) (Maxim Solodovnik <solomax666@gmail.com>).
 - Fix active link on menu item when link is index.html page ([#35][]).
+- Fix NPE when navbar element is not declared ([#45][]).
+- Fix highlighting with asciidoc rendering.
 
 [#7]: ${issue-url}/7
 [#19]: ${issue-url}/19
@@ -40,3 +56,4 @@ $h3 Bug fixes
 [#32]: ${issue-url}/32
 [#34]: ${issue-url}/34
 [#35]: ${issue-url}/35
+[#35]: ${issue-url}/45
