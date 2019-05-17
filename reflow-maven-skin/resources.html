@@ -52,12 +52,13 @@
                 &lt;artifactItem&gt;
                     &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
                     &lt;artifactId&gt;reflow-default-webdeps&lt;/artifactId&gt;
-                    &lt;version&gt;2.0.0&lt;/version&gt;
+                    &lt;version&gt;2.0.1&lt;/version&gt;
                     &lt;type&gt;jar&lt;/type&gt;
                     &lt;overWrite&gt;false&lt;/overWrite&gt;
                     &lt;includes&gt;
                         **/css/bootstrap.min.css,
-                        **/fonts/*,
+                        **/css/fontawesome/*,
+                        **/css/fontawesome/webfonts/*,
                         **/js/*.js,
                         **/js/languages/*,
                         **/js/styles/github.min.css
@@ -72,6 +73,7 @@
 </pre> 
   </div> 
  </div> 
+ <p><b>Note</b>: You can use <code class="\&quot;literal\&quot;">${session.executionRootDirectory}</code> for relativize url (see [Multi-module site][reflow-multi-modules] documentation).</p> 
  <p>Therefore it is easier to get appropriate Bootstrap files directly from the <a class="externalLink" href="http://bootswatch.com/">Bootswatch</a> and use them with the Reflow skin. Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used. Use at your own risk, however, as major version changes are likely to break the website!</p> 
  <p>When using <code class="\&quot;literal\&quot;">&lt;localResources&gt;</code>, the following files need to be available in the corresponding directories within your project’s <code class="\&quot;literal\&quot;">src/site/resources</code> folder:</p> 
  <ul> 
@@ -91,7 +93,7 @@
  <h2 id="resources_toc_additional_css_files">Additional CSS files</h2> 
  <p>element <span class="badge badge-secondary">site.xml</span></p> 
  <p>Additional CSS files (or other resources) can be added to the page head using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head"><code class="\&quot;literal\&quot;">&lt;body&gt;&lt;head&gt;</code> configuration</a> in the <code class="\&quot;literal\&quot;">site.xml</code> site descriptor. This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.</p> 
- <p>The <code class="\&quot;literal\&quot;">&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="reflow-documentation.html#misc.html_toc_code_highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code class="\&quot;literal\&quot;">&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p> 
+ <p>The <code class="\&quot;literal\&quot;">&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="reflow-documentation.html#configuration_toc_code_highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code class="\&quot;literal\&quot;">&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;project&gt;

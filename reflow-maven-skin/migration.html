@@ -31,11 +31,9 @@
   <li>Remove <code class="\&quot;literal\&quot;">&lt;bootstrapCSS&gt;</code> element</li> 
   <li>Remove <code class="\&quot;literal\&quot;">&lt;navbarInverse&gt;</code> element, replace by <code class="\&quot;literal\&quot;">cssClass</code> attribute (see <a href="#migration_toc_navbar_component">Navbar component</a></li> 
   <li>Dropped the Affix jQuery plugin, replaced by position <code class="\&quot;literal\&quot;">sticky</code> (can remove all affix reference in your css).</li> 
-  <li>Remove support of customized Bootsrap theme: 
-   <ul> 
-    <li>Remove <code class="\&quot;literal\&quot;">css/bootstrap-responsive.min.css</code> link</li> 
-    <li>Remove <code class="\&quot;literal\&quot;">js/html5.js</code> link</li> 
-   </ul> </li> 
+  <li>Remove support of customized Bootsrap theme:</li> 
+  <li>Remove <code class="\&quot;literal\&quot;">css/bootstrap-responsive.min.css</code> link</li> 
+  <li>Remove <code class="\&quot;literal\&quot;">js/html5.js</code> link</li> 
   <li>Add <code class="\&quot;literal\&quot;">popper.js</code> library required by Bootstrap</li> 
  </ul> 
  <div class="section"> 
@@ -81,7 +79,8 @@
                 &lt;overWrite&gt;false&lt;/overWrite&gt;
                 &lt;includes&gt;
                 **/css/*, &lt;!-- add bootstrap and awesome font --&gt;
-                **/css/fontawesome/**/*, &lt;!-- add awesome font --&gt;
+                **/css/fontawesome/*, &lt;!-- add awesome font --&gt;
+                **/css/fontawesome/webfonts/*,
                 **/js/*.js,  &lt;!-- add all javascripts --&gt;
                 **/js/languages/*,  &lt;!-- add all highlight languages --&gt;
                 **/js/styles/default.min.css &lt;!-- add 'default' highlight style --&gt;
@@ -153,14 +152,15 @@
  <p>This list highlights key changes by component between v1.4 and v2.0.0.</p> 
  <div class="section"> 
   <h3 id="migration_toc_banner">Banner</h3> 
-  <p>Before, you had the solution to display either a logo or a title. Now you have the choice to display a logo and a title.</p> 
+  <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p> 
   <ul> 
    <li><code class="\&quot;literal\&quot;">name</code> is used to display title heading in elements <b>bannerLeft</b> and <b>bannerRight</b>, use <code class="\&quot;literal\&quot;">alt</code> element instead <code class="\&quot;literal\&quot;">name</code>.</li> 
+   <li><code class="\&quot;literal\&quot;">.bannerRight</code> and <code class="\&quot;literal\&quot;">.bannerLeft</code> class has been move to div container parent.</li> 
   </ul> 
  </div> 
  <div class="section"> 
   <h3 id="migration_toc_navside_menu">Navside menu</h3> 
-  <p>It is a new component used in documentation page support. (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation )</p> 
+  <p>It is a new component used in documentation page support (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation for more information).</p> 
   <div> 
    <div> 
     <pre class="source">&lt;navside-menu cssClass="bootstrap classes"
@@ -177,7 +177,7 @@
     <pre class="source">&lt;toc cssClass="navbar-dark bg-dark|bootstrap classes"
      theme="light|dark"
      background="bootstrap colour theme"
-     numberItems="number|-1" 
+     numberItems="number|-1"
      flatten="false|true"&gt;top&lt;/toc&gt;
 </pre> 
    </div> 
@@ -192,7 +192,7 @@
  </div> 
  <div class="section"> 
   <h3 id="migration_toc_toc_sidebar_component">Toc sidebar component</h3> 
-  <p>Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content.</p> 
+  <p>Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content (see <a href="reflow-documentation.html#components-toc">Table of Contents Component</a> documentation for more information).</p> 
   <div> 
    <div> 
     <pre class="source">&lt;toc position="fixed|relative" autoExpandable="true|false" expanded="true|false"&gt;sidebar&lt;/toc&gt;
@@ -207,6 +207,7 @@
  </div> 
  <div class="section"> 
   <h3 id="migration_toc_navbar_component">Navbar component</h3> 
+  <p>(see <a href="reflow-documentation.html#components-navbar">Top Navbar Component</a> documentation for more information).</p> 
   <div> 
    <div> 
     <pre class="source">&lt;navbar filterMenu="Regex filter"
