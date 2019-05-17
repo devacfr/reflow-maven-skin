@@ -165,7 +165,7 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // calculate the page ID from the current file name
-        final Object currentFileObj = velocityContext.get("currentFileName");
+        final Object currentFileObj = getCurrentFileName();
         if (currentFileObj instanceof String) {
             fileId = slugFilename((String) currentFileObj);
         }
@@ -244,6 +244,7 @@ public class SkinConfigTool extends SafeConfig {
             LOGGER.debug("Project id: {}", projectId);
             LOGGER.debug("File id: {}", fileId);
             LOGGER.debug("Context: {}", this.context);
+            LOGGER.debug("Namespace: {}", this.namespace);
             LOGGER.debug("---------------------------------------------------");
         }
     }
@@ -557,10 +558,14 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     @Nonnull
+    public String getCurrentFileName() {
+        return (String)velocityContext.get("currentFileName");
+    }
+
+    @Nonnull
     public String getCurrentFileLocation() {
         final String projectSiteLoc = getProjectLocation();
-        final String currentFileName = (String) velocityContext.get("currentFileName");
-        return URITool.toURI(projectSiteLoc).resolve(currentFileName).toString();
+        return URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
     }
 
     @Nullable
@@ -703,7 +708,7 @@ public class SkinConfigTool extends SafeConfig {
     private String getResourcePath() {
         final String absoluteResourceURL = this.value("absoluteResourceURL");
         String projectUrl = getProjectLocation();
-        final String currentFileName = (String) velocityContext.get("currentFileName");
+        final String currentFileName = getCurrentFileName();
         if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
             if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
                 projectUrl += '/';

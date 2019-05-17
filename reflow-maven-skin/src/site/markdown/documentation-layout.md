@@ -19,7 +19,7 @@ To declare a page as documentation layout, create an empty page (`documentation.
 ```xml
 <pages>
     ...
-    <documentation type="doc">
+    <documentation type="doc" project="project-id">
         <menu name="Documentation" selectFirstOnExpand="true|false">
             <item name="One page" href="one-page.html" />
             <item name="First level" >
@@ -31,11 +31,17 @@ To declare a page as documentation layout, create an empty page (`documentation.
 </pages>
 ```
 
+- **project** <span class="badge badge-light">v1.0</span> - `project` attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. **Be careful** that `name` attribute in root `<project>` element in site.xml is used to set the site title.
 - **selectFirstOnExpand** <span class="badge badge-light">v2.0</span> - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is `true`.
 
 The example above produces the following `navside` menu:
 
 ![navside menu preview](images/navside-menu-preview.png)
+
+<div class="alert alert-warning">
+    <p class="alert-heading"><b>You are a page in other project module displaying bizarrely</b></p>
+    <p>This page has maybe the same filename as declared page used in documentation layout. You can resolve this problem by adding <code>project</code> attribute or change the filename of one of the files.</p>
+</div>
 
 ## Improve documentation
 

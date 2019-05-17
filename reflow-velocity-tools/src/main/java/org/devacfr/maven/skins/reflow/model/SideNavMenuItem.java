@@ -36,6 +36,9 @@ public class SideNavMenuItem {
     private String icon;
 
     /** */
+    private String slugName;
+
+    /** */
     private List<SideNavMenuItem> items;
 
     /** */
@@ -99,7 +102,16 @@ public class SideNavMenuItem {
      * @return
      */
     public String getSlugName() {
-        return SkinConfigTool.slugFilename(href);
+        return slugName;
+    }
+
+    /**
+     * @param slugName
+     * @return
+     */
+    public SideNavMenuItem withSlugName(final String slugName) {
+        this.slugName = slugName;
+        return this;
     }
 
     /**

@@ -23,10 +23,10 @@
         <div class="row m-1" id="banner">
           <div class="col-md-12">
             <div class="float-left bannerLeft">
-              #banner ( $decoration.bannerLeft )
+              #banner ( $decoration.bannerLeft "bannerLeft")
             </div>
             <div class="float-right bannerRight">
-              #banner ( $decoration.bannerRight )
+              #banner ( $decoration.bannerRight "bannerRight")
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
 #**
  * Outputs the top banner contents
  *
- *##macro ( banner $banner)#*
+ *##macro ( banner $banner $id)#*
     *##if ( $banner )#*
         *##if ( $banner.href )
                     <a href="$config.relativeLink( $banner.href )">
@@ -45,7 +45,7 @@
 #*      *##end
 ##
 #*      *##if ( $banner.src )
-            <img class="d-inline-block float-left m-2" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end
+            <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end
 #*              *##if ( $banner.border ) border="$banner.border"#end##
 #*              *##if ( $banner.width ) width="$banner.width"#end##
 #*              *##if ( $banner.height ) height="$banner.height"#end##
