@@ -29,6 +29,7 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 /**
@@ -95,6 +96,11 @@ public class NavSideMenu extends BsComponent {
         for (final Xpp3Dom page : pages) {
             final String type = page.getAttribute("type");
             if ("doc".equals(type)) {
+                // This allows preventing accidental reuse of child page in other module of project
+                String projectId = page.getAttribute("project");
+                if (!Strings.isNullOrEmpty(projectId) && !projectId.equals(config.getProjectId())){
+                    continue;
+                }
                 final Xpp3Dom menu = page.getChild("menu");
                 if (menu == null) {
                     continue;

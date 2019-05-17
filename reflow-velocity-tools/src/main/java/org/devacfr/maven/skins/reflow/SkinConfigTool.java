@@ -244,6 +244,7 @@ public class SkinConfigTool extends SafeConfig {
             LOGGER.debug("Project id: {}", projectId);
             LOGGER.debug("File id: {}", fileId);
             LOGGER.debug("Context: {}", this.context);
+            LOGGER.debug("Namespace: {}", this.namespace);
             LOGGER.debug("---------------------------------------------------");
         }
     }
