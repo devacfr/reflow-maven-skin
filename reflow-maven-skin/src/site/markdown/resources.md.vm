@@ -52,7 +52,8 @@ Note that when using `<localResources>`, you need to provide the necessary local
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css,
-                        **/fonts/*,
+                        **/css/fontawesome/*,
+                        **/css/fontawesome/webfonts/*,
                         **/js/*.js,
                         **/js/languages/*,
                         **/js/styles/github.min.css
@@ -65,6 +66,8 @@ Note that when using `<localResources>`, you need to provide the necessary local
     </executions>
 </plugin>
 ```
+
+**Note**: You can use `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation).
 
 Therefore it is easier to get appropriate Bootstrap files directly from the [Bootswatch][bootswatch] and use them with the Reflow skin. Furthermore, such approach allows you to customise the Bootstrap and jQuery versions used. Use at your own risk, however, as major version changes are likely to break the website!
 
@@ -128,7 +131,7 @@ Furthermore, the injected XHTML allows using Velocity variables. Therefore you c
 ```
 
 [body-head-config]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head
-[highlight-js-config]: reflow-documentation.html#misc.html_toc_code_highlight
+[highlight-js-config]: reflow-documentation.html#configuration_toc_code_highlight
 [resource-reuse]: reflow-documentation.html#multi-module_toc_reuse_resources
 
 

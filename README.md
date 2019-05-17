@@ -46,7 +46,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
   </skin>
   ...
 </project>
@@ -151,12 +151,13 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                 <artifactItem>
                     <groupId>io.github.devacfr.maven.skins</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.0.0</version>
+                    <version>2.0.1</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
                         **/css/bootstrap.min.css, <!-- can be remove if use bootswatch theme-->
-                        **/css/fontawesome/**/*,
+                        **/css/fontawesome/*,
+                        **/css/fontawesome/webfonts/*,
                         **/css/themes/flaty/*.css, <!-- use flaty bootswatch theme-->
                         **/js/*.js,
                         **/js/languages/*,
@@ -164,7 +165,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                     </includes>
                 </artifactItem>
             </artifactItems>
-            <outputDirectory>${main.basedir}/site</outputDirectory>
+            <outputDirectory>${main.basedir}/target/site</outputDirectory>
         </configuration>
         </execution>
     </executions>
