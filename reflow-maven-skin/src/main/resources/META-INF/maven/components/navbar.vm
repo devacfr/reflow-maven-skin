@@ -44,7 +44,7 @@
                 <ul class="nav navbar-nav ml-auto">
 ##
 #*  *##foreach ( $menu in $pageContext.navbar.menus)
-#*      *##if( $menu.menuItems.isEmpty() )
+#*      *##if( $menu.menuItems.isEmpty() && $menu.name)
                     <li class="nav-item #if( $menu.active)active#end" >#link ( $menu.href $menu.name $menu.target "nav-link")</li>
 #*      *##else
 #*          *##if ( $menu.name )
