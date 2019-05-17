@@ -68,7 +68,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>2.0.0</version>
+          <version>2.0.2</version>
         </dependency>
         ...
       </dependencies>
