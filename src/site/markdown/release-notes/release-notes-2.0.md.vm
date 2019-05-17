@@ -17,6 +17,18 @@ This focus of this release is:
 
 For facilitate the migration from version 1x, read [Migration to v2](../reflow-maven-skin/reflow-documentation.html#migration).
 
+$h2 Changelog 2.0.2
+**2019-05-18**
+
+$h3 Bug fixes
+
+- Level attribute on toc sidebar doesn't work correctly ([#50][]).
+- Frame page has wrong relative path ([#48][]).
+- Slogan is not display anymore ([#47][]).
+- Can not have page with same filename as one is frame page ([#49][]).
+- Fix menu in navbar displayed when name is empty or null.
+- Fix relative path in footer menu.
+
 $h2 Changelog 2.0.1
 **2019-05-17**
 
@@ -56,4 +68,8 @@ $h3 Bug fixes
 [#32]: ${issue-url}/32
 [#34]: ${issue-url}/34
 [#35]: ${issue-url}/35
-[#35]: ${issue-url}/45
+[#45]: ${issue-url}/45
+[#50]: ${issue-url}/50
+[#48]: ${issue-url}/48
+[#47]: ${issue-url}/47
+[#49]: ${issue-url}/49
