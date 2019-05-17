@@ -18,73 +18,61 @@
 -------------------------------------------------- */
 
 /** add external character for external link in body */
-.main-body .externalLink:after, footer .externalLink:after {
-    font-family: 'Font Awesome 5 Free';
-    display: inline-block;
-    content: "\f35d";
-    font-size: .6rem;
-    font-weight: 900;
-    margin-left: 3px;
+.main-body .externalLink:after,
+footer .externalLink:after {
+  font-family: 'Font Awesome 5 Free';
+  display: inline-block;
+  content: "\f35d";
+  font-size: .6rem;
+  font-weight: 900;
+  margin-left: 3px;
 }
 
 /** add external character for external link in footer */
 footer .externalLink:after {
-    font-family: 'Font Awesome 5 Free';
-    display: inline-block;
-    content: "\f35d";
-    font-size: .7rem;
-    font-weight: 900;
-    margin-left: 5px;
+  font-family: 'Font Awesome 5 Free';
+  display: inline-block;
+  content: "\f35d";
+  font-size: .7rem;
+  font-weight: 900;
+  margin-left: 5px;
 }
 
 
 /* Code in headings */
 h3 code {
-	font-size: 14px;
-	font-weight: normal;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .anchorjs-link {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
 }
 
 /* Jumbotrons
 -------------------------------------------------- */
-.jumbotron {
-	position: relative;
-	padding: 40px 0;
-}
 
 .jumbotron h1 {
-	font-size: 3rem;
-	font-weight: bold;
-	letter-spacing: -1px;
-    line-height: 1;
-    color: var(--dark);
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  color: var(--dark);
 }
 
 
 .jumbotron .btn-large {
-	font-size: 20px;
-	font-weight: normal;
-	padding: 14px 24px;
-	margin-right: 10px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 14px 24px;
+  margin-right: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 
 .jumbotron .btn-large small {
-	font-size: 14px;
-}
-
-/* Specific jumbotrons
-------------------------- */
-/* supporting docs pages */
-.subhead {
-	padding-bottom: 5px;
-	margin-bottom: 9px;
-	padding-top: 10px;
+  font-size: 14px;
 }
 
 
@@ -93,57 +81,61 @@ h3 code {
 /*--------------------------------------------------
  * Responsive Docs
  *-------------------------------------------------- */
-@media ( max-width : 480px) {
+@media (max-width : 480px) {
 
-	/* Adjust the jumbotron */
-	.jumbotron h1, .jumbotron p {
-		text-align: center;
-		margin-right: 0;
-	}
-	.jumbotron h1 {
-		font-size: 45px;
-		margin-right: 0;
-	}
-	.jumbotron p {
-		margin-right: 0;
-		margin-left: 0;
-		font-size: 18px;
-		line-height: 24px;
-	}
-	.jumbotron .btn {
-		display: block;
-		font-size: 18px;
-		padding: 10px 14px;
-		margin: 0 auto 10px;
-	}
+  /* Adjust the jumbotron */
+  .jumbotron h1,
+  .jumbotron p {
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .jumbotron h1 {
+    font-size: 45px;
+    margin-right: 0;
+  }
+
+  .jumbotron p {
+    margin-right: 0;
+    margin-left: 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .jumbotron .btn {
+    display: block;
+    font-size: 18px;
+    padding: 10px 14px;
+    margin: 0 auto 10px;
+  }
 }
 
-@media ( max-width : 768px) {
+@media (max-width : 768px) {
 
 
-	/* Jumbotron buttons */
-	.jumbotron .btn {
-		margin-bottom: 10px;
-	}
+  /* Jumbotron buttons */
+  .jumbotron .btn {
+    margin-bottom: 10px;
+  }
 }
 
-@media ( min-width : 480px) and (max-width: 768px) {
-	/* Scale down the jumbotron content */
-	.jumbotron h1 {
-		font-size: 54px;
-	}
-	.jumbotron p {
-		margin-right: 0;
-		margin-left: 0;
-	}
+@media (min-width : 480px) and (max-width: 768px) {
+
+  /* Scale down the jumbotron content */
+  .jumbotron h1 {
+    font-size: 54px;
+  }
+
+  .jumbotron p {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 
-@media ( min-width : 768px) and (max-width: 980px) {
+@media (min-width : 768px) and (max-width: 980px) {
 
-	/* Scale down the jumbotron content */
-	.jumbotron h1 {
-		font-size: 72px;
-	}
+  /* Scale down the jumbotron content */
+  .jumbotron h1 {
+    font-size: 72px;
+  }
 }
-
-

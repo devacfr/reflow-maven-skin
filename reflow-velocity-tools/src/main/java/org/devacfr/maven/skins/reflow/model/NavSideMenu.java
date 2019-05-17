@@ -29,6 +29,7 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 /**
@@ -95,13 +96,18 @@ public class NavSideMenu extends BsComponent {
         for (final Xpp3Dom page : pages) {
             final String type = page.getAttribute("type");
             if ("doc".equals(type)) {
+                // This allows preventing accidental reuse of child page in other module of project
+                String projectId = page.getAttribute("project");
+                if (!Strings.isNullOrEmpty(projectId) && !projectId.equals(config.getProjectId())){
+                    continue;
+                }
                 final Xpp3Dom menu = page.getChild("menu");
                 if (menu == null) {
                     continue;
                 }
                 final String pageName = page.getName();
                 // create a flatten list containing all menuItem.
-                addMenuItemRecursively(includePages, menu, pageName, true);
+                addMenuItemRecursively(includePages, config, menu, pageName, true);
             }
         }
         return includePages;
@@ -121,7 +127,7 @@ public class NavSideMenu extends BsComponent {
         final List<SideNavMenuItem> items = Lists.newArrayList();
         if (menu != null) {
             final String pageName = pageNode.getName();
-            addMenuItemRecursively(items, menu, pageName, false);
+            addMenuItemRecursively(items, config, menu, pageName, false);
         }
         this.withName(menu.getAttribute("name"))
                 .withItems(items)
@@ -235,23 +241,25 @@ public class NavSideMenu extends BsComponent {
      * @param pageName
      * @param flatten
      */
-    private static void addMenuItemRecursively(final List<SideNavMenuItem> menuItems,
-        final Xpp3Dom parentNode,
-        final String pageName,
+    private static void addMenuItemRecursively(@Nonnull final List<SideNavMenuItem> menuItems,
+        @Nonnull final SkinConfigTool config,
+        @Nonnull final Xpp3Dom parentNode,
+        @Nonnull final String pageName,
         final boolean flatten) {
         for (final Xpp3Dom item : Xpp3Utils.getChildrenNodes(parentNode, "item")) {
             final String href = item.getAttribute("href");
             final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
                     .withParent(pageName)
-                    .withHref(href)
+                    .withHref(config.relativeLink(href))
+                    .withSlugName(SkinConfigTool.slugFilename(href))
                     .withIcon(item.getAttribute("icon"));
             menuItems.add(menuItem);
             if (flatten) {
-                addMenuItemRecursively(menuItems, item, pageName, true);
+                addMenuItemRecursively(menuItems, config, item, pageName, true);
             } else {
                 final List<SideNavMenuItem> list = new ArrayList<>();
                 menuItem.withItems(list);
-                addMenuItemRecursively(list, item, pageName, false);
+                addMenuItemRecursively(list, config, item, pageName, false);
             }
         }
     }
