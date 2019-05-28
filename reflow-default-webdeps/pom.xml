@@ -109,6 +109,14 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.openclover</groupId>
+        <artifactId>clover-maven-plugin</artifactId>
+        <version>${maven-clover-plugin.version}</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
@@ -462,12 +470,12 @@
             <configuration>
               <basedir>${project.build.outputDirectory}/css/fontawesome</basedir>
               <includes>
-                <include>**/*.css</include>
+                <include>**/all.min.css</include>
               </includes>
               <replacements>
                 <replacement>
-                  <token>../webfonts</token>
-                  <value>./webfonts</value>
+                  <token>\(..\/webfonts</token>
+                  <value>\(.\/webfonts</value>
                 </replacement>
               </replacements>
             </configuration>

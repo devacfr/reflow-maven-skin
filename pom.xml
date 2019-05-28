@@ -170,6 +170,7 @@
     <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+    <maven-clover-plugin.version>4.3.1</maven-clover-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
     <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
   </properties>
@@ -567,6 +568,19 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.openclover</groupId>
+        <artifactId>clover-maven-plugin</artifactId>
+        <version>${maven-clover-plugin.version}</version>
+        <configuration>
+          <generateHtml>true</generateHtml>
+          <title>Reflow Maven Skin</title>
+          <!-- <targetPercentage>75%</targetPercentage> -->
+          <!-- Use custom report descriptor -->
+          <jdk>${maven.compiler.source}</jdk>
+          <singleCloverDatabase>true</singleCloverDatabase>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -679,6 +693,18 @@
           <reportSet>
             <reports>
               <report>rat</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.openclover</groupId>
+        <artifactId>clover-maven-plugin</artifactId>
+        <version>${maven-clover-plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>clover</report>
             </reports>
           </reportSet>
         </reportSets>

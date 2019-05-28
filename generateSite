@@ -18,5 +18,5 @@
 # under the License.
 #
 
-./generateSite $@
-./mvnw scm-publish:publish-scm $@
+./mvnw clean clover:instrument install clover:aggregate site site:stage $@
+
