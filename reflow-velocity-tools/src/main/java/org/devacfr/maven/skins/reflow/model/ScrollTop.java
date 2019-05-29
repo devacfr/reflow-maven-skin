@@ -47,7 +47,7 @@ public class ScrollTop extends Component {
     @Override
     public String getCssOptions() {
         if (isSmooth()) {
-            return "scroll-top-smooth-enabled";
+            return "scrolltop-smooth-enabled";
         }
         return super.getCssOptions();
     }

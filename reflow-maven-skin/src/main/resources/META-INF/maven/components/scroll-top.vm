@@ -15,10 +15,7 @@
 ##
 ## scroll top
 #macro ( renderScrollTop )
-    <div id="m-scroll-top" style="display: none;">
-        <a href="javascript:;">
-            <div class="arrow"></div>
-            <div class="stick"></div>
-        </a>
+    <div id="m_scrolltop" class="m-scrolltop">
+		<i class="fa fa-arrow-up"></i>
     </div>
 #end
