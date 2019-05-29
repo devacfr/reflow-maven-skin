@@ -78,17 +78,19 @@
         <column>Contribute</column>
         <column>Documentation|reports</column>
       </bottomNav>
-      <bottomDescription>
+      <bottomDescription quote="false">
         <![CDATA[
-          <span class="color-highlight">Reflow</span> is an Apache Maven site skin built on
-          <a href="http://getbootstrap.com" title="Bootstrap">Bootstrap</a>.
-          It allows various structural and stylistic customizations to create a
-          modern-looking Maven-generated website.
-          <div class="m-1">
-            <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-envelope"></i></a>
-            <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank"><i class="fab fa-gitter"></i></a>
+          <div>
+            <span class="color-highlight">Reflow</span> is an Apache Maven site skin built on
+            <a href="http://getbootstrap.com" title="Bootstrap">Bootstrap</a>.
+            It allows various structural and stylistic customizations to create a
+            modern-looking Maven-generated website.
+            <div class="m-1">
+              <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-envelope"></i></a>
+              <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank"><i class="fab fa-gitter"></i></a>
+            </div>
           </div>
         ]]>
       </bottomDescription>

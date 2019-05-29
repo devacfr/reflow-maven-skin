@@ -6,7 +6,8 @@
   in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
   ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -21,6 +22,15 @@
   <url>${site.url}${project.artifactId}</url>
   <description>Reflow Default Web Dependencies contains all default web dependencies</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>io.github.devacfr</groupId>
+      <artifactId>highlightjs</artifactId>
+      <version>${highlightJsVersion}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/src/main/resources/highlight.js-${highlightJsVersion}.jar</systemPath>
+    </dependency>
+  </dependencies>
   <build>
     <pluginManagement>
       <plugins>
@@ -98,13 +108,15 @@
                   <artifactId>anchorjs</artifactId>
                   <version>${anchorJsVesrion}</version>
                 </artifactItem>
-                <artifactItem>
-                  <groupId>org.webjars</groupId>
-                  <artifactId>highlightjs</artifactId>
-                  <version>${highlightJsVersion}</version>
-                </artifactItem>
               </artifactItems>
             </configuration>
+          </execution>
+          <execution>
+            <id>unpack-js-project-deps</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
@@ -158,7 +170,7 @@
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/META-INF/resources/webjars/highlightjs/${highlightJsVersion}</directory>
+                  <directory>${project.build.directory}/dependency/META-INF/resources/highlightjs/${highlightJsVersion}</directory>
                   <targetPath>${project.build.outputDirectory}/js</targetPath>
                   <includes>
                     <include>languages/*.js</include>
