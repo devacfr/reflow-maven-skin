@@ -67,7 +67,7 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" cssClass="navbar-dark bg-dark border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Tools|Contribute|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
+      <navbar filterMenu="Tools|Documentation|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
         <image src="$resourcePath/images/reflow.png" />
       </navbar>
       <navside-menu cssClass="navside-light bg-light"/>
@@ -110,10 +110,13 @@
             <sidebar />
           </sections>
         </index>
-        <contribute>
-          <toc>false</toc>
-          <breadcrumbs>false</breadcrumbs>
-        </contribute>
+        <development-documentation type="doc">
+          <menu name="Development Documentation">
+            <item name="Contribute" href="dev/contribute.html" />
+            <item name="Code Conventions" href="dev/code-conventions.html"/>
+            <item name="Release Management" href="dev/release-management.html"/>
+          </menu>
+        </development-documentation>
         <licenses>
           <highlightJs>false</highlightJs>
           <toc>false</toc>
@@ -175,7 +178,6 @@
 
     <links>
       <item name="GitHub project" href="${this.scm-url}" target="_blank"/>
-      <item name="Documentation" href="reflow-maven-skin/reflow-documentation.html" />
     </links>
 
     <breadcrumbs>
@@ -193,13 +195,14 @@
       <item name="Tools Javadoc" href="reflow-velocity-tools/apidocs/" />
     </menu>
     <menu name="Contribute" inherit="bottom">
-      <item name="Contribute" href="contribute.html" />
+      <item name="Contribute" href="development-documentation.html#dev-contribute" />
       <item name="Issues" href="${this.issueManagement.url}" />
       <item name="Fork on GitHub" href="${this.scm-url}" />
     </menu>
     <menu name="Documentation" inherit="bottom">
       <item name="Get Started" href="reflow-maven-skin/reflow-documentation.html#get-started.html" />
       <item name="Migration" href="reflow-maven-skin/reflow-documentation.html#migration.html" />
+      <item name="Developer Documentation" href="development-documentation.html" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>

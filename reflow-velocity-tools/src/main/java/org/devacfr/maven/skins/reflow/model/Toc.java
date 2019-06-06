@@ -19,6 +19,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.slf4j.Logger;
@@ -29,8 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author devacfr
  * @since 2.0
- * @param <T>
- *            the type of inherit of {@link Toc}.
+ * @param <T> the type of inherit of {@link Toc}.
  */
 public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
@@ -47,13 +49,11 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     private final String type;
 
     /**
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
-     * @param preferredType
-     *            the default type of Toc to use.
+     * @param config        a config (can <b>not</b> be {@code null}).
+     * @param preferredType the default type of Toc to use.
      * @return Returns new instance corresponding {@link Toc} to configuration.
      */
-    public static Toc<?> createToc(final SkinConfigTool config, final String preferredType) {
+    public static Toc<?> createToc(@Nonnull final SkinConfigTool config, @Nullable final String preferredType) {
         Toc<?> toc = null;
         String type = config.value(COMPONENT);
         if (LOGGER.isTraceEnabled()) {
@@ -67,33 +67,49 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
             type = "";
         }
         switch (type) {
-            case "sidebar":
-                toc = new TocSidebar(config);
-                break;
-            case "top":
-                toc = new TocTopBar(config);
-                break;
-            default:
-                // create a disabled empty toc
-                toc = new Toc<Toc<?>>("", "") {
+        case "sidebar":
+            toc = createSidebar(config);
+            break;
+        case "top":
+            toc = createTopBar(config);
+            break;
+        default:
+            // create a disabled empty toc
+            toc = new Toc<Toc<?>>("", "") {
 
-                    @Override
-                    public String getCssOptions() {
-                        return "";
-                    }
-                };
-                toc.withEnabled(false);
-                break;
+                @Override
+                public String getCssOptions() {
+                    return "";
+                }
+            };
+            toc.withEnabled(false);
+            break;
         }
 
         return toc;
     }
 
     /**
-     * @param type
-     *            the {@link String} representation of Toc.
-     * @param component
-     *            the bootstrap component name.
+     *
+     * @param config a config (can <b>not</b> be {@code null}).
+     * @return Returns new instance of Toc sidebar.
+     */
+    public static Toc<?> createSidebar(@Nonnull final SkinConfigTool config) {
+        return new TocSidebar(config);
+    }
+
+    /**
+     *
+     * @param config a config (can <b>not</b> be {@code null}).
+     * @return Returns new instance Toc top bar.
+     */
+    public static Toc<?> createTopBar(@Nonnull final SkinConfigTool config) {
+        return new TocTopBar(config);
+    }
+
+    /**
+     * @param type      the {@link String} representation of Toc.
+     * @param component the bootstrap component name.
      */
     protected Toc(final String type, final String component) {
         super(component);

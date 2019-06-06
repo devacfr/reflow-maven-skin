@@ -210,7 +210,7 @@ Fork the repository and submit pull requests on **develop** branch. Reflow use g
 
 ## Copyright and license
 
-Copyright 2012-2018 Christophe Friederich
+Copyright 2012-2019 Christophe Friederich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.
@@ -224,4 +224,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management
+[release-management]: http://github.com/devacfr/reflow-maven-skin/development-documentation.html#dev-release-management
