@@ -17,6 +17,7 @@ package org.devacfr.testing.util;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,42 +39,69 @@ public final class Approvals {
     }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
-     * @param location
-     *            path location of expected file.
-     * @param testClass
-     *            the executed test class.
-     * @param testName
-     *            the testname
-     * @param actual
-     *            the actual value to test
+     * @param location  path location of actual fil.
+     * @param testClass the executed test class.
+     * @param testName  the testname
+     * @return
+     * @throws IOException
      */
-    public static void verify(@Nonnull final Path location,
-        @Nonnull final Class<?> testClass,
-        @Nonnull final String testName,
-        @Nullable final String actual) {
+    public static String getActualResource(@Nonnull final Path location, @Nonnull final Class<?> testClass,
+            @Nonnull final String testName) {
+        final String fileName = String.format("%s.%s.actual", testClass.getSimpleName(), testName);
+        return readFile(location.resolve(fileName));
+    }
+
+    /**
+     *
+     * @param location  path location of expected file.
+     * @param testClass the executed test class.
+     * @param testName  the testname
+     * @return
+     * @throws IOException
+     */
+    public static String getExpectedResource(@Nonnull final Path location, @Nonnull final Class<?> testClass,
+            @Nonnull final String testName) {
         final String fileName = String.format("%s.%s.approved", testClass.getSimpleName(), testName);
-        final String expected = readFile(location.resolve(fileName));
+        return readFile(location.resolve(fileName));
+    }
+
+    /**
+     * Verify the {@code actual} text is equals to expected text stored in file
+     * [testClass].[testName].approved.
+     *
+     * @param location  path location of expected file.
+     * @param testClass the executed test class.
+     * @param testName  the testname
+     * @param actual    the actual value to test
+     */
+    public static void verify(@Nonnull final Path location, @Nonnull final Class<?> testClass,
+            @Nonnull final String testName, @Nullable final String actual) {
+        final String expected = getExpectedResource(location, testClass, testName);
+        Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
+    }
+
+    public static void verify(@Nonnull final Path location, @Nonnull final Class<?> testClass,
+            @Nonnull final String testName, Function<String, String> transform) {
+        String actual = getActualResource(location, testClass, testName);
+        if (actual != null && transform != null) {
+            actual = transform.apply(actual);
+        }
+        final String expected = getExpectedResource(location, testClass, testName);
         Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
+     * Verify the {@code actual} text is equals to expected text stored in file
+     * [testClass].[testName].approved.
      *
-     * @param location
-     *            path location of expected file.
-     * @param testClass
-     *            the executed test class.
-     * @param testName
-     *            the testname
-     * @param actualFile
-     *            the actual value stored in file to test
+     * @param location   path location of expected file.
+     * @param testClass  the executed test class.
+     * @param testName   the testname
+     * @param actualFile the actual value stored in file to test
      */
-    public static void verify(@Nonnull final Path location,
-        @Nonnull final Class<?> testClass,
-        @Nonnull final String testName,
-        @Nonnull final Path actualFile) {
+    public static void verify(@Nonnull final Path location, @Nonnull final Class<?> testClass,
+            @Nonnull final String testName, @Nonnull final Path actualFile) {
 
         verify(location, testClass, testName, readFile(location.resolve(actualFile)));
 

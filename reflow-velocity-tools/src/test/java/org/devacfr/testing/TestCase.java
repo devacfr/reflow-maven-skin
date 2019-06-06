@@ -18,6 +18,7 @@ package org.devacfr.testing;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -35,7 +36,8 @@ public class TestCase extends Assert {
     /**
      * Gets the file system path representation of this test class.
      *
-     * @return Returns {@code String} representing the file system location path of this test class.
+     * @return Returns {@code String} representing the file system location path of
+     *         this test class.
      */
     @Nonnull
     public final Path getPackagePath() {
@@ -45,13 +47,38 @@ public class TestCase extends Assert {
     /**
      * Gets the file system path representation of this test class.
      *
-     * @param testClass
-     *            test class to use.
-     * @return Returns {@code String} representing the file system location path of this test class.
+     * @param testClass test class to use.
+     * @return Returns {@code String} representing the file system location path of
+     *         this test class.
      */
     @Nonnull
     public static final String getPackagePath(@Nonnull final Class<?> testClass) {
         return testClass.getPackage().getName().replace('.', '/');
+    }
+
+    public String getActualResource() {
+        return Approvals.getActualResource(getPackagePath(), this.getClass(), testNameRule.getMethodName());
+    }
+
+    public String getExpectedResource() {
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName());
+    }
+
+    /**
+     *
+     * @param suffix
+     */
+    public void verify() {
+        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(),
+                (Function<String, String>) null);
+    }
+
+    /**
+     *
+     * @param transform
+     */
+    public void verify(Function<String, String> transform) {
+        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), transform);
     }
 
     /**
@@ -89,4 +116,5 @@ public class TestCase extends Assert {
     public void verify(@Nonnull final String suffix, @Nullable final Path actualFile) {
         Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName() + '.' + suffix, actualFile);
     }
+
 }

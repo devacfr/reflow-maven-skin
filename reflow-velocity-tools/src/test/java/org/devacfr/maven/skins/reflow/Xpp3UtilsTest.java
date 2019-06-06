@@ -24,10 +24,33 @@ import org.junit.Test;
 
 public class Xpp3UtilsTest extends TestCase {
 
+
+
     @Test
     public void shouldFirstChildReturnNullWhenParentIsNull() {
         assertNull(Xpp3Utils.getFirstChild(null, "", ""));
     }
+
+    @Test
+    public void shouldChildNodeExist() {
+        Xpp3Dom expectedChild = new Xpp3Dom("expected-child");
+        Xpp3Dom parent = new Xpp3Dom("parent");
+        parent.addChild(new Xpp3Dom("child"));
+        parent.addChild(expectedChild);
+
+        assertEquals(expectedChild, Xpp3Utils.getFirstChild(parent, "expected-child", ""));
+    }
+
+    @Test
+    public void shouldChildNodeNotExist() {
+        Xpp3Dom expectedChild = new Xpp3Dom("expected-child");
+        Xpp3Dom parent = new Xpp3Dom("parent");
+        parent.addChild(new Xpp3Dom("child"));
+        parent.addChild(expectedChild);
+
+        assertNull( Xpp3Utils.getFirstChild(parent, "wrong-child", ""));
+    }
+
 
     @Test
     public void shouldChildrenNodesReturnEmptyListWhenParentIsNull() {
@@ -35,8 +58,41 @@ public class Xpp3UtilsTest extends TestCase {
         assertThat(list, Matchers.empty());
     }
 
+    @Test
     public void shouldChildrenReturnEmptyListWhenParentIsNull() {
         List<String> list = Xpp3Utils.getChildren(null);
+        assertThat(list, Matchers.empty());
+    }
+
+    @Test
+    public void shouldChildrenReturnAllChildrenNodes() {
+        Xpp3Dom parent = new Xpp3Dom("parent");
+        for (int i = 0; i < 10; i++) {
+            parent.addChild(new Xpp3Dom("child"));
+        }
+
+        List<String> list = Xpp3Utils.getChildren(parent);
+        assertThat(list, Matchers.hasSize(10));
+    }
+
+    @Test
+    public void shouldChildrenNodesReturnSpecificChildrenNodes() {
+        Xpp3Dom parent = new Xpp3Dom("parent");
+        for (int i = 0; i < 10; i++) {
+            parent.addChild(new Xpp3Dom("child"));
+        }
+        for (int i = 0; i < 10; i++) {
+            parent.addChild(new Xpp3Dom("child-other"));
+        }
+
+        List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(parent, "child");
+        assertThat(list, Matchers.hasSize(10));
+    }
+
+    @Test
+    public void shouldChildrenNodesReturnEmptyChildrenNodes() {
+        Xpp3Dom parent = new Xpp3Dom("parent");
+        List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(parent, "child");
         assertThat(list, Matchers.empty());
     }
 

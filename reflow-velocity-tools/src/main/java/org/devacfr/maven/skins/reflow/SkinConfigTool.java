@@ -165,10 +165,8 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // calculate the page ID from the current file name
-        final Object currentFileObj = getCurrentFileName();
-        if (currentFileObj instanceof String) {
-            fileId = slugFilename((String) currentFileObj);
-        }
+        final String currentFileObj = getCurrentFileName();
+        fileId = slugFilename((String) currentFileObj);
 
         final Object decorationObj = velocityContext.get("decoration");
 
@@ -743,7 +741,7 @@ public class SkinConfigTool extends SafeConfig {
             LOGGER.debug("relativePath: {}", relativePath);
         }
 
-        return new URLRebaser(parentBaseUrl, childBaseUrl);
+        return URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
     }
 
 }
