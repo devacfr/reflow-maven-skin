@@ -7,17 +7,7 @@ This chapter describes how developers (contributors) should write code. The reas
 All working files (java, xml, others) should respect the following conventions:
 
 * **Trailing Whitespaces**, remove all trailing white-spaces
-* **Indentation**, never use tabs! (4 spaces)
-* **Line wrapping**, always use a 120-column line width## Code Conventions
-
-This chapter describes how developers (contributors) should write code. The reasoning of these styles and conventions is mainly for consistency, readability and maintainability reasons.
-
-## Generic Code Style and Convention
-
-All working files (java, xml, others) should respect the following conventions:
-
-* **Trailing Whitespaces**, remove all trailing white-spaces
-* **Indentation**, never use tabs! (4 spaces)
+* **Indentation**, never use tabs!
 * **Line wrapping**, always use a 120-column line width
 
 ## Java Code Covention
@@ -25,10 +15,10 @@ All working files (java, xml, others) should respect the following conventions:
 Our basic style guide for Java is to use [Sun's Java guide Code Conventions for the Java TM Programming Language](http://www.oracle.com/technetwork/java/codeconvtoc-136057.html), but we do have a few subtle differences.
 
 * **White space**: One space after control statements and between arguments (i.e. `if ( foo )` instead of `if(foo)`), `myFunc( foo, bar, baz )` instead of `myFunc(foo,bar,baz)`). No spaces after methods names (i.e. `void myMethod()`, `myMethod( "foo" )`)
-* **Indentation**: Always use 4 space indents and **never** use tabs!
+* **Indentation**: Always use 4 spaces indents for java file, 2 spaces for xml file and **never** use tabs!
 * **Blocks**: Always enclose with a new line brace.
 * **Line wrapping**: Always use a 120-column line width for Java code and Javadoc.
-* **Design idioms**: Avoid creating internal objects as much as possible. Favor dependency injection whenever possible. Make appropriate use of Spring.
+* **Design idioms**: Avoid creating internal objects as much as possible. Favor dependency injection whenever possible.
 * **Organization**: Avoid using a lot of public inner classes. Prefer interfaces instead of default implementation.
 * **Modifier**:Avoid using final modifier on all member variables and arguments. Prefer using private or protected member instead of public member.
 * **Standard Annotations**: Use `@Override` where required, use `@Deprecated` when something is deprecated, but still functions, and use `@SuppressWarnings` only when it's impossible to eliminate the warning.
@@ -49,11 +39,6 @@ Our basic style guide for Java is to use [Sun's Java guide Code Conventions for 
 
 ## Versioning Naming Convention
 
-The version name is normalized according to [Semantic Versioning][semver] and the **Continuous Deployment** strategy used. The mandatory pattern is the following:
+The version name is normalized according to [Semantic Versioning][semver].
 
-`<version-major>.<version-minor>.<patch-version>-<tag-release-prefix>.{n}`
-
-* `tag-release-prefix` is mandatory and specific for each development phase.
-* where `n` = how many commits in a branch or the distance from latest annotated tag, except for commits which are explicitly tagged as stable.
-
-**DON'T PANIC**, this convention is automated. Your job is limited to choice the appropriate next version.
+[semver]: http://semver.org/

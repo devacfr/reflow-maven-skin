@@ -166,7 +166,7 @@ public class SkinConfigTool extends SafeConfig {
 
         // calculate the page ID from the current file name
         final String currentFileObj = getCurrentFileName();
-        fileId = slugFilename((String) currentFileObj);
+        fileId = slugFilename(currentFileObj);
 
         final Object decorationObj = velocityContext.get("decoration");
 
@@ -557,7 +557,7 @@ public class SkinConfigTool extends SafeConfig {
 
     @Nonnull
     public String getCurrentFileName() {
-        return (String)velocityContext.get("currentFileName");
+        return (String) velocityContext.get("currentFileName");
     }
 
     @Nonnull

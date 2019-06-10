@@ -193,7 +193,10 @@ Have a bug or a feature request? Please create an issue here on GitHub that conf
 
 ## Contributing
 
-Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release Management Documentation][release-management] for more information).
+Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests,
+please state that the contribution is your original work and that you license the work to the project under the project&apos;s open source license.
+Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email,
+or other means you agree to license the material under the project&apos;s open source license and warrant that you have the legal authority to do so.
 
 > Pull request on master will be refused.
 

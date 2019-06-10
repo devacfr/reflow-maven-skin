@@ -488,6 +488,7 @@
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
           <topSiteURL>${pubScmUrl}</topSiteURL>
+          <tempWebappDirectory>${main.basedir}/target/staging</tempWebappDirectory>
         </configuration>
       </plugin>
       <plugin>

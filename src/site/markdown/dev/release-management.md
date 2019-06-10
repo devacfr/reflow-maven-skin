@@ -38,7 +38,7 @@ In general, one issue in GitHub corresponds to one feature branch in `Git`. Inst
 
 1. Open a terminal, by changing directory to the root of project.
 2. Create feature branch using `maven-jgitflow-plugin`.
-3. Give name to the branch with prefix of a specific issue ID as `PROJ-1234-add-new-feature` to create as many two-way links between `Git` changeset, `GitHub` issue and **CI** build.
+3. Give name to the branch with prefix of a specific issue ID as `REFLOW-1234-add-new-feature` to create as many two-way links between `Git` changeset, `GitHub` issue and **CI** build.
 
 ```bash
 $ mvn jgitflow:feature-start
@@ -57,7 +57,7 @@ $ mvn jgitflow:feature-start
 [INFO] --- jgitflow-maven-plugin:1.0-m5.1:feature-start (default-cli) @foo ---
 [INFO] (develop) Checking for SNAPSHOT version in projects...
 [INFO] (develop) Checking dependencies and plugins for snapshots ...
-What is the feature branch name? feature/: 78-new-feature
+What is the feature branch name? feature/: REFLOW-78-new-feature
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO]

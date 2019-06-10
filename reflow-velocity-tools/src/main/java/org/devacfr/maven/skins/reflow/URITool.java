@@ -26,8 +26,7 @@ import org.apache.velocity.tools.config.DefaultKey;
 import com.google.common.base.Strings;
 
 /**
- * An Apache Velocity tool that provides utility methods to work with URIs/URLs
- * and links.
+ * An Apache Velocity tool that provides utility methods to work with URIs/URLs and links.
  *
  * @author Andrius Velykis
  * @since 1.0
@@ -40,18 +39,17 @@ public class URITool {
     /**
      * Resolves the link as relative to the base dir URI.
      * <p>
-     * Relativizes only absolute links, if the link has the same scheme, host and
-     * port as the base, it is made into a relative link as viewed from the base.
+     * Relativizes only absolute links, if the link has the same scheme, host and port as the base, it is made into a
+     * relative link as viewed from the base.
      * </p>
      * <p>
-     * This is the same method that's used to relativize project links in Maven
-     * site.
+     * This is the same method that's used to relativize project links in Maven site.
      * </p>
      *
-     * @param baseDirUri URI that will serve as the base to calculate the relative
-     *                   one
-     * @param link       The link to relativize (make it relative to the base URI if
-     *                   possible)
+     * @param baseDirUri
+     *            URI that will serve as the base to calculate the relative one
+     * @param link
+     *            The link to relativize (make it relative to the base URI if possible)
      * @return the relative link, if calculated, or the original link if not.
      * @since 1.0
      */
@@ -74,7 +72,8 @@ public class URITool {
     /**
      * Creates a URI by parsing the given string.
      *
-     * @param uri The string to be parsed into a URI
+     * @param uri
+     *            The string to be parsed into a URI
      * @return Returns the new URI.
      */
     @Nonnull
@@ -83,26 +82,27 @@ public class URITool {
     }
 
     /**
-     * @param parentBaseUrl The base URI. Has to be a valid absolute URI. In
-     *                      addition, the path of the URI should not have any file
-     *                      part, ie <code>http://maven.apache.org/</code> is valid,
-     *                      <code>http://maven.apache.org/index.html</code> is not.
-     * @param childBaseUrl  the new base URI. Has to be parsable as a URI.
-     * @return Returns new instance of {@link URLRebaser} allowing to
-     *         calculate/relative the link as viewed from a different base. This
-     *         returns the {@code parentBaseUrl} link if link is absolute.
+     * @param parentBaseUrl
+     *            The base URI. Has to be a valid absolute URI. In addition, the path of the URI should not have any
+     *            file part, ie <code>http://maven.apache.org/</code> is valid,
+     *            <code>http://maven.apache.org/index.html</code> is not.
+     * @param childBaseUrl
+     *            the new base URI. Has to be parsable as a URI.
+     * @return Returns new instance of {@link URLRebaser} allowing to calculate/relative the link as viewed from a
+     *         different base. This returns the {@code parentBaseUrl} link if link is absolute.
      * @see URIPathDescriptor#rebaseLink(String)
      * @see URLRebaser#rebaseLink(String)
      */
     public static URLRebaser createURLRebaser(@Nullable final String parentBaseUrl,
-            @Nullable final String childBaseUrl) {
+        @Nullable final String childBaseUrl) {
         return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
     /**
      * remove url path separator ('/') to the end of path.
      *
-     * @param baseUrl a base url
+     * @param baseUrl
+     *            a base url
      * @return Returns a <code>String</code> representing base path instance.
      */
     @Nullable
@@ -118,8 +118,8 @@ public class URITool {
     }
 
     /**
-     * URL rebaser: based on an old and a new path, can rebase a link based on old
-     * path to a value based on the new path.
+     * URL rebaser: based on an old and a new path, can rebase a link based on old path to a value based on the new
+     * path.
      */
     public static class URLRebaser {
 
@@ -132,11 +132,12 @@ public class URITool {
         /**
          * Construct a URL rebaser.
          *
-         * @param oldPath the old path. The base URI. Has to be a valid absolute URI. In
-         *                addition, the path of the URI should not have any file part,
-         *                ie <code>http://maven.apache.org/</code> is valid,
-         *                <code>http://maven.apache.org/index.html</code> is not.
-         * @param newPath the new base URI. Has to be parsable as a URI.
+         * @param oldPath
+         *            the old path. The base URI. Has to be a valid absolute URI. In addition, the path of the URI
+         *            should not have any file part, ie <code>http://maven.apache.org/</code> is valid,
+         *            <code>http://maven.apache.org/index.html</code> is not.
+         * @param newPath
+         *            the new base URI. Has to be parsable as a URI.
          */
         protected URLRebaser(@Nullable final String oldPath, @Nullable final String newPath) {
             this.oldPath = oldPath;
@@ -164,10 +165,11 @@ public class URITool {
         }
 
         /**
-         * Rebase only affects relative links, a relative link wrt an old base gets
-         * translated, so it points to the same location as viewed from a new base.
+         * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same
+         * location as viewed from a new base.
          *
-         * @param link link to rebase
+         * @param link
+         *            link to rebase
          * @return Returns a {@link String} representing link rebased.
          */
         public String rebaseLink(@Nullable final String link) {

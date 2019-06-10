@@ -80,13 +80,12 @@ public class NavSideMenu extends BsComponent {
     private boolean selectFirstOnExpand = false;
 
     /**
-     * Find all {@link SideNavMenuItem sidenav menu items} declared in all document
-     * pages.
+     * Find all {@link SideNavMenuItem sidenav menu items} declared in all document pages.
      *
-     * @param config a config (can <b>not</b> be {@code null}).
-     * @return Returns a list of all all {@link SideNavMenuItem sidenav menu items}
-     *         declared in all document pages (returns list can <b>not</b> be
-     *         {@code null}).
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
+     * @return Returns a list of all all {@link SideNavMenuItem sidenav menu items} declared in all document pages
+     *         (returns list can <b>not</b> be {@code null}).
      */
     @Nonnull
     public static List<SideNavMenuItem> findAllSideNavMenuItems(@Nonnull final SkinConfigTool config) {
@@ -102,7 +101,7 @@ public class NavSideMenu extends BsComponent {
             if ("doc".equals(type)) {
                 // This allows preventing accidental reuse of child page in other module of
                 // project
-                String projectId = page.getAttribute("project");
+                final String projectId = page.getAttribute("project");
                 if (!Strings.isNullOrEmpty(projectId) && !projectId.equals(config.getProjectId())) {
                     continue;
                 }
@@ -121,7 +120,8 @@ public class NavSideMenu extends BsComponent {
     /**
      * Default constructor.
      *
-     * @param config a config (can <b>not</b> be {@code null}).
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
      */
     public NavSideMenu(@Nonnull final SkinConfigTool config) {
         super("navside");
@@ -133,8 +133,10 @@ public class NavSideMenu extends BsComponent {
             final String pageName = pageNode.getName();
             addMenuItemRecursively(items, config, menu, pageName, false);
 
-            this.withName(menu.getAttribute("name")).withItems(items).withSelectFirstOnSelect(
-                    config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
+            this.withName(menu.getAttribute("name"))
+                    .withItems(items)
+                    .withSelectFirstOnSelect(
+                        config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
             this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
             this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
             this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
@@ -167,7 +169,8 @@ public class NavSideMenu extends BsComponent {
     /**
      * Sets the name of menu displayed on top of navside menu.
      *
-     * @param name the name to use.
+     * @param name
+     *            the name to use.
      * @return Returns the fluent instance.
      */
     protected NavSideMenu withName(final String name) {
@@ -178,16 +181,14 @@ public class NavSideMenu extends BsComponent {
     /**
      * Gets the indicating whether menu contains a least one menu item.
      *
-     * @return Returns {@code true} whether menu contains a least one menu item,
-     *         otherwise returns {@code false}.
+     * @return Returns {@code true} whether menu contains a least one menu item, otherwise returns {@code false}.
      */
     public boolean isHasItems() {
         return items != null && items.size() > 0;
     }
 
     /**
-     * @return Returns the {@link List} of {@link SideNavMenuItem} containing in
-     *         {@code <menu> element}.
+     * @return Returns the {@link List} of {@link SideNavMenuItem} containing in {@code <menu> element}.
      */
     @Nonnull
     public List<SideNavMenuItem> getItems() {
@@ -197,7 +198,8 @@ public class NavSideMenu extends BsComponent {
     /**
      * Sets the {@link List} of {@link SideNavMenuItem}.
      *
-     * @param items list of items to use.
+     * @param items
+     *            list of items to use.
      * @return Returns the fluent instance.
      */
     protected NavSideMenu withItems(final List<SideNavMenuItem> items) {
@@ -206,22 +208,22 @@ public class NavSideMenu extends BsComponent {
     }
 
     /**
-     * Gets the indicating whether the first sub menu item should be selected when a
-     * dropdown menu item is selected and should expand.
+     * Gets the indicating whether the first sub menu item should be selected when a dropdown menu item is selected and
+     * should expand.
      *
-     * @return Returns {@code true} whether the first sub menu item should be
-     *         selected when a dropdown menu item is selected and expanded,
-     *         otherwise returns {@code false}.
+     * @return Returns {@code true} whether the first sub menu item should be selected when a dropdown menu item is
+     *         selected and expanded, otherwise returns {@code false}.
      */
     public boolean isSelectFirstOnExpand() {
         return selectFirstOnExpand;
     }
 
     /**
-     * Sets the indicating whether the first sub menu item should be selected when a
-     * dropdown menu item is selected and should expand.
+     * Sets the indicating whether the first sub menu item should be selected when a dropdown menu item is selected and
+     * should expand.
      *
-     * @param selectFirstOnExpand a value to use.
+     * @param selectFirstOnExpand
+     *            a value to use.
      * @return Returns the fluent instance.
      */
     protected NavSideMenu withSelectFirstOnSelect(final boolean selectFirstOnExpand) {
@@ -245,13 +247,17 @@ public class NavSideMenu extends BsComponent {
      * @param flatten
      */
     private static void addMenuItemRecursively(@Nonnull final List<SideNavMenuItem> menuItems,
-            @Nonnull final SkinConfigTool config, @Nonnull final Xpp3Dom parentNode, @Nonnull final String pageName,
-            final boolean flatten) {
+        @Nonnull final SkinConfigTool config,
+        @Nonnull final Xpp3Dom parentNode,
+        @Nonnull final String pageName,
+        final boolean flatten) {
         for (final Xpp3Dom item : Xpp3Utils.getChildrenNodes(parentNode, "item")) {
             final String href = item.getAttribute("href");
             final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
-                    .withParent(pageName).withHref(config.relativeLink(href))
-                    .withSlugName(SkinConfigTool.slugFilename(href)).withIcon(item.getAttribute("icon"));
+                    .withParent(pageName)
+                    .withHref(config.relativeLink(href))
+                    .withSlugName(SkinConfigTool.slugFilename(href))
+                    .withIcon(item.getAttribute("icon"));
             menuItems.add(menuItem);
             if (flatten) {
                 addMenuItemRecursively(menuItems, config, item, pageName, true);

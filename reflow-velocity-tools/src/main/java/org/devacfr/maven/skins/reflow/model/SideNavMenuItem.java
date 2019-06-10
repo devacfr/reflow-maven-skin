@@ -18,7 +18,6 @@ package org.devacfr.maven.skins.reflow.model;
 import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
 /**
  * @author Christophe Friederich
@@ -51,7 +50,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the name of item menu.
      */
     public String getName() {
         return name;
@@ -59,7 +58,8 @@ public class SideNavMenuItem {
 
     /**
      * @param name
-     * @return
+     *            the name of item menu
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withName(final String name) {
         this.name = name;
@@ -67,7 +67,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the name of parent page.
      */
     public String getParent() {
         return parent;
@@ -75,7 +75,8 @@ public class SideNavMenuItem {
 
     /***
      * @param parent
-     * @return
+     *            the name of parent page
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withParent(final String parent) {
         this.parent = parent;
@@ -83,7 +84,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the link associated to this item menu.
      */
     public String getHref() {
         return href;
@@ -91,7 +92,8 @@ public class SideNavMenuItem {
 
     /**
      * @param href
-     * @return
+     *            the link to use.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withHref(final String href) {
         this.href = href;
@@ -99,7 +101,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the {@link String} representing the slugged link associate to this menu item.
      */
     public String getSlugName() {
         return slugName;
@@ -107,7 +109,8 @@ public class SideNavMenuItem {
 
     /**
      * @param slugName
-     * @return
+     *            the slugged name.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withSlugName(final String slugName) {
         this.slugName = slugName;

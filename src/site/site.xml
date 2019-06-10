@@ -67,7 +67,7 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" cssClass="navbar-dark bg-dark border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Tools|Documentation|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
+      <navbar filterMenu="Documentation|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
         <image src="$resourcePath/images/reflow.png" />
       </navbar>
       <navside-menu cssClass="navside-light bg-light"/>
