@@ -15,7 +15,10 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import java.util.Collections;
 import java.util.List;
+
+import javax.annotation.Nonnull;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -118,15 +121,18 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the icon to use.
      */
     public String getIcon() {
         return icon;
     }
 
     /**
+     * Sets the icon associate to.
+     *
      * @param icon
-     * @return
+     *            the icon to use.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withIcon(final String icon) {
         this.icon = icon;
@@ -134,28 +140,42 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * Gets the indicating whether has items.
+     *
+     * @return Returns {@code true} if has items, otherwise {@code false}.
      */
     public boolean isHasItems() {
         return items != null && items.size() > 0;
     }
 
     /**
-     * @return
+     * Gets the list of items.
+     *
+     * @return Returns a {@link List} representing the items.
      */
+    @Nonnull
     public List<SideNavMenuItem> getItems() {
+        if (items == null) {
+            return Collections.emptyList();
+        }
         return items;
     }
 
     /**
+     * Sets the items associate.
+     *
      * @param items
-     * @return
+     *            the list of items.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withItems(final List<SideNavMenuItem> items) {
         this.items = items;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

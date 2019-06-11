@@ -922,7 +922,6 @@ public class HtmlTool extends SafeConfig {
         return texts;
     }
 
-    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Transforms the given HTML content by moving anchor ({@code <a name="myheading">}) names to IDs for heading
      * elements.
@@ -1053,10 +1052,16 @@ public class HtmlTool extends SafeConfig {
      * etc. The symbols are removed.
      * </p>
      *
+     * @param pageType
+     *            The type of page.
+     * @param currentPage
+     *            The name of current page.
      * @param content
-     *            HTML content to modify
-     * @return HTML content with all heading elements having {@code id} attributes. If all headings were with IDs
-     *         already, the original content is returned.
+     *            HTML content to modify.
+     * @param idSeparator
+     *            the seperator used to slug ID.
+     * @return Returns a {@link String} representing HTML content with all heading elements having {@code id}
+     *         attributes. If all headings were with IDs already, the original content is returned.
      * @since 1.0
      */
     public String ensureHeadingIds(final String pageType,
@@ -1130,9 +1135,15 @@ public class HtmlTool extends SafeConfig {
     /**
      * Generated a unique ID within the given set of IDs. Appends an incrementing number for duplicates.
      *
+     * @param pageType
+     *            The type of page.
+     * @param currentPage
+     *            Tthe name of current page.
      * @param ids
+     *            The list of ID already existing or used.
      * @param idBase
-     * @return
+     *            The prefix to use.
+     * @return Returns a new {@link String} representing a new unique ID.
      */
     private static String generateUniqueId(final String pageType,
         final String currentPage,
@@ -1153,7 +1164,6 @@ public class HtmlTool extends SafeConfig {
         return id;
     }
 
-    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Fixes table heads: wraps rows with {@code
      *

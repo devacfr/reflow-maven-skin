@@ -56,15 +56,20 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     * @return
+     * Gets the indicating whether is flatten.
+     *
+     * @return Returns {@code true} if is flatten, otherwise {@code false}.
      */
     public boolean isFlatten() {
         return flatten;
     }
 
     /**
+     * Sets the indicating whether is flatten.
+     *
      * @param flatten
-     * @return
+     *            {@code true} to flat.
+     * @return Returns the fluent instance.
      */
     protected TocTopBar withFlatten(final boolean flatten) {
         this.flatten = flatten;
@@ -72,15 +77,18 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     * @return
+     * @return Returns the number of items to display.
      */
     public int getNumberItems() {
         return numberItems;
     }
 
     /**
+     * Sets the number of items to display.
+     * 
      * @param numberItems
-     * @return
+     *            -1 or the number of items to display
+     * @return Returns the fluent instance.
      */
     protected TocTopBar withNumberItems(final int numberItems) {
         this.numberItems = numberItems;

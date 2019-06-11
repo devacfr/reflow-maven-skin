@@ -32,7 +32,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author devacfr
  * @since 2.0
- * @param <T> the type of inherit of {@link Toc}.
+ * @param <T>
+ *            the type of inherit of {@link Toc}.
  */
 public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
@@ -49,8 +50,10 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     private final String type;
 
     /**
-     * @param config        a config (can <b>not</b> be {@code null}).
-     * @param preferredType the default type of Toc to use.
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
+     * @param preferredType
+     *            the default type of Toc to use.
      * @return Returns new instance corresponding {@link Toc} to configuration.
      */
     public static Toc<?> createToc(@Nonnull final SkinConfigTool config, @Nullable final String preferredType) {
@@ -67,31 +70,31 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
             type = "";
         }
         switch (type) {
-        case "sidebar":
-            toc = createSidebar(config);
-            break;
-        case "top":
-            toc = createTopBar(config);
-            break;
-        default:
-            // create a disabled empty toc
-            toc = new Toc<Toc<?>>("", "") {
+            case "sidebar":
+                toc = createSidebar(config);
+                break;
+            case "top":
+                toc = createTopBar(config);
+                break;
+            default:
+                // create a disabled empty toc
+                toc = new Toc<Toc<?>>("", "") {
 
-                @Override
-                public String getCssOptions() {
-                    return "";
-                }
-            };
-            toc.withEnabled(false);
-            break;
+                    @Override
+                    public String getCssOptions() {
+                        return "";
+                    }
+                };
+                toc.withEnabled(false);
+                break;
         }
 
         return toc;
     }
 
     /**
-     *
-     * @param config a config (can <b>not</b> be {@code null}).
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
      * @return Returns new instance of Toc sidebar.
      */
     public static Toc<?> createSidebar(@Nonnull final SkinConfigTool config) {
@@ -99,8 +102,8 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     }
 
     /**
-     *
-     * @param config a config (can <b>not</b> be {@code null}).
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
      * @return Returns new instance Toc top bar.
      */
     public static Toc<?> createTopBar(@Nonnull final SkinConfigTool config) {
@@ -108,8 +111,10 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     }
 
     /**
-     * @param type      the {@link String} representation of Toc.
-     * @param component the bootstrap component name.
+     * @param type
+     *            the {@link String} representation of Toc.
+     * @param component
+     *            the bootstrap component name.
      */
     protected Toc(final String type, final String component) {
         super(component);
@@ -132,15 +137,20 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     }
 
     /**
-     * @return
+     * Gets the indicating whether is enable.
+     *
+     * @return Returns {@code true} if is enable, otherwise {@code false}.
      */
     public boolean isEnabled() {
         return enabled;
     }
 
     /**
+     * Sets the indicating whether is enable.
+     * 
      * @param enabled
-     * @return
+     *            status to use.
+     * @return Returns the fluent instance.
      */
     protected T withEnabled(final boolean enabled) {
         this.enabled = enabled;

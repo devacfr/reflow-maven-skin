@@ -412,6 +412,22 @@ public class SkinConfigTool extends SafeConfig {
         return (T) returnedValue;
     }
 
+    /**
+     * Get the value contained in specific attribute of {@code element} parameter.
+     *
+     * @param element
+     *            the xml element.
+     * @param attribute
+     *            the attribute name.
+     * @param targetType
+     *            the class of converted returned value.
+     * @param defaultValue
+     *            the value to return if attribute is empty or {@code null}.
+     * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise
+     *         returns the default value.
+     * @param <T>
+     *            the type of returned value.
+     */
     @SuppressWarnings("unchecked")
     public <T> T getAttributeValue(final Xpp3Dom element,
         final String attribute,
@@ -543,6 +559,9 @@ public class SkinConfigTool extends SafeConfig {
         return namespace;
     }
 
+    /**
+     * @return Returns the location of project.
+     */
     @Nonnull
     public String getProjectLocation() {
         String projectSiteLoc = getProject().getUrl();
@@ -555,17 +574,40 @@ public class SkinConfigTool extends SafeConfig {
         return projectSiteLoc;
     }
 
+    /**
+     * <p>
+     * See <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
+     * Renderer</a> for more information.
+     *
+     * @return Returns a {@link String} representing the name of current file of the (HTML) document being rendered,
+     *         relative to the site root.
+     */
     @Nonnull
     public String getCurrentFileName() {
         return (String) velocityContext.get("currentFileName");
     }
 
+    /**
+     * @return Returns a {@link String} representing the location path of current rendered file.
+     */
     @Nonnull
     public String getCurrentFileLocation() {
         final String projectSiteLoc = getProjectLocation();
         return URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
     }
 
+    /**
+     * Evaluate a velocity expression in the current context.
+     *
+     * @param vtl
+     *            The velocity expression to evaluate
+     * @param requiredClass
+     *            the class of returned value.
+     * @return Returns the value returned by the evaluated velocity expression.
+     * @param <T>
+     *            Tthe type of expected returned value.
+     */
+    @SuppressWarnings("unchecked")
     @Nullable
     public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
         if (vtl == null) {
@@ -646,7 +688,11 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     *
+     * Gests the indicating if the link is active.
+     * 
+     * @param href
+     *            the link to check.
+     * @return Returns {@code true} the link is active, otherwise {@code false}.
      */
     public boolean isActiveLink(final String href) {
         final String alignedFileName = (String) velocityContext.get("alignedFileName");
