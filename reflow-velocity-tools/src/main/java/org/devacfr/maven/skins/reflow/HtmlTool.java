@@ -506,6 +506,7 @@ public class HtmlTool extends SafeConfig {
      *         elements are found, the remainder contains the original content.
      * @since 1.0
      */
+    @Nonnull
     public ExtractResult extract(final String content, final String selector, final int amount) {
 
         final List<Element> extracted = extractElements(content, selector, amount);

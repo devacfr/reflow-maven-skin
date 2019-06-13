@@ -26,6 +26,7 @@ import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.junit.Assert;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
 import com.google.common.io.Resources;
 
 /**
@@ -39,71 +40,102 @@ public final class Approvals {
     }
 
     /**
-     *
-     * @param location  path location of actual fil.
-     * @param testClass the executed test class.
-     * @param testName  the testname
+     * @param location
+     *            path location of actual fil.
+     * @param testClass
+     *            the executed test class.
+     * @param testName
+     *            the testname
+     * @param suffix
+     *            the suffix
      * @return
      * @throws IOException
      */
-    public static String getActualResource(@Nonnull final Path location, @Nonnull final Class<?> testClass,
-            @Nonnull final String testName) {
-        final String fileName = String.format("%s.%s.actual", testClass.getSimpleName(), testName);
+    public static String getActualResource(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String suffix) {
+        final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
+        final String fileName = String.format("%s.%s.actual%s", testClass.getSimpleName(), testName, suf);
         return readFile(location.resolve(fileName));
     }
 
     /**
-     *
-     * @param location  path location of expected file.
-     * @param testClass the executed test class.
-     * @param testName  the testname
+     * @param location
+     *            path location of expected file.
+     * @param testClass
+     *            the executed test class.
+     * @param testName
+     *            the testname
+     * @param suffix
+     *            the suffix
      * @return
      * @throws IOException
      */
-    public static String getExpectedResource(@Nonnull final Path location, @Nonnull final Class<?> testClass,
-            @Nonnull final String testName) {
-        final String fileName = String.format("%s.%s.approved", testClass.getSimpleName(), testName);
+    public static String getExpectedResource(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String suffix) {
+        final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
+        final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, suf);
         return readFile(location.resolve(fileName));
     }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file
-     * [testClass].[testName].approved.
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
-     * @param location  path location of expected file.
-     * @param testClass the executed test class.
-     * @param testName  the testname
-     * @param actual    the actual value to test
+     * @param location
+     *            path location of expected file.
+     * @param testClass
+     *            the executed test class.
+     * @param testName
+     *            the testname
+     * @param actual
+     *            the actual value to test
      */
-    public static void verify(@Nonnull final Path location, @Nonnull final Class<?> testClass,
-            @Nonnull final String testName, @Nullable final String actual) {
-        final String expected = getExpectedResource(location, testClass, testName);
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String actual,
+        @Nullable final String suffix) {
+        final String expected = getExpectedResource(location, testClass, testName, suffix);
         Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
-    public static void verify(@Nonnull final Path location, @Nonnull final Class<?> testClass,
-            @Nonnull final String testName, Function<String, String> transform) {
-        String actual = getActualResource(location, testClass, testName);
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        final Function<String, String> transform,
+        @Nullable final String suffix) {
+        String actual = getActualResource(location, testClass, testName, suffix);
         if (actual != null && transform != null) {
             actual = transform.apply(actual);
         }
-        final String expected = getExpectedResource(location, testClass, testName);
+        final String expected = getExpectedResource(location, testClass, testName, suffix);
         Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
     /**
-     * Verify the {@code actual} text is equals to expected text stored in file
-     * [testClass].[testName].approved.
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
-     * @param location   path location of expected file.
-     * @param testClass  the executed test class.
-     * @param testName   the testname
-     * @param actualFile the actual value stored in file to test
+     * @param location
+     *            path location of expected file.
+     * @param testClass
+     *            the executed test class.
+     * @param testName
+     *            the testname
+     * @param actualFile
+     *            the actual value stored in file to test
+     * @param suffix
+     *            the suffix
      */
-    public static void verify(@Nonnull final Path location, @Nonnull final Class<?> testClass,
-            @Nonnull final String testName, @Nonnull final Path actualFile) {
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nonnull final Path actualFile,
+        @Nullable final String suffix) {
 
-        verify(location, testClass, testName, readFile(location.resolve(actualFile)));
+        verify(location, testClass, testName, readFile(location.resolve(actualFile)), suffix);
 
     }
 

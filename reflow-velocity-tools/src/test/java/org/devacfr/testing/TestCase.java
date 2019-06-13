@@ -36,8 +36,7 @@ public class TestCase extends Assert {
     /**
      * Gets the file system path representation of this test class.
      *
-     * @return Returns {@code String} representing the file system location path of
-     *         this test class.
+     * @return Returns {@code String} representing the file system location path of this test class.
      */
     @Nonnull
     public final Path getPackagePath() {
@@ -47,9 +46,9 @@ public class TestCase extends Assert {
     /**
      * Gets the file system path representation of this test class.
      *
-     * @param testClass test class to use.
-     * @return Returns {@code String} representing the file system location path of
-     *         this test class.
+     * @param testClass
+     *            test class to use.
+     * @return Returns {@code String} representing the file system location path of this test class.
      */
     @Nonnull
     public static final String getPackagePath(@Nonnull final Class<?> testClass) {
@@ -57,28 +56,49 @@ public class TestCase extends Assert {
     }
 
     public String getActualResource() {
-        return Approvals.getActualResource(getPackagePath(), this.getClass(), testNameRule.getMethodName());
+        return Approvals.getActualResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), null);
     }
 
     public String getExpectedResource() {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName());
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), null);
+    }
+
+    public String getActualResource(final String suffix) {
+        return Approvals.getActualResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix);
+    }
+
+    public String getExpectedResource(final String suffix) {
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix);
+    }
+
+    public void verify() {
+        Approvals.verify(getPackagePath(),
+            this.getClass(),
+            testNameRule.getMethodName(),
+            (Function<String, String>) null,
+            null);
     }
 
     /**
-     *
      * @param suffix
      */
-    public void verify() {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(),
-                (Function<String, String>) null);
+    public void verify(final String suffix) {
+        Approvals.verify(getPackagePath(),
+            this.getClass(),
+            testNameRule.getMethodName(),
+            (Function<String, String>) null,
+            suffix);
+    }
+
+    public void verify(final Function<String, String> transform) {
+        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), transform, null);
     }
 
     /**
-     *
      * @param transform
      */
-    public void verify(Function<String, String> transform) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), transform);
+    public void verify(final Function<String, String> transform, @Nullable final String suffix) {
+        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), transform, suffix);
     }
 
     /**
@@ -86,8 +106,8 @@ public class TestCase extends Assert {
      * @param actual
      * @throws IOException
      */
-    public void verify(@Nullable final String actual) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), actual);
+    public void verify(@Nullable final String actual, @Nullable final String suffix) {
+        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), actual, suffix);
     }
 
     /**
@@ -95,26 +115,8 @@ public class TestCase extends Assert {
      * @param actualFile
      * @throws IOException
      */
-    public void verify(@Nonnull final Path actualFile) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), actualFile);
-    }
-
-    /**
-     * @param suffix
-     * @param actual
-     * @throws IOException
-     */
-    public void verify(@Nonnull final String suffix, @Nullable final String actual) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName() + '.' + suffix, actual);
-    }
-
-    /**
-     * @param suffix
-     * @param actual
-     * @throws IOException
-     */
-    public void verify(@Nonnull final String suffix, @Nullable final Path actualFile) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName() + '.' + suffix, actualFile);
+    public void verify(@Nonnull final Path actualFile, @Nullable final String suffix) {
+        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), actualFile, suffix);
     }
 
 }
