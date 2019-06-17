@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
@@ -88,7 +89,7 @@ public class NavSideMenu extends BsComponent {
      *         (returns list can <b>not</b> be {@code null}).
      */
     @Nonnull
-    public static List<SideNavMenuItem> findAllSideNavMenuItems(@Nonnull final SkinConfigTool config) {
+    public static List<SideNavMenuItem> findAllSideNavMenuItems(@Nonnull final ISkinConfig config) {
         requireNonNull(config);
         final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(config.getGlobalProperties(), "pages", config.getNamespace());
         if (pagesNode == null) {
@@ -123,7 +124,7 @@ public class NavSideMenu extends BsComponent {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public NavSideMenu(@Nonnull final SkinConfigTool config) {
+    public NavSideMenu(@Nonnull final ISkinConfig config) {
         super("navside");
         requireNonNull(config);
         final Xpp3Dom pageNode = config.getPageProperties();
@@ -247,7 +248,7 @@ public class NavSideMenu extends BsComponent {
      * @param flatten
      */
     private static void addMenuItemRecursively(@Nonnull final List<SideNavMenuItem> menuItems,
-        @Nonnull final SkinConfigTool config,
+        @Nonnull final ISkinConfig config,
         @Nonnull final Xpp3Dom parentNode,
         @Nonnull final String pageName,
         final boolean flatten) {

@@ -26,7 +26,7 @@ import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.doxia.site.decoration.LinkItem;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
 import com.google.common.base.Strings;
@@ -70,7 +70,7 @@ public class Navbar extends BsComponent {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public Navbar(@Nonnull final SkinConfigTool config) {
+    public Navbar(@Nonnull final ISkinConfig config) {
         super(COMPONENT);
         requireNonNull(config);
         final MavenProject project = config.getProject();
@@ -194,7 +194,7 @@ public class Navbar extends BsComponent {
          * @param element
          *            the element assiciated to image brand.
          */
-        ImageBrand(@Nonnull final SkinConfigTool config, @Nonnull final Xpp3Dom element) {
+        ImageBrand(@Nonnull final ISkinConfig config, @Nonnull final Xpp3Dom element) {
             Objects.requireNonNull(config);
             Objects.requireNonNull(element);
             final String link = config.getAttributeValue(element, "src", String.class, null);

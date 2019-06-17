@@ -17,7 +17,7 @@ package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
  * @author devacfr
@@ -37,7 +37,7 @@ public class TocTopBar extends Toc<TocTopBar> {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public TocTopBar(final @Nonnull SkinConfigTool config) {
+    public TocTopBar(final @Nonnull ISkinConfig config) {
         super("top", "navbar");
         this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
@@ -85,7 +85,7 @@ public class TocTopBar extends Toc<TocTopBar> {
 
     /**
      * Sets the number of items to display.
-     * 
+     *
      * @param numberItems
      *            -1 or the number of items to display
      * @return Returns the fluent instance.

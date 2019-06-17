@@ -17,7 +17,7 @@ package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
  * @author devacfr
@@ -43,7 +43,7 @@ public class TocSidebar extends Toc<TocSidebar> {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public TocSidebar(final @Nonnull SkinConfigTool config) {
+    public TocSidebar(final @Nonnull ISkinConfig config) {
         super("sidebar", "");
         final String position = config.getAttributeValue("toc", "position", String.class, "fixed").toLowerCase();
         this.withEnabled(true)

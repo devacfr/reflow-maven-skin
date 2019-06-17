@@ -2,7 +2,7 @@
 
 The workflow used is Gitflow workflow from Vincent Driessen at [nvie](http://nvie.com/). This workflow is supported in project by serveral tools:
 
-- `Git`, Git extension [git-flow](https://github.com/nvie/gitflow) and Git client `SourceTree`, of course.
+- `Git`, Git extension [git-flow](https://github.com/nvie/gitflow).
 - `maven` and `JGit Flow` maven plugin, allows executing Gitflow workflow actions according to the configuration stored in maven `pom.xml`.
 
 The Gitflow Workflow defines a strict branching model designed around the project release. While somewhat more complicated than the **Feature Branch Workflow**, this provides a robust framework for managing larger projects.

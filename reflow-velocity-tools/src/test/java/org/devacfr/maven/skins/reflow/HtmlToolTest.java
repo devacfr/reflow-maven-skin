@@ -240,10 +240,15 @@ public class HtmlToolTest extends TestCase {
         final HtmlTool htmlTool = new HtmlTool();
         final String content = htmlTool.ensureHeadingIds("page", "overview", getActualResource(".html"), "_");
         final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
+        // check root element
         assertThat(idElements.stream().map((el) -> el.getId()).collect(Collectors.toList()),
             contains("_toc_apache_maven_site_plugin1"));
-        assertThat(idElements.stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()), contains(2));
+        assertThat(idElements.stream().map((el) -> el.getTagName()).collect(Collectors.toList()), contains("h2"));
+        assertThat(idElements.stream().map((el) -> el.getText()).collect(Collectors.toList()),
+            contains("Apache Maven Site Plugin"));
+
         // check children
+        assertThat(idElements.stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()), contains(2));
         assertThat(idElements.get(0).getItems().stream().map((el) -> el.getId()).collect(Collectors.toList()),
             contains("_toc_goals_overview1", "_toc_usage1"));
         assertThat(idElements.get(0).getItems().stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()),

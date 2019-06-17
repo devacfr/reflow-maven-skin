@@ -5,6 +5,8 @@
 Download the latest version
 
 ```bash
+$ git clone https://github.com/highlightjs/highlight.js.git
+$ git checkout <version>
 $ cd <highlightjs>
 $ npm install
 added 454 packages from 846 contributors and audited 2589 packages in 38.488s

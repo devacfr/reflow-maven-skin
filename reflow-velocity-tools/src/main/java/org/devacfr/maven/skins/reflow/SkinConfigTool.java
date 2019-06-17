@@ -85,7 +85,7 @@ import com.google.common.base.Strings;
  * @since 1.0
  */
 @DefaultKey("config")
-public class SkinConfigTool extends SafeConfig {
+public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
@@ -267,21 +267,12 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise
-     * Velocity fallback onto the default getter and use {@code $config.myproperty}.
-     *
-     * @param property
-     *            the property of interest
-     * @return configuration node if found in the following sequence:
-     *         <ol>
-     *         <li>In page configuration</li>
-     *         <li>In global configuration</li>
-     *         <li>{@code null} otherwise</li>
-     *         </ol>
-     * @since 1.0
+     * {@inheritDoc}
      */
-    public Xpp3Dom get(final String property) {
-
+    @Override
+    @Nullable
+    public Xpp3Dom get(@Nonnull final String property) {
+        requireNonNull(property);
         // first try page properties
         Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
         if (propNode == null) {
@@ -301,8 +292,9 @@ public class SkinConfigTool extends SafeConfig {
      * @see #get(String)
      * @since 1.0
      */
-    public String value(final String property) {
-
+    @Nullable
+    public String value(@Nonnull final String property) {
+        requireNonNull(property);
         final Xpp3Dom propNode = get(property);
 
         if (propNode == null) {
@@ -327,8 +319,14 @@ public class SkinConfigTool extends SafeConfig {
      * @param <T>
      *            the type of returned object.
      */
+    @Override
     @SuppressWarnings("unchecked")
-    public <T> T getPropertyValue(final String property, final Class<T> targetType, final T defaultValue) {
+    @Nullable
+    public <T> T getPropertyValue(@Nonnull final String property,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
+        requireNonNull(property, "property is required");
+        requireNonNull(targetType, "targetType is required");
         final String value = value(property);
         if (value == null) {
             return defaultValue;
@@ -373,11 +371,17 @@ public class SkinConfigTool extends SafeConfig {
      * @param <T>
      *            the type of returned object.
      */
+    @Override
     @SuppressWarnings("unchecked")
-    public <T> T getAttributeValue(final String property,
-        final String attribute,
-        final Class<T> targetType,
-        final T defaultValue) {
+    @Nullable
+    public <T> T getAttributeValue(@Nonnull final String property,
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
+        requireNonNull(property, "property is required");
+        requireNonNull(attribute, "attribute is required");
+        requireNonNull(targetType, "targetType is required");
+
         Xpp3Dom element = get(property);
         if (element == null) {
             return defaultValue;
@@ -413,26 +417,15 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * Get the value contained in specific attribute of {@code element} parameter.
-     *
-     * @param element
-     *            the xml element.
-     * @param attribute
-     *            the attribute name.
-     * @param targetType
-     *            the class of converted returned value.
-     * @param defaultValue
-     *            the value to return if attribute is empty or {@code null}.
-     * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise
-     *         returns the default value.
-     * @param <T>
-     *            the type of returned value.
+     * {@inheritDoc}
      */
+    @Override
     @SuppressWarnings("unchecked")
-    public <T> T getAttributeValue(final Xpp3Dom element,
-        final String attribute,
-        final Class<T> targetType,
-        final T defaultValue) {
+    @Nullable
+    public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
         if (element == null) {
             return defaultValue;
         }
@@ -496,15 +489,19 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @return Returns the {@link String} representing the projectId.
+     * {@inheritDoc}
      */
+    @Override
+    @Nullable
     public String getProjectId() {
         return projectId;
     }
 
     /**
-     * @return Returns the {@link String} representing the fileId.
+     * {@inheritDoc}
      */
+    @Override
+    @Nullable
     public String getFileId() {
         return fileId;
     }
@@ -524,36 +521,45 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @return the project
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public MavenProject getProject() {
         return project;
     }
 
     /**
-     * @return the decoration
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public DecorationModel getDecoration() {
         return decoration;
     }
 
     /**
-     * @return Returns the page level {@link Xpp3Dom}.
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public Xpp3Dom getPageProperties() {
         return pageProperties;
     }
 
     /**
-     * @return Returns the root level {@link Xpp3Dom}.
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public Xpp3Dom getGlobalProperties() {
         return globalProperties;
     }
 
     /**
-     * @return Returns a {@link String} representing the namespace.
+     * {@inheritDoc}
      */
+    @Override
     @Nonnull
     public String getNamespace() {
         return namespace;
@@ -597,16 +603,9 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * Evaluate a velocity expression in the current context.
-     *
-     * @param vtl
-     *            The velocity expression to evaluate
-     * @param requiredClass
-     *            the class of returned value.
-     * @return Returns the value returned by the evaluated velocity expression.
-     * @param <T>
-     *            Tthe type of expected returned value.
+     * {@inheritDoc}
      */
+    @Override
     @SuppressWarnings("unchecked")
     @Nullable
     public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
@@ -622,11 +621,9 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @param href
-     *            link to relative.
-     * @return Returns Relativizes the link.
+     * {@inheritDoc}
      */
-    @Nullable
+    @Override
     public String relativeLink(final String href) {
         if (href == null) {
             return null;
@@ -688,13 +685,10 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * Gests the indicating if the link is active.
-     * 
-     * @param href
-     *            the link to check.
-     * @return Returns {@code true} the link is active, otherwise {@code false}.
+     * {@inheritDoc}
      */
-    public boolean isActiveLink(final String href) {
+    @Override
+    public boolean isActiveLink(@Nullable final String href) {
         final String alignedFileName = (String) velocityContext.get("alignedFileName");
         if (href == null) {
             return false;

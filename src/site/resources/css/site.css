@@ -23,5 +23,11 @@ h2, h3, h4, h5, h6 {
     margin-bottom: 1.6rem;
 }
 
+/*
+ * Specific to page development-documentation
+*/
 
+.page-development-documentation .main-body img.img-fluid {
+	padding: 2em;
+}
 

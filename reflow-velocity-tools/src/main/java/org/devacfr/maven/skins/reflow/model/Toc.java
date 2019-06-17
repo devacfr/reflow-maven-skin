@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,9 +56,9 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
      *            the default type of Toc to use.
      * @return Returns new instance corresponding {@link Toc} to configuration.
      */
-    public static Toc<?> createToc(@Nonnull final SkinConfigTool config, @Nullable final String preferredType) {
+    public static Toc<?> createToc(@Nonnull final ISkinConfig config, @Nullable final String preferredType) {
         Toc<?> toc = null;
-        String type = config.value(COMPONENT);
+        String type = config.getPropertyValue(COMPONENT, String.class, preferredType);
         if (LOGGER.isTraceEnabled()) {
             LOGGER.trace("Page '{}' Find Toc: {}", config.getFileId(), type);
         }
@@ -97,7 +97,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
      *            a config (can <b>not</b> be {@code null}).
      * @return Returns new instance of Toc sidebar.
      */
-    public static Toc<?> createSidebar(@Nonnull final SkinConfigTool config) {
+    public static Toc<?> createSidebar(@Nonnull final ISkinConfig config) {
         return new TocSidebar(config);
     }
 
@@ -106,7 +106,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
      *            a config (can <b>not</b> be {@code null}).
      * @return Returns new instance Toc top bar.
      */
-    public static Toc<?> createTopBar(@Nonnull final SkinConfigTool config) {
+    public static Toc<?> createTopBar(@Nonnull final ISkinConfig config) {
         return new TocTopBar(config);
     }
 
@@ -147,7 +147,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
     /**
      * Sets the indicating whether is enable.
-     * 
+     *
      * @param enabled
      *            status to use.
      * @return Returns the fluent instance.

@@ -20,7 +20,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 import com.google.common.collect.Lists;
 
@@ -80,7 +80,7 @@ public class MenuItem {
      * @param item
      *            item menu used to.
      */
-    public MenuItem(@Nonnull final SkinConfigTool config, final org.apache.maven.doxia.site.decoration.MenuItem item) {
+    public MenuItem(@Nonnull final ISkinConfig config, final org.apache.maven.doxia.site.decoration.MenuItem item) {
         Objects.requireNonNull(item);
         this.alt = item.getAlt();
         this.description = item.getDescription();
@@ -101,7 +101,7 @@ public class MenuItem {
     /**
      * recurcive
      */
-    private void recurciveAddItem(final SkinConfigTool config,
+    private void recurciveAddItem(final ISkinConfig config,
         final List<MenuItem> menuItems,
         final List<org.apache.maven.doxia.site.decoration.MenuItem> origMenuItems) {
         if (origMenuItems == null) {

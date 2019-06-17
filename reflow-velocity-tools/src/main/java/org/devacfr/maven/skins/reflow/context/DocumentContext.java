@@ -17,7 +17,7 @@ package org.devacfr.maven.skins.reflow.context;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 
 /**
@@ -37,7 +37,7 @@ public class DocumentContext extends Context<DocumentContext> {
      * @param config
      *            a config (can not be {@code null}).
      */
-    public DocumentContext(final @Nonnull SkinConfigTool config) {
+    public DocumentContext(final @Nonnull ISkinConfig config) {
         super(config, ContextType.doc);
         this.navSideMenu = new NavSideMenu(config);
     }
