@@ -41,7 +41,7 @@ import com.google.common.collect.Lists;
 public class Navbar extends BsComponent {
 
     /** */
-    private static final String COMPONENT = "navbar";
+    public static final String COMPONENT = "navbar";
 
     /** */
     private String brandName;

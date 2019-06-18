@@ -17,7 +17,6 @@ package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -33,7 +32,6 @@ import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.PathTool;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -699,18 +697,6 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same
-     * location as viewed from a new base.
-     *
-     * @param link
-     *            link to rebase
-     * @return Returns a {@link String} representing link rebased.
-     */
-    public String rebaseLink(final String link) {
-        return createURLRebaser().rebaseLink(link);
-    }
-
-    /**
      * Converts a filename to pageId format.
      *
      * @param fileName
@@ -755,33 +741,6 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
             return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         }
         return (String) velocityContext.get("relativePath");
-    }
-
-    /**
-     * @return Returns new instance of {@link URLRebaser}.
-     */
-    @Nonnull
-    private URLRebaser createURLRebaser() {
-        String childBaseUrl = this.getProject().getUrl();
-        if (Strings.isNullOrEmpty(childBaseUrl)) {
-            childBaseUrl = null;
-        }
-        final String relativePath = getResourcePath();
-        String parentBaseUrl = relativePath;
-        if (childBaseUrl != null && childBaseUrl.length() > 0) {
-            if (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
-                childBaseUrl += '/';
-            }
-            final URI child = URI.create(childBaseUrl);
-            parentBaseUrl = child.resolve(relativePath).normalize().toString();
-        }
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("parentBaseUrl: {}", parentBaseUrl);
-            LOGGER.debug("childBaseUrl: {}", childBaseUrl);
-            LOGGER.debug("relativePath: {}", relativePath);
-        }
-
-        return URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
     }
 
 }

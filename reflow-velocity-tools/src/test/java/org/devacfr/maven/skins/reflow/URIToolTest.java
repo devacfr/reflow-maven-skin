@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
+ * Copyright 2012-2019 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ public class URIToolTest extends TestCase {
 
     @Test
     public void shouldNormalisedBaseUrlAcceptNullParameter() {
-        assertNull( URITool.normalisedBaseUrl(null));
+        assertNull(URITool.normalisedBaseUrl(null));
     }
 
     @Test(expected = IllegalArgumentException.class)

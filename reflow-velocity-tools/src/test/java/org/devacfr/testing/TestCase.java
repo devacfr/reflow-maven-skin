@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2019 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,17 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 
+import com.google.common.io.ByteSource;
+import com.google.common.io.Resources;
+
 public class TestCase extends Assert {
 
     @Rule
     public TestName testNameRule = new TestName();
+
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
 
     /**
      * Gets the file system path representation of this test class.
@@ -41,6 +48,10 @@ public class TestCase extends Assert {
     @Nonnull
     public final Path getPackagePath() {
         return Paths.get(getPackagePath(this.getClass()));
+    }
+
+    public ByteSource getResource(final String filename) {
+        return Resources.asByteSource(Resources.getResource(getPackagePath().resolve(filename).toString()));
     }
 
     /**

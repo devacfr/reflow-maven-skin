@@ -1429,19 +1429,4 @@ public class HtmlTool extends SafeConfig {
         List<? extends IdElement> getItems();
     }
 
-    /**
-     * A generic method to use jsoup parser on an arbitrary HTML body fragment. Allows writing HTML manipulations in the
-     * template without adding Java code to the class.
-     *
-     * @param content
-     *            HTML content to parse
-     * @return the wrapper element for the parsed content (i.e. the body element as if the content was body contents).
-     * @since 1.0
-     */
-    public static Element parseBodyFragment(final String content) {
-
-        final Document doc = Jsoup.parseBodyFragment(content);
-        return doc.body();
-    }
-
 }
