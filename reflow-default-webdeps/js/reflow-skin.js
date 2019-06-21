@@ -147,17 +147,23 @@ var mReflow = function () {
   }
 
   function initScrollTop() {
-    var el = $("#m-scroll-top");
-    $window.scroll(function () {
+    var el = $("#m_scrolltop");
+
+    function handle() {
       if ($(window).scrollTop() > 100) {
-        el.fadeIn(500);
+        $body.addClass('m-scrolltop--on');
       } else {
-        el.fadeOut(500);
+        $body.removeClass('m-scrolltop--on');
       }
+    }
+
+    $window.scroll( function () {
+      handle();
     });
+
     el.click(function () {
-      if ($body.hasClass('scroll-top-smooth-enabled')) {
-        scrollTo(0,0);
+      if ($body.hasClass('scrolltop-smooth-enabled')) {
+        scrollTo(0, 0);
       } else {
         $window.scrollTo(0, 0);
       }
@@ -190,7 +196,7 @@ var mReflow = function () {
 
       var hash = window.location.hash;
       // scroll to anchor if toc separator exists
-      if (hash && hash.indexOf(TOC_SEPARATOR)>0) {
+      if (hash && hash.indexOf(TOC_SEPARATOR) > 0) {
         scrollTo($(hash));
       }
     });

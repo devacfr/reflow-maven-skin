@@ -1,0 +1,91 @@
+
+
+
+
+
+
+ 
+
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+     <div class="row no-gutters">
+                                                              
+                <div class="col-lg-12 col-xl-9 py-3">
+                 <h1 id="dev-code-conventions_toc_code_conventions1">Code Conventions</h1> 
+<p>This chapter describes how developers (contributors) should write code. The reasoning of these styles and conventions is mainly for consistency, readability and maintainability reasons.</p> 
+<div class="section"> 
+ <h2 id="dev-code-conventions_toc_generic_code_style_and_convention">Generic Code Style and Convention</h2> 
+ <p>All working files (java, xml, others) should respect the following conventions:</p> 
+ <ul> 
+  <li><b>Trailing Whitespaces</b>, remove all trailing white-spaces</li> 
+  <li><b>Indentation</b>, never use tabs!</li> 
+  <li><b>Line wrapping</b>, always use a 120-column line width</li> 
+ </ul> 
+</div> 
+<div class="section"> 
+ <h2 id="dev-code-conventions_toc_java_code_covention">Java Code Covention</h2> 
+ <p>Our basic style guide for Java is to use <a class="externalLink" href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">Sun’s Java guide Code Conventions for the Java TM Programming Language</a>, but we do have a few subtle differences.</p> 
+ <ul> 
+  <li><b>White space</b>: One space after control statements and between arguments (i.e. <code class="\&quot;literal\&quot;">if ( foo )</code> instead of <code class="\&quot;literal\&quot;">if(foo)</code>), <code class="\&quot;literal\&quot;">myFunc( foo, bar, baz )</code> instead of <code class="\&quot;literal\&quot;">myFunc(foo,bar,baz)</code>). No spaces after methods names (i.e. <code class="\&quot;literal\&quot;">void myMethod()</code>, <code class="\&quot;literal\&quot;">myMethod( "foo" )</code>)</li> 
+  <li><b>Indentation</b>: Always use 4 spaces indents for java file, 2 spaces for xml file and <b>never</b> use tabs!</li> 
+  <li><b>Blocks</b>: Always enclose with a new line brace.</li> 
+  <li><b>Line wrapping</b>: Always use a 120-column line width for Java code and Javadoc.</li> 
+  <li><b>Design idioms</b>: Avoid creating internal objects as much as possible. Favor dependency injection whenever possible.</li> 
+  <li><b>Organization</b>: Avoid using a lot of public inner classes. Prefer interfaces instead of default implementation.</li> 
+  <li><b>Modifier</b>:Avoid using final modifier on all member variables and arguments. Prefer using private or protected member instead of public member.</li> 
+  <li><b>Standard Annotations</b>: Use <code class="\&quot;literal\&quot;">@Override</code> where required, use <code class="\&quot;literal\&quot;">@Deprecated</code> when something is deprecated, but still functions, and use <code class="\&quot;literal\&quot;">@SuppressWarnings</code> only when it’s impossible to eliminate the warning.</li> 
+  <li><b>Exceptions</b>: Throw meaningful exceptions to makes debugging and testing more easy. If you’re not doing anything meaningful with an exception, throw it to the caller. Wrapping with a RuntimeException is fine if it’s an exception that is only going to occur in the event of a programming error rather than a logical error (i.e. the same reason why unchecked exceptions exist in the first place).</li> 
+  <li><b>Scope</b>: Limit scope as much as possible. If you have a member that is a private part of your interface, but that you need to get access to for testing (such as an internal constant), make it package private (default).</li> 
+  <li><b>Documentation</b>: Document public interfaces well, i.e. all non-trivial public and protected functions should include Javadoc that indicates what it does, expected inputs, return values, exceptions thrown, and any implementation notes.</li> 
+  <li>Do not include authorship information.</li> 
+  <li>Don’t waste time with redundant and obvious comments. This means getters and setters probably don’t need comments at all.</li> 
+  <li>Use the notation <code class="\&quot;literal\&quot;">TODO</code>: comment when leaving a comment about future work that needs to be done. This is automatically picked up by Eclipse the auto generated <a class="externalLink" href="http://www.mojohaus.org/taglist-maven-plugin/">Taglist report</a> and other editors, and it makes finding them useful. Don’t put user ids or specific dates.</li> 
+  <li><b>Testing</b>: All non-trivial public classes should include a corresponding unit test. We use <code class="\&quot;literal\&quot;">JUnit</code>, <code class="\&quot;literal\&quot;">PowerMock</code>, <code class="\&quot;literal\&quot;">Mockito</code> and <code class="\&quot;literal\&quot;">EasyMock</code> (preferred) to make testing easier. Patches will be refused without corresponding test cases. Classes should have all feasible branches covered, any branch that isn’t covered must be explained in comments.</li> 
+ </ul> 
+ <p><b>Naming</b></p> 
+ <ul> 
+  <li>Treat acronyms as words. This means “HtmlParser” and not “HTMLParser”. Java’s standard libraries are inconsistent about this, but we shouldn’t be.</li> 
+  <li>Constants (static final members) should always use an ALL_CAPS form.</li> 
+  <li>Enum values should always capitalized and camel case.</li> 
+  <li>Use short, descriptive names for your classes and functions.</li> 
+ </ul> 
+</div> 
+<div class="section"> 
+ <h2 id="dev-code-conventions_toc_versioning_naming_convention">Versioning Naming Convention</h2> 
+ <p>The version name is normalized according to <a class="externalLink" href="http://semver.org/">Semantic Versioning</a>.</p> 
+</div>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/dev/code-conventions.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#dev-code-conventions_toc_code_conventions1" title="Code Conventions">Code Conventions</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#dev-code-conventions_toc_generic_code_style_and_convention" title="Generic Code Style and Convention">Generic Code Style and Convention</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#dev-code-conventions_toc_java_code_covention" title="Java Code Covention">Java Code Covention</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#dev-code-conventions_toc_versioning_naming_convention" title="Versioning Naming Convention">Versioning Naming Convention</a>
+    </li>
+                    </ul>
+                </nav>
+           </div>
+        </div>
+</div>

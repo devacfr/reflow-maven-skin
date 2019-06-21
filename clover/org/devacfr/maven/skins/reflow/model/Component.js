@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":100,"id":977,"methods":[{"el":55,"sc":5,"sl":49},{"el":63,"sc":5,"sl":61},{"el":78,"sc":5,"sl":74},{"el":88,"sc":5,"sl":86},{"el":98,"sc":5,"sl":96}],"name":"Component","sl":35}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_21":{"methods":[{"sl":49},{"sl":61},{"sl":74},{"sl":86},{"sl":96}],"name":"shouldBuildFrameContext","pass":true,"statements":[{"sl":51},{"sl":52},{"sl":62},{"sl":76},{"sl":87},{"sl":97}]},"test_23":{"methods":[{"sl":61},{"sl":86},{"sl":96}],"name":"shouldBuildPageContextWithTocDisabled","pass":true,"statements":[{"sl":62},{"sl":87},{"sl":97}]},"test_30":{"methods":[{"sl":49},{"sl":61},{"sl":74},{"sl":86},{"sl":96}],"name":"shouldBuildDocumentContext","pass":true,"statements":[{"sl":51},{"sl":52},{"sl":62},{"sl":76},{"sl":87},{"sl":97}]},"test_42":{"methods":[{"sl":49},{"sl":61},{"sl":74},{"sl":86},{"sl":96}],"name":"shouldBuildPageContext","pass":true,"statements":[{"sl":51},{"sl":52},{"sl":62},{"sl":76},{"sl":87},{"sl":97}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [30, 21, 42], [], [30, 21, 42], [30, 21, 42], [], [], [], [], [], [], [], [], [23, 30, 21, 42], [23, 30, 21, 42], [], [], [], [], [], [], [], [], [], [], [], [30, 21, 42], [], [30, 21, 42], [], [], [], [], [], [], [], [], [], [23, 30, 21, 42], [23, 30, 21, 42], [], [], [], [], [], [], [], [], [23, 30, 21, 42], [23, 30, 21, 42], [], [], []]
