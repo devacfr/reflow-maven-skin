@@ -157,14 +157,9 @@
  * Recursively outputs menu item and its children
  *
  *#
- #macro ( menuItem $item )#*
-    *##set ( $collapseClass = false )
-#*  *##set ( $href =  $item.href  )
-#*  *##if ( $item.active )
-#*      *##set ( $currentLink = "#" )
-#*  *##else
-#*      *##set ( $currentLink = $href )
-#*  *##end
+ #macro ( menuItem $item )##
+#*  *##set ( $collapseClass = false )
+#*  *##set ( $currentLink = $item.href )
 ##
 #*  *##if ( $item.menuItems && $item.menuItems.size() > 0 )
 ##
