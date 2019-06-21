@@ -40,18 +40,8 @@ public class DocumentContext extends Context<DocumentContext> {
     public DocumentContext(final @Nonnull ISkinConfig config) {
         super(config, ContextType.doc);
         this.navSideMenu = new NavSideMenu(config);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        if (getNavSideMenu() != null) {
-            css += " " + getNavSideMenu().getCssOptions();
-        }
-        return css;
+        this.addChildren(this.navSideMenu);
     }
 
     /**

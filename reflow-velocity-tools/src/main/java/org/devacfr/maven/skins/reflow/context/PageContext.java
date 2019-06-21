@@ -40,18 +40,7 @@ public class PageContext extends Context<PageContext> {
     public PageContext(final @Nonnull ISkinConfig config) {
         super(config, ContextType.page);
         this.toc = createToc(config, null);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        if (getToc() != null) {
-            css += " " + getToc().getCssOptions();
-        }
-        return css;
+        this.addChildren(this.toc);
     }
 
     /**

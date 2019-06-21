@@ -22,14 +22,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.maven.skins.reflow.HtmlTool.ExtractResult;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
 import org.devacfr.maven.skins.reflow.HtmlTool.JoinSeparator;
 import org.devacfr.testing.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMap;
+
 public class HtmlToolTest extends TestCase {
+
+    private HtmlTool htmlTool;
+
+    @Before
+    public void setup() {
+        htmlTool = new HtmlTool();
+        htmlTool.configure(new ValueParser(ImmutableMap.<String, Object> builder()
+                .put("velocityContext",
+                    new ToolContext(ImmutableMap.<String, Object> builder().put("outputEncoding", "utf-8").build()))
+                .build()));
+    }
 
     /**
      * Simple split Test
@@ -37,7 +52,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldSplitBodyFragment() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         final List<String> fragments = htmlTool.split(body, "hr");
         assertEquals(2, fragments.size());
         assertEquals("<h2>section1</h2>", fragments.get(0));
@@ -50,7 +64,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldNotSplit() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         final List<String> fragments = htmlTool.split(body, "p");
         assertEquals(1, fragments.size());
     }
@@ -61,7 +74,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldSplitRecursively() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         final List<String> fragments = htmlTool.split(body, ".section");
         assertEquals(2, fragments.size());
         assertEquals("<h2>section1</h2>\n<div>  \n</div>", fragments.get(0));
@@ -71,7 +83,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldSplitJoinSeparatorBefore() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         List<String> fragments = htmlTool.split(body, "hr", JoinSeparator.BEFORE);
         assertEquals(2, fragments.size());
         assertEquals("<h2>section1</h2>\n<hr>", fragments.get(0));
@@ -86,7 +97,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldSplitJoinSeparatorAfter() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         List<String> fragments = htmlTool.split(body, "hr", JoinSeparator.AFTER);
         assertEquals(2, fragments.size());
         assertEquals("<h2>section1</h2>", fragments.get(0));
@@ -101,7 +111,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldSplitJoinSeparatorNo() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         List<String> fragments = htmlTool.split(body, "hr", JoinSeparator.NO);
         assertEquals(2, fragments.size());
         assertEquals("<h2>section1</h2>", fragments.get(0));
@@ -116,7 +125,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldSplitOnStarts() {
         final String body = getActualResource();
-        final HtmlTool htmlTool = new HtmlTool();
         final List<String> fragments = htmlTool.splitOnStarts(body, "hr");
         assertEquals(1, fragments.size());
         assertEquals("<hr>\n<h2>section2</h2>", fragments.get(0));
@@ -124,15 +132,11 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void fixTableHeadsWithTagListReportOuput() throws IOException {
-        final HtmlTool htmlTool = new HtmlTool();
-        htmlTool.configure(new ValueParser());
         verify(htmlTool::fixTableHeads);
     }
 
     @Test
     public void shouldReorderToTopOneSection() {
-        final HtmlTool htmlTool = new HtmlTool();
-        htmlTool.configure(new ValueParser());
         verify((content) -> {
             return htmlTool.reorderToTop(content, "a:has(img), img", 1, "<div class=\"caption\"></div>");
         }, ".html");
@@ -141,7 +145,6 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldExtract() {
         final String section = getActualResource(".html");
-        final HtmlTool htmlTool = new HtmlTool();
 
         final ExtractResult results = htmlTool.extract(section, "a:has(img), img", 3);
         assertNotNull(results);
@@ -157,7 +160,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldSetAttribute() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.setAttr(content, "span", "class", "section");
         assertEquals("<div>\n <span class=\"section\"></span>\n</div>", actual);
@@ -165,7 +167,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldgetAttribute() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div class=\"section\"><span class=\"title\"></span></div>";
         final List<String> actuals = htmlTool.getAttr(content, "span", "class");
         assertThat(actuals, contains("title"));
@@ -173,7 +174,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldAddClass() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.addClass(content, "span", "section");
         assertEquals("<div>\n <span class=\"section\"></span>\n</div>", actual);
@@ -181,7 +181,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldWrapElement() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.wrap(content, "span", "<a href=\"http://reflow.com\"></a>", 1);
         assertEquals("<div>\n <a href=\"http://reflow.com\"><span></span></a>\n</div>", actual);
@@ -189,7 +188,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldRemoveElement() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.remove(content, "span");
         assertEquals("<div></div>", actual);
@@ -197,7 +195,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldReplace() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.replace(content, "span", "<a href=\"http://reflow.com\"></a>");
         assertEquals("<div>\n <a href=\"http://reflow.com\"></a>\n</div>", actual);
@@ -205,7 +202,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldReplaceWith() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String actual = htmlTool
                 .replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
         assertEquals("<p>text <code class=\"literal\">foo value</code> end text.</p>", actual);
@@ -213,7 +209,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldExtractText() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = "<div><span>paragraph</span></div>";
         final List<String> actuals = htmlTool.text(content, "span");
         assertThat(actuals, contains("paragraph"));
@@ -221,7 +216,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldHeadingAnchorToId() {
-        final HtmlTool htmlTool = new HtmlTool();
         verify((content) -> {
             return htmlTool.headingAnchorToId(content);
         }, ".html");
@@ -229,7 +223,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldEnsureHeadingIds() {
-        final HtmlTool htmlTool = new HtmlTool();
         verify((content) -> {
             return htmlTool.ensureHeadingIds("page", "overview", content, "_");
         }, ".html");
@@ -237,7 +230,6 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldHeadingTree() {
-        final HtmlTool htmlTool = new HtmlTool();
         final String content = htmlTool.ensureHeadingIds("page", "overview", getActualResource(".html"), "_");
         final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
         // check root element

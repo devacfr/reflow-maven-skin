@@ -44,31 +44,27 @@ public class TocSidebar extends Toc<TocSidebar> {
      *            a config (can <b>not</b> be {@code null}).
      */
     public TocSidebar(final @Nonnull ISkinConfig config) {
-        super("sidebar", "");
+        super("sidebar", "sidebar");
         final String position = config.getAttributeValue("toc", "position", String.class, "fixed").toLowerCase();
         this.withEnabled(true)
                 .withExpanded(config.getAttributeValue("toc", "expanded", Boolean.class, true))
                 .withAutoExpandable(config.getAttributeValue("toc", "autoExpandable", Boolean.class, true))
                 .withFixed("fixed".equals(position))
                 .withLevel(config.getAttributeValue("toc", "level", Integer.class, 0));
-    }
-
-    @Override
-    public String getCssOptions() {
-        String css = isEnabled() ? "m-toc-sidebar-enabled" : "";
+        if (this.isEnabled()) {
+            this.addCssOptions("m-toc-sidebar-enabled");
+        }
         if (isExpanded()) {
-            css += " m-toc-sidebar-expanded";
+            this.addCssOptions("m-toc-sidebar-expanded");
         }
         if (isAutoExpandable()) {
-            css += " m-toc-sidebar-autoexpandable";
+            this.addCssOptions("m-toc-sidebar-autoexpandable");
         }
         if (isFixed()) {
-            css += " toc-sidebar-fixed";
+            this.addCssOptions("toc-sidebar-fixed");
         } else {
-            css += " toc-sidebar-relative";
+            this.addCssOptions(" toc-sidebar-relative");
         }
-
-        return css;
     }
 
     /**

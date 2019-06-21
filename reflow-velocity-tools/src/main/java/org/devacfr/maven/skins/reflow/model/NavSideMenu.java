@@ -142,19 +142,10 @@ public class NavSideMenu extends BsComponent {
             this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
             this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = "m-sidenav-enabled";
-
+        this.addCssOptions("m-sidenav-enabled");
         if (isSelectFirstOnExpand()) {
-            css += " m-sidenav-select-first-on-select";
+            this.addCssOptions("m-sidenav-select-first-on-select");
         }
-        return css;
     }
 
     /**

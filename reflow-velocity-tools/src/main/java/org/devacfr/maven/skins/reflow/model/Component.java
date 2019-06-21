@@ -15,6 +15,17 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import static com.google.common.collect.FluentIterable.concat;
+
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Lists;
+
 /**
  * The abstract class of all component used in Reflow rendering.
  *
@@ -26,10 +37,20 @@ public abstract class Component {
     /** */
     private String cssClass;
 
+    /** */
+    private final List<String> cssOptions = Lists.newArrayList();
+
+    /** */
+    private final List<Component> children = Lists.newArrayList();
+
     /**
      * @return Returns a {@link String} representing the css classes to apply to component.
      */
+    @Nonnull
     public String getCssClass() {
+        if (Strings.isNullOrEmpty(cssClass)) {
+            return "";
+        }
         return cssClass;
     }
 
@@ -50,8 +71,30 @@ public abstract class Component {
      *
      * @return Returns a {@link String} representing the css options associated to component.
      */
-    public String getCssOptions() {
-        return "";
+    @Nonnull
+    public final String getCssOptions() {
+        return concat(this.cssOptions,
+            concat(FluentIterable.from(children).transform(component -> component.cssOptions))).join(Joiner.on(' '));
+    }
+
+    /**
+     * Add components to this component.
+     *
+     * @param components
+     *            list of component
+     */
+    protected void addChildren(final Component... components) {
+        this.children.addAll(Lists.newArrayList(components));
+    }
+
+    /**
+     * Add cssOption to this component.
+     *
+     * @param cssOptions
+     *            a css option.
+     */
+    protected final void addCssOptions(@Nonnull final String... cssOptions) {
+        this.cssOptions.addAll(Lists.newArrayList(cssOptions));
     }
 
 }

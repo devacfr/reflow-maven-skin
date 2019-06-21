@@ -176,12 +176,21 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 [reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#multi-module.html
 
+## Site Generation
+
+Use following command to generate site.
+
+```bash
+$ ./generateSite
+$ ./mvnw site:run
+```
+
 ## Site Deployment
 
 Use following command to deploy site.
 
 ```bash
-$ ./mvnw clean package site site:stage scm-publish:publish-scm
+$ ./siteDeploy
 ```
 
 ## Bug tracker

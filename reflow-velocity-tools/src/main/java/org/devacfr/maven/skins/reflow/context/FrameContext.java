@@ -47,15 +47,8 @@ public class FrameContext extends Context<FrameContext> {
         super(config, ContextType.frame);
         toc = Toc.createSidebar(config);
         this.documentParent = requireNonNull(documentParent);
-    }
 
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        if (getToc() != null) {
-            css += " " + getToc().getCssOptions();
-        }
-        return css;
+        this.addChildren(this.toc);
     }
 
     /**

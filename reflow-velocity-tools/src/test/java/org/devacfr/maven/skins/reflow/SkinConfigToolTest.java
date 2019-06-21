@@ -44,7 +44,7 @@ public class SkinConfigToolTest extends MockitoTestCase {
         velocityContext = new ToolContext();
         final DecorationXpp3Reader reader = new DecorationXpp3Reader();
 
-        try (final InputStream in = getResource("SkinConfigToolTest.xml").openBufferedStream()) {
+        try (final InputStream in = getResource("default.site.xml").openBufferedStream()) {
             decorationModel = reader.read(in);
         }
         valueParser = new ValueParser(

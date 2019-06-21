@@ -39,17 +39,9 @@ public class ScrollTop extends Component {
     public ScrollTop(final @Nonnull ISkinConfig config) {
 
         this.smooth = config.getPropertyValue("smoothScroll", Boolean.class, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
         if (isSmooth()) {
-            return "scrolltop-smooth-enabled";
+            this.addCssOptions("scrolltop-smooth-enabled");
         }
-        return super.getCssOptions();
     }
 
     /**

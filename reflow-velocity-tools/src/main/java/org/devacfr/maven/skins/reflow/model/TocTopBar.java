@@ -45,14 +45,9 @@ public class TocTopBar extends Toc<TocTopBar> {
         this.withFlatten(config.getAttributeValue(COMPONENT, "flatten", Boolean.class, false))
                 .withNumberItems(config.getAttributeValue(COMPONENT, "numberItems", Integer.class, -1))
                 .withEnabled(true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        return isEnabled() ? "m-toc-top-enabled" : "";
+        if (isEnabled()) {
+            this.addCssOptions("m-toc-top-enabled");
+        }
     }
 
     /**

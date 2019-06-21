@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
     /** */
-    protected static final String COMPONENT = "toc";
+    public static final String COMPONENT = "toc";
 
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(Toc.class);
@@ -80,10 +80,6 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
                 // create a disabled empty toc
                 toc = new Toc<Toc<?>>("", "") {
 
-                    @Override
-                    public String getCssOptions() {
-                        return "";
-                    }
                 };
                 toc.withEnabled(false);
                 break;

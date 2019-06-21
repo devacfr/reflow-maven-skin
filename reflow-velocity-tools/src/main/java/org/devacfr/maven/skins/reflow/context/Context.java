@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
  * @param <T>
  *            type of inherrit context object.
  */
-public class Context<T extends Context<?>> extends Component {
+public abstract class Context<T extends Context<?>> extends Component {
 
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(Context.class);
@@ -88,6 +88,9 @@ public class Context<T extends Context<?>> extends Component {
                 type = ContextType.frame;
             }
         }
+        // if (type== null) {
+        // type = ContextType.page;
+        // }
         Context<?> context = null;
         switch (type) {
             case doc:
@@ -125,16 +128,8 @@ public class Context<T extends Context<?>> extends Component {
         this.navbar = new Navbar(config);
         this.scrollTop = new ScrollTop(config);
         this.footer = new Footer(config);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        css += " " + getNavbar().getCssOptions() + " " + getScrollTop().getCssOptions();
-        return css;
+        this.addChildren(this.navbar, this.scrollTop, this.footer);
     }
 
     /**

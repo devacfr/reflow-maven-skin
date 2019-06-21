@@ -22,6 +22,12 @@ import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
+/**
+ * Interface of skin config.
+ *
+ * @author devacfr
+ * @since 2.1
+ */
 public interface ISkinConfig {
 
     /**
@@ -173,6 +179,6 @@ public interface ISkinConfig {
      *            Tthe type of expected returned value.
      */
     @Nullable
-    <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass);
+    <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);
 
 }
