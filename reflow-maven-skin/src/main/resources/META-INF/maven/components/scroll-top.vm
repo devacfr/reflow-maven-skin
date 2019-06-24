@@ -14,8 +14,8 @@
 ## limitations under the License.
 ##
 ## scroll top
-#macro ( renderScrollTop )
+#macro ( renderScrollTop )##
     <div id="m_scrolltop" class="m-scrolltop">
 		<i class="fa fa-arrow-up"></i>
     </div>
-#end
+#end##

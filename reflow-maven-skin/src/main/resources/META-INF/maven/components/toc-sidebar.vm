@@ -17,7 +17,7 @@
  * Outputs ToC sidebar contents.
  * Does not do anything if ToC sidebar has already been added.
  *
- *#
+ *###
  #macro ( renderTocSidebar )##
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
         #if ( !$tocSidebarAdded )##
@@ -34,8 +34,8 @@
 #**
  * Outputs Table of Contents into a list menu
  *
- *#
- #macro ( renderAsideTocMenu $menus )##
+ *###
+#macro ( renderAsideTocMenu $menus )##
 ##
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
 #*  *##foreach ( $item in $menus )
@@ -47,8 +47,8 @@
 #**
  * Recursively outputs ToC item and its children
  *
- *#
- #macro ( renderAsideTocItem $item $currentLevel)##
+ *###
+#macro ( renderAsideTocItem $item $currentLevel)##
     #set( $href = ${item.id} )##
     <li class="${item.tagName}">
         <a class="nav-link" href="#${href}" title="${item.text}">$item.text</a>
@@ -65,4 +65,4 @@
     </ul>
 #*      *##end##
 #*  *##end
-#end
+#end##

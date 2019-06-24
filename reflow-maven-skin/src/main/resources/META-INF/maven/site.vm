@@ -13,23 +13,23 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-#parse( "site-macros.vm" )##
-#parse( "components/banner.vm" )##
-#parse( "components/breadcrumbs.vm" )##
-#parse( "components/nav-side-menu.vm" )##
-#parse( "components/navbar.vm" )##
-#parse( "components/scroll-top.vm" )##
-#parse( "components/toc-topbar.vm" )##
-#parse( "components/toc-sidebar.vm" )##
-#parse( "components/layout.vm" )##
+#*  *##parse( "site-macros.vm" )##
+#*  *##parse( "components/banner.vm" )##
+#*  *##parse( "components/breadcrumbs.vm" )##
+#*  *##parse( "components/nav-side-menu.vm" )##
+#*  *##parse( "components/navbar.vm" )##
+#*  *##parse( "components/scroll-top.vm" )##
+#*  *##parse( "components/toc-topbar.vm" )##
+#*  *##parse( "components/toc-sidebar.vm" )##
+#*  *##parse( "components/layout.vm" )##
 ##
-#parse( "footer-default.vm")
+#*  *##parse( "footer-default.vm")##
 ##
 ##
-#set( $pageContext = $config.context)
-#set( $pageType = $pageContext.type)
-#if( $pageType == "frame" )
-    #parse( "frame-default.vm")
-#else
-    #parse( "page-default.vm")
-#end
+#*  *##set( $pageContext = $config.context)##
+#*  *##set( $pageType = $pageContext.type)
+#*  *##if( $pageType == "frame" )##
+#*      *##parse( "frame-default.vm")##
+#*  *##else##
+#*      *##parse( "page-default.vm")##
+#*  *##end##

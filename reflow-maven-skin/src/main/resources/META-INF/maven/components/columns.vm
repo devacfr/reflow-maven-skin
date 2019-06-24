@@ -16,7 +16,7 @@
 #**
  * Outputs subsections into a column grid
  *
- *#
+ *###
 #macro ( columns $colCount $subsections )#*
     *##set ( $colCount = $convert.toNumber($colCount) )##
     <div class="row">

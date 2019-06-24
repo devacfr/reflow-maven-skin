@@ -15,7 +15,8 @@
 ##
 #**
  * output top table fo content
- *##macro( renderTopToc )
+ *###
+#macro( renderTopToc )##
     #if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")
     <hr class="toc-separator" />
     <div id="m-toc-topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}">
@@ -36,7 +37,8 @@
  #**
  * Outputs the top Table of Contents ( subnav )
  *
- *##macro ( renderTopTocItems $topItems )
+ *###
+#macro ( renderTopTocItems $topItems )
     #set ( $tocMax = $pageContext.toc.numberItems )#*
     ## check if we flatten the first 2 levels of ToC:
     *##set ( $flattenConfig = $pageContext.toc.flatten )#*
@@ -126,7 +128,7 @@
 #**
  * Recursively outputs the contents of top bar ToC dropdown item
  *
- *#
+ *###
 #macro ( renderTopTocDropdown $items )#*
 
     *##foreach ( $subitem in $items )#*

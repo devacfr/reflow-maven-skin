@@ -13,10 +13,11 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-#*
+#**
  * Outputs subsections as thumbnail grid. Also rearranges the images to come on top.
  *
- *##macro ( renderThumbnails $colCount $subsections )##
+ *###
+#macro ( renderThumbnails $colCount $subsections )##
 #*  *##set ( $colCount = $convert.toNumber($colCount) )##
 #*  *##set ( $colSpan = 12 / $colCount )#*
 #*  *##set ( $index = 0 )

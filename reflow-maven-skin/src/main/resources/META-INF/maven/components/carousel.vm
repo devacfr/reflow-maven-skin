@@ -16,8 +16,8 @@
 #**
  * Outputs subsections into a carousel. Also rearranges the layout to fit carousel.
  *
- *##macro ( carousel $subsections )#*
-
+ *###
+#macro ( carousel $subsections )#*
     *##if ( !$carouselCounter )#*
         *##set ( $carouselCounter = 0 )#*
     *##else#*
