@@ -44,34 +44,32 @@
                 <ul class="nav navbar-nav #if( $pageContext.navbar.alignMenu== 'right' )ml-auto#end">
 ##
 #*  *##foreach ( $menu in $pageContext.navbar.menus)
-#*      *##if( $menu.menuItems.isEmpty() && $menu.name)
+#*      *##if( $menu.menuItems.isEmpty())
                     <li class="nav-item #if( $menu.active)active#end" >#link ( $menu.href $menu.name $menu.target "nav-link")</li>
 #*      *##else
-#*          *##if ( $menu.name )
                     <li class="nav-item dropdown#if ( $menu.active ) active#end">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$menu.name <b class="caret"></b></a>
                         <div class="dropdown-menu">
-#*              *##foreach ( $item in $menu.menuItems )
-#*                  *##if ($item.menuItems.isEmpty())
+#*          *##foreach ( $item in $menu.menuItems )
+#*              *##if ($item.menuItems.isEmpty())
                             <a href="$item.href" title="$item.name" #if( $item.target )target="$item.target"#end class="dropdown-item #if( $item.active )active#end">$item.name</a>
-#*                  *##else##
+#*              *##else##
                             <div class="dropdown-submenu">
-#*                      *##set( $cssClass = "dropdown-item")
-#*                      *##if( $item.active )
-#*                          *##set( $cssClass = "$cssClass active")
-#*                      *##end
-#*                      *##link ( $item.href $item.name $item.target "$cssClass")
+#*                  *##set( $cssClass = "dropdown-item")
+#*                  *##if( $item.active )
+#*                      *##set( $cssClass = "$cssClass active")
+#*                  *##end
+#*                  *##link ( $item.href $item.name $item.target "$cssClass")
                                 <div class="dropdown-menu">
-#*                      *##foreach ($subitem in $item.menuItems)
+#*                  *##foreach ($subitem in $item.menuItems)
                                     <a href="$subitem.href" title="$subitem.name" #if( $subitem.target )target="$subitem.target"#end class="dropdown-item #if( $subitem.active )active#end">$subitem.name</a>
-#*                      *##end
+#*                  *##end
                                 </div>
                             </div>
-#*                  *##end ## item empty
-#*              *##end ## foreach
+#*              *##end ## item empty
+#*          *##end ## foreach
                         </div>
                     </li>
-#*          *##end ## if name empty
 #*      *##end ## if item empty
 #*  *##end ## foreach
 ##

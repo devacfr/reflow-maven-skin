@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -120,6 +121,9 @@ public class Menu {
         this.active = false;
         final List<org.apache.maven.doxia.site.decoration.MenuItem> items = menu.getItems();
         for (final org.apache.maven.doxia.site.decoration.MenuItem menuItem : items) {
+            if (isNullOrEmpty(menu.getName())) {
+                continue;
+            }
             this.menuItems.add(new MenuItem(config, menuItem));
         }
     }

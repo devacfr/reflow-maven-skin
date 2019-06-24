@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -29,7 +30,6 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 /**
@@ -87,7 +87,7 @@ public class Navbar extends BsComponent {
         } else {
             brandName = project.getName();
         }
-        if (Strings.isNullOrEmpty(brandName)) {
+        if (isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
         this.center = config.getAttributeValue(COMPONENT, "center", Boolean.class, true);
@@ -115,7 +115,10 @@ public class Navbar extends BsComponent {
         if (decoration.getBody() != null && decoration.getBody().getMenus() != null) {
             final List<org.apache.maven.doxia.site.decoration.Menu> menus = decoration.getBody().getMenus();
             for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
-                if (Strings.isNullOrEmpty(this.filterMenu)) {
+                if (isNullOrEmpty(menu.getName())) {
+                    continue;
+                }
+                if (isNullOrEmpty(this.filterMenu)) {
                     this.menus.add(new Menu(config, menu));
                 } else if (Menu.matches(this.filterMenu, menu)) {
                     this.menus.add(new Menu(config, menu));
@@ -198,7 +201,7 @@ public class Navbar extends BsComponent {
             Objects.requireNonNull(config);
             Objects.requireNonNull(element);
             final String link = config.getAttributeValue(element, "src", String.class, null);
-            if (Strings.isNullOrEmpty(link)) {
+            if (isNullOrEmpty(link)) {
                 throw new IllegalArgumentException("the attribute 'href' of image element is required");
             }
             this.src = config.eval(link, String.class);
