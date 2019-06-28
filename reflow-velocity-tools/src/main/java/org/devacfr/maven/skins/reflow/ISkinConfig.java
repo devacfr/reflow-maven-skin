@@ -21,6 +21,7 @@ import javax.annotation.Nullable;
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.context.Context;
 
 /**
  * Interface of skin config.
@@ -29,6 +30,46 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
  * @since 2.1
  */
 public interface ISkinConfig {
+
+    /**
+     * Gets the associated value to {@code key} stored in Velocity context.
+     *
+     * @param key
+     *            the key name of associated value in Velocity context.
+     * @param type
+     *            the the type of expected value.
+     * @return Returns the associated value to {@code key} stored in Velocity context.
+     * @param <T>
+     *            the type of expected value.
+     * @since 2.1
+     */
+    <T> T getContextValue(@Nonnull String key, @Nonnull Class<T> type);
+
+    /**
+     * Sets the value in Velocity context associated to {@code key}.
+     *
+     * @param key
+     *            the key name of associated value in Velocity context.
+     * @param value
+     *            the new value
+     * @since 2.1
+     */
+    void setContextValue(@Nonnull String key, Object value);
+
+    /**
+     * Gets the associated tool to {@code name} stored in toolbox of Velocity context.
+     *
+     * @param toolName
+     *            the name of tool associated in Velocity context.
+     * @param toolType
+     *            the expected class of tool.
+     * @return Returns the associated tool to {@code name} stored in toolbox of Velocity context.
+     * @param <T>
+     *            the type of expected tool.
+     * @since 2.1
+     */
+    @Nullable
+    <T> T getToolbox(@Nonnull String toolName, @Nonnull Class<T> toolType);
 
     /**
      * @return Returns the root level {@link Xpp3Dom}.
@@ -53,6 +94,12 @@ public interface ISkinConfig {
      */
     @Nullable
     String getFileId();
+
+    /**
+     * @return the context
+     */
+    @Nonnull
+    Context<?> getContext();
 
     /**
      * @return Returns the {@link String} representing the projectId.

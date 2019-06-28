@@ -237,12 +237,6 @@
 #*      *### The <tt> tag is not supported in HTML5 (see https://www.w3schools.com/tags/tag_tt.asp).
 #*      *##set ( $bodyContent = $htmlTool.replaceWith( $bodyContent, 'tt', '<code class=\"literal\">' ) )##
 #*  *##end##
-##
-#*  *##if ( $pageContext.toc.enabled )##
-#*      *### Ensure IDs on all headings to refer to them in TOC
-#*      *##set ( $bodyContent = $htmlTool.ensureHeadingIds( $pageContext.type, $config.fileId, $bodyContent, "_" ) )##
-#*      *##set ( $tocItems = $htmlTool.headingTree( $bodyContent, $config.getChildren( $config.sections ) ) )##
-#*  *##end##
 #end##
 ##
 #**

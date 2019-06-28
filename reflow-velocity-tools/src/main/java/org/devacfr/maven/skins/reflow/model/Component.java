@@ -16,10 +16,14 @@
 package org.devacfr.maven.skins.reflow.model;
 
 import static com.google.common.collect.FluentIterable.concat;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.HtmlTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
@@ -95,6 +99,49 @@ public abstract class Component {
      */
     protected final void addCssOptions(@Nonnull final String... cssOptions) {
         this.cssOptions.addAll(Lists.newArrayList(cssOptions));
+    }
+
+    /**
+     * Allows to execute action before rendering of component.
+     *
+     * @param skinConfig
+     *            a config (can <b>not</b> be {@code null}).
+     * @since 2.1
+     */
+    public void preRender(@Nonnull final ISkinConfig skinConfig) {
+    }
+
+    /**
+     * Gets the tool {@link HtmlTool}.
+     *
+     * @param skinConfig
+     *            a config (can <b>not</b> be {@code null}).
+     * @return Returns the tool {@link HtmlTool}.
+     * @since 2.1
+     */
+    protected HtmlTool getHtmlTool(@Nonnull final ISkinConfig skinConfig) {
+        return requireNonNull(skinConfig).getToolbox("htmlTool", HtmlTool.class);
+    }
+
+    /**
+     * @param skinConfig
+     *            a config (can <b>not</b> be {@code null}).
+     * @return Returns the html body content stored in velocity context.
+     * @since 2.1
+     */
+    protected String getBodyContent(@Nonnull final ISkinConfig skinConfig) {
+        return requireNonNull(skinConfig).getContextValue("bodyContent", String.class);
+    }
+
+    /**
+     * @param skinConfig
+     *            a config (can <b>not</b> be {@code null}).
+     * @param bodyContent
+     *            the html body to store in velocity context.
+     * @since 2.1
+     */
+    protected void setBodyContent(@Nonnull final ISkinConfig skinConfig, final String bodyContent) {
+        requireNonNull(skinConfig).setContextValue("bodyContent", bodyContent);
     }
 
 }

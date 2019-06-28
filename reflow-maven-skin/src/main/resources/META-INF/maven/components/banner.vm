@@ -22,10 +22,10 @@
         <div class="row m-1" id="banner">
           <div class="col-md-12">
             <div class="float-left bannerLeft">
-              #banner ( $decoration.bannerLeft "bannerLeft")
+#*      *##banner ( $decoration.bannerLeft "bannerLeft")##
             </div>
             <div class="float-right bannerRight">
-              #banner ( $decoration.bannerRight "bannerRight")
+#*      *##banner ( $decoration.bannerRight "bannerRight")##
             </div>
           </div>
         </div>

@@ -17,42 +17,39 @@
  * Outputs subsections into a carousel. Also rearranges the layout to fit carousel.
  *
  *###
-#macro ( carousel $subsections )#*
-    *##if ( !$carouselCounter )#*
-        *##set ( $carouselCounter = 0 )#*
-    *##else#*
-        *##set ( $carouselCounter = $carouselCounter + 1 )#*
-    *##end#*
-
-    *##set ( $carouselId = "carousel$carouselCounter" )##
+#macro ( carousel $subsections )##
+#*  *##if ( !$carouselCounter )##
+#*      *##set ( $carouselCounter = 0 )##
+#*  *##else##
+#*      *##set ( $carouselCounter = $carouselCounter + 1 )##
+#*  *##end##
+##
+#*  *##set ( $carouselId = "carousel$carouselCounter" )##
     <div id="$carouselId" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-#*      *##set($index = 0)##
-#*      *##foreach ( $subsection in $subsections )##
+#*  *##set($index = 0)##
+#*  *##foreach ( $subsection in $subsections )##
             <li data-target="#$carouselId" data-slide-to="$index" class="#if( $index==0 )active#end"></li>
-#*          *##set( $index = $index + 1)##
-#*      *##end##
+#*      *##set( $index = $index + 1)##
+#*  *##end##
         </ol>
         <div class="carousel-inner">
-#*
-    *##set ( $activeClass = 'active' )#*
-    *##foreach ( $subsection in $subsections )##
+#*  *##set ( $activeClass = 'active' )##
+#*  *##foreach ( $subsection in $subsections )##
             <div class="carousel-item $activeClass">
-#*
-        ## Extract image (or link with image) from the subsection
-        *##set ( $extract = $htmlTool.extract( $subsection, "a:has(img), img", 1 ) )#*
-        *##if ( $extract.extracted && $extract.extracted.size() > 0 )#*
-            ## take just the first extracted image element
-            *#$htmlTool.addClass( $extract.extracted.get(0), "img", ["d-block", "w-100"] )#*
-        *##end#*
-        ## the remainder becomes the caption (heading with text) *#
+#*      *### Extract image (or link with image) from the subsection
+#*      *##set ( $extract = $htmlTool.extract( $subsection, "a:has(img), img", 1 ) )##
+#*      *##if ( $extract.extracted && $extract.extracted.size() > 0 )##
+#*          *### take just the first extracted image element
+#*          *#$htmlTool.addClass( $extract.extracted.get(0), "img", ["d-block", "w-100"] )##
+#*      *##end#*
+#*      *### the remainder becomes the caption (heading with text) *#
                 <div class="carousel-caption d-none d-md-block">
-                    #stripEmptyP ( $extract.remainder )
+#*      *##stripEmptyP ( $extract.remainder )##
                 </div> <!-- .carousel-caption -->
             </div> <!-- .item -->
-#*
-    *##set ( $activeClass = '' )#*
-    *##end##
+#*      *##set ( $activeClass = '' )##
+#*  *##end##
         </div> <!-- .carousel-inner -->
         <!-- Controls -->
         <a class="carousel-control-prev" href="#$carouselId" role="button" data-slide="prev">

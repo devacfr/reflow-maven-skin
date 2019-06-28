@@ -269,6 +269,44 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      */
     @Override
     @Nullable
+    public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
+        requireNonNull(type);
+        if (String.class.isAssignableFrom(type)) {
+            return this.eval("$" + key, type);
+        } else {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setContextValue(@Nonnull final String key, @Nullable final Object value) {
+        requireNonNull(key);
+        if (value instanceof String) {
+            this.eval("#set( $" + key + "= \"" + value.toString() + "\")", Void.class);
+        } else {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Nullable
+    @SuppressWarnings("unchecked")
+    public <T> T getToolbox(@Nonnull final String toolName, @Nonnull final Class<T> toolType) {
+        requireNonNull(toolType);
+        return (T) this.velocityContext.getToolbox().get(requireNonNull(toolName));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Nullable
     public Xpp3Dom get(@Nonnull final String property) {
         requireNonNull(property);
         // first try page properties
@@ -507,6 +545,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     /**
      * @return the context
      */
+    @Override
+    @Nonnull
     public Context<?> getContext() {
         return context;
     }

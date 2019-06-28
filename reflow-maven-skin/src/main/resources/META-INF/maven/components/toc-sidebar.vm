@@ -18,17 +18,19 @@
  * Does not do anything if ToC sidebar has already been added.
  *
  *###
- #macro ( renderTocSidebar )##
-    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
-        #if ( !$tocSidebarAdded )##
+#macro ( renderTocSidebar )##
+#*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
+#*      *#$pageContext.toc.preRender( $config )##
+#*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
+#*      *##if ( !$tocSidebarAdded )##
             <div id="m-toc-sidebar" class="d-print-none ${pageContext.toc.cssOptions}">
                 <nav id="m-toc-sidebar-nav flex-column">
-#*                  *##renderAsideTocMenu ( $tocItems )
+#*          *##renderAsideTocMenu ( $tocItems )
                 </nav>
            </div>
-#*          *##set ( $tocSidebarAdded = true )#*
-        *##end##
-    #end
+#*          *##set ( $tocSidebarAdded = true )##
+#*      *##end##
+#*  *##end##
 #end##
 ##
 #**

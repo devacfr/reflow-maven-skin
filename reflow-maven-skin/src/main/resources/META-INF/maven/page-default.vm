@@ -142,7 +142,7 @@
 #*  *##if ( $localResources )
     <link href="$resourcePath/css/fontawesome/all.min.css" rel="stylesheet" />
 #*  *##else
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" crossorigin="anonymous">
 #*  *##end
 ##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />

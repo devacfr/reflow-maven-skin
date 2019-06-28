@@ -18,25 +18,26 @@
  *
  *###
 #macro ( renderNavbar )##
+#*  *#$pageContext.navbar.preRender( $config )##
     <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}">
-#*      *##if ( $pageContext.navbar.center )<div class="container">#end##
+#*  *##if ( $pageContext.navbar.center )<div class="container">#end##
 ##
 ## Insert brand if it is available
-#*      *##if ( $pageContext.navbar.brandHref )##
+#*  *##if ( $pageContext.navbar.brandHref )##
             <a class="navbar-brand mb-0 h1" href="$pageContext.navbar.brandHref">
-#*          *##if ( $pageContext.navbar.image )##
+#*      *##if ( $pageContext.navbar.image )##
                 <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
-#*          *##end##
+#*      *##end##
                 ${pageContext.navbar.brandName}
             </a>
-#*      *##else##
+#*  *##else##
             <div class="navbar-brand mb-0 h1">
-#*          *##if ( $pageContext.navbar.image )##
+#*      *##if ( $pageContext.navbar.image )##
                 <img src=$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
-#*          *##end##
+#*      *##end##
                 ${pageContext.navbar.brandName}
             </div>
-#*      *##end##
+#*  *##end##
 ##
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,7 +61,7 @@
 #*                  *##if( $item.active )##
 #*                      *##set( $cssClass = "$cssClass active")##
 #*                  *##end##
-                                #link ( $item.href $item.name $item.target "$cssClass")##
+                                #link ( $item.href $item.name $item.target "$cssClass")
                                 <div class="dropdown-menu">
 #*                  *##foreach ($subitem in $item.menuItems)##
                                     <a href="$subitem.href" title="$subitem.name" #if( $subitem.target )target="$subitem.target"#end class="dropdown-item #if( $subitem.active )active#end">$subitem.name</a>

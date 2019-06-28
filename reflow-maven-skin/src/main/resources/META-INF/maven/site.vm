@@ -27,7 +27,7 @@
 ##
 ##
 #*  *##set( $pageContext = $config.context)##
-#*  *##set( $pageType = $pageContext.type)
+#*  *##set( $pageType = $pageContext.type)##
 #*  *##if( $pageType == "frame" )##
 #*      *##parse( "frame-default.vm")##
 #*  *##else##
