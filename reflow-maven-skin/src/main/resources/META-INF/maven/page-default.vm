@@ -118,6 +118,11 @@
     #else##
         #set ( $bootswatchVersion = "@bootswatchVersion@" )##
     #end##
+#*  *##if ( $config.popperVersion )
+#*      *##set ( $popperVersion = $config.popperVersion.getValue() )
+#*  *##else
+#*      *##set ( $popperVersion = "@popperVersion@" )
+#*  *##end
 ##
     #if ( $localResources )##
         #set ( $bootstrapCssPath = "$resourcePath/css" )
@@ -138,6 +143,11 @@
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 ##
+#*  *##if ( $config.fontawesomeVersion )
+#*      *##set ( $fontawesomeVersion = $config.fontawesomeVersion.getValue() )
+#*  *##else
+#*      *##set ( $fontawesomeVersion = "@fontawesomeVersion@" )
+#*  *##end
 ##
 #*  *##if ( $localResources )
     <link href="$resourcePath/css/fontawesome/all.min.css" rel="stylesheet" />
