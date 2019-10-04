@@ -1,26 +1,9 @@
-
-
-
-
-
-
- 
-
- 
- 
- 
-
- 
-
- 
- 
-     <div class="row no-gutters">
-                                                              
-                <div class="col-lg-12 col-xl-9 py-3">
-                 <h1 id="get-started_toc_get_started1">Get Started</h1> 
+   <div class="row no-gutters">
+        <div class="col-lg-12 col-xl-9 py-3">
+            <h1>Get Started</h1> 
 <p>This section explains how uses reflow maven skin and the basic configurations in your project.</p> 
 <div class="section"> 
- <h2 id="get-started_toc_usage">Usage</h2> 
+ <h2 id="Usage">Usage</h2> 
  <p>To use this Maven skin, include it in your <a class="externalLink" href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html"><code class="\&quot;literal\&quot;">site.xml</code> site descriptor</a> file:</p> 
  <div> 
   <div> 
@@ -29,7 +12,7 @@
   &lt;skin&gt;
     &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
     &lt;artifactId&gt;reflow-maven-skin&lt;/artifactId&gt;
-    &lt;version&gt;2.1.0-SNAPSHOT&lt;/version&gt;
+    &lt;version&gt;2.1.0&lt;/version&gt;
   &lt;/skin&gt;
   ...
 &lt;/project&gt;
@@ -39,7 +22,7 @@
  <p>The skin is provided on the <i>works on my computer</i> basis at the moment. I am using the newest versions of <code class="\&quot;literal\&quot;">maven-site-plugin</code> and other components and at the moment do not have any feedback on using the skin with Maven 2 site or other configurations.</p> 
 </div> 
 <div class="section"> 
- <h2 id="get-started_toc_pom_dependencies">POM dependencies</h2> 
+ <h2 id="POM_dependencies">POM dependencies</h2> 
  <p>Add <a href="../reflow-velocity-tools"><code class="\&quot;literal\&quot;">reflow-velocity-tools</code></a> dependency to <code class="\&quot;literal\&quot;">maven-site-plugin</code> in the POM file:</p> 
  <div> 
   <div> 
@@ -55,7 +38,7 @@
         &lt;dependency&gt;
           &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
           &lt;artifactId&gt;reflow-velocity-tools&lt;/artifactId&gt;
-          &lt;version&gt;2.1.0-SNAPSHOT&lt;/version&gt;
+          &lt;version&gt;2.1.0&lt;/version&gt;
         &lt;/dependency&gt;
         ...
       &lt;/dependencies&gt;
@@ -71,7 +54,7 @@
  <hr> 
 </div> 
 <div class="section"> 
- <h2 id="get-started_toc_configuration">Configuration</h2> 
+ <h2 id="Configuration">Configuration</h2> 
  <p>Reflow skin supports extensive configuration options, including theme, layout, new/updated page components and a large number of various other flags.</p> 
  <p>The configuration is specified in the <a class="externalLink" href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html"><code class="\&quot;literal\&quot;">site.xml</code> site descriptor</a> file, using the <code class="\&quot;literal\&quot;">&lt;custom&gt;&lt;reflowSkin&gt;</code> element.</p> 
  <p>The documentation is split over several pages, describing the various configuration options:</p> 
@@ -153,7 +136,7 @@
   </div> 
  </div> 
  <div class="section"> 
-  <h3 id="get-started_toc_per-page_configuration">Per-page configuration</h3> 
+  <h3 id="Per-page_configuration">Per-page configuration</h3> 
   <p>Reflow skin has quite a number of configuration options, which can be applied either globally or limited to a specific page. The <i>per-page configuration</i> allows setting page-specific layouts, disable breadcrumbs or table of contents, or even change the theme for a single page.</p> 
   <p>All configuration options can be specified <i>per-page</i>. If the same configuration is specified both <i>globally</i> and <i>per-page</i>, the <i>per-page</i> one overrides the global option.</p> 
   <p>The configuration of a page is set using the <code class="\&quot;literal\&quot;">&lt;pages&gt;</code> element of the skin configuration. Each element within <code class="\&quot;literal\&quot;">&lt;pages&gt;</code> indicates the name of the page file being customized.</p> 
@@ -182,24 +165,24 @@
   </div> 
  </div> 
  <div class="section"> 
-  <h3 id="get-started_toc_page_id">Page Id</h3> 
+  <h3 id="Page_Id">Page Id</h3> 
   <p>Each page configuration is set within a <code class="\&quot;literal\&quot;">&lt;pages&gt;&lt;[pageId]&gt;</code> element.</p> 
   <p>The page Id is its file name without extension. This is because the pages may be generated from different file formats, e.g. <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">APT, XDoc, Markdown, etc</a>. The page ID characters must be of the same case as the generated file name.</p> 
   <p>For generated files that are in directories, <code class="\&quot;literal\&quot;">"-"</code> is used as the separator for directory structure. So a file in <i>./subdir/foo.html</i> is referred as <code class="\&quot;literal\&quot;">&lt;subdir-foo&gt;</code> in the configuration.</p> 
  </div> 
  <div class="section"> 
-  <h3 id="get-started_toc_configuration_inheritance">Configuration inheritance</h3> 
+  <h3 id="Configuration_inheritance">Configuration inheritance</h3> 
   <p>The page configuration is applied to all generated pages that have the indicated file name. For multi-module builds, child sites will inherit the configuration from parent site. So if the parent has defined a configuration for <code class="\&quot;literal\&quot;">&lt;index&gt;</code>, it will also be applied to <i>index.html</i> in the child project.</p> 
   <p>Sometimes this is undesirable, so one can use <code class="\&quot;literal\&quot;">project</code> attribute to indicate the project that the page applies to. For child pages, the project will be different from indicated and thus the configuration will not apply. The project is identified using its <code class="\&quot;literal\&quot;">artifactId</code>.</p> 
   <p>If you still encounter inheritance problems, try using <a class="externalLink" href="http://www.sonatype.com/people/2011/01/maven-how-to-merging-plugin-configuration-in-complex-projects/"><code class="\&quot;literal\&quot;">combine.self="override"</code> attribute</a> on the <code class="\&quot;literal\&quot;">site.xml</code> element to explicitly override it.</p> 
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="get-started_toc_responsive_design">Responsive design</h2> 
+ <h2 id="Responsive_design">Responsive design</h2> 
  <p>Reflow skin is built on <a class="externalLink" href="http://getbootstrap.com">Bootstrap</a> and provides responsive design features out of the box. The page layouts are rearranged for smaller screens to provide a good viewing experience.</p> 
 </div> 
 <div class="section"> 
- <h2 id="get-started_toc_learn_by_example">Learn by example</h2> 
+ <h2 id="Learn_by_example">Learn by example</h2> 
  <p>This website itself is generated using Reflow Maven skin and is written in Markdown. The source code is <a class="externalLink" href="https://github.com/devacfr/reflow-maven-skin" title="Reflow Maven skin source code">available on GitHub</a>.</p> 
  <p>Look for the site configuration and web page sources in <code class="\&quot;literal\&quot;">/src/site</code> of each module; and for plug-in configuration in respective POM files.</p> 
 </div>
@@ -212,29 +195,37 @@
                 </li>
             </ul>
         </div>
-                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded toc-sidebar-fixed">
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
-    <li class="h1">
-        <a class="nav-link" href="#get-started_toc_get_started1" title="Get Started">Get Started</a>
-    </li>
     <li class="h2">
-        <a class="nav-link" href="#get-started_toc_usage" title="Usage">Usage</a>
+        <a class="nav-link" href="#Usage" title="Usage">Usage</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#get-started_toc_pom_dependencies" title="POM dependencies">POM dependencies</a>
+        <li class="h2">
+        <a class="nav-link" href="#POM_dependencies" title="POM dependencies">POM dependencies</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#get-started_toc_configuration" title="Configuration">Configuration</a>
+        <li class="h2">
+        <a class="nav-link" href="#Configuration" title="Configuration">Configuration</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#get-started_toc_responsive_design" title="Responsive design">Responsive design</a>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#Per-page_configuration" title="Per-page configuration">Per-page configuration</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#get-started_toc_learn_by_example" title="Learn by example">Learn by example</a>
+    <li class="h3">
+        <a class="nav-link" href="#Page_Id" title="Page Id">Page Id</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#Configuration_inheritance" title="Configuration inheritance">Configuration inheritance</a>
+    </li>
+    </ul>
+        <li class="h2">
+        <a class="nav-link" href="#Responsive_design" title="Responsive design">Responsive design</a>
+    </li>
+        <li class="h2">
+        <a class="nav-link" href="#Learn_by_example" title="Learn by example">Learn by example</a>
     </li>
                     </ul>
                 </nav>
            </div>
-        </div>
+    </div>
 </div>

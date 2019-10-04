@@ -1,27 +1,10 @@
-
-
-
-
-
-
- 
-
- 
- 
- 
-
- 
-
- 
- 
-     <div class="row no-gutters">
-                                                              
-                <div class="col-lg-12 col-xl-9 py-3">
-                 <h1 id="resources_toc_localcustom_resources1">Local/custom resources</h1> 
+   <div class="row no-gutters">
+        <div class="col-lg-12 col-xl-9 py-3">
+            <h1>Local/custom resources</h1> 
 <p>Reflow Maven skin utilises content delivery networks (CDN) for a number of CSS and JavaScript resources. These include Bootstrap files, themes, the jQuery library, etc. The reuse of popular resources via CDN provides better performance. However, such resources may not be accessible when the site is used in an offline/intranet setting.</p> 
 <p>To support such deployments of Reflow skin, the configuration allows using local resources. Furthermore, custom resources can also be easily added to the generated website. These include newer versions of the used libraries as well as arbitrary scripts.</p> 
 <div class="section"> 
- <h2 id="resources_toc_local_bootstrap__jquery">Local Bootstrap &amp; jQuery</h2> 
+ <h2 id="Local_Bootstrap_.26_jQuery">Local Bootstrap &amp; jQuery</h2> 
  <p>support <span class="badge badge-primary">v1.1</span><br> element <span class="badge badge-secondary">reflow</span></p> 
  <p>To force the generated site use only local CSS/JavaScript resources, use the <code class="\&quot;literal\&quot;">&lt;localResources&gt;</code> flag:</p> 
  <div> 
@@ -52,7 +35,7 @@
                 &lt;artifactItem&gt;
                     &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
                     &lt;artifactId&gt;reflow-default-webdeps&lt;/artifactId&gt;
-                    &lt;version&gt;2.1.0-SNAPSHOT&lt;/version&gt;
+                    &lt;version&gt;2.1.0&lt;/version&gt;
                     &lt;type&gt;jar&lt;/type&gt;
                     &lt;overWrite&gt;false&lt;/overWrite&gt;
                     &lt;includes&gt;
@@ -80,7 +63,7 @@
   <li><b><code class="\&quot;literal\&quot;">css/bootstrap.min.css</code></b> - Reflow skin currently uses Bootstrap 4.3.1 or <b><code class="\&quot;literal\&quot;">css/themes/[bootswatch theme]/bootstrap.min.css</code></b>, specific bootswatch 4.3.1 theme (see <a href="reflow-documentation.html#themes-index">Themes Section</a> for more information)</li> 
   <li><b><code class="\&quot;literal\&quot;">css/fontawesome/all.min.css</code></b>, <b><code class="\&quot;literal\&quot;">css/fontawesome/webfonts/*.[eot|ttf|woff|woff2]</code></b> - font Awesome 5.2.0</li> 
   <li><b><code class="\&quot;literal\&quot;">js/bootstrap.min.js</code></b> - Bootstrap 4.3.1</li> 
-  <li><b><code class="\&quot;literal\&quot;">js/jquery.min.js</code></b> - jQuery 3.3.1</li> 
+  <li><b><code class="\&quot;literal\&quot;">js/jquery.min.js</code></b> - jQuery 3.4.1</li> 
   <li><b><code class="\&quot;literal\&quot;">js/anchor.min.js</code></b> - anchorJs 3.2.2</li> 
   <li><b><code class="\&quot;literal\&quot;">js/popper.min.js</code></b> - anchorJs 1.14.3</li> 
   <li><b><code class="\&quot;literal\&quot;">js/highlight.min.js</code></b> - highlightJs 9.15.7</li> 
@@ -90,7 +73,7 @@
  <p>For multi-module site, remember to enable <a href="reflow-documentation.html#multi-module_toc_reuse_resources">resource reuse flag</a>, otherwise these files will have to be repeated for each sub-module.</p> 
 </div> 
 <div class="section"> 
- <h2 id="resources_toc_additional_css_files">Additional CSS files</h2> 
+ <h2 id="Additional_CSS_files">Additional CSS files</h2> 
  <p>element <span class="badge badge-secondary">site.xml</span></p> 
  <p>Additional CSS files (or other resources) can be added to the page head using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head"><code class="\&quot;literal\&quot;">&lt;body&gt;&lt;head&gt;</code> configuration</a> in the <code class="\&quot;literal\&quot;">site.xml</code> site descriptor. This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.</p> 
  <p>The <code class="\&quot;literal\&quot;">&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="reflow-documentation.html#configuration_toc_code_highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code class="\&quot;literal\&quot;">&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p> 
@@ -128,7 +111,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="resources_toc_additional_javascript_files">Additional JavaScript files</h2> 
+ <h2 id="Additional_JavaScript_files">Additional JavaScript files</h2> 
  <p>support <span class="badge badge-primary">v1.1</span><br> element <span class="badge badge-secondary">reflow</span></p> 
  <p>JavaScript files can be added to the page head together with CSS files. However, for performance reasons, it can be better to reference JavaScript files at the end of the document. To place custom XHTML at the end of the page (before the <code class="\&quot;literal\&quot;">&lt;/body&gt;</code> tag), use the <code class="\&quot;literal\&quot;">&lt;endContent&gt;</code> element, which also supports Velocity variables, e.g.:</p> 
  <div> 
@@ -156,23 +139,20 @@
                 </li>
             </ul>
         </div>
-                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
-    <li class="h1">
-        <a class="nav-link" href="#resources_toc_localcustom_resources1" title="Local/custom resources">Local/custom resources</a>
-    </li>
     <li class="h2">
-        <a class="nav-link" href="#resources_toc_local_bootstrap__jquery" title="Local Bootstrap & jQuery">Local Bootstrap & jQuery</a>
+        <a class="nav-link" href="#Local_Bootstrap_.26_jQuery" title="Local Bootstrap & jQuery">Local Bootstrap & jQuery</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#resources_toc_additional_css_files" title="Additional CSS files">Additional CSS files</a>
+        <li class="h2">
+        <a class="nav-link" href="#Additional_CSS_files" title="Additional CSS files">Additional CSS files</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#resources_toc_additional_javascript_files" title="Additional JavaScript files">Additional JavaScript files</a>
+        <li class="h2">
+        <a class="nav-link" href="#Additional_JavaScript_files" title="Additional JavaScript files">Additional JavaScript files</a>
     </li>
                     </ul>
                 </nav>
            </div>
-        </div>
+    </div>
 </div>

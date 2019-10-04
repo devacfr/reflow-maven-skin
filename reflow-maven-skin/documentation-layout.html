@@ -1,23 +1,6 @@
-
-
-
-
-
-
- 
-
- 
- 
- 
-
- 
-
- 
- 
-     <div class="row no-gutters">
-                                                              
-                <div class="col-lg-12 col-xl-9 py-3">
-                 <h1 id="documentation-layout_toc_page_documentation_layout1">Page Documentation layout</h1> 
+   <div class="row no-gutters">
+        <div class="col-lg-12 col-xl-9 py-3">
+            <h1>Page Documentation layout</h1> 
 <p>Documentation layout is a feature to organize your documentation in single page to facilitate the navigation.</p> 
 <p>The layout is centered on a <code class="\&quot;literal\&quot;">navside</code> menu. Navside menu is vertical multi level menus for both desktop and mobile modes initialized with the <code class="\&quot;literal\&quot;">&lt;menu&gt;</code> element declared in a page with documentation layout type and a <code class="\&quot;literal\&quot;">frame</code> container where will be displayed the contain of each <code class="\&quot;literal\&quot;">frame</code> page.</p> 
 <p><img src="images/documentation-layout-scheme.png" alt="documentation layout" class="img-fluid"></p> 
@@ -26,7 +9,7 @@
  <li><b>Frame container</b> allows to load the <code class="\&quot;literal\&quot;">frame</code> page. The <code class="\&quot;literal\&quot;">frame</code> type is for internal use to define referenced page in <code class="\&quot;literal\&quot;">&lt;menu&gt;</code> element in documentation layout. A <code class="\&quot;literal\&quot;">frame</code> page shouldn’t use outside of documentation layout page where it is declared.</li> 
 </ul> 
 <div class="section"> 
- <h2 id="documentation-layout_toc_usage">Usage</h2> 
+ <h2 id="Usage">Usage</h2> 
  <p>support <span class="badge badge-primary">v2.0</span> <span class="badge badge-success">new</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
  <p>To declare a page as documentation layout, create an empty page (<code class="\&quot;literal\&quot;">documentation.html</code> in example below) and set <code class="\&quot;literal\&quot;">type</code> attribute with value <code class="\&quot;literal\&quot;">doc</code> and add a <b>required</b> <code class="\&quot;literal\&quot;">&lt;menu&gt;</code> element as example below.</p> 
  <div> 
@@ -58,7 +41,7 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="documentation-layout_toc_improve_documentation">Improve documentation</h2> 
+ <h2 id="Improve_documentation">Improve documentation</h2> 
  <p>Doxia Sitetools has introduce the edit source feature in <a class="externalLink" href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html">decoration model 1.8</a> adding <code class="\&quot;literal\&quot;">&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a class="externalLink" href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183">DOXIASITETOOLS-183</a>). In general, <code class="\&quot;literal\&quot;">${project.scm.url}</code> value should do the job.</p> 
  <div> 
   <div> 
@@ -79,20 +62,17 @@
                 </li>
             </ul>
         </div>
-                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
-    <li class="h1">
-        <a class="nav-link" href="#documentation-layout_toc_page_documentation_layout1" title="Page Documentation layout">Page Documentation layout</a>
-    </li>
     <li class="h2">
-        <a class="nav-link" href="#documentation-layout_toc_usage" title="Usage">Usage</a>
+        <a class="nav-link" href="#Usage" title="Usage">Usage</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#documentation-layout_toc_improve_documentation" title="Improve documentation">Improve documentation</a>
+        <li class="h2">
+        <a class="nav-link" href="#Improve_documentation" title="Improve documentation">Improve documentation</a>
     </li>
                     </ul>
                 </nav>
            </div>
-        </div>
+    </div>
 </div>

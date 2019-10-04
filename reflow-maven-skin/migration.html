@@ -1,30 +1,13 @@
-
-
-
-
-
-
- 
-
- 
- 
- 
-
- 
-
- 
- 
-     <div class="row no-gutters">
-                                                              
-                <div class="col-lg-12 col-xl-9 py-3">
-                 <h1 id="migration_toc_migration_to_v21">Migration to v2</h1> 
+   <div class="row no-gutters">
+        <div class="col-lg-12 col-xl-9 py-3">
+            <h1>Migration to v2</h1> 
 <p>Reflow is a major rewrite of the entire project. The most notable changes are summarized below, followed by more specific changes to relevant components.</p> 
 <div class="section"> 
- <h2 id="migration_toc_stable_changes">Stable changes</h2> 
+ <h2 id="Stable_changes">Stable changes</h2> 
  <p>Moving from v1 to stable v2 release, there are no breaking changes, but there are some notable changes.</p> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_upgrade_to_bootstrap_v4">Upgrade to Bootstrap v4</h2> 
+ <h2 id="Upgrade_to_Bootstrap_v4">Upgrade to Bootstrap v4</h2> 
  <p>See <a class="externalLink" href="https://getbootstrap.com/docs/4.1/migration">Bootstrap Migration to v4</a> for a complete informatin on changes.</p> 
  <ul> 
   <li>Dropped the Glyphicons icon font, use Font Awesome free 5.2.</li> 
@@ -37,7 +20,7 @@
   <li>Add <code class="\&quot;literal\&quot;">popper.js</code> library required by Bootstrap</li> 
  </ul> 
  <div class="section"> 
-  <h3 id="migration_toc_bootswatch_themes">Bootswatch Themes</h3> 
+  <h3 id="Bootswatch_Themes">Bootswatch Themes</h3> 
   <ul> 
    <li>Add new bootswatch supported themes.</li> 
    <li>Remove <code class="\&quot;literal\&quot;">reflow-maven-skin/src/main/resources/css/bootswatch.css</code></li> 
@@ -45,18 +28,18 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_css_changes">Css Changes</h2> 
+ <h2 id="Css_Changes">Css Changes</h2> 
  <ul> 
   <li>Replace <code class="\&quot;literal\&quot;">#bannerRight</code> <code class="\&quot;literal\&quot;">#bannerLeft</code> by <code class="\&quot;literal\&quot;">.bannerRight</code> and <code class="\&quot;literal\&quot;">.bannerLeft</code>.</li> 
  </ul> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_local_resources">Local resources</h2> 
+ <h2 id="Local_resources">Local resources</h2> 
  <ul> 
   <li>Add new <code class="\&quot;literal\&quot;">reflow-default-webdeps</code> module containing all required web dependencies to work locally.</li> 
  </ul> 
  <div class="section"> 
-  <h3 id="migration_toc_using_default_bootstrap_theme">Using default Bootstrap theme</h3> 
+  <h3 id="Using_default_Bootstrap_theme">Using default Bootstrap theme</h3> 
   <div> 
    <div> 
     <pre class="source">&lt;plugin&gt;
@@ -98,7 +81,7 @@
   <p><b>Note</b>: <code class="\&quot;literal\&quot;">${main.basedir}</code> equals to <code class="\&quot;literal\&quot;">${session.executionRootDirectory}</code> for relativize url (see <a href="reflow-documentation.html#multi-module.html">Multi-module site</a> )</p> 
  </div> 
  <div class="section"> 
-  <h3 id="migration_toc_using_bootswatch_theme">Using Bootswatch theme</h3> 
+  <h3 id="Using_Bootswatch_theme">Using Bootswatch theme</h3> 
   <div> 
    <div> 
     <pre class="source">&lt;plugin&gt;
@@ -139,19 +122,19 @@
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_documentation_layout">Documentation layout</h2> 
+ <h2 id="Documentation_layout">Documentation layout</h2> 
  <p><a href="#documentation-layout">Documentation layout</a> is new feature to organize your documentation in single page to facilitate the navigation and reduce the size of dropdown list in navbar.</p> 
  <div class="section"> 
-  <h3 id="migration_toc_improve_documentation">Improve documentation</h3> 
+  <h3 id="Improve_documentation">Improve documentation</h3> 
   <p>Doxia Sitetools has introduce the edit source feature in <a class="externalLink" href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html">decoration model 1.8</a> adding <code class="\&quot;literal\&quot;">&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a class="externalLink" href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183">DOXIASITETOOLS-183</a>).</p> 
   <p><img src="images/improve-this-page.png" alt="Improve this page" class="img-fluid"></p> 
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="migration_toc_by_component">By component</h2> 
+ <h2 id="By_component">By component</h2> 
  <p>This list highlights key changes by component between v1.4 and v2.0.0.</p> 
  <div class="section"> 
-  <h3 id="migration_toc_banner">Banner</h3> 
+  <h3 id="Banner">Banner</h3> 
   <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p> 
   <ul> 
    <li><code class="\&quot;literal\&quot;">name</code> is used to display title heading in elements <b>bannerLeft</b> and <b>bannerRight</b>, use <code class="\&quot;literal\&quot;">alt</code> element instead <code class="\&quot;literal\&quot;">name</code>.</li> 
@@ -159,7 +142,7 @@
   </ul> 
  </div> 
  <div class="section"> 
-  <h3 id="migration_toc_navside_menu">Navside menu</h3> 
+  <h3 id="Navside_menu">Navside menu</h3> 
   <p>It is a new component used in documentation page support (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation for more information).</p> 
   <div> 
    <div> 
@@ -171,7 +154,7 @@
   </div> 
  </div> 
  <div class="section"> 
-  <h3 id="migration_toc_toc_topbar_component">Toc topbar component</h3> 
+  <h3 id="Toc_topbar_component">Toc topbar component</h3> 
   <div> 
    <div> 
     <pre class="source">&lt;toc cssClass="navbar-dark bg-dark|bootstrap classes"
@@ -191,7 +174,7 @@
   </ul> 
  </div> 
  <div class="section"> 
-  <h3 id="migration_toc_toc_sidebar_component">Toc sidebar component</h3> 
+  <h3 id="Toc_sidebar_component">Toc sidebar component</h3> 
   <p>Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content (see <a href="reflow-documentation.html#components-toc">Table of Contents Component</a> documentation for more information).</p> 
   <div> 
    <div> 
@@ -206,7 +189,7 @@
   </ul> 
  </div> 
  <div class="section"> 
-  <h3 id="migration_toc_navbar_component">Navbar component</h3> 
+  <h3 id="Navbar_component">Navbar component</h3> 
   <p>(see <a href="reflow-documentation.html#components-navbar">Top Navbar Component</a> documentation for more information).</p> 
   <div> 
    <div> 
@@ -226,7 +209,7 @@
   </ul> 
  </div> 
  <div class="section"> 
-  <h3 id="migration_toc_bottom_navigation">Bottom navigation</h3> 
+  <h3 id="Bottom_navigation">Bottom navigation</h3> 
   <ul> 
    <li>Remove <code class="\&quot;literal\&quot;">maxSpan</code> attribute, use auto-layout Bootstrap columns.</li> 
   </ul> 
@@ -241,70 +224,67 @@
                 </li>
             </ul>
         </div>
-                        <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
-    <li class="h1">
-        <a class="nav-link" href="#migration_toc_migration_to_v21" title="Migration to v2">Migration to v2</a>
-    </li>
     <li class="h2">
-        <a class="nav-link" href="#migration_toc_stable_changes" title="Stable changes">Stable changes</a>
+        <a class="nav-link" href="#Stable_changes" title="Stable changes">Stable changes</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#migration_toc_upgrade_to_bootstrap_v4" title="Upgrade to Bootstrap v4">Upgrade to Bootstrap v4</a>
+        <li class="h2">
+        <a class="nav-link" href="#Upgrade_to_Bootstrap_v4" title="Upgrade to Bootstrap v4">Upgrade to Bootstrap v4</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
-        <a class="nav-link" href="#migration_toc_bootswatch_themes" title="Bootswatch Themes">Bootswatch Themes</a>
+        <a class="nav-link" href="#Bootswatch_Themes" title="Bootswatch Themes">Bootswatch Themes</a>
     </li>
     </ul>
-    <li class="h2">
-        <a class="nav-link" href="#migration_toc_css_changes" title="Css Changes">Css Changes</a>
+        <li class="h2">
+        <a class="nav-link" href="#Css_Changes" title="Css Changes">Css Changes</a>
     </li>
-    <li class="h2">
-        <a class="nav-link" href="#migration_toc_local_resources" title="Local resources">Local resources</a>
+        <li class="h2">
+        <a class="nav-link" href="#Local_resources" title="Local resources">Local resources</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
-        <a class="nav-link" href="#migration_toc_using_default_bootstrap_theme" title="Using default Bootstrap theme">Using default Bootstrap theme</a>
+        <a class="nav-link" href="#Using_default_Bootstrap_theme" title="Using default Bootstrap theme">Using default Bootstrap theme</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#migration_toc_using_bootswatch_theme" title="Using Bootswatch theme">Using Bootswatch theme</a>
+        <a class="nav-link" href="#Using_Bootswatch_theme" title="Using Bootswatch theme">Using Bootswatch theme</a>
     </li>
     </ul>
-    <li class="h2">
-        <a class="nav-link" href="#migration_toc_documentation_layout" title="Documentation layout">Documentation layout</a>
+        <li class="h2">
+        <a class="nav-link" href="#Documentation_layout" title="Documentation layout">Documentation layout</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
-        <a class="nav-link" href="#migration_toc_improve_documentation" title="Improve documentation">Improve documentation</a>
+        <a class="nav-link" href="#Improve_documentation" title="Improve documentation">Improve documentation</a>
     </li>
     </ul>
-    <li class="h2">
-        <a class="nav-link" href="#migration_toc_by_component" title="By component">By component</a>
+        <li class="h2">
+        <a class="nav-link" href="#By_component" title="By component">By component</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
-        <a class="nav-link" href="#migration_toc_banner" title="Banner">Banner</a>
+        <a class="nav-link" href="#Banner" title="Banner">Banner</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#migration_toc_navside_menu" title="Navside menu">Navside menu</a>
+        <a class="nav-link" href="#Navside_menu" title="Navside menu">Navside menu</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#migration_toc_toc_topbar_component" title="Toc topbar component">Toc topbar component</a>
+        <a class="nav-link" href="#Toc_topbar_component" title="Toc topbar component">Toc topbar component</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#migration_toc_toc_sidebar_component" title="Toc sidebar component">Toc sidebar component</a>
+        <a class="nav-link" href="#Toc_sidebar_component" title="Toc sidebar component">Toc sidebar component</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#migration_toc_navbar_component" title="Navbar component">Navbar component</a>
+        <a class="nav-link" href="#Navbar_component" title="Navbar component">Navbar component</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#migration_toc_bottom_navigation" title="Bottom navigation">Bottom navigation</a>
+        <a class="nav-link" href="#Bottom_navigation" title="Bottom navigation">Bottom navigation</a>
     </li>
     </ul>
                     </ul>
                 </nav>
            </div>
-        </div>
+    </div>
 </div>
