@@ -5,7 +5,7 @@ cache:
     - $HOME/.m2
 script: mvn clean install --quiet -B
 jdk:
-    - oraclejdk8
+    - openjdk8
 branches:
     only:
         - master
