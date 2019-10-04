@@ -19,6 +19,7 @@ import static java.util.Objects.requireNonNull;
 
 import javax.annotation.Nonnull;
 
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.Toc;
 
@@ -42,19 +43,12 @@ public class FrameContext extends Context<FrameContext> {
      * @param documentParent
      *            name of parent.
      */
-    public FrameContext(final @Nonnull SkinConfigTool config, @Nonnull final String documentParent) {
+    public FrameContext(final @Nonnull ISkinConfig config, @Nonnull final String documentParent) {
         super(config, ContextType.frame);
-        toc = Toc.createToc(config, "sidebar");
+        toc = Toc.createSidebar(config);
         this.documentParent = requireNonNull(documentParent);
-    }
 
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        if (getToc() != null) {
-            css += " " + getToc().getCssOptions();
-        }
-        return css;
+        this.addChildren(this.toc);
     }
 
     /**

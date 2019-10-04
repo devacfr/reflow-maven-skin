@@ -54,7 +54,7 @@ public class URITool {
      * @since 1.0
      */
     @Nullable
-    public static String relativizeLink(@Nonnull final String baseDirUri, @Nonnull final String link) {
+    public static String relativizeLink(@Nullable final String baseDirUri, @Nullable final String link) {
         // taken from
         // org.apache.maven.doxia.site.decoration.inheritance.DecorationModelInheritanceAssembler
 
@@ -82,9 +82,19 @@ public class URITool {
     }
 
     /**
-     * @return
+     * @param parentBaseUrl
+     *            The base URI. Has to be a valid absolute URI. In addition, the path of the URI should not have any
+     *            file part, ie <code>http://maven.apache.org/</code> is valid,
+     *            <code>http://maven.apache.org/index.html</code> is not.
+     * @param childBaseUrl
+     *            the new base URI. Has to be parsable as a URI.
+     * @return Returns new instance of {@link URLRebaser} allowing to calculate/relative the link as viewed from a
+     *         different base. This returns the {@code parentBaseUrl} link if link is absolute.
+     * @see URIPathDescriptor#rebaseLink(String)
+     * @see URLRebaser#rebaseLink(String)
      */
-    public static URLRebaser createURLRebaser(final String parentBaseUrl, final String childBaseUrl) {
+    public static URLRebaser createURLRebaser(@Nullable final String parentBaseUrl,
+        @Nullable final String childBaseUrl) {
         return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
@@ -93,9 +103,10 @@ public class URITool {
      *
      * @param baseUrl
      *            a base url
-     * @return Returns new <code>String</code> base path instance.
+     * @return Returns a <code>String</code> representing base path instance.
      */
-    public static String normalisedBaseUrl(@Nonnull final String baseUrl) {
+    @Nullable
+    public static String normalisedBaseUrl(@Nullable final String baseUrl) {
         if (Strings.isNullOrEmpty(baseUrl)) {
             return baseUrl;
         }
@@ -122,11 +133,13 @@ public class URITool {
          * Construct a URL rebaser.
          *
          * @param oldPath
-         *            the old path.
+         *            the old path. The base URI. Has to be a valid absolute URI. In addition, the path of the URI
+         *            should not have any file part, ie <code>http://maven.apache.org/</code> is valid,
+         *            <code>http://maven.apache.org/index.html</code> is not.
          * @param newPath
-         *            the new path.
+         *            the new base URI. Has to be parsable as a URI.
          */
-        URLRebaser(final String oldPath, final String newPath) {
+        protected URLRebaser(@Nullable final String oldPath, @Nullable final String newPath) {
             this.oldPath = oldPath;
             this.newPath = newPath;
         }
@@ -136,6 +149,7 @@ public class URITool {
          *
          * @return the new path.
          */
+        @Nullable
         public String getNewPath() {
             return this.newPath;
         }
@@ -145,6 +159,7 @@ public class URITool {
          *
          * @return the old path.
          */
+        @Nullable
         public String getOldPath() {
             return this.oldPath;
         }
@@ -157,7 +172,7 @@ public class URITool {
          *            link to rebase
          * @return Returns a {@link String} representing link rebased.
          */
-        public String rebaseLink(final String link) {
+        public String rebaseLink(@Nullable final String link) {
             if (link == null || getOldPath() == null) {
                 return link;
             }

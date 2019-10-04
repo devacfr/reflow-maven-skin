@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
+ * Copyright 2012-2019 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,18 @@ import org.devacfr.testing.TestCase;
 import org.junit.Test;
 
 public class URIToolTest extends TestCase {
+
+    @Test
+    public void shouldRelativizeLinkAccetupNullBase() throws IOException {
+        final String actual = URITool.relativizeLink(null, "link");
+        assertEquals("link", actual);
+    }
+
+    @Test
+    public void shouldRelativizeLinkAcceptsAbsoluteBaseUri() throws IOException {
+        final String actual = URITool.relativizeLink("reflow-maven-skin", "link");
+        assertEquals("link", actual);
+    }
 
     @Test
     public void relativeRootLink() throws IOException {
@@ -58,12 +70,27 @@ public class URIToolTest extends TestCase {
     }
 
     @Test
+    public void shouldNormalisedBaseUrlAcceptNullParameter() {
+        assertNull(URITool.normalisedBaseUrl(null));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rebaseUrlNonInterpolate() {
+        final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
+        final String relativePath = ".";
+        final URI parent = URI.create(childBaseUrl);
+        final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
+        final URLRebaser rebaser = URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
+        rebaser.rebaseLink("${project.path}/reflow.png");
+    }
+
+    @Test
     public void rebaseUrlOnRootProject() {
         final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
         final String relativePath = ".";
         final URI parent = URI.create(childBaseUrl);
         final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
-        final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
+        final URLRebaser rebaser = URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
         assertEquals("images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
     }
 

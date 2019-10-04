@@ -17,7 +17,6 @@ package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -33,7 +32,6 @@ import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.PathTool;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +83,7 @@ import com.google.common.base.Strings;
  * @since 1.0
  */
 @DefaultKey("config")
-public class SkinConfigTool extends SafeConfig {
+public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
@@ -165,10 +163,8 @@ public class SkinConfigTool extends SafeConfig {
         }
 
         // calculate the page ID from the current file name
-        final Object currentFileObj = getCurrentFileName();
-        if (currentFileObj instanceof String) {
-            fileId = slugFilename((String) currentFileObj);
-        }
+        final String currentFileObj = getCurrentFileName();
+        fileId = slugFilename(currentFileObj);
 
         final Object decorationObj = velocityContext.get("decoration");
 
@@ -269,21 +265,50 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise
-     * Velocity fallback onto the default getter and use {@code $config.myproperty}.
-     *
-     * @param property
-     *            the property of interest
-     * @return configuration node if found in the following sequence:
-     *         <ol>
-     *         <li>In page configuration</li>
-     *         <li>In global configuration</li>
-     *         <li>{@code null} otherwise</li>
-     *         </ol>
-     * @since 1.0
+     * {@inheritDoc}
      */
-    public Xpp3Dom get(final String property) {
+    @Override
+    @Nullable
+    public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
+        requireNonNull(type);
+        if (String.class.isAssignableFrom(type)) {
+            return this.eval("$" + key, type);
+        } else {
+            throw new UnsupportedOperationException();
+        }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setContextValue(@Nonnull final String key, @Nullable final Object value) {
+        requireNonNull(key);
+        if (value instanceof String) {
+            this.eval("#set( $" + key + "= \"" + value.toString() + "\")", Void.class);
+        } else {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Nullable
+    @SuppressWarnings("unchecked")
+    public <T> T getToolbox(@Nonnull final String toolName, @Nonnull final Class<T> toolType) {
+        requireNonNull(toolType);
+        return (T) this.velocityContext.getToolbox().get(requireNonNull(toolName));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Nullable
+    public Xpp3Dom get(@Nonnull final String property) {
+        requireNonNull(property);
         // first try page properties
         Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
         if (propNode == null) {
@@ -303,8 +328,9 @@ public class SkinConfigTool extends SafeConfig {
      * @see #get(String)
      * @since 1.0
      */
-    public String value(final String property) {
-
+    @Nullable
+    public String value(@Nonnull final String property) {
+        requireNonNull(property);
         final Xpp3Dom propNode = get(property);
 
         if (propNode == null) {
@@ -329,8 +355,14 @@ public class SkinConfigTool extends SafeConfig {
      * @param <T>
      *            the type of returned object.
      */
+    @Override
     @SuppressWarnings("unchecked")
-    public <T> T getPropertyValue(final String property, final Class<T> targetType, final T defaultValue) {
+    @Nullable
+    public <T> T getPropertyValue(@Nonnull final String property,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
+        requireNonNull(property, "property is required");
+        requireNonNull(targetType, "targetType is required");
         final String value = value(property);
         if (value == null) {
             return defaultValue;
@@ -375,11 +407,17 @@ public class SkinConfigTool extends SafeConfig {
      * @param <T>
      *            the type of returned object.
      */
+    @Override
     @SuppressWarnings("unchecked")
-    public <T> T getAttributeValue(final String property,
-        final String attribute,
-        final Class<T> targetType,
-        final T defaultValue) {
+    @Nullable
+    public <T> T getAttributeValue(@Nonnull final String property,
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
+        requireNonNull(property, "property is required");
+        requireNonNull(attribute, "attribute is required");
+        requireNonNull(targetType, "targetType is required");
+
         Xpp3Dom element = get(property);
         if (element == null) {
             return defaultValue;
@@ -414,11 +452,16 @@ public class SkinConfigTool extends SafeConfig {
         return (T) returnedValue;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     @SuppressWarnings("unchecked")
-    public <T> T getAttributeValue(final Xpp3Dom element,
-        final String attribute,
-        final Class<T> targetType,
-        final T defaultValue) {
+    @Nullable
+    public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
         if (element == null) {
             return defaultValue;
         }
@@ -482,15 +525,19 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @return Returns the {@link String} representing the projectId.
+     * {@inheritDoc}
      */
+    @Override
+    @Nullable
     public String getProjectId() {
         return projectId;
     }
 
     /**
-     * @return Returns the {@link String} representing the fileId.
+     * {@inheritDoc}
      */
+    @Override
+    @Nullable
     public String getFileId() {
         return fileId;
     }
@@ -498,6 +545,8 @@ public class SkinConfigTool extends SafeConfig {
     /**
      * @return the context
      */
+    @Override
+    @Nonnull
     public Context<?> getContext() {
         return context;
     }
@@ -510,41 +559,53 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @return the project
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public MavenProject getProject() {
         return project;
     }
 
     /**
-     * @return the decoration
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public DecorationModel getDecoration() {
         return decoration;
     }
 
     /**
-     * @return Returns the page level {@link Xpp3Dom}.
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public Xpp3Dom getPageProperties() {
         return pageProperties;
     }
 
     /**
-     * @return Returns the root level {@link Xpp3Dom}.
+     * {@inheritDoc}
      */
+    @Override
+    @Nonnull
     public Xpp3Dom getGlobalProperties() {
         return globalProperties;
     }
 
     /**
-     * @return Returns a {@link String} representing the namespace.
+     * {@inheritDoc}
      */
+    @Override
     @Nonnull
     public String getNamespace() {
         return namespace;
     }
 
+    /**
+     * @return Returns the location of project.
+     */
     @Nonnull
     public String getProjectLocation() {
         String projectSiteLoc = getProject().getUrl();
@@ -557,17 +618,33 @@ public class SkinConfigTool extends SafeConfig {
         return projectSiteLoc;
     }
 
+    /**
+     * <p>
+     * See <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
+     * Renderer</a> for more information.
+     *
+     * @return Returns a {@link String} representing the name of current file of the (HTML) document being rendered,
+     *         relative to the site root.
+     */
     @Nonnull
     public String getCurrentFileName() {
-        return (String)velocityContext.get("currentFileName");
+        return (String) velocityContext.get("currentFileName");
     }
 
+    /**
+     * @return Returns a {@link String} representing the location path of current rendered file.
+     */
     @Nonnull
     public String getCurrentFileLocation() {
         final String projectSiteLoc = getProjectLocation();
         return URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @SuppressWarnings("unchecked")
     @Nullable
     public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
         if (vtl == null) {
@@ -582,11 +659,9 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     * @param href
-     *            link to relative.
-     * @return Returns Relativizes the link.
+     * {@inheritDoc}
      */
-    @Nullable
+    @Override
     public String relativeLink(final String href) {
         if (href == null) {
             return null;
@@ -648,9 +723,10 @@ public class SkinConfigTool extends SafeConfig {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
-    public boolean isActiveLink(final String href) {
+    @Override
+    public boolean isActiveLink(@Nullable final String href) {
         final String alignedFileName = (String) velocityContext.get("alignedFileName");
         if (href == null) {
             return false;
@@ -658,18 +734,6 @@ public class SkinConfigTool extends SafeConfig {
         // either empty link (pointing to a page), or if the current file is index.html,
         // the link may point to the whole directory
         return Strings.isNullOrEmpty(href) || alignedFileName.endsWith("index.html") && ".".equals(href);
-    }
-
-    /**
-     * Rebase only affects relative links, a relative link wrt an old base gets translated, so it points to the same
-     * location as viewed from a new base.
-     *
-     * @param link
-     *            link to rebase
-     * @return Returns a {@link String} representing link rebased.
-     */
-    public String rebaseLink(final String link) {
-        return createURLRebaser().rebaseLink(link);
     }
 
     /**
@@ -717,33 +781,6 @@ public class SkinConfigTool extends SafeConfig {
             return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         }
         return (String) velocityContext.get("relativePath");
-    }
-
-    /**
-     * @return Returns new instance of {@link URLRebaser}.
-     */
-    @Nonnull
-    private URLRebaser createURLRebaser() {
-        String childBaseUrl = this.getProject().getUrl();
-        if (Strings.isNullOrEmpty(childBaseUrl)) {
-            childBaseUrl = null;
-        }
-        final String relativePath = getResourcePath();
-        String parentBaseUrl = relativePath;
-        if (childBaseUrl != null && childBaseUrl.length() > 0) {
-            if (childBaseUrl.charAt(childBaseUrl.length() - 1) != '/') {
-                childBaseUrl += '/';
-            }
-            final URI child = URI.create(childBaseUrl);
-            parentBaseUrl = child.resolve(relativePath).normalize().toString();
-        }
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("parentBaseUrl: {}", parentBaseUrl);
-            LOGGER.debug("childBaseUrl: {}", childBaseUrl);
-            LOGGER.debug("relativePath: {}", relativePath);
-        }
-
-        return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
 }

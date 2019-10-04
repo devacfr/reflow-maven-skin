@@ -17,7 +17,7 @@ package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
  * Represents the scoll top component.
@@ -36,20 +36,12 @@ public class ScrollTop extends Component {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public ScrollTop(final @Nonnull SkinConfigTool config) {
+    public ScrollTop(final @Nonnull ISkinConfig config) {
 
         this.smooth = config.getPropertyValue("smoothScroll", Boolean.class, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
         if (isSmooth()) {
-            return "scroll-top-smooth-enabled";
+            this.addCssOptions("scrolltop-smooth-enabled");
         }
-        return super.getCssOptions();
     }
 
     /**

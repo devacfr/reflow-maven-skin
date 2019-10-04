@@ -17,6 +17,7 @@ package org.devacfr.testing.util;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,6 +26,7 @@ import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.junit.Assert;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
 import com.google.common.io.Resources;
 
 /**
@@ -35,6 +37,48 @@ public final class Approvals {
 
     private Approvals() {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * @param location
+     *            path location of actual fil.
+     * @param testClass
+     *            the executed test class.
+     * @param testName
+     *            the testname
+     * @param suffix
+     *            the suffix
+     * @return
+     * @throws IOException
+     */
+    public static String getActualResource(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String suffix) {
+        final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
+        final String fileName = String.format("%s.%s.actual%s", testClass.getSimpleName(), testName, suf);
+        return readFile(location.resolve(fileName));
+    }
+
+    /**
+     * @param location
+     *            path location of expected file.
+     * @param testClass
+     *            the executed test class.
+     * @param testName
+     *            the testname
+     * @param suffix
+     *            the suffix
+     * @return
+     * @throws IOException
+     */
+    public static String getExpectedResource(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String suffix) {
+        final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
+        final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, suf);
+        return readFile(location.resolve(fileName));
     }
 
     /**
@@ -52,9 +96,22 @@ public final class Approvals {
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
-        @Nullable final String actual) {
-        final String fileName = String.format("%s.%s.approved", testClass.getSimpleName(), testName);
-        final String expected = readFile(location.resolve(fileName));
+        @Nullable final String actual,
+        @Nullable final String suffix) {
+        final String expected = getExpectedResource(location, testClass, testName, suffix);
+        Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
+    }
+
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        final Function<String, String> transform,
+        @Nullable final String suffix) {
+        String actual = getActualResource(location, testClass, testName, suffix);
+        if (actual != null && transform != null) {
+            actual = transform.apply(actual);
+        }
+        final String expected = getExpectedResource(location, testClass, testName, suffix);
         Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
@@ -69,13 +126,16 @@ public final class Approvals {
      *            the testname
      * @param actualFile
      *            the actual value stored in file to test
+     * @param suffix
+     *            the suffix
      */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
-        @Nonnull final Path actualFile) {
+        @Nonnull final Path actualFile,
+        @Nullable final String suffix) {
 
-        verify(location, testClass, testName, readFile(location.resolve(actualFile)));
+        verify(location, testClass, testName, readFile(location.resolve(actualFile)), suffix);
 
     }
 

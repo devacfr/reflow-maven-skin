@@ -9,7 +9,6 @@ Bootswatch - licensed under the MIT License.
 This product includes software developed by
 Thomas Park - https://thomaspark.co/
 
-
 jQuery - licensed under the MIT License.
 This product includes software developed by
 jQuery (http://jquery.org)
@@ -25,4 +24,8 @@ CSS files licensed under the MIT License
 anchorjs - licensed under the MIT License.
 This product includes software developed by
 Bryan Braun - https://www.bryanbraun.com/anchorjs/
+
+Highlight.js is released under the BSD License. See LICENSE file for details.
+This product includes software developed by
+Ivan Sagalaev (https://highlightjs.org/)
 

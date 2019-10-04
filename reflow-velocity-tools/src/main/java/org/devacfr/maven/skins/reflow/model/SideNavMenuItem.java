@@ -15,10 +15,12 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
 
 /**
  * @author Christophe Friederich
@@ -51,7 +53,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the name of item menu.
      */
     public String getName() {
         return name;
@@ -59,7 +61,8 @@ public class SideNavMenuItem {
 
     /**
      * @param name
-     * @return
+     *            the name of item menu
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withName(final String name) {
         this.name = name;
@@ -67,7 +70,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the name of parent page.
      */
     public String getParent() {
         return parent;
@@ -75,7 +78,8 @@ public class SideNavMenuItem {
 
     /***
      * @param parent
-     * @return
+     *            the name of parent page
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withParent(final String parent) {
         this.parent = parent;
@@ -83,7 +87,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the link associated to this item menu.
      */
     public String getHref() {
         return href;
@@ -91,7 +95,8 @@ public class SideNavMenuItem {
 
     /**
      * @param href
-     * @return
+     *            the link to use.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withHref(final String href) {
         this.href = href;
@@ -99,7 +104,7 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the {@link String} representing the slugged link associate to this menu item.
      */
     public String getSlugName() {
         return slugName;
@@ -107,7 +112,8 @@ public class SideNavMenuItem {
 
     /**
      * @param slugName
-     * @return
+     *            the slugged name.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withSlugName(final String slugName) {
         this.slugName = slugName;
@@ -115,15 +121,18 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * @return Returns the icon to use.
      */
     public String getIcon() {
         return icon;
     }
 
     /**
+     * Sets the icon associate to.
+     *
      * @param icon
-     * @return
+     *            the icon to use.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withIcon(final String icon) {
         this.icon = icon;
@@ -131,28 +140,42 @@ public class SideNavMenuItem {
     }
 
     /**
-     * @return
+     * Gets the indicating whether has items.
+     *
+     * @return Returns {@code true} if has items, otherwise {@code false}.
      */
     public boolean isHasItems() {
         return items != null && items.size() > 0;
     }
 
     /**
-     * @return
+     * Gets the list of items.
+     *
+     * @return Returns a {@link List} representing the items.
      */
+    @Nonnull
     public List<SideNavMenuItem> getItems() {
+        if (items == null) {
+            return Collections.emptyList();
+        }
         return items;
     }
 
     /**
+     * Sets the items associate.
+     *
      * @param items
-     * @return
+     *            the list of items.
+     * @return Returns the fluent instance.
      */
     public SideNavMenuItem withItems(final List<SideNavMenuItem> items) {
         this.items = items;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

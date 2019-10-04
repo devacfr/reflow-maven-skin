@@ -17,7 +17,7 @@ package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
  * @author devacfr
@@ -37,7 +37,7 @@ public class TocTopBar extends Toc<TocTopBar> {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public TocTopBar(final @Nonnull SkinConfigTool config) {
+    public TocTopBar(final @Nonnull ISkinConfig config) {
         super("top", "navbar");
         this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
@@ -45,26 +45,26 @@ public class TocTopBar extends Toc<TocTopBar> {
         this.withFlatten(config.getAttributeValue(COMPONENT, "flatten", Boolean.class, false))
                 .withNumberItems(config.getAttributeValue(COMPONENT, "numberItems", Integer.class, -1))
                 .withEnabled(true);
+        if (isEnabled()) {
+            this.addCssOptions("m-toc-top-enabled");
+        }
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        return isEnabled() ? "m-toc-top-enabled" : "";
-    }
-
-    /**
-     * @return
+     * Gets the indicating whether is flatten.
+     *
+     * @return Returns {@code true} if is flatten, otherwise {@code false}.
      */
     public boolean isFlatten() {
         return flatten;
     }
 
     /**
+     * Sets the indicating whether is flatten.
+     *
      * @param flatten
-     * @return
+     *            {@code true} to flat.
+     * @return Returns the fluent instance.
      */
     protected TocTopBar withFlatten(final boolean flatten) {
         this.flatten = flatten;
@@ -72,15 +72,18 @@ public class TocTopBar extends Toc<TocTopBar> {
     }
 
     /**
-     * @return
+     * @return Returns the number of items to display.
      */
     public int getNumberItems() {
         return numberItems;
     }
 
     /**
+     * Sets the number of items to display.
+     *
      * @param numberItems
-     * @return
+     *            -1 or the number of items to display
+     * @return Returns the fluent instance.
      */
     protected TocTopBar withNumberItems(final int numberItems) {
         this.numberItems = numberItems;

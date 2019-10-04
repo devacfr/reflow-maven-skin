@@ -1,3 +1,4 @@
+#!/bin/sh
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements. See the NOTICE file
@@ -17,5 +18,5 @@
 # under the License.
 #
 
-./mvnw clean install site site:stage $@
+./generateSite $@
 ./mvnw scm-publish:publish-scm $@

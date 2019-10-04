@@ -73,7 +73,6 @@ will be rearranged automatically for readability on small screens.
 
 [doxia-formats]: http://maven.apache.org/doxia/references/index.html
 
-
 $h2 Themes
 
 The skin theme can be [switched easily][themes]: just select a Bootstrap theme

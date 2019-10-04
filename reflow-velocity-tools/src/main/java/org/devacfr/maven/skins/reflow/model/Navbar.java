@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -26,10 +27,9 @@ import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.doxia.site.decoration.LinkItem;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
 /**
@@ -41,7 +41,7 @@ import com.google.common.collect.Lists;
 public class Navbar extends BsComponent {
 
     /** */
-    private static final String COMPONENT = "navbar";
+    public static final String COMPONENT = "navbar";
 
     /** */
     private String brandName;
@@ -51,6 +51,12 @@ public class Navbar extends BsComponent {
 
     /** */
     private final String filterMenu;
+
+    /** */
+    private final boolean center;
+
+    /** */
+    private final String alignMenu;
 
     /** */
     private final ImageBrand image;
@@ -64,7 +70,7 @@ public class Navbar extends BsComponent {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public Navbar(@Nonnull final SkinConfigTool config) {
+    public Navbar(@Nonnull final ISkinConfig config) {
         super(COMPONENT);
         requireNonNull(config);
         final MavenProject project = config.getProject();
@@ -81,9 +87,11 @@ public class Navbar extends BsComponent {
         } else {
             brandName = project.getName();
         }
-        if (Strings.isNullOrEmpty(brandName)) {
+        if (isNullOrEmpty(brandName)) {
             brandName = project.getArtifactId();
         }
+        this.center = config.getAttributeValue(COMPONENT, "center", Boolean.class, true);
+        this.alignMenu = config.getAttributeValue(COMPONENT, "alignMenu", String.class, "right");
         this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
         this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
@@ -107,7 +115,10 @@ public class Navbar extends BsComponent {
         if (decoration.getBody() != null && decoration.getBody().getMenus() != null) {
             final List<org.apache.maven.doxia.site.decoration.Menu> menus = decoration.getBody().getMenus();
             for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
-                if (Strings.isNullOrEmpty(this.filterMenu)) {
+                if (isNullOrEmpty(menu.getName())) {
+                    continue;
+                }
+                if (isNullOrEmpty(this.filterMenu)) {
                     this.menus.add(new Menu(config, menu));
                 } else if (Menu.matches(this.filterMenu, menu)) {
                     this.menus.add(new Menu(config, menu));
@@ -128,6 +139,20 @@ public class Navbar extends BsComponent {
      */
     public String getBrandHref() {
         return brandHref;
+    }
+
+    /**
+     * @return the center
+     */
+    public boolean isCenter() {
+        return center;
+    }
+
+    /**
+     * @return the alignMenu
+     */
+    public String getAlignMenu() {
+        return alignMenu;
     }
 
     /**
@@ -172,11 +197,11 @@ public class Navbar extends BsComponent {
          * @param element
          *            the element assiciated to image brand.
          */
-        ImageBrand(@Nonnull final SkinConfigTool config, @Nonnull final Xpp3Dom element) {
+        ImageBrand(@Nonnull final ISkinConfig config, @Nonnull final Xpp3Dom element) {
             Objects.requireNonNull(config);
             Objects.requireNonNull(element);
             final String link = config.getAttributeValue(element, "src", String.class, null);
-            if (Strings.isNullOrEmpty(link)) {
+            if (isNullOrEmpty(link)) {
                 throw new IllegalArgumentException("the attribute 'href' of image element is required");
             }
             this.src = config.eval(link, String.class);

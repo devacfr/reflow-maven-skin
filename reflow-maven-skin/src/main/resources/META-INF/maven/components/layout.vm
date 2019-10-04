@@ -29,7 +29,7 @@
  *      <columns>x</columns> - x-column grid layout
  *      <carousel/> - carousel (spinning images with captions)
  *  </sections>
- *#
+ *###
  #macro ( renderBodySections $bodyContent $sectionConfig )#*
     ## Split everything in the content on the horizontal rule tags <hr />
     *##set ( $sections = $htmlTool.split( $bodyContent, "hr" ) )#*

@@ -15,8 +15,11 @@
 ##
 #**
  * output top table fo content
- *##macro( renderTopToc )
-    #if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")
+ *###
+#macro( renderTopToc )##
+#*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")##
+#*      *#$pageContext.toc.preRender( $config )##
+#*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
     <hr class="toc-separator" />
     <div id="m-toc-topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}">
       <div id="toc-scroll-target">
@@ -25,36 +28,37 @@
             </button>
         <div id="m-toc-topnav-collapse" class="collapse navbar-collapse">
             <ul id="m-toc-topnav" class="navbar-nav">
-            ## display Table of Contents in a top bar
-            #renderTopTocItems ( $tocItems )
+#*      *### display Table of Contents in a top bar
+#*      *##renderTopTocItems ( $tocItems )##
             </ul>
         </div>
       </div> <!-- .container -->
     </div> <!-- end: m-toc-topbar -->
-    #end
- #end
+#*  *##end##
+#end##
  #**
  * Outputs the top Table of Contents ( subnav )
  *
- *##macro ( renderTopTocItems $topItems )
-    #set ( $tocMax = $pageContext.toc.numberItems )#*
-    ## check if we flatten the first 2 levels of ToC:
-    *##set ( $flattenConfig = $pageContext.toc.flatten )#*
-    *##if ( !$flattenConfig )#*
-        flatten config not available - calculate if need flattening:
-        only flatten if the top level has not more than 2 elements
-        *##set ( $topItemsCount = $topItems.size() )#*
-        *##set ( $flattenLevel2 = $topItemsCount <= 2 )#*
-    *##elseif ( "true" == $flattenConfig.getValue() )#*
-        *##set ( $flattenLevel2 = true )#*
-    *##else#*
-        *##set ( $flattenLevel2 = false )#*
-    *##end#*
-    ## count items at top and the next level that will be displayed in the ToC bar
-    *##set ( $tocBarItems = [] )#*
-    *##set ( $tocBarMaxItems = [] )#*
+ *###
+#macro ( renderTopTocItems $topItems )##
+#*  *##set ( $tocMax = $pageContext.toc.numberItems )##
+#*  *### check if we flatten the first 2 levels of ToC:
+#*  *##set ( $flattenConfig = $pageContext.toc.flatten )##
+#*  *##if ( !$flattenConfig )##
+#*      *###flatten config not available - calculate if need flattening:
+#*      ###only flatten if the top level has not more than 2 elements
+#*      *##set ( $topItemsCount = $topItems.size() )##
+#*      *##set ( $flattenLevel2 = $topItemsCount <= 2 )##
+#*  *##elseif ( "true" == $flattenConfig.getValue() )##
+#*      *##set ( $flattenLevel2 = true )#*
+#*  *##else##
+#*      *##set ( $flattenLevel2 = false )##
+#*  *##end##
+#*  *### count items at top and the next level that will be displayed in the ToC bar
+#*  *##set ( $tocBarItems = [] )##
+#*  *##set ( $tocBarMaxItems = [] )##
 
-    *##set ( $tocCount = 0 )#*
+#*  *##set ( $tocCount = 0 )#*
     *##foreach ( $topItem in $topItems )#*
 
         *##if ( ($tocCount < $tocMax) || ($tocMax < 0) )#*
@@ -126,7 +130,7 @@
 #**
  * Recursively outputs the contents of top bar ToC dropdown item
  *
- *#
+ *###
 #macro ( renderTopTocDropdown $items )#*
 
     *##foreach ( $subitem in $items )#*

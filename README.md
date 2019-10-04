@@ -46,7 +46,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>2.0.2</version>
+    <version>2.2.0</version>
   </skin>
   ...
 </project>
@@ -151,7 +151,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                 <artifactItem>
                     <groupId>io.github.devacfr.maven.skins</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.0.2</version>
+                    <version>2.2.0</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
@@ -176,12 +176,21 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 [reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#multi-module.html
 
+## Site Generation
+
+Use following command to generate site.
+
+```bash
+$ ./generateSite
+$ ./mvnw site:run
+```
+
 ## Site Deployment
 
 Use following command to deploy site.
 
 ```bash
-$ ./mvnw clean package site site:stage scm-publish:publish-scm
+$ ./siteDeploy
 ```
 
 ## Bug tracker
@@ -193,7 +202,10 @@ Have a bug or a feature request? Please create an issue here on GitHub that conf
 
 ## Contributing
 
-Fork the repository and submit pull requests on **develop** branch. Reflow use gitflow workflow to define a strict branching model designed around the project release (see [Release Management Documentation][release-management] for more information).
+Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests,
+please state that the contribution is your original work and that you license the work to the project under the project&apos;s open source license.
+Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email,
+or other means you agree to license the material under the project&apos;s open source license and warrant that you have the legal authority to do so.
 
 > Pull request on master will be refused.
 
@@ -210,7 +222,7 @@ Fork the repository and submit pull requests on **develop** branch. Reflow use g
 
 ## Copyright and license
 
-Copyright 2012-2018 Christophe Friederich
+Copyright 2012-2019 Christophe Friederich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.
@@ -224,4 +236,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[release-management]: http://devacfr.github.io/maven-config/doc/contribute.html#Release_Management
+[release-management]: http://github.com/devacfr/reflow-maven-skin/development-documentation.html#dev-release-management

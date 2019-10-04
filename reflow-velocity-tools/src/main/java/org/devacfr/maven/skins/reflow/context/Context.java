@@ -24,11 +24,11 @@ import javax.annotation.Nonnull;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
+import org.devacfr.maven.skins.reflow.model.Component;
 import org.devacfr.maven.skins.reflow.model.Footer;
 import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 import org.devacfr.maven.skins.reflow.model.Navbar;
-import org.devacfr.maven.skins.reflow.model.Component;
 import org.devacfr.maven.skins.reflow.model.ScrollTop;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
  * @param <T>
  *            type of inherrit context object.
  */
-public class Context<T extends Context<?>> extends Component {
+public abstract class Context<T extends Context<?>> extends Component {
 
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(Context.class);
@@ -67,7 +67,7 @@ public class Context<T extends Context<?>> extends Component {
      * @return Returns a new instance of {@link Context} depending of current page.
      */
     @Nonnull
-    public static Context<?> buildContext(@Nonnull final SkinConfigTool config) {
+    public static Context<?> buildContext(@Nonnull final ISkinConfig config) {
         requireNonNull(config);
 
         ContextType type = ContextType.page;
@@ -88,6 +88,9 @@ public class Context<T extends Context<?>> extends Component {
                 type = ContextType.frame;
             }
         }
+        // if (type== null) {
+        // type = ContextType.page;
+        // }
         Context<?> context = null;
         switch (type) {
             case doc:
@@ -119,22 +122,14 @@ public class Context<T extends Context<?>> extends Component {
      * @param type
      *            the type of context (can not be {@code null}).
      */
-    public Context(@Nonnull final SkinConfigTool config, @Nonnull final ContextType type) {
+    public Context(@Nonnull final ISkinConfig config, @Nonnull final ContextType type) {
         requireNonNull(config);
         this.withType(requireNonNull(type));
         this.navbar = new Navbar(config);
         this.scrollTop = new ScrollTop(config);
         this.footer = new Footer(config);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        css += " " + getNavbar().getCssOptions() + " " + getScrollTop().getCssOptions();
-        return css;
+        this.addChildren(this.navbar, this.scrollTop, this.footer);
     }
 
     /**

@@ -15,6 +15,8 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static java.util.Objects.requireNonNull;
+
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -30,6 +31,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Pattern;
+
+import javax.annotation.Nonnull;
 
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
@@ -41,6 +44,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
+
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 /**
  * An Apache Velocity tool that provides utility methods to manipulate HTML code using
@@ -54,7 +60,7 @@ import org.jsoup.parser.Tag;
  * @author Christophe Friederich
  * @since 1.0
  * @see <a href="http://jsoup.org/">jsoup HTML parser</a>
- * @see <a href="http://jsoup.org/cookbook/extracting-data/selector-syntax">jsoup CSS selectors</a>
+ * @see <a href= "http://jsoup.org/cookbook/extracting-data/selector-syntax">jsoup CSS selectors</a>
  */
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
@@ -112,14 +118,14 @@ public class HtmlTool extends SafeConfig {
      * are dropped from the results.
      *
      * @param content
-     *            HTML content to split
+     *            body HTML content to split (can not be empty or {@code null}).
      * @param separatorCssSelector
-     *            CSS selector for separators.
+     *            CSS selector for separators (can not be empty or {@code null}).
      * @return a list of HTML partitions split on separator locations, but without the separators.
      * @since 1.0
      * @see #split(String, String, JoinSeparator)
      */
-    public List<String> split(final String content, final String separatorCssSelector) {
+    public List<String> split(@Nonnull final String content, @Nonnull final String separatorCssSelector) {
         return split(content, separatorCssSelector, JoinSeparator.NO);
     }
 
@@ -192,7 +198,7 @@ public class HtmlTool extends SafeConfig {
      * </p>
      *
      * @param content
-     *            HTML content to split
+     *            Body HTML content to split
      * @param separatorCssSelector
      *            CSS selector for separators
      * @param separatorStrategy
@@ -201,10 +207,11 @@ public class HtmlTool extends SafeConfig {
      *         content as the single element of the list
      * @since 1.0
      */
-    public List<String> split(final String content,
-        final String separatorCssSelector,
-        final JoinSeparator separatorStrategy) {
+    public List<String> split(@Nonnull final String content,
+        @Nonnull final String separatorCssSelector,
+        @Nonnull final JoinSeparator separatorStrategy) {
 
+        requireNonNull(separatorStrategy);
         final Element body = parseContent(content);
 
         final List<Element> separators = body.select(separatorCssSelector);
@@ -214,7 +221,10 @@ public class HtmlTool extends SafeConfig {
             final List<String> sectionHtml = new ArrayList<>();
 
             for (final List<Element> partition : partitions) {
-                sectionHtml.add(outerHtml(partition));
+                final String html = outerHtml(partition);
+                if (!Strings.isNullOrEmpty(html)) {
+                    sectionHtml.add(outerHtml(partition));
+                }
             }
 
             return sectionHtml;
@@ -239,7 +249,7 @@ public class HtmlTool extends SafeConfig {
         final JoinSeparator separatorStrategy,
         final Element parent) {
 
-        final List<List<Element>> partitions = new LinkedList<>();
+        final List<List<Element>> partitions = Lists.newLinkedList();
 
         for (final Element child : parent.children()) {
 
@@ -256,7 +266,7 @@ public class HtmlTool extends SafeConfig {
                 }
 
                 // add an empty new partition
-                final List<Element> newPartition = new LinkedList<>();
+                final List<Element> newPartition = Lists.newLinkedList();
                 partitions.add(newPartition);
 
                 if (separatorStrategy == JoinSeparator.AFTER) {
@@ -303,7 +313,7 @@ public class HtmlTool extends SafeConfig {
      */
     private static List<Element> getLastPartition(final List<List<Element>> partitions) {
         if (partitions.isEmpty()) {
-            final List<Element> newPartition = new LinkedList<>();
+            final List<Element> newPartition = Lists.newLinkedList();
             partitions.add(newPartition);
             return newPartition;
         } else {
@@ -388,7 +398,8 @@ public class HtmlTool extends SafeConfig {
 
             final List<Element> elements = extracted.subList(1, extracted.size());
 
-            // now prepend extracted elements to the body (in backwards to preserve original order)
+            // now prepend extracted elements to the body (in backwards to preserve original
+            // order)
             for (int index = elements.size() - 1; index >= 0; index--) {
                 body.prependChild(elements.get(index));
             }
@@ -495,6 +506,7 @@ public class HtmlTool extends SafeConfig {
      *         elements are found, the remainder contains the original content.
      * @since 1.0
      */
+    @Nonnull
     public ExtractResult extract(final String content, final String selector, final int amount) {
 
         final List<Element> extracted = extractElements(content, selector, amount);
@@ -605,9 +617,10 @@ public class HtmlTool extends SafeConfig {
      * Parses body fragment to the {@code <body>} element.
      *
      * @param content
+     *            body HTML fragment (can not be {@code null}).
      * @return the {@code body} element of the parsed content
      */
-    private Element parseContent(final String content) {
+    private Element parseContent(@Nonnull final String content) {
         final Document doc = Jsoup.parseBodyFragment(content);
         doc.outputSettings().charset(outputEncoding);
         return doc.body();
@@ -910,7 +923,6 @@ public class HtmlTool extends SafeConfig {
         return texts;
     }
 
-    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Transforms the given HTML content by moving anchor ({@code <a name="myheading">}) names to IDs for heading
      * elements.
@@ -1041,10 +1053,16 @@ public class HtmlTool extends SafeConfig {
      * etc. The symbols are removed.
      * </p>
      *
+     * @param pageType
+     *            The type of page.
+     * @param currentPage
+     *            The name of current page.
      * @param content
-     *            HTML content to modify
-     * @return HTML content with all heading elements having {@code id} attributes. If all headings were with IDs
-     *         already, the original content is returned.
+     *            HTML content to modify.
+     * @param idSeparator
+     *            the seperator used to slug ID.
+     * @return Returns a {@link String} representing HTML content with all heading elements having {@code id}
+     *         attributes. If all headings were with IDs already, the original content is returned.
      * @since 1.0
      */
     public String ensureHeadingIds(final String pageType,
@@ -1118,9 +1136,15 @@ public class HtmlTool extends SafeConfig {
     /**
      * Generated a unique ID within the given set of IDs. Appends an incrementing number for duplicates.
      *
+     * @param pageType
+     *            The type of page.
+     * @param currentPage
+     *            Tthe name of current page.
      * @param ids
+     *            The list of ID already existing or used.
      * @param idBase
-     * @return
+     *            The prefix to use.
+     * @return Returns a new {@link String} representing a new unique ID.
      */
     private static String generateUniqueId(final String pageType,
         final String currentPage,
@@ -1141,10 +1165,9 @@ public class HtmlTool extends SafeConfig {
         return id;
     }
 
-    @SuppressWarnings({ "checkstyle:javadocstyle" })
     /**
      * Fixes table heads: wraps rows with {@code
-     * 
+     *
     <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
      *
      * @param content
@@ -1404,21 +1427,6 @@ public class HtmlTool extends SafeConfig {
          * @return nested items within the element
          */
         List<? extends IdElement> getItems();
-    }
-
-    /**
-     * A generic method to use jsoup parser on an arbitrary HTML body fragment. Allows writing HTML manipulations in the
-     * template without adding Java code to the class.
-     *
-     * @param content
-     *            HTML content to parse
-     * @return the wrapper element for the parsed content (i.e. the body element as if the content was body contents).
-     * @since 1.0
-     */
-    public static Element parseBodyFragment(final String content) {
-
-        final Document doc = Jsoup.parseBodyFragment(content);
-        return doc.body();
     }
 
 }

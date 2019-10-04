@@ -19,7 +19,7 @@ import static org.devacfr.maven.skins.reflow.model.Toc.createToc;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.model.Toc;
 
 /**
@@ -37,21 +37,10 @@ public class PageContext extends Context<PageContext> {
      * @param config
      *            a config (can not be {@code null}).
      */
-    public PageContext(final @Nonnull SkinConfigTool config) {
+    public PageContext(final @Nonnull ISkinConfig config) {
         super(config, ContextType.page);
         this.toc = createToc(config, null);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = super.getCssOptions();
-        if (getToc() != null) {
-            css += " " + getToc().getCssOptions();
-        }
-        return css;
+        this.addChildren(this.toc);
     }
 
     /**

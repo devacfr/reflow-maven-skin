@@ -11,6 +11,24 @@ The history of Reflow Maven skin releases is documented below. For details of ch
 [reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
 
+$h2 Reflow Maven skin 2.1 Release Notes
+**2019-10-04**
+
+$h3 Highlights of this release
+
+This focus of this release is:
+
+* Allow to specify the alignment element in [navbar](../reflow-maven-skin/reflow-documentation.html#components-navbar)
+    * Add `center` attribute with values `true`  (**default**) or `false`. `center` use bootstrap containers (<https://getbootstrap.com/docs/4.3/components/navbar/#containers)> otherwise use default bootstrap alignment.
+    * Add `alignMenu` with values `left`  or `right`.
+        * `left`  is default bootstrap alignment.
+        * `right` (**default**) use `ml-auto`  bootstrap auto alignment see <https://getbootstrap.com/docs/4.0/utilities/flex/#auto-margins.>
+* Use arrow up awesome character for scroll top instead css transformation
+* Bump highlightjs version to 9.15.7
+* Exclude menu with name null or empty directly in navbar component class.
+
+Read more in the [Reflow Maven skin 2.1 Release Notes and changeslog](release-notes-2.1.html).
+
 $h2 Reflow Maven skin 2.0 Release Notes
 **2019-05-10**
 

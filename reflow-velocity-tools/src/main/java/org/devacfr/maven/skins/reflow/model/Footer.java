@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.devacfr.maven.skins.reflow.SkinConfigTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -48,7 +48,7 @@ public class Footer extends BsComponent {
      * @param config
      *            a config (can not be {@code null}).
      */
-    public Footer(@Nonnull final SkinConfigTool config) {
+    public Footer(@Nonnull final ISkinConfig config) {
         super(COMPONENT);
         requireNonNull(config);
         this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
@@ -108,7 +108,7 @@ public class Footer extends BsComponent {
          * @param menus
          *            list of menu.
          */
-        public Column(@Nonnull final SkinConfigTool config, @Nonnull final List<Menu> menus) {
+        public Column(@Nonnull final ISkinConfig config, @Nonnull final List<Menu> menus) {
             requireNonNull(config);
             requireNonNull(menus);
             this.menus = menus;

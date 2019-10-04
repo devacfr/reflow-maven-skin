@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
@@ -68,6 +69,9 @@ public class NavSideMenu extends BsComponent {
     private static final String COMPONENT = "navside-menu";
 
     /** */
+    private static final String MENU_COMPONENT = "menu";
+
+    /** */
     private String name;
 
     /** */
@@ -85,7 +89,7 @@ public class NavSideMenu extends BsComponent {
      *         (returns list can <b>not</b> be {@code null}).
      */
     @Nonnull
-    public static List<SideNavMenuItem> findAllSideNavMenuItems(@Nonnull final SkinConfigTool config) {
+    public static List<SideNavMenuItem> findAllSideNavMenuItems(@Nonnull final ISkinConfig config) {
         requireNonNull(config);
         final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(config.getGlobalProperties(), "pages", config.getNamespace());
         if (pagesNode == null) {
@@ -96,12 +100,13 @@ public class NavSideMenu extends BsComponent {
         for (final Xpp3Dom page : pages) {
             final String type = page.getAttribute("type");
             if ("doc".equals(type)) {
-                // This allows preventing accidental reuse of child page in other module of project
-                String projectId = page.getAttribute("project");
-                if (!Strings.isNullOrEmpty(projectId) && !projectId.equals(config.getProjectId())){
+                // This allows preventing accidental reuse of child page in other module of
+                // project
+                final String projectId = page.getAttribute("project");
+                if (!Strings.isNullOrEmpty(projectId) && !projectId.equals(config.getProjectId())) {
                     continue;
                 }
-                final Xpp3Dom menu = page.getChild("menu");
+                final Xpp3Dom menu = page.getChild(MENU_COMPONENT);
                 if (menu == null) {
                     continue;
                 }
@@ -119,36 +124,28 @@ public class NavSideMenu extends BsComponent {
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      */
-    public NavSideMenu(@Nonnull final SkinConfigTool config) {
+    public NavSideMenu(@Nonnull final ISkinConfig config) {
         super("navside");
         requireNonNull(config);
         final Xpp3Dom pageNode = config.getPageProperties();
-        final Xpp3Dom menu = pageNode.getChild("menu");
+        final Xpp3Dom menu = pageNode.getChild(MENU_COMPONENT);
         final List<SideNavMenuItem> items = Lists.newArrayList();
         if (menu != null) {
             final String pageName = pageNode.getName();
             addMenuItemRecursively(items, config, menu, pageName, false);
+
+            this.withName(menu.getAttribute("name"))
+                    .withItems(items)
+                    .withSelectFirstOnSelect(
+                        config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
+            this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
+            this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
+            this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
         }
-        this.withName(menu.getAttribute("name"))
-                .withItems(items)
-                .withSelectFirstOnSelect(
-                    config.getAttributeValue("menu", "selectFirstOnExpand", Boolean.class, true));
-        this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
-        this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
-        this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getCssOptions() {
-        String css = "m-sidenav-enabled";
-
+        this.addCssOptions("m-sidenav-enabled");
         if (isSelectFirstOnExpand()) {
-            css += " m-sidenav-select-first-on-select";
+            this.addCssOptions("m-sidenav-select-first-on-select");
         }
-        return css;
     }
 
     /**
@@ -242,7 +239,7 @@ public class NavSideMenu extends BsComponent {
      * @param flatten
      */
     private static void addMenuItemRecursively(@Nonnull final List<SideNavMenuItem> menuItems,
-        @Nonnull final SkinConfigTool config,
+        @Nonnull final ISkinConfig config,
         @Nonnull final Xpp3Dom parentNode,
         @Nonnull final String pageName,
         final boolean flatten) {

@@ -7,9 +7,9 @@
 $h1 Contribute
 
 Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests,
-please state that the contribution is your original work and that you license the work to the project under the project's open source license.
+please state that the contribution is your original work and that you license the work to the project under the project&apos;s open source license.
 Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email,
-or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.
+or other means you agree to license the material under the project&apos;s open source license and warrant that you have the legal authority to do so.
 
 $h2 Issues (bug and feature tracker)
 
@@ -20,7 +20,7 @@ Please report any bugs found, feature requests or other issues on
 
 $h2 Fork, patch and contribute code
 
-Feel free to fork Reflow skin's [Git repository at GitHub][reflow-github] for your own use and
+Feel free to fork Reflow skin&apos;s [Git repository at GitHub][reflow-github] for your own use and
 updates.
 
 Contribute your fixes and new features back to the main codebase using
@@ -71,16 +71,16 @@ Inspired by [Maven Fluido Skin][fluido].
 
 $h2 Copyright and license
 
-Copyright 2012-2018 Christophe Friederich
+Copyright 2012-2019 Christophe Friederich
 
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 you may not use this work except in compliance with the License.
 You may obtain a copy of the License in the LICENSE file, or at:
 
    http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.

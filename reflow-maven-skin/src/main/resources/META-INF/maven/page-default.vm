@@ -118,6 +118,11 @@
     #else##
         #set ( $bootswatchVersion = "@bootswatchVersion@" )##
     #end##
+#*  *##if ( $config.popperVersion )
+#*      *##set ( $popperVersion = $config.popperVersion.getValue() )
+#*  *##else
+#*      *##set ( $popperVersion = "@popperVersion@" )
+#*  *##end
 ##
     #if ( $localResources )##
         #set ( $bootstrapCssPath = "$resourcePath/css" )
@@ -138,11 +143,16 @@
 ##
     <link href="$bootstrapCssPath/bootstrap.min.css" rel="stylesheet" />
 ##
+#*  *##if ( $config.fontawesomeVersion )
+#*      *##set ( $fontawesomeVersion = $config.fontawesomeVersion.getValue() )
+#*  *##else
+#*      *##set ( $fontawesomeVersion = "@fontawesomeVersion@" )
+#*  *##end
 ##
 #*  *##if ( $localResources )
     <link href="$resourcePath/css/fontawesome/all.min.css" rel="stylesheet" />
 #*  *##else
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" crossorigin="anonymous">
 #*  *##end
 ##
     <link href="$resourcePath/css/docs.css" rel="stylesheet" />

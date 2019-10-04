@@ -83,7 +83,7 @@
 #**
  * Renders copyright year (inception-currentDate) and organization.
  *
- *#
+ *###
 #macro ( copyright )#*
 #*  *##if ( $project )
 #*      *##set ( $currentYear = ${currentDate.year} + 1900 )
@@ -116,8 +116,8 @@
  *
  * (The above produces a 3-column navigation with `span2` for each column (because max is 8)).
  *
- *#
- #macro ( bottomNav )
+ *###
+#macro ( bottomNav )
 #*  *##foreach ( $col in $pageContext.footer.columns )
             <div class="col bottom-nav">
 #*              *##listMenu ( $col.menus )
@@ -127,8 +127,8 @@
 ##
 #**
  * Creates a list menu with submenus
- *#
- #macro ( listMenu $menus )
+ *###
+#macro ( listMenu $menus )
 ##
                 <ul class="nav flex-column nav-list">
 ##
@@ -156,15 +156,10 @@
 #**
  * Recursively outputs menu item and its children
  *
- *#
- #macro ( menuItem $item )#*
-    *##set ( $collapseClass = false )
-#*  *##set ( $href =  $item.href  )
-#*  *##if ( $item.active )
-#*      *##set ( $currentLink = "#" )
-#*  *##else
-#*      *##set ( $currentLink = $href )
-#*  *##end
+ *###
+#macro ( menuItem $item )##
+#*  *##set ( $collapseClass = false )
+#*  *##set ( $currentLink = $item.href )
 ##
 #*  *##if ( $item.menuItems && $item.menuItems.size() > 0 )
 ##
@@ -191,4 +186,4 @@
 ##
 #*  *##end
 #*  *#</li>
-#end
+#end##
