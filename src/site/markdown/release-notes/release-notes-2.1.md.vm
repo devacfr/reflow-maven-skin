@@ -1,0 +1,35 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 2.1 Release Notes
+
+$h2 Highlights of this release
+
+This focus of this release is:
+
+* Allow to specify the alignment element in [navbar](../reflow-maven-skin/reflow-documentation.html#components-navbar)
+    * Add `center` attribute with values `true`  (**default**) or `false`. `center` use bootstrap containers (<https://getbootstrap.com/docs/4.3/components/navbar/#containers)> otherwise use default bootstrap alignment.
+    * Add `alignMenu` with values `left`  or `right`.
+        * `left`  is default bootstrap alignment.
+        * `right` (**default**) use `ml-auto`  bootstrap auto alignment see <https://getbootstrap.com/docs/4.0/utilities/flex/#auto-margins.>
+* Use arrow up awesome character for scroll top instead css transformation
+* Bump highlightjs version to 9.15.7
+* Exclude menu with name null or empty directly in navbar component class.
+
+$h2 Changelog 2.1.0
+**2019-05-10**
+
+$h3 Minor enhancements
+
+* Exclude menu with name null or empty directly in navbar component ([#51][]).
+* Bump highlightjs version to 9.15.7 ([#52][]).
+* Use arrow up awesome character for scroll top instead css transformation ([#44][]).
+* Allow to specify the alignment element in navbar ([#46][]).
+
+[#46]: ${issue-url}/46
+[#44]: ${issue-url}/44
+[#52]: ${issue-url}/52
+[#51]: ${issue-url}/51
