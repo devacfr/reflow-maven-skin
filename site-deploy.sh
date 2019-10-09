@@ -18,5 +18,5 @@
 # under the License.
 #
 
-./generateSite $@
-./mvnw site:run
+./site-generate.sh $@
+./mvnw scm-publish:publish-scm $@
