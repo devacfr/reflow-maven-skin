@@ -71,7 +71,7 @@ public class TestCase extends Assert {
     }
 
     public String getExpectedResource() {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), null);
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), null, null);
     }
 
     public String getActualResource(final String suffix) {
@@ -79,7 +79,11 @@ public class TestCase extends Assert {
     }
 
     public String getExpectedResource(final String suffix) {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix);
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix, null);
+    }
+
+    public String getExpectedResource(final String suffix, Function<String,String> transformer) {
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix, transformer);
     }
 
     public void verify() {
