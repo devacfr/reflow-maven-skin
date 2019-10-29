@@ -101,14 +101,14 @@ public abstract class Component {
         this.cssOptions.addAll(Lists.newArrayList(cssOptions));
     }
 
-    /**
-     * Allows to execute action before rendering of component.
-     *
-     * @param skinConfig
-     *            a config (can <b>not</b> be {@code null}).
-     * @since 2.1
-     */
-    public void preRender(@Nonnull final ISkinConfig skinConfig) {
+    protected String onPreRender(@Nonnull final ISkinConfig skinConfig, @Nonnull final String bodyContent) {
+        final StringBuilder str = new StringBuilder(bodyContent);
+        this.children.forEach((component) -> {
+            final String content = str.toString();
+            str.setLength(0);
+            str.append(component.onPreRender(skinConfig, content));
+        });
+        return str.toString();
     }
 
     /**
@@ -131,17 +131,6 @@ public abstract class Component {
      */
     protected String getBodyContent(@Nonnull final ISkinConfig skinConfig) {
         return requireNonNull(skinConfig).getContextValue("bodyContent", String.class);
-    }
-
-    /**
-     * @param skinConfig
-     *            a config (can <b>not</b> be {@code null}).
-     * @param bodyContent
-     *            the html body to store in velocity context.
-     * @since 2.1
-     */
-    protected void setBodyContent(@Nonnull final ISkinConfig skinConfig, final String bodyContent) {
-        requireNonNull(skinConfig).setContextValue("bodyContent", bodyContent);
     }
 
 }

@@ -65,6 +65,9 @@ import com.google.common.collect.Lists;
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
 
+    /** Default separator using to generate slug headin name */
+    public static final String DEFAULT_SLUG_SEPARATOR = "-";
+
     /** prefix heading id associated to table of contents. */
     private static final String SEPARATOR_TOC = "_toc_";
 
@@ -1087,7 +1090,7 @@ public class HtmlTool extends SafeConfig {
 
             // fix all existing IDs - remove colon and other symbols which mess up jQuery
             final String id = idElem.id();
-            idElem.attr("id", adaptSlug(id, idSeparator));
+            idElem.attr("id", slug(id, idSeparator));
             modified = true;
 
             ids.add(idElem.id());
@@ -1158,9 +1161,8 @@ public class HtmlTool extends SafeConfig {
 
         // put the newly generated one into the set
         ids.add(id);
-        id = SEPARATOR_TOC + id;
         if ("frame".equals(pageType)) {
-            id = currentPage + id;
+            id = currentPage + SEPARATOR_TOC + id;
         }
         return id;
     }
@@ -1212,6 +1214,19 @@ public class HtmlTool extends SafeConfig {
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
     /**
+     * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs). Uses "-"
+     * as a whitespace separator.
+     *
+     * @param input
+     *            text to generate the slug from
+     * @return the slug of the given text that contains alphanumeric symbols and "-" only
+     * @since 1.0
+     */
+    public static String slug(final String input) {
+        return slug(input, DEFAULT_SLUG_SEPARATOR);
+    }
+
+    /**
      * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs).
      *
      * @param input
@@ -1223,35 +1238,10 @@ public class HtmlTool extends SafeConfig {
      * @see <a href=
      *      "http://www.codecodex.com/wiki/Generate_a_url_slug">http://www.codecodex.com/wiki/Generate_a_url_slug</a>
      */
-    public static String slug(final String input, final String separator) {
-        final String slug = adaptSlug(input, separator);
-        return slug.toLowerCase(Locale.ENGLISH);
-    }
-
-    /**
-     * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs). Uses "-"
-     * as a whitespace separator.
-     *
-     * @param input
-     *            text to generate the slug from
-     * @return the slug of the given text that contains alphanumeric symbols and "-" only
-     * @since 1.0
-     */
-    public static String slug(final String input) {
-        return slug(input, "-");
-    }
-
-    /**
-     * Creates a slug but does not change capitalization.
-     *
-     * @param input
-     * @param separator
-     * @return
-     */
-    private static String adaptSlug(final String input, final String separator) {
+    private static String slug(final String input, final String separator) {
         final String nowhitespace = WHITESPACE.matcher(input).replaceAll(separator);
         final String normalized = Normalizer.normalize(nowhitespace, Form.NFD);
-        return NONLATIN.matcher(normalized).replaceAll("");
+        return NONLATIN.matcher(normalized).replaceAll("").toLowerCase(Locale.ENGLISH);
     }
 
     /**

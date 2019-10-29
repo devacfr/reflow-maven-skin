@@ -201,45 +201,6 @@
 #end##
 ##
 #**
- * Adapt bodyContent.
-*###
-#macro ( adaptBodyContent )##
-#*  *##if ( !$config.not( "imgLightbox" ) )##
-#*      *### lightbox is enabled by default, so check for false and negate
-#*      *##set ( $bodyContent = $htmlTool.setAttr( $bodyContent, "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)", "data-lightbox", "page" ))##
-#*  *##end
-##
-#*  *##if ( !$config.not( "html5Anchor" ) )##
-#*      *### HTML5-style anchors are enabled by default, so check for false and negate
-#*      *##set ( $bodyContent = $htmlTool.headingAnchorToId( $bodyContent ) )##
-#*  *##end##
-##
-#*  *##if ( !$config.not( "bootstrapCss" ) )##
-#*      *### Bootstrap CSS class conversion is enabled by default, so check for false and negate
-#*      *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, "table.bodyTable", ["table", "table-striped", "table-hover"] ) )##
-#*      *### image is responsive by default
-#*      *##set ( $bodyContent = $htmlTool.addClass( $bodyContent, "img", ["img-fluid"] ) )##
-#*      *##set ( $bodyContent = $htmlTool.fixTableHeads( $bodyContent ) )##
-#*  *##end##
-##
-#*  *##if ( !$config.not( "bootstrapIcons" ) )##
-#*      *### Bootstrap Icons are enabled by default, so check for false and negate
-#*      *##set ( $iconReplacements = { 'img[src$=images/add.gif]' : '<i class="fas fa-plus"></i>',
-                    'img[src$=images/remove.gif]' : '<i class="fas fa-minus"></i>',
-                    'img[src$=images/fix.gif]' : '<i class="fas fa-wrench"></i>',
-                    'img[src$=images/update.gif]' : '<i class="fas fa-redo"></i>',
-                    'img[src$=images/icon_help_sml.gif]' : '<i class="fas fa-question"></i>',
-                    'img[src$=images/icon_success_sml.gif]' : '<i class="fas fa-check-circle"></i>',
-                    'img[src$=images/icon_warning_sml.gif]' : '<i class="fas fa-exclamation-triangle"></i>',
-                    'img[src$=images/icon_error_sml.gif]' : '<i class="fas fa-exclamation-circle"></i>',
-                    'img[src$=images/icon_info_sml.gif]' : '<i class="fas fa-info"></i>' } )##
-#*      *##set ( $bodyContent = $htmlTool.replaceAll( $bodyContent, $iconReplacements ) )##
-#*      *### The <tt> tag is not supported in HTML5 (see https://www.w3schools.com/tags/tag_tt.asp).
-#*      *##set ( $bodyContent = $htmlTool.replaceWith( $bodyContent, 'tt', '<code class=\"literal\">' ) )##
-#*  *##end##
-#end##
-##
-#**
  * Add Edit button if content is editable
 *###
 #macro ( renderFeedbackLink )##

@@ -18,7 +18,6 @@
  *
  *###
 #macro ( renderNavbar )##
-#*  *#$pageContext.navbar.preRender( $config )##
     <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}">
 #*  *##if ( $pageContext.navbar.center )<div class="container">#end##
 ##

@@ -18,7 +18,6 @@
  *###
 #macro( renderTopToc )##
 #*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")##
-#*      *#$pageContext.toc.preRender( $config )##
 #*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
     <hr class="toc-separator" />
     <div id="m-toc-topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}">

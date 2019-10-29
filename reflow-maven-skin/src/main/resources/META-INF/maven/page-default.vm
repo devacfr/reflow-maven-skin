@@ -19,45 +19,45 @@
  Rendered using Reflow Maven Skin @project.version@ (http://devacfr.github.io/reflow-maven-skin)
 -->
 <html #if ( $locale ) xml:lang="$locale.language" lang="$locale.language"#end>
-  ## resolve date position, or set the default otherwise (bottom)
-  ## Note, that currently we do not support "navigation-top" position for either publishDate or version.
-  #set ( $datePosition = "bottom" )#*
-  *##if ( $decoration.publishDate.position )#*
-  *##set ( $datePosition = $decoration.publishDate.position )#*
-    *##end#*
-  ## resolve version position, or set the default otherwise (bottom)
-  *##set ( $versionPosition = "bottom" )#*
-  *##if ( $decoration.version.position )#*
-  *##set ( $versionPosition = $decoration.version.position )#*
-  *##end#*
-
-    *##if ( $decoration.publishDate.position )#*
-  *##set ( $datePosition = $decoration.publishDate.position )#*
-  *##else#*
-      *##set ( $datePosition = "bottom" )#*
-  *##end##
+#*  *### resolve date position, or set the default otherwise (bottom)
+#*  *### Note, that currently we do not support "navigation-top" position for either publishDate or version.
+#*  *##set ( $datePosition = "bottom" )##
+#*  *##if ( $decoration.publishDate.position )##
+#*  *##set ( $datePosition = $decoration.publishDate.position )##
+#*  *##end##
+#*  *### resolve version position, or set the default otherwise (bottom)
+#*  *##set ( $versionPosition = "bottom" )##
+#*  *##if ( $decoration.version.position )##
+#*      *##set ( $versionPosition = $decoration.version.position )##
+#*  *##end##
+##
+#*  *##if ( $decoration.publishDate.position )##
+#*      *##set ( $datePosition = $decoration.publishDate.position )##
+#*  *##else##
+#*      *##set ( $datePosition = "bottom" )##
+#*  *##end##
 ##
 #*  *##set ( $projectSiteLoc = $config.projectLocation )
 #*  *##set ( $currentFileLoc = $config.currentFileLocation )
 ##
-  ## absolute location of the current
-  #adaptBodyContent ()
-  ## generate a short title if one does not exist or is specified explicitly
-  #* if specified explicitly, use that
-  *##set ( $shortTitleGenerated = false )#*
-  *##if ( !$config.not( "shortTitle" ) && ( !$shortTitle || $shortTitle == ''
-      || ($config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") ) ) )#*
-     Page title generation is enabled by default, so check for false and negate
-    *##if ( $config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") )#*
-      Use explicitly specified title
-      *##set ( $shortTitle = $config.shortTitle.getValue() )#*
-          *##set ( $shortTitleGenerated = true )#*
-      *##else#*
-      ## Generate the title.
-      ## To generate the title, we take the contents of the first h1 tag in the document.
-      ## If it does not exist, we take the contents of the first h2 tag.
-      *##set ( $hTexts = $htmlTool.text( $bodyContent, "h1" ) )#*
-          *##if ( $hTexts.size() == 0 )#*
+#*  *### absolute location of the current
+#*  *##set( $bodyContent = $pageContext.preRender( $config) )##
+#*  *### generate a short title if one does not exist or is specified explicitly
+#*  *### if specified explicitly, use that
+#*  *##set ( $shortTitleGenerated = false )##
+#*  *##if ( !$config.not( "shortTitle" ) && ( !$shortTitle || $shortTitle == ''
+      || ($config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") ) ) )##
+#*  *### Page title generation is enabled by default, so check for false and negate
+#*  *##if ( $config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") )##
+#*      *### Use explicitly specified title
+#*      *##set ( $shortTitle = $config.shortTitle.getValue() )
+#*      *##set ( $shortTitleGenerated = true )
+#*  *##else
+#*      *### Generate the title.
+#*      *### To generate the title, we take the contents of the first h1 tag in the document.
+#*      *### If it does not exist, we take the contents of the first h2 tag.
+#*      *##set ( $hTexts = $htmlTool.text( $bodyContent, "h1" ) )##
+#*      *##if ( $hTexts.size() == 0 )#*
               *##set ( $hTexts = $htmlTool.text( $bodyContent, "h2" ) )#*
           *##end#*
           *##if ( $hTexts.size() > 0 )#*
