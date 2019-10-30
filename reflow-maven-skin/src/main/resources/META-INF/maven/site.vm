@@ -14,8 +14,8 @@
 ## limitations under the License.
 ##
 #*  *##parse( "site-macros.vm" )##
-#*  *##parse( "components/banner.vm" )##
 #*  *##parse( "components/breadcrumbs.vm" )##
+#*  *##parse( "components/header.vm" )##
 #*  *##parse( "components/nav-side-menu.vm" )##
 #*  *##parse( "components/navbar.vm" )##
 #*  *##parse( "components/scroll-top.vm" )##

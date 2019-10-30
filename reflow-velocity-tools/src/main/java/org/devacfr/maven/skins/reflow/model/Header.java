@@ -13,26 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devacfr.maven.skins.reflow.context;
+package org.devacfr.maven.skins.reflow.model;
 
-import static org.devacfr.maven.skins.reflow.model.Toc.createToc;
+import static java.util.Objects.requireNonNull;
 
 import javax.annotation.Nonnull;
 
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-import org.devacfr.maven.skins.reflow.model.Header;
-import org.devacfr.maven.skins.reflow.model.Toc;
 
 /**
- * @author Christophe Friederich
- * @since 2.0
+ * Represents the header component.
+ *
+ * @author devacfr
+ * @since 2.2
  */
-public class PageContext extends Context<PageContext> {
+public class Header extends BsComponent {
 
     /** */
-    private final Toc<?> toc;
+    private static final String COMPONENT = "header";
 
-    private final Header header;
+    /** */
+    private boolean enabled = true;
 
     /**
      * Default constructor.
@@ -40,22 +41,18 @@ public class PageContext extends Context<PageContext> {
      * @param config
      *            a config (can not be {@code null}).
      */
-    public PageContext(final @Nonnull ISkinConfig config) {
-        super(config, ContextType.page);
-        this.toc = createToc(config, null);
-        this.header = new Header(config);
-        this.addChildren(this.header, this.toc);
+    public Header(@Nonnull final ISkinConfig config) {
+        super(COMPONENT);
+        requireNonNull(config);
+        this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, null));
+        this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, null));
+        this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
+
+        this.enabled = config.getAttributeValue(COMPONENT, "enabled", Boolean.class, true);
     }
 
-    public Header getHeader() {
-        return header;
-    }
-
-    /**
-     * @return Returns the {@link Toc}.
-     */
-    public Toc<?> getToc() {
-        return toc;
+    public boolean isEnabled() {
+        return enabled;
     }
 
 }

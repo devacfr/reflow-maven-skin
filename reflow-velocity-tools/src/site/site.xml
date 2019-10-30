@@ -27,6 +27,7 @@
 
   <custom>
     <reflowSkin>
+      <header enabled="false"/>
       <pages>
         <index project="reflow-velocity-tools" combine.self="override">
           <!-- no ToC on the index page -->

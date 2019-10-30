@@ -13,12 +13,23 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
+#macro( renderHeader )##
+#*  *##if( $pageContext.header.enabled)
+            <div class="header container-fluid">
+#*      *### add a banner
+#*      *##renderBanner ()##
+#*      *### add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
+#*      *##renderBreadcrumbs ()##
+            </div> <!-- end : header -->
+#*  *##end
+#end
+##            
 #**
  * Render Banner
- *###
+ *#
 #macro( renderBanner )##
 #*  *##if ( ($decoration.bannerLeft.name && $decoration.bannerLeft.name != $project.name || $decoration.bannerLeft.src || $decoration.bannerLeft.href ) || $decoration.bannerRight )##
-      <div class="jumbotron subhead">
+      <div class="jumbotron subhead ${pageContext.header.cssClass}">
         <div class="row m-1" id="banner">
           <div class="col-md-12">
             <div class="float-left bannerLeft">
