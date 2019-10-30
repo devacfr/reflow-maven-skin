@@ -1096,6 +1096,23 @@ public class HtmlTool extends SafeConfig {
             ids.add(idElem.id());
         }
 
+        // create unique id for all heading elements
+        final List<String> headIds = concat(HEADINGS, "[id]", true);
+        // select all headings that have an ID
+        final List<Element> headingIds = body.select(StringUtil.join(headIds, ", "));
+
+        for (final Element heading : headingIds) {
+            final String headingText = heading.text();
+            String headingSlug = slug(headingText, idSeparator);
+            // also limit slug to 50 symbols
+            if (headingSlug.length() > 50) {
+                headingSlug = headingSlug.substring(0, 50);
+            }
+            final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
+
+            heading.attr("id", headingId);
+        }
+
         final List<String> headNoIds = concat(HEADINGS, ":not([id])", true);
 
         // select all headings that do not have an ID
@@ -1114,23 +1131,6 @@ public class HtmlTool extends SafeConfig {
 
                 heading.attr("id", headingId);
             }
-        }
-
-        // create unique id for all heading elements
-        final List<String> headIds = concat(HEADINGS, "[id]", true);
-        // select all headings that have an ID
-        final List<Element> headingIds = body.select(StringUtil.join(headIds, ", "));
-
-        for (final Element heading : headingIds) {
-            final String headingText = heading.text();
-            String headingSlug = slug(headingText, idSeparator);
-            // also limit slug to 50 symbols
-            if (headingSlug.length() > 50) {
-                headingSlug = headingSlug.substring(0, 50);
-            }
-            final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
-
-            heading.attr("id", headingId);
         }
 
         return body.html();

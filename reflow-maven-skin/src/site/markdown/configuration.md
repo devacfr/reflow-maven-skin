@@ -50,7 +50,7 @@ Reflow skin supports the following values for `position` of these components:
     to be enabled)
 - **right** - Right in breadcrumbs bar (requires [`<breadcrumbs>` flag](#Breadcrumbs)
     to be enabled)
-- **navigation-bottom** - Bottom right in the bottom navigation (requires [`<bottomDescription>`](#Bottom_description) to be enabled)
+- **navigation-bottom** - Bottom right in the bottom navigation (requires [`<bottomDescription>`](#components-footer_toc_bottom-navigation) to be enabled)
 - **bottom (default)** - Subfooter (the last part of the page, as in this website)
 - **none** - Date or version are disabled
 
