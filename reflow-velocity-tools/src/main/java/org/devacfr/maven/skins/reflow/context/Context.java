@@ -49,7 +49,8 @@ import com.google.common.collect.Lists;
  */
 public abstract class Context<T extends Context<?>> extends Component {
 
-    private final static Map<String, String> ICON_REPLACEMENTS = ImmutableMap.<String, String> builder()
+    /** map containing the equivalence of font awesome characters with image found in report pages. */
+    private static final Map<String, String> ICON_REPLACEMENTS = ImmutableMap.<String, String> builder()
             .put("img[src$=images/add.gif]", "<i class=\"fas fa-plus\"></i>")
             .put("img[src$=images/remove.gif]", "<i class=\"fas fa-minus\"></i>")
             .put("img[src$=images/fix.gif]", "<i class=\"fas fa-wrench\"></i>")
@@ -168,7 +169,8 @@ public abstract class Context<T extends Context<?>> extends Component {
         if (!skinConfig.not("imgLightbox")) {
             // lightbox is enabled by default, so check for false and negate
             content = htmlTool.setAttr(content,
-                "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif],a[href$=bmp]:has(img)",
+                "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], "
+                        + "a[href$=png], a[href$=gif],a[href$=bmp]:has(img)",
                 "data-lightbox",
                 "page");
         }
@@ -176,7 +178,8 @@ public abstract class Context<T extends Context<?>> extends Component {
 
             // lightbox is enabled by default, so check for false and negate
             content = htmlTool.setAttr(content,
-                "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], a[href$=png], a[href$=gif], a[href$=bmp]:has(img)",
+                "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], "
+                        + "a[href$=png], a[href$=gif], a[href$=bmp]:has(img)",
                 "data-lightbox",
                 "page");
         }

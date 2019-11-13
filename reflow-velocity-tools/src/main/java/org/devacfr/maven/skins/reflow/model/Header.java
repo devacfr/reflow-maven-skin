@@ -51,6 +51,11 @@ public class Header extends BsComponent {
         this.enabled = config.getAttributeValue(COMPONENT, "enabled", Boolean.class, true);
     }
 
+    /**
+     * Gets the indicating whether the header is displayed.
+     *
+     * @return Returns {@code true} whether the header is displayed, otherwise {@code false}.
+     */
     public boolean isEnabled() {
         return enabled;
     }

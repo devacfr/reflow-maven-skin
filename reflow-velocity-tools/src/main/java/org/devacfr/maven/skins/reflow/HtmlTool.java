@@ -65,7 +65,7 @@ import com.google.common.collect.Lists;
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
 
-    /** Default separator using to generate slug headin name */
+    /** Default separator using to generate slug heading name. */
     public static final String DEFAULT_SLUG_SEPARATOR = "-";
 
     /** prefix heading id associated to table of contents. */

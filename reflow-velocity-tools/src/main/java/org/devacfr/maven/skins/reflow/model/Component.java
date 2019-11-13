@@ -101,6 +101,15 @@ public abstract class Component {
         this.cssOptions.addAll(Lists.newArrayList(cssOptions));
     }
 
+    /**
+     * generic pre-rendering method executed on all components of context.
+     * 
+     * @param skinConfig
+     *            the current skin config.
+     * @param bodyContent
+     *            the current body content.
+     * @return Returns a {@code String} representing the transformed body content on pre-rendering.
+     */
     protected String onPreRender(@Nonnull final ISkinConfig skinConfig, @Nonnull final String bodyContent) {
         final StringBuilder str = new StringBuilder(bodyContent);
         this.children.forEach((component) -> {

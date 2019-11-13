@@ -42,7 +42,7 @@ public interface ISkinConfig {
      * @see #get(String)
      * @since 1.0
      */
-    boolean not(final String property);
+    boolean not(String property);
 
     /**
      * Gets the associated value to {@code key} stored in Velocity context.

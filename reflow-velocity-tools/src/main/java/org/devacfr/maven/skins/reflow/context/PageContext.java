@@ -32,6 +32,7 @@ public class PageContext extends Context<PageContext> {
     /** */
     private final Toc<?> toc;
 
+    /** */
     private final Header header;
 
     /**
@@ -47,6 +48,11 @@ public class PageContext extends Context<PageContext> {
         this.addChildren(this.header, this.toc);
     }
 
+    /**
+     * Gets the header of page.
+     * 
+     * @return Returns a {@code Header} representing the configuration of header.
+     */
     public Header getHeader() {
         return header;
     }
