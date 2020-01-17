@@ -6,10 +6,24 @@
 
 $h1 Release notes
 
-The history of Reflow Maven skin releases is documented below. For details of changes refer to the [project's GitHub issues][reflow-issues] or the [GitHub report][github-report].
+The history of Reflow Maven skin releases is documented below. For details of changes refer to the [project\'s GitHub issues][reflow-issues] or the [GitHub report][github-report].
 
 [reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
+
+
+$h2 Reflow Maven skin 2.2 Release Notes
+**2020-01-31**
+
+$h3 Highlights of this release
+
+This focus of this release is:
+
+* Support [header as component](../reflow-maven-skin/reflow-documentation.html#components-header)
+* bug fix and maintenance change
+
+Read more in the [Reflow Maven skin 2.2 Release Notes and changeslog](release-notes-2.2.html).
+
 
 $h2 Reflow Maven skin 2.1 Release Notes
 **2019-10-04**
@@ -18,7 +32,7 @@ $h3 Highlights of this release
 
 This focus of this release is:
 
-* Allow to specify the alignment element in [navbar](../reflow-maven-skin/reflow-documentation.html#components-navbar)
+* Allow to specify the alignment element in [navbar component](../reflow-maven-skin/reflow-documentation.html#components-navbar)
     * Add `center` attribute with values `true`  (**default**) or `false`. `center` use bootstrap containers (<https://getbootstrap.com/docs/4.3/components/navbar/#containers)> otherwise use default bootstrap alignment.
     * Add `alignMenu` with values `left`  or `right`.
         * `left`  is default bootstrap alignment.
