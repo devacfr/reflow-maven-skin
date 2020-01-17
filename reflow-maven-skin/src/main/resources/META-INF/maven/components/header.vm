@@ -15,12 +15,18 @@
 ##
 #macro( renderHeader )##
 #*  *##if( $pageContext.header.enabled)
+    <div class="row m-0">
+        <div class="d-xs-none d-sm-none d-md-none d-lg-block col-lg-2">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" role="main">
             <div class="header container-fluid">
 #*      *### add a banner
 #*      *##renderBanner ()##
 #*      *### add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
 #*      *##renderBreadcrumbs ()##
-            </div> <!-- end : header -->
+            </div>
+        </div>
+    </div> <!-- end : header -->
 #*  *##end
 #end
 ##            

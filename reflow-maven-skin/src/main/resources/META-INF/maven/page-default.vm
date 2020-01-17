@@ -155,7 +155,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v${fontawesomeVersion}/css/all.css" crossorigin="anonymous">
 #*  *##end
 ##
-    <link href="$resourcePath/css/docs.css" rel="stylesheet" />
     <link href="$resourcePath/css/reflow-skin.css" rel="stylesheet" />
 ##
 #*  *##if ( $config.highlightJsVersion )
