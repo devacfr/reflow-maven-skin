@@ -23,4 +23,8 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 pushd ${dir}/../
 ./mvnw jgitflow:release-finish -Prelease-offline
+# git checkout master
+# ./mvnw clean deploy -Pgpg
 popd
+
+# ${dir}/site-deploy.sh
