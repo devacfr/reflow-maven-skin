@@ -39,7 +39,6 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -959,7 +958,7 @@ public class HtmlTool extends SafeConfig {
 
         // select all headings that have inner named anchor
         final List<Element> headingsInnerA = body
-                .select(StringUtil.join(concat(headNoIds, ":has(" + nameA + ")", true), ", "));
+                .select(String.join(", ", concat(headNoIds, ":has(" + nameA + ")", true)));
 
         boolean modified = false;
         for (final Element heading : headingsInnerA) {
@@ -972,7 +971,7 @@ public class HtmlTool extends SafeConfig {
         }
 
         // select all headings that have a preceding named anchor
-        final List<Element> headingsPreA = body.select(StringUtil.join(concat(headNoIds, nameA + " + ", false), ", "));
+        final List<Element> headingsPreA = body.select(String.join(", ", concat(headNoIds, nameA + " + ", false)));
 
         for (final Element heading : headingsPreA) {
             final Element anchor = heading.previousElementSibling();
@@ -985,7 +984,7 @@ public class HtmlTool extends SafeConfig {
         // select all headings that are followed by a named anchor
         // no selector available for that, so first select the anchors
         // then retrieve the headings
-        final List<Element> anchorsPreH = body.select(StringUtil.join(concat(headNoIds, " + " + nameA, true), ", "));
+        final List<Element> anchorsPreH = body.select(String.join(", ", concat(headNoIds, " + " + nameA, true)));
 
         for (final Element anchor : anchorsPreH) {
             final Element heading = anchor.previousElementSibling();
@@ -1099,7 +1098,7 @@ public class HtmlTool extends SafeConfig {
         // create unique id for all heading elements
         final List<String> headIds = concat(HEADINGS, "[id]", true);
         // select all headings that have an ID
-        final List<Element> headingIds = body.select(StringUtil.join(headIds, ", "));
+        final List<Element> headingIds = body.select(String.join(", ", headIds));
 
         for (final Element heading : headingIds) {
             final String headingText = heading.text();
@@ -1116,7 +1115,7 @@ public class HtmlTool extends SafeConfig {
         final List<String> headNoIds = concat(HEADINGS, ":not([id])", true);
 
         // select all headings that do not have an ID
-        final List<Element> headingsNoId = body.select(StringUtil.join(headNoIds, ", "));
+        final List<Element> headingsNoId = body.select(String.join(", ", headNoIds));
 
         if (!headingsNoId.isEmpty() || modified) {
             for (final Element heading : headingsNoId) {
@@ -1276,7 +1275,7 @@ public class HtmlTool extends SafeConfig {
             }
             final Element body = parseContent(sectionContent);
             // select all headings that have an ID
-            final List<Element> headings = body.select(StringUtil.join(headIds, ", "));
+            final List<Element> headings = body.select(String.join(", ", headIds));
             for (final Element heading : headings) {
                 headingItems
                         .add(new HeadingItem(heading.id(), heading.nodeName(), heading.text(), headingIndex(heading)));

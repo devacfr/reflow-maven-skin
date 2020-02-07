@@ -15,4 +15,4 @@
 @REM specific language governing permissions and limitations
 @REM under the License.
 
-call mvnw clean clover:instrument install clover:aggregate site site:stage
+call ..\mvnw clean clover:instrument install clover:aggregate site site:stage
