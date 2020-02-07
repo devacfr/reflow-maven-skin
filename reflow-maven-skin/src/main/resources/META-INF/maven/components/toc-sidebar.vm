@@ -20,7 +20,6 @@
  *###
 #macro ( renderTocSidebar )##
 #*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
-#*      *#$pageContext.toc.preRender( $config )##
 #*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
 #*      *##if ( !$tocSidebarAdded )##
             <div id="m-toc-sidebar" class="d-print-none ${pageContext.toc.cssOptions}">

@@ -32,6 +32,19 @@ import org.devacfr.maven.skins.reflow.context.Context;
 public interface ISkinConfig {
 
     /**
+     * A convenience method to check if the value of the {@code property} is {@code "false"}. Useful for properties that
+     * are enabled by default - checks if the property is set to {@code "false"} explicitly.
+     *
+     * @param property
+     *            the property of interest
+     * @return {@code true} if the configuration value is set either in page or globally, and is equal to
+     *         {@code "false"}. Note that this will return {@code false} if property is not set at all.
+     * @see #get(String)
+     * @since 1.0
+     */
+    boolean not(String property);
+
+    /**
      * Gets the associated value to {@code key} stored in Velocity context.
      *
      * @param key

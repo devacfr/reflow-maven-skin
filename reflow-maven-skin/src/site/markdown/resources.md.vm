@@ -87,7 +87,7 @@ For multi-module site, remember to enable [resource reuse flag][resource-reuse],
 these files will have to be repeated for each sub-module.
 
 [bootstrap-theme]: reflow-documentation.html#themes-index
-[local-css]: reflow-documentation.html#resources_toc_additional_css_files
+[local-css]: reflow-documentation.html#resources_toc_additional-css-files
 [bootswatch]: http://bootswatch.com/
 
 
@@ -131,8 +131,8 @@ Furthermore, the injected XHTML allows using Velocity variables. Therefore you c
 ```
 
 [body-head-config]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head
-[highlight-js-config]: reflow-documentation.html#configuration_toc_code_highlight
-[resource-reuse]: reflow-documentation.html#multi-module_toc_reuse_resources
+[highlight-js-config]: reflow-documentation.html#configuration_toc_code-highlight
+[resource-reuse]: reflow-documentation.html#multi-module_toc_reuse-resources
 
 
 $h2 Additional JavaScript files

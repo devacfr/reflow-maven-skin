@@ -224,17 +224,25 @@ public class HtmlToolTest extends TestCase {
     @Test
     public void shouldEnsureHeadingIds() {
         verify((content) -> {
-            return htmlTool.ensureHeadingIds("page", "overview", content, "_");
+            return htmlTool.ensureHeadingIds("page", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
+        }, ".html");
+    }
+
+    @Test
+    public void shouldEnsureHeadingIdsForFrame() {
+        verify((content) -> {
+            return htmlTool.ensureHeadingIds("frame", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
         }, ".html");
     }
 
     @Test
     public void shouldHeadingTree() {
-        final String content = htmlTool.ensureHeadingIds("page", "overview", getActualResource(".html"), "_");
+        final String content = htmlTool
+                .ensureHeadingIds("page", "overview", getActualResource(".html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
         final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
         // check root element
         assertThat(idElements.stream().map((el) -> el.getId()).collect(Collectors.toList()),
-            contains("_toc_apache_maven_site_plugin1"));
+            contains("apache-maven-site-plugin"));
         assertThat(idElements.stream().map((el) -> el.getTagName()).collect(Collectors.toList()), contains("h2"));
         assertThat(idElements.stream().map((el) -> el.getText()).collect(Collectors.toList()),
             contains("Apache Maven Site Plugin"));
@@ -242,7 +250,7 @@ public class HtmlToolTest extends TestCase {
         // check children
         assertThat(idElements.stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()), contains(2));
         assertThat(idElements.get(0).getItems().stream().map((el) -> el.getId()).collect(Collectors.toList()),
-            contains("_toc_goals_overview1", "_toc_usage1"));
+            contains("goals-overview", "usage"));
         assertThat(idElements.get(0).getItems().stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()),
             contains(3, 3));
 

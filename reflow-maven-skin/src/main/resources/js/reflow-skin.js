@@ -258,18 +258,22 @@ var mReflow = function () {
     }
 
     $window.bind('hashchange', function (evt) {
-
       var originalEvt = evt.originalEvent;
+      // not load page if is identical
+      var oldURL;
+      var newURL;
       var identicalPage = false;
+
+      // do nothing if same url
       if (originalEvt) {
-        var oldURL = splitUrl(originalEvt.oldURL);
-        var newURL = splitUrl(originalEvt.newURL);
-        identicalPage = oldURL[0] === newURL[0];
+        oldURL = originalEvt.oldURL;
+        newURL = originalEvt.newURL;
+        if (oldURL === newURL) {
+          return;
+        }
       }
 
-      if (identicalPage) {
-        return;
-      }
+
 
       var item = null;
       var hash = window.location.hash;
@@ -293,16 +297,27 @@ var mReflow = function () {
       } else {
         item = $('.navside-menu a[slug-name$="' + section + '"]');
       }
-      // expand the parent of item if it is sub-section menu.
-      var collapsible = item.parents('ul.collapse');
-      if (collapsible.length > 0) {
-        collapsible.collapse('show');
-      }
-      var slugName = item.attr('slug-name');
-      window.location.hash = hashes(slugName, chapter);
-      var href = item.attr('href').substring(1);
-      loadFrame(href, slugName);
+      if (item.length) {
 
+        // expand the parent of item if it is sub-section menu.
+        var collapsible = item.parents('ul.collapse');
+        if (collapsible.length > 0) {
+          collapsible.collapse('show');
+        }
+        var slugName = item.attr('slug-name');
+        window.location.hash = hashes(slugName, chapter);
+
+        if (originalEvt) {
+          oldURL = splitUrl(originalEvt.oldURL);
+          newURL = splitUrl(originalEvt.newURL);
+          identicalPage = oldURL[0] === newURL[0];
+        }
+        if (identicalPage) {
+          return;
+        }
+        var href = item.attr('href').substring(1);
+        loadFrame(href, slugName);
+      }
     });
 
 

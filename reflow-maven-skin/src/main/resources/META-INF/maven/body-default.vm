@@ -14,26 +14,21 @@
 ## limitations under the License.
 ##
 <div class="main-body container-fuild my-3">
+#*  *##renderHeader ()##
     <div class="row m-0">
         <div class="d-xs-none d-sm-none d-md-none d-lg-block col-lg-2">
         </div>
         <main class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" role="main">
-            <div class="header container-fluid">
-                ## add a banner
-#*              *##renderBanner ()##
-                ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
-#*              *##renderBreadcrumbs ()##
-            </div> <!-- end : header -->
-            ## add top toc if enabled
-#*          *##renderTopToc ()
-            #if ( $config.sections )
-#*              *##renderBodySections ( $bodyContent $config.sections )
-            #else
-#*              *##bodyWithHeader ( $bodyContent )
-            #end
+#*  *### add top toc if enabled
+#*  *##renderTopToc ()##
+#*  *##if ( $config.sections )##
+#*      *##renderBodySections ( $bodyContent $config.sections )##
+#*  *##else
+#*      *##bodyWithHeader ( $bodyContent )##
+#*  *##end
         </main>
         <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-2">
-#*          *##renderTocSidebar ()
+#*  *##renderTocSidebar ()##
         </div>
     </div> <!-- row: end -->
 </div> <!-- .main-body: end -->

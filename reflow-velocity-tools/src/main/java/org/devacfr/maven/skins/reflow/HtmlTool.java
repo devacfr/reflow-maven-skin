@@ -39,7 +39,6 @@ import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -64,6 +63,9 @@ import com.google.common.collect.Lists;
  */
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
+
+    /** Default separator using to generate slug heading name. */
+    public static final String DEFAULT_SLUG_SEPARATOR = "-";
 
     /** prefix heading id associated to table of contents. */
     private static final String SEPARATOR_TOC = "_toc_";
@@ -956,7 +958,7 @@ public class HtmlTool extends SafeConfig {
 
         // select all headings that have inner named anchor
         final List<Element> headingsInnerA = body
-                .select(StringUtil.join(concat(headNoIds, ":has(" + nameA + ")", true), ", "));
+                .select(String.join(", ", concat(headNoIds, ":has(" + nameA + ")", true)));
 
         boolean modified = false;
         for (final Element heading : headingsInnerA) {
@@ -969,7 +971,7 @@ public class HtmlTool extends SafeConfig {
         }
 
         // select all headings that have a preceding named anchor
-        final List<Element> headingsPreA = body.select(StringUtil.join(concat(headNoIds, nameA + " + ", false), ", "));
+        final List<Element> headingsPreA = body.select(String.join(", ", concat(headNoIds, nameA + " + ", false)));
 
         for (final Element heading : headingsPreA) {
             final Element anchor = heading.previousElementSibling();
@@ -982,7 +984,7 @@ public class HtmlTool extends SafeConfig {
         // select all headings that are followed by a named anchor
         // no selector available for that, so first select the anchors
         // then retrieve the headings
-        final List<Element> anchorsPreH = body.select(StringUtil.join(concat(headNoIds, " + " + nameA, true), ", "));
+        final List<Element> anchorsPreH = body.select(String.join(", ", concat(headNoIds, " + " + nameA, true)));
 
         for (final Element anchor : anchorsPreH) {
             final Element heading = anchor.previousElementSibling();
@@ -1087,16 +1089,33 @@ public class HtmlTool extends SafeConfig {
 
             // fix all existing IDs - remove colon and other symbols which mess up jQuery
             final String id = idElem.id();
-            idElem.attr("id", adaptSlug(id, idSeparator));
+            idElem.attr("id", slug(id, idSeparator));
             modified = true;
 
             ids.add(idElem.id());
         }
 
+        // create unique id for all heading elements
+        final List<String> headIds = concat(HEADINGS, "[id]", true);
+        // select all headings that have an ID
+        final List<Element> headingIds = body.select(String.join(", ", headIds));
+
+        for (final Element heading : headingIds) {
+            final String headingText = heading.text();
+            String headingSlug = slug(headingText, idSeparator);
+            // also limit slug to 50 symbols
+            if (headingSlug.length() > 50) {
+                headingSlug = headingSlug.substring(0, 50);
+            }
+            final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
+
+            heading.attr("id", headingId);
+        }
+
         final List<String> headNoIds = concat(HEADINGS, ":not([id])", true);
 
         // select all headings that do not have an ID
-        final List<Element> headingsNoId = body.select(StringUtil.join(headNoIds, ", "));
+        final List<Element> headingsNoId = body.select(String.join(", ", headNoIds));
 
         if (!headingsNoId.isEmpty() || modified) {
             for (final Element heading : headingsNoId) {
@@ -1111,23 +1130,6 @@ public class HtmlTool extends SafeConfig {
 
                 heading.attr("id", headingId);
             }
-        }
-
-        // create unique id for all heading elements
-        final List<String> headIds = concat(HEADINGS, "[id]", true);
-        // select all headings that have an ID
-        final List<Element> headingIds = body.select(StringUtil.join(headIds, ", "));
-
-        for (final Element heading : headingIds) {
-            final String headingText = heading.text();
-            String headingSlug = slug(headingText, idSeparator);
-            // also limit slug to 50 symbols
-            if (headingSlug.length() > 50) {
-                headingSlug = headingSlug.substring(0, 50);
-            }
-            final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
-
-            heading.attr("id", headingId);
         }
 
         return body.html();
@@ -1158,9 +1160,8 @@ public class HtmlTool extends SafeConfig {
 
         // put the newly generated one into the set
         ids.add(id);
-        id = SEPARATOR_TOC + id;
         if ("frame".equals(pageType)) {
-            id = currentPage + id;
+            id = currentPage + SEPARATOR_TOC + id;
         }
         return id;
     }
@@ -1212,6 +1213,19 @@ public class HtmlTool extends SafeConfig {
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
     /**
+     * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs). Uses "-"
+     * as a whitespace separator.
+     *
+     * @param input
+     *            text to generate the slug from
+     * @return the slug of the given text that contains alphanumeric symbols and "-" only
+     * @since 1.0
+     */
+    public static String slug(final String input) {
+        return slug(input, DEFAULT_SLUG_SEPARATOR);
+    }
+
+    /**
      * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs).
      *
      * @param input
@@ -1223,35 +1237,10 @@ public class HtmlTool extends SafeConfig {
      * @see <a href=
      *      "http://www.codecodex.com/wiki/Generate_a_url_slug">http://www.codecodex.com/wiki/Generate_a_url_slug</a>
      */
-    public static String slug(final String input, final String separator) {
-        final String slug = adaptSlug(input, separator);
-        return slug.toLowerCase(Locale.ENGLISH);
-    }
-
-    /**
-     * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs). Uses "-"
-     * as a whitespace separator.
-     *
-     * @param input
-     *            text to generate the slug from
-     * @return the slug of the given text that contains alphanumeric symbols and "-" only
-     * @since 1.0
-     */
-    public static String slug(final String input) {
-        return slug(input, "-");
-    }
-
-    /**
-     * Creates a slug but does not change capitalization.
-     *
-     * @param input
-     * @param separator
-     * @return
-     */
-    private static String adaptSlug(final String input, final String separator) {
+    private static String slug(final String input, final String separator) {
         final String nowhitespace = WHITESPACE.matcher(input).replaceAll(separator);
         final String normalized = Normalizer.normalize(nowhitespace, Form.NFD);
-        return NONLATIN.matcher(normalized).replaceAll("");
+        return NONLATIN.matcher(normalized).replaceAll("").toLowerCase(Locale.ENGLISH);
     }
 
     /**
@@ -1286,7 +1275,7 @@ public class HtmlTool extends SafeConfig {
             }
             final Element body = parseContent(sectionContent);
             // select all headings that have an ID
-            final List<Element> headings = body.select(StringUtil.join(headIds, ", "));
+            final List<Element> headings = body.select(String.join(", ", headIds));
             for (final Element heading : headings) {
                 headingItems
                         .add(new HeadingItem(heading.id(), heading.nodeName(), heading.text(), headingIndex(heading)));

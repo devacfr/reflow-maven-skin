@@ -14,7 +14,7 @@
 ## limitations under the License.
 ##
 <div class="row no-gutters">
-    #adaptBodyContent ()
+#*  *##set( $bodyContent = $pageContext.preRender( $config) )##
     <div class="col-lg-12 col-xl-9 py-3">
 #*  *##renderTopToc ()
     #if ( $config.sections )

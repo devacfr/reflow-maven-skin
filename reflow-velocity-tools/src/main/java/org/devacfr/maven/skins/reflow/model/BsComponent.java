@@ -15,9 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-import static java.util.Objects.requireNonNull;
-
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.google.common.base.Strings;
 
@@ -53,7 +51,14 @@ public abstract class BsComponent extends Component {
         if (!Strings.isNullOrEmpty(super.getCssClass())) {
             return super.getCssClass();
         }
-        return component + "-" + getTheme() + " bg-" + getBackground();
+        String css = component;
+        if (!Strings.isNullOrEmpty(getTheme())) {
+            css += "-" + getTheme();
+        }
+        if (!Strings.isNullOrEmpty(getBackground())) {
+            css += " bg-" + getBackground();
+        }
+        return css;
 
     }
 
@@ -68,8 +73,8 @@ public abstract class BsComponent extends Component {
      * @param theme
      *            a bootstrap theme to use.
      */
-    protected void setTheme(@Nonnull final String theme) {
-        this.theme = requireNonNull(theme);
+    protected void setTheme(@Nullable final String theme) {
+        this.theme = theme;
     }
 
     /**
@@ -83,8 +88,8 @@ public abstract class BsComponent extends Component {
      * @param background
      *            a bootstrap background colour to use.
      */
-    protected void setBackground(final String background) {
-        this.background = requireNonNull(background);
+    protected void setBackground(@Nullable final String background) {
+        this.background = background;
     }
 
 }

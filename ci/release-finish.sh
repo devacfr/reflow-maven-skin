@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements. See the NOTICE file
@@ -18,5 +18,9 @@
 # under the License.
 #
 
-./mvnw clean clover:instrument install clover:aggregate site site:stage $@
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+
+pushd ${dir}/../
+./mvnw jgitflow:release-finish -Prelease-offline
+popd

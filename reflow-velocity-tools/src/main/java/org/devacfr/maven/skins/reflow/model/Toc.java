@@ -172,16 +172,14 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
         return self();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void preRender(final ISkinConfig skinConfig) {
+    protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
         final HtmlTool htmlTool = getHtmlTool(skinConfig);
-        String bodyContent = getBodyContent(skinConfig);
-        bodyContent = htmlTool
-                .ensureHeadingIds(skinConfig.getContext().getType(), skinConfig.getFileId(), bodyContent, "_");
-        setBodyContent(skinConfig, bodyContent);
+        return htmlTool.ensureHeadingIds(skinConfig.getContext().getType(),
+            skinConfig.getFileId(),
+            bodyContent,
+            HtmlTool.DEFAULT_SLUG_SEPARATOR);
+
     }
 
     /**

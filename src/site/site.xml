@@ -64,6 +64,7 @@
       </brand>
       <slogan>Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
+      <header enabled="false"/>
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" cssClass="navbar-dark bg-dark border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
@@ -97,6 +98,7 @@
       <markPageHeader>false</markPageHeader>
       <pages>
         <index project="reflow-parent">
+          <header enabled="true" cssClass="bg-dark text-light"/>
           <!-- Override the title -->
           <titleTemplate>Reflow Maven Skin</titleTemplate>
           <!-- no breadcrumbs on the main index page -->
