@@ -19,4 +19,4 @@
 #
 
 ./site-generate.sh $@ || exit
-./mvnw site:run
+./mvnw site:run $@
