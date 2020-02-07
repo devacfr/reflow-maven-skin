@@ -80,7 +80,7 @@ This command creates a new feature branch; prompts for the branch name which wil
 When the feature is complete, execute the following command to merge the feature branch to `develop` branch:
 
 ```bash
-$ mvn jgitflow:feature-finish -Pfull
+$ mvn jgitflow:feature-finish
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -157,7 +157,7 @@ Once `develop` has acquired enough features for a release (or a predetermined re
 $ mvn clean install -PskipTests
    -> install the last version in your local repository
 ...
-$ mvn jgitflow:release-start -DreleaseVersion=1.1.0  -Pfull
+$ mvn jgitflow:release-start -DreleaseVersion=1.1.0
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -216,7 +216,7 @@ What is the development version for "Foo project"? (org.devacfr.foo:foo) [1.1.1-
 Once it's ready to ship, the release gets merged into `master` and tagged with a version number. In addition, it should be merged back into `develop`, which may have progressed since the release was initiated.
 
 ```bash
-$ mvn jgitflow:release-finish -Pfull
+$ mvn jgitflow:release-finish -Prelease-offline
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -335,7 +335,7 @@ This command creates a new maintenance branch; prompts for the hotfix version (i
 When the hotfix is complete, execute the following command to merge the maintenance branch to `develop` and `master` branches:
 
 ```bash
-$ mvn jgitflow:hotfix-finish -P full
+$ mvn jgitflow:hotfix-finish
 ```
 
 Having a dedicated line of development for bug fixes lets your team address issues without interrupting the rest of the workflow or waiting for the next release cycle. You can think of maintenance branches as ad hoc release branches that work directly with `master`.
