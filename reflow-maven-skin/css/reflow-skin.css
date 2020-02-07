@@ -44,6 +44,40 @@ body {
     content: "";
 }
 
+
+/** add external character for external link in body */
+.main-body .externalLink:after,
+footer .externalLink:after {
+  font-family: 'Font Awesome 5 Free';
+  display: inline-block;
+  content: "\f35d";
+  font-size: .6rem;
+  font-weight: 900;
+  margin-left: 3px;
+}
+
+/** add external character for external link in footer */
+footer .externalLink:after {
+  font-family: 'Font Awesome 5 Free';
+  display: inline-block;
+  content: "\f35d";
+  font-size: .7rem;
+  font-weight: 900;
+  margin-left: 5px;
+}
+
+
+/* Code in headings */
+h3 code {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.anchorjs-link {
+  font-size: 1.4rem;
+}
+
+
 /**
 * scrolltop
 */

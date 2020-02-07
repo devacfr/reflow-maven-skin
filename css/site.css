@@ -30,3 +30,15 @@ h2, h3, h4, h5, h6 {
 .page-development-documentation .main-body img.img-fluid {
 	padding: 2em;
 }
+
+
+/* Jumbotrons
+-------------------------------------------------- */
+
+.jumbotron h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+

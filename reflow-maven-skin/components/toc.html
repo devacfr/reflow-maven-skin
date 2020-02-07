@@ -1,8 +1,9 @@
-   <div class="row no-gutters">
-        <div class="col-lg-12 col-xl-9 py-3">
-            <h1>Table of Contents Component</h1> 
+ 
+  <div class="row no-gutters">
+    <div class="col-lg-12 col-xl-9 py-3">
+            <h1 id="components-toc_toc_table-of-contents-component">Table of Contents Component</h1> 
 <p>The skin supports automatic generation of table of contents (ToC) for any page based on the headings appearing in the page. Clicking on the ToC item jumps to the corresponding heading in the page.</p> 
-<p>The ToC style can be chosen with <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element:</p> 
+<p>The ToC style can be chosen with <code class="literal">&lt;toc&gt;</code> element:</p> 
 <div> 
  <div> 
   <pre class="source">&lt;custom&gt;
@@ -25,11 +26,11 @@
 <ul> 
  <li><b>top</b> - top ToC bar (subnav)</li> 
  <li><b>sidebar</b> - sidebar ToC tree</li> 
- <li><b>any other value or no <code class="\&quot;literal\&quot;">&lt;toc&gt;</code> element (default)</b> - do not create ToC</li> 
+ <li><b>any other value or no <code class="literal">&lt;toc&gt;</code> element (default)</b> - do not create ToC</li> 
 </ul> 
 <p>Both styles are exclusive: either the top or the sidebar can be used in a single page. The different styles and their further options are explained below.</p> 
 <div class="section"> 
- <h2 id="ToC_Top_Bar">ToC Top Bar</h2> 
+ <h2 id="components-toc_toc_toc-top-bar">ToC Top Bar</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
  <p>Top ToC displays the table of contents as a horizontal menu just below the site header. Top items provide drop-down menus for subsections. Such menu s used throughout the whole site here.</p> 
  <p>The ToC snaps to the top of the screen to allow easy navigation in long pages.</p> 
@@ -44,14 +45,14 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>numberItems</b> <span class="badge badge-light">v2.0</span> - Sets a integer greater than 0 to limit the number of top ToC items. All menu entries exceeding that number are grouped under the last dropdown menu. <code class="\&quot;literal\&quot;">-1</code> or no attribute (default) displays all items.</li> 
-  <li><b>flatten</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="\&quot;literal\&quot;">true</code> flatten first 2 levels of ToC. Top ToC for pages that have only a single top heading (e.g. h1) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether, otherwise <code class="\&quot;literal\&quot;">false</code> to always just use 1st level ToC items. this attribute replace <code class="\&quot;literal\&quot;">&lt;tocTopFlatten&gt;</code> element.</li> 
-  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. <code class="\&quot;literal\&quot;">navbar-light bg-light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>. <b>note</b>: <code class="\&quot;literal\&quot;">cssClass</code> override attributes <code class="\&quot;literal\&quot;">theme</code> and <code class="\&quot;literal\&quot;">background</code> if is filled.</li> 
-  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code class="\&quot;literal\&quot;">light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
-  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code class="\&quot;literal\&quot;">light</code> is the default value if value is empty or <code class="\&quot;literal\&quot;">null</code>.</li> 
+  <li><b>numberItems</b> <span class="badge badge-light">v2.0</span> - Sets a integer greater than 0 to limit the number of top ToC items. All menu entries exceeding that number are grouped under the last dropdown menu. <code class="literal">-1</code> or no attribute (default) displays all items.</li> 
+  <li><b>flatten</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="literal">true</code> flatten first 2 levels of ToC. Top ToC for pages that have only a single top heading (e.g. h1) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether, otherwise <code class="literal">false</code> to always just use 1st level ToC items. this attribute replace <code class="literal">&lt;tocTopFlatten&gt;</code> element.</li> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. <code class="literal">navbar-light bg-light</code> is the default value if value is empty or <code class="literal">null</code>. <b>note</b>: <code class="literal">cssClass</code> override attributes <code class="literal">theme</code> and <code class="literal">background</code> if is filled.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code class="literal">light</code> is the default value if value is empty or <code class="literal">null</code>.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code class="literal">light</code> is the default value if value is empty or <code class="literal">null</code>.</li> 
  </ul> 
  <div class="section"> 
-  <h3 id="Limit_the_number_of_top_ToC_items">Limit the number of top ToC items</h3> 
+  <h3 id="components-toc_toc_limit-the-number-of-top-toc-items">Limit the number of top ToC items</h3> 
   <p>support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br> element <span class="badge badge-secondary">reflow</span><br></p> 
   <p>Top ToC can be limited to a certain number of items in configuration. All menu entries exceeding that number are grouped under the last dropdown menu. Exclude the option if unlimited.</p> 
   <div> 
@@ -62,13 +63,13 @@
   </div> 
   <ul> 
    <li><b>number</b> - limit to this number of items</li> 
-   <li><b>-1 or no <code class="\&quot;literal\&quot;">&lt;tocTopMax&gt;</code> element (default)</b> - unlimited</li> 
+   <li><b>-1 or no <code class="literal">&lt;tocTopMax&gt;</code> element (default)</b> - unlimited</li> 
   </ul> 
  </div> 
  <div class="section"> 
-  <h3 id="Flatten_first_2_levels_of_ToC">Flatten first 2 levels of ToC</h3> 
+  <h3 id="components-toc_toc_flatten-first-2-levels-of-toc">Flatten first 2 levels of ToC</h3> 
   <p>support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br> element <span class="badge badge-secondary">reflow</span><br></p> 
-  <p>Top ToC for pages that have only a single top heading (e.g. <code class="\&quot;literal\&quot;">h1</code>) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether.</p> 
+  <p>Top ToC for pages that have only a single top heading (e.g. <code class="literal">h1</code>) also includes the 2nd level headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise only the top level headings are included. This option can be overridden to force always or disable altogether.</p> 
   <div> 
    <div> 
     <pre class="source">&lt;tocTopFlatten&gt;true|false&lt;/tocTopFlatten&gt;
@@ -78,12 +79,12 @@
   <ul> 
    <li><b>true</b> - force flattening 2 ToC levels</li> 
    <li><b>false</b> - never flatten, always just use 1st level ToC items</li> 
-   <li><b>no <code class="\&quot;literal\&quot;">&lt;tocTopFlatten&gt;</code> element (default)</b> - flatten if single top heading</li> 
+   <li><b>no <code class="literal">&lt;tocTopFlatten&gt;</code> element (default)</b> - flatten if single top heading</li> 
   </ul> 
  </div> 
 </div> 
 <div class="section"> 
- <h2 id="ToC_Sidebar">ToC Sidebar</h2> 
+ <h2 id="components-toc_toc_toc-sidebar">ToC Sidebar</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
  <div> 
   <div> 
@@ -96,11 +97,11 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>position</b> <span class="badge badge-light">v2.0</span> - The ToC can be displayed as a tree in the sidebar. This style <code class="\&quot;literal\&quot;">relative</code> does not snap to the page when scrolling, but scrolls with the whole page. The default position <code class="\&quot;literal\&quot;">fixed</code> allow to fix the position of ToC depending on where the user has scrolled. See it in action in the <a href="toc-sidebar.html">sample page</a>.</li> 
-  <li><b>level</b> <span class="badge badge-light">v2.0</span> - Sets the number of heading level to display. <code class="\&quot;literal\&quot;">0</code> allows to display all heading level (<b>default value</b>).</li> 
-  <li><b>type</b> <span class="badge badge-light">v1.3</span> - Indentical to attribute <code class="\&quot;literal\&quot;">position</code>. Option <code class="\&quot;literal\&quot;">static</code> is similar to <code class="\&quot;literal\&quot;">relative</code> option in attribute <code class="\&quot;literal\&quot;">position</code>. <i>Attribute removed in version</i> <span class="badge badge-light">v2.0</span></li> 
-  <li><b>autoExpandable</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="\&quot;literal\&quot;">true</code> (<b>default value</b>) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise <code class="\&quot;literal\&quot;">false</code>.</li> 
-  <li><b>expanded</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="\&quot;literal\&quot;">true</code> (<b>default value</b>) to expand all menus in tree, otherwise <code class="\&quot;literal\&quot;">false</code> to show only 1st level Toc items.</li> 
+  <li><b>position</b> <span class="badge badge-light">v2.0</span> - The ToC can be displayed as a tree in the sidebar. This style <code class="literal">relative</code> does not snap to the page when scrolling, but scrolls with the whole page. The default position <code class="literal">fixed</code> allow to fix the position of ToC depending on where the user has scrolled. See it in action in the <a href="toc-sidebar.html">sample page</a>.</li> 
+  <li><b>level</b> <span class="badge badge-light">v2.0</span> - Sets the number of heading level to display. <code class="literal">0</code> allows to display all heading level (<b>default value</b>).</li> 
+  <li><b>type</b> <span class="badge badge-light">v1.3</span> - Indentical to attribute <code class="literal">position</code>. Option <code class="literal">static</code> is similar to <code class="literal">relative</code> option in attribute <code class="literal">position</code>. <i>Attribute removed in version</i> <span class="badge badge-light">v2.0</span></li> 
+  <li><b>autoExpandable</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="literal">true</code> (<b>default value</b>) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise <code class="literal">false</code>.</li> 
+  <li><b>expanded</b> <span class="badge badge-light">v2.0</span> - Sets to <code class="literal">true</code> (<b>default value</b>) to expand all menus in tree, otherwise <code class="literal">false</code> to show only 1st level Toc items.</li> 
  </ul> 
 </div>
         </div>
@@ -115,19 +116,22 @@
             <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
                 <nav id="m-toc-sidebar-nav flex-column">
                 <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#components-toc_toc_table-of-contents-component" title="Table of Contents Component">Table of Contents Component</a>
+    </li>
     <li class="h2">
-        <a class="nav-link" href="#ToC_Top_Bar" title="ToC Top Bar">ToC Top Bar</a>
+        <a class="nav-link" href="#components-toc_toc_toc-top-bar" title="ToC Top Bar">ToC Top Bar</a>
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
-        <a class="nav-link" href="#Limit_the_number_of_top_ToC_items" title="Limit the number of top ToC items">Limit the number of top ToC items</a>
+        <a class="nav-link" href="#components-toc_toc_limit-the-number-of-top-toc-items" title="Limit the number of top ToC items">Limit the number of top ToC items</a>
     </li>
     <li class="h3">
-        <a class="nav-link" href="#Flatten_first_2_levels_of_ToC" title="Flatten first 2 levels of ToC">Flatten first 2 levels of ToC</a>
+        <a class="nav-link" href="#components-toc_toc_flatten-first-2-levels-of-toc" title="Flatten first 2 levels of ToC">Flatten first 2 levels of ToC</a>
     </li>
     </ul>
-        <li class="h2">
-        <a class="nav-link" href="#ToC_Sidebar" title="ToC Sidebar">ToC Sidebar</a>
+    <li class="h2">
+        <a class="nav-link" href="#components-toc_toc_toc-sidebar" title="ToC Sidebar">ToC Sidebar</a>
     </li>
                     </ul>
                 </nav>

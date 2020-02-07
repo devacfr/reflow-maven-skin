@@ -1,18 +1,18 @@
-var treeMapJson = {"id":"Clover database Fri Oct 4 2019 10:12:50 CEST0","name":"","data":{
-    "$area":1530.0,"$color":73.85621,"title":
-    " 1530 Elements, 73.9% Coverage"},"children":[{"id":
+var treeMapJson = {"id":"Clover database Fri Feb 7 2020 14:48:03 CET0","name":"","data":{
+    "$area":1578.0,"$color":72.05323,"title":
+    " 1578 Elements, 72.1% Coverage"},"children":[{"id":
       "org.devacfr.maven.skins.reflow0","name":
-      "org.devacfr.maven.skins.reflow","data":{"$area":896.0,"$color":
-        80.02232,"title":
-        "org.devacfr.maven.skins.reflow 896 Elements, 80% Coverage"},
-      "children":[]},{"id":"org.devacfr.maven.skins.reflow.model978","name":
-      "org.devacfr.maven.skins.reflow.model","data":{"$area":552.0,"$color":
-        60.869564,"title":
-        "org.devacfr.maven.skins.reflow.model 552 Elements, 60.9% Coverage"},
-      "children":[]},{"id":"org.devacfr.maven.skins.reflow.context896",
-      "name":"org.devacfr.maven.skins.reflow.context","data":{"$area":82.0,
-        "$color":93.902435,"title":
-        "org.devacfr.maven.skins.reflow.context 82 Elements, 93.9% Coverage"},
+      "org.devacfr.maven.skins.reflow","data":{"$area":892.0,"$color":
+        79.48431,"title":
+        "org.devacfr.maven.skins.reflow 892 Elements, 79.5% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.model1006","name":
+      "org.devacfr.maven.skins.reflow.model","data":{"$area":572.0,"$color":
+        61.188812,"title":
+        "org.devacfr.maven.skins.reflow.model 572 Elements, 61.2% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.context892",
+      "name":"org.devacfr.maven.skins.reflow.context","data":{"$area":
+        114.0,"$color":68.42105,"title":
+        "org.devacfr.maven.skins.reflow.context 114 Elements, 68.4% Coverage"},
       "children":[]}]}
 ;
 processTreeMapDashJson (treeMapJson);

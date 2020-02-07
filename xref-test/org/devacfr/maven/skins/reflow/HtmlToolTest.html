@@ -232,32 +232,40 @@
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>     @Test
 <a class="jxr_linenumber" name="L225" href="#L225">225</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> shouldEnsureHeadingIds() {
 <a class="jxr_linenumber" name="L226" href="#L226">226</a>         verify((content) -&gt; {
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>             <strong class="jxr_keyword">return</strong> htmlTool.ensureHeadingIds(<span class="jxr_string">"page"</span>, <span class="jxr_string">"overview"</span>, content, <span class="jxr_string">"_"</span>);
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>             <strong class="jxr_keyword">return</strong> htmlTool.ensureHeadingIds(<span class="jxr_string">"page"</span>, <span class="jxr_string">"overview"</span>, content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
 <a class="jxr_linenumber" name="L228" href="#L228">228</a>         }, <span class="jxr_string">".html"</span>);
 <a class="jxr_linenumber" name="L229" href="#L229">229</a>     }
 <a class="jxr_linenumber" name="L230" href="#L230">230</a> 
 <a class="jxr_linenumber" name="L231" href="#L231">231</a>     @Test
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> shouldHeadingTree() {
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>         <strong class="jxr_keyword">final</strong> String content = htmlTool.ensureHeadingIds(<span class="jxr_string">"page"</span>, <span class="jxr_string">"overview"</span>, getActualResource(<span class="jxr_string">".html"</span>), <span class="jxr_string">"_"</span>);
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>         <strong class="jxr_keyword">final</strong> List&lt;? <strong class="jxr_keyword">extends</strong> IdElement&gt; idElements = htmlTool.headingTree(content, Collections.emptyList());
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>         <em class="jxr_comment">// check root element</em>
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>         assertThat(idElements.stream().map((el) -&gt; el.getId()).collect(Collectors.toList()),
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>             contains(<span class="jxr_string">"_toc_apache_maven_site_plugin1"</span>));
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>         assertThat(idElements.stream().map((el) -&gt; el.getTagName()).collect(Collectors.toList()), contains(<span class="jxr_string">"h2"</span>));
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>         assertThat(idElements.stream().map((el) -&gt; el.getText()).collect(Collectors.toList()),
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>             contains(<span class="jxr_string">"Apache Maven Site Plugin"</span>));
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> 
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>         <em class="jxr_comment">// check children</em>
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>         assertThat(idElements.stream().map((el) -&gt; el.getHeadingLevel()).collect(Collectors.toList()), contains(2));
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>         assertThat(idElements.get(0).getItems().stream().map((el) -&gt; el.getId()).collect(Collectors.toList()),
-<a class="jxr_linenumber" name="L245" href="#L245">245</a>             contains(<span class="jxr_string">"_toc_goals_overview1"</span>, <span class="jxr_string">"_toc_usage1"</span>));
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>         assertThat(idElements.get(0).getItems().stream().map((el) -&gt; el.getHeadingLevel()).collect(Collectors.toList()),
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>             contains(3, 3));
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     }
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> }
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> shouldEnsureHeadingIdsForFrame() {
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>         verify((content) -&gt; {
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>             <strong class="jxr_keyword">return</strong> htmlTool.ensureHeadingIds(<span class="jxr_string">"frame"</span>, <span class="jxr_string">"overview"</span>, content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>         }, <span class="jxr_string">".html"</span>);
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>     }
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> 
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>     @Test
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> shouldHeadingTree() {
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>         <strong class="jxr_keyword">final</strong> String content = htmlTool
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>                 .ensureHeadingIds(<span class="jxr_string">"page"</span>, <span class="jxr_string">"overview"</span>, getActualResource(<span class="jxr_string">".html"</span>), HtmlTool.DEFAULT_SLUG_SEPARATOR);
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>         <strong class="jxr_keyword">final</strong> List&lt;? <strong class="jxr_keyword">extends</strong> IdElement&gt; idElements = htmlTool.headingTree(content, Collections.emptyList());
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>         <em class="jxr_comment">// check root element</em>
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>         assertThat(idElements.stream().map((el) -&gt; el.getId()).collect(Collectors.toList()),
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>             contains(<span class="jxr_string">"apache-maven-site-plugin"</span>));
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>         assertThat(idElements.stream().map((el) -&gt; el.getTagName()).collect(Collectors.toList()), contains(<span class="jxr_string">"h2"</span>));
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>         assertThat(idElements.stream().map((el) -&gt; el.getText()).collect(Collectors.toList()),
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>             contains(<span class="jxr_string">"Apache Maven Site Plugin"</span>));
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> 
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>         <em class="jxr_comment">// check children</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>         assertThat(idElements.stream().map((el) -&gt; el.getHeadingLevel()).collect(Collectors.toList()), contains(2));
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>         assertThat(idElements.get(0).getItems().stream().map((el) -&gt; el.getId()).collect(Collectors.toList()),
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>             contains(<span class="jxr_string">"goals-overview"</span>, <span class="jxr_string">"usage"</span>));
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>         assertThat(idElements.get(0).getItems().stream().map((el) -&gt; el.getHeadingLevel()).collect(Collectors.toList()),
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>             contains(3, 3));
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> 
+<a class="jxr_linenumber" name="L257" href="#L257">257</a>     }
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2012&#x2013;2019 <a href="http://devacfr.github.io">Friederich Christophe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2012&#x2013;2020 <a href="http://devacfr.github.io">Friederich Christophe</a>. All rights reserved.</div>
 </body>
 </html>
