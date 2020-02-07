@@ -24,8 +24,8 @@ import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.testing.MockitoTestCase;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -39,7 +39,7 @@ public class SkinConfigToolTest extends MockitoTestCase {
 
     private DecorationModel decorationModel;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         velocityContext = new ToolContext();
         final DecorationXpp3Reader reader = new DecorationXpp3Reader();
@@ -85,29 +85,29 @@ public class SkinConfigToolTest extends MockitoTestCase {
     public void testIsActiveLink() {
 
         velocityContext.put("alignedFileName", "index.html");
-        assertEquals("should be active", true, skinConfig.isActiveLink("."));
-        assertEquals("should be active", true, skinConfig.isActiveLink(""));
+        assertEquals(true, skinConfig.isActiveLink("."), "should be active");
+        assertEquals(true, skinConfig.isActiveLink(""), "should be active");
 
         velocityContext.put("alignedFileName", "summary.html");
-        assertEquals("should be note active", false, skinConfig.isActiveLink(null));
-        assertEquals("should be note active", false, skinConfig.isActiveLink("."));
-        assertEquals("should be note active", false, skinConfig.isActiveLink("index.html"));
+        assertEquals(false, skinConfig.isActiveLink(null), "should be note active");
+        assertEquals(false, skinConfig.isActiveLink("."), "should be note active");
+        assertEquals(false, skinConfig.isActiveLink("index.html"), "should be note active");
     }
 
     @Test
     public void testIsExternalLink() {
 
-        assertEquals("should be external", true, skinConfig.isExternalLink("http://foo.com"));
-        assertEquals("should be external", true, skinConfig.isExternalLink("https://foo.com"));
-        assertEquals("should be external", true, skinConfig.isExternalLink("ftp://foo.com"));
-        assertEquals("should be external", true, skinConfig.isExternalLink("mailto:john@foo.com"));
-        assertEquals("should be external", true, skinConfig.isExternalLink("file://foo.com"));
+        assertEquals(true, skinConfig.isExternalLink("http://foo.com"), "should be external");
+        assertEquals(true, skinConfig.isExternalLink("https://foo.com"), "should be external");
+        assertEquals(true, skinConfig.isExternalLink("ftp://foo.com"), "should be external");
+        assertEquals(true, skinConfig.isExternalLink("mailto:john@foo.com"), "should be external");
+        assertEquals(true, skinConfig.isExternalLink("file://foo.com"), "should be external");
 
-        assertEquals("should be internal", false, skinConfig.isExternalLink(null));
-        assertEquals("should be internal", false, skinConfig.isExternalLink("summary.html"));
-        assertEquals("should be internal",
-            false,
-            skinConfig.isExternalLink("https://devacfr.github.io/reflow-maven-skin/dev/summary.html"));
+        assertEquals(false, skinConfig.isExternalLink(null), "should be internal");
+        assertEquals(false, skinConfig.isExternalLink("summary.html"), "should be internal");
+        assertEquals(false,
+            skinConfig.isExternalLink("https://devacfr.github.io/reflow-maven-skin/dev/summary.html"),
+            "should be internal");
     }
 
     @Test

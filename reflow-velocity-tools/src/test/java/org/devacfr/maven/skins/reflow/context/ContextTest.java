@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isA;
 
 import java.io.StringReader;
@@ -32,8 +33,8 @@ import org.devacfr.maven.skins.reflow.model.Toc;
 import org.devacfr.maven.skins.reflow.model.TocSidebar;
 import org.devacfr.maven.skins.reflow.model.TocTopBar;
 import org.devacfr.testing.MockitoTestCase;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 public class ContextTest extends MockitoTestCase {
@@ -41,7 +42,7 @@ public class ContextTest extends MockitoTestCase {
     @Mock
     private ISkinConfig config;
 
-    @Before
+    @BeforeEach
     public void setup() {
         final MavenProject project = new MavenProject();
         project.setName("reflow");
@@ -71,7 +72,7 @@ public class ContextTest extends MockitoTestCase {
         final PageContext pageContext = (PageContext) context;
 
         final Toc<?> toc = pageContext.getToc();
-        assertNotNull("toc should be exist", toc);
+        assertNotNull(toc, "toc should be exist");
         assertEquals(true, toc.isEnabled());
         assertThat((TocTopBar) pageContext.getToc(), isA(TocTopBar.class));
         final TocTopBar tocTopBar = (TocTopBar) toc;
@@ -79,17 +80,17 @@ public class ContextTest extends MockitoTestCase {
         assertEquals("navbar-light bg-light", tocTopBar.getCssClass());
 
         final Footer footer = pageContext.getFooter();
-        assertNotNull("footer should be exist", footer);
+        assertNotNull(footer, "footer should be exist");
         assertEquals("footer-light bg-light", footer.getCssClass());
         assertEquals("", footer.getCssOptions());
 
         final Navbar navbar = pageContext.getNavbar();
-        assertNotNull("Navbar should be exist", navbar);
+        assertNotNull(navbar, "Navbar should be exist");
         assertEquals("navbar-light bg-light", navbar.getCssClass());
         assertEquals("", navbar.getCssOptions());
 
         final ScrollTop scrollTop = pageContext.getScrollTop();
-        assertNotNull("ScrollTop should be exist", scrollTop);
+        assertNotNull(scrollTop, "ScrollTop should be exist");
         assertEquals("", scrollTop.getCssClass());
         assertEquals(true, scrollTop.isSmooth());
         assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
@@ -113,7 +114,7 @@ public class ContextTest extends MockitoTestCase {
         final PageContext pageContext = (PageContext) context;
 
         final Toc<?> toc = pageContext.getToc();
-        assertNotNull("toc should be exist", toc);
+        assertNotNull(toc, "toc should be exist");
         assertEquals(false, toc.isEnabled());
 
     }
@@ -135,7 +136,7 @@ public class ContextTest extends MockitoTestCase {
         final DocumentContext documentContext = (DocumentContext) context;
 
         final NavSideMenu navSideMenu = documentContext.getNavSideMenu();
-        assertNotNull("NavSideMenu should be exist", navSideMenu);
+        assertNotNull(navSideMenu, "NavSideMenu should be exist");
         assertEquals("m-sidenav-enabled", navSideMenu.getCssOptions());
 
         assertEquals("scrolltop-smooth-enabled m-sidenav-enabled", documentContext.getCssOptions());
@@ -172,7 +173,7 @@ public class ContextTest extends MockitoTestCase {
         assertEquals("development-documentation", frameContext.getDocumentParent());
 
         final Toc<?> toc = frameContext.getToc();
-        assertNotNull("toc should be exist", toc);
+        assertNotNull(toc, "toc should be exist");
         assertThat((TocSidebar) frameContext.getToc(), isA(TocSidebar.class));
 
         final TocSidebar tocSidebar = (TocSidebar) toc;
@@ -182,17 +183,17 @@ public class ContextTest extends MockitoTestCase {
             tocSidebar.getCssOptions());
 
         final Footer footer = frameContext.getFooter();
-        assertNotNull("footer should be exist", footer);
+        assertNotNull(footer, "footer should be exist");
         assertEquals("footer-light bg-light", footer.getCssClass());
         assertEquals("", footer.getCssOptions());
 
         final Navbar navbar = frameContext.getNavbar();
-        assertNotNull("Navbar should be exist", navbar);
+        assertNotNull(navbar, "Navbar should be exist");
         assertEquals("navbar-light bg-light", navbar.getCssClass());
         assertEquals("", navbar.getCssOptions());
 
         final ScrollTop scrollTop = frameContext.getScrollTop();
-        assertNotNull("ScrollTop should be exist", scrollTop);
+        assertNotNull(scrollTop, "ScrollTop should be exist");
         assertEquals("", scrollTop.getCssClass());
         assertEquals(true, scrollTop.isSmooth());
         assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());

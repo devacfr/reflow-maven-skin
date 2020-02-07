@@ -24,17 +24,21 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.devacfr.testing.util.Approvals;
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 
 import com.google.common.io.ByteSource;
 import com.google.common.io.Resources;
 
-public class TestCase extends Assert {
+public class TestCase extends Assertions {
 
-    @Rule
-    public TestName testNameRule = new TestName();
+    private TestInfo testInfo;
+
+    @BeforeEach
+    public final void beforeEachMethod(final TestInfo testInfo) {
+        this.testInfo = testInfo;
+    }
 
     public String getName() {
         return this.getClass().getSimpleName();
@@ -67,53 +71,45 @@ public class TestCase extends Assert {
     }
 
     public String getActualResource() {
-        return Approvals.getActualResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), null);
+        return Approvals.getActualResource(getPackagePath(), this.getClass(), getMethodName(), null);
     }
 
     public String getExpectedResource() {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), null, null);
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), null, null);
     }
 
     public String getActualResource(final String suffix) {
-        return Approvals.getActualResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix);
+        return Approvals.getActualResource(getPackagePath(), this.getClass(), getMethodName(), suffix);
     }
 
     public String getExpectedResource(final String suffix) {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix, null);
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), suffix, null);
     }
 
-    public String getExpectedResource(final String suffix, Function<String,String> transformer) {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), testNameRule.getMethodName(), suffix, transformer);
+    public String getExpectedResource(final String suffix, final Function<String, String> transformer) {
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), suffix, transformer);
     }
 
     public void verify() {
-        Approvals.verify(getPackagePath(),
-            this.getClass(),
-            testNameRule.getMethodName(),
-            (Function<String, String>) null,
-            null);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, null);
     }
 
     /**
      * @param suffix
      */
     public void verify(final String suffix) {
-        Approvals.verify(getPackagePath(),
-            this.getClass(),
-            testNameRule.getMethodName(),
-            (Function<String, String>) null,
-            suffix);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, suffix);
     }
 
     public void verify(final Function<String, String> transform) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), transform, null);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, null);
     }
 
     /**
      * @param transform
      */
     public void verify(final Function<String, String> transform, @Nullable final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), transform, suffix);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, suffix);
     }
 
     /**
@@ -122,7 +118,7 @@ public class TestCase extends Assert {
      * @throws IOException
      */
     public void verify(@Nullable final String actual, @Nullable final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), actual, suffix);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actual, suffix);
     }
 
     /**
@@ -131,7 +127,14 @@ public class TestCase extends Assert {
      * @throws IOException
      */
     public void verify(@Nonnull final Path actualFile, @Nullable final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), testNameRule.getMethodName(), actualFile, suffix);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actualFile, suffix);
+    }
+
+    private String getMethodName() {
+        if (testInfo == null) {
+            return null;
+        }
+        return this.testInfo.getTestMethod().get().getName();
     }
 
 }

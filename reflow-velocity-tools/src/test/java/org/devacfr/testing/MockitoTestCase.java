@@ -15,17 +15,16 @@
  */
 package org.devacfr.testing;
 
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatcher;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InOrder;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockSettings;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
-import org.mockito.stubbing.DeprecatedOngoingStubbing;
 import org.mockito.stubbing.OngoingStubbing;
 import org.mockito.stubbing.Stubber;
 import org.mockito.verification.VerificationMode;
@@ -39,7 +38,7 @@ import org.mockito.verification.VerificationWithTimeout;
  *
  * @author Christophe Friederich
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public abstract class MockitoTestCase extends TestCase {
 
     /**
@@ -60,7 +59,7 @@ public abstract class MockitoTestCase extends TestCase {
      */
     @SuppressWarnings("unchecked")
     protected static <T> T any() {
-        return (T) Matchers.any();
+        return (T) ArgumentMatchers.any();
     }
 
     /**
@@ -73,7 +72,7 @@ public abstract class MockitoTestCase extends TestCase {
      * @return <code>null</code>.
      */
     protected static <T> T eq(final T cl) {
-        return Matchers.eq(cl);
+        return ArgumentMatchers.eq(cl);
     }
 
     /**
@@ -86,7 +85,7 @@ public abstract class MockitoTestCase extends TestCase {
      * @return <code>null</code>.
      */
     protected static <T> T any(final Class<T> cl) {
-        return Matchers.any(cl);
+        return ArgumentMatchers.any(cl);
     }
 
     /**
@@ -244,57 +243,6 @@ public abstract class MockitoTestCase extends TestCase {
      */
     protected static <T> T spy(final T object) {
         return Mockito.spy(object);
-    }
-
-    /**
-     * Stubs a method call with return value or an exception. E.g:
-     *
-     * <pre>
-     * stub(mock.someMethod()).toReturn(10);
-     *
-     * //you can use flexible argument matchers, e.g:
-     * stub(mock.someMethod(<b>anyString()</b>)).toReturn(10);
-     *
-     * //setting exception to be thrown:
-     * stub(mock.someMethod("some arg")).toThrow(new RuntimeException());
-     *
-     * //you can stub with different behavior for consecutive method calls.
-     * //Last stubbing (e.g: toReturn("foo")) determines the behavior for further consecutive calls.
-     * stub(mock.someMethod("some arg"))
-     *  .toThrow(new RuntimeException())
-     *  .toReturn("foo");
-     * </pre>
-     * <p>
-     * Some users find stub() confusing therefore {@link Mockito#when(Object)} is recommended over stub()
-     *
-     * <pre>
-     * // Instead of:
-     * stub(mock.count()).toReturn(10);
-     *
-     * // You can do:
-     * when(mock.count()).thenReturn(10);
-     * </pre>
-     *
-     * For stubbing void methods with throwables see: {@link Mockito#doThrow(Throwable)}
-     * <p>
-     * Stubbing can be overridden: for example common stubbing can go to fixture setup but the test methods can override
-     * it. Please note that overridding stubbing is a potential code smell that points out too much stubbing.
-     * <p>
-     * Once stubbed, the method will always return stubbed value regardless of how many times it is called.
-     * <p>
-     * Last stubbing is more important - when you stubbed the same method with the same arguments many times.
-     * <p>
-     * Although it is possible to verify a stubbed invocation, usually <b>it's just redundant</b>. Let's say you've
-     * stubbed foo.bar(). If your code cares what foo.bar() returns then something else breaks(often before even
-     * verify() gets executed). If your code doesn't care what get(0) returns then it should not be stubbed. Not
-     * convinced? See <a href="http://monkeyisland.pl/2008/04/26/asking-and-telling">here</a>.
-     *
-     * @param methodCall
-     *            method call
-     * @return DeprecatedOngoingStubbing object to set stubbed value/exception
-     */
-    protected static <T> DeprecatedOngoingStubbing<T> stub(final T methodCall) {
-        return Mockito.stub(methodCall);
     }
 
     /**
@@ -494,27 +442,6 @@ public abstract class MockitoTestCase extends TestCase {
      */
     protected static void verifyNoMoreInteractions(final Object... mocks) {
         Mockito.verifyNoMoreInteractions(mocks);
-    }
-
-    /**
-     * Verifies that no interactions happened on given mocks.
-     *
-     * <pre>
-     * verifyZeroInteractions(mockOne, mockTwo);
-     * </pre>
-     *
-     * This method will also detect invocations that occurred before the test method, for example: in setUp(),
-     * &#064;Before method or in constructor. Consider writing nice code that makes interactions only in test methods.
-     * <p>
-     * See also {@link Mockito#never()} - it is more explicit and communicates the intent well.
-     * <p>
-     * See examples in javadoc for {@link Mockito} class
-     *
-     * @param mocks
-     *            to be verified
-     */
-    protected void verifyZeroInteractions(final Object... mocks) {
-        Mockito.verifyZeroInteractions(mocks);
     }
 
     /**
