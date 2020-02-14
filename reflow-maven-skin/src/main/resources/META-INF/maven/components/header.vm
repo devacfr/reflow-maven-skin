@@ -15,7 +15,7 @@
 ##
 #macro( renderHeader )##
 #*  *##if( $pageContext.header.enabled)
-    <div class="row header ${pageContext.header.cssClass}" role="main">
+    <div class="header ${pageContext.header.cssClass}" role="main">
         <div class="container container-fluid">
 #*      *##if( $pageContext.header.type == "jumbotron")
 #*          *### add a Jumbotron

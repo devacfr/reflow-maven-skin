@@ -55,12 +55,12 @@
       <titleTemplate>%2$s | %1$s</titleTemplate>
       <header type="banner" enabled="false" />
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
-      <toc numberItems="6" cssClass="navbar-dark bg-dark border rounded">top</toc>
+      <toc numberItems="6" theme="dark" background="dark" cssClass="border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Documentation|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
+      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
         <image src="$resourcePath/images/reflow.png" />
       </navbar>
-      <navside-menu cssClass="navside-light bg-light" />
+      <navside-menu theme="light" background="light" />
       <footer theme="dark" background="dark" />
       <!-- Split menus in the bottom navigation -->
       <bottomNav>
@@ -89,7 +89,7 @@
         <index project="reflow-parent">
           <header enabled="true" cssClass="text-center text-light">
             <![CDATA[
-            <div id="banner" class="header--banner">
+            <div id="banner" class="header__banner">
                 <a href="$config.relativeLink( $decoration.bannerLeft.href )" class="d-inline-block">
                     <img style="vertical-align: middle;" class="m-2" src="images/reflow.png"
                         alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width" height="$$decoration.bannerLeft.height">

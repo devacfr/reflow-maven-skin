@@ -3,12 +3,12 @@
 ## Usage
 
 ```xml
-<footer cssClass="bootstrap classes"
+<footer cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme" />
 ```
 
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. `footer-light bg-light` is the default value if value is empty or `null`. **note**: `cssClass` override attributes `theme` and `background` if is filled.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
 - **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
 - **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
 

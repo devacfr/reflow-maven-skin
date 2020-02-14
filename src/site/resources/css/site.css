@@ -81,6 +81,10 @@
 }
 
 
+.body {
+    margin-bottom: 1rem;
+}
+
 h2,
 h3,
 h4,
@@ -100,14 +104,14 @@ h6 {
 /*
  * header
 */
-.header .header--banner h1 {
+.header .header__banner h1 {
     font-size: 3rem;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
 }
 
-.header .header--banner .color-highlight:after {
+.header .header__banner .color-highlight:after {
     left: -8px;
 }
 

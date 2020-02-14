@@ -39,8 +39,7 @@ public abstract class BsComponent extends Component {
     /**
      * Default constructor.
      *
-     * @param component
-     *            the bootstrap component name.
+     * @param component the bootstrap component name.
      */
     public BsComponent(final String component) {
         this.component = component;
@@ -48,15 +47,15 @@ public abstract class BsComponent extends Component {
 
     @Override
     public String getCssClass() {
-        if (!Strings.isNullOrEmpty(super.getCssClass())) {
-            return super.getCssClass();
-        }
-        String css = component;
+        String css = "";
         if (!Strings.isNullOrEmpty(getTheme())) {
-            css += "-" + getTheme();
+            css += component + "-" + getTheme() + " ";
         }
         if (!Strings.isNullOrEmpty(getBackground())) {
-            css += " bg-" + getBackground();
+            css += " bg-" + getBackground() + " ";
+        }
+        if (!Strings.isNullOrEmpty(super.getCssClass())) {
+            css += super.getCssClass();
         }
         return css;
 
@@ -70,23 +69,22 @@ public abstract class BsComponent extends Component {
     }
 
     /**
-     * @param theme
-     *            a bootstrap theme to use.
+     * @param theme a bootstrap theme to use.
      */
     protected void setTheme(@Nullable final String theme) {
         this.theme = theme;
     }
 
     /**
-     * @return Returns a {@link String} representing the bootstrap background color to apply.
+     * @return Returns a {@link String} representing the bootstrap background color
+     *         to apply.
      */
     public String getBackground() {
         return background;
     }
 
     /**
-     * @param background
-     *            a bootstrap background colour to use.
+     * @param background a bootstrap background colour to use.
      */
     protected void setBackground(@Nullable final String background) {
         this.background = background;
