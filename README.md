@@ -181,16 +181,23 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 Use following command to generate site.
 
 ```bash
-$ ./generateSite
-$ ./mvnw site:run
+$ ./ci/site-generate.sh
+```
+
+## Site Run
+
+Use following command to generate and run site.
+
+```bash
+$ ./ci/site-run.sh
 ```
 
 ## Site Deployment
 
-Use following command to deploy site.
+Use following command to generate and deploy site.
 
 ```bash
-$ ./siteDeploy
+$ ./ci/site-deploy.sh
 ```
 
 ## Bug tracker

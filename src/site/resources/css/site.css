@@ -1,9 +1,76 @@
+/*
+ * svg bootstrap color
+*/
+.svg-icon {
+    height: 23px;
+    width: 23px
+}
+
+.svg-icon g [fill] {
+    fill: var(--blue)
+}
+
+.svg-icon.svg-icon--brand g [fill] {
+    fill: var(--brand) !important
+}
+
+.svg-icon.svg-icon--light g [fill] {
+    fill: var(--light) !important
+}
+
+.svg-icon.svg-icon--dark g [fill] {
+    fill: var(--dark) !important
+}
+
+.svg-icon.svg-icon--primary g [fill] {
+    fill: var(--primary) !important
+}
+
+.svg-icon.svg-icon--success g [fill] {
+    fill: var(--success) !important
+}
+
+.svg-icon.svg-icon--info g [fill] {
+    fill: var(--info) !important
+}
+
+.svg-icon.svg-icon--warning g [fill] {
+    fill: var(--warning) !important
+}
+
+.svg-icon.svg-icon--danger g [fill] {
+    fill: var(--danger) !important
+}
+
+.svg-icon.svg-icon--sm {
+    height: 20px;
+    width: 20px
+}
+
+.svg-icon.svg-icon--md {
+    height: 30px;
+    width: 30px
+}
+
+.svg-icon.svg-icon--lg {
+    height: 40px;
+    width: 40px
+}
+
+.svg-icon.svg-icon--xl {
+    height: 50px;
+    width: 50px
+}
+
+/*
+ * Specific color of reflow brand name
+*/
 .color-highlight {
-	color: #225E9B;
+    color: #225E9B;
 }
 
 .color-highlight:after {
-    content :"2";
+    content: "2";
     font-weight: 900;
     color: var(--danger);
     position: relative;
@@ -13,12 +80,12 @@
     left: -3px;
 }
 
-.subhead .color-highlight:after {
-    left: -8px;
-}
 
-
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-top: 2rem;
     margin-bottom: 1.6rem;
 }
@@ -26,20 +93,69 @@ h2, h3, h4, h5, h6 {
 /*
  * Specific to page development-documentation
 */
-
 .page-development-documentation .main-body img.img-fluid {
-	padding: 2em;
+    padding: 2em;
+}
+
+/*
+ * header
+*/
+.header .header--banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.header .header--banner .color-highlight:after {
+    left: -8px;
+}
+
+.header {
+    background: #fff url(../images/shahadat-rahman-unsplash.jpg) center;
+    background-size: cover;
+    min-height: 20rem;
+    height: auto;
+    border-radius: 0;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    font-weight: 200;
+}
+
+.header p.lead {
+    margin: 2rem auto;
 }
 
 
-/* Jumbotrons
--------------------------------------------------- */
+.header .btn {
+    color: #46484a;
+    background-color: var(--warning);
+    border-color: #fff;
+    border-width: 2px;
+}
 
-.jumbotron h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 1;
+.header .btn:hover,
+.header .btn:focus,
+.header .btn:active {
+    color: #fff;
+    background-color: var(--warning);
+}
+
+.header .btn .btn__link-icon svg g [fill],
+.header .btn .btn__link-icon svg g [fill],
+.header .btn .btn__link-icon svg g [fill] {
+    transition: fill .3s ease;
+    fill: #46484a
 }
 
 
+.header .btn:hover .btn__link-icon svg g [fill],
+.header .btn:focus .btn__link-icon svg g [fill],
+.header .btn:active .btn__link-icon svg g [fill] {
+    transition: fill .3s ease;
+    fill: #fff;
+}

@@ -47,47 +47,47 @@
 #*  *##set ( $shortTitleGenerated = false )##
 #*  *##if ( !$config.not( "shortTitle" ) && ( !$shortTitle || $shortTitle == ''
       || ($config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") ) ) )##
-#*  *### Page title generation is enabled by default, so check for false and negate
-#*  *##if ( $config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") )##
-#*      *### Use explicitly specified title
-#*      *##set ( $shortTitle = $config.shortTitle.getValue() )
-#*      *##set ( $shortTitleGenerated = true )
-#*  *##else
-#*      *### Generate the title.
-#*      *### To generate the title, we take the contents of the first h1 tag in the document.
-#*      *### If it does not exist, we take the contents of the first h2 tag.
-#*      *##set ( $hTexts = $htmlTool.text( $bodyContent, "h1" ) )##
-#*      *##if ( $hTexts.size() == 0 )#*
-              *##set ( $hTexts = $htmlTool.text( $bodyContent, "h2" ) )#*
-          *##end#*
-          *##if ( $hTexts.size() > 0 )#*
-              *##set ( $shortTitle = $hTexts.get(0) )#*
-              *##set ( $shortTitleGenerated = true )#*
-          *##end#*
-      *##end#*
-  *##end#*
+#*      *### Page title generation is enabled by default, so check for false and negate
+#*      *##if ( $config.shortTitle && !$config.isValue("shortTitle", "generate") && !$config.isValue("shortTitle", "true") )##
+#*          *### Use explicitly specified title
+#*          *##set ( $shortTitle = $config.shortTitle.getValue() )
+#*          *##set ( $shortTitleGenerated = true )
+#*      *##else
+#*          *### Generate the title.
+#*          *### To generate the title, we take the contents of the first h1 tag in the document.
+#*          *### If it does not exist, we take the contents of the first h2 tag.
+#*          *##set ( $hTexts = $htmlTool.text( $bodyContent, "h1" ) )##
+#*          *##if ( $hTexts.size() == 0 )##
+#*              *##set ( $hTexts = $htmlTool.text( $bodyContent, "h2" ) )##
+#*          *##end##
+#*          *##if ( $hTexts.size() > 0 )##
+#*              *##set ( $shortTitle = $hTexts.get(0) )##
+#*              *##set ( $shortTitleGenerated = true )##
+#*          *##end##
+#*      *##end##
+#*  *##end##
   ## If title template is provided, use it to generate title.
   ## Also regenerate title if a new short title was generated.
-  *##if ( $config.titleTemplate || $shortTitleGenerated )#*
-    read the title template from configuration
-      *##if ( $config.titleTemplate )#*
-          *##set ( $titleTemplate = $config.titleTemplate.getValue() )#*
-      *##else#*
-      ## default template is "projectName - shortTitle"
-          *##set ( $titleTemplate = "%1${esc.d}s - %2${esc.d}s" )#*
-      *##end#*
-    ## the company/project name is retrieved from decoration ( <project name="Foo">)
-    ## or from the project itself
-    *##if ( $decoration.name )#*
-          *##set ( $titleProjectName = $decoration.name )#*
-      *##elseif ( $project.name )#*
-          *##set ( $titleProjectName = $project.name )#*
-      *##else#*
-          *##set ( $titleProjectName = "" )#*
-      *##end#*
-    ## use String.format() to create new title
-      *##set ( $title = $titleTemplate.format( $titleTemplate, $titleProjectName, $shortTitle ) )#*
-  *##end##
+#*  *##if ( $config.titleTemplate || $shortTitleGenerated )##
+#*      *### read the title template from configuration
+#*      *##if ( $config.titleTemplate )##
+#*          *##set ( $titleTemplate = $config.titleTemplate.getValue() )##
+#*      *##else##
+#*          *### default template is "projectName - shortTitle"
+#*          *##set ( $titleTemplate = "%1${esc.d}s - %2${esc.d}s" )##
+#*      *##end##
+#*      *### the company/project name is retrieved from decoration ( <project name="Foo">)
+#*      *### or from the project itself
+#*      *##if ( $decoration.name )##
+#*          *##set ( $titleProjectName = $decoration.name )##
+#*      *##elseif ( $project.name )##
+#*          *##set ( $titleProjectName = $project.name )##
+#*      *##else##
+#*          *##set ( $titleProjectName = "" )##
+#*      *##end##
+#*      *### use String.format() to create new title
+#*      *##set ( $title = $titleTemplate.format( $titleTemplate, $titleProjectName, $shortTitle ) )##
+#*  *##end##
 ##
     <head>
     <meta charset="${outputEncoding}" />

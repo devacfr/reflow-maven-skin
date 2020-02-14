@@ -1,28 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-
- Licensed to the Apache Software Foundation (ASF) under one or more
- contributor license agreements.  See the NOTICE file distributed with
- this work for additional information regarding copyright ownership.
- The ASF licenses this file to You under the Apache License, Version 2.0
- (the "License"); you may not use this file except in compliance with
- the License.  You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-
- -->
-<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file
+  distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under
+  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to
+  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+  ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
+  the License. -->
+<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <bannerLeft>
     <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
-    <name><![CDATA[
+    <name>
+      <![CDATA[
       <span class="color-highlight">Reflow</span> Maven Skin
       ]]>
     </name>
@@ -64,15 +53,15 @@
       </brand>
       <slogan>Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
-      <header enabled="false"/>
+      <header type="banner" enabled="false" />
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" cssClass="navbar-dark bg-dark border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
       <navbar filterMenu="Documentation|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
         <image src="$resourcePath/images/reflow.png" />
       </navbar>
-      <navside-menu cssClass="navside-light bg-light"/>
-      <footer theme="dark" background="dark"/>
+      <navside-menu cssClass="navside-light bg-light" />
+      <footer theme="dark" background="dark" />
       <!-- Split menus in the bottom navigation -->
       <bottomNav>
         <column>Main|Tools</column>
@@ -98,7 +87,41 @@
       <markPageHeader>false</markPageHeader>
       <pages>
         <index project="reflow-parent">
-          <header enabled="true" cssClass="bg-dark text-light"/>
+          <header enabled="true" cssClass="text-center text-light">
+            <![CDATA[
+            <div id="banner" class="header--banner">
+                <a href="$config.relativeLink( $decoration.bannerLeft.href )" class="d-inline-block">
+                    <img style="vertical-align: middle;" class="m-2" src="images/reflow.png"
+                        alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width" height="$$decoration.bannerLeft.height">
+                </a>
+                <h1 class="d-inline-block">$decoration.bannerLeft.name</h1>
+                <p class="lead">$config.slogan.getValue()</p>
+            </div>
+            <p>
+                <a href="$config.relativeLink( 'reflow-maven-skin/reflow-documentation.html#get-started.html' )"
+                    class="btn btn-outline btn-lg mb-2 mr-2 ml-2">
+                    <span class="btn__link-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-icon">
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <polygon points="0 0 24 0 24 24 0 24" />
+                              <path
+                                  d="M22,15 L22,19 C22,20.1045695 21.1045695,21 20,21 L8,21 C5.790861,21 4,19.209139 4,17 C4,14.790861 5.790861,13 8,13 L20,13 C21.1045695,13 22,13.8954305 22,15 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z"
+                                  fill="#000000" opacity="0.3" />
+                              <path
+                                  d="M15.5421357,5.69999981 L18.3705628,8.52842693 C19.1516114,9.30947552 19.1516114,10.5758055 18.3705628,11.3568541 L9.88528147,19.8421354 C8.3231843,21.4042326 5.79052439,21.4042326 4.22842722,19.8421354 C2.66633005,18.2800383 2.66633005,15.7473784 4.22842722,14.1852812 L12.7137086,5.69999981 C13.4947572,4.91895123 14.7610871,4.91895123 15.5421357,5.69999981 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z"
+                                  fill="#000000" opacity="0.3" />
+                              <path
+                                  d="M5,3 L9,3 C10.1045695,3 11,3.8954305 11,5 L11,17 C11,19.209139 9.209139,21 7,21 C4.790861,21 3,19.209139 3,17 L3,5 C3,3.8954305 3.8954305,3 5,3 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z"
+                                  fill="#000000" />
+                          </g>
+                      </svg>
+                    </span>
+                    <span class="btn__link-text">Get Started</span>
+
+                </a>
+            </p>]]>
+          </header>
           <!-- Override the title -->
           <titleTemplate>Reflow Maven Skin</titleTemplate>
           <!-- no breadcrumbs on the main index page -->
@@ -115,8 +138,8 @@
         <development-documentation type="doc">
           <menu name="Development Documentation">
             <item name="Contribute" href="dev/contribute.html" />
-            <item name="Code Conventions" href="dev/code-conventions.html"/>
-            <item name="Release Management" href="dev/release-management.html"/>
+            <item name="Code Conventions" href="dev/code-conventions.html" />
+            <item name="Release Management" href="dev/release-management.html" />
           </menu>
         </development-documentation>
         <licenses>
@@ -164,7 +187,7 @@
   <body>
     <!-- Add a rel to Google profile for all pages -->
     <head>
-        <![CDATA[
+      <![CDATA[
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="apple-touch-icon" sizes="144x144" href="$resourcePath/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="$resourcePath/favicon-32x32.png">
@@ -179,7 +202,7 @@
     </head>
 
     <links>
-      <item name="GitHub project" href="${this.scm-url}" target="_blank"/>
+      <item name="GitHub project" href="${this.scm-url}" target="_blank" />
     </links>
 
     <breadcrumbs>

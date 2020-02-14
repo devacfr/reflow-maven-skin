@@ -8,15 +8,17 @@ Standard Maven site allows customising the website _banner_.
 support <span class="badge badge-primary">v2.2</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-The Header is the container of the bootstrap Jumbotron and the bootstrap Breadcrumb.
+The Header is the container of the bootstrap Jumbotron and the bootstrap Breadcrumb. If header element contains a specific html, the contained will be used instead of the generated banner text.
 
 ```xml
 <header enabled="true|false"
-	cssClass="bootstrap classes"
-     	theme="your specific theme"
-     	background="bootstrap colour theme"></header>
+    type="jumbotron|banner|custom"
+    cssClass="bootstrap classes"
+    theme="your specific theme"
+    background="bootstrap colour theme" ><![CDATA[ custom html representing the header content ]]></header>
 ```
 
+- **type** <span class="badge badge-light">v2.3</span> - indicates the type of header.
 - **enabled** <span class="badge badge-light">v2.2</span> - Indicates whether the header is visible. The header is displayed by default.
 - **cssClass** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap support. The default value is `null`. **note**: `cssClass` override attributes `theme` and `background` if is filled.
 - **theme** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap theme . The default value is `null`. the prefix css theme is `header-`.
