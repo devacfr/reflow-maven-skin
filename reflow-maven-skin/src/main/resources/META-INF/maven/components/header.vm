@@ -27,8 +27,6 @@
 #*          *### add a simple Banner
 #*          *##renderCustom ()##
 #*      *##end
-#*      *### add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
-#*      *##renderBreadcrumbs ()##
         </div>
     </div> <!-- end : header -->
 #*  *##end
