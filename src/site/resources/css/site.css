@@ -80,8 +80,12 @@
     left: -3px;
 }
 
+/*  remove the jump before top navbar size adjustement */
+BODY {
+    padding-top: 59px;
+}
 
-.body {
+.main-body {
     margin-bottom: 1rem;
 }
 

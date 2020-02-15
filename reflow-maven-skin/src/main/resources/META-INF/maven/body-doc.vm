@@ -13,11 +13,11 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-<div class="body ${pageContext.cssOptions}">
-    <div class="row body--row">
+<div class="main-body ${pageContext.cssOptions}">
+    <div class="row main-body--row">
 #*      *##renderNavSideMenu ()##
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 pl-0">
-            <div id="m-doc-frame" class="body--frame border-left">
+            <div id="m-doc-frame" class="main-body--frame border-left">
             </div>
         </div>
     </div>
