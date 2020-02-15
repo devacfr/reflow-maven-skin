@@ -52,12 +52,12 @@ public abstract class BsComponent extends Component {
             css += component + "-" + getTheme() + " ";
         }
         if (!Strings.isNullOrEmpty(getBackground())) {
-            css += " bg-" + getBackground() + " ";
+            css += "bg-" + getBackground() + " ";
         }
         if (!Strings.isNullOrEmpty(super.getCssClass())) {
             css += super.getCssClass();
         }
-        return css;
+        return css.trim();
 
     }
 
