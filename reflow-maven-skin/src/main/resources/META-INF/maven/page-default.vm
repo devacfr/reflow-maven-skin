@@ -205,7 +205,9 @@
 #renderNavbar ()
 #if( $pageType == "doc")
     #parse( "body-doc.vm")
-#else
+#elseif( $pageType == "body" )
+    #parse( "body-body.vm")
+#elseif( $pageType == "page" )
     #parse( "body-default.vm")
 #end
 #renderScrollTop()

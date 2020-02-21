@@ -131,7 +131,7 @@
     <!-- Java dependencies version -->
     <!-- ================================================================================ -->
     <doxia.sitetools.version>1.9</doxia.sitetools.version>
-    <doxia-module-markdown.version>1.9</doxia-module-markdown.version>
+
     <guava.version>28.2-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
     <logback.version>1.2.3</logback.version>
@@ -139,6 +139,14 @@
     <jsoup.version>1.12.1</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
     <velocity-tools.version>2.0</velocity-tools.version>
+
+    <!-- ================================================================================ -->
+    <!-- Site dependencies version -->
+    <!-- ================================================================================ -->
+
+    <doxia-module-markdown.version>1.9</doxia-module-markdown.version>
+    <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
+    <asciidoctorj.version>2.0.0</asciidoctorj.version>
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
@@ -463,6 +471,17 @@
             <artifactId>doxia-module-markdown</artifactId>
             <version>${doxia-module-markdown.version}</version>
           </dependency>
+          <!-- Add support for asciidoctor -->
+          <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctor-maven-plugin</artifactId>
+            <version>${asciidoctor.maven.plugin.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj</artifactId>
+            <version>${asciidoctorj.version}</version>
+          </dependency>
         </dependencies>
         <configuration>
           <skipDeploy>true</skipDeploy>
@@ -472,6 +491,12 @@
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
           <topSiteURL>${pubScmUrl}</topSiteURL>
           <tempWebappDirectory>${main.basedir}/target/staging</tempWebappDirectory>
+          <asciidoc>
+            <attributes>
+              <source-highlighter>prettify</source-highlighter>
+              <imagesoutdir>${project.build.directory}/site/images</imagesoutdir>
+            </attributes>
+          </asciidoc>
         </configuration>
       </plugin>
       <plugin>

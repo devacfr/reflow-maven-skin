@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
+ * Copyright 2012-2020 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,29 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
+import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.ISkinConfig;
+
 /**
- * Type of context depending of type of page.
- *
  * @author Christophe Friederich
- * @since 2.0
+ * @since 2.3
  */
-public enum ContextType {
-    /** context manage page (default format). */
-    page,
-    /** context manage document page. */
-    doc,
-    /** context manage frame used in document page. */
-    frame,
-    /** context manage body page. */
-    body
+public class BodyContext extends Context<BodyContext> {
+
+    /**
+     * Default constructor.
+     *
+     * @param config
+     *            a config (can not be {@code null}).
+     */
+    public BodyContext(final @Nonnull ISkinConfig config) {
+        super(config, ContextType.body);
+    }
+
+    @Override
+    protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
+        return bodyContent;
+    }
 
 }

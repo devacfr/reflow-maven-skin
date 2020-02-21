@@ -124,6 +124,9 @@ public abstract class Context<T extends Context<?>> extends Component {
                 final String documentParent = item.getParent();
                 context = new FrameContext(config, documentParent);
                 break;
+            case body:
+                context = new BodyContext(config);
+                break;
             case page:
             default:
                 context = new PageContext(config);

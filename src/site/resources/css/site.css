@@ -26,6 +26,10 @@
     fill: var(--primary) !important
 }
 
+.svg-icon.svg-icon--secondary g [fill] {
+    fill: var(--secondary) !important
+}
+
 .svg-icon.svg-icon--success g [fill] {
     fill: var(--success) !important
 }
@@ -41,6 +45,11 @@
 .svg-icon.svg-icon--danger g [fill] {
     fill: var(--danger) !important
 }
+
+.svg-icon.svg-icon--purple g [fill] {
+    fill: var(--purple) !important
+}
+
 
 .svg-icon.svg-icon--sm {
     height: 20px;
@@ -61,6 +70,8 @@
     height: 50px;
     width: 50px
 }
+
+
 
 /*
  * Specific color of reflow brand name
@@ -140,24 +151,24 @@ h6 {
 
 
 .header .btn {
-    color: #46484a;
-    background-color: var(--warning);
+    color: #fff;
+    background-color: transparent;
     border-color: #fff;
-    border-width: 2px;
+    border-width: 1px;
 }
 
 .header .btn:hover,
 .header .btn:focus,
 .header .btn:active {
-    color: #fff;
-    background-color: var(--warning);
+    color: #46484a;
+    background-color: #fff;
 }
 
 .header .btn .btn__link-icon svg g [fill],
 .header .btn .btn__link-icon svg g [fill],
 .header .btn .btn__link-icon svg g [fill] {
     transition: fill .3s ease;
-    fill: #46484a
+    fill: #fff;
 }
 
 
@@ -165,5 +176,61 @@ h6 {
 .header .btn:focus .btn__link-icon svg g [fill],
 .header .btn:active .btn__link-icon svg g [fill] {
     transition: fill .3s ease;
-    fill: #fff;
+    fill: #46484a;
+}
+
+
+
+.highlight {
+    padding-top: 45px;
+    margin-bottom: 65px;
+    font-size: 21.6px
+}
+
+.highlight .svg-icon--highlight {
+    height: 80%;
+    width: 80%;
+}
+
+
+.highlight img {
+    max-width: 90%;
+}
+
+.highlight h2 {
+    font-size: 46px;
+    border-left: 8px solid var(--secondary);
+    padding: 10px 15px;
+    margin-bottom: 25px
+}
+
+
+.highlight .text-right h2 {
+    border-left: none;
+    border-right: 8px solid var(--secondary);
+}
+
+
+.highlight.highlight-about {
+    margin-bottom: 0;
+}
+
+.highlight.highlight-general {
+    font-size: 18px
+}
+
+.highlight.highlight-general .svg-icon--highlight {
+    height: 20%;
+    width: 20%;
+}
+
+.highlight.highlight-general img {
+    max-height: 125px;
+    padding-top: 6.25px;
+    padding-bottom: 16.67px
+}
+
+.highlight.highlight-responsive-layout {
+    margin-bottom: 0;
+    background-color: #eee
 }
