@@ -3,7 +3,7 @@ sudo: false
 cache:
   directories:
     - $HOME/.m2
-script: mvn clean install --quiet -B
+script: ./mvnw clean install -Dmaven.javadoc.skip=true --quiet -B
 jdk:
     - openjdk8
 branches:
