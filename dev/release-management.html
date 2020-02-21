@@ -1,37 +1,39 @@
  
+
+
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9 py-3">
             <h1 id="dev-release-management_toc_release-management">Release Management</h1> 
 <p>The workflow used is Gitflow workflow from Vincent Driessen at <a class="externalLink" href="http://nvie.com/">nvie</a>. This workflow is supported in project by serveral tools:</p> 
 <ul> 
- <li><code class="literal">Git</code>, Git extension <a class="externalLink" href="https://github.com/nvie/gitflow">git-flow</a>.</li> 
- <li><code class="literal">maven</code> and <code class="literal">JGit Flow</code> maven plugin, allows executing Gitflow workflow actions according to the configuration stored in maven <code class="literal">pom.xml</code>.</li> 
+ <li>Git, Git extension <a class="externalLink" href="https://github.com/nvie/gitflow">git-flow</a>.</li> 
+ <li>maven and JGit Flow maven plugin, allows executing Gitflow workflow actions according to the configuration stored in maven pom.xml.</li> 
 </ul> 
 <p>The Gitflow Workflow defines a strict branching model designed around the project release. While somewhat more complicated than the <b>Feature Branch Workflow</b>, this provides a robust framework for managing larger projects. This workflow doesn’t add any new concepts or commands beyond what’s required for the Feature Branch Workflow. Instead, it assigns very specific roles to different branches and defines how and when they should interact. In addition to feature branches, it uses individual branches for preparing, maintaining, and recording releases. Of course, you also get to leverage all the benefits of the Feature Branch Workflow: pull requests, isolated experiments, and more efficient collaboration.</p> 
-<div class="section"> 
+<section> 
  <h2 id="dev-release-management_toc_gitflow-workflow-in-action">Gitflow Workflow In Action</h2> 
  <p>The Gitflow Workflow still uses a central repository as the communication hub for all developers. And, as in the other workflows, developers work locally and push branches to the central repo. The only difference is the branch structure of the project.</p> 
- <p>Instead of a single <code class="literal">master</code> branch, this workflow uses two branches to record the history of the project. The <code class="literal">master</code> branch stores the official release history, and the <code class="literal">develop</code> branch serves as an integration branch for features. It’s also convenient to tag all commits in the master branch with a version number.</p> 
+ <p>Instead of a single master branch, this workflow uses two branches to record the history of the project. The master branch stores the official release history, and the develop branch serves as an integration branch for features. It’s also convenient to tag all commits in the master branch with a version number.</p> 
  <p><img src="images/git-workflow.png" alt="Gitflow Workflow" class="img-fluid"></p> 
  <p>The rest of this workflow revolves around the distinction between these two branches.</p> 
- <div class="section"> 
+ <section> 
   <h3 id="dev-release-management_toc_feature-branches">Feature Branches</h3> 
-  <p>Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of <code class="literal">master</code>, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into <code class="literal">develop</code>. Features should never interact directly with master.</p> 
+  <p>Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of master, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with master.</p> 
   <p>Common conventions:</p> 
   <ul> 
-   <li><b>branch off</b>: <code class="literal">develop</code></li> 
-   <li><b>merge into</b>: <code class="literal">develop</code></li> 
-   <li><b>naming convention</b>: <code class="literal">feature/*</code></li> 
+   <li><b>branch off</b>: develop</li> 
+   <li><b>merge into</b>: develop</li> 
+   <li><b>naming convention</b>: feature/*</li> 
   </ul> 
   <p><img src="images/workflow-features.png" alt="Gitflow Feature Branch" class="img-fluid"></p> 
-  <p>After the feature branch is merged, the version on <code class="literal">develop</code> is <code class="literal">1.3.0-unstable.3</code>. This is due to develop running in <code class="literal">continuous deployment mode</code>.</p> 
-  <div class="section"> 
+  <p>After the feature branch is merged, the version on develop is 1.3.0-unstable.3. This is due to develop running in continuous deployment mode.</p> 
+  <section> 
    <h4 id="dev-release-management_toc_using-feature-branch">Using Feature Branch</h4> 
-   <p>In general, one issue in GitHub corresponds to one feature branch in <code class="literal">Git</code>. Instead to create new branch directly from <code class="literal">Git</code>, do the following steps:</p> 
+   <p>In general, one issue in GitHub corresponds to one feature branch in Git. Instead to create new branch directly from Git, do the following steps:</p> 
    <ol style="list-style-type: decimal"> 
     <li>Open a terminal, by changing directory to the root of project.</li> 
-    <li>Create feature branch using <code class="literal">maven-jgitflow-plugin</code>.</li> 
-    <li>Give name to the branch with prefix of a specific issue ID as <code class="literal">REFLOW-1234-add-new-feature</code> to create as many two-way links between <code class="literal">Git</code> changeset, <code class="literal">GitHub</code> issue and <b>CI</b> build.</li> 
+    <li>Create feature branch using maven-jgitflow-plugin.</li> 
+    <li>Give name to the branch with prefix of a specific issue ID as REFLOW-1234-add-new-feature to create as many two-way links between Git changeset, GitHub issue and <b>CI</b> build.</li> 
    </ol> 
    <div> 
     <div> 
@@ -68,9 +70,9 @@ What is the feature branch name? feature/: REFLOW-78-new-feature
 </pre> 
     </div> 
    </div> 
-   <p>Tips, click on <b>Terminal</b> button in SourceTree to open a <code class="literal">Bash</code> command prompt directly on the root directory of project.</p> 
-   <p>This command creates a new feature branch; prompts for the branch name which will take the format <code class="literal">feature/{branch name}</code>. Add <code class="literal">-DpushFeatures=true</code> to push the branch to origin automatically.</p> 
-   <p>When the feature is complete, execute the following command to merge the feature branch to <code class="literal">develop</code> branch:</p> 
+   <p>Tips, click on <b>Terminal</b> button in SourceTree to open a Bash command prompt directly on the root directory of project.</p> 
+   <p>This command creates a new feature branch; prompts for the branch name which will take the format feature/{branch name}. Add -DpushFeatures=true to push the branch to origin automatically.</p> 
+   <p>When the feature is complete, execute the following command to merge the feature branch to develop branch:</p> 
    <div> 
     <div> 
      <pre class="source">$ mvn jgitflow:feature-finish
@@ -110,22 +112,22 @@ Choose a number (1/2) [1]: 1
 </pre> 
     </div> 
    </div> 
-   <p>This command executes tests and merges a feature branch back into the <code class="literal">develop</code> branch and add <code class="literal">-DpushFeatures=true</code> to push the branch to origin automatically.</p> 
-   <p>Note that feature branches combined with the <code class="literal">develop</code> branch is, for all intents and purposes, the Feature Branch Workflow.</p> 
-  </div> 
- </div> 
- <div class="section"> 
+   <p>This command executes tests and merges a feature branch back into the develop branch and add -DpushFeatures=true to push the branch to origin automatically.</p> 
+   <p>Note that feature branches combined with the develop branch is, for all intents and purposes, the Feature Branch Workflow.</p> 
+  </section> 
+ </section> 
+ <section> 
   <h3 id="dev-release-management_toc_release-branches">Release Branches</h3> 
   <p>Using a dedicated branch to prepare releases makes it possible for one team to polish the current release while another team continues working on features for the next release. It also creates well-defined phases of development (e.g., it‘s easy to say, “this week we’re preparing for version 4.0” and to actually see it in the structure of the repository).</p> 
   <p>Common conventions:</p> 
   <ul> 
-   <li><b>branch off</b>: <code class="literal">develop</code></li> 
-   <li><b>merge into</b>: <code class="literal">master</code> and <code class="literal">develop</code></li> 
-   <li><b>naming convention</b>: <code class="literal">release/{version}</code> eg <code class="literal">release/2.2.0</code></li> 
+   <li><b>branch off</b>: develop</li> 
+   <li><b>merge into</b>: master and develop</li> 
+   <li><b>naming convention</b>: release/{version} eg release/2.2.0</li> 
   </ul> 
   <p><img src="images/workflow-release.png" alt="Gitflow Release Branch" class="img-fluid"></p> 
-  <p>The release version is extracted from branch name or the first version tag placed on the <code class="literal">release</code> branch. Note that at least one version tag required on the branch. the recommended initial tag is <code class="literal">{releaseVersion}-alpha1</code>.</p> 
-  <div class="section"> 
+  <p>The release version is extracted from branch name or the first version tag placed on the release branch. Note that at least one version tag required on the branch. the recommended initial tag is {releaseVersion}-alpha1.</p> 
+  <section> 
    <h4 id="dev-release-management_toc_release-checklist">Release Checklist</h4> 
    <p>There are any Tasks to do while the Release Phase:</p> 
    <ul> 
@@ -133,15 +135,15 @@ Choose a number (1/2) [1]: 1
     <li>Execute functional tests.</li> 
     <li>Update and review documentation.</li> 
     <li>Update CHANGELOG distribution file and release notes documentation.</li> 
-    <li>update <code class="literal">latest</code> version in Apache Server configuration.</li> 
-    <li>Release version in <code class="literal">GitHub</code>.</li> 
+    <li>update latest version in Apache Server configuration.</li> 
+    <li>Release version in GitHub.</li> 
     <li>Announcements.</li> 
     <li>Congratulations.</li> 
    </ul> 
-  </div> 
-  <div class="section"> 
+  </section> 
+  <section> 
    <h4 id="dev-release-management_toc_using-release-branch">Using Release Branch</h4> 
-   <p>Once <code class="literal">develop</code> has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of <code class="literal">develop</code>. Creating this branch starts the next release cycle, so no new features can be added after this point—only bug fixes, documentation generation, and other release-oriented tasks should go in this branch.</p> 
+   <p>Once develop has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of develop. Creating this branch starts the next release cycle, so no new features can be added after this point—only bug fixes, documentation generation, and other release-oriented tasks should go in this branch.</p> 
    <div> 
     <div> 
      <pre class="source">$ mvn clean install -PskipTests
@@ -204,7 +206,7 @@ What is the development version for "Foo project"? (org.devacfr.foo:foo) [1.1.1-
 </pre> 
     </div> 
    </div> 
-   <p>Once it’s ready to ship, the release gets merged into <code class="literal">master</code> and tagged with a version number. In addition, it should be merged back into <code class="literal">develop</code>, which may have progressed since the release was initiated.</p> 
+   <p>Once it’s ready to ship, the release gets merged into master and tagged with a version number. In addition, it should be merged back into develop, which may have progressed since the release was initiated.</p> 
    <div> 
     <div> 
      <pre class="source">$ mvn jgitflow:release-finish -Prelease-offline
@@ -270,24 +272,24 @@ What is the development version for "Foo project"? (org.devacfr.foo:foo) [1.1.1-
 </pre> 
     </div> 
    </div> 
-  </div> 
- </div> 
- <div class="section"> 
+  </section> 
+ </section> 
+ <section> 
   <h3 id="dev-release-management_toc_maintenance-branches">Maintenance Branches</h3> 
-  <p>Maintenance or “hotfix” branches are used to quickly patch production releases. This is the only branch that should fork directly off of <code class="literal">master</code>. As soon as the fix is complete, it should be merged into both <code class="literal">master</code> and <code class="literal">develop</code> (or the current release branch), and <code class="literal">master</code> should be tagged with an updated version number.</p> 
+  <p>Maintenance or “hotfix” branches are used to quickly patch production releases. This is the only branch that should fork directly off of master. As soon as the fix is complete, it should be merged into both master and develop (or the current release branch), and master should be tagged with an updated version number.</p> 
   <p>Common conventions:</p> 
   <ul> 
-   <li><b>branch off</b>: <code class="literal">master</code></li> 
-   <li><b>merge into</b>: <code class="literal">master</code></li> 
-   <li><b>naming convention</b>: <code class="literal">hotfix/{version}</code> eg <code class="literal">hotfix/2.0.1</code></li> 
+   <li><b>branch off</b>: master</li> 
+   <li><b>merge into</b>: master</li> 
+   <li><b>naming convention</b>: hotfix/{version} eg hotfix/2.0.1</li> 
   </ul> 
   <p><img src="images/workflow-hotfix.png" alt="Gitflow Maintenance Branch" class="img-fluid"></p> 
-  <div class="section"> 
+  <section> 
    <h4 id="dev-release-management_toc_using-maintenance-branch">Using Maintenance Branch</h4> 
-   <p>In general, one BUGFIX issue in GitHub corresponds to one maintenance branch in <code class="literal">Git</code>, but you can include more than one BUGFIX issues to a same maintenance branch. The main Gitflow restriction is you couldn’t create a second maintenance branch in same time whether one already exists. Instead to create new branch directly from <code class="literal">Git</code>, do the following steps:</p> 
+   <p>In general, one BUGFIX issue in GitHub corresponds to one maintenance branch in Git, but you can include more than one BUGFIX issues to a same maintenance branch. The main Gitflow restriction is you couldn’t create a second maintenance branch in same time whether one already exists. Instead to create new branch directly from Git, do the following steps:</p> 
    <ol style="list-style-type: decimal"> 
     <li>Open a terminal, by changing directory to the root of project.</li> 
-    <li>Create maintenance branch using <code class="literal">maven-jgitflow-plugin</code>.</li> 
+    <li>Create maintenance branch using maven-jgitflow-plugin.</li> 
    </ol> 
    <div> 
     <div> 
@@ -324,19 +326,19 @@ What is the hotfix version for "Foo project"? (org.devacfr.foo:foo) [1.0.3]: 1.0
 </pre> 
     </div> 
    </div> 
-   <p>This command creates a new maintenance branch; prompts for the hotfix version (i.e. branch name) which will take the format <code class="literal">hotfix/{version}</code>.</p> 
-   <p>When the hotfix is complete, execute the following command to merge the maintenance branch to <code class="literal">develop</code> and <code class="literal">master</code> branches:</p> 
+   <p>This command creates a new maintenance branch; prompts for the hotfix version (i.e. branch name) which will take the format hotfix/{version}.</p> 
+   <p>When the hotfix is complete, execute the following command to merge the maintenance branch to develop and master branches:</p> 
    <div> 
     <div> 
      <pre class="source">$ mvn jgitflow:hotfix-finish
 </pre> 
     </div> 
    </div> 
-   <p>Having a dedicated line of development for bug fixes lets your team address issues without interrupting the rest of the workflow or waiting for the next release cycle. You can think of maintenance branches as ad hoc release branches that work directly with <code class="literal">master</code>.</p> 
-  </div> 
- </div> 
-</div> 
-<div class="section"> 
+   <p>Having a dedicated line of development for bug fixes lets your team address issues without interrupting the rest of the workflow or waiting for the next release cycle. You can think of maintenance branches as ad hoc release branches that work directly with master.</p> 
+  </section> 
+ </section> 
+</section> 
+<section> 
  <h2 id="dev-release-management_toc_references1">References</h2> 
  <ul> 
   <li><a class="externalLink" href="http://gitversion.readthedocs.org/en/latest/">GitVersion Docs</a></li> 
@@ -345,7 +347,7 @@ What is the hotfix version for "Foo project"? (org.devacfr.foo:foo) [1.0.3]: 1.0
   <li><a class="externalLink" href="http://kentorjava.com/2013/11/24/making-a-release-with-maven-jgitflow-plugin/">Making a release with Maven JGitFlow plugin</a></li> 
   <li><a class="externalLink" href="http://george-stathis.com/2013/11/09/painless-maven-project-releases-with-maven-gitflow-plugin/">Painless Maven project releases with Maven GitFlow Plugin</a></li> 
  </ul> 
-</div>
+</section>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">

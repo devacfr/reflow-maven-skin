@@ -157,7 +157,7 @@ var mReflow = function () {
       }
     }
 
-    $window.scroll( function () {
+    $window.scroll(function () {
       handle();
     });
 
@@ -165,7 +165,7 @@ var mReflow = function () {
       if ($body.hasClass('scrolltop-smooth-enabled')) {
         scrollTo(0, 0);
       } else {
-        $window.scrollTo(0, 0);
+        $window.scrollTop(0);
       }
     });
   }

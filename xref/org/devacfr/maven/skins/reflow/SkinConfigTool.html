@@ -435,7 +435,7 @@
 <a class="jxr_linenumber" name="L427" href="#L427">427</a>             <strong class="jxr_keyword">return</strong> defaultValue;
 <a class="jxr_linenumber" name="L428" href="#L428">428</a>         }
 <a class="jxr_linenumber" name="L429" href="#L429">429</a> 
-<a class="jxr_linenumber" name="L430" href="#L430">430</a>         <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"inherit"</span>.equals(value)) {
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>         <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"inherit"</span>.equals(value) || Strings.isNullOrEmpty(value)) {
 <a class="jxr_linenumber" name="L431" href="#L431">431</a>             element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
 <a class="jxr_linenumber" name="L432" href="#L432">432</a>             <strong class="jxr_keyword">if</strong> (LOGGER.isDebugEnabled()) {
 <a class="jxr_linenumber" name="L433" href="#L433">433</a>                 LOGGER.debug(<span class="jxr_string">"Inherit value property '{}': {}"</span>, property, element);

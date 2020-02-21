@@ -1,16 +1,18 @@
  
+
+
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9 py-3">
             <h1 id="components-navbar_toc_top-navbar-component">Top Navbar Component</h1> 
-<p>Navbar is Bootstrap responsive navigation header component fixed to the top of page. It contains all <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links"><code class="literal">&lt;body&gt;&lt;links&gt;</code> element</a> and filtered <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content"><code class="literal">&lt;body&gt;&lt;menu&gt;</code></a> declared in site.xml.</p> 
+<p>Navbar is Bootstrap responsive navigation header component fixed to the top of page. It contains all <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links">&lt;body&gt;&lt;links&gt; element</a> and filtered <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content">&lt;body&gt;&lt;menu&gt;</a> declared in site.xml.</p> 
 <p><img src="images/navbar-scheme.png" alt="navbar scheme" class="img-fluid"></p> 
-<div class="section"> 
+<section> 
  <h2 id="components-navbar_toc_usage1">Usage</h2> 
  <p>support <span class="badge badge-primary">v2.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
  <div> 
   <div> 
    <pre class="source">&lt;navbar filterMenu="Regex filter"
-        cssClass="bootstrap classes"
+        cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme"
         center="true|false"
@@ -21,25 +23,25 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>filterMenu</b> <span class="badge badge-light">v2.0</span> - applies the regular expression to menu names and <code class="literal">ref</code> attributes. If the regular expression matches, adds the menu to the top navigation. expression matches, adds the menu to the top navigation.</li> 
-  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. <code class="literal">navbar-light bg-light</code> is the default value if value is empty or <code class="literal">null</code>. <b>note</b>: <code class="literal">cssClass</code> override attributes <code class="literal">theme</code> and <code class="literal">background</code> if is filled.</li> 
-  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code class="literal">light</code> is the default value if value is empty or <code class="literal">null</code>.</li> 
-  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code class="literal">light</code> is the default value if value is empty or <code class="literal">null</code>.</li> 
-  <li><b>center</b> <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values <code class="literal">true</code> (<b>default</b>) or <code class="literal">false</code>. <code class="literal">center</code> use bootstrap containers otherwise use default bootstrap alignment.</li> 
-  <li><b>alignMenu</b> <span class="badge badge-light">v2.1</span> - Sets the alignment of menu to the <code class="literal">left</code> or pushing to the <code class="literal">right</code> (<b>default</b>).</li> 
+  <li><b>filterMenu</b> <span class="badge badge-light">v2.0</span> - applies the regular expression to menu names and ref attributes. If the regular expression matches, adds the menu to the top navigation. expression matches, adds the menu to the top navigation.</li> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is null.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . light is the default value if value is empty or null.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. light is the default value if value is empty or null.</li> 
+  <li><b>center</b> <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values true (<b>default</b>) or false. center use bootstrap containers otherwise use default bootstrap alignment.</li> 
+  <li><b>alignMenu</b> <span class="badge badge-light">v2.1</span> - Sets the alignment of menu to the left or pushing to the right (<b>default</b>).</li> 
  </ul> 
  <p><b>Image element</b></p> 
  <p>Add image to the brand part of navbar.</p> 
  <ul> 
   <li><b>src</b> <span class="badge badge-light">v2.0</span> - the path location of image to use.</li> 
-  <li><b>width</b> <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or <code class="literal">null</code>.</li> 
-  <li><b>height</b> <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or <code class="literal">null</code>.</li> 
+  <li><b>width</b> <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or null.</li> 
+  <li><b>height</b> <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or null.</li> 
  </ul> 
-</div> 
-<div class="section"> 
+</section> 
+<section> 
  <h2 id="components-navbar_toc_brand1">Brand</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
- <p>The brand text (or image) appearing in the left of the top navigation bar can be customised using <code class="literal">&lt;brand&gt;</code> element. You can set both the contents and the link.</p> 
+ <p>The brand text (or image) appearing in the left of the top navigation bar can be customised using &lt;brand&gt; element. You can set both the contents and the link.</p> 
  <div> 
   <div> 
    <pre class="source">&lt;brand&gt;
@@ -53,7 +55,7 @@
   <li><b>name</b> element sets the text of the top-left brand</li> 
   <li><b>href</b> element sets the link to open when the brand text is clicked</li> 
  </ul> 
- <p>Note that the <code class="literal">&lt;name&gt;</code> element can be used to embed custom HTML content. To do that, use <code class="literal">CDATA</code> element as the contents of <code class="literal">&lt;name&gt;</code> (writing HTML without <code class="literal">CDATA</code> will not work):</p> 
+ <p>Note that the &lt;name&gt; element can be used to embed custom HTML content. To do that, use CDATA element as the contents of &lt;name&gt; (writing HTML without CDATA will not work):</p> 
  <div> 
   <div> 
    <pre class="source">&lt;brand&gt;
@@ -68,7 +70,7 @@
   </div> 
  </div> 
  <p>The above example is taken from this website, in order to have the <i>Reflow</i> part in different colour. Images could also be added there in a similar manner.</p> 
-</div>
+</section>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">

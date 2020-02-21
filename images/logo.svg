@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" class="svg-icon--highlight">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 32 0 32 32 0 32"></polygon>
+        <circle fill="#17a2b8" opacity="0.5" cx="11" cy="10" r="5"></circle>
+        <circle fill="#28a745" opacity="0.5" cx="7" cy="15" r="5"></circle>
+        <circle fill="#ffc107" opacity="0.5" cx="10" cy="22" r="5"></circle>
+        <circle fill="#fd7e14" opacity="0.5" cx="16" cy="25" r="5"></circle>
+        <circle fill="#dc3545" opacity="0.5" cx="22.5" cy="21.5" r="5"></circle>
+        <circle fill="#e83e8c" opacity="0.5" cx="24" cy="15" r="5"></circle>
+        <circle fill="#6f42c1" opacity="0.5" cx="21.5" cy="10" r="5"></circle>
+        <circle fill="#007bff" opacity="0.5" cx="16" cy="8" r="5"></circle>
+        <circle fill="#fff" opacity="0.3" cx="16" cy="16" r="11"></circle>
+    </g>
+</svg>

@@ -1,10 +1,10 @@
 var clover = new Object();
 
 // JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
-clover.pageData = {"classes":[{"el":63,"id":1096,"methods":[{"el":52,"sc":5,"sl":44},{"el":61,"sc":5,"sl":59}],"name":"Header","sl":30}]}
+clover.pageData = {"classes":[{"el":104,"id":1103,"methods":[{"el":78,"sc":5,"sl":58},{"el":87,"sc":5,"sl":85},{"el":95,"sc":5,"sl":93},{"el":102,"sc":5,"sl":100}],"name":"Header","sl":36}]}
 
 // JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
-clover.testTargets = {"test_0":{"methods":[{"sl":44}],"name":"shouldBuildPageContext","pass":true,"statements":[{"sl":45},{"sl":46},{"sl":47},{"sl":48},{"sl":49},{"sl":51}]},"test_4":{"methods":[{"sl":44}],"name":"shouldBuildPageContextWithTocDisabled","pass":true,"statements":[{"sl":45},{"sl":46},{"sl":47},{"sl":48},{"sl":49},{"sl":51}]}}
+clover.testTargets = {"test_11":{"methods":[{"sl":58}],"name":"shouldBuildPageContext","pass":true,"statements":[{"sl":59},{"sl":60},{"sl":61},{"sl":62},{"sl":63},{"sl":65},{"sl":66},{"sl":69},{"sl":71},{"sl":72}]},"test_40":{"methods":[{"sl":58}],"name":"shouldBuildPageContextWithTocDisabled","pass":true,"statements":[{"sl":59},{"sl":60},{"sl":61},{"sl":62},{"sl":63},{"sl":65},{"sl":66},{"sl":69},{"sl":71},{"sl":72}]}}
 
 // JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
-clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [0, 4], [0, 4], [0, 4], [0, 4], [0, 4], [0, 4], [], [0, 4], [], [], [], [], [], [], [], [], [], [], [], []]
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [11, 40], [11, 40], [11, 40], [11, 40], [11, 40], [11, 40], [], [11, 40], [11, 40], [], [], [11, 40], [], [11, 40], [11, 40], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]

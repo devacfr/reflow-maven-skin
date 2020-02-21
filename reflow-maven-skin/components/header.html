@@ -1,33 +1,37 @@
  
+
+
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9 py-3">
             <h1 id="components-header_toc_header-components">Header Components</h1> 
 <p>Standard Maven site allows customising the website <i>banner</i>.</p> 
 <p><img src="images/header-scheme.png" alt="header scheme" class="img-fluid"></p> 
-<div class="section"> 
+<section> 
  <h2 id="components-header_toc_header1">Header</h2> 
  <p>support <span class="badge badge-primary">v2.2</span><br> element <span class="badge badge-secondary">reflow</span></p> 
- <p>The Header is the container of the bootstrap Jumbotron and the bootstrap Breadcrumb.</p> 
+ <p>The Header is the container of the bootstrap Jumbotron and the bootstrap Breadcrumb. If header element contains a specific html, the contained will be used instead of the generated banner text.</p> 
  <div> 
   <div> 
    <pre class="source">&lt;header enabled="true|false"
-	cssClass="bootstrap classes"
-     	theme="your specific theme"
-     	background="bootstrap colour theme"&gt;&lt;/header&gt;
+    type="jumbotron|banner|custom"
+    cssClass="css classes"
+    theme="your specific theme"
+    background="bootstrap colour theme" &gt;&lt;![CDATA[ custom html representing the header content ]]&gt;&lt;/header&gt;
 </pre> 
   </div> 
  </div> 
  <ul> 
+  <li><b>type</b> <span class="badge badge-light">v2.3</span> - indicates the type of header.</li> 
   <li><b>enabled</b> <span class="badge badge-light">v2.2</span> - Indicates whether the header is visible. The header is displayed by default.</li> 
-  <li><b>cssClass</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap support. The default value is <code class="literal">null</code>. <b>note</b>: <code class="literal">cssClass</code> override attributes <code class="literal">theme</code> and <code class="literal">background</code> if is filled.</li> 
-  <li><b>theme</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap theme . The default value is <code class="literal">null</code>. the prefix css theme is <code class="literal">header-</code>.</li> 
-  <li><b>background</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap colour theme. The default value is <code class="literal">null</code>.</li> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap support. The default value is null.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap theme . The default value is null. the prefix css theme is header-.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap colour theme. The default value is null.</li> 
  </ul> 
-</div> 
-<div class="section"> 
+</section> 
+<section> 
  <h2 id="components-header_toc_banner1">Banner</h2> 
  <p>element <span class="badge badge-secondary">site.xml</span></p> 
- <p>The banner (big <i>Reflow Maven Skin</i> text on this website) is defined using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner">standard <code class="literal">&lt;bannerLeft&gt;</code> or <code class="literal">&lt;bannerRight&gt;</code> elements</a> in <code class="literal">site.xml</code> site descriptor instead of using <code class="literal">&lt;custom&gt;&lt;reflowSkin&gt;</code>:</p> 
+ <p>The banner (big <i>Reflow Maven Skin</i> text on this website) is defined using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner">standard &lt;bannerLeft&gt; or &lt;bannerRight&gt; elements</a> in site.xml site descriptor instead of using &lt;custom&gt;&lt;reflowSkin&gt;:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;project ...&gt;
@@ -49,11 +53,11 @@
  <div class="alert alert-info"> 
   <b>Note</b> 
   <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p> 
-  <p>Unlike maven fluido skin plugin, <code class="literal">&lt;name&gt;</code> is used to display h1 heading title. Use <code class="literal">alt</code> element instead <code class="literal">name</code>.</p> 
-  <p><code class="literal">&lt;name&gt;</code> element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p> 
+  <p>Unlike maven fluido skin plugin, &lt;name&gt; is used to display h1 heading title. Use alt element instead name.</p> 
+  <p>&lt;name&gt; element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p> 
  </div> 
-</div> 
-<div class="section"> 
+</section> 
+<section> 
  <h2 id="components-header_toc_slogan1">Slogan</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
  <p>The skin allows setting a website slogan in the banner. It would appear underneath the website title, either on the left or the right side.</p> 
@@ -64,31 +68,12 @@
 </pre> 
   </div> 
  </div> 
- <p>The <code class="literal">position</code> attribute indicates where to place the slogan:</p> 
+ <p>The position attribute indicates where to place the slogan:</p> 
  <ul> 
   <li><b>bannerLeft (default)</b> - aligned to the left (as in this website)</li> 
   <li><b>bannerRight</b> - aligned to the right</li> 
  </ul> 
-</div> 
-<div class="section"> 
- <h2 id="components-header_toc_breadcrumb1">Breadcrumb</h2> 
- <p>element <span class="badge badge-secondary">site.xml</span></p> 
- <p>Breadcrumbs are defined using standard Maven site element <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Breadcrumbs"><code class="literal">&lt;body&gt;&lt;breadcrumbs&gt;</code></a> in <code class="literal">site.xml</code>. Reflow skin provides a <code class="literal">&lt;breadcrumbs&gt;</code> flag to enable/disable them:</p> 
- <div> 
-  <div> 
-   <pre class="source">&lt;breadcrumbs&gt;true|false&lt;/breadcrumbs&gt;
-</pre> 
-  </div> 
- </div> 
- <ul> 
-  <li><b>true (default)</b> - Breadcrumb trail is displayed below the banner</li> 
-  <li><b>false</b> - Do not display breadcrumbs</li> 
- </ul> 
- <div class="alert alert-info"> 
-  <b>Note</b> 
-  <p>The breadcrumbs bar must be enabled if Maven site date or version are set to position <b>left</b> or <b>right</b>.</p> 
- </div> 
-</div>
+</section>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
@@ -112,9 +97,6 @@
     </li>
     <li class="h2">
         <a class="nav-link" href="#components-header_toc_slogan1" title="Slogan">Slogan</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#components-header_toc_breadcrumb1" title="Breadcrumb">Breadcrumb</a>
     </li>
                     </ul>
                 </nav>

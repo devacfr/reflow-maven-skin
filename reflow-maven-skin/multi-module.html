@@ -1,12 +1,14 @@
  
+
+
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9 py-3">
             <h1 id="multi-module_toc_multi-module-site">Multi-module site</h1> 
 <p>Aimed at providing good support for websites of multi-module Maven projects, Reflow skin has several options enhancing such configurations.</p> 
-<div class="section"> 
+<section> 
  <h2 id="multi-module_toc_reuse-resources">Reuse resources</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
- <p>In a multi-module project, the Maven site for each submodule is generated separately, and only then brought together for deployment. Reflow skin allows reusing resources of top-level module using <code class="literal">&lt;absoluteResourceURL&gt;</code> element:</p> 
+ <p>In a multi-module project, the Maven site for each submodule is generated separately, and only then brought together for deployment. Reflow skin allows reusing resources of top-level module using &lt;absoluteResourceURL&gt; element:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;custom&gt;
@@ -20,14 +22,14 @@
   </div> 
  </div> 
  <p>The absolute resource URL should be relative to project URL set in POM. Then all modules will resolve a relative path to resources under this URL.</p> 
- <p>Setting the absolute resource URL allows configuring CSS, images and other site resources for the top-level module only. Normally, when generating a multi-module Maven site, each module gets a copy of Maven skin resources together with that module’s local <code class="literal">site.css</code> file and others. This means, however, that the users must either create their own skin to ensure that resources are copied to all modules or manually copy these resources. Furthermore, each resource has to be loaded separately, so that expensive brand image could be loaded again for each submodule.</p> 
- <p>Using <code class="literal">absoluteResourceURL</code> element allows referencing the same resources. This way a skin does not need to be extended, and all customisations can be done using CSS and JavaScript files in the top-level module. Note that the skin resources are still copied to each submodule and will be there in the generated site, however they are not referenced by the module site files.</p> 
-</div> 
-<div class="section"> 
+ <p>Setting the absolute resource URL allows configuring CSS, images and other site resources for the top-level module only. Normally, when generating a multi-module Maven site, each module gets a copy of Maven skin resources together with that module’s local site.css file and others. This means, however, that the users must either create their own skin to ensure that resources are copied to all modules or manually copy these resources. Furthermore, each resource has to be loaded separately, so that expensive brand image could be loaded again for each submodule.</p> 
+ <p>Using absoluteResourceURL element allows referencing the same resources. This way a skin does not need to be extended, and all customisations can be done using CSS and JavaScript files in the top-level module. Note that the skin resources are still copied to each submodule and will be there in the generated site, however they are not referenced by the module site files.</p> 
+</section> 
+<section> 
  <h2 id="multi-module_toc_project-urls">Project URLs</h2> 
  <p>If you encounter problems with relative links (e.g. if the links are not correctly highlighted), ensure that URLs are indicated (or derived automatically) correctly for each module. Reflow skin uses project URLs to calculate correct relative paths between modules, e.g. especially when the links reference pages in other submodules.</p> 
- <p>Project URLs are indicated using the <a class="externalLink" href="http://maven.apache.org/pom.html#More_Project_Information"><code class="literal">&lt;url&gt;</code> element in the POM file</a> of each project.</p> 
-</div>
+ <p>Project URLs are indicated using the <a class="externalLink" href="http://maven.apache.org/pom.html#More_Project_Information">&lt;url&gt; element in the POM file</a> of each project.</p> 
+</section>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">

@@ -1,9 +1,11 @@
  
+
+
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9 py-3">
             <h1 id="dev-code-conventions_toc_code-conventions">Code Conventions</h1> 
 <p>This chapter describes how developers (contributors) should write code. The reasoning of these styles and conventions is mainly for consistency, readability and maintainability reasons.</p> 
-<div class="section"> 
+<section> 
  <h2 id="dev-code-conventions_toc_generic-code-style-and-convention">Generic Code Style and Convention</h2> 
  <p>All working files (java, xml, others) should respect the following conventions:</p> 
  <ul> 
@@ -11,26 +13,26 @@
   <li><b>Indentation</b>, never use tabs!</li> 
   <li><b>Line wrapping</b>, always use a 120-column line width</li> 
  </ul> 
-</div> 
-<div class="section"> 
+</section> 
+<section> 
  <h2 id="dev-code-conventions_toc_java-code-covention">Java Code Covention</h2> 
  <p>Our basic style guide for Java is to use <a class="externalLink" href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">Sun’s Java guide Code Conventions for the Java TM Programming Language</a>, but we do have a few subtle differences.</p> 
  <ul> 
-  <li><b>White space</b>: One space after control statements and between arguments (i.e. <code class="literal">if ( foo )</code> instead of <code class="literal">if(foo)</code>), <code class="literal">myFunc( foo, bar, baz )</code> instead of <code class="literal">myFunc(foo,bar,baz)</code>). No spaces after methods names (i.e. <code class="literal">void myMethod()</code>, <code class="literal">myMethod( "foo" )</code>)</li> 
+  <li><b>White space</b>: One space after control statements and between arguments (i.e. if ( foo ) instead of if(foo)), myFunc( foo, bar, baz ) instead of myFunc(foo,bar,baz)). No spaces after methods names (i.e. void myMethod(), myMethod( "foo" ))</li> 
   <li><b>Indentation</b>: Always use 4 spaces indents for java file, 2 spaces for xml file and <b>never</b> use tabs!</li> 
   <li><b>Blocks</b>: Always enclose with a new line brace.</li> 
   <li><b>Line wrapping</b>: Always use a 120-column line width for Java code and Javadoc.</li> 
   <li><b>Design idioms</b>: Avoid creating internal objects as much as possible. Favor dependency injection whenever possible.</li> 
   <li><b>Organization</b>: Avoid using a lot of public inner classes. Prefer interfaces instead of default implementation.</li> 
   <li><b>Modifier</b>:Avoid using final modifier on all member variables and arguments. Prefer using private or protected member instead of public member.</li> 
-  <li><b>Standard Annotations</b>: Use <code class="literal">@Override</code> where required, use <code class="literal">@Deprecated</code> when something is deprecated, but still functions, and use <code class="literal">@SuppressWarnings</code> only when it’s impossible to eliminate the warning.</li> 
+  <li><b>Standard Annotations</b>: Use @Override where required, use @Deprecated when something is deprecated, but still functions, and use @SuppressWarnings only when it’s impossible to eliminate the warning.</li> 
   <li><b>Exceptions</b>: Throw meaningful exceptions to makes debugging and testing more easy. If you’re not doing anything meaningful with an exception, throw it to the caller. Wrapping with a RuntimeException is fine if it’s an exception that is only going to occur in the event of a programming error rather than a logical error (i.e. the same reason why unchecked exceptions exist in the first place).</li> 
   <li><b>Scope</b>: Limit scope as much as possible. If you have a member that is a private part of your interface, but that you need to get access to for testing (such as an internal constant), make it package private (default).</li> 
   <li><b>Documentation</b>: Document public interfaces well, i.e. all non-trivial public and protected functions should include Javadoc that indicates what it does, expected inputs, return values, exceptions thrown, and any implementation notes.</li> 
   <li>Do not include authorship information.</li> 
   <li>Don’t waste time with redundant and obvious comments. This means getters and setters probably don’t need comments at all.</li> 
-  <li>Use the notation <code class="literal">TODO</code>: comment when leaving a comment about future work that needs to be done. This is automatically picked up by Eclipse the auto generated <a class="externalLink" href="http://www.mojohaus.org/taglist-maven-plugin/">Taglist report</a> and other editors, and it makes finding them useful. Don’t put user ids or specific dates.</li> 
-  <li><b>Testing</b>: All non-trivial public classes should include a corresponding unit test. We use <code class="literal">JUnit</code>, <code class="literal">PowerMock</code>, <code class="literal">Mockito</code> and <code class="literal">EasyMock</code> (preferred) to make testing easier. Patches will be refused without corresponding test cases. Classes should have all feasible branches covered, any branch that isn’t covered must be explained in comments.</li> 
+  <li>Use the notation TODO: comment when leaving a comment about future work that needs to be done. This is automatically picked up by Eclipse the auto generated <a class="externalLink" href="http://www.mojohaus.org/taglist-maven-plugin/">Taglist report</a> and other editors, and it makes finding them useful. Don’t put user ids or specific dates.</li> 
+  <li><b>Testing</b>: All non-trivial public classes should include a corresponding unit test. We use JUnit, PowerMock, Mockito and EasyMock (preferred) to make testing easier. Patches will be refused without corresponding test cases. Classes should have all feasible branches covered, any branch that isn’t covered must be explained in comments.</li> 
  </ul> 
  <p><b>Naming</b></p> 
  <ul> 
@@ -39,11 +41,11 @@
   <li>Enum values should always capitalized and camel case.</li> 
   <li>Use short, descriptive names for your classes and functions.</li> 
  </ul> 
-</div> 
-<div class="section"> 
+</section> 
+<section> 
  <h2 id="dev-code-conventions_toc_versioning-naming-convention">Versioning Naming Convention</h2> 
  <p>The version name is normalized according to <a class="externalLink" href="http://semver.org/">Semantic Versioning</a>.</p> 
-</div>
+</section>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">

@@ -1,26 +1,28 @@
  
+
+
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9 py-3">
             <h1 id="components-footer_toc_footer-component">Footer Component</h1> 
-<div class="section"> 
+<section> 
  <h2 id="components-footer_toc_usage1">Usage</h2> 
  <div> 
   <div> 
-   <pre class="source">&lt;footer cssClass="bootstrap classes"
+   <pre class="source">&lt;footer cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme" /&gt;
 </pre> 
   </div> 
  </div> 
  <ul> 
-  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. <code class="literal">footer-light bg-light</code> is the default value if value is empty or <code class="literal">null</code>. <b>note</b>: <code class="literal">cssClass</code> override attributes <code class="literal">theme</code> and <code class="literal">background</code> if is filled.</li> 
-  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code class="literal">light</code> is the default value if value is empty or <code class="literal">null</code>.</li> 
-  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code class="literal">light</code> is the default value if value is empty or <code class="literal">null</code>.</li> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is null.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . light is the default value if value is empty or null.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. light is the default value if value is empty or null.</li> 
  </ul> 
- <div class="section"> 
+ <section> 
   <h3 id="components-footer_toc_bottom-navigation">Bottom navigation</h3> 
   <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
-  <p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the <code class="literal">bottomNav</code> element. If configuration is not available, lists all menus in a single column.</p> 
+  <p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the bottomNav element. If configuration is not available, lists all menus in a single column.</p> 
   <div> 
    <div> 
     <pre class="source">&lt;bottomNav maxSpan="8"&gt;
@@ -32,33 +34,33 @@
    </div> 
   </div> 
   <ul> 
-   <li><b>maxSpan</b> <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take (out of 12). By default, the <b><code class="literal">maxSpan = 9</code></b>. The columns are then placed equally within this span (removed in <span class="badge badge-danger">v2.0</span>).</li> 
-   <li>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use <code class="literal">Home|Download</code> for the regular expression.</li> 
+   <li><b>maxSpan</b> <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take (out of 12). By default, the <b>maxSpan = 9</b>. The columns are then placed equally within this span (removed in <span class="badge badge-danger">v2.0</span>).</li> 
+   <li>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use Home|Download for the regular expression.</li> 
   </ul> 
- </div> 
-</div> 
-<div class="section"> 
+ </section> 
+</section> 
+<section> 
  <h2 id="components-footer_toc_bottom-description">Bottom description</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
- <p>It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using <code class="literal">&lt;bottomDescription&gt;</code> element:</p> 
+ <p>It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using &lt;bottomDescription&gt; element:</p> 
  <div> 
   <div> 
    <pre class="source">&lt;bottomDescription quote="true|false"&gt;description&lt;/bottomDescription&gt;
 </pre> 
   </div> 
  </div> 
- <p>The <code class="literal">quote</code> attribute wraps the text into a <code class="literal">&lt;blockquote&gt;</code> element:</p> 
+ <p>The quote attribute wraps the text into a &lt;blockquote&gt; element:</p> 
  <ul> 
-  <li><b>true (default)</b> - Text is wrapped into a <code class="literal">&lt;blockquote&gt;</code> element</li> 
+  <li><b>true (default)</b> - Text is wrapped into a &lt;blockquote&gt; element</li> 
   <li><b>false</b> - Text is printed as-is</li> 
  </ul> 
- <p>The <b>description</b> can be plain text or a <code class="literal">CDATA</code> element and thus wrap the text with HTML formatting.</p> 
- <p>Alternatively, <code class="literal">&lt;bottomDescription&gt;</code> can contain HTML elements directly, which will be embedded in the bottom description area.</p> 
+ <p>The <b>description</b> can be plain text or a CDATA element and thus wrap the text with HTML formatting.</p> 
+ <p>Alternatively, &lt;bottomDescription&gt; can contain HTML elements directly, which will be embedded in the bottom description area.</p> 
  <div class="alert alert-info"> 
   <b>Note</b> 
   <p>the bottom description must be enabled if Maven site date or version are set to position <b>navigation-bottom</b>.</p> 
  </div> 
-</div>
+</section>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
