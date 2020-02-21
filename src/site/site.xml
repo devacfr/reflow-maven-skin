@@ -58,7 +58,7 @@
       <toc numberItems="6" theme="dark" background="dark" cssClass="border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
       <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
-        <image src="$resourcePath/images/reflow.png" />
+        <image src="$resourcePath/images/logo.svg" />
       </navbar>
       <navside-menu theme="light" background="light" />
       <footer theme="dark" background="dark" />

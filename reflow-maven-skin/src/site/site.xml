@@ -29,7 +29,7 @@
         <![CDATA[
         <div id="banner" class="header__banner">
             <a href="$config.relativeLink( $decoration.bannerLeft.href )" class="d-inline-block">
-                <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/reflow.png"
+                <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg"
                     alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width" height="$$decoration.bannerLeft.height">
             </a>
             <h1 class="d-inline-block">$decoration.bannerLeft.name</h1>
