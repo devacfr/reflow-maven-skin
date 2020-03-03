@@ -8,15 +8,19 @@
   the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
     <version>2.3.0-SNAPSHOT</version>
   </parent>
+
   <artifactId>reflow-velocity-tools</artifactId>
+
   <name>Reflow Velocity Tools</name>
-  <url>${site.url}${project.artifactId}</url>
   <description>Velocity tools supporting Reflow Maven skin</description>
+  <url>${site.url}${project.artifactId}</url>
+
   <dependencies>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -107,10 +111,10 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <reporting>
     <plugins>
-      <plugin>
-        <!-- Generate Javadoc for Reflow Tools only (the others do not have Java sources) -->
+      <plugin><!-- Generate Javadoc for Reflow Tools only (the others do not have Java sources) -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven-javadoc-plugin.version}</version>

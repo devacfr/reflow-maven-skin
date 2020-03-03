@@ -18,20 +18,21 @@
   <artifactId>reflow-default-webdeps</artifactId>
 
   <name>Reflow Default Web Dependencies</name>
-  <url>${site.url}${project.artifactId}</url>
   <description>Reflow Default Web Dependencies contains all default web dependencies</description>
+  <url>${site.url}${project.artifactId}</url>
 
   <dependencies>
     <dependency>
       <groupId>io.github.devacfr</groupId>
       <artifactId>highlightjs</artifactId>
       <version>${highlightJsVersion}</version>
+      <type>jar</type>
       <scope>system</scope>
       <systemPath>${project.basedir}/src/main/resources/highlight.js-${highlightJsVersion}.jar</systemPath>
-      <type>jar</type>
       <optional>true</optional>
     </dependency>
   </dependencies>
+
   <build>
     <pluginManagement>
       <plugins>
