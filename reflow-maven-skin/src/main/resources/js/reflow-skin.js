@@ -203,6 +203,9 @@ var mReflow = function () {
   }
 
   function initAnchorJs() {
+    if (!$body.hasClass('anchorjs-enabled')) {
+      return;
+    }
     if (anchors && $body.hasClass('m-toc-sidebar-enabled') || $body.hasClass('m-toc-top-enabled')
       || $body.hasClass('m-sidenav-enabled')) {
       anchors.options = {

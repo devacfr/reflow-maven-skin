@@ -36,6 +36,11 @@ public class BodyContext extends Context<BodyContext> {
     }
 
     @Override
+    protected void initialize(ISkinConfig config) {
+        // not use all default context initializations.
+    }
+
+    @Override
     protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
         return bodyContent;
     }

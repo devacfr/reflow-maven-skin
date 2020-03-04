@@ -252,15 +252,15 @@
 #end##
 ##
   <script src="$resourcePath/js/reflow-skin.js" crossorigin="anonymous"></script>
-#*
-    *##if ( $localResources )##
+##
+#*  *##if ( $localResources )##
     <script src="$resourcePath/js/anchor.min.js" crossorigin="anonymous"></script>
 #*  *##else#*
-        *##if ( $config.anchorJsVesrion )#*
-            *##set ( $anchorJsVesrion = $config.anchorJsVesrion.getValue() )#*
-        *##else#*
-            *##set ( $anchorJsVesrion = "@anchorJsVesrion@" )#*
-        *##end##
+#*      *##if ( $config.anchorJsVesrion )##
+#*          *##set ( $anchorJsVesrion = $config.anchorJsVesrion.getValue() )##
+#*      *##else#*
+#*          *##set ( $anchorJsVesrion = "@anchorJsVesrion@" )##
+#*      *##end##
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/${anchorJsVesrion}/anchor.min.js" crossorigin="anonymous"></script>
 #*  *##end##
 ##

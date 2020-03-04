@@ -95,7 +95,7 @@ public class ContextTest extends MockitoTestCase {
         assertEquals(true, scrollTop.isSmooth());
         assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
 
-        assertEquals("scrolltop-smooth-enabled m-toc-top-enabled", pageContext.getCssOptions());
+        assertEquals("anchorjs-enabled scrolltop-smooth-enabled m-toc-top-enabled", pageContext.getCssOptions());
         assertEquals("", pageContext.getCssClass());
         assertEquals("page", pageContext.getType());
     }
@@ -139,7 +139,7 @@ public class ContextTest extends MockitoTestCase {
         assertNotNull(navSideMenu, "NavSideMenu should be exist");
         assertEquals("m-sidenav-enabled", navSideMenu.getCssOptions());
 
-        assertEquals("scrolltop-smooth-enabled m-sidenav-enabled", documentContext.getCssOptions());
+        assertEquals("anchorjs-enabled scrolltop-smooth-enabled m-sidenav-enabled", documentContext.getCssOptions());
         assertEquals("", documentContext.getCssClass());
     }
 

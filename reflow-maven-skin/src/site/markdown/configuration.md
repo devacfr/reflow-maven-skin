@@ -165,6 +165,20 @@ Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of c
 - **true (default)** - smooth scrolling for in-page navigation (requires JavaScript)
 - **false** - default in-page jumps
 
+### Anchor Link (AnchorJS)
+
+support <span class="badge badge-primary">v2.3</span><br/>
+element <span class="badge badge-secondary">reflow</span>
+
+Reflow skin enables deep anchor links heading elements in body section. AnchorJS can be disabled using `<anchorJS>` flag:
+
+```xml
+<anchorJS>true|false</anchorJS>
+```
+
+- **true (default)** - drop deep anchor links heading elements.
+- **false** - disable AnchorJS.
+
 ## Bootstrap
 
 The generated Maven site code is updated by default, e.g. update CSS of generated tables, use Bootstrap icons and other goodies. The flags to disable these updates are described below.
