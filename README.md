@@ -176,30 +176,6 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 [reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#multi-module.html
 
-## Site Generation
-
-Use following command to generate site.
-
-```bash
-$ ./ci/site-generate.sh
-```
-
-## Site Run
-
-Use following command to generate and run site.
-
-```bash
-$ ./ci/site-run.sh
-```
-
-## Site Deployment
-
-Use following command to generate and deploy site.
-
-```bash
-$ ./ci/site-deploy.sh
-```
-
 ## Bug tracker
 
 Have a bug or a feature request? Please create an issue here on GitHub that conforms with
@@ -214,7 +190,80 @@ please state that the contribution is your original work and that you license th
 Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email,
 or other means you agree to license the material under the project&apos;s open source license and warrant that you have the legal authority to do so.
 
-> Pull request on master will be refused.
+### Compiling
+
+You can compile Reflow project with your local Maven,  with [Maven Wrapper](https://github.com/takari/takari-maven-plugin) or with Maven executed in Docker. The last one is the easiest solution with you don't want install a jdk8.
+
+**Maven local**
+
+```bash
+$ mvn clean install -P skipTests -Dtoolchains.disabled=true
+```
+
+**Maven Wrapper**
+
+```bash
+$ ./mvnw clean install -Dtoolchains.disabled=true
+```
+
+**Maven executed in Docker**
+
+```bash
+$ ./mvnd clean install
+```
+
+The profile `skipTests` allows to skip test execution.
+
+Use the parameter `toolchains.disabled` to disable maven toolchains plugin whether you are not configure your `${HOME}/.m2/toolchains.xml` file.
+Here is a example of `${HOME}/.m2/toolchains.xml`
+```xml
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+  <!-- JDK toolchains -->
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>1.8</version>
+    </provides>
+    <configuration>
+      <jdkHome>/usr/lib/jvm/java-8-openjdk-amd64</jdkHome>
+    </configuration>
+  </toolchain>
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>9</version>
+    </provides>
+    <configuration>
+      <jdkHome>/usr/lib/jvm/jdk-9.0.4</jdkHome>
+    </configuration>
+  </toolchain>
+</toolchains>
+```
+
+### Site Generation
+
+Use following command to generate site.
+
+```bash
+$ ./ci/site-generate.sh
+```
+
+### Site Run
+
+Use following command to generate and run site.
+
+```bash
+$ ./ci/site-run.sh
+```
+
+### Site Deployment
+
+Use following command to generate and deploy site.
+
+```bash
+$ ./ci/site-deploy.sh
+```
 
 ## Author
 
