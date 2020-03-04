@@ -595,6 +595,7 @@ h3 code {
     z-index: 1000;
     /*must be < nav-bar bootstrap container  1020 */
     position: relative;
+    margin-top: .5rem;
 }
 
 /*--------------------------------------------------
