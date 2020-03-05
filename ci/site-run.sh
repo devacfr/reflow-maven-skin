@@ -20,9 +20,27 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+source ${dir}/setenv.sh
+
+MAVEN_CMD="mvn"
+
+for i in "$@"
+do
+case $i in
+    -d|--docker)
+    MAVEN_CMD="${ROOT_PATH}/mvnd"
+    shift
+    ;;
+    -w|--wrapper)
+    MAVEN_CMD="${ROOT_PATH}/mvnw"
+    shift
+    ;;
+    *)
+    # unknown option
+    ;;
+esac
+done
 
 ${dir}/site-generate.sh $@
 
-pushd ${dir}/../
-./mvnw site:run $@
-popd
+${MAVEN_CMD} site:run $@

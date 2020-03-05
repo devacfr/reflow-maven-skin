@@ -18,8 +18,29 @@
 # under the License.
 #
 
+set +x -euo pipefail
+
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-pushd ${dir}/../
-./mvnw clean clover:instrument install clover:aggregate site site:stage $@
-popd
+source ${dir}/setenv.sh
+
+MAVEN_CMD="mvn"
+
+for i in "$@"
+do
+case $i in
+    -d|--docker)
+    MAVEN_CMD="${ROOT_PATH}/mvnd"
+    shift
+    ;;
+    -w|--wrapper)
+    MAVEN_CMD="${ROOT_PATH}/mvnw"
+    shift
+    ;;
+    *)
+    # unknown option
+    ;;
+esac
+done
+
+${MAVEN_CMD} clean clover:instrument install clover:aggregate site site:stage $@

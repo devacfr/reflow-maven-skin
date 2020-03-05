@@ -18,10 +18,10 @@
 # under the License.
 #
 
-set -euo pipefail
+set +x -euo pipefail
 
 get_mvn_property() {
-    mvn -N -f "${ROOT_PATH}/pom.xml" -q exec:exec -Dexec.executable=echo -Dexec.args="\${$@}"
+    ${MAVEN_CMD} -N -f "${ROOT_PATH}/pom.xml" -q exec:exec -Dexec.executable=echo -Dexec.args="\${$@}"
 }
 
 
@@ -42,7 +42,7 @@ artifact_exists() {
 
     log "--- Checking whether $artifactId already exists on packages.atlassian.com..."
 
-    if ! output="$(mvn -e -N org.codehaus.mojo:wagon-maven-plugin:2.0.0:exist -f "${ROOT_PATH}/pom.xml" -Dwagon.serverId="${MAVEN_REPO_ID}" -Dwagon.url="${MAVEN_REPO_URL}" -Dwagon.resource="$resource")"; then
+    if ! output="$(${MAVEN_CMD} -e -N org.codehaus.mojo:wagon-maven-plugin:2.0.0:exist -f "${ROOT_PATH}/pom.xml" -Dwagon.serverId="${MAVEN_REPO_ID}" -Dwagon.url="${MAVEN_REPO_URL}" -Dwagon.resource="$resource")"; then
         log "!!! Failed to execute maven command:"
         log "$output"
         exit 1
@@ -74,7 +74,7 @@ deploy_file() {
         generate_pom=false
     fi
 
-    mvn -N -e deploy:deploy-file -Durl="${MAVEN_REPO_URL}" \
+    ${MAVEN_CMD} -N -e deploy:deploy-file -Durl="${MAVEN_REPO_URL}" \
                               -DrepositoryId="${MAVEN_REPO_ID}" \
                               -Dfile="$file" \
                               -DgroupId="$group" \
@@ -95,7 +95,7 @@ install_file() {
 
     log "=== Installing file '$(basename "$file")'"
 
-    mvn -N -e install:install-file \
+    ${MAVEN_CMD} -N -e install:install-file \
                               -Dfile="$file" \
                               -DgroupId="$group" \
                               -DartifactId="$artifact" \

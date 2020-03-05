@@ -18,7 +18,7 @@
 # under the License.
 #
 
-set -euo pipefail
+set +x -euo pipefail
 
 
 function container_exists {

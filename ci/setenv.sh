@@ -18,13 +18,27 @@
 # under the License.
 #
 
-set -euo pipefail
+set +x -euo pipefail
+
+# OS specific support.
+cygwin=false;
+darwin=false;
+mingw=false
+case "`uname`" in
+  CYGWIN*) cygwin=true ;;
+  MINGW*) mingw=true;;
+esac
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-pushd "${dir}/.."
-export ROOT_PATH="${PWD}"
-popd
+if $cygwin ; then
+  [ -n "$dir" ] &&
+    dir=`cygpath --unix "$dir"`
+fi
+
+export ROOT_PATH="${dir}/.."
+
+
 
 MAVEN_REPO_URL=
 MAVEN_REPO_ID=
