@@ -119,13 +119,13 @@
     <!-- Web dependencies version -->
     <!-- ================================================================================ -->
     <anchorJsVesrion>3.2.2</anchorJsVesrion>
-    <bootstrapVersion>4.3.1</bootstrapVersion>
-    <bootswatchVersion>4.3.1</bootswatchVersion>
+    <bootstrapVersion>4.4.1</bootstrapVersion>
+    <bootswatchVersion>4.4.1</bootswatchVersion>
     <highlightJsVersion>9.15.7</highlightJsVersion>
     <highlightJsTheme>github</highlightJsTheme>
     <jqueryVersion>3.4.1</jqueryVersion>
-    <fontawesomeVersion>5.2.0</fontawesomeVersion>
-    <popperVersion>1.14.3</popperVersion>
+    <fontawesomeVersion>5.12.1</fontawesomeVersion>
+    <popperVersion>1.16.0</popperVersion>
 
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->
