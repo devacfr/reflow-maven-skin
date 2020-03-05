@@ -196,6 +196,7 @@
               <item name="Overview" href="layouts.html" />
               <item name="Page Layout" href="page-layout.html" />
               <item name="Documentation Layout" href="documentation-layout.html" />
+               <item name="Body Layout" href="body-layout.html" />
               <item name="Section Layout" href="section-layout.html" />
             </item>
             <item name="Components">

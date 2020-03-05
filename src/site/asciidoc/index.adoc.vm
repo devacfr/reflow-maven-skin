@@ -73,7 +73,7 @@
 <div class="highlight highlight-responsive-layout">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 ">
+            <div class="col">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                     height="24px" viewBox="0 0 24 24" version="1.1"
                     class="svg-icon svg-icon--purple svg-icon--highlight">
@@ -88,7 +88,7 @@
                     </g>
                 </svg>
             </div>
-            <div class="col-sm-6 text-right">
+            <div class="col text-right">
                 <h2>Responsive Layout</h2>
                 <p>Write your pages in <a href="http://maven.apache.org/doxia/references/index.html">APT,
                         AsciiDoc, Xdoc, Xhtml or
@@ -106,7 +106,7 @@
 <div class="highlight highlight-general">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 text-left">
+            <div class="col text-left">
                 <div class="text-center mb-5">
                     <h3>Theme</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -141,17 +141,15 @@
                         class="literal">site.css</code> file in your project, and <a
                         href="reflow-maven-skin/reflow-documentation.html#multi-module.html">reuse it for
                         multi-module site</a>.</p>
-                <div class="row align-items-end text-center" style="min-height: 120px;">
-                    <div class="col">
-                        <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                            href="reflow-maven-skin/reflow-documentation.html#themes-index">How to select a
-                            theme
-                            »</a>
-                    </div>
-                </div>
+                <p class="text-center">
+                    <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
+                        href="reflow-maven-skin/reflow-documentation.html#themes-index">How to select a
+                        theme
+                        »</a>
+                </p>
             </div>
-            <div class="col-sm-6 text-left">
-                <div class="text-center mb-5">
+            <div class="col text-left">
+                <div class="text-center">
                     <h3>Configure</h3>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1"

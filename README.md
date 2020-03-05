@@ -192,7 +192,7 @@ or other means you agree to license the material under the project&apos;s open s
 
 ### Compiling
 
-You can compile Reflow project with your local Maven,  with [Maven Wrapper](https://github.com/takari/takari-maven-plugin) or with Maven executed in Docker. The last one is the easiest solution with you don't want install a jdk8.
+You can compile Reflow project with your local Maven,  with [Maven Wrapper](https://github.com/takari/takari-maven-plugin) or with Maven from Docker. The last one is the easiest solution with you don't want install a jdk8.
 
 **Maven local**
 
@@ -206,16 +206,17 @@ $ mvn clean install -P skipTests -Dtoolchains.disabled=true
 $ ./mvnw clean install -Dtoolchains.disabled=true
 ```
 
-**Maven executed in Docker**
+**Maven from Docker**
 
 ```bash
 $ ./mvnd clean install
 ```
 
-The profile `skipTests` allows to skip test execution.
+The profile `skipTests` allows to skip all tests execution.
 
 Use the parameter `toolchains.disabled` to disable maven toolchains plugin whether you are not configure your `${HOME}/.m2/toolchains.xml` file.
 Here is a example of `${HOME}/.m2/toolchains.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF8"?>
 <toolchains>
