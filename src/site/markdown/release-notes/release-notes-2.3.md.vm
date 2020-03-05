@@ -1,0 +1,46 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 2.3 Release Notes
+
+$h2 Highlights of this release
+
+This focus of this release is:
+
+- The header component has 3 rendering type `jumbotron|banner|custom`.
+- A new body page type. This page type is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
+- Bump Doxia Tools version to 1.9
+- Add possibility to disable AnchorJS with flag <anchorJS>true|false</anchorJS>.
+- Fix Error when scroll top with smooth scroll is disabled.
+- The cssClass attribute in component is inclusive instead exclusive. ie, add new css classes to component instead replace theme and background css classes.
+- Fix should not override heading ids if the TOC is disabled (thanks [Aurelien Baudet](https://github.com/aurelien-baudet)).
+
+$h2 Changelog
+**2020-03-13**
+
+$h3 Minor enhancements
+
+- Add different types of rendering for header component. ([#58][]).
+- Add new body page type. ([#61][]).
+- Add possibility to disable AnchorJS. ([#64][]).
+- The cssClass attribute is inclusive instead exclusive. ([#59][]).
+
+$h3 Tasks
+
+- Bump doxia tools version to 1.9. ([#60][]).
+
+$h3 Bug fix
+
+- Error when scroll top with smooth scroll is disabled. ([#62][]).
+
+[#58]: ${issue-url}/58
+[#59]: ${issue-url}/59
+[#60]: ${issue-url}/60
+[#61]: ${issue-url}/61
+[#62]: ${issue-url}/62
+[#64]: ${issue-url}/64
+
+
