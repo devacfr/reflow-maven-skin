@@ -44,7 +44,7 @@ function volume_exists {
 function initial_docker_options {
   local dockerOptions=""
   # use remote access if docker host inquire
-  if [[ ! -z "${DOCKER_HOST}" ]]; then
+  if [[ ! -z "${DOCKER_HOST:-}" ]]; then
       dockerOptions="-h ${DOCKER_HOST}"
   fi
   export DOCKER_OPTIONS=${dockerOptions}
