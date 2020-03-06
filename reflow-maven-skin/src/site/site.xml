@@ -196,7 +196,7 @@
               <item name="Overview" href="layouts.html" />
               <item name="Page Layout" href="page-layout.html" />
               <item name="Documentation Layout" href="documentation-layout.html" />
-               <item name="Body Layout" href="body-layout.html" />
+              <item name="Body Layout" href="body-layout.html" />
               <item name="Section Layout" href="section-layout.html" />
             </item>
             <item name="Components">
@@ -228,6 +228,12 @@
         <toc-sidebar>
           <toc>sidebar</toc>
         </toc-sidebar>
+        <test-header-banner>
+          <header type="banner" cssClass="text-light"></header>
+        </test-header-banner>
+        <test-header-jumbotron>
+          <header type="jumbotron" background="dark" cssClass="text-light"></header>
+        </test-header-jumbotron>
       </pages>
     </reflowSkin>
   </custom>

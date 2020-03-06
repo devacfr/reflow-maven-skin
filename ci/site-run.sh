@@ -44,6 +44,6 @@ case $i in
 esac
 done
 
-${dir}/site-generate.sh "$arg"
+${dir}/site-generate.sh "$args"
 
 ${MAVEN_CMD} site:run "$@"

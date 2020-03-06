@@ -15,7 +15,7 @@
       <span class="color-highlight">Reflow</span> Maven Skin
       ]]>
     </name>
-    <src>images/reflow.png</src>
+    <src>images/logo.svg</src>
     <width>144</width>
     <height>144</height>
     <alt>Reflow skin</alt>
@@ -86,8 +86,7 @@
       </bottomDescription>
       <markPageHeader>false</markPageHeader>
       <pages>
-        <index type="body" project="reflow-parent">
-        </index>
+        <index type="body" project="reflow-parent"></index>
         <development-documentation type="doc">
           <menu name="Development Documentation">
             <item name="Contribute" href="dev/contribute.html" />

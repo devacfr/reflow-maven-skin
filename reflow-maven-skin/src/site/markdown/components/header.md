@@ -2,13 +2,12 @@
 
 Standard Maven site allows customising the website _banner_.
 
-![header scheme](images/header-scheme.png)
-
 ## Header
+
 support <span class="badge badge-primary">v2.2</span><br/>
 element <span class="badge badge-secondary">reflow</span>
 
-The Header is the container of the bootstrap Jumbotron and the bootstrap Breadcrumb. If header element contains a specific html, the contained will be used instead of the generated banner text.
+The Header is the component displayed to top of page. If header element contains a specific html, the contained will be used instead of the generated banner text.
 
 ```xml
 <header enabled="true|false"
@@ -23,6 +22,103 @@ The Header is the container of the bootstrap Jumbotron and the bootstrap Breadcr
 - **cssClass** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
 - **theme** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap theme . The default value is `null`. the prefix css theme is `header-`.
 - **background** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap colour theme. The default value is `null`.
+
+### Jumbotron Header
+
+The Jumbotron Header is the container of the bootstrap Jumbotron. the Jumbotron contains your slogan, logo and banner to top of the page. The following [sample page][header-jumbotron] displays the configuration below:
+
+![header scheme](images/header-jumbotron-scheme.png)
+
+```xml
+<header type="jumbotron" background="dark" cssClass="text-light"></header>
+```
+
+Reflow renders following html:
+
+```html
+<div class="header " role="main">
+    <div class="container container-fluid">
+        <div class="jumbotron header--jumbotron bg-dark text-light">
+            <div id="banner" class="row header--banner">
+            <div class="col-md-12">
+                <div class="float-left header--banner--left bannerLeft">
+                    <a href=".">
+                        <img class="float-left m-2 img-fluid" src="./images/logo.svg" alt="Reflow skin" width="144" height="144">
+                        <h1><span class="color-highlight">Reflow</span> Maven Skin</h1>
+                    </a>
+                    <p class="lead">Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</p>
+                </div>
+                <div class="float-right header--banner--right bannerRight">
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+<div class="alert alert-info">
+    <strong>Note</strong>
+    <p>You can remark in example above, <code>theme</code> and <code>background</code> attributes are associated with <code>jumbotron</code> component rather the <code>header</code> container.</p>
+</div>
+
+[header-jumbotron]: test/header-jumbotron.html
+
+### Banner Header
+
+The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following [sample page][header-banner] displays the configuration below:
+
+![header scheme](images/header-banner-scheme.png)
+
+```xml
+<header type="banner" cssClass="text-light"></header>
+```
+
+Reflow renders following html:
+
+```html
+<div class="header text-light" role="main">
+    <div class="container container-fluid">
+        <div id="banner" class="header--banner">
+            <div class="row m-1">
+                <div class="col-md-12">
+                    <div class="float-left header--banner--left bannerLeft">
+                        <a href=".">
+                            <img class="float-left m-2 img-fluid" src="./images/logo.svg" alt="Reflow skin" width="144" height="144">
+                            <h1><span class="color-highlight">Reflow</span> Maven Skin</h1>
+                        </a>
+                        <p class="lead">Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</p>
+                    </div>
+                    <div class="float-right header--banner--right bannerRight">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+[header-banner]: test/header-banner.html
+
+### Custom Header
+
+```xml
+<header enabled="true" cssClass="text-center text-light">
+    <![CDATA[
+    <!-- header content -->
+    ]]>
+</header>
+```
+
+```html
+<div class="header text-light" role="main">
+    <div class="container container-fluid">
+        <div class="header--subhead">
+            <!-- Content of header element -->
+        </div>
+    </div>
+</div>
+```
 
 ## Banner
 
@@ -75,5 +171,3 @@ The `position` attribute indicates where to place the slogan:
 
 - **bannerLeft (default)** - aligned to the left (as in this website)
 - **bannerRight** - aligned to the right
-
-
