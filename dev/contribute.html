@@ -6,6 +6,90 @@
             <h1 id="dev-contribute_toc_contribute">Contribute</h1> 
 <p>Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests, please state that the contribution is your original work and that you license the work to the project under the project's open source license. Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email, or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.</p> 
 <section> 
+ <h2 id="dev-contribute_toc_compiling1">Compiling</h2> 
+ <p>You can compile Reflow project with your local Maven, with <a class="externalLink" href="https://github.com/takari/takari-maven-plugin">Maven Wrapper</a> or with Maven from Docker. The last one is the easiest solution with you don’t want install a jdk8.</p> 
+ <p><b>Maven local</b></p> 
+ <div> 
+  <div> 
+   <pre class="source">$ mvn clean install -P skipTests -Dtoolchains.disabled=true
+</pre> 
+  </div> 
+ </div> 
+ <p><b>Maven Wrapper</b></p> 
+ <div> 
+  <div> 
+   <pre class="source">$ ./mvnw clean install -Dtoolchains.disabled=true
+</pre> 
+  </div> 
+ </div> 
+ <p><b>Maven from Docker</b></p> 
+ <div> 
+  <div> 
+   <pre class="source">$ ./mvnd clean install
+</pre> 
+  </div> 
+ </div> 
+ <p>The profile skipTests allows to skip all tests execution.</p> 
+ <p>Use the parameter toolchains.disabled to disable maven toolchains plugin whether you are not configure your ${HOME}/.m2/toolchains.xml file. Here is a example of ${HOME}/.m2/toolchains.xml</p> 
+ <div> 
+  <div> 
+   <pre class="source">&lt;?xml version="1.0" encoding="UTF8"?&gt;
+&lt;toolchains&gt;
+  &lt;!-- JDK toolchains --&gt;
+  &lt;toolchain&gt;
+    &lt;type&gt;jdk&lt;/type&gt;
+    &lt;provides&gt;
+      &lt;version&gt;1.8&lt;/version&gt;
+    &lt;/provides&gt;
+    &lt;configuration&gt;
+      &lt;jdkHome&gt;/usr/lib/jvm/java-8-openjdk-amd64&lt;/jdkHome&gt;
+    &lt;/configuration&gt;
+  &lt;/toolchain&gt;
+  &lt;toolchain&gt;
+    &lt;type&gt;jdk&lt;/type&gt;
+    &lt;provides&gt;
+      &lt;version&gt;9&lt;/version&gt;
+    &lt;/provides&gt;
+    &lt;configuration&gt;
+      &lt;jdkHome&gt;/usr/lib/jvm/jdk-9.0.4&lt;/jdkHome&gt;
+    &lt;/configuration&gt;
+  &lt;/toolchain&gt;
+&lt;/toolchains&gt;
+</pre> 
+  </div> 
+ </div> 
+ <section> 
+  <h3 id="dev-contribute_toc_site-generation">Site Generation</h3> 
+  <p>Use following command to generate site.</p> 
+  <div> 
+   <div> 
+    <pre class="source">$ ./ci/site-generate.sh
+</pre> 
+   </div> 
+  </div> 
+ </section> 
+ <section> 
+  <h3 id="dev-contribute_toc_site-run">Site Run</h3> 
+  <p>Use following command to generate and run site.</p> 
+  <div> 
+   <div> 
+    <pre class="source">$ ./ci/site-run.sh
+</pre> 
+   </div> 
+  </div> 
+ </section> 
+ <section> 
+  <h3 id="dev-contribute_toc_site-deployment">Site Deployment</h3> 
+  <p>Use following command to generate and deploy site.</p> 
+  <div> 
+   <div> 
+    <pre class="source">$ ./ci/site-deploy.sh
+</pre> 
+   </div> 
+  </div> 
+ </section> 
+</section> 
+<section> 
  <h2 id="dev-contribute_toc_issues-bug-and-feature-tracker">Issues (bug and feature tracker)</h2> 
  <p>Please report any bugs found, feature requests or other issues on <a class="externalLink" href="https://github.com/devacfr/reflow-maven-skin/issues">Reflow skin GitHub tracker</a>.</p> 
 </section> 
@@ -53,6 +137,20 @@
     <li class="h1">
         <a class="nav-link" href="#dev-contribute_toc_contribute" title="Contribute">Contribute</a>
     </li>
+    <li class="h2">
+        <a class="nav-link" href="#dev-contribute_toc_compiling1" title="Compiling">Compiling</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#dev-contribute_toc_site-generation" title="Site Generation">Site Generation</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#dev-contribute_toc_site-run" title="Site Run">Site Run</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#dev-contribute_toc_site-deployment" title="Site Deployment">Site Deployment</a>
+    </li>
+    </ul>
     <li class="h2">
         <a class="nav-link" href="#dev-contribute_toc_issues-bug-and-feature-tracker" title="Issues (bug and feature tracker)">Issues (bug and feature tracker)</a>
     </li>
