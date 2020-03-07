@@ -38,8 +38,8 @@ The example above produces the following `navside` menu:
 
 ![navside menu preview](images/navside-menu-preview.png)
 
-<div class="alert alert-warning">
-    <p class="alert-heading"><b>You are a page in other project module displaying bizarrely</b></p>
+<div class="bd-callout bd-callout-warning">
+    <h4 class="no-anchor">You are a page in other project module displaying bizarrely</h4>
     <p>This page has maybe the same filename as declared page used in documentation layout. You can resolve this problem by adding <code>project</code> attribute or change the filename of one of the files.</p>
 </div>
 

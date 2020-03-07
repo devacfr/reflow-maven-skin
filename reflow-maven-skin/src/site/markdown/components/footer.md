@@ -50,7 +50,7 @@ The **description** can be plain text or a `CDATA` element and thus wrap the tex
 
 Alternatively, `<bottomDescription>` can contain HTML elements directly, which will be embedded in the bottom description area.
 
-<div class="alert alert-info">
-    <strong>Note</strong>
+<div class="bd-callout bd-callout-info">
+    <h4 class="no-anchor">Note</h4>
     <p>the bottom description must be enabled if Maven site date or version are set to position <b>navigation-bottom</b>.</p>
 </div>
