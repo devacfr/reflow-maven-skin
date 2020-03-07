@@ -75,6 +75,7 @@ h3 code {
 
 .anchorjs-link {
     font-size: 1.4rem;
+    text-decoration: none !important;
 }
 
 
