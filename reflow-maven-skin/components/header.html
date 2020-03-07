@@ -61,25 +61,28 @@
 </pre> 
    </div> 
   </div> 
-  <div class="alert alert-info"> 
-   <b>Note</b> 
-   <p>You can remark in example above, theme and background attributes are associated with jumbotron component rather the header container.</p> 
+  <div class="bd-callout bd-callout-info"> 
+   <section class="no-anchor"> 
+    <h4 class="no-anchor" id="components-header_toc_note1">Note</h4> 
+    <p>You can remark in example above, theme and background attributes are associated with jumbotron component rather the header container.</p> 
+   </section> 
   </div> 
  </section> 
- <section> 
-  <h3 id="components-header_toc_banner-header">Banner Header</h3> 
-  <p>The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following <a href="test/header-banner.html">sample page</a> displays the configuration below:</p> 
-  <p><img src="images/header-banner-scheme.png" alt="header scheme" class="img-fluid"></p> 
+</section> 
+<section> 
+ <h3 id="components-header_toc_banner-header">Banner Header</h3> 
+ <p>The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following <a href="test/header-banner.html">sample page</a> displays the configuration below:</p> 
+ <p><img src="images/header-banner-scheme.png" alt="header scheme" class="img-fluid"></p> 
+ <div> 
   <div> 
-   <div> 
-    <pre class="source">&lt;header type="banner" cssClass="text-light"&gt;&lt;/header&gt;
+   <pre class="source">&lt;header type="banner" cssClass="text-light"&gt;&lt;/header&gt;
 </pre> 
-   </div> 
   </div> 
-  <p>Reflow renders following html:</p> 
+ </div> 
+ <p>Reflow renders following html:</p> 
+ <div> 
   <div> 
-   <div> 
-    <pre class="source">&lt;div class="header text-light" role="main"&gt;
+   <pre class="source">&lt;div class="header text-light" role="main"&gt;
     &lt;div class="container container-fluid"&gt;
         &lt;div id="banner" class="header--banner"&gt;
             &lt;div class="row m-1"&gt;
@@ -99,24 +102,24 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </pre> 
-   </div> 
   </div> 
- </section> 
- <section> 
-  <h3 id="components-header_toc_custom-header">Custom Header</h3> 
+ </div> 
+</section> 
+<section> 
+ <h3 id="components-header_toc_custom-header">Custom Header</h3> 
+ <div> 
   <div> 
-   <div> 
-    <pre class="source">&lt;header enabled="true" cssClass="text-center text-light"&gt;
+   <pre class="source">&lt;header enabled="true" cssClass="text-center text-light"&gt;
     &lt;![CDATA[
     &lt;!-- header content --&gt;
     ]]&gt;
 &lt;/header&gt;
 </pre> 
-   </div> 
   </div> 
+ </div> 
+ <div> 
   <div> 
-   <div> 
-    <pre class="source">&lt;div class="header text-light" role="main"&gt;
+   <pre class="source">&lt;div class="header text-light" role="main"&gt;
     &lt;div class="container container-fluid"&gt;
         &lt;div class="header--subhead"&gt;
             &lt;!-- Content of header element --&gt;
@@ -124,9 +127,8 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </pre> 
-   </div> 
   </div> 
- </section> 
+ </div> 
 </section> 
 <section> 
  <h2 id="components-header_toc_banner1">Banner</h2> 
@@ -150,11 +152,15 @@
 </pre> 
   </div> 
  </div> 
- <div class="alert alert-info"> 
-  <b>Note</b> 
-  <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p> 
-  <p>Unlike maven fluido skin plugin, &lt;name&gt; is used to display h1 heading title. Use alt element instead name.</p> 
-  <p>&lt;name&gt; element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p> 
+ <div class="bd-callout bd-callout-info"> 
+  <section> 
+   <section class="no-anchor"> 
+    <h4 class="no-anchor" id="components-header_toc_note2">Note</h4> 
+    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p> 
+    <p>Unlike maven fluido skin plugin, &lt;name&gt; is used to display h1 heading title. Use alt element instead name.</p> 
+    <p>&lt;name&gt; element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p> 
+   </section> 
+  </section> 
  </div> 
 </section> 
 <section> 

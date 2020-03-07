@@ -213,8 +213,8 @@ var mReflow = function () {
         class: 'fas fa-link',
         icon: ''
       };
-      anchors.add('.main-body h2, .main-body h3, .main-body h4, .main-body h5, .main-body h6');
-      $(".main-body h2, .main-body h3, .main-body h4, .main-body h5, .main-body h6").wrapInner("<div></div>");
+      anchors.add('.main-body h2:not(.no-anchor), .main-body h3:not(.no-anchor), .main-body h4:not(.no-anchor), .main-body h5:not(.no-anchor), .main-body h6:not(.no-anchor)');
+      $(".main-body h2:not(.no-anchor), .main-body h3:not(.no-anchor), .main-body h4:not(.no-anchor), .main-body h5:not(.no-anchor), .main-body h6:not(.no-anchor)").wrapInner("<div></div>");
     }
   }
 
