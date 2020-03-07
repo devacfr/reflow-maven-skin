@@ -11,7 +11,7 @@
                 <p class="lead">$config.slogan.getValue()</p>
             </div>
             <p>
-                <a href="reflow-maven-skin/reflow-documentation.html#get-started.html"
+                <a href="$resourcePath/reflow-maven-skin/reflow-documentation.html#get-started.html"
                     class="btn btn-lg mb-2 mr-2 ml-2">
                     <span class="btn__link-icon">
                         <!-- MACRO{snippet|file=src/site/svg/pentone.svg|verbatim=false|ignoreDownloadError=false} -->
@@ -30,9 +30,11 @@
                 <span class="color-highlight">Reflow</span>
                 Maven skin</h2>
             <p>is an
-                <a href="http://maven.apache.org/guides/mini/guide-site.html">Apache Maven site</a>
+                <a href="http://maven.apache.org/guides/mini/guide-site.html" target="_blank" rel="noopener">Apache
+                    Maven site</a>
                 skin built on
-                <a href="http://getbootstrap.com">Bootstrap</a>. It allows various structural and stylistic
+                <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>. It allows various
+                structural and stylistic
                 customizations to create a modern-looking Maven-generated website.</p>
         </div>
         <div class="col-sm-offset-1 col-sm-5 text-right">
@@ -50,15 +52,17 @@
             <div class="col text-right">
                 <h2>Responsive Layout</h2>
                 <p>Write your pages in
-                    <a href="http://maven.apache.org/doxia/references/index.html">APT, AsciiDoc, Xdoc, Xhtml or
+                    <a href="http://maven.apache.org/doxia/references/index.html" target="_blank" rel="noopener">APT,
+                        AsciiDoc, Xdoc, Xhtml or
                         Markdown</a>, then restructure them using Reflow skin
                     <a href="reflow-maven-skin/reflow-documentation.html#layouts.html">layouts</a>.</p>
                 <p>Reflow skin is responsive thanks to
-                    <a href="http://getbootstrap.com">Bootstrap</a>, so the layouts will be rearranged automatically for
+                    <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>, so the layouts will
+                    be rearranged automatically for
                     readability on small screens.</p>
                 <p class="text-center">
                     <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                        href="reflow-maven-skin/reflow-documentation.html#layouts.html">Read more »</a>
+                        href="$resourcePath/reflow-maven-skin/reflow-documentation.html#layouts.html">Read more »</a>
                 </p>
             </div>
         </div>
@@ -68,46 +72,6 @@
 <div class="highlight highlight-general">
     <div class="container">
         <div class="card-group">
-            <div class="card border-0">
-                <div class="text-center">
-                    <h3>Theme</h3>
-                    <!-- MACRO{snippet|file=src/site/svg/flower.svg|verbatim=false|ignoreDownloadError=false} -->
-                </div>
-                <div class="card-body">
-                    <p>The skin theme can be
-                        <a href="reflow-maven-skin/reflow-documentation.html#themes-index">switched easily</a>: just
-                        select a Bootstrap theme to give an easy makeover for your Maven site.</p>
-                    <ul>
-                        <li>
-                            <b>Default</b>
-                            - use the default
-                            <a href="http://getbootstrap.com">Bootstrap</a>
-                            theme
-                        </li>
-                        <li>
-                            <b>Bootswatch</b>
-                            - select an excellent free theme from
-                            <a href="http://bootswatch.com">Bootswatch</a>
-                        </li>
-                        <li>
-                            <b>Custom</b>
-                            - create your own Bootstrap theme with
-                            <a href="http://twitter.github.com/bootstrap/customize.html">existing tools</a>
-                        </li>
-                    </ul>
-                    <p>
-                        <b>Need to change something?</b>
-                        Extend the skin with custom
-                        <code class="literal">site.css</code>
-                        file in your project, and
-                        <a href="reflow-maven-skin/reflow-documentation.html#multi-module.html">reuse it for
-                            multi-module site</a>.</p>
-                </div>
-                <div class="card-footer border-0 bg-transparent text-center">
-                    <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                        href="reflow-maven-skin/reflow-documentation.html#themes-index">Browse theme »</a>
-                </div>
-            </div>
             <div class="card border-0">
                 <div class="text-center">
                     <h3>Configure</h3>
@@ -143,6 +107,70 @@
                 <div class="card-footer border-0 bg-transparent text-center">
                     <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
                         href="reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration">Read more »</a>
+                </div>
+            </div>
+            <div class="card border-0">
+                <div class="text-center">
+                    <h3>Theme</h3>
+                    <!-- MACRO{snippet|file=src/site/svg/flower.svg|verbatim=false|ignoreDownloadError=false} -->
+                </div>
+                <div class="card-body">
+                    <p>The skin theme can be
+                        <a href="$resourcePath/reflow-maven-skin/reflow-documentation.html#themes-index">switched
+                            easily</a>: just
+                        select a Bootstrap theme to give an easy makeover for your Maven site.</p>
+                    <ul>
+                        <li>
+                            <b>Default</b>
+                            - use the default
+                            <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>
+                            theme
+                        </li>
+                        <li>
+                            <b>Bootswatch</b>
+                            - select an excellent free theme from
+                            <a href="http://bootswatch.com" target="_blank" rel="noopener">Bootswatch</a>
+                        </li>
+                        <li>
+                            <b>Custom</b>
+                            - create your own Bootstrap theme with
+                            <a href="http://twitter.github.com/bootstrap/customize.html" target="_blank"
+                                rel="noopener">existing tools</a>
+                        </li>
+                    </ul>
+                    <p>
+                        <b>Need to change something?</b>
+                        Extend the skin with custom
+                        <code class="literal">site.css</code>
+                        file in your project, and
+                        <a href="$resourcePath/reflow-maven-skin/reflow-documentation.html#multi-module.html">reuse it
+                            for
+                            multi-module site</a>.</p>
+                </div>
+                <div class="card-footer border-0 bg-transparent text-center">
+                    <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
+                        href="$resourcePath/reflow-maven-skin/reflow-documentation.html#themes-index">Browse theme »</a>
+                </div>
+            </div>
+            <div class="card border-0">
+                <div class="text-center">
+                    <h3>Contribute</h3>
+                    <!-- MACRO{snippet|file=src/site/svg/code-github.svg|verbatim=false|ignoreDownloadError=false} -->
+                </div>
+                <div class="card-body">
+                    <p>Reflow Maven skin is an <a href="http://maven.apache.org/guides/mini/guide-site.html"
+                            target="_blank" rel="noopener">Apache Maven site</a> skin
+                        built on <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>.</p>
+                    <p>The code is <a href="http://github.com/devacfr/reflow-maven-skin/">open source</a> and
+                        licensed
+                        under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache
+                            license</a>. The skin can be used freely for your Maven projects.</p>
+                    <p>By reporting issues, suggesting new features, or forking the Git repository on GitHub and adding
+                        some good code!</p>
+                </div>
+                <div class="card-footer border-0 bg-transparent text-center">
+                    <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
+                        href="$resourcePath/development-documentation.html#dev-contribute">Contribute »</a>
                 </div>
             </div>
         </div>
