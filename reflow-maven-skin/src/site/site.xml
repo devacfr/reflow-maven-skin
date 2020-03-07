@@ -234,6 +234,26 @@
         <test-header-jumbotron>
           <header type="jumbotron" background="dark" cssClass="text-light"></header>
         </test-header-jumbotron>
+        <test-navbar-centered-right>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="right">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-centered-right>
+        <test-navbar-centered-left>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="left">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-centered-left>
+        <test-navbar-uncentered-right>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-uncentered-right>
+        <test-navbar-uncentered-left>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="left">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-uncentered-left>
       </pages>
     </reflowSkin>
   </custom>
