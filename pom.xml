@@ -343,6 +343,7 @@
             <useMavenDefaultExcludes>true</useMavenDefaultExcludes>
             <excludes>
               <exclude>.git/**</exclude>
+              <exclude>.github/**</exclude>
               <exclude>**/.*</exclude>
               <exclude>.mvn/**/*</exclude>
               <exclude>.vscode/*</exclude>
