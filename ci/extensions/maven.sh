@@ -20,16 +20,25 @@
 
 set +x -euo pipefail
 
-get_mvn_property() {
+function get_mvn_property() {
     ${MAVEN_CMD} -N -f "${ROOT_PATH}/pom.xml" -q exec:exec -Dexec.executable=echo -Dexec.args="\${$@}"
 }
 
+function add_mvn_profile() {
+    local current_profiles=$1
+    local new_profile=$2
+    if [[ -z "${current_profiles}" ]]; then
+        echo "-P ${new_profile}"
+    else
+        echo "${current_profiles},${new_profile}"
+    fi
+}
 
-get_project_version() {
+function get_project_version() {
     get_mvn_property "project.version"
 }
 
-artifact_exists() {
+function artifact_exists() {
 	local group="$1"
     local artifact="$2"
     local version="$3"
@@ -40,7 +49,7 @@ artifact_exists() {
     local resource="$(tr . / <<<"$group")/$artifact/$version/$artifact-$version${classifier:+"-$classifier"}.$extension"
     local output
 
-    log "--- Checking whether $artifactId already exists on packages.atlassian.com..."
+    log "--- Checking whether $artifactId already exists..."
 
     if ! output="$(${MAVEN_CMD} -e -N org.codehaus.mojo:wagon-maven-plugin:2.0.0:exist -f "${ROOT_PATH}/pom.xml" -Dwagon.serverId="${MAVEN_REPO_ID}" -Dwagon.url="${MAVEN_REPO_URL}" -Dwagon.resource="$resource")"; then
         log "!!! Failed to execute maven command:"
@@ -57,7 +66,7 @@ artifact_exists() {
 }
 
 
-deploy_file() {
+function deploy_file() {
     local file="$1"
     local group="$2"
     local artifact="$3"
@@ -85,7 +94,7 @@ deploy_file() {
                               -DgeneratePom="$generate_pom"
 }
 
-install_file() {
+function install_file() {
     local file="$1"
     local group="$2"
     local artifact="$3"

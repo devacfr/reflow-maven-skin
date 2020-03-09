@@ -52,7 +52,7 @@ function initial_docker_options {
 
 function remove_image {
   if [[ -n "$( docker images -q  $1 )" ]]; then
-    docker ${DOCKER_HOST} rmi $1
+    docker ${DOCKER_HOST:-} rmi $1
   fi
 }
 

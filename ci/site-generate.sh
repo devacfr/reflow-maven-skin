@@ -25,17 +25,24 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source ${dir}/setenv.sh
 
 # default maven command
-MAVEN_CMD="mvn"
+maven_cmd="mvn"
+maven_profiles=""
+maven_args=""
 
 for i in "$@"
 do
 case $i in
     -d|--docker)
-    MAVEN_CMD="${ROOT_PATH}/mvnd"
+    maven_cmd="${ROOT_PATH}/mvnd"
     shift
     ;;
     -w|--wrapper)
-    MAVEN_CMD="${ROOT_PATH}/mvnw"
+    maven_cmd="${ROOT_PATH}/mvnw"
+    shift
+    ;;
+    -s|--skip-tests)
+    maven_profiles="$( add_mvn_profile "${maven_profiles}" "skipTests" )"
+    maven_args="${maven_args} -Dmaven.javadoc.skip=true"
     shift
     ;;
     *)
@@ -44,4 +51,4 @@ case $i in
 esac
 done
 
-${MAVEN_CMD} clean clover:instrument install clover:aggregate site site:stage $@
+${maven_cmd} clean clover:instrument install clover:aggregate site site:stage "$@" ${maven_profiles} ${maven_args}

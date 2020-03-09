@@ -23,17 +23,17 @@ local dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source ${dir}/setenv.sh
 
 # default maven command
-MAVEN_CMD="mvn"
+maven_cmd="mvn"
 
 for i in "$@"
 do
 case $i in
     -d|--docker)
-    MAVEN_CMD="${ROOT_PATH}/mvnd"
+    maven_cmd="${ROOT_PATH}/mvnd"
     shift
     ;;
     -w|--wrapper)
-    MAVEN_CMD="${ROOT_PATH}/mvnw"
+    maven_cmd="${ROOT_PATH}/mvnw"
     shift
     ;;
     *)
@@ -42,9 +42,9 @@ case $i in
 esac
 done
 
-${MAVEN_CMD} jgitflow:release-finish -Prelease-offline
+${maven_cmd} jgitflow:release-finish -Prelease-offline
 # git checkout master
-${MAVEN_CMD} clean deploy -Pgpg
+${maven_cmd} clean deploy -Pgpg
 
 
 # ${dir}/site-deploy.sh $@
