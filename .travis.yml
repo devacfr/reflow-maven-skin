@@ -3,12 +3,12 @@ sudo: false
 cache:
   directories:
     - $HOME/.m2
-script: ./mvnw clean install -Dmaven.javadoc.skip=true --quiet -B
+script: ./mvnw clean install -Dmaven.javadoc.skip=true -Dtoolchains.disabled=true --quiet -B
 jdk:
-    - openjdk8
+  - openjdk8
 branches:
-    only:
-        - master
+  only:
+    - master
 notifications:
-    email:
-        - devacfr@mac.com
+  email:
+    - devacfr@mac.com

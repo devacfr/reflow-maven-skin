@@ -44,15 +44,15 @@ To get started and see how the skin looks by default, check out [reflow-maven-sk
 
 ## News
 
-Maven site skin built on Bootstrap, reflow-maven-skin 2.3.0 is officially out :tada:.
+Maven site skin 2.3.0 is officially out :tada:.
 
-The header component has 3 following rendering types:
+The header component can now be displayed in 3 different ways:
 
 * `jumbotron` - the current rendering (default)
 * `banner` - display centering banner.
 * `custom` - use specific html (cdata content of header component) to render the header.
 
-Now, you can integrate a free content directly (without modification) in body page. The page is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
+You can also integrate a free content directly (without modification) in body page. The page is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
 
 ```xml
 <reflowSkin>
@@ -62,8 +62,8 @@ Now, you can integrate a free content directly (without modification) in body pa
 </reflowSkin>
 ```
 
-> **Be careful**
-> The cssClass attribute do not override anymore `theme` and `background` attribute.
+> :warning: **Be careful:**
+> The cssClass attribute of each component do not override anymore `theme` and `background` attribute.
 > you can not write `<navbar cssClass="navbar-dark bg-primary border-bottom">`, but instead `<navbar theme="dark" background="primary" cssClass="border-bottom">`.
 
 Read more in the [Reflow Maven skin 2.3 Release Notes and changeslog](https://devacfr.github.io/reflow-maven-skin/release-notes/release-notes-2.3.html).

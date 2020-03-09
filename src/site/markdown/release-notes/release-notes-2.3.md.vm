@@ -8,13 +8,13 @@ $h1 Reflow Maven skin 2.3 Release Notes
 
 $h2 Highlights of this release
 
-The header component has 3 following rendering types:
+The header component can now be displayed in 3 different ways:
 
 * `jumbotron` - the current rendering (default)
 * `banner` - display centering banner.
 * `custom` - use specific html (cdata content of header component) to render the header.
 
-Now, you can integrate a free content directly (without modification) in body page. The page is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
+you can also integrate a free content directly (without modification) in body page. The page is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
 
 ```xml
 <reflowSkin>
