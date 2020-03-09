@@ -20,8 +20,8 @@
 .htaccess text
 *.sh text eol=lf
 Dockerfile text eol=lf
-# if use wsl
 mvnw text eol=lf
+mvnd text eol=lf
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
