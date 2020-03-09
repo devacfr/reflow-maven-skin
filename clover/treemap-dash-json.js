@@ -1,0 +1,18 @@
+var treeMapJson = {"id":"Clover database Mon Mar 9 2020 18:37:11 CET0","name":"","data":{
+    "$area":1614.0,"$color":71.25155,"title":
+    " 1614 Elements, 71.3% Coverage"},"children":[{"id":
+      "org.devacfr.maven.skins.reflow0","name":
+      "org.devacfr.maven.skins.reflow","data":{"$area":892.0,"$color":
+        79.70852,"title":
+        "org.devacfr.maven.skins.reflow 892 Elements, 79.7% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.model1020","name":
+      "org.devacfr.maven.skins.reflow.model","data":{"$area":594.0,"$color":
+        59.932663,"title":
+        "org.devacfr.maven.skins.reflow.model 594 Elements, 59.9% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.context892",
+      "name":"org.devacfr.maven.skins.reflow.context","data":{"$area":
+        128.0,"$color":64.84375,"title":
+        "org.devacfr.maven.skins.reflow.context 128 Elements, 64.8% Coverage"},
+      "children":[]}]}
+;
+processTreeMapDashJson (treeMapJson);
