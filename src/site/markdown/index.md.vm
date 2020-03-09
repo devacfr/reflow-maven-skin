@@ -98,10 +98,6 @@
                             <b>Documentation support</b>
                             - organize easier your multi-section documentation.
                         </li>
-                        <li>…
-                            <a href="reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration">and
-                                more</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="card-footer border-0 bg-transparent text-center">
@@ -131,12 +127,6 @@
                             - select an excellent free theme from
                             <a href="http://bootswatch.com" target="_blank" rel="noopener">Bootswatch</a>
                         </li>
-                        <li>
-                            <b>Custom</b>
-                            - create your own Bootstrap theme with
-                            <a href="http://twitter.github.com/bootstrap/customize.html" target="_blank"
-                                rel="noopener">existing tools</a>
-                        </li>
                     </ul>
                     <p>
                         <b>Need to change something?</b>
@@ -165,7 +155,7 @@
                         licensed
                         under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache
                             license</a>. The skin can be used freely for your Maven projects.</p>
-                    <p>By reporting issues, suggesting new features, or forking the Git repository on GitHub and adding
+                    <p>Contribute by reporting issues, suggesting new features, or forking the Git repository on GitHub and adding
                         some good code!</p>
                 </div>
                 <div class="card-footer border-0 bg-transparent text-center">

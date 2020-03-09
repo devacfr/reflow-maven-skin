@@ -4,7 +4,7 @@ Navside menu component is a part of page [documentation layout][documentation-la
 
 ## Usage
 
-support <span class="badge badge-primary">v2.0</span> <span class="badge badge-success">new</span><br/>
+support <span class="badge badge-primary">v2.0</span><br/>
 element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
 
 
