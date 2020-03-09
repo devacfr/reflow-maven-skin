@@ -15,13 +15,15 @@
  limitations under the License.
 -->
 
-[![Apache License, Version 2.0](https://img.shields.io/github/license/apache/maven.svg?label=License)][license]
-[![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg)][maven-repo]
+[![Apache License, Version 2.0](https://img.shields.io/github/license/apache/maven.svg?label=License&style=for-the-badge&logo=apache)][license]
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg?style=for-the-badge&logo=apache-maven)][maven-repo]
 
-![](https://github.com/devacfr/reflow-maven-skin/workflows/.github/workflows/develop.yml/badge.svg?branch=develop)
+[![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
+[![Dev Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Development%20Plan/badge.svg?branch=develop)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Release+Plan%22)
+[![Release Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Release%20Plan/badge.svg?branch=master)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Development+Plan%22)
 
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
+[![Stack Exchange monthly questions](https://img.shields.io/stackexchange/stackoverflow/qm/reflow-maven-plugin?style=for-the-badge&logo=stackexchange)](http://stackoverflow.com/questions/tagged/reflow-maven-skin)
 
 [license]: https://www.apache.org/licenses/LICENSE-2.0
 [maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
