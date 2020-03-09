@@ -36,6 +36,17 @@ Add image to the brand part of navbar.
 - **width** <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or `null`.
 - **height** <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or `null`.
 
+### Sample Pages
+
+Here is a table containing different configuration of Navbar.
+
+| Page                                                  | Centered | Alignment |
+|-------------------------------------------------------|----------|-----------|
+| [centered-right](test/navbar-centered-right.html)     | true     | right     |
+| [centered-left](test/navbar-centered-left.html)       | true     | left      |
+| [uncentered-right](test/navbar-uncentered-right.html) | false    | right     |
+| [uncentered-left](test/navbar-uncentered-left.html)   | false    | left      |
+
 ## Brand
 
 support <span class="badge badge-primary">v1.0</span><br/>

@@ -11,6 +11,16 @@ The history of Reflow Maven skin releases is documented below. For details of ch
 [reflow-issues]: ${issue-url}?state=closed
 [github-report]: github-report.html
 
+$h2 Reflow Maven skin 2.3 Release Notes
+**2020-03-13**
+
+$h3 Highlights of this release
+
+* bug fix and maintenance change
+
+Read more in the [Reflow Maven skin 2.3 Release Notes and changeslog](release-notes-2.3.html).
+
+---
 
 $h2 Reflow Maven skin 2.2 Release Notes
 **2020-01-31**
@@ -24,6 +34,7 @@ This focus of this release is:
 
 Read more in the [Reflow Maven skin 2.2 Release Notes and changeslog](release-notes-2.2.html).
 
+---
 
 $h2 Reflow Maven skin 2.1 Release Notes
 **2019-10-04**
@@ -43,6 +54,8 @@ This focus of this release is:
 
 Read more in the [Reflow Maven skin 2.1 Release Notes and changeslog](release-notes-2.1.html).
 
+---
+
 $h2 Reflow Maven skin 2.0 Release Notes
 **2019-05-10**
 
@@ -59,6 +72,8 @@ For facilitate the migration from version 1x, read [Migration to v2](../reflow-m
 
 Read more in the [Reflow Maven skin 2.0 Release Notes and changeslog](release-notes-2.0.html).
 
+---
+
 $h2 Reflow Maven skin 1.5 Release Notes
 **21 october 2018**
 
@@ -71,30 +86,42 @@ This focus of this release is:
 
 Read more in the [Reflow Maven skin 1.5 Release Notes and changeslog](release-notes-1.5.html).
 
+---
+
 $h2 Reflow Maven skin 1.4 Release Notes
 **5 october 2018**
 
 Read more in the [Reflow Maven skin 1.4 Release Notes and changeslog](release-notes-1.4.html).
+
+---
 
 $h2 Reflow Maven skin 1.3 Release Notes
 **1 december 2017**
 
 Read more in the [Reflow Maven skin 1.3 Release Notes and changeslog](release-notes-1.3.html).
 
+---
+
 $h2 Reflow Maven skin 1.2-DEVACFR Release Notes
 **18 november 2014**
 
 Read more in the [Reflow Maven skin 1.2-DEVACFR Release Notes and changeslog](release-notes-1.2-DEVACFR.html).
+
+---
 
 $h2 Reflow Maven skin 1.1.2-DEVACFR Release Notes
 **17 november 2014**
 
 Read more in the [Reflow Maven skin 1.1.2-DEVACFR Release Notes and changeslog](release-notes-1.1.2-DEVACFR.html).
 
+---
+
 $h2 Reflow Maven skin 1.1.1 Release Notes
 **22 june 2014**
 
 Read more in the [Reflow Maven skin 1.1.1 Release Notes and changeslog](release-notes-1.1.1.html).
+
+---
 
 $h2 Reflow Maven skin 1.1.0 Release Notes
 **17 february 2014**

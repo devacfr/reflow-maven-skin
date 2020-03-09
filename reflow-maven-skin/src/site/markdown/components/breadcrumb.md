@@ -15,8 +15,8 @@ Reflow skin provides a `<breadcrumbs>` flag to enable/disable them:
 - **true (default)** - Breadcrumb trail is displayed below the banner
 - **false** - Do not display breadcrumbs
 
-<div class="alert alert-info">
-    <strong>Note</strong>
+<div class="bd-callout bd-callout-info">
+    <h4 class="no-anchor">Note</h4>
     <p>The breadcrumbs bar must be enabled if Maven site date or version are set to position <b>left</b> or <b>right</b>.</p>
 </div>
 

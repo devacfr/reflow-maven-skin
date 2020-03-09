@@ -103,4 +103,4 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 - **autoExpandable** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise `false`.
 - **expanded** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to expand all menus in tree, otherwise `false` to show only 1st level Toc items.
 
-[toc-sidebar]: toc-sidebar.html
+[toc-sidebar]: test/toc-sidebar.html

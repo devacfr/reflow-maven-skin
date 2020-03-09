@@ -1,0 +1,62 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 2.3 Release Notes
+
+$h2 Highlights of this release
+
+The header component has 3 following rendering types:
+
+* `jumbotron` - the current rendering (default)
+* `banner` - display centering banner.
+* `custom` - use specific html (cdata content of header component) to render the header.
+
+Now, you can integrate a free content directly (without modification) in body page. The page is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
+
+```xml
+<reflowSkin>
+  <pages>
+    <index type="body" />
+  </pages>
+</reflowSkin>
+```
+
+> **Be careful**
+> The cssClass attribute do not override anymore `theme` and `background` attribute.
+> you can not write `<navbar cssClass="navbar-dark bg-primary border-bottom">`, but instead `<navbar theme="dark" background="primary" cssClass="border-bottom">`.
+
+$h2 Other Enhancements
+
+* Bump Doxia Tools version to 1.9
+* Add possibility to disable AnchorJS with flag `<anchorJS>true|false</anchorJS>`.
+* Fix Error when scroll top with smooth scroll is disabled.
+* The cssClass attribute in component is inclusive instead exclusive. ie, add new css classes to component instead replace theme and background css classes.
+* Fix should not override heading ids if the TOC is disabled (thanks [Aurelien Baudet](https://github.com/aurelien-baudet)).
+
+$h2 Changelog
+**2020-03-13**
+
+$h3 Minor enhancements
+
+* Add different types of rendering for header component. ([#58][]).
+* Add new body page type. ([#61][]).
+* Add possibility to disable AnchorJS. ([#64][]).
+* The cssClass attribute is inclusive instead exclusive. ([#59][]).
+
+$h3 Tasks
+
+* Bump doxia tools version to 1.9. ([#60][]).
+
+$h3 Bug fix
+
+* Error when scroll top with smooth scroll is disabled. ([#62][]).
+
+[#58]: ${issue-url}/58
+[#59]: ${issue-url}/59
+[#60]: ${issue-url}/60
+[#61]: ${issue-url}/61
+[#62]: ${issue-url}/62
+[#64]: ${issue-url}/64

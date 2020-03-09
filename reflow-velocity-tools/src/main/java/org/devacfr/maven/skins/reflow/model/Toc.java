@@ -156,7 +156,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
         final String bodyContent = getBodyContent(skinConfig);
 
         final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent,
-            Xpp3Utils.getChildren(skinConfig.get("sections")));
+                Xpp3Utils.getChildren(skinConfig.get("sections")));
         return tocItems;
     }
 
@@ -174,11 +174,14 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
     @Override
     protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
-        final HtmlTool htmlTool = getHtmlTool(skinConfig);
-        return htmlTool.ensureHeadingIds(skinConfig.getContext().getType(),
-            skinConfig.getFileId(),
-            bodyContent,
-            HtmlTool.DEFAULT_SLUG_SEPARATOR);
+        if (this.enabled) {
+            final HtmlTool htmlTool = getHtmlTool(skinConfig);
+            return htmlTool.ensureHeadingIds(skinConfig.getContext().getType(),
+                skinConfig.getFileId(),
+                bodyContent,
+                HtmlTool.DEFAULT_SLUG_SEPARATOR);
+        }
+        return bodyContent;
 
     }
 

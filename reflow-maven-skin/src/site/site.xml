@@ -29,7 +29,7 @@
         <![CDATA[
         <div id="banner" class="header__banner">
             <a href="$config.relativeLink( $decoration.bannerLeft.href )" class="d-inline-block">
-                <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/reflow.png"
+                <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg"
                     alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width" height="$$decoration.bannerLeft.height">
             </a>
             <h1 class="d-inline-block">$decoration.bannerLeft.name</h1>
@@ -196,6 +196,7 @@
               <item name="Overview" href="layouts.html" />
               <item name="Page Layout" href="page-layout.html" />
               <item name="Documentation Layout" href="documentation-layout.html" />
+              <item name="Body Layout" href="body-layout.html" />
               <item name="Section Layout" href="section-layout.html" />
             </item>
             <item name="Components">
@@ -227,6 +228,32 @@
         <toc-sidebar>
           <toc>sidebar</toc>
         </toc-sidebar>
+        <test-header-banner>
+          <header type="banner" cssClass="text-light"></header>
+        </test-header-banner>
+        <test-header-jumbotron>
+          <header type="jumbotron" background="dark" cssClass="text-light"></header>
+        </test-header-jumbotron>
+        <test-navbar-centered-right>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="right">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-centered-right>
+        <test-navbar-centered-left>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="left">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-centered-left>
+        <test-navbar-uncentered-right>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-uncentered-right>
+        <test-navbar-uncentered-left>
+          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="left">
+            <image src="$resourcePath/images/logo.svg" />
+          </navbar>
+        </test-navbar-uncentered-left>
       </pages>
     </reflowSkin>
   </custom>

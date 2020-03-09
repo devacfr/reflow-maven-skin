@@ -13,7 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-<div class="main-body ${pageContext.cssOptions}">
+<div class="main-body">
 #*  *##set( $bodyContent = $pageContext.preRender( $config) )##
 #*  *##evaluate ( $bodyContent ) ##
 </div> <!-- main-body: end -->
