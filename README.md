@@ -19,6 +19,8 @@
 [![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg)][maven-repo]
 
+![](https://github.com/devacfr/reflow-maven-skin/workflows/.github/workflows/develop.yml/badge.svg?branch=develop)
+
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
 
 [license]: https://www.apache.org/licenses/LICENSE-2.0
