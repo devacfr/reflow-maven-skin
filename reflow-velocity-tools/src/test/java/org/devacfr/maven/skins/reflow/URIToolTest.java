@@ -20,7 +20,7 @@ import java.net.URI;
 
 import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.testing.TestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class URIToolTest extends TestCase {
 
@@ -74,14 +74,16 @@ public class URIToolTest extends TestCase {
         assertNull(URITool.normalisedBaseUrl(null));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void rebaseUrlNonInterpolate() {
-        final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
-        final String relativePath = ".";
-        final URI parent = URI.create(childBaseUrl);
-        final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
-        final URLRebaser rebaser = URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
-        rebaser.rebaseLink("${project.path}/reflow.png");
+        assertThrows(IllegalArgumentException.class, () -> {
+            final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
+            final String relativePath = ".";
+            final URI parent = URI.create(childBaseUrl);
+            final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
+            final URLRebaser rebaser = URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
+            rebaser.rebaseLink("${project.path}/reflow.png");
+        });
     }
 
     @Test

@@ -3,12 +3,12 @@
 ## Usage
 
 ```xml
-<footer cssClass="bootstrap classes"
+<footer cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme" />
 ```
 
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. `footer-light bg-light` is the default value if value is empty or `null`. **note**: `cssClass` override attributes `theme` and `background` if is filled.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
 - **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
 - **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
 
@@ -50,7 +50,7 @@ The **description** can be plain text or a `CDATA` element and thus wrap the tex
 
 Alternatively, `<bottomDescription>` can contain HTML elements directly, which will be embedded in the bottom description area.
 
-<div class="alert alert-info">
-    <strong>Note</strong>
+<div class="bd-callout bd-callout-info">
+    <h4 class="no-anchor">Note</h4>
     <p>the bottom description must be enabled if Maven site date or version are set to position <b>navigation-bottom</b>.</p>
 </div>

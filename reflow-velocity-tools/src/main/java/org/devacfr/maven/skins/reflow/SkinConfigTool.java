@@ -427,7 +427,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
             return defaultValue;
         }
 
-        if ("inherit".equals(value)) {
+        if ("inherit".equals(value) || Strings.isNullOrEmpty(value)) {
             element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Inherit value property '{}': {}", property, element);

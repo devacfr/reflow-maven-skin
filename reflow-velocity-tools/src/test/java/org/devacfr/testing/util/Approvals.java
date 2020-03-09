@@ -15,6 +15,9 @@
  */
 package org.devacfr.testing.util;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Function;
@@ -22,8 +25,7 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
-import org.junit.Assert;
+import org.hamcrest.Matchers;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
@@ -35,7 +37,7 @@ import com.google.common.io.Resources;
  */
 public final class Approvals {
 
-    public static final Function<String,String> REMOVE_CARRIAGE_RETURN_LINEFEED= (text) -> text.replaceAll("\r", "");
+    public static final Function<String, String> REMOVE_CARRIAGE_RETURN_LINEFEED = (text) -> text.replaceAll("\r", "");
 
     private Approvals() {
         throw new UnsupportedOperationException();
@@ -62,8 +64,6 @@ public final class Approvals {
         return readFile(location.resolve(fileName));
     }
 
-
-
     /**
      * @param location
      *            path location of expected file.
@@ -79,11 +79,12 @@ public final class Approvals {
     public static String getExpectedResource(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
-        @Nullable final String suffix, Function<String,String> transformer) {
+        @Nullable final String suffix,
+        final Function<String, String> transformer) {
         final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
         final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, suf);
-        String text  =Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(location.resolve(fileName)));
-        if( transformer != null){
+        final String text = Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(location.resolve(fileName)));
+        if (transformer != null) {
             return transformer.apply(text);
         }
         return text;
@@ -106,8 +107,8 @@ public final class Approvals {
         @Nonnull final String testName,
         @Nullable final String actual,
         @Nullable final String suffix) {
-        final String expected = getExpectedResource(location, testClass, testName, suffix,  null);
-        Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
+        final String expected = getExpectedResource(location, testClass, testName, suffix, null);
+        assertThat(actual, equalToCompressingWhiteSpace(expected));
     }
 
     public static void verify(@Nonnull final Path location,
@@ -120,7 +121,7 @@ public final class Approvals {
             actual = transform.apply(actual);
         }
         final String expected = getExpectedResource(location, testClass, testName, suffix, null);
-        Assert.assertThat(actual, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
+        assertThat(actual, Matchers.equalToCompressingWhiteSpace(expected));
     }
 
     /**

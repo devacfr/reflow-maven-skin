@@ -15,16 +15,16 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.util.List;
 
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.testing.TestCase;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Xpp3UtilsTest extends TestCase {
-
-
 
     @Test
     public void shouldFirstChildReturnNullWhenParentIsNull() {
@@ -33,8 +33,8 @@ public class Xpp3UtilsTest extends TestCase {
 
     @Test
     public void shouldChildNodeExist() {
-        Xpp3Dom expectedChild = new Xpp3Dom("expected-child");
-        Xpp3Dom parent = new Xpp3Dom("parent");
+        final Xpp3Dom expectedChild = new Xpp3Dom("expected-child");
+        final Xpp3Dom parent = new Xpp3Dom("parent");
         parent.addChild(new Xpp3Dom("child"));
         parent.addChild(expectedChild);
 
@@ -43,41 +43,40 @@ public class Xpp3UtilsTest extends TestCase {
 
     @Test
     public void shouldChildNodeNotExist() {
-        Xpp3Dom expectedChild = new Xpp3Dom("expected-child");
-        Xpp3Dom parent = new Xpp3Dom("parent");
+        final Xpp3Dom expectedChild = new Xpp3Dom("expected-child");
+        final Xpp3Dom parent = new Xpp3Dom("parent");
         parent.addChild(new Xpp3Dom("child"));
         parent.addChild(expectedChild);
 
-        assertNull( Xpp3Utils.getFirstChild(parent, "wrong-child", ""));
+        assertNull(Xpp3Utils.getFirstChild(parent, "wrong-child", ""));
     }
-
 
     @Test
     public void shouldChildrenNodesReturnEmptyListWhenParentIsNull() {
-        List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(null, "");
+        final List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(null, "");
         assertThat(list, Matchers.empty());
     }
 
     @Test
     public void shouldChildrenReturnEmptyListWhenParentIsNull() {
-        List<String> list = Xpp3Utils.getChildren(null);
+        final List<String> list = Xpp3Utils.getChildren(null);
         assertThat(list, Matchers.empty());
     }
 
     @Test
     public void shouldChildrenReturnAllChildrenNodes() {
-        Xpp3Dom parent = new Xpp3Dom("parent");
+        final Xpp3Dom parent = new Xpp3Dom("parent");
         for (int i = 0; i < 10; i++) {
             parent.addChild(new Xpp3Dom("child"));
         }
 
-        List<String> list = Xpp3Utils.getChildren(parent);
+        final List<String> list = Xpp3Utils.getChildren(parent);
         assertThat(list, Matchers.hasSize(10));
     }
 
     @Test
     public void shouldChildrenNodesReturnSpecificChildrenNodes() {
-        Xpp3Dom parent = new Xpp3Dom("parent");
+        final Xpp3Dom parent = new Xpp3Dom("parent");
         for (int i = 0; i < 10; i++) {
             parent.addChild(new Xpp3Dom("child"));
         }
@@ -85,14 +84,14 @@ public class Xpp3UtilsTest extends TestCase {
             parent.addChild(new Xpp3Dom("child-other"));
         }
 
-        List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(parent, "child");
+        final List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(parent, "child");
         assertThat(list, Matchers.hasSize(10));
     }
 
     @Test
     public void shouldChildrenNodesReturnEmptyChildrenNodes() {
-        Xpp3Dom parent = new Xpp3Dom("parent");
-        List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(parent, "child");
+        final Xpp3Dom parent = new Xpp3Dom("parent");
+        final List<Xpp3Dom> list = Xpp3Utils.getChildrenNodes(parent, "child");
         assertThat(list, Matchers.empty());
     }
 

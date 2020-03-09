@@ -40,14 +40,12 @@ public class TocSidebar extends Toc<TocSidebar> {
     /**
      * Default constructor.
      *
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
+     * @param config a config (can <b>not</b> be {@code null}).
      */
     public TocSidebar(final @Nonnull ISkinConfig config) {
         super("sidebar", "sidebar");
         final String position = config.getAttributeValue("toc", "position", String.class, "fixed").toLowerCase();
-        this.withEnabled(true)
-                .withExpanded(config.getAttributeValue("toc", "expanded", Boolean.class, true))
+        this.withEnabled(true).withExpanded(config.getAttributeValue("toc", "expanded", Boolean.class, true))
                 .withAutoExpandable(config.getAttributeValue("toc", "autoExpandable", Boolean.class, true))
                 .withFixed("fixed".equals(position))
                 .withLevel(config.getAttributeValue("toc", "level", Integer.class, 0));
@@ -63,7 +61,7 @@ public class TocSidebar extends Toc<TocSidebar> {
         if (isFixed()) {
             this.addCssOptions("toc-sidebar-fixed");
         } else {
-            this.addCssOptions(" toc-sidebar-relative");
+            this.addCssOptions("toc-sidebar-relative");
         }
     }
 
@@ -79,8 +77,7 @@ public class TocSidebar extends Toc<TocSidebar> {
     /**
      * Sets the indicating whether is fixed.
      *
-     * @param fixed
-     *            {@code true} is fixed.
+     * @param fixed {@code true} is fixed.
      * @return Returns the fluent instance.
      */
     protected TocSidebar withFixed(final boolean fixed) {
@@ -100,8 +97,7 @@ public class TocSidebar extends Toc<TocSidebar> {
     /**
      * Sets the indicating whether is expanded.
      *
-     * @param expanded
-     *            {@code true} is expanded.
+     * @param expanded {@code true} is expanded.
      * @return Returns the fluent instance.
      */
     protected TocSidebar withExpanded(final boolean expanded) {
@@ -121,8 +117,7 @@ public class TocSidebar extends Toc<TocSidebar> {
     /**
      * Sets the indicating whether is auto-expanded.
      *
-     * @param autoExpandable
-     *            {@code true} is auto-expanded.
+     * @param autoExpandable {@code true} is auto-expanded.
      * @return Returns the fluent instance.
      */
     protected TocSidebar withAutoExpandable(final boolean autoExpandable) {
@@ -140,8 +135,7 @@ public class TocSidebar extends Toc<TocSidebar> {
     /**
      * Sets the level limit to display
      *
-     * @param level
-     *            the level to use.
+     * @param level the level to use.
      * @return Returns the fluent instance.
      */
     protected TocSidebar withLevel(final int level) {

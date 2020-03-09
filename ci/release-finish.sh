@@ -18,9 +18,33 @@
 # under the License.
 #
 
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+local dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+source ${dir}/setenv.sh
+
+# default maven command
+maven_cmd="mvn"
+
+for i in "$@"
+do
+case $i in
+    -d|--docker)
+    maven_cmd="${ROOT_PATH}/mvnd"
+    shift
+    ;;
+    -w|--wrapper)
+    maven_cmd="${ROOT_PATH}/mvnw"
+    shift
+    ;;
+    *)
+    # unknown option
+    ;;
+esac
+done
+
+${maven_cmd} jgitflow:release-finish -Prelease-offline
+# git checkout master
+${maven_cmd} clean deploy -Pgpg
 
 
-pushd ${dir}/../
-./mvnw jgitflow:release-finish -Prelease-offline
-popd
+# ${dir}/site-deploy.sh $@

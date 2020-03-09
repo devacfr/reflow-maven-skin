@@ -111,7 +111,7 @@ var mReflow = function () {
         size = navbar.outerHeight();
       }
       $('body').css('padding-top', size);
-      $('.toc-sidebar-fixed').css('top', size);
+      $('#m-toc-sidebar.toc-sidebar-fixed').css('top', size);
       $('#m-toc-topbar').css('top', size);
     }
     $window.resize(resizeTopNavBar);
@@ -157,7 +157,7 @@ var mReflow = function () {
       }
     }
 
-    $window.scroll( function () {
+    $window.scroll(function () {
       handle();
     });
 
@@ -165,7 +165,7 @@ var mReflow = function () {
       if ($body.hasClass('scrolltop-smooth-enabled')) {
         scrollTo(0, 0);
       } else {
-        $window.scrollTo(0, 0);
+        $window.scrollTop(0);
       }
     });
   }
@@ -203,6 +203,9 @@ var mReflow = function () {
   }
 
   function initAnchorJs() {
+    if (!$body.hasClass('anchorjs-enabled')) {
+      return;
+    }
     if (anchors && $body.hasClass('m-toc-sidebar-enabled') || $body.hasClass('m-toc-top-enabled')
       || $body.hasClass('m-sidenav-enabled')) {
       anchors.options = {
@@ -210,8 +213,8 @@ var mReflow = function () {
         class: 'fas fa-link',
         icon: ''
       };
-      anchors.add('.main-body h2, .main-body h3, .main-body h4, .main-body h5, .main-body h6');
-      $(".main-body h2, .main-body h3, .main-body h4, .main-body h5, .main-body h6").wrapInner("<div></div>");
+      anchors.add('.main-body h2:not(.no-anchor), .main-body h3:not(.no-anchor), .main-body h4:not(.no-anchor), .main-body h5:not(.no-anchor), .main-body h6:not(.no-anchor)');
+      $(".main-body h2:not(.no-anchor), .main-body h3:not(.no-anchor), .main-body h4:not(.no-anchor), .main-body h5:not(.no-anchor), .main-body h6:not(.no-anchor)").wrapInner("<div></div>");
     }
   }
 

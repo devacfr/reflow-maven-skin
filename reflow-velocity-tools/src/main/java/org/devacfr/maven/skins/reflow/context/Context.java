@@ -124,6 +124,9 @@ public abstract class Context<T extends Context<?>> extends Component {
                 final String documentParent = item.getParent();
                 context = new FrameContext(config, documentParent);
                 break;
+            case body:
+                context = new BodyContext(config);
+                break;
             case page:
             default:
                 context = new PageContext(config);
@@ -146,8 +149,23 @@ public abstract class Context<T extends Context<?>> extends Component {
         this.navbar = new Navbar(config);
         this.scrollTop = new ScrollTop(config);
         this.footer = new Footer(config);
+
+        this.initialize(config);
+
         // the ordering is important for execute preRender method
         this.addChildren(this.navbar, this.scrollTop, this.footer);
+    }
+
+    /**
+     * Allows to initialize the context.
+     * @param config
+     *            a config (can not be {@code null}).
+     */
+    protected void initialize(@Nonnull final ISkinConfig config) {
+        // enable AnchorJS
+        if(!config.not("anchorJS")) {
+            this.addCssOptions("anchorjs-enabled");
+        }
     }
 
     /**

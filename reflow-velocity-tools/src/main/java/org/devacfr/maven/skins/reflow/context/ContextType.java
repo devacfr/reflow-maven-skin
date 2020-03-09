@@ -27,6 +27,8 @@ public enum ContextType {
     /** context manage document page. */
     doc,
     /** context manage frame used in document page. */
-    frame
+    frame,
+    /** context manage body page. */
+    body
 
 }

@@ -20,9 +20,30 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+source ${dir}/setenv.sh
 
-${dir}/site-generate.sh $@
+# default maven command
+maven_cmd="mvn"
+# store current arguments
+args="$@"
 
-pushd ${dir}/../
-./mvnw site:run $@
-popd
+for i in "$@"
+do
+case $i in
+    -d|--docker)
+    maven_cmd="${ROOT_PATH}/mvnd"
+    shift
+    ;;
+    -w|--wrapper)
+    maven_cmd="${ROOT_PATH}/mvnw"
+    shift
+    ;;
+    *)
+    # unknown option
+    ;;
+esac
+done
+
+${dir}/site-generate.sh "$args"
+
+${maven_cmd} site:run "$@"

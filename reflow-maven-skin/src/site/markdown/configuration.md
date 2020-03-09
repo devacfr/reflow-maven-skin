@@ -92,8 +92,8 @@ Top navigation is right-aligned at the top of the screen. It sticks to the scree
 - **RegEx** - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
 - **no `<topNav>` element (default)** - list all menus
 
-<div class="alert alert-info">
-    <strong>Reflow version 2</strong>
+<div class="bd-callout bd-callout-info">
+    <h4 class="no-anchor">Reflow version 2</h4>
     <p>Use <code>filterMenu</code> attribute in <code>navbar</code> element instead.</p>
 </div>
 
@@ -165,6 +165,20 @@ Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of c
 - **true (default)** - smooth scrolling for in-page navigation (requires JavaScript)
 - **false** - default in-page jumps
 
+### Anchor Link (AnchorJS)
+
+support <span class="badge badge-primary">v2.3</span><br/>
+element <span class="badge badge-secondary">reflow</span>
+
+Reflow skin enables deep anchor links heading elements in body section. AnchorJS can be disabled using `<anchorJS>` flag:
+
+```xml
+<anchorJS>true|false</anchorJS>
+```
+
+- **true (default)** - drop deep anchor links heading elements.
+- **false** - disable AnchorJS.
+
 ## Bootstrap
 
 The generated Maven site code is updated by default, e.g. update CSS of generated tables, use Bootstrap icons and other goodies. The flags to disable these updates are described below.
@@ -226,8 +240,8 @@ Bootstrap 3 themes provide an [alternative colour for top navigation bar][navbar
 - **true** - Inverted navigation bar colour is used
 - **false (default)** - Default Bootstrap theme colour is used for navigation bar
 
-<div class="alert alert-info">
-    <strong>Reflow version 2</strong>
+<div class="bd-callout bd-callout-info">
+    <h4 class="no-anchor">Reflow version 2</h4>
     <p>Use <code>cssClass</code> attribute in <code>navbar</code> element instead. Navbar now requires a background declaration of some kind. Choose from Bootstrap background utilities (`.bg-*`) or set your own with the light/inverse.</p>
 </div>
 

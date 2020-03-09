@@ -11,7 +11,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 ```xml
 <navbar filterMenu="Regex filter"
-        cssClass="bootstrap classes"
+        cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme"
         center="true|false"
@@ -22,7 +22,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 - **filterMenu** <span class="badge badge-light">v2.0</span> - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
     expression matches, adds the menu to the top navigation.
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. `navbar-light bg-light` is the default value if value is empty or `null`. **note**: `cssClass` override attributes `theme` and `background` if is filled.
+- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
 - **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
 - **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
 - **center** <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
@@ -35,6 +35,17 @@ Add image to the brand part of navbar.
 - **src** <span class="badge badge-light">v2.0</span> - the path location of image to use.
 - **width** <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or `null`.
 - **height** <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or `null`.
+
+### Sample Pages
+
+Here is a table containing different configuration of Navbar.
+
+| Page                                                  | Centered | Alignment |
+|-------------------------------------------------------|----------|-----------|
+| [centered-right](test/navbar-centered-right.html)     | true     | right     |
+| [centered-left](test/navbar-centered-left.html)       | true     | left      |
+| [uncentered-right](test/navbar-uncentered-right.html) | false    | right     |
+| [uncentered-left](test/navbar-uncentered-left.html)   | false    | left      |
 
 ## Brand
 

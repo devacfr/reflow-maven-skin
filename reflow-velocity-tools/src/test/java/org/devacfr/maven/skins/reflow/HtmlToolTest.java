@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
 import java.io.IOException;
@@ -28,8 +29,8 @@ import org.devacfr.maven.skins.reflow.HtmlTool.ExtractResult;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
 import org.devacfr.maven.skins.reflow.HtmlTool.JoinSeparator;
 import org.devacfr.testing.TestCase;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -37,7 +38,7 @@ public class HtmlToolTest extends TestCase {
 
     private HtmlTool htmlTool;
 
-    @Before
+    @BeforeEach
     public void setup() {
         htmlTool = new HtmlTool();
         htmlTool.configure(new ValueParser(ImmutableMap.<String, Object> builder()
