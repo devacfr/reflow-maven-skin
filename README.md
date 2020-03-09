@@ -23,6 +23,7 @@
 [![Release Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Release%20Plan/badge.svg?branch=master)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Development+Plan%22)
 
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
+
 [![Stack Exchange monthly questions](https://img.shields.io/stackexchange/stackoverflow/qm/reflow-maven-plugin?style=for-the-badge&logo=stackexchange)](http://stackoverflow.com/questions/tagged/reflow-maven-skin)
 
 [license]: https://www.apache.org/licenses/LICENSE-2.0
