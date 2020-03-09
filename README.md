@@ -19,8 +19,8 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg?style=for-the-badge&logo=apache-maven)][maven-repo]
 
 [![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
-[![Dev Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Development%20Plan/badge.svg?branch=develop)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Release+Plan%22)
-[![Release Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Release%20Plan/badge.svg?branch=master)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Development+Plan%22)
+[![Dev Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Development%20Plan/badge.svg?branch=develop)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Development+Plan%22)
+[![Release Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Release%20Plan/badge.svg?branch=master)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Release+Plan%22)
 
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
 
