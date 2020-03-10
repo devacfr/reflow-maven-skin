@@ -20,14 +20,13 @@ element <span class="badge badge-secondary">reflow</span>
 The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the `bottomNav` element. If configuration is not available, lists all menus in a single column.
 
 ```xml
-<bottomNav maxSpan="8">
+<bottomNav>
   <column>RegEx</column>
   <column>RegEx</column>
   <column>RegEx</column>
 </bottomNav>
 ```
 
-- **maxSpan** <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take (out of 12). By default, the **`maxSpan = 9`**. The columns are then placed equally within this span (removed in <span class="badge badge-danger">v2.0</span>).
 - Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only _Home_ and _Download_ items, use `Home|Download` for the regular expression.
 
 ## Bottom description

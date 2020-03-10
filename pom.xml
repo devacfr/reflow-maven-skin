@@ -143,7 +143,7 @@
     <!-- ================================================================================ -->
     <!-- Site dependencies version -->
     <!-- ================================================================================ -->
-    <doxia-module-markdown.version>1.9</doxia-module-markdown.version>
+    <doxia-module-markdown.version>1.9.1</doxia-module-markdown.version>
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->

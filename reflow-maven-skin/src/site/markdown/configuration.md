@@ -78,25 +78,6 @@ Both top and bottom navigation allows specifying regular expressions that filter
 
 [mvn-site-menus]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content
 
-### Top navigation
-
-support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span>
-
-Top navigation is right-aligned at the top of the screen. It sticks to the screen when scrolling. The menu items can be filtered using regular expression to indicate which of the menu items are displayed there:
-
-```xml
-<topNav>RegEx<topNav>
-```
-
-- **RegEx** - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
-- **no `<topNav>` element (default)** - list all menus
-
-<div class="bd-callout bd-callout-info">
-    <h4 class="no-anchor">Reflow version 2</h4>
-    <p>Use <code>filterMenu</code> attribute in <code>navbar</code> element instead.</p>
-</div>
-
 ### Links
 
 element <span class="badge badge-secondary">site.xml</span>
@@ -225,27 +206,6 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 
 - **true (default)** - HTML4-style anchors `<a name="...">` are replaced with `id` attributes where applicable
 - **false** - keep the original anchors
-
-## Navbar colour
-
-support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span>
-
-Bootstrap 3 themes provide an [alternative colour for top navigation bar][navbar-inverse]. To use the inverse navigation bar colour, add the `<navbarInverse>` flag:
-
-```xml
-<navbarInverse>true|false</navbarInverse>
-```
-
-- **true** - Inverted navigation bar colour is used
-- **false (default)** - Default Bootstrap theme colour is used for navigation bar
-
-<div class="bd-callout bd-callout-info">
-    <h4 class="no-anchor">Reflow version 2</h4>
-    <p>Use <code>cssClass</code> attribute in <code>navbar</code> element instead. Navbar now requires a background declaration of some kind. Choose from Bootstrap background utilities (`.bg-*`) or set your own with the light/inverse.</p>
-</div>
-
-[navbar-inverse]: http://twitter.github.com/bootstrap/components.html#navbar
 
 ## Mark page header
 

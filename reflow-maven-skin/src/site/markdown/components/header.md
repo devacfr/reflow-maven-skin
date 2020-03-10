@@ -145,9 +145,7 @@ descriptor instead of using `<custom><reflowSkin>`:
 
 <div class="bd-callout bd-callout-info">
     <h4 class="no-anchor">Note</h4>
-    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p>
-    <p>Unlike maven fluido skin plugin, <code>&lt;name&gt;</code> is used to display h1 heading title. Use <code>alt</code> element instead <code>name</code>.</p>
-    <p><code>&lt;name&gt;</code> element can have `CDATA` element as its contents, allowing custom HTML content in the banner.</p>
+    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title. Unlike maven fluido skin plugin, <code>&lt;name&gt;</code> is used to display h1 heading title. Use <code>alt</code> element instead <code>name</code>. <code>&lt;name&gt;</code> element can have <code>CDATA</code> element as its contents, allowing custom HTML content in the banner.</p>
 </div>
 
 [mvn-site-banner]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner

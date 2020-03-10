@@ -51,39 +51,6 @@ The ToC snaps to the top of the screen to allow easy navigation in long pages.
 - **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
 - **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
 
-### Limit the number of top ToC items
-
-support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span><br/>
-
-Top ToC can be limited to a certain number of items in configuration. All menu entries exceeding
-that number are grouped under the last dropdown menu. Exclude the option if unlimited.
-
-```xml
-<tocTopMax>6</tocTopMax>
-```
-
-- **number** - limit to this number of items
-- **-1 or no `<tocTopMax>` element (default)** - unlimited
-
-### Flatten first 2 levels of ToC
-
-support <span class="badge badge-primary">v1.0</span>, removed in <span class="badge badge-danger">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span><br/>
-
-Top ToC for pages that have only a single top heading (e.g. `h1`) also includes the 2nd level
-headings as top menu items. This is to avoid having a single item in the whole menu. Otherwise
-only the top level headings are included. This option can be overridden to force always or
-disable altogether.
-
-```xml
-<tocTopFlatten>true|false</tocTopFlatten>
-```
-
-- **true** - force flattening 2 ToC levels
-- **false** - never flatten, always just use 1st level ToC items
-- **no `<tocTopFlatten>` element (default)** - flatten if single top heading
-
 ## ToC Sidebar
 
 support <span class="badge badge-primary">v1.0</span><br/>
