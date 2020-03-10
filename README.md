@@ -24,8 +24,6 @@
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
 [![Stack Exchange monthly questions](https://img.shields.io/stackexchange/stackoverflow/qm/reflow-maven-plugin?style=for-the-badge&logo=stackexchange)](http://stackoverflow.com/questions/tagged/reflow-maven-skin)
 
-[![Stack Exchange monthly questions](https://img.shields.io/stackexchange/stackoverflow/qm/reflow-maven-plugin?style=for-the-badge&logo=stackexchange)](http://stackoverflow.com/questions/tagged/reflow-maven-skin)
-
 [license]: https://www.apache.org/licenses/LICENSE-2.0
 [maven-repo]: http://mvnrepository.com/artifact/io.github.devacfr.maven.skins/reflow-maven-skin
 [gitter]: https://gitter.im/reflow-maven-skin/public
