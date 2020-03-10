@@ -143,7 +143,7 @@
     <!-- ================================================================================ -->
     <!-- Site dependencies version -->
     <!-- ================================================================================ -->
-    <doxia-module-markdown.version>1.9.1</doxia-module-markdown.version>
+    <doxia-module.version>1.9.1</doxia-module.version>
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
@@ -453,7 +453,12 @@
           <dependency>
             <groupId>org.apache.maven.doxia</groupId>
             <artifactId>doxia-module-markdown</artifactId>
-            <version>${doxia-module-markdown.version}</version>
+            <version>${doxia-module.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>${doxia-module.version}</version>
           </dependency>
         </dependencies>
         <configuration>
