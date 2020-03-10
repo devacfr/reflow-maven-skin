@@ -1,4 +1,4 @@
-# Top Navbar Component
+# Navbar Component
 
 Navbar is Bootstrap responsive navigation header component fixed to the top of page. It contains all [`<body><links>` element][site-links] and filtered [`<body><menu>`][site-menus] declared in site.xml.
 
@@ -17,6 +17,11 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
         center="true|false"
         alignMenu="left|right">
     <image src="image path" width="number|30" height="number|30" />
+    <additionalMenu>
+        <![CDATA[
+            html content
+          ]]>
+    </additionalMenu>
 </navbar>
 ```
 
@@ -28,7 +33,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 - **center** <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
 - **alignMenu** <span class="badge badge-light">v2.1</span> - Sets the alignment of menu to the `left` or pushing to the `right` (**default**).
 
-**Image element**
+### Image element
 
 Add image to the brand part of navbar.
 
@@ -36,7 +41,45 @@ Add image to the brand part of navbar.
 - **width** <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or `null`.
 - **height** <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or `null`.
 
-### Sample Pages
+### Additional Menu
+
+It is placed on the right of the navbar component. The additional menu is set using `<additionalMenu>` element:
+
+```xml
+<navbar>
+    <additionalMenu>
+        <![CDATA[
+          <ul class="navbar-nav navbar-additional ml-md-auto">
+            <li class="nav-item dropdown">
+            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                v2.3
+            </a>
+            <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+                <a class="dropdown-item active" href="#">Latest (2.3.x)</a>
+                <a class="dropdown-item" href="#">v2.1.1</a>
+                <a class="dropdown-item" href="#">v2.0.0</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">v1.5.1</a>
+                <a class="dropdown-item" href="#">v1.4.0</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">All versions</a>
+            </div>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="fab fa-lg fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#"><i class="fab fa-lg fa-twitter"></i></a>
+            </li>
+          </ul>
+          ]]>
+    </additionalMenu>
+</navbar>
+```
+
+`<additionalMenu>` contains HTML elements, which will be embedded in the collapse part of navbar (See above [sample](test/navbar-additional-menu.html)).
+
+### Centering and Alignement Sample Pages
 
 Here is a table containing different configuration of Navbar.
 

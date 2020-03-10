@@ -64,11 +64,13 @@ public class Navbar extends BsComponent {
     /** */
     private final List<Menu> menus = Lists.newArrayList();
 
+    /** */
+    private final Xpp3Dom additionalMenu;
+
     /**
      * Default constructor.
      *
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
+     * @param config a config (can <b>not</b> be {@code null}).
      */
     public Navbar(@Nonnull final ISkinConfig config) {
         super(COMPONENT);
@@ -96,13 +98,15 @@ public class Navbar extends BsComponent {
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
         this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
         this.filterMenu = config.getAttributeValue(COMPONENT, "filterMenu", String.class, null);
-        final Xpp3Dom element = config.get(COMPONENT);
+        Xpp3Dom element = config.get(COMPONENT);
         final Xpp3Dom img = Xpp3Utils.getFirstChild(element, "image", config.getNamespace());
         if (img != null) {
             this.image = new ImageBrand(config, img);
         } else {
             this.image = null;
         }
+        this.additionalMenu = Xpp3Utils.getFirstChild(element, "additionalMenu", config.getNamespace());
+
         // add links
         final DecorationModel decoration = config.getDecoration();
         if (decoration.getBody() != null && decoration.getBody().getLinks() != null) {
@@ -170,6 +174,13 @@ public class Navbar extends BsComponent {
     }
 
     /**
+     * @return the additionalMenu
+     */
+    public Xpp3Dom getAdditionalMenu() {
+        return additionalMenu;
+    }
+
+    /**
      * @return the menus
      */
     public List<Menu> getMenus() {
@@ -192,10 +203,8 @@ public class Navbar extends BsComponent {
         private final String height;
 
         /**
-         * @param config
-         *            a config (can <b>not</b> be {@code null}).
-         * @param element
-         *            the element assiciated to image brand.
+         * @param config  a config (can <b>not</b> be {@code null}).
+         * @param element the element assiciated to image brand.
          */
         ImageBrand(@Nonnull final ISkinConfig config, @Nonnull final Xpp3Dom element) {
             Objects.requireNonNull(config);

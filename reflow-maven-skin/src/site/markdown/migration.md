@@ -150,18 +150,18 @@ It is a new component used in documentation page support (see [Navside Menu Comp
 ### Toc topbar component
 
 ```xml
-<toc cssClass="navbar-dark bg-dark|bootstrap classes"
+<toc cssClass="bootstrap classes"
      theme="light|dark"
      background="bootstrap colour theme"
      numberItems="number|-1"
      flatten="false|true">top</toc>
 ```
 
-- Add ccsClass attribute (default value `navbar-dark bg-dark`) to `<toc>` element.
-- Add `theme` attribute (default value `light`)
-- Add `background` attribute (default value `light`)
-- Replace `tocTopMax` element by `numberItems` attribute to `<toc>` element.
-- Replace `tocTopFlatten` element by `flatten` attribute to `<toc>` element.
+- Add ccsClass attribute (default value `null`).
+- Add `theme` attribute (default value `light`).
+- Add `background` attribute (default value `light`).
+- Replace `tocTopMax` element by `numberItems` attribute.
+- Replace `tocTopFlatten` element by `flatten` attribute.
 
 ### Toc sidebar component
 
@@ -183,14 +183,14 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 
 ```xml
 <navbar filterMenu="Regex filter"
-        cssClass="navbar-light bg-light|bootstrap classes"
+        cssClass="bootstrap classes"
         theme="light|dark"
         background="bootstrap colour theme">
 ```
 
 - Replace `<topNav>` element by `filterMenu` attribute.
 - Remove `<navbarInverse>` element. use `cssClass` instead.
-- Add `cssClass` attribute (default value `navbar-light bg-light`)
+- Add `cssClass` attribute (default value `null`)
 - Add `theme` attribute (default value `light`)
 - Add `background` attribute (default value `light`)
 
@@ -200,4 +200,4 @@ Toc sidebar has been refactored to support the 1st level heading and positionned
 
 ### Bottom navigation
 
-- Remove `maxSpan` attribute, use auto-layout Bootstrap columns.
+- Remove `maxSpan` attribute from element `bottomNav` element, use auto-layout Bootstrap columns.

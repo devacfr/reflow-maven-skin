@@ -20,7 +20,7 @@
 #*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")##
 #*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
     <hr class="toc-separator" />
-    <div id="m-toc-topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}">
+    <div id="m-toc-topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}" role="navigation">
       <div id="toc-scroll-target">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#m-toc-topnav-collapse" aria-controls="m-toc-topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

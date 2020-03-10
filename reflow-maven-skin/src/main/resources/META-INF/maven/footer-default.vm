@@ -108,13 +108,11 @@
  * Outputs bottom navigation columns. The menus can be split into columns to be
  * placed in the bottom navigation. This is done with the `bottomNav` config option:
  *
- *  <bottomNav> - maximum span is indicated in the attribute (default =9)
+ *  <bottomNav>
  *      <column>regex</column> - indicates to add a column with the indicated regex filter
  *      <column>regex</column> - ...
  *      <column>regex</column> - ...
  *  </bottomNav>
- *
- * (The above produces a 3-column navigation with `span2` for each column (because max is 8)).
  *
  *###
 #macro ( bottomNav )

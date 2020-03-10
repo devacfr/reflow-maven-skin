@@ -42,6 +42,7 @@ public class ContextTest extends MockitoTestCase {
     @Mock
     private ISkinConfig config;
 
+    @SuppressWarnings("unchecked")
     @BeforeEach
     public void setup() {
         final MavenProject project = new MavenProject();
@@ -51,19 +52,17 @@ public class ContextTest extends MockitoTestCase {
 
         final DecorationModel decoration = new DecorationModel();
         when(config.getDecoration()).thenReturn(decoration);
+        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
+                .then(invocation -> invocation.getArguments()[3]);
+        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
+                .then(invocation -> invocation.getArguments()[2]);
     }
 
     /**
      * test the page context is the default context when any type is defined.
      */
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldBuildPageContext() {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
-
         when(config.getPropertyValue(Toc.COMPONENT, String.class, null)).thenReturn("top");
 
         final Context<?> context = Context.buildContext(config);
@@ -100,14 +99,8 @@ public class ContextTest extends MockitoTestCase {
         assertEquals("page", pageContext.getType());
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldBuildPageContextWithTocDisabled() {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
-
         final Context<?> context = Context.buildContext(config);
         assertThat((PageContext) context, isA(PageContext.class));
 
@@ -119,14 +112,8 @@ public class ContextTest extends MockitoTestCase {
 
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldBuildDocumentContext() throws Exception {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
-
         final Xpp3Dom pageProperties = Xpp3DomBuilder.build(new StringReader("<document type=\"doc\"></document>"));
         when(config.getPageProperties()).thenReturn(pageProperties);
 
@@ -143,14 +130,8 @@ public class ContextTest extends MockitoTestCase {
         assertEquals("", documentContext.getCssClass());
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void shouldBuildFrameContext() throws Exception {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
-
         final String xml = "<reflowSkin><pages>" + //
                 "<development-documentation type=\"doc\">" + //
                 "          <menu name=\"Development Documentation\">" + //
@@ -180,7 +161,7 @@ public class ContextTest extends MockitoTestCase {
         assertEquals(Integer.MAX_VALUE, tocSidebar.getLevel());
         assertEquals("sidebar-light bg-light", tocSidebar.getCssClass());
         assertEquals("m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed",
-            tocSidebar.getCssOptions());
+                tocSidebar.getCssOptions());
 
         final Footer footer = frameContext.getFooter();
         assertNotNull(footer, "footer should be exist");
@@ -198,5 +179,36 @@ public class ContextTest extends MockitoTestCase {
         assertEquals(true, scrollTop.isSmooth());
         assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
 
+    }
+
+    @Test
+    public void shouldBuildBodyContext() throws Exception {
+        final Xpp3Dom pageProperties = Xpp3DomBuilder.build(new StringReader("<document type=\"body\"></document>"));
+        when(config.getPageProperties()).thenReturn(pageProperties);
+
+        final Context<?> context = Context.buildContext(config);
+        assertThat((BodyContext) context, isA(BodyContext.class));
+
+        final BodyContext bodyContext = (BodyContext) context;
+
+        final Footer footer = bodyContext.getFooter();
+        assertNotNull(footer, "footer should be exist");
+        assertEquals("footer-light bg-light", footer.getCssClass());
+        assertEquals("", footer.getCssOptions());
+
+        final Navbar navbar = bodyContext.getNavbar();
+        assertNotNull(navbar, "Navbar should be exist");
+        assertEquals("navbar-light bg-light", navbar.getCssClass());
+        assertEquals("", navbar.getCssOptions());
+
+        final ScrollTop scrollTop = bodyContext.getScrollTop();
+        assertNotNull(scrollTop, "ScrollTop should be exist");
+        assertEquals("", scrollTop.getCssClass());
+        assertEquals(true, scrollTop.isSmooth());
+        assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
+
+        assertEquals("scrolltop-smooth-enabled", bodyContext.getCssOptions());
+        assertEquals("", bodyContext.getCssClass());
+        assertEquals("body", bodyContext.getType());
     }
 }

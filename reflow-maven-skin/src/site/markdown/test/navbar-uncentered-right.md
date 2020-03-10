@@ -14,7 +14,7 @@
 </custom>
 ```
 
-Find other options for Reflow Maven skin [here][reflow-header].
+Find other options for Reflow Maven skin [here][reflow-navbar].
 
 [site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
 [reflow-navbar]: ../reflow-documentation.html#components-navbar

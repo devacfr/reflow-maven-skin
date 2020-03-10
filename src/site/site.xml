@@ -57,8 +57,26 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" theme="dark" background="dark" cssClass="border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
+      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="left">
         <image src="$resourcePath/images/logo.svg" />
+        <additionalMenu>
+          <![CDATA[
+          <ul class="navbar-nav navbar-additional ml-md-auto">
+            <li class="nav-item">
+                <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-github"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-lg fa-envelope"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-gitter"></i></a>
+            </li>
+          </ul>
+          ]]>
+        </additionalMenu>
       </navbar>
       <navside-menu theme="light" background="light" />
       <footer theme="dark" background="dark" />
@@ -76,10 +94,10 @@
             It allows various structural and stylistic customizations to create a
             modern-looking Maven-generated website.
             <div class="m-1">
-              <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+              <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
               <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-envelope"></i></a>
-              <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank"><i class="fab fa-gitter"></i></a>
+              <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank" rel="noopener"><i class="fab fa-gitter"></i></a>
             </div>
           </div>
         ]]>
