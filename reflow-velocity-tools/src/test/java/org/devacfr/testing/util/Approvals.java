@@ -45,44 +45,44 @@ public final class Approvals {
 
     /**
      * @param location
-     *            path location of actual fil.
+     *                      path location of actual fil.
      * @param testClass
-     *            the executed test class.
+     *                      the executed test class.
      * @param testName
-     *            the testname
-     * @param suffix
-     *            the suffix
+     *                      the testname
+     * @param extension
+     *                      the extension file
      * @return
      * @throws IOException
      */
     public static String getActualResource(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
-        @Nullable final String suffix) {
-        final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
+        @Nullable final String extension) {
+        final String suf = !Strings.isNullOrEmpty(extension) ? "." + extension : "";
         final String fileName = String.format("%s.%s.actual%s", testClass.getSimpleName(), testName, suf);
         return readFile(location.resolve(fileName));
     }
 
     /**
      * @param location
-     *            path location of expected file.
+     *                      path location of expected file.
      * @param testClass
-     *            the executed test class.
+     *                      the executed test class.
      * @param testName
-     *            the testname
-     * @param suffix
-     *            the suffix
+     *                      the testname.
+     * @param extension
+     *                      the extension file.
      * @return
      * @throws IOException
      */
     public static String getExpectedResource(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
-        @Nullable final String suffix,
+        @Nullable final String extension,
         final Function<String, String> transformer) {
-        final String suf = !Strings.isNullOrEmpty(suffix) ? suffix : "";
-        final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, suf);
+        final String ext = !Strings.isNullOrEmpty(extension) ? "." + extension : "";
+        final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, ext);
         final String text = Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(location.resolve(fileName)));
         if (transformer != null) {
             return transformer.apply(text);
@@ -94,33 +94,49 @@ public final class Approvals {
      * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
-     *            path location of expected file.
+     *                      path location of expected file.
      * @param testClass
-     *            the executed test class.
+     *                      the executed test class.
      * @param testName
-     *            the testname
+     *                      the test name.
      * @param actual
-     *            the actual value to test
+     *                      the actual value to test.
+     * @param extension
+     *                      the extension file.
      */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
         @Nullable final String actual,
-        @Nullable final String suffix) {
-        final String expected = getExpectedResource(location, testClass, testName, suffix, null);
+        @Nullable final String extension) {
+        final String expected = getExpectedResource(location, testClass, testName, extension, null);
         assertThat(actual, equalToCompressingWhiteSpace(expected));
     }
 
+    /**
+     * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
+     *
+     * @param location
+     *                      path location of expected file.
+     * @param testClass
+     *                      the executed test class.
+     * @param testName
+     *                      the test name
+     * @param transform
+     *                      transform function
+     * @param extension
+     *                      the extension file.
+     */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
         final Function<String, String> transform,
-        @Nullable final String suffix) {
-        String actual = getActualResource(location, testClass, testName, suffix);
+        @Nullable final String extension) {
+        String actual = getActualResource(location, testClass, testName, extension);
         if (actual != null && transform != null) {
             actual = transform.apply(actual);
         }
-        final String expected = getExpectedResource(location, testClass, testName, suffix, null);
+        final String expected = getExpectedResource(location, testClass, testName, extension, null);
         assertThat(actual, Matchers.equalToCompressingWhiteSpace(expected));
     }
 
@@ -128,23 +144,23 @@ public final class Approvals {
      * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
-     *            path location of expected file.
+     *                       path location of expected file.
      * @param testClass
-     *            the executed test class.
+     *                       the executed test class.
      * @param testName
-     *            the testname
+     *                       the testname
      * @param actualFile
-     *            the actual value stored in file to test
-     * @param suffix
-     *            the suffix
+     *                       the actual value stored in file to test
+     * @param extension
+     *                       the extension file
      */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
         @Nonnull final Path actualFile,
-        @Nullable final String suffix) {
+        @Nullable final String extension) {
 
-        verify(location, testClass, testName, readFile(location.resolve(actualFile)), suffix);
+        verify(location, testClass, testName, readFile(location.resolve(actualFile)), extension);
 
     }
 

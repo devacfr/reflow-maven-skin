@@ -51,12 +51,12 @@ public class MarkdownParserTest extends PlexusTestCase {
         assertNotNull(parser);
         verify((conten) -> {
             try {
-                return Jsoup.parse(parseFileToHtml(".md")).html();
+                return Jsoup.parse(parseFileToHtml("md")).html();
             } catch (final Exception e) {
                 Throwables.throwIfUnchecked(e);
                 throw new RuntimeException(e);
             }
-        }, ".md");
+        }, "md");
     }
 
     protected String parseFileToHtml(final String suffix) throws Exception {

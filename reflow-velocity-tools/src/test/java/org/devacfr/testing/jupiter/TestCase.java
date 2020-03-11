@@ -62,7 +62,7 @@ public class TestCase extends Assertions {
      * Gets the file system path representation of this test class.
      *
      * @param testClass
-     *            test class to use.
+     *                      test class to use.
      * @return Returns {@code String} representing the file system location path of this test class.
      */
     @Nonnull
@@ -78,16 +78,17 @@ public class TestCase extends Assertions {
         return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), null, null);
     }
 
-    public String getActualResource(final String suffix) {
-        return Approvals.getActualResource(getPackagePath(), this.getClass(), getMethodName(), suffix);
+    public String getActualResource(final String extension) {
+        return Approvals.getActualResource(getPackagePath(), this.getClass(), getMethodName(), extension);
     }
 
-    public String getExpectedResource(final String suffix) {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), suffix, null);
+    public String getExpectedResource(final String extension) {
+        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), extension, null);
     }
 
-    public String getExpectedResource(final String suffix, final Function<String, String> transformer) {
-        return Approvals.getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), suffix, transformer);
+    public String getExpectedResource(final String extension, final Function<String, String> transformer) {
+        return Approvals
+                .getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), extension, transformer);
     }
 
     public void verify() {
@@ -95,10 +96,12 @@ public class TestCase extends Assertions {
     }
 
     /**
-     * @param suffix
+     * @param extension
+     *                      the extension file.
      */
-    public void verify(final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, suffix);
+    public void verify(final String extension) {
+        Approvals
+                .verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
     }
 
     public void verify(final Function<String, String> transform) {
@@ -107,27 +110,31 @@ public class TestCase extends Assertions {
 
     /**
      * @param transform
+     * @param extension
+     *                      the extension file.
      */
-    public void verify(final Function<String, String> transform, @Nullable final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, suffix);
+    public void verify(final Function<String, String> transform, @Nullable final String extension) {
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, extension);
     }
 
     /**
-     * @param location
      * @param actual
-     * @throws IOException
+     *                      the actual value to test.
+     * @param extension
+     *                      the extension file.
      */
-    public void verify(@Nullable final String actual, @Nullable final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actual, suffix);
+    public void verify(@Nullable final String actual, @Nullable final String extension) {
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actual, extension);
     }
 
     /**
-     * @param location
      * @param actualFile
-     * @throws IOException
+     *                       the actual value stored in file to test.
+     * @param extension
+     *                       the extension file.
      */
-    public void verify(@Nonnull final Path actualFile, @Nullable final String suffix) {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actualFile, suffix);
+    public void verify(@Nonnull final Path actualFile, @Nullable final String extension) {
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actualFile, extension);
     }
 
     private String getMethodName() {

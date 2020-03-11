@@ -140,12 +140,12 @@ public class HtmlToolTest extends TestCase {
     public void shouldReorderToTopOneSection() {
         verify((content) -> {
             return htmlTool.reorderToTop(content, "a:has(img), img", 1, "<div class=\"caption\"></div>");
-        }, ".html");
+        }, "html");
     }
 
     @Test
     public void shouldExtract() {
-        final String section = getActualResource(".html");
+        final String section = getActualResource("html");
 
         final ExtractResult results = htmlTool.extract(section, "a:has(img), img", 3);
         assertNotNull(results);
@@ -156,7 +156,7 @@ public class HtmlToolTest extends TestCase {
                 "<img src=\"images/2.png\">",
                 "<img src=\"images/3.png\">"));
         final String remainder = results.getRemainder();
-        assertEquals(getExpectedResource(".html"), remainder);
+        assertEquals(getExpectedResource("html"), remainder);
     }
 
     @Test
@@ -219,27 +219,27 @@ public class HtmlToolTest extends TestCase {
     public void shouldHeadingAnchorToId() {
         verify((content) -> {
             return htmlTool.headingAnchorToId(content);
-        }, ".html");
+        }, "html");
     }
 
     @Test
     public void shouldEnsureHeadingIds() {
         verify((content) -> {
             return htmlTool.ensureHeadingIds("page", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
-        }, ".html");
+        }, "html");
     }
 
     @Test
     public void shouldEnsureHeadingIdsForFrame() {
         verify((content) -> {
             return htmlTool.ensureHeadingIds("frame", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
-        }, ".html");
+        }, "html");
     }
 
     @Test
     public void shouldHeadingTree() {
         final String content = htmlTool
-                .ensureHeadingIds("page", "overview", getActualResource(".html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
+                .ensureHeadingIds("page", "overview", getActualResource("html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
         final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
         // check root element
         assertThat(idElements.stream().map((el) -> el.getId()).collect(Collectors.toList()),

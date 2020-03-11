@@ -60,7 +60,7 @@ public class ContextTest extends MockitoTestCase {
         verify((content) -> {
             when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
             return pageContext.preRender(config);
-        }, ".html");
+        }, "html");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ContextTest extends MockitoTestCase {
         verify((content) -> {
             when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
             return pageContext.preRender(config);
-        }, ".html");
+        }, "html");
     }
 
     @Test
@@ -86,7 +86,7 @@ public class ContextTest extends MockitoTestCase {
         verify((content) -> {
             when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
             return pageContext.preRender(config);
-        }, ".html");
+        }, "html");
     }
 
     @Test
@@ -99,6 +99,6 @@ public class ContextTest extends MockitoTestCase {
         verify((content) -> {
             when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
             return pageContext.preRender(config);
-        }, ".html");
+        }, "html");
     }
 }

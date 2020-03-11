@@ -98,7 +98,7 @@ public class BodyContextTest extends MockitoTestCase {
         verify((content) -> {
             when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
             return bodyContext.preRender(config);
-        }, ".html");
+        }, "html");
     }
 
 }
