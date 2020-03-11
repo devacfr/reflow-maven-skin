@@ -51,4 +51,4 @@ case $i in
 esac
 done
 
-${maven_cmd} clean clover:instrument install clover:aggregate site site:stage "$@" ${maven_profiles} ${maven_args}
+${maven_cmd} clean clover:instrument install clover:aggregate site site:stage $@ ${maven_profiles} ${maven_args}

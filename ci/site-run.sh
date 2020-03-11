@@ -46,4 +46,4 @@ done
 
 ${dir}/site-generate.sh "$args"
 
-${maven_cmd} site:run "$@"
+${maven_cmd} site:run $@

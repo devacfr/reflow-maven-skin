@@ -46,4 +46,4 @@ done
 
 ${dir}/site-generate.sh "$args"
 
-${maven_cmd} scm-publish:publish-scm "$@"
+${maven_cmd} scm-publish:publish-scm $@
