@@ -61,7 +61,7 @@
         <image src="$resourcePath/images/logo.svg" />
         <additionalMenu>
           <![CDATA[
-          <ul class="navbar-nav navbar-additional ml-md-auto">
+          <ul class="navbar-nav navbar-additional ml-md-auto border-left border-2">
             <li class="nav-item">
                 <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-github"></i></a>
             </li>
