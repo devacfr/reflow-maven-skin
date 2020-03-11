@@ -20,14 +20,18 @@ import static org.hamcrest.Matchers.isA;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
-import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
+import org.devacfr.maven.skins.reflow.model.Footer;
+import org.devacfr.maven.skins.reflow.model.Navbar;
+import org.devacfr.maven.skins.reflow.model.ScrollTop;
+import org.devacfr.maven.skins.reflow.model.Toc;
+import org.devacfr.maven.skins.reflow.model.TocTopBar;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-public class ContextTest extends MockitoTestCase {
+public class PageContextTest extends MockitoTestCase {
 
     @Mock
     private ISkinConfig config;
@@ -46,59 +50,60 @@ public class ContextTest extends MockitoTestCase {
                 .then(invocation -> invocation.getArguments()[3]);
         when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
                 .then(invocation -> invocation.getArguments()[2]);
-
-        when(config.getToolbox("htmlTool", HtmlTool.class)).thenReturn(new HtmlTool());
     }
 
+    /**
+     * test the page context is the default context when any type is defined.
+     */
     @Test
-    public void shouldReplaceTTTag() {
+    public void shouldBuildPageContext() {
+        when(config.getPropertyValue(Toc.COMPONENT, String.class, null)).thenReturn("top");
+
         final Context<?> context = Context.buildContext(config);
         assertThat((PageContext) context, isA(PageContext.class));
 
         final PageContext pageContext = (PageContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
+        final Toc<?> toc = pageContext.getToc();
+        assertNotNull(toc, "toc should be exist");
+        assertEquals(true, toc.isEnabled());
+        assertThat((TocTopBar) pageContext.getToc(), isA(TocTopBar.class));
+        final TocTopBar tocTopBar = (TocTopBar) toc;
+        assertEquals("m-toc-top-enabled", tocTopBar.getCssOptions());
+        assertEquals("navbar-light bg-light", tocTopBar.getCssClass());
+
+        final Footer footer = pageContext.getFooter();
+        assertNotNull(footer, "footer should be exist");
+        assertEquals("footer-light bg-light", footer.getCssClass());
+        assertEquals("", footer.getCssOptions());
+
+        final Navbar navbar = pageContext.getNavbar();
+        assertNotNull(navbar, "Navbar should be exist");
+        assertEquals("navbar-light bg-light", navbar.getCssClass());
+        assertEquals("", navbar.getCssOptions());
+
+        final ScrollTop scrollTop = pageContext.getScrollTop();
+        assertNotNull(scrollTop, "ScrollTop should be exist");
+        assertEquals("", scrollTop.getCssClass());
+        assertEquals(true, scrollTop.isSmooth());
+        assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
+
+        assertEquals("anchorjs-enabled scrolltop-smooth-enabled m-toc-top-enabled", pageContext.getCssOptions());
+        assertEquals("", pageContext.getCssClass());
+        assertEquals("page", pageContext.getType());
     }
 
     @Test
-    public void shouldAddLighboxAttribute() {
+    public void shouldBuildPageContextWithTocDisabled() {
         final Context<?> context = Context.buildContext(config);
         assertThat((PageContext) context, isA(PageContext.class));
 
         final PageContext pageContext = (PageContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
+        final Toc<?> toc = pageContext.getToc();
+        assertNotNull(toc, "toc should be exist");
+        assertEquals(false, toc.isEnabled());
+
     }
 
-    @Test
-    public void shouldApplyBootstrapCss() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
-
-        final PageContext pageContext = (PageContext) context;
-
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
-    }
-
-    @Test
-    public void shouldReplaceIcons() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
-
-        final PageContext pageContext = (PageContext) context;
-
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
-    }
 }

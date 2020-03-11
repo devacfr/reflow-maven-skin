@@ -49,7 +49,9 @@ import com.google.common.collect.Lists;
  */
 public abstract class Context<T extends Context<?>> extends Component {
 
-    /** map containing the equivalence of font awesome characters with image found in report pages. */
+    /**
+     * map containing the equivalence of font awesome characters with image found in report pages.
+     */
     private static final Map<String, String> ICON_REPLACEMENTS = ImmutableMap.<String, String> builder()
             .put("img[src$=images/add.gif]", "<i class=\"fas fa-plus\"></i>")
             .put("img[src$=images/remove.gif]", "<i class=\"fas fa-minus\"></i>")
@@ -158,12 +160,13 @@ public abstract class Context<T extends Context<?>> extends Component {
 
     /**
      * Allows to initialize the context.
+     *
      * @param config
      *            a config (can not be {@code null}).
      */
     protected void initialize(@Nonnull final ISkinConfig config) {
         // enable AnchorJS
-        if(!config.not("anchorJS")) {
+        if (!config.not("anchorJS")) {
             this.addCssOptions("anchorjs-enabled");
         }
     }
@@ -192,21 +195,13 @@ public abstract class Context<T extends Context<?>> extends Component {
                 "data-lightbox",
                 "page");
         }
-        if (!skinConfig.not("imgLightbox")) {
-
-            // lightbox is enabled by default, so check for false and negate
-            content = htmlTool.setAttr(content,
-                "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], "
-                        + "a[href$=png], a[href$=gif], a[href$=bmp]:has(img)",
-                "data-lightbox",
-                "page");
-        }
         if (!skinConfig.not("html5Anchor")) {
             // HTML5-style anchors are enabled by default, so check for false and negate
             content = htmlTool.headingAnchorToId(content);
         }
         if (!skinConfig.not("bootstrapCss")) {
-            // Bootstrap CSS class conversion is enabled by default, so check for false and negate
+            // Bootstrap CSS class conversion is enabled by default, so check for false and
+            // negate
             content = htmlTool
                     .addClass(content, "table.bodyTable", Lists.newArrayList("table", "table-striped", "table-hover"));
             // image is responsive by default
@@ -218,9 +213,10 @@ public abstract class Context<T extends Context<?>> extends Component {
             // Bootstrap Icons are enabled by default, so check for false and negate
 
             content = htmlTool.replaceAll(content, ICON_REPLACEMENTS);
-            // The <tt> tag is not supported in HTML5 (see https://www.w3schools.com/tags/tag_tt.asp).
-            content = htmlTool.replaceWith(content, "tt", "<code class=\"literal\">");
         }
+        // The <tt> tag is not supported in HTML5 (see
+        // https://www.w3schools.com/tags/tag_tt.asp).
+        content = htmlTool.replaceWith(content, "tt", "<code class=\"literal\">");
         return super.onPreRender(skinConfig, content);
     }
 

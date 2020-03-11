@@ -28,7 +28,7 @@ import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.maven.skins.reflow.HtmlTool.ExtractResult;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
 import org.devacfr.maven.skins.reflow.HtmlTool.JoinSeparator;
-import org.devacfr.testing.TestCase;
+import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -29,7 +29,7 @@ public class BodyContext extends Context<BodyContext> {
      * Default constructor.
      *
      * @param config
-     *            a config (can not be {@code null}).
+     *                   a config (can not be {@code null}).
      */
     public BodyContext(final @Nonnull ISkinConfig config) {
         super(config, ContextType.body);

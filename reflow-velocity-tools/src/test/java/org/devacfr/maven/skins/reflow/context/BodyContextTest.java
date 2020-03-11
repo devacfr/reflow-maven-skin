@@ -18,16 +18,22 @@ package org.devacfr.maven.skins.reflow.context;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isA;
 
+import java.io.StringReader;
+
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
-import org.devacfr.maven.skins.reflow.HtmlTool;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
+import org.devacfr.maven.skins.reflow.model.Footer;
+import org.devacfr.maven.skins.reflow.model.Navbar;
+import org.devacfr.maven.skins.reflow.model.ScrollTop;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-public class ContextTest extends MockitoTestCase {
+public class BodyContextTest extends MockitoTestCase {
 
     @Mock
     private ISkinConfig config;
@@ -46,59 +52,53 @@ public class ContextTest extends MockitoTestCase {
                 .then(invocation -> invocation.getArguments()[3]);
         when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
                 .then(invocation -> invocation.getArguments()[2]);
-
-        when(config.getToolbox("htmlTool", HtmlTool.class)).thenReturn(new HtmlTool());
     }
 
     @Test
-    public void shouldReplaceTTTag() {
+    public void shouldBuildBodyContext() throws Exception {
+        final Xpp3Dom pageProperties = Xpp3DomBuilder.build(new StringReader("<document type=\"body\"></document>"));
+        when(config.getPageProperties()).thenReturn(pageProperties);
+
         final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+        assertThat((BodyContext) context, isA(BodyContext.class));
 
-        final PageContext pageContext = (PageContext) context;
+        final BodyContext bodyContext = (BodyContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
+        final Footer footer = bodyContext.getFooter();
+        assertNotNull(footer, "footer should be exist");
+        assertEquals("footer-light bg-light", footer.getCssClass());
+        assertEquals("", footer.getCssOptions());
+
+        final Navbar navbar = bodyContext.getNavbar();
+        assertNotNull(navbar, "Navbar should be exist");
+        assertEquals("navbar-light bg-light", navbar.getCssClass());
+        assertEquals("", navbar.getCssOptions());
+
+        final ScrollTop scrollTop = bodyContext.getScrollTop();
+        assertNotNull(scrollTop, "ScrollTop should be exist");
+        assertEquals("", scrollTop.getCssClass());
+        assertEquals(true, scrollTop.isSmooth());
+        assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
+
+        assertEquals("scrolltop-smooth-enabled", bodyContext.getCssOptions());
+        assertEquals("", bodyContext.getCssClass());
+        assertEquals("body", bodyContext.getType());
     }
 
     @Test
-    public void shouldAddLighboxAttribute() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+    public void shouldRenderBodyWihoutModify() throws Exception {
+        final Xpp3Dom pageProperties = Xpp3DomBuilder.build(new StringReader("<document type=\"body\"></document>"));
+        when(config.getPageProperties()).thenReturn(pageProperties);
 
-        final PageContext pageContext = (PageContext) context;
+        final Context<?> context = Context.buildContext(config);
+        assertThat((BodyContext) context, isA(BodyContext.class));
+
+        final BodyContext bodyContext = (BodyContext) context;
 
         verify((content) -> {
             when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
+            return bodyContext.preRender(config);
         }, ".html");
     }
 
-    @Test
-    public void shouldApplyBootstrapCss() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
-
-        final PageContext pageContext = (PageContext) context;
-
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
-    }
-
-    @Test
-    public void shouldReplaceIcons() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
-
-        final PageContext pageContext = (PageContext) context;
-
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, ".html");
-    }
 }

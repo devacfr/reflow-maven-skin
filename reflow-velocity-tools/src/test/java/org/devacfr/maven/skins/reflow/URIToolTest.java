@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URI;
 
 import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
-import org.devacfr.testing.TestCase;
+import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.Test;
 
 public class URIToolTest extends TestCase {

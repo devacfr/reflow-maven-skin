@@ -130,7 +130,8 @@
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->
     <!-- ================================================================================ -->
-    <doxia.sitetools.version>1.9</doxia.sitetools.version>
+    <doxia.sitetools.version>1.9.1</doxia.sitetools.version>
+    <doxia-module.version>1.9.1</doxia-module.version>
 
     <guava.version>28.2-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
@@ -139,11 +140,6 @@
     <jsoup.version>1.12.1</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
     <velocity-tools.version>2.0</velocity-tools.version>
-
-    <!-- ================================================================================ -->
-    <!-- Site dependencies version -->
-    <!-- ================================================================================ -->
-    <doxia-module.version>1.9.1</doxia-module.version>
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
@@ -293,6 +289,10 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven-javadoc-plugin.version}</version>
+          <configuration>
+            <additionalparam>${javadoc.opts}</additionalparam>
+            <detectLinks>false</detectLinks>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -412,10 +412,6 @@
             <goals>
               <goal>jar</goal>
             </goals>
-            <configuration>
-              <additionalparam>${javadoc.opts}</additionalparam>
-              <detectLinks>false</detectLinks>
-            </configuration>
           </execution>
         </executions>
       </plugin>

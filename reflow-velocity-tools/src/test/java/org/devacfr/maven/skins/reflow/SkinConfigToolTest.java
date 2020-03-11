@@ -23,7 +23,7 @@ import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.ValueParser;
-import org.devacfr.testing.MockitoTestCase;
+import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
