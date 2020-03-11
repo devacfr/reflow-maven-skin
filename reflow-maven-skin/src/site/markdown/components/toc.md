@@ -38,7 +38,7 @@ Top ToC displays the table of contents as a horizontal menu just below the site 
 The ToC snaps to the top of the screen to allow easy navigation in long pages.
 
 ```xml
-<toc numberItems="number|-1" 
+<toc numberItems="number|-1"
      flatten="true|false"
      cssClass="css classes"
      theme="light|dark"
@@ -58,7 +58,6 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 ```xml
 <toc position="fixed|relative"
-     type="fixed|static"
      autoExpandable="true|false"
      expanded="true|false"
      level="number">sidebar</toc>
@@ -66,7 +65,6 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 - **position** <span class="badge badge-light">v2.0</span> - The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
 - **level** <span class="badge badge-light">v2.0</span> - Sets the number of heading level to display. `0` allows to display all heading level (**default value**).
-- **type** <span class="badge badge-light">v1.3</span> - Indentical to attribute `position`. Option `static` is similar to `relative` option in attribute `position`. _Attribute removed in version_ <span class="badge badge-light">v2.0</span>
 - **autoExpandable** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise `false`.
 - **expanded** <span class="badge badge-light">v2.0</span> - Sets to `true` (**default value**) to expand all menus in tree, otherwise `false` to show only 1st level Toc items.
 
