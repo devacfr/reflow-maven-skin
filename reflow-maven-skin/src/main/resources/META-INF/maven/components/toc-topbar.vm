@@ -130,19 +130,21 @@
  * Recursively outputs the contents of top bar ToC dropdown item
  *
  *###
-#macro ( renderTopTocDropdown $items )#*
-
-    *##foreach ( $subitem in $items )#*
-        *##if ($subitem.items.isEmpty())##
+#macro ( renderTopTocDropdown $items )##
+#*  *##foreach ( $subitem in $items )##
+#*      *##if ($subitem.items.isEmpty())##
                 <a class="dropdown-item" href="#$subitem.id" title="$subitem.text">$subitem.text</a>
 #*      *##else##
-                <li class="dropdown-submenu">
-                    <a href="#$subitem.id" title="$subitem.text">$subitem.text</a>
-                    <div class="dropdown-menu" role="menu">
-#*                      *##renderTopTocDropdown ( $subitem.items )##
-                    </div>
-                </li>
-#*      *##end#*
-    *##end#*
-
-*##end##
+                <ul class="navbar-nav">
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item" href="#$subitem.id" title="$subitem.text">$subitem.text</a>
+#*          *##if ( !$subitem.items.isEmpty())##
+                        <div class="dropdown-menu" role="menu">
+#*              *##renderTopTocDropdown ( $subitem.items )##
+                        </div>
+#*          *##end##
+                    </li>
+                </ul>
+#*      *##end##
+#*  *##end##
+#end##
