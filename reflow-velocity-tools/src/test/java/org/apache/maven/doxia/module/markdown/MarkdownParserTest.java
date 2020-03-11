@@ -68,34 +68,4 @@ public class MarkdownParserTest extends PlexusTestCase {
         }
     }
 
-    /**
-     * Returns an InputStreamReader to read a resource from a file in the test target output directory.
-     *
-     * @param baseName
-     *            The name of the resource file to read.
-     * @param extension
-     *            The file extension of the resource file to read.
-     * @return An InputStreamReader.
-     */
-    protected Reader getTestReader(final String baseName, final String extension) {
-        final InputStream is = Thread.currentThread()
-                .getContextClassLoader()
-                .getResourceAsStream(baseName + "." + extension);
-
-        assertNotNull(is, "Could not find resource: " + baseName + "." + extension);
-
-        return new InputStreamReader(is);
-    }
-
-    /**
-     * Returns an InputStreamReader to read a resource from a file in the test target output directory.
-     *
-     * @param baseName
-     *            The name of the resource file to read.
-     * @return An InputStreamReader.
-     * @see #getTestReader(String, String)
-     */
-    protected Reader getTestReader(final String baseName) {
-        return getTestReader(baseName, MarkdownParserModule.FILE_EXTENSION);
-    }
 }

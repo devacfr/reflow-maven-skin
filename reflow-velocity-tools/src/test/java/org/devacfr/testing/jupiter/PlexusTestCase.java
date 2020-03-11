@@ -24,12 +24,16 @@ import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.context.Context;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Christophe Friederich
  * @since 2.4
  */
 public abstract class PlexusTestCase extends TestCase {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected PlexusContainer container;
 
@@ -49,47 +53,35 @@ public abstract class PlexusTestCase extends TestCase {
                 configuration = getConfiguration();
             }
         } catch (final Exception e) {
-            System.out.println("Error with configuration:");
-
-            System.out.println("configuration = " + configuration);
-
+            logger.error("Error with configuration:");
+            logger.error("configuration = " + configuration);
             fail(e.getMessage());
         }
 
         container = createContainerInstance();
-
         container.addContextValue("basedir", getBasedir());
-
-        // this method was deprecated
-        customizeContext();
-
         customizeContext(getContext());
 
         final boolean hasPlexusHome = getContext().contains("plexus.home");
 
         if (!hasPlexusHome) {
-            final File f = getTestFile("target/plexus-home");
-
+            final File f = new File(getBasedir(), "target/plexus-home");
             if (!f.isDirectory()) {
                 f.mkdir();
             }
-
             getContext().put("plexus.home", f.getAbsolutePath());
         }
 
         if (configuration != null) {
             container.setConfigurationResource(new InputStreamReader(configuration));
         }
-
         container.initialize();
-
         container.start();
     }
 
     @AfterEach
     public void tearDown() throws Exception {
         container.dispose();
-
         container = null;
     }
 
@@ -99,14 +91,6 @@ public abstract class PlexusTestCase extends TestCase {
 
     private Context getContext() {
         return container.getContext();
-    }
-
-    // !!! this should probably take a context as a parameter so that the
-    // user is not forced to do getContainer().addContextValue(..)
-    // this would require a change to PlexusContainer in order to get
-    // hold of the context ...
-    // @deprecated use void customizeContext( Context context )
-    protected void customizeContext() throws Exception {
     }
 
     protected void customizeContext(final Context context) throws Exception {
@@ -136,9 +120,7 @@ public abstract class PlexusTestCase extends TestCase {
         } else {
             config = base + "-" + subname + ".xml";
         }
-
         final InputStream configStream = getResourceAsStream(config);
-
         return configStream;
     }
 
@@ -146,16 +128,9 @@ public abstract class PlexusTestCase extends TestCase {
         return getClass().getResourceAsStream(resource);
     }
 
-    protected ClassLoader getClassLoader() {
-        return getClass().getClassLoader();
-    }
-
-    // ----------------------------------------------------------------------
-    // Container access
-    // ----------------------------------------------------------------------
-
-    protected Object lookup(final String componentKey) throws Exception {
-        return getContainer().lookup(componentKey);
+    @SuppressWarnings("unchecked")
+    protected <T> T lookup(final String componentKey, Class<T> cls) throws Exception {
+        return (T) getContainer().lookup(componentKey);
     }
 
     @SuppressWarnings("unchecked")
@@ -167,43 +142,15 @@ public abstract class PlexusTestCase extends TestCase {
         getContainer().release(component);
     }
 
-    // ----------------------------------------------------------------------
-    // Helper methods for sub classes
-    // ----------------------------------------------------------------------
-
-    public static File getTestFile(final String path) {
-        return new File(getBasedir(), path);
-    }
-
-    public static File getTestFile(final String basedir, final String path) {
-        File basedirFile = new File(basedir);
-
-        if (!basedirFile.isAbsolute()) {
-            basedirFile = getTestFile(basedir);
-        }
-
-        return new File(basedirFile, path);
-    }
-
-    public static String getTestPath(final String path) {
-        return getTestFile(path).getAbsolutePath();
-    }
-
-    public static String getTestPath(final String basedir, final String path) {
-        return getTestFile(basedir, path).getAbsolutePath();
-    }
-
     public static String getBasedir() {
         if (basedirPath != null) {
             return basedirPath;
         }
 
         basedirPath = System.getProperty("basedir");
-
         if (basedirPath == null) {
             basedirPath = new File("").getAbsolutePath();
         }
-
         return basedirPath;
     }
 }
