@@ -37,20 +37,21 @@ $h2 Other Enhancements
 * Fix should not override heading ids if the TOC is disabled (thanks [Aurelien Baudet](https://github.com/aurelien-baudet)).
 
 $h2 Changelog
-**2020-03-13**
 
-$h3 Minor enhancements
+$h4 2020-03-13 Release 2.3.0
+
+$h5 Minor enhancements
 
 * Add different types of rendering for header component. ([#58][]).
 * Add new body page type. ([#61][]).
 * Add possibility to disable AnchorJS. ([#64][]).
 * The cssClass attribute is inclusive instead exclusive. ([#59][]).
 
-$h3 Tasks
+$h5 Tasks
 
 * Bump doxia tools version to 1.9. ([#60][]).
 
-$h3 Bug fix
+$h5 Bug fix
 
 * Error when scroll top with smooth scroll is disabled. ([#62][]).
 

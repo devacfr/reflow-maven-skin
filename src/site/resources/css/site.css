@@ -106,13 +106,12 @@ BODY {
 }
 
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
     margin-top: 2rem;
     margin-bottom: 1.6rem;
 }
+
+
 
 /*
  * Specific to page development-documentation
