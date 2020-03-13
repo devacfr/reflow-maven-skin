@@ -40,6 +40,7 @@
 #*  *##set ( $projectSiteLoc = $config.projectLocation )
 #*  *##set ( $currentFileLoc = $config.currentFileLocation )
 ##
+#*  *##set( $bodyContent = $pageContext.renderSnippets( $config, $bodyContent ) )##
 #*  *### absolute location of the current
 #*  *##set( $bodyContent = $pageContext.preRender( $config) )##
 #*  *### generate a short title if one does not exist or is specified explicitly

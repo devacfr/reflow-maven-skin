@@ -290,3 +290,16 @@ h3 {
 .bd-callout-danger h4 {
     color: var(--danger);
 }
+
+
+.bd-placeholder-img-lg {
+    font-size: 3.5rem !important;
+}
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

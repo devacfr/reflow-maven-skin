@@ -1,0 +1,142 @@
+<html>
+
+<head>
+</head>
+
+<body>
+  <p>{{% carousel id="carousel1" withControls="true" withIndicators="true" crossfade="true" %}}</p>
+<!--
+    <slide interval="10000" >
+        <slide-image src="img/image.jpg" />
+        <slide-caption>
+          <h5>First slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </slide-caption>
+    </slide>
+    <slide interval="2000">
+        <slide-image src="img/image.jpg" />
+        <slide-caption>
+          <h5>Second slide label</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </slide-caption>
+    </slide>
+    <slide interval="500">
+        <slide-image src="img/image.jpg" />
+        <slide-caption>
+          <h5>Third slide label</h5>
+          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </slide-caption>
+    </slide>
+-->
+  <p>{{% /carousel %}}</p>
+  <p>check Carousel when first in sibling list of body.</p>
+  <h1>Include carousel</h1>
+  <p>This page contains a carousel</p>
+  <h2>Carousel in comment</h2>
+  <p>{{% carousel id="carousel2" withControls="true" withIndicators="true" crossfade="true" %}}</p>
+<!--
+    <slide interval="10000" >
+        <slide-image src="img/image.jpg" />
+        <slide-caption>
+          <h5>First slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </slide-caption>
+    </slide>
+    <slide interval="2000">
+        <slide-image src="img/image.jpg" />
+        <slide-caption>
+          <h5>Second slide label</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </slide-caption>
+    </slide>
+    <slide interval="500">
+        <slide-image src="img/image.jpg" />
+        <slide-caption>
+          <h5>Third slide label</h5>
+          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </slide-caption>
+    </slide>
+-->
+  <p>{{% /carousel %}}</p>
+  <h2>Carousel in code caption and unicode characters.</h2>
+<p>{{% carousel id=&#x201c;carousel3&#x201d; withControls=&#x201c;true&#x201d; withIndicators=&#x201c;true&#x201d; crossfade=&#x201c;true&#x201d; %}}</p>
+
+<div class="source">
+<div class="source">
+<pre>    &lt;slide interval=&quot;10000&quot; &gt;
+        &lt;slide-image src=&quot;img/image.jpg&quot; /&gt;
+            &lt;slide-caption&gt;
+              &lt;h5&gt;First slide label&lt;/h5&gt;
+              &lt;p&gt;Nulla vitae elit libero, a pharetra augue mollis interdum.&lt;/p&gt;
+            &lt;/slide-caption&gt;
+    &lt;/slide&gt;
+    &lt;slide interval=&quot;2000&quot;&gt;
+        &lt;slide-image src=&quot;img/image.jpg&quot; /&gt;
+        &lt;slide-caption&gt;
+          &lt;h5&gt;Second slide label&lt;/h5&gt;
+          &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+        &lt;/slide-caption&gt;
+    &lt;/slide&gt;
+    &lt;slide interval=&quot;500&quot;&gt;
+        &lt;slide-image src=&quot;img/image.jpg&quot; /&gt;
+        &lt;slide-caption&gt;
+          &lt;h5&gt;Third slide label&lt;/h5&gt;
+          &lt;p&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur.&lt;/p&gt;
+        &lt;/slide-caption&gt;
+    &lt;/slide&gt;
+</pre></div></div>
+
+<p>{{% /carousel %}}</p>
+<h2>Carousel</h2>
+<p>{{% carousel id=&#x201c;carousel4&#x201d; withControls=&#x201c;true&#x201d; withIndicators=&#x201c;true&#x201d; crossfade=&#x201c;true&#x201d; %}}</p>
+
+<div class="source">
+<div class="source">
+<pre>    &lt;slide interval=&quot;10000&quot; &gt;
+        &lt;slide-image&gt;
+            &lt;svg class=&quot;bd-placeholder-img bd-placeholder-img-lg d-block w-100&quot; width=&quot;800&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; 
+            preserveAspectRatio=&quot;xMidYMid slice&quot; focusable=&quot;false&quot; role=&quot;img&quot; aria-label=&quot;Placeholder: First slide&quot;&gt;
+                &lt;title&gt;Placeholder&lt;/title&gt;
+                &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;#666&quot;&gt;&lt;/rect&gt;
+                &lt;text x=&quot;50%&quot; y=&quot;50%&quot; fill=&quot;#444&quot; dy=&quot;.3em&quot;&gt;First slide&lt;/text&gt;
+            &lt;/svg&gt;
+        &lt;/slide-image&gt;
+        &lt;slide-caption&gt;
+          &lt;h5&gt;First slide label&lt;/h5&gt;
+          &lt;p&gt;Nulla vitae elit libero, a pharetra augue mollis interdum.&lt;/p&gt;
+        &lt;/slide-caption&gt;
+    &lt;/slide&gt;
+    &lt;slide interval=&quot;2000&quot;&gt;
+        &lt;slide-image&gt;
+            &lt;svg class=&quot;bd-placeholder-img bd-placeholder-img-lg d-block w-100&quot; width=&quot;800&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; 
+            preserveAspectRatio=&quot;xMidYMid slice&quot; focusable=&quot;false&quot; role=&quot;img&quot; aria-label=&quot;Placeholder: Second slide&quot;&gt;
+                &lt;title&gt;Placeholder&lt;/title&gt;
+                &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;#666&quot;&gt;&lt;/rect&gt;
+                &lt;text x=&quot;50%&quot; y=&quot;50%&quot; fill=&quot;#444&quot; dy=&quot;.3em&quot;&gt;Second slide&lt;/text&gt;
+            &lt;/svg&gt;
+        &lt;/slide-image&gt;
+        &lt;slide-caption&gt;
+          &lt;h5&gt;Second slide label&lt;/h5&gt;
+          &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+        &lt;/slide-caption&gt;
+    &lt;/slide&gt;
+    &lt;slide&gt;
+        &lt;slide-image&gt;
+            &lt;svg class=&quot;bd-placeholder-img bd-placeholder-img-lg d-block w-100&quot; width=&quot;800&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; 
+            preserveAspectRatio=&quot;xMidYMid slice&quot; focusable=&quot;false&quot; role=&quot;img&quot; aria-label=&quot;Placeholder: Third slide&quot;&gt;
+                &lt;title&gt;Placeholder&lt;/title&gt;
+                &lt;rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;#666&quot;&gt;&lt;/rect&gt;
+                &lt;text x=&quot;50%&quot; y=&quot;50%&quot; fill=&quot;#444&quot; dy=&quot;.3em&quot;&gt;Third slide&lt;/text&gt;
+            &lt;/svg&gt;
+        &lt;/slide-image&gt;
+        &lt;slide-caption&gt;
+          &lt;h5&gt;Third slide label&lt;/h5&gt;
+          &lt;p&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur.&lt;/p&gt;
+        &lt;/slide-caption&gt;
+    &lt;/slide&gt;
+</pre></div></div>
+
+<p>{{% /carousel %}}</p>
+</body>
+
+</html>

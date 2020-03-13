@@ -17,6 +17,7 @@ package org.devacfr.maven.skins.reflow.context;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -33,6 +34,8 @@ import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 import org.devacfr.maven.skins.reflow.model.Navbar;
 import org.devacfr.maven.skins.reflow.model.ScrollTop;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
+import org.devacfr.maven.skins.reflow.snippet.SnippetContext;
+import org.devacfr.maven.skins.reflow.snippet.SnippetParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +48,7 @@ import com.google.common.collect.Lists;
  * @author Christophe Friederich
  * @since 2.0
  * @param <T>
- *            type of inherrit context object.
+ *                type of inherrit context object.
  */
 public abstract class Context<T extends Context<?>> extends Component {
 
@@ -83,7 +86,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Build a context depending of current type of page.
      *
      * @param config
-     *            a config (can not be {@code null}).
+     *                   a config (can not be {@code null}).
      * @return Returns a new instance of {@link Context} depending of current page.
      */
     @Nonnull
@@ -141,9 +144,9 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Default constructor.
      *
      * @param config
-     *            a config (can not be {@code null}).
+     *                   a config (can not be {@code null}).
      * @param type
-     *            the type of context (can not be {@code null}).
+     *                   the type of context (can not be {@code null}).
      */
     public Context(@Nonnull final ISkinConfig config, @Nonnull final ContextType type) {
         requireNonNull(config);
@@ -162,7 +165,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Allows to initialize the context.
      *
      * @param config
-     *            a config (can not be {@code null}).
+     *                   a config (can not be {@code null}).
      */
     protected void initialize(@Nonnull final ISkinConfig config) {
         // enable AnchorJS
@@ -175,7 +178,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Allows to execute action before rendering of component.
      *
      * @param skinConfig
-     *            a config (can <b>not</b> be {@code null}).
+     *                       a config (can <b>not</b> be {@code null}).
      * @return Returns the {@link String} representing the transformed body content.
      * @since 2.1
      */
@@ -220,6 +223,11 @@ public abstract class Context<T extends Context<?>> extends Component {
         return super.onPreRender(skinConfig, content);
     }
 
+    public String renderSnippets(final ISkinConfig skinConfig, final String bodyContent) throws IOException {
+        final SnippetContext snippetContext = new SnippetParser().parse(bodyContent);
+        return snippetContext.html();
+    }
+
     /**
      * @return Returns the {@link Navbar}.
      */
@@ -245,7 +253,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Sets the type of context.
      *
      * @param type
-     *            the of context.
+     *                 the of context.
      * @return Returns the fluent instance context.
      */
     protected T withType(final ContextType type) {

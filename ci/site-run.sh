@@ -24,6 +24,9 @@ source ${dir}/setenv.sh
 
 # default maven command
 maven_cmd="mvn"
+maven_profiles=""
+maven_args=""
+
 # store current arguments
 args="$@"
 
@@ -36,6 +39,11 @@ case $i in
     ;;
     -w|--wrapper)
     maven_cmd="${ROOT_PATH}/mvnw"
+    shift
+    ;;
+    -s|--skip-tests)
+    maven_profiles="$( add_mvn_profile "${maven_profiles}" "skipTests" )"
+    maven_args="${maven_args} -Dmaven.javadoc.skip=true"
     shift
     ;;
     *)

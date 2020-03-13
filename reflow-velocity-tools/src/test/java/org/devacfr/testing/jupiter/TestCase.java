@@ -15,7 +15,6 @@
  */
 package org.devacfr.testing.jupiter;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Function;
@@ -62,7 +61,7 @@ public class TestCase extends Assertions {
      * Gets the file system path representation of this test class.
      *
      * @param testClass
-     *                      test class to use.
+     *            test class to use.
      * @return Returns {@code String} representing the file system location path of this test class.
      */
     @Nonnull
@@ -97,7 +96,7 @@ public class TestCase extends Assertions {
 
     /**
      * @param extension
-     *                      the extension file.
+     *            the extension file.
      */
     public void verify(final String extension) {
         Approvals
@@ -111,7 +110,7 @@ public class TestCase extends Assertions {
     /**
      * @param transform
      * @param extension
-     *                      the extension file.
+     *            the extension file.
      */
     public void verify(final Function<String, String> transform, @Nullable final String extension) {
         Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, extension);
@@ -119,9 +118,9 @@ public class TestCase extends Assertions {
 
     /**
      * @param actual
-     *                      the actual value to test.
+     *            the actual value to test.
      * @param extension
-     *                      the extension file.
+     *            the extension file.
      */
     public void verify(@Nullable final String actual, @Nullable final String extension) {
         Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actual, extension);
@@ -129,9 +128,9 @@ public class TestCase extends Assertions {
 
     /**
      * @param actualFile
-     *                       the actual value stored in file to test.
+     *            the actual value stored in file to test.
      * @param extension
-     *                       the extension file.
+     *            the extension file.
      */
     public void verify(@Nonnull final Path actualFile, @Nullable final String extension) {
         Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), actualFile, extension);

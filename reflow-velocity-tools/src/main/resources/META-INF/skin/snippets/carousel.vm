@@ -1,0 +1,61 @@
+##
+## Copyright 2012-2020 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#**
+ * Render carousel snippet
+ *
+ *#
+<div id="${snippet.id}" class="carousel slide #if( ${snippet.cssClass} )${snippet.cssClass}#end #if( ${snippet.crossfade} )carousel-fade#end" data-ride="carousel">
+#*  *##if( ${snippet.withIndicators} )##
+#*  *##set($index = 0)##
+    <ol class="carousel-indicators">
+#*      *##foreach ( $slide in ${snippet.slides} )##
+        <li data-target="#${snippet.id}" data-slide-to="$index" class="#if( $index==0 )active#end"></li>
+#*          *##set( $index = $index + 1)##
+#*      *##end##
+    </ol>
+#*  *##end##
+  <div class="carousel-inner">
+#*  *##set ( $activeClass = 'active' )##
+#*  *##foreach( $slide in ${snippet.slides})##
+    <div class="carousel-item $activeClass #if( ${slide.cssClass} )${slide.cssClass}#end" #if( ${slide.interval} )data-interval="${slide.interval}"#end >
+#*      *##if( ${slide.image})
+#*          *##if( ${slide.image.html})
+        ${slide.image.html}
+#*          *##else
+        <img src="${slide.image.src}" #if( ${slide.image.cssClass} )class="${slide.image.cssClass}"#end #if( ${slide.image.alt} )alt="${slide.image.alt}"#end>
+#*          *##end
+#*      *##end
+#*      *##if( ${slide.caption} && ${slide.caption.html})
+        <div class="carousel-caption d-none d-md-block #if( ${slide.caption.cssClass} )${slide.caption.cssClass}#end">
+            ${slide.caption.html}
+        </div>
+#*      *##end
+    </div>
+#*      *##set ( $activeClass = '' )##
+#*  *##end##
+  </div>
+#*  *##if( ${snippet.withControls} )##
+  <a class="carousel-control-prev" href="#${snippet.id}" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#${snippet.id}" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+#*  *##end##
+</div>
+

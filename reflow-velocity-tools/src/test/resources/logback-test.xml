@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <configuration scan="true">
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -13,7 +13,7 @@
     <resetJUL>true</resetJUL>
   </contextListener>
 
-  <root level="WARN">
+  <root level="INFO">
     <appender-ref ref="CONSOLE" />
   </root>
 

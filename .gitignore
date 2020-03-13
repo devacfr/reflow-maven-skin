@@ -4,6 +4,7 @@
 Thumbs.db
 .cache
 .classpath
+.factorypath
 .project
 .settings
 .tmproj

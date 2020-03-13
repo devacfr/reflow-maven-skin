@@ -126,6 +126,7 @@
     <jqueryVersion>3.4.1</jqueryVersion>
     <fontawesomeVersion>5.12.1</fontawesomeVersion>
     <popperVersion>1.16.0</popperVersion>
+    <velocity.version>1.7</velocity.version>
 
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->

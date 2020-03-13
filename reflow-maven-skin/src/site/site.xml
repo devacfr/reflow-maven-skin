@@ -199,6 +199,9 @@
               <item name="Body Layout" href="body-layout.html" />
               <item name="Section Layout" href="section-layout.html" />
             </item>
+            <item name="Snippets">
+              <item name="Carousel" href="snippets/carousel.html" />
+            </item>
             <item name="Components">
               <item name="Overview" href="components/components.html" />
               <item name="Table of Contents" href="components/toc.html" />
