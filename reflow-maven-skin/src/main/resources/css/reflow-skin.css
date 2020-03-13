@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-body {
-    position: relative;
-}
 
 /* Hack the sticky header */
 .main-body h2[id],
@@ -579,11 +576,6 @@ h3 code {
     }
 }
 
-#m-doc-frame {
-    /* for anchorJs */
-    padding-left: 40px;
-    height: 100%;
-}
 
 /*--------------------------------------------------
  * breadcrumb
