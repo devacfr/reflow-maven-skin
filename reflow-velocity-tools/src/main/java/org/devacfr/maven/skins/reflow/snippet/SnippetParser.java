@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.devacfr.maven.skins.reflow.ISkinConfig;
-import org.devacfr.maven.skins.reflow.snippet.component.SnippetComponent;
 import org.devacfr.maven.skins.reflow.snippet.internal.ContainsOwnText;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Comment;

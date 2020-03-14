@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devacfr.maven.skins.reflow.snippet.component;
-
-import static java.util.Objects.requireNonNull;
+package org.devacfr.maven.skins.reflow.snippet;
 
 import javax.annotation.Nonnull;
 
-import org.devacfr.maven.skins.reflow.snippet.SnippetContext;
+import org.jsoup.nodes.Element;
 
 /**
  * @author Christophe Friederich
@@ -27,24 +25,35 @@ import org.devacfr.maven.skins.reflow.snippet.SnippetContext;
  */
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 
+    /** */
     private final String id;
 
-    /** */
-    private final String name;
+    public static SnippetComponent<?> createSnippet(@Nonnull final SnippetContext context,
+        @Nonnull final Element element) {
+        return new SnippetComponent<>(context, element.tagName()).addAttributes(element.attributes())
+                .withHtml(element.outerHtml());
+    }
 
+    /**
+     * @param context
+     * @param name
+     */
     public SnippetComponent(@Nonnull final SnippetContext context, @Nonnull final String name) {
-        this.name = requireNonNull(name);
+        super(name, false);
         this.id = context.generateSnippetIdentifier();
     }
 
+    /**
+     * @return
+     */
     public String getSnippetId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
+    /**
+     * @param context
+     * @return
+     */
     public String render(final SnippetContext context) {
         try {
             return context.render(this);

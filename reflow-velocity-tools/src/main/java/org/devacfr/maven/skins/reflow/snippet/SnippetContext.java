@@ -29,9 +29,6 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeSingleton;
-import org.devacfr.maven.skins.reflow.ISkinConfig;
-import org.devacfr.maven.skins.reflow.snippet.component.Carousel;
-import org.devacfr.maven.skins.reflow.snippet.component.SnippetComponent;
 import org.jsoup.nodes.Element;
 
 import com.google.common.collect.Lists;
@@ -75,45 +72,24 @@ public class SnippetContext {
     @Nullable
     public SnippetComponent<?> create(@Nonnull final Element element) {
         requireNonNull(element);
-        SnippetComponent<?> component = null;
-        switch (element.tagName()) {
-            case "carousel":
-                component = Carousel.createCarousel(this, element);
-            default:
-                break;
-        }
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(this, element);
         addComponent(component);
+        recurciveCreateComponent(element, component);
         return component;
     }
 
-    // public String render1(final SnippetComponent<?> component)
-    // throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void recurciveCreateComponent(@Nonnull final Element element, final Component<?> parent) {
+        element.children().forEach((child) -> {
+            final boolean isKnownHtmlTag = child.tag().isKnownTag();
+            final Component<?> component = Component.createComponent(child, parent, isKnownHtmlTag);
+            parent.addChild(component);
+            // is html tag?
+            if (!isKnownHtmlTag) {
+                recurciveCreateComponent(child, component);
+            }
 
-    // final String path = "META-INF/maven/snippets/snippets.vm";
-    // final Object velocityComponent = this.skinConfig.getContainer().lookup(VelocityComponent.ROLE);
-
-    // Method method;
-    // Object engine;
-    // try {
-    // method = velocityComponent.getClass().getDeclaredMethod("getEngine");
-    // engine = method.invoke(velocityComponent);
-    // method = engine.getClass().getDeclaredMethod("getTemplate", String.class);
-    // final Object template = method.invoke(engine, path);
-
-    // final ToolContext context = this.skinConfig.getVelocityContext();
-    // context.put("snippet", component);
-
-    // final StringWriter writer = new StringWriter();
-    // method = template.getClass().getDeclaredMethod("merge", Context.class, Writer.class);
-    // method.invoke(template, context, writer);
-    // return writer.toString();
-
-    // } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-    // | InvocationTargetException e) {
-    // throw new RuntimeException(e.getMessage(), e);
-    // }
-
-    // }
+        });
+    }
 
     public String render(final SnippetComponent<?> component) {
         final String path = "META-INF/skin/snippets/" + component.getName() + ".vm";

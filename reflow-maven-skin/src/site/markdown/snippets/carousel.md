@@ -55,13 +55,13 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
 {{% carousel id="carousel" withControls="false" withIndicators="false" %}}
 <!--
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
 {{% /carousel %}}
@@ -112,13 +112,13 @@ Adding in the previous and next controls:
 {{% carousel id="carousel" withControls="true" withIndicators="false" %}}
 <!--
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
 {{% /carousel %}}
@@ -169,13 +169,13 @@ You can also add the indicators to the carousel, alongside the controls, too.
 {{% carousel id="carousel" withControls="true" withIndicators="true" %}}
 <!--
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
 {{% /carousel %}}
@@ -197,7 +197,7 @@ Add captions to your slides easily with the `<slide-caption>` element within any
                 <text x="50%" y="50%" fill="#444" dy=".3em">First slide</text>
             </svg>
         </slide-image>
-        <slide-caption>
+        <slide-caption class="d-none d-md-block" >
           <h5>First slide label</h5>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </slide-caption>
@@ -211,7 +211,7 @@ Add captions to your slides easily with the `<slide-caption>` element within any
                 <text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text>
             </svg>
         </slide-image>
-        <slide-caption>
+        <slide-caption class="d-none d-md-block" >
           <h5>Second slide label</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </slide-caption>
@@ -225,7 +225,7 @@ Add captions to your slides easily with the `<slide-caption>` element within any
                 <text x="50%" y="50%" fill="#444" dy=".3em">Third slide</text>
             </svg>
         </slide-image>
-        <slide-caption>
+        <slide-caption class="d-none d-md-block" >
           <h5>Third slide label</h5>
           <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
         </slide-caption>
@@ -238,22 +238,22 @@ Add captions to your slides easily with the `<slide-caption>` element within any
 {{% carousel id="carousel" withControls="true" withIndicators="true" %}}
 <!--
   <slide>
-    <slide-image src="..." />
-    <slide-caption>
+    <slide-image src="..." class="d-block w-100" />
+    <slide-caption class="d-none d-md-block" >
       <h5>First slide label</h5>
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
     </slide-caption>  
   </slide>
   <slide>
-    <slide-image src="..." />
-    <slide-caption>
+    <slide-image src="..." class="d-block w-100" />
+    <slide-caption class="d-none d-md-block" >
       <h5>Second slide label</h5>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </slide-caption>
   </slide>
   <slide>
-    <slide-image src="..." />
-    <slide-caption>
+    <slide-image src="..." class="d-block w-100" />
+    <slide-caption class="d-none d-md-block" >
       <h5>Third slide label</h5>
       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
     </slide-caption>
@@ -307,13 +307,13 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
 {{% carousel id="carousel" withControls="true" withIndicators="false" crossfade="true" %}}
 <!--
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
   <slide>
-    <slide-image src="..." />
+    <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
 {{% /carousel %}}

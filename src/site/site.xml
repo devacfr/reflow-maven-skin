@@ -164,7 +164,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="$resourcePath/favicon-16x16.png">
         <link rel="manifest" href="$resourcePath/site.webmanifest">
         <link rel="mask-icon" href="$resourcePath/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="preload" as="image" href="$resourcePath/images/shahadat-rahman-unsplash.jpg">
+        <link rel="prefetch" as="image" href="$resourcePath/images/shahadat-rahman-unsplash.jpg">
         <meta name="apple-mobile-web-app-title" content="Reflow Skin">
         <meta name="application-name" content="Reflow Skin">
         <meta name="msapplication-TileColor" content="#da532c">
