@@ -28,46 +28,54 @@ import org.jsoup.internal.StringUtil;
  */
 public class Components extends ArrayList<Component<?>> {
 
-    /**
-     *
-     */
+    /** */
     private static final long serialVersionUID = 1L;
 
+    /** */
     private static final Components EMPTY = new Components();
 
+    /** */
     public static Components empty() {
         return EMPTY;
     }
 
+    /**
+    *
+    */
     public Components() {
     }
 
+    /**
+     * @param initialCapacity
+     */
     public Components(final int initialCapacity) {
         super(initialCapacity);
     }
 
+    /**
+     * @param components
+     */
     public Components(final Collection<Component<?>> components) {
         super(components);
     }
 
+    /**
+     * @param components
+     */
     public Components(final List<Component<?>> components) {
         super(components);
     }
 
+    /**
+     * @param components
+     */
     public Components(final Component<?>... components) {
         super(Arrays.asList(components));
     }
 
-    // public Components clone() {
-    // final Components clone = new Components(size());
-    //
-    // for (final Component<?> e : this) {
-    // clone.add(e.clone());
-    // }
-    //
-    // return clone;
-    // }
-
+    /**
+     * @return
+     */
     public String html() {
         final StringBuilder sb = StringUtil.borrowBuilder();
         for (final Component<?> component : this) {

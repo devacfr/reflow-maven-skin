@@ -19,6 +19,7 @@ package org.devacfr.maven.skins.reflow.snippet;
 import static java.util.Objects.requireNonNull;
 
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +31,8 @@ import org.apache.velocity.app.Velocity;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeSingleton;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
@@ -40,13 +43,26 @@ import com.google.common.collect.Lists;
 public class SnippetContext {
 
     /** */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
+
+    /** */
+    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("META-INF/skin/snippets", "src/site/snippets");
+
+    /** */
     private final List<SnippetComponent<?>> components = Lists.newArrayList();
 
     /** **/
     private String htmlSource;
 
-    public SnippetContext(@Nonnull final String htmlSource) {
-        this.htmlSource = requireNonNull(htmlSource);
+    /** */
+    private final List<String> snippetPaths = Lists.newArrayList(DEFAULT_PATHS);
+
+    public SnippetContext() {
+    }
+
+    public void reset() {
+        this.htmlSource = null;
+        this.components.clear();
     }
 
     public String generateSnippetIdentifier() {
@@ -59,6 +75,14 @@ public class SnippetContext {
 
     void addComponent(final SnippetComponent<?> component) {
         this.components.add(component);
+    }
+
+    void insertResourcePath(final String path, final int index) {
+        this.snippetPaths.add(index, path);
+    }
+
+    void addResourcePath(final String path) {
+        this.snippetPaths.add(path);
     }
 
     void setHtmlSource(final String htmlSource) {
@@ -92,17 +116,35 @@ public class SnippetContext {
     }
 
     public String render(final SnippetComponent<?> component) {
-        final String path = "META-INF/skin/snippets/" + component.getName() + ".vm";
+
+        final StringWriter writer = new StringWriter();
+        mergeTemplate(component, writer);
+
+        final String html = writer.toString();
+        return html;
+    }
+
+    protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
+        boolean found = false;
         final VelocityContext context = new VelocityContext();
         context.put("snippet", component);
 
-        final StringWriter writer = new StringWriter();
-        Velocity.mergeTemplate(path,
-            RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
-            context,
-            writer);
-        final String html = writer.toString();
-        return html;
+        for (final String path : this.snippetPaths) {
+
+            final String filePath = path + '/' + component.getName() + ".vm";
+            if (Velocity.resourceExists(filePath)) {
+                found = true;
+                Velocity.mergeTemplate(filePath,
+                    RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
+                    context,
+                    writer);
+            }
+
+        }
+        if (!found) {
+            LOGGER.warn("The snippet '{}' template doesn't exist", component.getName());
+        }
+
     }
 
 }

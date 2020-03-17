@@ -288,7 +288,9 @@ h3 {
     color: var(--danger);
 }
 
-
+/*
+ * carousel svg placeholder from bootstrap
+*/
 .bd-placeholder-img-lg {
     font-size: 3.5rem !important;
 }
@@ -300,4 +302,30 @@ h3 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+/*
+ * example panel
+*/
+.bd-example {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -15px 0;
+    border: solid #f8f9fa;
+    border-width: .2rem 0 0;
+}
+
+.bd-example::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+@media (min-width: 576px) {
+    .bd-example {
+        padding: 1.5rem;
+        margin-right: 0;
+        margin-left: 0;
+        border-width: .2rem;
+    }
 }

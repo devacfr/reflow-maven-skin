@@ -1,0 +1,92 @@
+##
+## Copyright 2012-2020 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#**
+ * Render image card
+ *
+ *#
+#macro( render_image )##
+#*  *##if( ${snippet.card-image})##
+#*      *##if( ${snippet.card-image.html})##
+            ${snippet.card-image.html}
+#*      *##else##
+    <img src="${snippet.card-image.src}"##
+#*          *# class="card-img-top#if( ${snippet.card-image.attrs['class']} ) ${snippet.card-image.attrs['class']}#end"
+#*          *# #if( ${snippet.card-image.alt} )alt="${snippet.card-image.alt}"#end>
+#*      *##end##
+#*  *##end##
+#end##
+#**
+ * Render header card
+ *
+ *#
+#macro( render_header )##
+#*  *##if( ${snippet.card-header} && ${snippet.card-header.html})##
+#*      *##if( ${snippet.card-header.level})##
+    <h${snippet.card-header.level} class="card-header#if( ${snippet.card-header.attrs['class']} ) ${snippet.card-header.attrs['class']}#end">
+        ${snippet.card-header.html}
+    </h${snippet.card-header.level}>
+#*      *##else##
+    <div class="card-header#if( ${snippet.card-header.attrs['class']} ) ${snippet.card-header.attrs['class']}#end">
+        ${snippet.card-header.html}
+    </div>
+#*      *##end##
+#*  *##end##
+#end##
+#**
+ * Render body card
+ *
+ *#
+#macro( render_body )##
+#*  *##if( ${snippet.card-body} && ${snippet.card-body.html})##
+    <div class="card-body#if( ${snippet.card-body.attrs['class']} ) ${snippet.card-body.attrs['class']}#end">
+        ${snippet.card-body.html}
+    </div>
+#*  *##end##
+#end##
+#**
+ * Render footer card
+ *
+ *#
+#macro( render_footer )##
+#*  *##if( ${snippet.card-footer} && ${snippet.card-footer.html})##
+    <div class="card-footer#if( ${snippet.card-footer.attrs['class']} ) ${snippet.card-footer.attrs['class']}#end">
+        ${snippet.card-footer.html}
+    </div>
+#*  *##end##
+#end##
+#**
+ * Render card snippet
+ *
+ *#
+<div class="card#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end" #if( ${snippet.style} )style="${snippet.style}"#end>
+#*  *##if( ${snippet.horizontal} == "true")##
+  <div class="row no-gutters">
+    <div class="col-md-4">
+#*      *##render_image()##
+    </div>
+    <div class="col-md-8">
+#*      *##render_body()##
+#*      *##render_footer()##
+    </div>
+  </div>
+#*  *##else
+#*      *##render_image()##
+#*      *##render_header()##
+#*      *##render_body()##
+#*      *##render_footer()##
+#*  *##end
+</div>
+

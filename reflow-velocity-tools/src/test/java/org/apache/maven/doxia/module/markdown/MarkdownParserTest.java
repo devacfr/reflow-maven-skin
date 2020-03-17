@@ -15,8 +15,6 @@
  */
 package org.apache.maven.doxia.module.markdown;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 

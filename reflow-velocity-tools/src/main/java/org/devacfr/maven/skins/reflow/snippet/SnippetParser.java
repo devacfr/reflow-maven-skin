@@ -16,23 +16,15 @@
 package org.devacfr.maven.skins.reflow.snippet;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-import org.devacfr.maven.skins.reflow.snippet.internal.ContainsOwnText;
+import org.devacfr.maven.skins.reflow.snippet.Processor.ShortcodeProcessor;
+import org.devacfr.maven.skins.reflow.snippet.Processor.WebComponentProcessor;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
-import org.jsoup.select.Collector;
 import org.jsoup.select.Elements;
-import org.jsoup.select.Evaluator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author Christophe Friederich
@@ -41,116 +33,123 @@ import com.google.common.collect.Lists;
 public class SnippetParser {
 
     /** */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SnippetParser.class);
+    private final ComponentResolver resolver;
 
     /** */
-    private final Pattern startPattern = Pattern.compile("\\{\\{% ([^\\\\/]\\w*)(\\s?(?:.*)) %\\}\\}",
-        Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
+    private final ArrayList<ComponentToken> stack;
 
     /** */
-    private final Evaluator startEvaluator = new ContainsOwnText(startPattern, 0);
+    private Iterator<Element> it;
+
+    /** */
+    private Processor state = null;
+
+    /** */
+    private final WebComponentProcessor webComponentProcessor;
+
+    /** */
+    private final ShortcodeProcessor shortcodeProcessor;
+
+    /** */
+    private final SnippetContext snippetContext;
+
+    private ComponentToken currentToken;
+
+    public SnippetParser() {
+        resolver = new ComponentResolver();
+        stack = new ArrayList<>(32);
+        snippetContext = new SnippetContext();
+        webComponentProcessor = new WebComponentProcessor(this);
+        shortcodeProcessor = new ShortcodeProcessor(this);
+    }
+
+    public SnippetParser insertResourcePath(final String path, final int index) {
+        snippetContext.insertResourcePath(path, index);
+        return this;
+    }
+
+    public SnippetParser addResourcePath(final String path) {
+        snippetContext.addResourcePath(path);
+        return this;
+    }
 
     public SnippetContext parse(final String htmlSource) throws IOException {
-        final SnippetContext contextSnippet = new SnippetContext(htmlSource);
-
+        snippetContext.reset();
         // find all snippet start
         final Document doc = Jsoup.parse(htmlSource);
-        final Elements elements = Collector.collect(this.startEvaluator, doc);
 
-        for (final Element element : elements) {
-            final String tagName = extractTag(element, startPattern);
+        final Elements elements = resolver.collect(doc);
 
-            final Element parent = element.parent();
-            final Pattern endPattern = Pattern.compile("\\{\\{% \\/" + tagName + " %\\}\\}",
-                Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
-
-            // find end tag in same depth
-            final Element endElement = Collector.findFirst(new ContainsOwnText(endPattern, element.siblingIndex()),
-                parent);
-            if (endElement == null) {
-                throw new RuntimeException("End snippet should be on same depth");
+        for (it = elements.iterator(); it.hasNext();) {
+            try {
+                parse();
+            } catch (final Exception ex) {
+                throw new RuntimeException("error on parse token " + currentToken, ex);
             }
-
-            final Element componentElement = createCopyElementFrom(element, endElement);
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("snippet: {}", componentElement);
-            }
-            final SnippetComponent<?> component = contextSnippet.create(componentElement.children().first());
-            renderingComponentToHtml(contextSnippet, component, element, endElement);
         }
-        contextSnippet.setHtmlSource(doc.html());
-        return contextSnippet;
+        snippetContext.setHtmlSource(doc.html());
+        return snippetContext;
     }
 
-    private Element createCopyElementFrom(final Element startElement, final Element endElement) {
-        final Element tmp = new Element("component");
-        final Node parent = startElement.parentNode();
-        boolean startCopy = false;
-        final StringBuilder html = new StringBuilder(convertToHtml(startElement));
-        for (final Node n : parent.childNodes()) {
-            if (n.equals(endElement)) {
+    protected void parse() {
+        if (!it.hasNext()) {
+            throw new RuntimeException("EOF");
+        }
+        final Element element = it.next();
+        currentToken = resolver.create(element);
+
+        switch (currentToken.type()) {
+            case webComponent:
+                state = webComponentProcessor;
                 break;
-            }
-            if (startCopy) {
-                if (n instanceof Element) {
-                    html.append(((Element) n).text());
-                } else if (n instanceof Comment) {
-                    html.append(((Comment) n).getData());
-                }
-            }
-            if (n.equals(startElement)) {
-                startCopy = true;
-            }
-        }
-        html.append(convertToHtml(endElement));
-        tmp.append(html.toString());
-        return tmp;
-
-    }
-
-    private void renderingComponentToHtml(final SnippetContext contextSnippet,
-        final SnippetComponent<?> component,
-        final Element startElement,
-        final Element endElement) {
-        final Element parent = startElement.parent();
-        final Element previousElement = startElement.previousElementSibling();
-        boolean startCopy = false;
-        final List<Node> nodesToRemove = Lists.newArrayList();
-        for (final Node n : parent.childNodes()) {
-
-            if (n.equals(startElement)) {
-                startCopy = true;
-            }
-            if (startCopy) {
-                nodesToRemove.add(n);
-            }
-            if (n.equals(endElement)) {
+            case shortcode:
+                state = shortcodeProcessor;
                 break;
-            }
+            default:
+                break;
         }
-        nodesToRemove.forEach((node) -> node.remove());
-        if (previousElement != null) {
-            previousElement.after(component.render(contextSnippet));
-        } else {
-            if (parent.children().first() != null) {
-                parent.children().first().before(component.render(contextSnippet));
-            } else {
-                parent.append(component.render(contextSnippet));
-            }
-        }
-
+        parse(currentToken);
+        currentToken = null;
     }
 
-    private String extractTag(final Element element, final Pattern pattern) {
-        final Matcher matcher = pattern.matcher(element.text());
-        if (matcher.matches()) {
-            return matcher.group(1);
-        }
-        throw new RuntimeException("no match");
+    protected void parse(final ComponentToken token) {
+        state.parse(token);
     }
 
-    private String convertToHtml(final Element element) {
-        return element.text().replace("{{% ", "<").replace(" %}}", ">").replaceAll("\\u201c|\\u201d", "\"");
+    protected ComponentToken currentToken() {
+        final int size = stack.size();
+        return size > 0 ? stack.get(size - 1) : null;
+    }
+
+    protected ComponentToken pop() {
+        final int size = stack.size();
+        return stack.remove(size - 1);
+    }
+
+    protected void push(final ComponentToken element) {
+        stack.add(element);
+    }
+
+    protected ArrayList<ComponentToken> getStack() {
+        return stack;
+    }
+
+    protected boolean isElementInQueue(final ComponentToken element) {
+        for (int pos = stack.size() - 1; pos >= 0; pos--) {
+            final ComponentToken next = stack.get(pos);
+            if (next == element) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected SnippetContext getSnippetContext() {
+        return snippetContext;
+    }
+
+    protected ComponentResolver getResolver() {
+        return resolver;
     }
 
 }

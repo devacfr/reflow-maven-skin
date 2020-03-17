@@ -23,6 +23,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Evaluator;
 
 /**
+ * JSoup {@link Evaluator} allowing to evaluate that an element matches the regex selector.
+ *
  * @author Christophe Friederich
  * @version 2.4
  */
@@ -34,23 +36,43 @@ public final class ContainsOwnText extends Evaluator {
     /** */
     private int fromSiblingIndex = 0;
 
+    /**
+     * Default constructor.
+     *
+     * @param regex
+     *            a regex pattern.
+     */
     public ContainsOwnText(@Nonnull final Pattern regex) {
         this(regex, 0);
     }
 
+    /**
+     * Default constructor.
+     *
+     * @param regex
+     *            a regex pattern.
+     * @param fromSiblingIndex
+     *            the sibling index from where begin to match.
+     */
     public ContainsOwnText(@Nonnull final Pattern regex, final int fromSiblingIndex) {
         this.searchPattern = regex;
         this.fromSiblingIndex = fromSiblingIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean matches(final Element root, final Element element) {
-        if (element.siblingIndex() >= fromSiblingIndex) {
+        if (fromSiblingIndex == -1 || element.siblingIndex() >= fromSiblingIndex) {
             return searchPattern.matcher(element.ownText()).matches();
         }
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return String.format(":containsOwn(%s)", searchPattern.toString());

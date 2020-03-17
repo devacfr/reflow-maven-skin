@@ -201,6 +201,7 @@
             </item>
             <item name="Snippets">
               <item name="Carousel" href="snippets/carousel.html" />
+              <item name="Card" href="snippets/card.html" />
             </item>
             <item name="Components">
               <item name="Overview" href="components/components.html" />

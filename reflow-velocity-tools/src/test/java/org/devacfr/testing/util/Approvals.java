@@ -19,14 +19,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.nio.file.Path;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.hamcrest.Matchers;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
+import org.hamcrest.TypeSafeMatcher;
 
+import com.cloudbees.diff.Diff;
+import com.cloudbees.diff.provider.BuiltInDiffProvider;
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import com.google.common.io.Resources;
@@ -45,13 +51,13 @@ public final class Approvals {
 
     /**
      * @param location
-     *                      path location of actual fil.
+     *            path location of actual fil.
      * @param testClass
-     *                      the executed test class.
+     *            the executed test class.
      * @param testName
-     *                      the testname
+     *            the testname
      * @param extension
-     *                      the extension file
+     *            the extension file
      * @return
      * @throws IOException
      */
@@ -66,13 +72,13 @@ public final class Approvals {
 
     /**
      * @param location
-     *                      path location of expected file.
+     *            path location of expected file.
      * @param testClass
-     *                      the executed test class.
+     *            the executed test class.
      * @param testName
-     *                      the testname.
+     *            the testname.
      * @param extension
-     *                      the extension file.
+     *            the extension file.
      * @return
      * @throws IOException
      */
@@ -94,15 +100,15 @@ public final class Approvals {
      * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
-     *                      path location of expected file.
+     *            path location of expected file.
      * @param testClass
-     *                      the executed test class.
+     *            the executed test class.
      * @param testName
-     *                      the test name.
+     *            the test name.
      * @param actual
-     *                      the actual value to test.
+     *            the actual value to test.
      * @param extension
-     *                      the extension file.
+     *            the extension file.
      */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
@@ -117,15 +123,15 @@ public final class Approvals {
      * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
-     *                      path location of expected file.
+     *            path location of expected file.
      * @param testClass
-     *                      the executed test class.
+     *            the executed test class.
      * @param testName
-     *                      the test name
+     *            the test name
      * @param transform
-     *                      transform function
+     *            transform function
      * @param extension
-     *                      the extension file.
+     *            the extension file.
      */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
@@ -137,22 +143,30 @@ public final class Approvals {
             actual = transform.apply(actual);
         }
         final String expected = getExpectedResource(location, testClass, testName, extension, null);
-        assertThat(actual, Matchers.equalToCompressingWhiteSpace(expected));
+
+        final Matcher<String> matcher = IsEqualCompressingWhiteSpace.equalToCompressingWhiteSpace(expected);
+        if (!matcher.matches(actual)) {
+            final Description description = new StringDescription();
+            matcher.describeMismatch(actual, description);
+
+            throw new AssertionError(description.toString());
+        }
+
     }
 
     /**
      * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
      * @param location
-     *                       path location of expected file.
+     *            path location of expected file.
      * @param testClass
-     *                       the executed test class.
+     *            the executed test class.
      * @param testName
-     *                       the testname
+     *            the testname
      * @param actualFile
-     *                       the actual value stored in file to test
+     *            the actual value stored in file to test
      * @param extension
-     *                       the extension file
+     *            the extension file
      */
     public static void verify(@Nonnull final Path location,
         @Nonnull final Class<?> testClass,
@@ -170,6 +184,58 @@ public final class Approvals {
         } catch (final IOException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
+    }
+
+    public static class IsEqualCompressingWhiteSpace extends TypeSafeMatcher<String> {
+
+        // TODO: Replace String with CharSequence to allow for easy interoperability between
+        // String, StringBuffer, StringBuilder, CharBuffer, etc (joe).
+
+        private final String string;
+
+        public IsEqualCompressingWhiteSpace(final String string) {
+            if (string == null) {
+                throw new IllegalArgumentException("Non-null value required");
+            }
+            this.string = string;
+        }
+
+        @Override
+        public boolean matchesSafely(final String item) {
+            return stripSpaces(string).equals(stripSpaces(item));
+        }
+
+        @Override
+        public void describeMismatchSafely(final String item, final Description mismatchDescription) {
+            mismatchDescription.appendText(getInternalDiff(item, string));
+        }
+
+        @Override
+        public void describeTo(final Description description) {
+            description.appendText("a string equal to ").appendValue(string).appendText(" compressing white space");
+        }
+
+        public String stripSpaces(final String toBeStripped) {
+            return toBeStripped.replaceAll("\\s+", " ").trim();
+        }
+
+        public static Matcher<String> equalToCompressingWhiteSpace(final String expectedString) {
+            return new IsEqualCompressingWhiteSpace(expectedString);
+        }
+
+        private String getInternalDiff(final String expected, final String actual) {
+            final BuiltInDiffProvider provider = new BuiltInDiffProvider();
+            Diff diffs = null;
+            try {
+                diffs = provider.computeDiff(new StringReader(actual), new StringReader(expected));
+                return diffs
+                        .toUnifiedDiff("actual", "expected", new StringReader(actual), new StringReader(expected), 3);
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+
+        }
+
     }
 
 }

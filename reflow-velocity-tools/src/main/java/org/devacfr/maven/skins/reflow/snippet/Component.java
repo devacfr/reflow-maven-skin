@@ -30,6 +30,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
 /**
+ * Base of Snippet component.
+ *
  * @author Christophe Friederich
  * @version 2.4
  */
@@ -41,6 +43,7 @@ public class Component<T extends Component<T>> {
     /** */
     private String html;
 
+    /** */
     private final boolean isHtmlTag;
 
     /** */
@@ -49,8 +52,10 @@ public class Component<T extends Component<T>> {
     /** */
     private Component<?> parent;
 
+    /** */
     private final Components children = new Components();
 
+    /** */
     private final Map<String, Components> childrenMap = Maps.newHashMap();
 
     /**
@@ -66,7 +71,7 @@ public class Component<T extends Component<T>> {
         if (isKnownHtmlTag) {
             html = element.outerHtml();
         } else if (element.children().isEmpty()) {
-            element.html();
+            html = element.html();
         }
 
         return new Component<>(element.tagName(), isKnownHtmlTag).withParent(parent)
@@ -87,6 +92,13 @@ public class Component<T extends Component<T>> {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isHtml() {
+        return isHtmlTag;
     }
 
     /**
