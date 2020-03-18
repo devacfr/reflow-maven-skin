@@ -17,6 +17,7 @@ package org.devacfr.maven.skins.reflow.snippet;
 
 import javax.annotation.Nonnull;
 
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
 
 /**
@@ -29,9 +30,16 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     private final String id;
 
     public static SnippetComponent<?> createSnippet(@Nonnull final SnippetContext context,
-        @Nonnull final Element element) {
-        return new SnippetComponent<>(context, element.tagName()).addAttributes(element.attributes())
-                .withHtml(element.outerHtml());
+        @Nonnull final Element element,
+        final Type type) {
+        if (Type.webComponent.equals(type)) {
+            return new SnippetComponent<>(context, element.tagName()).addAttributes(element.attributes())
+                    .withHtml(element.outerHtml());
+        } else if (Type.shortcode.equals(type)) {
+            return new SnippetComponent<>(context, element.tagName()).addAttributes(element.attributes())
+                    .withHtml(element.ownText());
+        }
+        return null;
     }
 
     /**

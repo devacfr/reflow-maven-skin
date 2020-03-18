@@ -15,8 +15,9 @@
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.jsoup.nodes.Element;
+
+import com.google.common.base.MoreObjects;
 
 /**
  * @author Christophe Friederich
@@ -89,7 +90,7 @@ public class ComponentToken {
         return tag;
     }
 
-    public boolean isClosedTagOf(final ComponentToken startElement) {
+    public boolean isCloseTagOf(final ComponentToken startElement) {
         return name.equals(startElement.name) && type.equals(startElement.type) && Tag.start.equals(startElement.tag)
                 && Tag.end.equals(tag);
     }
@@ -99,7 +100,7 @@ public class ComponentToken {
      */
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return MoreObjects.toStringHelper(this).add("name", name).add("type", type).add("tag", tag).toString();
     }
 
 }

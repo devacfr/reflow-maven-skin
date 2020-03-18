@@ -1,4 +1,8 @@
-# Carousel Snippet
+# Carousel
+
+{{< badge color="info" >}}WEB COMPONENT{{< /badge >}}
+
+[Base on Bootstrap Carousel page](https://getbootstrap.com/docs/4.4/components/carousel/)
 
 A slideshow component for cycling through elements—images or slides of text—like a carousel.
 

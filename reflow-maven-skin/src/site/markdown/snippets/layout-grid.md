@@ -1,0 +1,75 @@
+# Layout Grid system
+
+Bootstrap’s grid system uses a series of containers, rows, and columns to layout and align content. Below is an example and an in-depth look at how the grid comes together.
+
+{{< example  type="row" >}}
+
+{{< layout class="container" >}}
+
+{{< row >}}
+
+{{< column class="col-sm" >}}
+
+One of three columns
+
+{{< /column >}}
+
+{{< column class="col-sm" >}}
+
+One of three columns
+
+{{< /column >}}
+
+{{< column class="col-sm" >}}
+
+One of three columns
+
+{{< /column >}}
+
+{{< /row >}}
+
+{{< /layout >}}
+
+{{< /example >}}
+
+```xml
+{{< layout class="container" >}}
+
+{{< row >}}
+
+{{< column class="col-sm" >}}
+
+One of three columns
+
+{{< /column >}}
+
+{{< column class="col-sm" >}}
+
+One of three columns
+
+{{< /column >}}
+
+{{< column class="col-sm" >}}
+
+One of three columns
+
+{{< /column >}}
+
+{{< /row >}}
+
+{{< /layout >}}
+```
+
+## Usage
+
+### Layout Shortcode
+
+{{< badge color="info" >}}SHORTCODE{{< /badge >}}
+
+### Row Shortcode
+
+{{< badge color="info" >}}SHORTCODE{{< /badge >}}
+
+### Column Shortcode
+
+{{< badge color="info" >}}SHORTCODE{{< /badge >}}

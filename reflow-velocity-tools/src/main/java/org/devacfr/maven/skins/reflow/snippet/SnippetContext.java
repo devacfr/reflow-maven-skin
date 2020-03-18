@@ -30,6 +30,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeSingleton;
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +47,7 @@ public class SnippetContext {
     private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
 
     /** */
-    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("META-INF/skin/snippets", "src/site/snippets");
+    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/snippets", "META-INF/skin/snippets");
 
     /** */
     private final List<SnippetComponent<?>> components = Lists.newArrayList();
@@ -94,9 +95,9 @@ public class SnippetContext {
     }
 
     @Nullable
-    public SnippetComponent<?> create(@Nonnull final Element element) {
+    public SnippetComponent<?> create(@Nonnull final Element element, final Type type) {
         requireNonNull(element);
-        final SnippetComponent<?> component = SnippetComponent.createSnippet(this, element);
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(this, element, type);
         addComponent(component);
         recurciveCreateComponent(element, component);
         return component;

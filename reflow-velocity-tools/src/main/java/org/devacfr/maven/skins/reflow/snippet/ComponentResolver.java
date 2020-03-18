@@ -15,10 +15,13 @@
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
+import java.util.List;
 import java.util.Map;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.devacfr.maven.skins.reflow.snippet.internal.ContainsOwnText;
@@ -29,6 +32,7 @@ import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
@@ -41,7 +45,7 @@ public class ComponentResolver {
 
     /** **/
     private static final Pattern RESOLVER_PATTERN = Pattern.compile(
-        "\\{\\{(<|%) (\\/?)(\\w*)(\\/?)(?:\\s+(.*))(>|%)\\}\\}",
+        "\\{\\{(<|%) (\\/?)([a-zA-Z\\-_]*)(\\/?)(?:\\s+([^>%]*))(>|%)\\}\\}",
         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
     private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=\"(\\w*)\"\\s?",
@@ -67,6 +71,33 @@ public class ComponentResolver {
         return Collector.collect(evaluator, document);
     }
 
+    public Document normalize(final Document document) {
+        final Elements elements = collect(document);
+
+        elements.forEach((element) -> {
+            String text = StringEscapeUtils.unescapeHtml(element.html());
+            final Matcher matcher = RESOLVER_PATTERN.matcher(text);
+
+            final List<MatchResult> results = Lists.newArrayList();
+
+            while (matcher.find()) {
+                results.add(0, matcher.toMatchResult());
+            }
+            if (results.size() > 1) {
+                MatchResult matchResult = null;
+                for (int i = 0; i < results.size(); i++) {
+                    matchResult = results.get(i);
+                    final String snippet = text.substring(matchResult.start(), matchResult.end());
+                    text = text.substring(0, matchResult.start()) + "<span>" + StringEscapeUtils.escapeHtml(snippet)
+                            + "</span>" + text.substring(matchResult.end());
+                }
+                element.html(text);
+
+            }
+        });
+        return document;
+    }
+
     /**
      * Create a {@link ComponentToken} corresponding to the element.
      *
@@ -78,22 +109,25 @@ public class ComponentResolver {
         final Matcher matcher = RESOLVER_PATTERN.matcher(element.ownText());
 
         if (matcher.matches()) {
-            if (!Strings.isNullOrEmpty(matcher.group(2)) && !Strings.isNullOrEmpty(matcher.group(4))) {
-                // can not have same time empty and end identifier.
-                throw new RuntimeException("malformed component");
-            }
-
-            final Type type = "<".equals(matcher.group(1)) ? Type.shortcode : Type.webComponent;
-            Tag tag = Tag.start;
-            if ("/".equals(matcher.group(2))) {
-                tag = Tag.end;
-            } else if ("/".equals(matcher.group(4))) {
-                tag = Tag.empty;
-            }
-
-            return new ComponentToken(element, matcher.group(3), tag, type);
+            return createToken(element, matcher);
         }
         return null;
+    }
+
+    private ComponentToken createToken(final Element element, final Matcher matcher) {
+        if (!Strings.isNullOrEmpty(matcher.group(2)) && !Strings.isNullOrEmpty(matcher.group(4))) {
+            // can not have same time empty and end identifier.
+            throw new RuntimeException("malformed component");
+        }
+        final Type type = "<".equals(matcher.group(1)) ? Type.shortcode : Type.webComponent;
+        Tag tag = Tag.start;
+        if ("/".equals(matcher.group(2))) {
+            tag = Tag.end;
+        } else if ("/".equals(matcher.group(4))) {
+            tag = Tag.empty;
+        }
+
+        return new ComponentToken(element, matcher.group(3), tag, type);
     }
 
     protected static Map<String, String> extractAttributes(final String text) {

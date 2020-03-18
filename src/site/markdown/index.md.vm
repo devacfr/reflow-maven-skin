@@ -62,7 +62,9 @@
                     readability on small screens.</p>
                 <p class="text-center">
                     <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                        href="$resourcePath/reflow-maven-skin/reflow-documentation.html#layouts.html">Read more »</a>
+                        href="$resourcePath/reflow-maven-skin/reflow-documentation.html#layouts.html">Read more
+                        <!-- MACRO{snippet|file=src/site/svg/angle-double-right.svg|verbatim=false|ignoreDownloadError=false} -->
+                    </a>
                 </p>
             </div>
         </div>
@@ -102,7 +104,9 @@
                 </div>
                 <div class="card-footer border-0 bg-transparent text-center">
                     <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                        href="reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration">Read more »</a>
+                        href="reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration">Read more
+                        <!-- MACRO{snippet|file=src/site/svg/angle-double-right.svg|verbatim=false|ignoreDownloadError=false} -->
+                        </a>
                 </div>
             </div>
             <div class="card border-0">
@@ -139,7 +143,9 @@
                 </div>
                 <div class="card-footer border-0 bg-transparent text-center">
                     <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                        href="$resourcePath/reflow-maven-skin/reflow-documentation.html#themes-index">Browse theme »</a>
+                        href="$resourcePath/reflow-maven-skin/reflow-documentation.html#themes-index">Browse theme
+                        <!-- MACRO{snippet|file=src/site/svg/angle-double-right.svg|verbatim=false|ignoreDownloadError=false} -->
+                        </a>
                 </div>
             </div>
             <div class="card border-0">
@@ -160,7 +166,9 @@
                 </div>
                 <div class="card-footer border-0 bg-transparent text-center">
                     <a class="btn btn-outline-primary btn-lg mb-2 mr-2 ml-2 pill-btn"
-                        href="$resourcePath/development-documentation.html#dev-contribute">Contribute »</a>
+                        href="$resourcePath/development-documentation.html#dev-contribute">Contribute
+                        <!-- MACRO{snippet|file=src/site/svg/angle-double-right.svg|verbatim=false|ignoreDownloadError=false} -->
+                    </a>
                 </div>
             </div>
         </div>

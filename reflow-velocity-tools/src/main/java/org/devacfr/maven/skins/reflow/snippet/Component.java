@@ -83,7 +83,7 @@ public class Component<T extends Component<T>> {
      * @param name
      */
     public Component(@Nonnull final String name, final boolean isHtmlTag) {
-        this.name = requireNonNull(name);
+        this.name = requireNonNull(name.toLowerCase());
         this.isHtmlTag = isHtmlTag;
     }
 
@@ -97,7 +97,7 @@ public class Component<T extends Component<T>> {
     /**
      * @return
      */
-    public boolean isHtml() {
+    public boolean isHtmlTag() {
         return isHtmlTag;
     }
 
@@ -234,7 +234,7 @@ public class Component<T extends Component<T>> {
     }
 
     public T addChild(final Component<?> component) {
-        final String key = component.getName().toLowerCase();
+        final String key = component.getName();
         Components value = null;
         if (!this.childrenMap.containsKey(key)) {
             value = new Components();

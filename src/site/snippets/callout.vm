@@ -14,15 +14,20 @@
 ## limitations under the License.
 ##
 #**
- * Render column snippet
+ * Render callout snippet
  *
  *#
-#*  *##set( $class = "col")
-#*  *##if( ${snippet.attrs['class']})
-#*      *##set( $class = "${snippet.attrs['class']}")
-#*  *##end##
-#*  *##if( ${snippet.html})
-<div class="${class}">
+ #set( $color = "info" )##
+ #if( ${snippet.color} )##
+ #* *##set($color = ${snippet.color})
+ #end##
+  #set( $level = "4" )##
+ #if( ${snippet.level} )##
+ #* *##set($level = ${snippet.level})
+ #end##
+<div class="bd-callout bd-callout-$color">
+ #if( ${snippet.title} )##
+    <h${level} class="no-anchor">${snippet.title}</h${level}>
+ #end##
     ${snippet.html}
 </div>
-#*  *##end

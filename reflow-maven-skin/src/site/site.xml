@@ -200,6 +200,8 @@
               <item name="Section Layout" href="section-layout.html" />
             </item>
             <item name="Snippets">
+              <item name="Working with Snippet" href="snippets/snippet.html" />
+              <item name="Layout Grid" href="snippets/layout-grid.html" />
               <item name="Carousel" href="snippets/carousel.html" />
               <item name="Card" href="snippets/card.html" />
             </item>

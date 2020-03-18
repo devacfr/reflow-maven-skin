@@ -65,8 +65,9 @@ public abstract class Processor {
             }
             case end: {
                 final ComponentToken startToken = parser.pop();
-                if (!token.isClosedTagOf(startToken)) {
-                    throw new RuntimeException("should be closed");
+                if (!token.isCloseTagOf(startToken)) {
+                    throw new RuntimeException(
+                            "start token " + startToken + " should be closed, but next token is " + token);
                 }
                 render(createSnippetComponent(startToken, token), startToken.getElement(), token.getElement());
                 break;
@@ -88,7 +89,7 @@ public abstract class Processor {
      */
     public void render(final SnippetComponent<?> component, final Element startElement, final Element endElement) {
         final Element parent = startElement.parent();
-        final Element previousElement = startElement.previousElementSibling();
+        final Node previousElement = startElement.previousSibling();
         final SnippetContext snippetContext = parser.getSnippetContext();
         boolean startCopy = false;
         final List<Node> nodesToRemove = Lists.newArrayList();
@@ -178,7 +179,7 @@ public abstract class Processor {
         final ComponentToken endToken) {
         final SnippetContext snippetContext = parser.getSnippetContext();
         final Element componentElement = convertToHtml(startToken, endToken);
-        return snippetContext.create(componentElement);
+        return snippetContext.create(componentElement, startToken.type());
     }
 
     /**

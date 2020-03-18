@@ -4,9 +4,9 @@
 </head>
 
 <body>
-    <h2>card example</h2>
-    <p>{{% card style="width: 18rem;" %}}</p>
-<!--
+  <h2>card example</h2>
+  <p>{{% card style="width: 18rem;" %}}</p>
+  <!--
   <card-image src="..." alt="..." />
   <card-body>
     <h5 class="card-title">Card title</h5>
@@ -14,15 +14,37 @@
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-    <p>{{% /card %}}</p>
-    <h2>Card Body</h2>
-    <p>{{% card style="width: 18rem;" %}}<p>
-<!--
+  <p>{{% /card %}}</p>
+  <h2>Card Body</h2>
+  <p>{{% card style="width: 18rem;" %}}
+  <p>
+    <!--
   <card-body>
     This is some text within a card body.
   </card-body>
 -->
-    <p>{{% /card %}}</p>
+  <p>{{% /card %}}</p>
+  <h2>Card group</h2>
+  <p>{{< card-group >}}</p>
+  <p>
+  <p>{{% card style="width: 18rem;" %}}
+  <p>
+    <!--
+  <card-body>
+    This is some text within a card body.
+  </card-body>
+-->
+  <p>{{% /card %}}</p>
+  <p>{{% card style="width: 18rem;" %}}
+  <p>
+    <!--
+  <card-body>
+    This is some text within a card body.
+  </card-body>
+-->
+  <p>{{% /card %}}</p>
+  <p>{{< /card-group >}}
+  <p>
 </body>
 
 </html>

@@ -41,6 +41,8 @@ To get started and see how the skin looks by default, check out [reflow-maven-sk
 
 ## News
 
+### Release 2.3.0
+
 Reflow Maven skin 2.3.0 is officially out :tada:.
 
 The header component can now be displayed in 3 different ways:

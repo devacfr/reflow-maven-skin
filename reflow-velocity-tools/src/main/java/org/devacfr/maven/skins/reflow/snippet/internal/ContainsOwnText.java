@@ -64,8 +64,13 @@ public final class ContainsOwnText extends Evaluator {
      */
     @Override
     public boolean matches(final Element root, final Element element) {
+        // exclude if in <pre> element, allowing highlight component in documentation
+        if ("pre".equals(element.tagName()) || "code".equals(element.tagName())
+                || element.hasParent() && "pre".equals(element.parent().tagName())) {
+            return false;
+        }
         if (fromSiblingIndex == -1 || element.siblingIndex() >= fromSiblingIndex) {
-            return searchPattern.matcher(element.ownText()).matches();
+            return searchPattern.matcher(element.ownText()).find();
         }
         return false;
     }

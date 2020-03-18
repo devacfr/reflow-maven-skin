@@ -17,6 +17,10 @@
  * Render example snippet
  *
  *#
-<div class="bd-example">
+#*  *##set( $class = "bd-example")
+#*  *##if( ${snippet.attrs['type']} == "row")
+#*      *##set( $class = "bd-example-row")
+#*  *##end##
+<div class="${class}">
     ${snippet.html}
 </div>

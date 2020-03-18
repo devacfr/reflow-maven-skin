@@ -23,7 +23,7 @@
             ${snippet.card-image.html}
 #*      *##else##
     <img src="${snippet.card-image.src}"##
-#*          *# class="card-img-top#if( ${snippet.card-image.attrs['class']} ) ${snippet.card-image.attrs['class']}#end"
+#*          *# class="card-img-${caps}#if( ${snippet.card-image.attrs['class']} ) ${snippet.card-image.attrs['class']}#end"
 #*          *# #if( ${snippet.card-image.alt} )alt="${snippet.card-image.alt}"#end>
 #*      *##end##
 #*  *##end##
@@ -50,8 +50,12 @@
  *
  *#
 #macro( render_body )##
+#*  *##set( $class = "card-body")
+#*  *##if( ${snippet.attrs['img-overlay']} == "true")
+#*      *##set( $class = "card-img-overlay")
+#*  *##end##
 #*  *##if( ${snippet.card-body} && ${snippet.card-body.html})##
-    <div class="card-body#if( ${snippet.card-body.attrs['class']} ) ${snippet.card-body.attrs['class']}#end">
+    <div class="${class}#if( ${snippet.card-body.attrs['class']} ) ${snippet.card-body.attrs['class']}#end">
         ${snippet.card-body.html}
     </div>
 #*  *##end##
@@ -71,6 +75,10 @@
  * Render card snippet
  *
  *#
+#*  *##set( $caps = "top")
+#*  *##if( ${snippet.attrs['caps']} == "bottom")
+#*      *##set( $caps = "bottom")
+#*  *##end##
 <div class="card#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end" #if( ${snippet.style} )style="${snippet.style}"#end>
 #*  *##if( ${snippet.horizontal} == "true")##
   <div class="row no-gutters">
@@ -83,9 +91,14 @@
     </div>
   </div>
 #*  *##else
-#*      *##render_image()##
 #*      *##render_header()##
+#*      *##if( $caps == "top")
+#*          *##render_image()##
+#*      *##end
 #*      *##render_body()##
+#*      *##if( $caps == "bottom")
+#*          *##render_image()##
+#*      *##end
 #*      *##render_footer()##
 #*  *##end
 </div>

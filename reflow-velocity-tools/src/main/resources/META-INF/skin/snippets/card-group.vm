@@ -14,15 +14,17 @@
 ## limitations under the License.
 ##
 #**
- * Render column snippet
+ * Render card group
  *
  *#
-#*  *##set( $class = "col")
-#*  *##if( ${snippet.attrs['class']})
-#*      *##set( $class = "${snippet.attrs['class']}")
+#*  *##set( $class = "card-group")
+#*  *##if( ${snippet.attrs['type']} == "deck")
+#*      *##set( $class = "card-deck")
+#*  *##elseif( ${snippet.attrs['type']} == "columns")
+#*      *##set( $class = "card-columns")
 #*  *##end##
-#*  *##if( ${snippet.html})
-<div class="${class}">
+ #*  *##if( ${snippet.html})
+<div class="${class}#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
     ${snippet.html}
-</div>
+</div>   
 #*  *##end

@@ -76,7 +76,7 @@ public class SnippetParser {
     public SnippetContext parse(final String htmlSource) throws IOException {
         snippetContext.reset();
         // find all snippet start
-        final Document doc = Jsoup.parse(htmlSource);
+        final Document doc = resolver.normalize(Jsoup.parse(htmlSource));
 
         final Elements elements = resolver.collect(doc);
 
@@ -97,7 +97,9 @@ public class SnippetParser {
         }
         final Element element = it.next();
         currentToken = resolver.create(element);
-
+        if (currentToken == null) {
+            throw new RuntimeException("unknown component: " + element);
+        }
         switch (currentToken.type()) {
             case webComponent:
                 state = webComponentProcessor;

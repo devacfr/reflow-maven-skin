@@ -14,15 +14,11 @@
 ## limitations under the License.
 ##
 #**
- * Render column snippet
+ * Render example snippet
  *
  *#
-#*  *##set( $class = "col")
-#*  *##if( ${snippet.attrs['class']})
-#*      *##set( $class = "${snippet.attrs['class']}")
+#*  *##set( $color = "")
+#*  *##if( ${snippet.attrs['color']})
+#*      *##set( $color = "badge-${snippet.attrs['color']}")
 #*  *##end##
-#*  *##if( ${snippet.html})
-<div class="${class}">
-    ${snippet.html}
-</div>
-#*  *##end
+<span class="badge $color">${snippet.html}</span>

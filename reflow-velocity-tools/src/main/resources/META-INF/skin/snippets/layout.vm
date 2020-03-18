@@ -14,15 +14,11 @@
 ## limitations under the License.
 ##
 #**
- * Render column snippet
+ * Render layout snippet
  *
  *#
-#*  *##set( $class = "col")
-#*  *##if( ${snippet.attrs['class']})
-#*      *##set( $class = "${snippet.attrs['class']}")
-#*  *##end##
-#*  *##if( ${snippet.html})
-<div class="${class}">
+ #*  *##if( ${snippet.html})
+<div #if( ${snippet.attrs['class']} )class="${snippet.attrs['class']}"#end>
     ${snippet.html}
 </div>
 #*  *##end
