@@ -84,9 +84,7 @@ public class ComponentResolver {
                 results.add(0, matcher.toMatchResult());
             }
             if (results.size() > 1) {
-                MatchResult matchResult = null;
-                for (int i = 0; i < results.size(); i++) {
-                    matchResult = results.get(i);
+                for (final MatchResult matchResult : results) {
                     final String snippet = text.substring(matchResult.start(), matchResult.end());
                     text = text.substring(0, matchResult.start()) + "<span>" + StringEscapeUtils.escapeHtml(snippet)
                             + "</span>" + text.substring(matchResult.end());
