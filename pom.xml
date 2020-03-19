@@ -84,6 +84,7 @@
   </distributionManagement>
 
   <properties>
+    <reflow-current-version>2.3.0</reflow-current-version>
     <main.basedir>${session.executionRootDirectory}</main.basedir>
     <distribution.releaseRepository.id>ossrh</distribution.releaseRepository.id>
     <distribution.releaseRepositoryUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</distribution.releaseRepositoryUrl>

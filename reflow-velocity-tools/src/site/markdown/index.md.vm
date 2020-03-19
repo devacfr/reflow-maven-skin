@@ -9,15 +9,15 @@ Reflow skin provides custom tools for [Apache Velocity][velocity] to be used in 
 template. These objects are contributed to Velocity context and can be used within the template.
 Refer to [Javadoc][javadoc-all] for each tool for more information.
 
--   **[`SkinConfigTool`][javadoc-config]** (key **&#36;config**)
+- **[`SkinConfigTool`][javadoc-config]** (key **&#36;config**)
 
     Provides a uniform access to Maven site custom configuration options. Supports global and
     per-page configuration. See info on [_per-page configuration_][per-page-info] in Reflow skin
     for an example of features it brings.
--   **[`HtmlTool`][javadoc-html]** (key **&#36;htmlTool**)
+- **[`HtmlTool`][javadoc-html]** (key **&#36;htmlTool**)
 
     Provides methods to modify and query HTML text using [jsoup][jsoup] library.
--   **[`URITool`][javadoc-uri]** (key **&#36;uriTool**)
+- **[`URITool`][javadoc-uri]** (key **&#36;uriTool**)
 
     Provides URI utilities that expose URIs to the template.
 
@@ -29,7 +29,6 @@ Refer to [Javadoc][javadoc-all] for each tool for more information.
 [javadoc-config]: apidocs/org/devacfr/maven/skins/reflow/SkinConfigTool.html
 [javadoc-html]: apidocs/org/devacfr/maven/skins/reflow/HtmlTool.html
 [javadoc-uri]: apidocs/org/devacfr/maven/skins/reflow/URITool.html
-
 
 $h2 Usage
 
@@ -49,7 +48,7 @@ file:
         <dependency>
           <groupId>${project.groupId}</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>${project.version}</version>
+          <version>${reflow-current-version}</version>
         </dependency>
         ...
       </dependencies>

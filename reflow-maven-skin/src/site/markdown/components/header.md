@@ -42,10 +42,8 @@ Reflow renders following html:
             <div id="banner" class="row header--banner">
             <div class="col-md-12">
                 <div class="float-left header--banner--left bannerLeft">
-                    <a href=".">
-                        <img class="float-left m-2 img-fluid" src="./images/logo.svg" alt="Reflow skin" width="144" height="144">
-                        <h1><span class="color-highlight">Reflow</span> Maven Skin</h1>
-                    </a>
+                      <img class="float-left m-2 img-fluid" src="./images/logo.svg" alt="Reflow skin" width="144" height="144">
+                      <h1 class="d-inline-block"><span class="color-highlight">Reflow</span> Maven Skin</h1>
                     <p class="lead">Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</p>
                 </div>
                 <div class="float-right header--banner--right bannerRight">

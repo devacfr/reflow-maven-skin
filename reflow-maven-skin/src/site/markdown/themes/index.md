@@ -31,7 +31,7 @@ There are several options for the `<theme>` value:
     [BootstrapCDN Content Delivery Network][bootstrapcdn], which improves website loading
     by hosting the Bootstrap CSS and JavaScript files.
 
-- **`bootswatch-*`**<span id="theme-bootswatch"></span>
+- **`bootswatch-*`**
 
     One of free Bootstrap themes from [Bootswatch][bootswatch]. Append the lowercase theme name
     in the [Bootswatch gallery][bootswatch-gallery], e.g. `bootswatch-readable`.

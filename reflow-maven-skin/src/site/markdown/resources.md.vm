@@ -47,7 +47,7 @@ Note that when using `<localResources>`, you need to provide the necessary local
                 <artifactItem>
                     <groupId>${project.groupId}</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>${project.version}</version>
+                    <version>${reflow-current-version}</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
