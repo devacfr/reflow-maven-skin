@@ -79,7 +79,12 @@ public class ComponentResolver {
      * @return Returns the same normalised {@link Document}.
      */
     public Document normalize(final Document document) {
+
         final Elements elements = collect(document);
+        if (!elements.isEmpty()) {
+            final Elements sections = Collector.collect(new Evaluator.Tag("section"), document);
+            sections.forEach((section) -> section.unwrap());
+        }
 
         elements.forEach((element) -> {
             String text = StringEscapeUtils.unescapeHtml(element.html());

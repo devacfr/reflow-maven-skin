@@ -70,4 +70,20 @@ public class SnippetParserTest extends MockitoTestCase {
         }, "html");
     }
 
+    @Test
+    public void shouldRenderLayout() {
+        verify((htmlSource) -> {
+            SnippetContext contextSnippet;
+            try {
+                contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
+                        .parse(htmlSource);
+                final String html = contextSnippet.html();
+                return html;
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+
+        }, "html");
+    }
+
 }

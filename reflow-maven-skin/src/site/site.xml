@@ -63,19 +63,17 @@
       <pages>
         <themes-index>
           <toc>false</toc>
-          <sections>
-            <body />
-            <thumbs>3</thumbs>
-          </sections>
         </themes-index>
         <themes-bootswatch-cerulean>
           <theme>bootswatch-cerulean</theme>
+          <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
           <toc theme="light" background="light">top</toc>
           <navbar theme="dark" background="primary" filterMenu="inherit" />
           <footer theme="dark" background="dark" />
         </themes-bootswatch-cerulean>
         <themes-bootswatch-cosmo>
           <theme>bootswatch-cosmo</theme>
+          <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
           <toc theme="light" background="light">top</toc>
           <navbar theme="dark" background="primary" filterMenu="inherit" />
           <footer theme="dark" background="dark" />

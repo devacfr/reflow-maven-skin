@@ -1,0 +1,64 @@
+<html>
+
+<head>
+</head>
+
+<body>
+  <h2>layout example</h2>
+  <p>{{&lt; layout class=&#x201c;container highlight highlight-about&#x201d; &gt;}}</p>
+  <p>{{&lt; row &gt;}}</p>
+  <p>{{&lt; column class=&#x201c;col-sm-6&#x201d; &gt;}}</p>
+  <section>
+    <h2>
+      <a name="Reflow_Maven_skin"></a>
+      <span class="color-highlight">Reflow</span>
+      Maven skin
+    </h2>
+
+    <p>
+      is an
+      <a href="..." >Apache
+        Maven site</a>
+      skin built on
+      <a href="..." target="_blank" rel="noopener">Bootstrap</a>
+      . It allows various structural and stylistic customizations to create a modern-looking Maven-generated website.
+    </p>
+
+    <p>{{&lt; /column &gt;}}</p>
+    <p>{{% column class=&#x201c;col-sm-offset-1 col-sm-5 text-right&#x201d; %}}</p>
+
+    <div class="source">
+      <div class="source">
+        <pre>&lt;img src=&quot;./images/logo.svg&quot; height=&quot;80%&quot; width=&quot;80%&quot; /&gt;
+</pre>
+      </div>
+    </div>
+
+    <p>{{% /column %}}</p>
+    <p>{{&lt; /row &gt;}}</p>
+    <p>{{&lt; /layout &gt;}}</p>
+    <p>{{&lt; layout class=&#x201c;highlight highlight-responsive-layout&#x201d; &gt;}}</p>
+    <p>{{&lt; layout class=&#x201c;container&#x201d; &gt;}}</p>
+    <p>{{&lt; row &gt;}}</p>
+    <p>{{&lt; column &gt;}}</p>
+    <img src="..." />
+
+
+    <p>{{&lt; /column &gt;}}</p>
+    <p>{{% column class=&#x201c;text-right&#x201d; %}}</p>
+
+    <div class="source">
+      <div class="source">
+        <pre>&lt;h2&gt;Responsive Layout&lt;/h2&gt;
+        </pre>
+      </div>
+    </div>
+
+    <p>{{% /column %}}</p>
+    <p>{{&lt; /row &gt;}}</p>
+    <p>{{&lt; /layout &gt;}}</p>
+    <p>{{&lt; /layout &gt;}}</p>
+  </section>
+</body>
+
+</html>

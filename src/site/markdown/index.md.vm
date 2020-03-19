@@ -1,9 +1,8 @@
 
 {{< layout class="header text-center text-light" role="main" >}}
 
-{{% layout class="container container-fluid" %}}
+{{< layout class="container container-fluid" >}}
 
-```
 <div class="header--subhead">
     <div id="banner" class="header__banner">
         <a href="." class="d-inline-block">
@@ -18,22 +17,14 @@
         <a href="$resourcePath/reflow-maven-skin/reflow-documentation.html#get-started.html"
             class="btn btn-md mb-2 mr-2 ml-2">
             <span class="btn__link-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewbox="0 0 24 24" version="1.1" class="svg-icon">
-                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <polygon points="0 0 24 0 24 24 0 24" />
-                        <path d="M22,15 L22,19 C22,20.1045695 21.1045695,21 20,21 L8,21 C5.790861,21 4,19.209139 4,17 C4,14.790861 5.790861,13 8,13 L20,13 C21.1045695,13 22,13.8954305 22,15 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3" />
-                        <path d="M15.5421357,5.69999981 L18.3705628,8.52842693 C19.1516114,9.30947552 19.1516114,10.5758055 18.3705628,11.3568541 L9.88528147,19.8421354 C8.3231843,21.4042326 5.79052439,21.4042326 4.22842722,19.8421354 C2.66633005,18.2800383 2.66633005,15.7473784 4.22842722,14.1852812 L12.7137086,5.69999981 C13.4947572,4.91895123 14.7610871,4.91895123 15.5421357,5.69999981 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3" />
-                        <path d="M5,3 L9,3 C10.1045695,3 11,3.8954305 11,5 L11,17 C11,19.209139 9.209139,21 7,21 C4.790861,21 3,19.209139 3,17 L3,5 C3,3.8954305 3.8954305,3 5,3 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" />
-                    </g>
-                </svg>
+                <!-- MACRO{snippet|file=src/site/svg/pentone.svg|verbatim=false|ignoreDownloadError=false} -->
             </span>
             <span class="btn__link-text">Get Started</span>
         </a>
     </p>
 </div>
-```
 
-{{% /layout %}}
+{{< /layout >}}
 
 {{< /layout >}}
 
@@ -41,25 +32,21 @@
 
 {{< row >}}
 
-{{% column class="col-sm-6" %}}
+{{< column class="col-sm-6" >}}
 
-```
-    <h2><span class="color-highlight">Reflow</span> Maven skin</h2>
-    <p>is an <a href="http://maven.apache.org/guides/mini/guide-site.html" target="_blank" rel="noopener">Apache Maven site</a>
-    skin built on <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>. It allows various
-    structural and stylistic customizations to create a modern-looking Maven-generated website.
-    </p>
-```
+<h2><span class="color-highlight">Reflow</span> Maven skin</h2>
+<p>is an <a href="http://maven.apache.org/guides/mini/guide-site.html" target="_blank" rel="noopener">Apache Maven site</a>
+skin built on <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>. It allows various
+structural and stylistic customizations to create a modern-looking Maven-generated website.
+</p>
 
-{{% /column %}}
+{{< /column >}}
 
-{{% column class="col-sm-offset-1 col-sm-5 text-right" %}}
+{{< column class="col-sm-offset-1 col-sm-5 text-right" >}}
 
-```
 <img src="$resourcePath/images/logo.svg" height="80%" width="80%" />
-```
 
-{{% /column %}}
+{{< /column >}}
 
 {{< /row >}}
 
@@ -77,9 +64,8 @@
 
 {{< /column >}}
 
-{{% column class="text-right" %}}
+{{< column class="text-right" >}}
 
-```
 <h2>Responsive Layout</h2>
 <p>Write your pages in
     <a href="http://maven.apache.org/doxia/references/index.html" target="_blank" rel="noopener">APT,
@@ -93,18 +79,11 @@
 <p class="text-center">
     <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
         href="$resourcePath/reflow-maven-skin/reflow-documentation.html#layouts.html">Read more
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-icon">
-            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <polygon points="0 0 24 0 24 24 0 24" />
-                <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" fill="#000000" fill-rule="nonzero" />
-                <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
-            </g>
-        </svg>
+        <!-- MACRO{snippet|file=src/site/svg/angle-double-right.svg|verbatim=false|ignoreDownloadError=false} -->
     </a>
 </p>
-```
 
-{{% /column %}}
+{{< /column >}}
 
 {{< /row >}}
 
