@@ -45,7 +45,8 @@ public class FrameContext extends Context<FrameContext> {
      */
     public FrameContext(final @Nonnull ISkinConfig config, @Nonnull final String documentParent) {
         super(config, ContextType.frame);
-        toc = Toc.createSidebar(config);
+        final String type = config.getPropertyValue(Toc.COMPONENT, String.class, "sidebar");
+        toc = Toc.createToc(config, type);
         this.documentParent = requireNonNull(documentParent);
 
         this.addChildren(this.toc);

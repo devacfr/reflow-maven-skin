@@ -193,7 +193,7 @@
           <menu name="Reflow Documentation" selectFirstOnExpand="true">
             <item name="Get Started" href="get-started.html" />
             <item name="Layouts">
-              <item name="Overview" href="layouts.html" />
+              <item name="Layouts Overview" href="layouts.html" />
               <item name="Page Layout" href="page-layout.html" />
               <item name="Documentation Layout" href="documentation-layout.html" />
               <item name="Body Layout" href="body-layout.html" />
@@ -206,7 +206,7 @@
               <item name="Card" href="snippets/card.html" />
             </item>
             <item name="Components">
-              <item name="Overview" href="components/components.html" />
+              <item name="Components Overview" href="components/components.html" />
               <item name="Table of Contents" href="components/toc.html" />
               <item name="Header" href="components/header.html" />
               <item name="Breadcrumb" href="components/breadcrumb.html" />
@@ -231,9 +231,9 @@
         <components-components>
           <toc>false</toc>
         </components-components>
-        <toc-sidebar>
+        <test-toc-sidebar>
           <toc>sidebar</toc>
-        </toc-sidebar>
+        </test-toc-sidebar>
         <test-header-banner>
           <header type="banner" cssClass="text-light"></header>
         </test-header-banner>

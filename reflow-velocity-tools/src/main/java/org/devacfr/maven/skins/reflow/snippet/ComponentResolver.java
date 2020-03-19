@@ -45,7 +45,7 @@ public class ComponentResolver {
 
     /** **/
     private static final Pattern RESOLVER_PATTERN = Pattern.compile(
-        "\\{\\{(<|%) (\\/?)([a-zA-Z\\-_]*)(\\/?)(?:\\s+([^>%]*))(>|%)\\}\\}",
+        "\\{\\{(<|%) (\\/?)([a-zA-Z\\-_]*)(?:\\s+([^\\/>%]*))(\\/?)(>|%)\\}\\}",
         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
     private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=\"(\\w*)\"\\s?",
@@ -71,6 +71,13 @@ public class ComponentResolver {
         return Collector.collect(evaluator, document);
     }
 
+    /**
+     * Normalise the {@link Document} to enclose inline snippet in html element.
+     *
+     * @param document
+     *            the document to use
+     * @return Returns the same normalised {@link Document}.
+     */
     public Document normalize(final Document document) {
         final Elements elements = collect(document);
 
@@ -81,9 +88,12 @@ public class ComponentResolver {
             final List<MatchResult> results = Lists.newArrayList();
 
             while (matcher.find()) {
-                results.add(0, matcher.toMatchResult());
+                final MatchResult matchResult = matcher.toMatchResult();
+                if (matchResult.start() > 0 || matchResult.end() < text.length()) {
+                    results.add(0, matcher.toMatchResult());
+                }
             }
-            if (results.size() > 1) {
+            if (!results.isEmpty()) {
                 for (final MatchResult matchResult : results) {
                     final String snippet = text.substring(matchResult.start(), matchResult.end());
                     text = text.substring(0, matchResult.start()) + "<span>" + StringEscapeUtils.escapeHtml(snippet)
@@ -113,7 +123,7 @@ public class ComponentResolver {
     }
 
     private ComponentToken createToken(final Element element, final Matcher matcher) {
-        if (!Strings.isNullOrEmpty(matcher.group(2)) && !Strings.isNullOrEmpty(matcher.group(4))) {
+        if (!Strings.isNullOrEmpty(matcher.group(2)) && !Strings.isNullOrEmpty(matcher.group(5))) {
             // can not have same time empty and end identifier.
             throw new RuntimeException("malformed component");
         }
@@ -121,7 +131,7 @@ public class ComponentResolver {
         Tag tag = Tag.start;
         if ("/".equals(matcher.group(2))) {
             tag = Tag.end;
-        } else if ("/".equals(matcher.group(4))) {
+        } else if ("/".equals(matcher.group(5))) {
             tag = Tag.empty;
         }
 

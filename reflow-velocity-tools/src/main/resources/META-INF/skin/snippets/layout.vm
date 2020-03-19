@@ -15,7 +15,10 @@
 ##
 #**
  * Render layout snippet
- *
+ * Usage:
+ * {{< layout class="" >}}
+ * ...
+ * {{< /layout >}}
  *#
  #*  *##if( ${snippet.html})
 <div #if( ${snippet.attrs['class']} )class="${snippet.attrs['class']}"#end>

@@ -1,8 +1,10 @@
 # Card
 
-{{< badge color="info" >}}WEB COMPONENT{{< /badge >}}
+{{< badge color="primary" text="New in v2.4" />}}
 
-[Base on Bootstrap Card page](https://getbootstrap.com/docs/4.4/components/card/)
+{{< badge color="info" text="WEB COMPONENT" />}}
+
+[Based on Bootstrap Card page](https://getbootstrap.com/docs/4.4/components/card/)
 
 Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
 
@@ -644,7 +646,9 @@ In addition to styling the content within cards, Bootstrap includes a few option
 
 ### Card groups
 
-{{< badge color="info" >}}SHORTCODE{{< /badge >}}
+{{< badge color="primary" text="New in v2.4" />}}
+
+{{< badge color="info" text="SHORTCODE" />}}
 
 Use card groups to render cards as a single, attached element with equal width and height columns. Card groups use `{{< card-group >}}` shortcode to achieve their uniform sizing.
 

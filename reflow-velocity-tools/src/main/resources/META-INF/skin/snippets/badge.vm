@@ -15,10 +15,11 @@
 ##
 #**
  * Render example snippet
- *
+ * Usage:
+ * {{< badge color="" text="" />}}
  *#
 #*  *##set( $color = "")
 #*  *##if( ${snippet.attrs['color']})
 #*      *##set( $color = "badge-${snippet.attrs['color']}")
 #*  *##end##
-<span class="badge $color">${snippet.html}</span>
+<span class="badge $color">${snippet.text}</span>

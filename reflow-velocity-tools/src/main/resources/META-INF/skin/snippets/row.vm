@@ -15,10 +15,13 @@
 ##
 #**
  * Render row snippet
- *
+ * Usage:
+ * {{< row class="" >}}
+ * ...
+ * {{< /row >}}
  *#
  #*  *##if( ${snippet.html})
 <div class="row#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
     ${snippet.html}
-</div>   
+</div>
 #*  *##end

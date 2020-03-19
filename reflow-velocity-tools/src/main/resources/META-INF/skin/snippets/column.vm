@@ -15,11 +15,18 @@
 ##
 #**
  * Render column snippet
- *
+ * Usage:
+ * {{< column class="" >}}
+ * ...
+ * {{< /column >}}
  *#
 #*  *##set( $class = "col")
 #*  *##if( ${snippet.attrs['class']})
-#*      *##set( $class = "${snippet.attrs['class']}")
+#*      *##if(${snippet.attrs['class'].contains("col-")} || ${snippet.attrs['class'].contains("col ")})
+#*          *##set( $class = "${snippet.attrs['class']}")
+#*      *##else
+#*          *##set( $class = "col ${snippet.attrs['class']}")
+#*      *##end
 #*  *##end##
 #*  *##if( ${snippet.html})
 <div class="${class}">

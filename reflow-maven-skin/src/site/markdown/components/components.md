@@ -1,12 +1,95 @@
-# Components Overview
+# Components
 
-This section describes how customize each component globally or a specific page.
+{{< row class="row-cols-1 row-cols-md-2" >}}
 
-- **[Table of Contents Component]( #components-toc )** is the standard representation in Reflow skin.
-- **[Header Components]( #components-header )** is component representing the standard banner and breadscrumb maven site element.
-- **[Breadcrumb Components]( #components-breadcrumb )** indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.
-- **[Footer Component]( #components-footer )** .
-- **[Navbar Component]( #components-navbar )** is Bootstrap responsive navigation header component fixed to the top of page.
-- **[Navside Menu Component]( #components-navside-menu )** is a part of page [documentation layout][documentation-layout] to the left of page. Navside menu is vertical multi level menus for both desktop and mobile modes.
+{{< column class="mb-4" >}}
 
-[documentation-layout]: #documentation-layout
+{{% card class="h-100" %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#components-toc">Table of Contents Component</a></h5>
+    <p class="card-text text-secondary">is the standard representation in Reflow skin.</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+
+{{% card class="h-100" %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#components-header">Header Component</a></h5>
+    <p class="card-text text-secondary">is component representing the standard banner and breadscrumb maven site element.</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+
+{{% card class="h-100" %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#components-breadcrumb">Breadcrumb Components</a></h5>
+    <p class="card-text text-secondary">indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+
+{{% card class="h-100" %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#components-footer">Footer Component</a></h5>
+    <p class="card-text text-secondary">.</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+
+{{% card class="h-100" %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#components-navbar">Navbar Component</a></h5>
+    <p class="card-text text-secondary">is Bootstrap responsive navigation header component fixed to the top of page.</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+
+{{% card class="h-100" %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#components-navside-menu ">Navside Menu Component</a></h5>
+    <p class="card-text text-secondary">is a part of page <a href="#documentation-layout">documentation layout</a> to the left of page. Navside menu is vertical multi level menus for both desktop and mobile modes.</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< /row >}}

@@ -1,5 +1,7 @@
 # Layout Grid system
 
+{{< badge color="primary" text="New in v2.4" />}}
+
 Bootstrap’s grid system uses a series of containers, rows, and columns to layout and align content. Below is an example and an in-depth look at how the grid comes together.
 
 {{< example  type="row" >}}
@@ -64,12 +66,12 @@ One of three columns
 
 ### Layout Shortcode
 
-{{< badge color="info" >}}SHORTCODE{{< /badge >}}
+{{< badge color="info" text="SHORTCODE" />}}
 
 ### Row Shortcode
 
-{{< badge color="info" >}}SHORTCODE{{< /badge >}}
+{{< badge color="info" text="SHORTCODE" />}}
 
 ### Column Shortcode
 
-{{< badge color="info" >}}SHORTCODE{{< /badge >}}
+{{< badge color="info" text="SHORTCODE" />}}

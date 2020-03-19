@@ -8,14 +8,14 @@
         background="bootstrap colour theme" />
 ```
 
-- **cssClass** {{< badge color="light" >}}v2.0{{< /badge >}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
-- **theme** {{< badge color="light" >}}v2.0{{< /badge >}} - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
-- **background** {{< badge color="light" >}}v2.0{{< /badge >}} - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
+- **cssClass** {{< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
+- **theme** {{< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
+- **background** {{< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
 
 ### Bottom navigation
 
-support {{< badge color="primary" >}}v1.0{{< /badge >}} <br/>
-element {{< badge color="secondary" >}}reflow{{< /badge >}} {{< badge color="info" >}}element{{< /badge >}}
+support {{< badge color="primary" text="v1.0" />}} <br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="element" />}}
 
 The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the `bottomNav` element. If configuration is not available, lists all menus in a single column.
 
@@ -31,8 +31,8 @@ The bottom navigation is placed in the footer, to the left of website descriptio
 
 ## Bottom description
 
-support {{< badge color="primary" >}}v1.0{{< /badge >}} <br/>
-element {{< badge color="secondary" >}}reflow{{< /badge >}} {{< badge color="info" >}}element{{< /badge >}}
+support {{< badge color="primary" text="v1.0" />}} <br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="element" />}}
 
 It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using `<bottomDescription>` element:
 

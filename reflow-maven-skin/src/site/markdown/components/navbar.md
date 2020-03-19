@@ -43,6 +43,8 @@ Add image to the brand part of navbar.
 
 ### Additional Menu
 
+{{< badge color="primary" text="New in v2.4" />}}
+
 It is placed on the right of the navbar component. The additional menu is set using `<additionalMenu>` element:
 
 ```xml

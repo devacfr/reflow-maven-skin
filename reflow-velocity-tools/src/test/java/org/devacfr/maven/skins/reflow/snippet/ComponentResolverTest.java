@@ -38,7 +38,7 @@ public class ComponentResolverTest {
 
     @Test
     public void shouldBeEmptyWebComponent() {
-        check("{{% component/ %}}", "component", Type.webComponent, Tag.empty);
+        check("{{% component /%}}", "component", Type.webComponent, Tag.empty);
     }
 
     @Test
@@ -53,13 +53,13 @@ public class ComponentResolverTest {
 
     @Test
     public void shouldBeEmptyShortcode() {
-        check("{{< component/ >}}", "component", Type.shortcode, Tag.empty);
+        check("{{< component />}}", "component", Type.shortcode, Tag.empty);
     }
 
     @Test
     public void shouldFailedOnMalformed() {
         Assertions.assertThrows(RuntimeException.class, () -> {
-            new ComponentResolver().create(new Element("p").text("{{% /component/ %}}"));
+            new ComponentResolver().create(new Element("p").text("{{% /component /%}}"));
         });
     }
 

@@ -1,67 +1,113 @@
-# Working with Snippet
+# Working with Snippet {{< badge color="warning" text="DRAFT" />}}
 
-A shortcode or web component are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown for the preview version.
+{{< badge color="primary" text="New in v2.4" />}}
 
-## Usage
+{{< callout color="warning" text="Need your Help" >}}
 
-There are 2 types of snippet managed by Reflow:
+Please note that this feature is in development. All recommendation and improvement are appreciated.
 
-- the **web component** - for the moment (in preview version), it is a monolithic/autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.
-- the **shortcode** - as indicated by his name, for short stuff as create an unified layout, include a specific information, modify a rendering part by Doxia.
+{{< /callout >}}
 
-### $snippet Variable
+A `shortcode` and `web component` are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format) for the moment.
 
-- `$snippet.name` -
-- `$snippet.parent` -
-- `$snippet.html` -
-- `$snippet.[attr]` -
-- `$snippet.attr[]` -
-- `$snippet.[data]` -
+{{< row class="row-cols-1 row-cols-md-2" >}}
 
+{{< column class="mb-4" >}}
 
-## Template
+{{% card %}}
 
-The template uses [Velocity Template](https://velocity.apache.org/engine/1.7/developer-guide.html) to generate html content. the file have to be located in path `src/site/snippets`.
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#snippets-snippet_toc_web-component">Web Component</a></h5>
+    <p class="card-text text-secondary">It is a autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.</p>
+  </card-body>
+```
 
-### Web component
+{{% /card %}}
 
-The web component is composed by tag element with attributes, an associated xml data structure and a  velocity template file. The data part is enclosed in comment html element ( `<!-- -->`) and enclose in start tag `{{% component %}}` and tag `{{% /component %}}`. the template file name should be have same name as web compenent. For the following example, the template file name should be `src/site/snippets/component.vm`.
+{{< /column >}}
 
-  ⚠️ the syntax of tag is important. Whitespaces are required after `{{%` and before `%}}` and the empty line after the snippet.
+{{< column class="mb-4" >}}
+
+{{% card %}}
+
+```
+  <card-body>
+    <h5 class="card-title no-anchor"><a href="#snippets-snippet_toc_web-component">Shortcode</a></h5>
+    <p class="card-text text-secondary">as indicated by his name, for short stuff to create an unified layout, include a specific information, etc.</p>
+  </card-body>
+```
+
+{{% /card %}}
+
+{{< /column >}}
+
+{{< /row >}}
+
+## Web Component
+
+The web component is composed by start tag `{{% component %}}` and tag `{{% /component %}}`, an associated xml data structure and a  velocity template file.
+The xml data part is enclosed in comment html element ( `<!-- -->`) or in highlighting block `<pre>...</pre>` to reduce the risk that Doxia Tools modifies or deletes certain html elements (doxia deletes all non-standard elements, `<svg>` tag too :thumbsdown: )..
+The template file name should have the same name as web compenent and located in `src/site/snippets/component.vm`.
+In future, the web component will be managed directly by javascript using [web component APIs](https://www.webcomponents.org/).
+
+### Tag Syntax
+
+- whitespaces are required after `{{%` and before `%}}` tags.
+- the empty line is required before after each start and end tag.
+- start and end tags must be placed at the start of a line.
+
+### Data Element
+
+To be recognized by reflow, a data element **should** be a xml element with a tag name differents of existing html tag.
+the tag name must start with an alphabetic character (a .. z or A .. Z). The rest of the characters are limited to the following types of characters:
+
+- alphabetic (a .. z, A .. Z)
+- numeric (0 .. 9)
+- hyphen ("-")
+- underscore ("_")
 
 ```html
 {{% component attribute="value" %}}
 
 <!--
 <data>
-  <item>Header Section</item>
-  <content>
+  <data-item class="text-muted" >Header Section</data-item>
+  <data-content>
     <div>html used in template</div>
-  </content>
+  </data-content>
 </data>
 -->
 
 {{% /component%}}
 ```
 
-The template use `$snippet` variable to render the component.
+### Web Component Template
+
+The template use `$snippet` variable to render the web component.
 
 ```html
 #if( $snippet.attribute == 'value' )
   <div class="component">
-    <h2>$snippet.item.body</h2>
-   <div #if( $snippet.content.attr['class'] )class="$snippet.content.attr['class']"#end>
-   $snippet.content.html
+    <h2>$snippet.data-item.body</h2>
+   <div #if( $snippet.data-content.attr['class'] )class="$snippet.data-content.attr['class']"#end>
+   $snippet.data-content.html
    </div>
   </div>
 #end
 ```
 
-### Shortcode
+## Shortcode
 
-The Shortcode can be construct as empty element tag `{{< component attribute="value"/ >}}` or with start tag  `{{< component attribute="value" >}}` and end tag  `{{< /component >}}`.
+The Shortcode can be construct as empty element tag `{{< component attribute="value" />}}` or with start tag  `{{< component attribute="value" >}}` and end tag  `{{< /component >}}`.
 
-  ⚠️ the syntax of tag is important. Whitespaces are required after `{{<` and before `>}}` and the empty line after the snippet.
+## Tag Syntax
+
+- whitespaces are required after `{{<` and before `>}}`
+- the empty line is required before after each start and end tag.
+- start and end tags must be placed at the start of a line.
+- the empty tag `{{< shortcode />}}` can be used inline in paragraph. 
+
 
 ```html
 {{< jumbotron class="bg-primary" >}}
@@ -95,3 +141,44 @@ The associated template use `$snippet` variable in velocity context to render th
 </div>
 ```
 
+## $snippet Variable
+
+Take the first example, `$snippet.color`. It can have two meanings. It can mean, Look in the hashtable identified as snippet and return the attribute associated with the key `color`. But `$snippet.color` can also be referring to a `<color>` data element. `$snippet.color` could be an abbreviated way of writing `$snippet.attr['color]` or `$snippet.getAttribute('color')` for an attribute, or `$snippet.getChildren('color')` for an data element.
+
+{{< callout color="warning" >}}
+
+You can not use the `class` attribute directly like this `$snippet.data-content.class`, but instead `$snippet.data-content.attr['class']`.
+
+{{< /callout >}}
+
+### Lookup Rules
+
+As was mentioned earlier, properties refer to attribute or data element of the parent object. Reflow uses the following lookup sequence. For names, such as `$snippet.class`, the sequence is:
+
+- `getclass()`
+- `getClass()`
+- `get("class")`
+  - Returns `getAttribute("class")` attibute if exists
+  - if the property name has suffix "s" `getAttribute("class")`, returns a list.
+  - `getChildren("class")` Returns the first element if exists.
+- isClass()
+
+{{< callout color="warning" level="5" title="Of course" >}}
+
+You can not use the `class` attribute directly like this `$snippet.data-content.class`, but instead `$snippet.data-content.attr['class']`.
+
+{{< /callout >}}
+
+
+### Property
+
+- `$snippet.name` -
+- `$snippet.parent` -
+- `$snippet.html` -
+- `$snippet.[attr]` -
+- `$snippet.attr[]` -
+- `$snippet.[data]` -
+
+## Template
+
+The template uses [Velocity Template](https://velocity.apache.org/engine/1.7/developer-guide.html) to generate html content. the file have to be located in path `src/site/snippets`.

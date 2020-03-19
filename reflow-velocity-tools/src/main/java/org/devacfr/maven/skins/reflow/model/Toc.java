@@ -15,8 +15,6 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -31,6 +29,8 @@ import org.devacfr.maven.skins.reflow.Xpp3Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Sets;
+
 /**
  * Represents the base of Table of content component.
  *
@@ -40,6 +40,8 @@ import org.slf4j.LoggerFactory;
  *            the type of inherit of {@link Toc}.
  */
 public abstract class Toc<T extends Toc<?>> extends BsComponent {
+
+    private static final Set<String> TOC_TYPES = Sets.newHashSet("sidebar", "top", "false");
 
     /** */
     public static final String COMPONENT = "toc";
@@ -66,8 +68,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
         if (LOGGER.isTraceEnabled()) {
             LOGGER.trace("Page '{}' Find Toc: {}", config.getFileId(), type);
         }
-        final Set<String> types = new HashSet<>(Arrays.asList("sidebar", "top", "false"));
-        if (!types.contains(type)) {
+        if (!TOC_TYPES.contains(type)) {
             type = preferredType;
         }
         if (type == null) {
@@ -156,7 +157,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
         final String bodyContent = getBodyContent(skinConfig);
 
         final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent,
-                Xpp3Utils.getChildren(skinConfig.get("sections")));
+            Xpp3Utils.getChildren(skinConfig.get("sections")));
         return tocItems;
     }
 

@@ -18,6 +18,9 @@ package org.devacfr.maven.skins.reflow.snippet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -91,21 +94,26 @@ public abstract class Processor {
         final Element parent = startElement.parent();
         final Node previousElement = startElement.previousSibling();
         final SnippetContext snippetContext = parser.getSnippetContext();
-        boolean startCopy = false;
-        final List<Node> nodesToRemove = Lists.newArrayList();
-        for (final Node n : parent.childNodes()) {
+        if (endElement != null) {
+            boolean startCopy = false;
+            final List<Node> nodesToRemove = Lists.newArrayList();
+            for (final Node n : parent.childNodes()) {
 
-            if (n.equals(startElement)) {
-                startCopy = true;
+                if (n.equals(startElement)) {
+                    startCopy = true;
+                }
+                if (startCopy) {
+                    nodesToRemove.add(n);
+                }
+                if (n.equals(endElement)) {
+                    break;
+                }
             }
-            if (startCopy) {
-                nodesToRemove.add(n);
-            }
-            if (n.equals(endElement)) {
-                break;
-            }
+            nodesToRemove.forEach((node) -> node.remove());
+        } else {
+            startElement.remove();
         }
-        nodesToRemove.forEach((node) -> node.remove());
+
         if (previousElement != null) {
             previousElement.after(component.render(snippetContext));
         } else {
@@ -138,29 +146,35 @@ public abstract class Processor {
      *            the end token.
      * @return Returns a new {@link Element} representing html represention of snippet.
      */
-    protected Element convertToHtml(final ComponentToken startToken, final ComponentToken endToken) {
+    protected Element convertToHtml(@Nonnull final ComponentToken startToken, @Nullable final ComponentToken endToken) {
         final Element startElement = startToken.getElement();
-        final Element endElement = endToken.getElement();
+        Element endElement = null;
+        if (endToken != null) {
+            endElement = endToken.getElement();
+        }
         final Element tmp = new Element("component");
         final Node parent = startElement.parentNode();
-        boolean startCopy = false;
+
         final StringBuilder html = new StringBuilder(convertElementToHtml(startElement));
-        for (final Node n : parent.childNodes()) {
-            if (n.equals(endElement)) {
-                break;
-            }
-            if (startCopy) {
-                try {
-                    appendChildrenToHtml(n, html);
-                } catch (final IOException e) {
-                    throw new RuntimeException(e.getMessage(), e);
+        if (endElement != null) {
+            boolean startCopy = false;
+            for (final Node n : parent.childNodes()) {
+                if (n.equals(endElement)) {
+                    break;
+                }
+                if (startCopy) {
+                    try {
+                        appendChildrenToHtml(n, html);
+                    } catch (final IOException e) {
+                        throw new RuntimeException(e.getMessage(), e);
+                    }
+                }
+                if (n.equals(startElement)) {
+                    startCopy = true;
                 }
             }
-            if (n.equals(startElement)) {
-                startCopy = true;
-            }
+            html.append(convertElementToHtml(endElement));
         }
-        html.append(convertElementToHtml(endElement));
         tmp.append(html.toString());
         return tmp.children().first();
     }
@@ -192,9 +206,12 @@ public abstract class Processor {
     protected String convertElementToHtml(final Element element) {
         return element.text()
                 .replace("{{< ", "<")
+                .replace(" />}}", "/>")
+                .replace(" /%}}", "/>")
                 .replace(" >}}", ">")
                 .replace("{{% ", "<")
                 .replace(" %}}", ">")
+
                 .replaceAll("\\u201c|\\u201d", "\"");
     }
 
