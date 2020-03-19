@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2012 - 2020 Friederich Christophe</copyright>
     <item>
-      <title>File: 24,
+      <title>File: 33,
              Errors: 0,
-             Warnings: 2,
+             Warnings: 100,
              Infos: 0
       </title>
             <link>https://devacfr.github.io/reflow-maven-skin//checkstyle.html</link>
@@ -46,20 +46,6 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.URITool.java">org/devacfr/maven/skins/reflow/URITool.java</a>
                 </td>
                 <td>
@@ -74,13 +60,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.Menu.java">org/devacfr/maven/skins/reflow/model/Menu.java</a>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.ComponentResolver.java">org/devacfr/maven/skins/reflow/snippet/ComponentResolver.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  3
                 </td>
                 <td>
                   0
@@ -102,35 +88,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.SnippetComponent.java">org/devacfr/maven/skins/reflow/snippet/SnippetComponent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.TocSidebar.java">org/devacfr/maven/skins/reflow/model/TocSidebar.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.ISkinConfig.java">org/devacfr/maven/skins/reflow/ISkinConfig.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.Xpp3Utils.java">org/devacfr/maven/skins/reflow/Xpp3Utils.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.MenuItem.java">org/devacfr/maven/skins/reflow/model/MenuItem.java</a>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.internal.ContainsOwnText.java">org/devacfr/maven/skins/reflow/snippet/internal/ContainsOwnText.java</a>
                 </td>
                 <td>
                   0
@@ -214,20 +186,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.context.ContextType.java">org/devacfr/maven/skins/reflow/context/ContextType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.SkinConfigTool.java">org/devacfr/maven/skins/reflow/SkinConfigTool.java</a>
                 </td>
                 <td>
@@ -242,49 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.context.BodyContext.java">org/devacfr/maven/skins/reflow/context/BodyContext.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.Component.java">org/devacfr/maven/skins/reflow/model/Component.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.NavSideMenu.java">org/devacfr/maven/skins/reflow/model/NavSideMenu.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.context.FrameContext.java">org/devacfr/maven/skins/reflow/context/FrameContext.java</a>
                 </td>
                 <td>
                   0
@@ -340,6 +256,230 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.SnippetContext.java">org/devacfr/maven/skins/reflow/snippet/SnippetContext.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.BsComponent.java">org/devacfr/maven/skins/reflow/model/BsComponent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.Processor.java">org/devacfr/maven/skins/reflow/snippet/Processor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.Menu.java">org/devacfr/maven/skins/reflow/model/Menu.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.ISkinConfig.java">org/devacfr/maven/skins/reflow/ISkinConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.Xpp3Utils.java">org/devacfr/maven/skins/reflow/Xpp3Utils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.MenuItem.java">org/devacfr/maven/skins/reflow/model/MenuItem.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.Component.java">org/devacfr/maven/skins/reflow/snippet/Component.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  33
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.ComponentToken.java">org/devacfr/maven/skins/reflow/snippet/ComponentToken.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.context.ContextType.java">org/devacfr/maven/skins/reflow/context/ContextType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.context.BodyContext.java">org/devacfr/maven/skins/reflow/context/BodyContext.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.Component.java">org/devacfr/maven/skins/reflow/model/Component.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.SnippetParser.java">org/devacfr/maven/skins/reflow/snippet/SnippetParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.context.FrameContext.java">org/devacfr/maven/skins/reflow/context/FrameContext.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.Components.java">org/devacfr/maven/skins/reflow/snippet/Components.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.SideNavMenuItem.java">org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java</a>
                 </td>
                 <td>
@@ -360,21 +500,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.model.BsComponent.java">org/devacfr/maven/skins/reflow/model/BsComponent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  1
                 </td>
                 <td>
                   0

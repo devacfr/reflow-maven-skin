@@ -15,7 +15,7 @@
  */
 
 body {
-    position: relative;
+    overflow-x: hidden;
 }
 
 /* Hack the sticky header */
@@ -230,20 +230,6 @@ h3 code {
     .dropdown-submenu .dropdown-menu {
         margin-left: 10px;
     }
-}
-
-/*--------------------------------------------------
- * carousel
- *--------------------------------------------------*/
-.carousel-caption {
-    width: 100%;
-    opacity: 0.7;
-    background-color: black;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 10px;
-    padding-top: 0;
 }
 
 /*--------------------------------------------------
@@ -593,11 +579,6 @@ h3 code {
     }
 }
 
-#m-doc-frame {
-    /* for anchorJs */
-    padding-left: 40px;
-    height: 100%;
-}
 
 /*--------------------------------------------------
  * breadcrumb

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>FrameContextTest xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../testapidocs/org/devacfr/maven/skins/reflow/context/FrameContextTest.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2012-2019 Christophe Friederich</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * <a href="http://www.apache.org/licenses/LICENSE-2." target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.</a>0</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> * Unless required by applicable law or agreed to in writing, software</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_comment"> * distributed under the License is distributed on an "AS IS" BASIS,</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_comment"> * See the License for the specific language governing permissions and</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_comment"> * limitations under the License.</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> */</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">package</strong> org.devacfr.maven.skins.reflow.context;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.assertThat;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.Matchers.isA;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.io.StringReader;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.doxia.site.decoration.DecorationModel;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.project.MavenProject;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.xml.Xpp3Dom;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.xml.Xpp3DomBuilder;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.devacfr.maven.skins.reflow.ISkinConfig;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.devacfr.maven.skins.reflow.model.Footer;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.devacfr.maven.skins.reflow.model.Navbar;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.devacfr.maven.skins.reflow.model.ScrollTop;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> org.devacfr.maven.skins.reflow.model.Toc;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> org.devacfr.maven.skins.reflow.model.TocSidebar;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> org.devacfr.testing.jupiter.MockitoTestCase;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.BeforeEach;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> org.mockito.Mock;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/context/FrameContextTest.html">FrameContextTest</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../../../org/devacfr/testing/jupiter/MockitoTestCase.html">MockitoTestCase</a> {
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      @Mock
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">private</strong> ISkinConfig config;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      @BeforeEach
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setup() {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">final</strong> MavenProject project = <strong class="jxr_keyword">new</strong> MavenProject();
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          project.setName(<span class="jxr_string">"reflow"</span>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          project.setArtifactId(<span class="jxr_string">"reflow-artifact"</span>);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>          when(config.getProject()).thenReturn(project);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          <strong class="jxr_keyword">final</strong> DecorationModel decoration = <strong class="jxr_keyword">new</strong> DecorationModel();
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          when(config.getDecoration()).thenReturn(decoration);
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          when(config.getAttributeValue(any(String.<strong class="jxr_keyword">class</strong>), any(String.<strong class="jxr_keyword">class</strong>), any(Class.<strong class="jxr_keyword">class</strong>), any(Object.<strong class="jxr_keyword">class</strong>)))
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>                  .then(invocation -&gt; invocation.getArguments()[3]);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>          when(config.getPropertyValue(any(String.<strong class="jxr_keyword">class</strong>), any(Class.<strong class="jxr_keyword">class</strong>), any(Object.<strong class="jxr_keyword">class</strong>)))
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>                  .then(invocation -&gt; invocation.getArguments()[2]);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      }
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      @Test
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> shouldBuildFrameContext() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">final</strong> String xml = <span class="jxr_string">"&lt;reflowSkin&gt;&lt;pages&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  <span class="jxr_string">"&lt;development-documentation type=\&quot;doc\&quot;&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>                  <span class="jxr_string">"          &lt;menu name=\&quot;Development Documentation\&quot;&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>                  <span class="jxr_string">"            &lt;item name=\&quot;Contribute\&quot; href=\&quot;dev/contribute.html\&quot; /&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>                  <span class="jxr_string">"            &lt;item name=\&quot;Code Conventions\&quot; href=\&quot;dev/code-conventions.html\&quot;/&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>                  <span class="jxr_string">"            &lt;item name=\&quot;Release Management\&quot; href=\&quot;dev/release-management.html\&quot;/&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>                  <span class="jxr_string">"          &lt;/menu&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>                  <span class="jxr_string">"        &lt;/development-documentation&gt;"</span> + <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  <span class="jxr_string">"&lt;/pages&gt;&lt;/reflowSkin&gt;"</span>;
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">final</strong> Xpp3Dom globalProperties = Xpp3DomBuilder.build(<strong class="jxr_keyword">new</strong> StringReader(xml));
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>          when(config.getPageProperties()).thenReturn(<strong class="jxr_keyword">new</strong> Xpp3Dom(<span class="jxr_string">"dev-contribute"</span>));
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          when(config.getGlobalProperties()).thenReturn(globalProperties);
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          when(config.getFileId()).thenReturn(<span class="jxr_string">"dev-contribute"</span>);
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          when(config.getNamespace()).thenReturn(<span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <strong class="jxr_keyword">final</strong> Context&lt;?&gt; context = Context.buildContext(config);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          assertThat((FrameContext) context, isA(FrameContext.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">final</strong> FrameContext frameContext = (FrameContext) context;
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          assertEquals(<span class="jxr_string">"development-documentation"</span>, frameContext.getDocumentParent());
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">final</strong> Toc&lt;?&gt; toc = frameContext.getToc();
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>          assertNotNull(toc, <span class="jxr_string">"toc should be exist"</span>);
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>          assertThat((TocSidebar) frameContext.getToc(), isA(TocSidebar.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <strong class="jxr_keyword">final</strong> TocSidebar tocSidebar = (TocSidebar) toc;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>          assertEquals(Integer.MAX_VALUE, tocSidebar.getLevel());
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>          assertEquals(<span class="jxr_string">"sidebar-light bg-light"</span>, tocSidebar.getCssClass());
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          assertEquals(<span class="jxr_string">"m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed"</span>,
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>              tocSidebar.getCssOptions());
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">final</strong> Footer footer = frameContext.getFooter();
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          assertNotNull(footer, <span class="jxr_string">"footer should be exist"</span>);
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          assertEquals(<span class="jxr_string">"footer-light bg-light"</span>, footer.getCssClass());
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>          assertEquals(<span class="jxr_string">""</span>, footer.getCssOptions());
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">final</strong> Navbar navbar = frameContext.getNavbar();
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>          assertNotNull(navbar, <span class="jxr_string">"Navbar should be exist"</span>);
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>          assertEquals(<span class="jxr_string">"navbar-light bg-light"</span>, navbar.getCssClass());
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>         assertEquals(<span class="jxr_string">""</span>, navbar.getCssOptions());
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">final</strong> ScrollTop scrollTop = frameContext.getScrollTop();
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         assertNotNull(scrollTop, <span class="jxr_string">"ScrollTop should be exist"</span>);
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>         assertEquals(<span class="jxr_string">""</span>, scrollTop.getCssClass());
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>         assertEquals(<strong class="jxr_keyword">true</strong>, scrollTop.isSmooth());
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         assertEquals(<span class="jxr_string">"scrolltop-smooth-enabled"</span>, scrollTop.getCssOptions());
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>     }
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2012&#x2013;2020 <a href="http://devacfr.github.io">Friederich Christophe</a>. All rights reserved.</div>
+</body>
+</html>

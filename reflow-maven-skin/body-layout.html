@@ -2,17 +2,17 @@
 
 
   <div class="row no-gutters">
-    <div class="col-lg-12 col-xl-9 py-3">
+    <div class="col-lg-12 col-xl-9">
             <h1 id="body-layout_toc_page-body-layout">Page Body layout</h1> 
 <p>Body layout is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content. Let’s be free in your inspiration to create a attractive home page.</p> 
 <p><img src="images/body-layout-scheme.png" alt="body layout" class="img-fluid"></p> 
 <section> 
  <h2 id="body-layout_toc_usage1">Usage</h2> 
  <p>support <span class="badge badge-primary">v2.3</span> <span class="badge badge-success">new</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
- <p>To declare a page as body layout, create an page (index.html in example below) and set type attribute with value body.</p> 
- <div> 
-  <div> 
-   <pre class="source">&lt;pages&gt;
+ <p>To declare a page as body layout, create an page (<code>index.html</code> in example below) and set <code>type</code> attribute with value <code>body</code>.</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;pages&gt;
     ...
     &lt;index type="body" project="project-id"&gt;
     &lt;/index&gt;
@@ -22,7 +22,7 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>project</b> <span class="badge badge-light">v1.0</span> - project attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that name attribute in root &lt;project&gt; element in site.xml is used to set the site title.</li> 
+  <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code>&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
  </ul> 
 </section>
         </div>

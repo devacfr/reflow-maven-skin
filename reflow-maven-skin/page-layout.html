@@ -2,17 +2,17 @@
 
 
   <div class="row no-gutters">
-    <div class="col-lg-12 col-xl-9 py-3">
+    <div class="col-lg-12 col-xl-9">
             <h1 id="page-layout_toc_page-layout">Page Layout</h1> 
 <p>Page layout is the standard representation in Reflow skin.</p> 
 <p><img src="images/page-layout-scheme.png" alt="page layout" class="img-fluid"></p> 
-<p>The content of page is put in body container. All components around the body are customized globally or locally to this page. To customized the body itself, see <a href="#section-layout.html">Section Layout documention</a> for more information</p> 
+<p>The content of page is put in <code>body</code> container. All components around the body are customized globally or locally to this page. To customized the <code>body</code> itself, see <a href="#section-layout.html">Section Layout documention</a> for more information</p> 
 <section> 
  <h2 id="page-layout_toc_usage1">Usage</h2> 
  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
- <div> 
-  <div> 
-   <pre class="source">...
+ <div class="source"> 
+  <div class="source"> 
+   <pre>...
 &lt;custom&gt;
     &lt;reflowSkin&gt;
         &lt;pages&gt;
@@ -28,8 +28,8 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>project</b> <span class="badge badge-light">v1.0</span> - project attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that name attribute in root &lt;project&gt; element in site.xml is used to set the site title.</li> 
-  <li><b>type</b> <span class="badge badge-light">v2.0</span> - the page layout is <b>default</b> represention in Reflow skin.</li> 
+  <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code>&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
+  <li><b>type</b> <span class="badge badge-light">v2.0</span> - the <code>page</code> layout is <b>default</b> represention in Reflow skin.</li> 
  </ul> 
 </section>
         </div>

@@ -2,22 +2,22 @@
 
 
   <div class="row no-gutters">
-    <div class="col-lg-12 col-xl-9 py-3">
+    <div class="col-lg-12 col-xl-9">
             <h1 id="documentation-layout_toc_page-documentation-layout">Page Documentation layout</h1> 
 <p>Documentation layout is a feature to organize your documentation in single page to facilitate the navigation.</p> 
-<p>The layout is centered on a navside menu. Navside menu is vertical multi level menus for both desktop and mobile modes initialized with the &lt;menu&gt; element declared in a page with documentation layout type and a frame container where will be displayed the contain of each frame page.</p> 
+<p>The layout is centered on a <code>navside</code> menu. Navside menu is vertical multi level menus for both desktop and mobile modes initialized with the <code>&lt;menu&gt;</code> element declared in a page with documentation layout type and a <code>frame</code> container where will be displayed the contain of each <code>frame</code> page.</p> 
 <p><img src="images/documentation-layout-scheme.png" alt="documentation layout" class="img-fluid"></p> 
 <ul> 
- <li><a href="#components-navside-menu"><b>Navside menu</b> can be customized</a> as all other components in Reflow. It is created using &lt;menu&gt; element defined in documentation layout page.</li> 
- <li><b>Frame container</b> allows to load the frame page. The frame type is for internal use to define referenced page in &lt;menu&gt; element in documentation layout. A frame page shouldn’t use outside of documentation layout page where it is declared.</li> 
+ <li><a href="#components-navside-menu"><b>Navside menu</b> can be customized</a> as all other components in Reflow. It is created using <code>&lt;menu&gt;</code> element defined in documentation layout page.</li> 
+ <li><b>Frame container</b> allows to load the <code>frame</code> page. The <code>frame</code> type is for internal use to define referenced page in <code>&lt;menu&gt;</code> element in documentation layout. A <code>frame</code> page shouldn’t use outside of documentation layout page where it is declared.</li> 
 </ul> 
 <section> 
  <h2 id="documentation-layout_toc_usage1">Usage</h2> 
  <p>support <span class="badge badge-primary">v2.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
- <p>To declare a page as documentation layout, create an empty page (documentation.html in example below) and set type attribute with value doc and add a <b>required</b> &lt;menu&gt; element as example below.</p> 
- <div> 
-  <div> 
-   <pre class="source">&lt;pages&gt;
+ <p>To declare a page as documentation layout, create an empty page (<code>documentation.html</code> in example below) and set <code>type</code> attribute with value <code>doc</code> and add a <b>required</b> <code>&lt;menu&gt;</code> element as example below.</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;pages&gt;
     ...
     &lt;documentation type="doc" project="project-id"&gt;
         &lt;menu name="Documentation" selectFirstOnExpand="true|false"&gt;
@@ -33,26 +33,26 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>project</b> <span class="badge badge-light">v1.0</span> - project attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that name attribute in root &lt;project&gt; element in site.xml is used to set the site title.</li> 
-  <li><b>selectFirstOnExpand</b> <span class="badge badge-light">v2.0</span> - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is true.</li> 
+  <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code>&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
+  <li><b>selectFirstOnExpand</b> <span class="badge badge-light">v2.0</span> - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is <code>true</code>.</li> 
  </ul> 
- <p>The example above produces the following navside menu:</p> 
+ <p>The example above produces the following <code>navside</code> menu:</p> 
  <p><img src="images/navside-menu-preview.png" alt="navside menu preview" class="img-fluid"></p> 
  <div class="bd-callout bd-callout-warning"> 
   <section> 
    <section class="no-anchor"> 
     <h4 class="no-anchor" id="documentation-layout_toc_you-are-a-page-in-other-project-module-displaying-">You are a page in other project module displaying bizarrely</h4> 
-    <p>This page has maybe the same filename as declared page used in documentation layout. You can resolve this problem by adding project attribute or change the filename of one of the files.</p> 
+    <p>This page has maybe the same filename as declared page used in documentation layout. You can resolve this problem by adding <code>project</code> attribute or change the filename of one of the files.</p> 
    </section> 
   </section> 
  </div> 
 </section> 
 <section> 
  <h2 id="documentation-layout_toc_improve-documentation">Improve documentation</h2> 
- <p>Doxia Sitetools has introduce the edit source feature in <a class="externalLink" href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html">decoration model 1.8</a> adding &lt;edit&gt; element allowing to add link on each document page that points to source file in scm (<a class="externalLink" href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183">DOXIASITETOOLS-183</a>). In general, ${project.scm.url} value should do the job.</p> 
- <div> 
-  <div> 
-   <pre class="source">&lt;project&gt;
+ <p>Doxia Sitetools has introduce the edit source feature in <a class="externalLink" href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html">decoration model 1.8</a> adding <code>&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a class="externalLink" href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183">DOXIASITETOOLS-183</a>). In general, <code>${project.scm.url}</code> value should do the job.</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;project&gt;
     &lt;edit&gt;${project.scm.url}&lt;/edit&gt;
 &lt;/project&gt;
 </pre> 

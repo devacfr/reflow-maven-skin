@@ -2,69 +2,58 @@
 
 
   <div class="row no-gutters">
-    <div class="col-lg-12 col-xl-9 py-3">
+    <div class="col-lg-12 col-xl-9">
             <h1 id="components-footer_toc_footer-component">Footer Component</h1> 
-<section> 
- <h2 id="components-footer_toc_usage1">Usage</h2> 
- <div> 
-  <div> 
-   <pre class="source">&lt;footer cssClass="css classes"
+<h2 id="components-footer_toc_usage1">Usage</h2> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;footer cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme" /&gt;
 </pre> 
-  </div> 
  </div> 
- <ul> 
-  <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is null.</li> 
-  <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . light is the default value if value is empty or null.</li> 
-  <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. light is the default value if value is empty or null.</li> 
- </ul> 
- <section> 
-  <h3 id="components-footer_toc_bottom-navigation">Bottom navigation</h3> 
-  <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
-  <p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the bottomNav element. If configuration is not available, lists all menus in a single column.</p> 
-  <div> 
-   <div> 
-    <pre class="source">&lt;bottomNav maxSpan="8"&gt;
+</div> 
+<ul> 
+ <li><b>cssClass</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is <code>null</code>.</li> 
+ <li><b>theme</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code>light</code> is the default value if value is empty or <code>null</code>.</li> 
+ <li><b>background</b> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code>light</code> is the default value if value is empty or <code>null</code>.</li> 
+</ul> 
+<h3 id="components-footer_toc_bottom-navigation">Bottom navigation</h3> 
+<p>support <span class="badge badge-primary">v1.0</span> <br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span> </p> 
+<p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the <code>bottomNav</code> element. If configuration is not available, lists all menus in a single column.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;bottomNav&gt;
   &lt;column&gt;RegEx&lt;/column&gt;
   &lt;column&gt;RegEx&lt;/column&gt;
   &lt;column&gt;RegEx&lt;/column&gt;
 &lt;/bottomNav&gt;
 </pre> 
-   </div> 
-  </div> 
-  <ul> 
-   <li><b>maxSpan</b> <span class="badge badge-light">v1.0</span> - defines the total width that bottom navigation columns can take (out of 12). By default, the <b>maxSpan = 9</b>. The columns are then placed equally within this span (removed in <span class="badge badge-danger">v2.0</span>).</li> 
-   <li>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use Home|Download for the regular expression.</li> 
-  </ul> 
- </section> 
-</section> 
-<section> 
- <h2 id="components-footer_toc_bottom-description">Bottom description</h2> 
- <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p> 
- <p>It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using &lt;bottomDescription&gt; element:</p> 
- <div> 
-  <div> 
-   <pre class="source">&lt;bottomDescription quote="true|false"&gt;description&lt;/bottomDescription&gt;
+ </div> 
+</div> 
+<ul> 
+ <li>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <i>Home</i> and <i>Download</i> items, use <code>Home|Download</code> for the regular expression.</li> 
+</ul> 
+<h2 id="components-footer_toc_bottom-description">Bottom description</h2> 
+<p>support <span class="badge badge-primary">v1.0</span> <br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span> </p> 
+<p>It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using <code>&lt;bottomDescription&gt;</code> element:</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;bottomDescription quote="true|false"&gt;description&lt;/bottomDescription&gt;
 </pre> 
-  </div> 
  </div> 
- <p>The quote attribute wraps the text into a &lt;blockquote&gt; element:</p> 
- <ul> 
-  <li><b>true (default)</b> - Text is wrapped into a &lt;blockquote&gt; element</li> 
-  <li><b>false</b> - Text is printed as-is</li> 
- </ul> 
- <p>The <b>description</b> can be plain text or a CDATA element and thus wrap the text with HTML formatting.</p> 
- <p>Alternatively, &lt;bottomDescription&gt; can contain HTML elements directly, which will be embedded in the bottom description area.</p> 
- <div class="bd-callout bd-callout-info"> 
-  <section> 
-   <section class="no-anchor"> 
-    <h4 class="no-anchor" id="components-footer_toc_note1">Note</h4> 
-    <p>the bottom description must be enabled if Maven site date or version are set to position <b>navigation-bottom</b>.</p> 
-   </section> 
-  </section> 
- </div> 
-</section>
+</div> 
+<p>The <code>quote</code> attribute wraps the text into a <code>&lt;blockquote&gt;</code> element:</p> 
+<ul> 
+ <li><b>true (default)</b> - Text is wrapped into a <code>&lt;blockquote&gt;</code> element</li> 
+ <li><b>false</b> - Text is printed as-is</li> 
+</ul> 
+<p>The <b>description</b> can be plain text or a <code>CDATA</code> element and thus wrap the text with HTML formatting.</p> 
+<p>Alternatively, <code>&lt;bottomDescription&gt;</code> can contain HTML elements directly, which will be embedded in the bottom description area.</p> 
+<div class="bd-callout bd-callout-info"> 
+ <h5 class="no-anchor" id="components-footer_toc_note">Note</h5> 
+ <p>The bottom description must be enabled if Maven site date or version are set to position <b>navigation-bottom</b>.</p> 
+</div>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">

@@ -192,6 +192,7 @@ var mReflow = function () {
       initTocSidebar();
       initHighlight();
       initAnchorJs();
+      initTooltip();
       refreshScrollSpy();
 
       var hash = window.location.hash;
@@ -218,6 +219,7 @@ var mReflow = function () {
     }
   }
 
+
   function initNavSidebar() {
     var navSidebar = $('.navside-menu');
     if (navSidebar.length == 0) {
@@ -231,6 +233,7 @@ var mReflow = function () {
       var href = $('.navside-menu a').first();
       return href.attr('slug-name');
     }
+
 
     /**
      * create a link
@@ -354,6 +357,9 @@ var mReflow = function () {
     });
   }
 
+  function initTooltip() {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
 
   function refreshScrollSpy() {
     $body.scrollspy('refresh');
@@ -369,6 +375,7 @@ var mReflow = function () {
       initTopNavBar();
       initHighlight();
       initAnchorJs();
+      initTooltip();
       refreshScrollSpy();
     }
   };
