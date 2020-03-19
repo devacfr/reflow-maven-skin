@@ -83,11 +83,7 @@
  *###
 #macro ( banner $banner $id)##
 #*  *##if ( $banner )##
-#*      *##if ( $banner.href )##
-                    <a href="$config.relativeLink( $banner.href )">
-#*      *##else##
-                    <div class="$id">
-#*      *##end##
+        <div class="$id">
 ##
 #*      *##if ( $banner.src )##
             <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end
@@ -97,14 +93,10 @@
 #*          *# />
 #*      *##end##
 #*      *##if ( $banner.name )##
-            <h1>$banner.name</h1>
+            <h1 class="d-inline-block">$banner.name</h1>
 #*      *##end##
 ##
-#*      *##if ( $banner.href )##
-            </a>
-#*      *##else##
-            </div>
-#*      *##end##
+        </div>
 ##
 #*      *### add slogan to correct position
 #*      *##if ( $config.slogan && $config.slogan != '' )##
