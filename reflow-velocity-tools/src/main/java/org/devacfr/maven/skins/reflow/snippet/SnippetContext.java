@@ -118,7 +118,7 @@ public class SnippetContext {
         element.childNodes().forEach((child) -> {
             boolean isKnownHtmlTag = false;
             Component<?> component = null;
-            // if child is velocity command or other
+            // accept textnode not empty as component.
             if (child instanceof TextNode && ((TextNode) child).text().length() > 1) {
                 isKnownHtmlTag = true;
                 component = Component.createComponent(child, parent, isKnownHtmlTag);
