@@ -1,8 +1,9 @@
 
 {{< layout class="header text-center text-light" role="main" >}}
 
-{{< layout class="container container-fluid" >}}
+{{% layout class="container container-fluid" %}}
 
+```
 <div class="header--subhead">
     <div id="banner" class="header__banner">
         <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg"
@@ -15,14 +16,22 @@
         <a href="$resourcePath/reflow-maven-skin/reflow-documentation.html#get-started.html"
             class="btn btn-md mb-2 mr-2 ml-2">
             <span class="btn__link-icon">
-                <!-- MACRO{snippet|file=src/site/svg/pentone.svg|verbatim=false|ignoreDownloadError=false} -->
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewbox="0 0 24 24" version="1.1" class="svg-icon">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M22,15 L22,19 C22,20.1045695 21.1045695,21 20,21 L8,21 C5.790861,21 4,19.209139 4,17 C4,14.790861 5.790861,13 8,13 L20,13 C21.1045695,13 22,13.8954305 22,15 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3" />
+                        <path d="M15.5421357,5.69999981 L18.3705628,8.52842693 C19.1516114,9.30947552 19.1516114,10.5758055 18.3705628,11.3568541 L9.88528147,19.8421354 C8.3231843,21.4042326 5.79052439,21.4042326 4.22842722,19.8421354 C2.66633005,18.2800383 2.66633005,15.7473784 4.22842722,14.1852812 L12.7137086,5.69999981 C13.4947572,4.91895123 14.7610871,4.91895123 15.5421357,5.69999981 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3" />
+                        <path d="M5,3 L9,3 C10.1045695,3 11,3.8954305 11,5 L11,17 C11,19.209139 9.209139,21 7,21 C4.790861,21 3,19.209139 3,17 L3,5 C3,3.8954305 3.8954305,3 5,3 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" />
+                    </g>
+                </svg>
             </span>
             <span class="btn__link-text">Get Started</span>
         </a>
     </p>
 </div>
+```
 
-{{< /layout >}}
+{{% /layout %}}
 
 {{< /layout >}}
 
@@ -30,21 +39,25 @@
 
 {{< row >}}
 
-{{< column class="col-sm-6" >}}
+{{% column class="col-sm-6" %}}
 
+```
 <h2><span class="color-highlight">Reflow</span> Maven skin</h2>
 <p>is an <a href="http://maven.apache.org/guides/mini/guide-site.html" target="_blank" rel="noopener">Apache Maven site</a>
 skin built on <a href="http://getbootstrap.com" target="_blank" rel="noopener">Bootstrap</a>. It allows various
 structural and stylistic customizations to create a modern-looking Maven-generated website.
 </p>
+```
 
-{{< /column >}}
+{{% /column %}}
 
-{{< column class="col-sm-offset-1 col-sm-5 text-right" >}}
+{{% column class="col-sm-offset-1 col-sm-5 text-right" %}}
 
+```
 <img src="$resourcePath/images/logo.svg" height="80%" width="80%" />
+```
 
-{{< /column >}}
+{{% /column %}}
 
 {{< /row >}}
 
@@ -62,8 +75,9 @@ structural and stylistic customizations to create a modern-looking Maven-generat
 
 {{< /column >}}
 
-{{< column class="text-right" >}}
+{{% column class="text-right" %}}
 
+```
 <h2>Responsive Layout</h2>
 <p>Write your pages in
     <a href="http://maven.apache.org/doxia/references/index.html" target="_blank" rel="noopener">APT,
@@ -80,8 +94,9 @@ structural and stylistic customizations to create a modern-looking Maven-generat
         <!-- MACRO{snippet|file=src/site/svg/angle-double-right.svg|verbatim=false|ignoreDownloadError=false} -->
     </a>
 </p>
+```
 
-{{< /column >}}
+{{% /column %}}
 
 {{< /row >}}
 

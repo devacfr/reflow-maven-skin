@@ -1,4 +1,4 @@
-# Working with Snippet {{< badge color="warning" text="DRAFT" />}}
+# Working with Snippets {{< badge color="warning" text="DRAFT" />}}
 
 {{< badge color="primary" text="New in v2.4" />}}
 
@@ -8,7 +8,8 @@ Please note that this feature is in development. All recommendation and improvem
 
 {{< /callout >}}
 
-A `shortcode` and `web component` are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format) for the moment.
+Markdown is simple content format, but there are times when Markdown falls short. Often, authors are forced to add raw HTML to Markdown content. Reflow created snippets to get around these limitations.
+A `shortcode` and `web component` are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format for the moment).
 
 {{< row class="row-cols-1 row-cols-md-2" >}}
 
@@ -44,14 +45,16 @@ A `shortcode` and `web component` are a simple snippet inside a page that Reflow
 
 {{< /row >}}
 
-## Web Component
+## Web Components
 
-The web component is composed by start tag `{{% component %}}` and tag `{{% /component %}}`, an associated xml data structure and a  velocity template file.
-The xml data part is enclosed in comment html element ( `<!-- -->`) or in highlighting block `<pre>...</pre>` to reduce the risk that Doxia Tools modifies or deletes certain html elements (doxia deletes all non-standard elements, `<svg>` tag too :thumbsdown: )..
+It is composed by start tag `{{% component attribute="value" %}}` with attributes and tag `{{% /component %}}`, an associated xhtml data structure and a velocity template file.
+The xhtml data part is enclosed in comment html element ( `<!-- -->`) or in highlighting block `<pre>...</pre>`. This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, `<svg>` tag too :-1: ).
 The template file name should have the same name as web compenent and located in `src/site/snippets/component.vm`.
 In future, the web component will be managed directly by javascript using [web component APIs](https://www.webcomponents.org/).
 
 ### Tag Syntax
+
+The `web component` must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.
 
 - whitespaces are required after `{{%` and before `%}}` tags.
 - the empty line is required before after each start and end tag.
@@ -89,7 +92,7 @@ The template use `$snippet` variable to render the web component.
 ```html
 #if( $snippet.attribute == 'value' )
   <div class="component">
-    <h2>$snippet.data-item.body</h2>
+    <h2>$snippet.data-item.html</h2>
    <div #if( $snippet.data-content.attr['class'] )class="$snippet.data-content.attr['class']"#end>
    $snippet.data-content.html
    </div>
@@ -97,17 +100,23 @@ The template use `$snippet` variable to render the web component.
 #end
 ```
 
-## Shortcode
+## Shortcodes
 
-The Shortcode can be construct as empty element tag `{{< component attribute="value" />}}` or with start tag  `{{< component attribute="value" >}}` and end tag  `{{< /component >}}`.
+The shortcode .It can be construct as a empty element tag `{{< component attribute="value" />}}` or with a start tag  `{{< component attribute="value" >}}` with attributes and a end tag  `{{< /component >}}`.
+One of these peculiarities is that it can mutate to web component. This particularity allows to resolve certain conflict with the Doxia renderer.
 
-## Tag Syntax
+### Tag Syntax
+
+The shortcode must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.
 
 - whitespaces are required after `{{<` and before `>}}`
 - the empty line is required before after each start and end tag.
 - start and end tags must be placed at the start of a line.
-- the empty tag `{{< shortcode />}}` can be used inline in paragraph. 
+- the empty tag `{{< shortcode />}}` or start and end tags can be used inline in same paragraph.
 
+### Nested Shortcodes
+
+You can include shortcodes within other shortcodes by creating your own templates that leverage the `$snippet.parent` property. `$snippet.parent` allows you to check the context in which the shortcode is being called.
 
 ```html
 {{< jumbotron class="bg-primary" >}}
@@ -127,7 +136,6 @@ or, with markdown text
 ## Hello, world!
 
 This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
----
 It uses utility classes for typography and spacing to space content out within the larger container.
 
 {{< /jumbotron >}}
@@ -169,7 +177,6 @@ You can not use the `class` attribute directly like this `$snippet.data-content.
 
 {{< /callout >}}
 
-
 ### Property
 
 - `$snippet.name` -
@@ -182,3 +189,7 @@ You can not use the `class` attribute directly like this `$snippet.data-content.
 ## Template
 
 The template uses [Velocity Template](https://velocity.apache.org/engine/1.7/developer-guide.html) to generate html content. the file have to be located in path `src/site/snippets`.
+
+### Override Template
+
+Template can override existing template.
