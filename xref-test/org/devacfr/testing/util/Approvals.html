@@ -237,7 +237,7 @@
 <a class="jxr_linenumber" name="L229" href="#L229">229</a>             <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L230" href="#L230">230</a>                 diffs = provider.computeDiff(<strong class="jxr_keyword">new</strong> StringReader(actual), <strong class="jxr_keyword">new</strong> StringReader(expected));
 <a class="jxr_linenumber" name="L231" href="#L231">231</a>                 <strong class="jxr_keyword">return</strong> diffs
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>                         .toUnifiedDiff(<span class="jxr_string">"actual"</span>, <span class="jxr_string">"expected"</span>, <strong class="jxr_keyword">new</strong> StringReader(actual), <strong class="jxr_keyword">new</strong> StringReader(expected), 3);
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>                         .toUnifiedDiff(<span class="jxr_string">"actual"</span>, <span class="jxr_string">"expected"</span>, <strong class="jxr_keyword">new</strong> StringReader(actual), <strong class="jxr_keyword">new</strong> StringReader(expected), 10);
 <a class="jxr_linenumber" name="L233" href="#L233">233</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException e) {
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(e.getMessage(), e);
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>             }

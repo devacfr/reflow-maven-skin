@@ -1,6 +1,6 @@
-var treeMapJson = {"id":"Clover database Thu Mar 19 2020 21:10:10 CET0","name":"","data":{
-    "$area":2128.0,"$color":74.01315,"title":
-    " 2128 Elements, 74% Coverage"},"children":[{"id":
+var treeMapJson = {"id":"Clover database Fri Mar 20 2020 17:20:33 CET0","name":"","data":{
+    "$area":2193.0,"$color":73.27861,"title":
+    " 2193 Elements, 73.3% Coverage"},"children":[{"id":
       "org.devacfr.maven.skins.reflow0","name":
       "org.devacfr.maven.skins.reflow","data":{"$area":892.0,"$color":
         79.70852,"title":
@@ -144,70 +144,74 @@ var treeMapJson = {"id":"Clover database Thu Mar 19 2020 21:10:10 CET0","name":"
             "$color":77.77778,"path":
             "org/devacfr/maven/skins/reflow/context/PageContext.html#PageContext",
             "title":"PageContext 9 Elements, 77.8% Coverage"},"children":[]}]},
-    {"id":"org.devacfr.maven.skins.reflow.snippet.internal2111","name":
+    {"id":"org.devacfr.maven.skins.reflow.snippet.internal2176","name":
       "org.devacfr.maven.skins.reflow.snippet.internal","data":{"$area":
         17.0,"$color":64.70589,"title":
         "org.devacfr.maven.skins.reflow.snippet.internal 17 Elements, 64.7% Coverage"},
-      "children":[{"id":"ContainsOwnText2111","name":"ContainsOwnText",
+      "children":[{"id":"ContainsOwnText2176","name":"ContainsOwnText",
           "data":{"$area":17.0,"$color":64.70589,"path":
             "org/devacfr/maven/skins/reflow/snippet/internal/ContainsOwnText.html#ContainsOwnText",
             "title":"ContainsOwnText 17 Elements, 64.7% Coverage"},
           "children":[]}]},{"id":
       "org.devacfr.maven.skins.reflow.snippet1616","name":
-      "org.devacfr.maven.skins.reflow.snippet","data":{"$area":495.0,
-        "$color":74.747475,"title":
-        "org.devacfr.maven.skins.reflow.snippet 495 Elements, 74.7% Coverage"},
+      "org.devacfr.maven.skins.reflow.snippet","data":{"$area":560.0,
+        "$color":71.78571,"title":
+        "org.devacfr.maven.skins.reflow.snippet 560 Elements, 71.8% Coverage"},
       "children":[{"id":"Component1616","name":"Component","data":{"$area":
-            123.0,"$color":61.78862,"path":
+            129.0,"$color":62.7907,"path":
             "org/devacfr/maven/skins/reflow/snippet/Component.html#Component",
-            "title":"Component 123 Elements, 61.8% Coverage"},"children":[]},
-        {"id":"ComponentResolver1739","name":"ComponentResolver","data":{
-            "$area":65.0,"$color":86.15385,"path":
+            "title":"Component 129 Elements, 62.8% Coverage"},"children":[]},
+        {"id":"ComponentResolver1745","name":"ComponentResolver","data":{
+            "$area":60.0,"$color":86.666664,"path":
             "org/devacfr/maven/skins/reflow/snippet/ComponentResolver.html#ComponentResolver",
-            "title":"ComponentResolver 65 Elements, 86.2% Coverage"},
-          "children":[]},{"id":"ComponentToken1804","name":
+            "title":"ComponentResolver 60 Elements, 86.7% Coverage"},
+          "children":[]},{"id":"ComponentToken1805","name":
           "ComponentToken","data":{"$area":17.0,"$color":88.2353,"path":
             "org/devacfr/maven/skins/reflow/snippet/ComponentToken.html#ComponentToken",
             "title":"ComponentToken 17 Elements, 88.2% Coverage"},"children":
-          []},{"id":"ComponentToken.Tag1804","name":"ComponentToken.Tag",
+          []},{"id":"ComponentToken.Tag1805","name":"ComponentToken.Tag",
           "data":{"$area":0.0,"$color":-100.0,"path":
             "org/devacfr/maven/skins/reflow/snippet/ComponentToken.html#ComponentToken.Tag",
             "title":"ComponentToken.Tag 0 Elements,  -  Coverage"},
-          "children":[]},{"id":"ComponentToken.Type1804","name":
+          "children":[]},{"id":"ComponentToken.Type1805","name":
           "ComponentToken.Type","data":{"$area":0.0,"$color":-100.0,"path":
             "org/devacfr/maven/skins/reflow/snippet/ComponentToken.html#ComponentToken.Type",
             "title":"ComponentToken.Type 0 Elements,  -  Coverage"},
-          "children":[]},{"id":"Components1821","name":"Components","data":{
+          "children":[]},{"id":"Components1822","name":"Components","data":{
             "$area":28.0,"$color":46.42857,"path":
             "org/devacfr/maven/skins/reflow/snippet/Components.html#Components",
             "title":"Components 28 Elements, 46.4% Coverage"},"children":[]},
-        {"id":"Processor1849","name":"Processor","data":{"$area":92.0,
+        {"id":"Processor1850","name":"Processor","data":{"$area":92.0,
             "$color":88.04348,"path":
             "org/devacfr/maven/skins/reflow/snippet/Processor.html#Processor",
             "title":"Processor 92 Elements, 88% Coverage"},"children":[]},{
-          "id":"Processor.WebComponentProcessor1941","name":
-          "Processor.WebComponentProcessor","data":{"$area":20.0,"$color":
-            95.0,"path":
+          "id":"Processor.WebComponentProcessor1942","name":
+          "Processor.WebComponentProcessor","data":{"$area":24.0,"$color":
+            87.5,"path":
             "org/devacfr/maven/skins/reflow/snippet/Processor.html#Processor.WebComponentProcessor",
             "title":
-            "Processor.WebComponentProcessor 20 Elements, 95% Coverage"},
-          "children":[]},{"id":"Processor.ShortcodeProcessor1961","name":
+            "Processor.WebComponentProcessor 24 Elements, 87.5% Coverage"},
+          "children":[]},{"id":"Processor.ShortcodeProcessor1966","name":
           "Processor.ShortcodeProcessor","data":{"$area":4.0,"$color":
             100.0,"path":
             "org/devacfr/maven/skins/reflow/snippet/Processor.html#Processor.ShortcodeProcessor",
             "title":
             "Processor.ShortcodeProcessor 4 Elements, 100% Coverage"},
-          "children":[]},{"id":"SnippetComponent1965","name":
+          "children":[]},{"id":"SnippetComponent1970","name":
           "SnippetComponent","data":{"$area":19.0,"$color":73.68421,"path":
             "org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#SnippetComponent",
             "title":"SnippetComponent 19 Elements, 73.7% Coverage"},
-          "children":[]},{"id":"SnippetContext1984","name":
-          "SnippetContext","data":{"$area":53.0,"$color":88.679245,"path":
+          "children":[]},{"id":"SnippetContext1989","name":
+          "SnippetContext","data":{"$area":75.0,"$color":92.0,"path":
             "org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#SnippetContext",
-            "title":"SnippetContext 53 Elements, 88.7% Coverage"},"children":
-          []},{"id":"SnippetParser2037","name":"SnippetParser","data":{
-            "$area":74.0,"$color":60.81081,"path":
+            "title":"SnippetContext 75 Elements, 92% Coverage"},"children":[]},
+        {"id":"SnippetParser2064","name":"SnippetParser","data":{"$area":
+            77.0,"$color":62.33766,"path":
             "org/devacfr/maven/skins/reflow/snippet/SnippetParser.html#SnippetParser",
-            "title":"SnippetParser 74 Elements, 60.8% Coverage"},"children":[]}]}]}
+            "title":"SnippetParser 77 Elements, 62.3% Coverage"},"children":[]},
+        {"id":"TemplateMacro2141","name":"TemplateMacro","data":{"$area":
+            35.0,"$color":11.428572,"path":
+            "org/devacfr/maven/skins/reflow/snippet/TemplateMacro.html#TemplateMacro",
+            "title":"TemplateMacro 35 Elements, 11.4% Coverage"},"children":[]}]}]}
 ;
 processTreeMapJson (treeMapJson);
