@@ -30,8 +30,11 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeSingleton;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,12 +61,16 @@ public class SnippetContext {
     /** */
     private final List<String> snippetPaths = Lists.newArrayList(DEFAULT_PATHS);
 
+    /** */
+    private ISkinConfig config;
+
     public SnippetContext() {
     }
 
     public void reset() {
         this.htmlSource = null;
         this.components.clear();
+        this.config = null;
     }
 
     public String generateSnippetIdentifier() {
@@ -72,6 +79,10 @@ public class SnippetContext {
 
     public List<SnippetComponent<?>> getComponents() {
         return components;
+    }
+
+    void setConfig(final ISkinConfig config) {
+        this.config = config;
     }
 
     void addComponent(final SnippetComponent<?> component) {
@@ -103,10 +114,22 @@ public class SnippetContext {
         return component;
     }
 
-    private void recurciveCreateComponent(@Nonnull final Element element, final Component<?> parent) {
-        element.children().forEach((child) -> {
-            final boolean isKnownHtmlTag = child.tag().isKnownTag();
-            final Component<?> component = Component.createComponent(child, parent, isKnownHtmlTag);
+    private void recurciveCreateComponent(@Nonnull final Node element, final Component<?> parent) {
+        element.childNodes().forEach((child) -> {
+            boolean isKnownHtmlTag = false;
+            Component<?> component = null;
+            // if child is velocity command or other
+            if (child instanceof TextNode && ((TextNode) child).text().length() > 1) {
+                isKnownHtmlTag = true;
+                component = Component.createComponent(child, parent, isKnownHtmlTag);
+            } else if (child instanceof Element) {
+                final Element el = (Element) child;
+                isKnownHtmlTag = el.tag().isKnownTag();
+                component = Component.createComponent(el, parent, isKnownHtmlTag);
+            }
+            if (component == null) {
+                return;
+            }
             parent.addChild(component);
             // is html tag?
             if (!isKnownHtmlTag) {
@@ -127,15 +150,21 @@ public class SnippetContext {
 
     protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
         boolean found = false;
-        final VelocityContext context = new VelocityContext();
-        context.put("snippet", component);
 
         for (final String path : this.snippetPaths) {
 
             final String filePath = path + '/' + component.getName() + ".vm";
             if (Velocity.resourceExists(filePath)) {
                 found = true;
-                Velocity.mergeTemplate(filePath,
+                final VelocityContext context = new VelocityContext();
+                context.put("snippet", component);
+                context.put("snippetPath", filePath);
+                context.put("config", this.config);
+                context.put("decoration", this.config.getDecoration());
+                // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+                context.put("resourcePath", this.config.getResourcePath());
+
+                Velocity.mergeTemplate("META-INF/skin/snippets/_snippet.vm",
                     RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
                     context,
                     writer);

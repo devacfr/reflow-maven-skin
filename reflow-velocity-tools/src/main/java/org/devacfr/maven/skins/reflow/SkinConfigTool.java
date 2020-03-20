@@ -249,7 +249,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Sets the key under which this tool has been configured.
      *
      * @param key
-     *                the key of config
+     *            the key of config
      * @since 1.0
      */
     protected void setKey(final String key) {
@@ -323,7 +323,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Retrieves the text value of the given {@code property}, e.g. as in {@code <myprop>value</myprop>}.
      *
      * @param property
-     *                     the property of interest
+     *            the property of interest
      * @return the configuration value if found in page or globally, {@code null} otherwise.
      * @see #get(String)
      * @since 1.0
@@ -345,15 +345,15 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the text value of the given {@code property}.
      *
      * @param property
-     *                         the property to use
+     *            the property to use
      * @param targetType
-     *                         the returned target type use to convert value.
+     *            the returned target type use to convert value.
      * @param defaultValue
-     *                         the default value used if property doesn't exist.
+     *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
-     *                the type of returned object.
+     *            the type of returned object.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -382,7 +382,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the list of all children name for the {@code parentNode}.
      *
      * @param parentNode
-     *                       the parent node to use (can be {@code null}.
+     *            the parent node to use (can be {@code null}.
      * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
      *         {@code null}.
      * @since 1.3
@@ -395,17 +395,17 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the attribute value of the given {@code attribute} of {@code property}.
      *
      * @param property
-     *                         the property to use
+     *            the property to use
      * @param attribute
-     *                         the attribute to use.
+     *            the attribute to use.
      * @param targetType
-     *                         the returned target type use to convert value.
+     *            the returned target type use to convert value.
      * @param defaultValue
-     *                         the default value used if property doesn't exist.
+     *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
-     *                the type of returned object.
+     *            the type of returned object.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -484,7 +484,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * A convenience method to check if the value of the {@code property} is {@code "true"}.
      *
      * @param property
-     *                     the property of interest
+     *            the property of interest
      * @return {@code true} if the configuration value is set either in page or globally, and is equal to
      *         {@code "true"}.
      * @see #get(String)
@@ -506,9 +506,9 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * A convenience method to check if the {@code property} is set to a specific value.
      *
      * @param property
-     *                     the property of interest
+     *            the property of interest
      * @param value
-     *                     the property value to check
+     *            the property value to check
      * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.
      * @see #get(String)
      * @since 1.0
@@ -699,7 +699,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
     /**
      * @param url
-     *                a url.
+     *            a url.
      * @return Returns {@code true} whether the link is a external link to the site.
      */
     public boolean isExternalLink(final String url) {
@@ -733,7 +733,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Converts a filename to pageId format.
      *
      * @param fileName
-     *                     the filename to convert
+     *            the filename to convert
      * @return Returns a {@link String} representing the pageId of {@code filename}.
      */
     @Nullable
@@ -762,7 +762,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * @return Returns a {@link String} representing the relative path to root site.
      */
     @Nonnull
-    private String getResourcePath() {
+    public String getResourcePath() {
         final String absoluteResourceURL = this.value("absoluteResourceURL");
         String projectUrl = getProjectLocation();
         final String currentFileName = getCurrentFileName();

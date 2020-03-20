@@ -32,10 +32,8 @@ public class MarkdownParserTest extends PlexusTestCase {
     private MarkdownParser parser;
 
     @BeforeEach
-    @Override
     public void setUp() throws Exception {
-        super.setUp();
-        parser = lookup(Parser.ROLE, MarkdownParser.ROLE_HINT, MarkdownParser.class);
+        parser = lookup(Parser.ROLE, MarkdownParser.ROLE_HINT);
     }
 
     @AfterEach

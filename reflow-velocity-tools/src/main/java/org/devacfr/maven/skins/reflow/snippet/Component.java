@@ -25,6 +25,7 @@ import javax.annotation.Nullable;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
@@ -64,17 +65,25 @@ public class Component<T extends Component<T>> {
      * @param isKnownHtmlTag
      * @return
      */
-    public static Component<?> createComponent(@Nonnull final Element element,
+    public static Component<?> createComponent(@Nonnull final Node element,
         final Component<?> parent,
         final boolean isKnownHtmlTag) {
         String html = "".intern();
-        if (isKnownHtmlTag) {
-            html = element.outerHtml();
-        } else if (element.children().isEmpty()) {
-            html = element.html();
+        String tagName = "";
+
+        if (element instanceof Element) {
+            tagName = ((Element) element).tagName();
+        } else {
+            tagName = element.nodeName();
         }
 
-        return new Component<>(element.tagName(), isKnownHtmlTag).withParent(parent)
+        if (isKnownHtmlTag) {
+            html = element.outerHtml();
+        } else if (element instanceof Element) {
+            html = ((Element) element).html();
+        }
+
+        return new Component<>(tagName, isKnownHtmlTag).withParent(parent)
                 .addAttributes(element.attributes())
                 .withHtml(html);
     }

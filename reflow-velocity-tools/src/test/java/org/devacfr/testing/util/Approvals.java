@@ -229,7 +229,7 @@ public final class Approvals {
             try {
                 diffs = provider.computeDiff(new StringReader(actual), new StringReader(expected));
                 return diffs
-                        .toUnifiedDiff("actual", "expected", new StringReader(actual), new StringReader(expected), 3);
+                        .toUnifiedDiff("actual", "expected", new StringReader(actual), new StringReader(expected), 10);
             } catch (final IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }

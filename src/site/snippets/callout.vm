@@ -29,5 +29,5 @@
  #if( ${snippet.title} )##
     <h${level} class="no-anchor">${snippet.title}</h${level}>
  #end##
-    ${snippet.html}
+    #render_html( ${snippet} )
 </div>

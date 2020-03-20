@@ -63,7 +63,7 @@ public class ComponentResolver {
      * Collects all (start,end,empty) Element corresponding to a snippet component.
      *
      * @param document
-     *                     the Jsoup document to use
+     *            the Jsoup document to use
      * @return Return a {@link Elements} representing all web components contained in Jsoup document.
      */
     public Elements collect(final Document document) {
@@ -75,7 +75,7 @@ public class ComponentResolver {
      * Normalise the {@link Document} to enclose inline snippet in html element.
      *
      * @param document
-     *                     the document to use
+     *            the document to use
      * @return Returns the same normalised {@link Document}.
      */
     public Document normalize(final Document document) {
@@ -111,7 +111,7 @@ public class ComponentResolver {
      * Create a {@link ComponentToken} corresponding to the element.
      *
      * @param element
-     *                    the element to use.
+     *            the element to use.
      * @return Return a new instance of {@link ComponentToken} representing the element.
      */
     public ComponentToken create(final Element element) {

@@ -17,10 +17,15 @@ package org.devacfr.maven.skins.reflow.snippet;
 
 import java.io.IOException;
 
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 public class SnippetParserTest extends MockitoTestCase {
+
+    @Mock
+    private ISkinConfig config;
 
     @Test
     public void shouldReplaceSnippetByHtml() throws Exception {
@@ -28,7 +33,7 @@ public class SnippetParserTest extends MockitoTestCase {
             SnippetContext contextSnippet;
             try {
                 contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(htmlSource);
+                        .parse(config, htmlSource);
                 final String html = contextSnippet.html();
                 return html;
             } catch (final IOException e) {
@@ -44,7 +49,7 @@ public class SnippetParserTest extends MockitoTestCase {
             SnippetContext contextSnippet;
             try {
                 contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(htmlSource);
+                        .parse(config, htmlSource);
                 final String html = contextSnippet.html();
                 return html;
             } catch (final IOException e) {
@@ -60,7 +65,7 @@ public class SnippetParserTest extends MockitoTestCase {
             SnippetContext contextSnippet;
             try {
                 contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(htmlSource);
+                        .parse(config, htmlSource);
                 final String html = contextSnippet.html();
                 return html;
             } catch (final IOException e) {
@@ -76,7 +81,7 @@ public class SnippetParserTest extends MockitoTestCase {
             SnippetContext contextSnippet;
             try {
                 contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(htmlSource);
+                        .parse(config, htmlSource);
                 final String html = contextSnippet.html();
                 return html;
             } catch (final IOException e) {

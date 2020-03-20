@@ -26,6 +26,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 /**
@@ -244,7 +245,12 @@ public abstract class Processor {
                 if ("div".equals(el.tagName()) && el.hasClass("source")) {
                     writer.append(el.text());
                 } else {
-                    writer.append(el.data());
+                    // comment can be enclose in <p> element.
+                    if (Iterables.tryFind(el.childNodes(), (n) -> n instanceof Comment).isPresent()) {
+                        writer.append(el.data());
+                    } else {
+                        writer.append(el.outerHtml());
+                    }
                 }
             } else if (node instanceof Comment) {
                 writer.append(((Comment) node).getData());

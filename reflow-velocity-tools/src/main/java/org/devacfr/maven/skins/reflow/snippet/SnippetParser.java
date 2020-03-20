@@ -15,10 +15,15 @@
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.snippet.Processor.ShortcodeProcessor;
 import org.devacfr.maven.skins.reflow.snippet.Processor.WebComponentProcessor;
 import org.jsoup.Jsoup;
@@ -53,6 +58,7 @@ public class SnippetParser {
     /** */
     private final SnippetContext snippetContext;
 
+    /** */
     private ComponentToken currentToken;
 
     public SnippetParser() {
@@ -73,8 +79,14 @@ public class SnippetParser {
         return this;
     }
 
-    public SnippetContext parse(final String htmlSource) throws IOException {
+    public SnippetContext parse(@Nonnull final ISkinConfig config, @Nonnull final String htmlSource)
+            throws IOException {
+        requireNonNull(config);
+        requireNonNull(htmlSource);
+
         snippetContext.reset();
+        snippetContext.setConfig(config);
+
         // find all snippet start
         final Document doc = resolver.normalize(Jsoup.parse(htmlSource));
 

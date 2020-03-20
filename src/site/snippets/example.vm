@@ -22,5 +22,5 @@
 #*      *##set( $class = "bd-example-row")
 #*  *##end##
 <div class="${class}">
-    ${snippet.html}
+    #render_html( ${snippet} )
 </div>

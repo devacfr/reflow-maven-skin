@@ -30,6 +30,6 @@
 #*  *##end##
 #*  *##if( ${snippet.html})
 <div class="${class}">
-    ${snippet.html}
+    #render_html( ${snippet} )
 </div>
 #*  *##end

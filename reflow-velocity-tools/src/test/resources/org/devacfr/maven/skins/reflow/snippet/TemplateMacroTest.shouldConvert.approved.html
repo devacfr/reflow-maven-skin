@@ -1,0 +1,17 @@
+<html>
+ <head></head>
+ <body>
+  <span>{{&lt; layout class="header text-center text-light" role="main" &gt;}}</span> 
+  <span>{{&lt; layout class="container container-fluid" &gt;}}</span> 
+  <div class="header--subhead"> 
+   <div id="banner" class="header__banner"> 
+    <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg" alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width" height="$$decoration.bannerLeft.height"> 
+    <h1 class="d-inline-block">$decoration.bannerLeft.name</h1> 
+    <p class="lead">$config.slogan.getValue()</p> 
+   </div> 
+   <p> <a href="$resourcePath/reflow-maven-skin/reflow-documentation.html#get-started.html" class="btn btn-md mb-2 mr-2 ml-2"> <span class="btn__link-icon"> </span> <span class="btn__link-text">Get Started</span> </a> </p> 
+  </div> 
+  <span>{{&lt; /layout &gt;}}</span> 
+  <span>{{&lt; /layout &gt;}}</span>
+ </body>
+</html>

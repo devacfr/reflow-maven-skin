@@ -20,8 +20,6 @@ import javax.annotation.Nullable;
 
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
-import org.apache.velocity.tools.ToolContext;
-import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.context.Context;
 
@@ -38,7 +36,7 @@ public interface ISkinConfig {
      * are enabled by default - checks if the property is set to {@code "false"} explicitly.
      *
      * @param property
-     *                     the property of interest
+     *            the property of interest
      * @return {@code true} if the configuration value is set either in page or globally, and is equal to
      *         {@code "false"}. Note that this will return {@code false} if property is not set at all.
      * @see #get(String)
@@ -50,12 +48,12 @@ public interface ISkinConfig {
      * Gets the associated value to {@code key} stored in Velocity context.
      *
      * @param key
-     *                 the key name of associated value in Velocity context.
+     *            the key name of associated value in Velocity context.
      * @param type
-     *                 the the type of expected value.
+     *            the the type of expected value.
      * @return Returns the associated value to {@code key} stored in Velocity context.
      * @param <T>
-     *                the type of expected value.
+     *            the type of expected value.
      * @since 2.1
      */
     <T> T getContextValue(@Nonnull String key, @Nonnull Class<T> type);
@@ -64,9 +62,9 @@ public interface ISkinConfig {
      * Sets the value in Velocity context associated to {@code key}.
      *
      * @param key
-     *                  the key name of associated value in Velocity context.
+     *            the key name of associated value in Velocity context.
      * @param value
-     *                  the new value
+     *            the new value
      * @since 2.1
      */
     void setContextValue(@Nonnull String key, Object value);
@@ -75,12 +73,12 @@ public interface ISkinConfig {
      * Gets the associated tool to {@code name} stored in toolbox of Velocity context.
      *
      * @param toolName
-     *                     the name of tool associated in Velocity context.
+     *            the name of tool associated in Velocity context.
      * @param toolType
-     *                     the expected class of tool.
+     *            the expected class of tool.
      * @return Returns the associated tool to {@code name} stored in toolbox of Velocity context.
      * @param <T>
-     *                the type of expected tool.
+     *            the type of expected tool.
      * @since 2.1
      */
     @Nullable
@@ -135,11 +133,17 @@ public interface ISkinConfig {
     DecorationModel getDecoration();
 
     /**
+     * @return Returns a {@link String} representing the relative path to root site.
+     */
+    @Nonnull
+    String getResourcePath();
+
+    /**
      * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise
      * Velocity fallback onto the default getter and use {@code $config.myproperty}.
      *
      * @param property
-     *                     the property of interest
+     *            the property of interest
      * @return configuration node if found in the following sequence:
      *         <ol>
      *         <li>In page configuration</li>
@@ -155,15 +159,15 @@ public interface ISkinConfig {
      * Gets the text value of the given {@code property}.
      *
      * @param property
-     *                         the property to use
+     *            the property to use
      * @param targetType
-     *                         the returned target type use to convert value.
+     *            the returned target type use to convert value.
      * @param defaultValue
-     *                         the default value used if property doesn't exist.
+     *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
-     *                the type of returned object.
+     *            the type of returned object.
      */
     @Nullable
     <T> T getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType, @Nullable T defaultValue);
@@ -172,17 +176,17 @@ public interface ISkinConfig {
      * Gets the attribute value of the given {@code attribute} of {@code property}.
      *
      * @param property
-     *                         the property to use
+     *            the property to use
      * @param attribute
-     *                         the attribute to use.
+     *            the attribute to use.
      * @param targetType
-     *                         the returned target type use to convert value.
+     *            the returned target type use to convert value.
      * @param defaultValue
-     *                         the default value used if property doesn't exist.
+     *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
-     *                the type of returned object.
+     *            the type of returned object.
      */
     @Nullable
     <T> T getAttributeValue(@Nonnull String property,
@@ -194,17 +198,17 @@ public interface ISkinConfig {
      * Get the value contained in specific attribute of {@code element} parameter.
      *
      * @param element
-     *                         the xml element.
+     *            the xml element.
      * @param attribute
-     *                         the attribute name.
+     *            the attribute name.
      * @param targetType
-     *                         the class of converted returned value.
+     *            the class of converted returned value.
      * @param defaultValue
-     *                         the value to return if attribute is empty or {@code null}.
+     *            the value to return if attribute is empty or {@code null}.
      * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise
      *         returns the default value.
      * @param <T>
-     *                the type of returned value.
+     *            the type of returned value.
      */
     @Nullable
     <T> T getAttributeValue(@Nonnull Xpp3Dom element,
@@ -214,7 +218,7 @@ public interface ISkinConfig {
 
     /**
      * @param href
-     *                 link to relative.
+     *            link to relative.
      * @return Returns Relativizes the link.
      */
     @Nullable
@@ -224,7 +228,7 @@ public interface ISkinConfig {
      * Gets the indicating if the link is active.
      *
      * @param href
-     *                 the link to check.
+     *            the link to check.
      * @return Returns {@code true} the link is active, otherwise {@code false}.
      */
     boolean isActiveLink(@Nullable String href);
@@ -233,12 +237,12 @@ public interface ISkinConfig {
      * Evaluate a velocity expression in the current context.
      *
      * @param vtl
-     *                          The velocity expression to evaluate
+     *            The velocity expression to evaluate
      * @param requiredClass
-     *                          the class of returned value.
+     *            the class of returned value.
      * @return Returns the value returned by the evaluated velocity expression.
      * @param <T>
-     *                Tthe type of expected returned value.
+     *            Tthe type of expected returned value.
      */
     @Nullable
     <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);

@@ -13,15 +13,17 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
+
 #**
- * Render row snippet
- * Usage:
- * {{< row class="" >}}
- * ...
- * {{< /row >}}
+ * render html snippet
  *#
- #*  *##if( ${snippet.html})
-<div class="row#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
-    #render_html( ${snippet} )
-</div>
+#macro(render_html $snippet)
+#*  *##if( ${snippet} && ${snippet.html})
+#*      *##evaluate( ${snippet.html} )
 #*  *##end
+#end
+#**
+ * execute snippet
+ *#
+#parse("$snippetPath")
+

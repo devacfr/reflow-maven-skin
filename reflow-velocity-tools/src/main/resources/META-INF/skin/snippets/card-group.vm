@@ -25,6 +25,6 @@
 #*  *##end##
  #*  *##if( ${snippet.html})
 <div class="${class}#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
-    ${snippet.html}
+    #render_html( ${snippet})
 </div>   
 #*  *##end

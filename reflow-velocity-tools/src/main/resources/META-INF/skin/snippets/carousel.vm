@@ -33,7 +33,7 @@
     <div class="carousel-item$activeClass#if( ${slide.attrs['class']} ) ${slide.attrs['class']}#end" #if( ${slide.interval} )data-interval="${slide.interval}"#end >
 #*      *##if( ${slide.slide-image})
 #*          *##if( ${slide.slide-image.html})
-        ${slide.slide-image.html}
+        #render_html( ${slide.slide-image} )
 #*          *##else
         <img src="${slide.slide-image.src}"
 #*          *# #if( ${slide.slide-image.attrs['class']} )class="${slide.slide-image.attrs['class']}"#end
@@ -42,7 +42,7 @@
 #*      *##end
 #*      *##if( ${slide.slide-caption} && ${slide.slide-caption.html})
         <div class="carousel-caption#if( ${slide.slide-caption.attrs['class']} ) ${slide.slide-caption.attrs['class']}#end">
-            ${slide.slide-caption.html}
+            #render_html( ${slide.slide-caption} )
         </div>
 #*      *##end
     </div>
