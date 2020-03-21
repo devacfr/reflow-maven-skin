@@ -33,7 +33,7 @@ public class TemplateMacroTest extends PlexusTestCase {
 
     @Test
     public void shouldConvert() {
-        final TemplateMacro macro = new TemplateMacro();
+        final PartialTemplateMacro macro = new PartialTemplateMacro();
 
         verify((actual) -> {
             try {

@@ -44,13 +44,13 @@ import com.google.common.io.Files;
  * @author Christophe Friederich
  * @since 2.4
  */
-@Component(role = Macro.class, hint = "template")
-public class TemplateMacro extends AbstractMacro implements Contextualizable {
+@Component(role = Macro.class, hint = "partial")
+public class PartialTemplateMacro extends AbstractMacro implements Contextualizable {
 
     /** */
 
     @SuppressWarnings("unused")
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateMacro.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PartialTemplateMacro.class);
 
     /** */
     @SuppressWarnings("unused")

@@ -57,11 +57,11 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" theme="dark" background="dark" cssClass="border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="left">
+      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="left">
         <image src="$resourcePath/images/logo.svg" />
         <additionalMenu>
           <![CDATA[
-          <ul class="navbar-nav navbar-additional ml-md-auto border-left border-2">
+          <ul class="navbar-nav navbar-additional ml-md-auto">
             <li class="nav-item" data-toggle="tooltip" title="GitHub Project">
                 <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-github"></i></a>
             </li>
