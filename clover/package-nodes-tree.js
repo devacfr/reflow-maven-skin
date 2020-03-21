@@ -83,26 +83,12 @@ var Packages = {
     "text": "snippet",
     "package": "org.devacfr.maven.skins.reflow.snippet",
     "url": "org/devacfr/maven/skins/reflow/snippet/pkg-summary.html",
-            "coverage": "73.9%",
+            "coverage": "81%",
         "icon": "aui-icon aui-icon-small aui-iconfont-devtools-folder-closed",
             "li_attr": {"data-is-link": "true"},
         "a_attr": {"href": "org/devacfr/maven/skins/reflow/snippet/pkg-summary.html"},
     "children": [
-                                            
-                
-{
-    "id": "org.devacfr.maven.skins.reflow.snippet.internal",
-    "text": "internal",
-    "package": "org.devacfr.maven.skins.reflow.snippet.internal",
-    "url": "org/devacfr/maven/skins/reflow/snippet/internal/pkg-summary.html",
-            "coverage": "64.7%",
-        "icon": "aui-icon aui-icon-small aui-iconfont-devtools-folder-closed",
-            "li_attr": {"data-is-link": "true"},
-        "a_attr": {"href": "org/devacfr/maven/skins/reflow/snippet/internal/pkg-summary.html"},
-    "children": [
                     ]
-},
-            ]
 },
             ]
 },

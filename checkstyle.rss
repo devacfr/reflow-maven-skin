@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2012 - 2020 Friederich Christophe</copyright>
     <item>
-      <title>File: 34,
+      <title>File: 33,
              Errors: 0,
-             Warnings: 97,
+             Warnings: 77,
              Infos: 0
       </title>
             <link>https://devacfr.github.io/reflow-maven-skin//checkstyle.html</link>
@@ -94,7 +94,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  5
                 </td>
                 <td>
                   0
@@ -137,20 +137,6 @@ under the License.
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://devacfr.github.io/reflow-maven-skin//checkstyle.html#org.devacfr.maven.skins.reflow.snippet.internal.ContainsOwnText.java">org/devacfr/maven/skins/reflow/snippet/internal/ContainsOwnText.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -388,7 +374,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  33
+                  22
                 </td>
                 <td>
                   0
@@ -458,7 +444,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  10
                 </td>
                 <td>
                   0
@@ -486,7 +472,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  2
                 </td>
                 <td>
                   0

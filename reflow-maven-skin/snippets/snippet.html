@@ -6,7 +6,9 @@
             <h1 id="snippets-snippet_toc_working-with-snippets-draft">Working with Snippets <span class="badge badge-warning">DRAFT</span> </h1> 
 <span class="badge badge-primary">New in v2.4</span> 
 <div class="bd-callout bd-callout-warning"> 
- <p>Please note that this feature is in development. All recommendation and improvement are appreciated.</p> 
+ <h4 class="no-anchor" id="snippets-snippet_toc_warning">Warning</h4> 
+ <p>Snippet feature is in preview version. The specification can change in the future.</p> 
+ <p>All recommendation and improvement are appreciated.</p> 
 </div> 
 <p>Markdown is simple content format, but there are times when Markdown falls short. Often, authors are forced to add raw HTML to Markdown content. Reflow created snippets to get around these limitations. A <code>shortcode</code> and <code>web component</code> are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format for the moment).</p> 
 <div class="row row-cols-1 row-cols-md-2"> 
@@ -57,6 +59,7 @@
   &lt;data-item class="text-muted" &gt;Header Section&lt;/data-item&gt;
   &lt;data-content&gt;
     &lt;div&gt;html used in template&lt;/div&gt;
+    #include( 'src/site/svg/pretty.svg' )
   &lt;/data-content&gt;
 &lt;/data&gt;
 --&gt;
@@ -75,13 +78,14 @@
   &lt;div class="component"&gt;
     &lt;h2&gt;$snippet.data-item.html&lt;/h2&gt;
    &lt;div #if( $snippet.data-content.attr['class'] )class="$snippet.data-content.attr['class']"#end&gt;
-   $snippet.data-content.html
+    #render_html( $snippet.data-content )
    &lt;/div&gt;
   &lt;/div&gt;
 #end
 </pre> 
    </div> 
   </div> 
+  <p>This example above uses the Velocity macro <code>#render_html( $snippet )</code> allowing execute <code>#include</code> Velocity Template Language (VTL) directive declared inside <code>web component</code> snippet.</p> 
  </section> 
 </section> 
 <section> 
@@ -129,7 +133,7 @@ It uses utility classes for typography and spacing to space content out within t
   <div class="source"> 
    <div class="source"> 
     <pre>&lt;div class="jumbotron #if( $snippet.attr['class'] )class=" $snippet.attr['class']"#end"&gt;
-   $snippet.html
+   #render_html( $snippet )
 &lt;/div&gt;
 </pre> 
    </div> 
@@ -138,10 +142,50 @@ It uses utility classes for typography and spacing to space content out within t
 </section> 
 <section> 
  <h2 id="snippets-snippet_toc_snippet-variable">$snippet Variable</h2> 
+ <p>The <code>$snippet</code> variable is a instance of java class <a href="reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html">Component</a>.</p> 
  <p>Take the first example, <code>$snippet.color</code>. It can have two meanings. It can mean, Look in the hashtable identified as snippet and return the attribute associated with the key <code>color</code>. But <code>$snippet.color</code> can also be referring to a <code>&lt;color&gt;</code> data element. <code>$snippet.color</code> could be an abbreviated way of writing <code>$snippet.attr['color]</code> or <code>$snippet.getAttribute('color')</code> for an attribute, or <code>$snippet.getChildren('color')</code> for an data element.</p> 
- <div class="bd-callout bd-callout-warning"> 
-  <p>You can not use the <code>class</code> attribute directly like this <code>$snippet.data-content.class</code>, but instead <code>$snippet.data-content.attr['class']</code>.</p> 
- </div> 
+ <table class="table mt-5"> 
+  <thead> 
+   <tr> 
+    <th>Property</th> 
+    <th>Description</th> 
+   </tr> 
+  </thead> 
+  <tbody> 
+   <tr> 
+    <td><code>$snippet.name</code></td> 
+    <td>Gets the tag name of component.</td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.parent</code></td> 
+    <td>Gets the component parent of the current component if exists, otherwise <code>null</code>.</td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.html</code></td> 
+    <td>Gets the string representing the the element's inner HTML. E.g. on a <code>&lt;data-content&gt;</code> with one empty <code>&lt;p&gt;</code> , would return <code>&lt;p&gt;&lt;/p&gt;</code>.</td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.property</code></td> 
+    <td> </td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.attr[]</code></td> 
+    <td>Gets the string representing the value of attribute if exists, otherwise <code>null</code>.</td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.[xhtml data tag name]</code></td> 
+    <td></td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.getAttribute( attribute name )</code></td> 
+    <td>Gets the string representing the value of attribute if exists, otherwise <code>null</code>.</td> 
+   </tr> 
+   <tr> 
+    <td><code>$snippet.getChildren( component name )</code></td> 
+    <td>Gets the <a href="reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html">Component</a> representing the children with specified name if exists, otherwise <code>null</code>.</td> 
+   </tr> 
+  </tbody> 
+ </table> 
  <section> 
   <h3 id="snippets-snippet_toc_lookup-rules">Lookup Rules</h3> 
   <p>As was mentioned earlier, properties refer to attribute or data element of the parent object. Reflow uses the following lookup sequence. For names, such as <code>$snippet.class</code>, the sequence is:</p> 
@@ -149,26 +193,15 @@ It uses utility classes for typography and spacing to space content out within t
    <li><code>getclass()</code></li> 
    <li><code>getClass()</code></li> 
    <li><code>get("class")</code></li> 
-   <li>Returns <code>getAttribute("class")</code> attibute if exists</li> 
-   <li>if the property name has suffix “s” <code>getAttribute("class")</code>, returns a list.</li> 
+   <li>Returns <code>getAttrs()["class"]</code> attibute if exists</li> 
+   <li>if the property name has suffix “s” <code>getChildren("class")</code>, try returns a list .</li> 
    <li><code>getChildren("class")</code> Returns the first element if exists.</li> 
    <li>isClass()</li> 
   </ul> 
   <div class="bd-callout bd-callout-warning"> 
    <h5 class="no-anchor" id="snippets-snippet_toc_of-course">Of course</h5> 
-   <p>You can not use the <code>class</code> attribute directly like this <code>$snippet.data-content.class</code>, but instead <code>$snippet.data-content.attr['class']</code>.</p> 
+   <p>In this example, <code>class org.devacfr.maven.skins.reflow.snippet.SnippetComponent</code> will returns a string containing <code>org.devacfr.maven.skins.reflow.snippet.Component</code>. It’s not what you want. You can not use the <code>class</code> attribute directly like this <code>$snippet.data-content.class</code>, but instead <code>$snippet.data-content.attr['class']</code>.</p> 
   </div> 
- </section> 
- <section> 
-  <h3 id="snippets-snippet_toc_property1">Property</h3> 
-  <ul> 
-   <li><code>$snippet.name</code> -</li> 
-   <li><code>$snippet.parent</code> -</li> 
-   <li><code>$snippet.html</code> -</li> 
-   <li><code>$snippet.[attr]</code> -</li> 
-   <li><code>$snippet.attr[]</code> -</li> 
-   <li><code>$snippet.[data]</code> -</li> 
-  </ul> 
  </section> 
 </section> 
 <section> 
@@ -225,9 +258,6 @@ It uses utility classes for typography and spacing to space content out within t
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
         <a class="nav-link" href="#snippets-snippet_toc_lookup-rules" title="Lookup Rules">Lookup Rules</a>
-    </li>
-    <li class="h3">
-        <a class="nav-link" href="#snippets-snippet_toc_property1" title="Property">Property</a>
     </li>
     </ul>
     <li class="h2">
