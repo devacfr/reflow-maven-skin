@@ -69,7 +69,8 @@ public class SnippetContext {
     private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
 
     /** */
-    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/snippets", "META-INF/skin/snippets");
+    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/layouts/snippets",
+        "META-INF/skin/snippets");
 
     /** */
     private final List<SnippetComponent<?>> components = Lists.newArrayList();

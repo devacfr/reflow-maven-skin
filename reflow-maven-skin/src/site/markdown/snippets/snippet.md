@@ -205,7 +205,7 @@ The `$snippet` variable is a instance of java class [Component](reflow-velocity-
 
 Take the first example, `$snippet.color`. It can have two meanings. It can mean, Look in the hashtable identified as snippet and return the attribute associated with the key `color`. But `$snippet.color` can also be referring to a `<color>` data element. `$snippet.color` could be an abbreviated way of writing `$snippet.attr['color]` or `$snippet.getAttribute('color')` for an attribute, or `$snippet.getChildren('color')` for an data element.
 
-<!-- MACRO{partial|file=reflow-maven-skin/src/site/templates/snippets/snippet-property-table.html} -->
+<!-- MACRO{partial|file=reflow-maven-skin/src/site/layouts/partials/snippets/snippet-property-table.html} -->
 
 ### Lookup Rules
 
