@@ -48,7 +48,7 @@ public class FrameContext extends Context<FrameContext> {
         super(config, ContextType.frame);
         final String type = config.getPropertyValue(Toc.COMPONENT, String.class, "sidebar");
         // enforce sidebar
-        if ("top".equals(type) || "top".equals("sidebar")) {
+        if ("top".equals(type) || "sidebar".equals(type)) {
             toc = new TocSidebar(config);
         } else {
             toc = new Toc<Toc<?>>("", "") {};
