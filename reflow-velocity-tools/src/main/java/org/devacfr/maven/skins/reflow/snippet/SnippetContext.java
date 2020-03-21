@@ -26,10 +26,29 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.RuntimeSingleton;
+import org.apache.velocity.tools.Scope;
+import org.apache.velocity.tools.ToolManager;
+import org.apache.velocity.tools.config.EasyFactoryConfiguration;
+import org.apache.velocity.tools.generic.AlternatorTool;
+import org.apache.velocity.tools.generic.ClassTool;
+import org.apache.velocity.tools.generic.ComparisonDateTool;
+import org.apache.velocity.tools.generic.ContextTool;
+import org.apache.velocity.tools.generic.ConversionTool;
+import org.apache.velocity.tools.generic.DisplayTool;
+import org.apache.velocity.tools.generic.EscapeTool;
+import org.apache.velocity.tools.generic.FieldTool;
+import org.apache.velocity.tools.generic.LinkTool;
+import org.apache.velocity.tools.generic.LoopTool;
+import org.apache.velocity.tools.generic.MathTool;
+import org.apache.velocity.tools.generic.NumberTool;
+import org.apache.velocity.tools.generic.RenderTool;
+import org.apache.velocity.tools.generic.ResourceTool;
+import org.apache.velocity.tools.generic.SortTool;
+import org.apache.velocity.tools.generic.XmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
@@ -108,7 +127,7 @@ public class SnippetContext {
     @Nullable
     public SnippetComponent<?> create(@Nonnull final Element element, final Type type) {
         requireNonNull(element);
-        final SnippetComponent<?> component = SnippetComponent.createSnippet(this, element, type);
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, type);
         addComponent(component);
         recurciveCreateComponent(element, component);
         return component;
@@ -156,7 +175,7 @@ public class SnippetContext {
             final String filePath = path + '/' + component.getName() + ".vm";
             if (Velocity.resourceExists(filePath)) {
                 found = true;
-                final VelocityContext context = new VelocityContext();
+                final Context context = createToolManagedVelocityContext();
                 context.put("snippet", component);
                 context.put("snippetPath", filePath);
                 context.put("config", this.config);
@@ -175,6 +194,40 @@ public class SnippetContext {
             LOGGER.warn("The snippet '{}' template doesn't exist", component.getName());
         }
 
+    }
+
+    /**
+     * Creates a Velocity Context with all generic tools configured wit the site rendering context.
+     *
+     * @return a Velocity tools managed context
+     */
+    protected Context createToolManagedVelocityContext() {
+
+        final EasyFactoryConfiguration config = new EasyFactoryConfiguration(false);
+        config.property("safeMode", Boolean.FALSE);
+        config.toolbox(Scope.REQUEST)
+                .tool(ContextTool.class)
+                .tool(LinkTool.class)
+                .tool(LoopTool.class)
+                .tool(RenderTool.class);
+        config.toolbox(Scope.APPLICATION)
+                .tool(AlternatorTool.class)
+                .tool(ClassTool.class)
+                .tool(ComparisonDateTool.class)
+                .tool(ConversionTool.class)
+                .tool(DisplayTool.class)
+                .tool(EscapeTool.class)
+                .tool(FieldTool.class)
+                .tool(MathTool.class)
+                .tool(NumberTool.class)
+                .tool(ResourceTool.class)
+                .tool(SortTool.class)
+                .tool(XmlTool.class);
+
+        final ToolManager manager = new ToolManager(false, false);
+        manager.configure(config);
+
+        return manager.createContext();
     }
 
 }

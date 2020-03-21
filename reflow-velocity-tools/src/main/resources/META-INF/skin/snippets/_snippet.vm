@@ -13,17 +13,62 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-
+#**
+ * display information of snippet
+ *#
+#macro( debug $snippet $included $indent )##
+#*  *##if ( $snippet )##
+#*      *##if( !$included )##
+#*          *##set( $indent = 0 )##
+<pre class="placeholder-debug">
+    <code>
+#*      *##end##
+#*      *##set( $space = $display.space($indent) )##
+##
+${space}#if( $indent > 0)- #{end}name: ${snippet.name}
+##
+#*      *##if( $indent > 0)##
+#*          *##set( $indent2 = $indent + 2 )##
+#*          *##set($space = $display.space($indent2) )##
+#*      *##end##
+##
+${space}attributes: ${snippet.attrs}
+${space}isHtmlTag: ${snippet.isHtmlTag()}
+${space}html: "$esc.html( ${snippet.html} )"
+${space}parent: $!{snippet.parent}
+##
+#*      *##if( !${snippet.children.isEmpty()} )##
+##
+${space}children:
+##
+#*          *##set( $indent1 = $indent + 4 )##
+#*          *##foreach( $child in ${snippet.children} )##
+#*              *##debug($child true $indent1)##
+#*          *##end##
+#*      *##end##
+#*      *##if( !$included )##
+    </code>
+</pre>
+#*      *##end##
+ #* *##end##
+#end##
 #**
  * render html snippet
  *#
-#macro(render_html $snippet)
-#*  *##if( ${snippet} && ${snippet.html})
-#*      *##evaluate( ${snippet.html} )
-#*  *##end
+#macro(render_html $snippet )##
+#*  *##if( ${snippet} && ${snippet.html} )##
+#*      *##evaluate( ${snippet.html} )##
+#*  *##end##
+#end
+##
+##
+##
+##
+#if( $snippet.attrs["debug"])##
+#*  *##debug( $snippet false 0)##
 #end
 #**
  * execute snippet
  *#
-#parse("$snippetPath")
+#parse("$snippetPath")##
 

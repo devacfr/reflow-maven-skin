@@ -26,36 +26,22 @@ import org.jsoup.nodes.Element;
  */
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 
-    /** */
-    private final String id;
-
-    public static SnippetComponent<?> createSnippet(@Nonnull final SnippetContext context,
-        @Nonnull final Element element,
-        final Type type) {
+    public static SnippetComponent<?> createSnippet(@Nonnull final Element element, final Type type) {
         if (Type.webComponent.equals(type)) {
-            return new SnippetComponent<>(context, element.tagName()).addAttributes(element.attributes())
+            return new SnippetComponent<>(element.tagName()).addAttributes(element.attributes())
                     .withHtml(element.outerHtml());
         } else if (Type.shortcode.equals(type)) {
-            return new SnippetComponent<>(context, element.tagName()).addAttributes(element.attributes())
+            return new SnippetComponent<>(element.tagName()).addAttributes(element.attributes())
                     .withHtml(element.ownText());
         }
         return null;
     }
 
     /**
-     * @param context
      * @param name
      */
-    public SnippetComponent(@Nonnull final SnippetContext context, @Nonnull final String name) {
+    public SnippetComponent(@Nonnull final String name) {
         super(name, false);
-        this.id = context.generateSnippetIdentifier();
-    }
-
-    /**
-     * @return
-     */
-    public String getSnippetId() {
-        return id;
     }
 
     /**

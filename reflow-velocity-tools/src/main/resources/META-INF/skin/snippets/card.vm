@@ -82,7 +82,7 @@
 <div class="card#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end" #if( ${snippet.style} )style="${snippet.style}"#end>
 #*  *##if( ${snippet.horizontal} == "true")##
   <div class="row no-gutters">
-    <div class="col-md-4">
+    <div class="col-md-4 text-center">
 #*      *##render_image()##
     </div>
     <div class="col-md-8">

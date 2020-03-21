@@ -16,9 +16,6 @@
 package org.devacfr.maven.skins.reflow.snippet;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 import org.jsoup.internal.StringUtil;
 
@@ -43,34 +40,6 @@ public class Components extends ArrayList<Component<?>> {
     *
     */
     public Components() {
-    }
-
-    /**
-     * @param initialCapacity
-     */
-    public Components(final int initialCapacity) {
-        super(initialCapacity);
-    }
-
-    /**
-     * @param components
-     */
-    public Components(final Collection<Component<?>> components) {
-        super(components);
-    }
-
-    /**
-     * @param components
-     */
-    public Components(final List<Component<?>> components) {
-        super(components);
-    }
-
-    /**
-     * @param components
-     */
-    public Components(final Component<?>... components) {
-        super(Arrays.asList(components));
     }
 
     /**

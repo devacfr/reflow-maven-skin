@@ -78,6 +78,7 @@ the tag name must start with an alphabetic character (a .. z or A .. Z). The res
   <data-item class="text-muted" >Header Section</data-item>
   <data-content>
     <div>html used in template</div>
+    #include( 'src/site/svg/pretty.svg' )
   </data-content>
 </data>
 -->
@@ -94,11 +95,13 @@ The template use `$snippet` variable to render the web component.
   <div class="component">
     <h2>$snippet.data-item.html</h2>
    <div #if( $snippet.data-content.attr['class'] )class="$snippet.data-content.attr['class']"#end>
-   $snippet.data-content.html
+    #render_html( $snippet.data-content )
    </div>
   </div>
 #end
 ```
+
+This example above uses the Velocity macro `#render_html( $snippet )` allowing execute `#include` Velocity Template Language (VTL) directive declared inside `web component` snippet.
 
 ## Shortcodes
 
@@ -145,19 +148,17 @@ The associated template use `$snippet` variable in velocity context to render th
 
 ```html
 <div class="jumbotron #if( $snippet.attr['class'] )class=" $snippet.attr['class']"#end">
-   $snippet.html
+   #render_html( $snippet )
 </div>
 ```
 
 ## $snippet Variable
 
+The `$snippet` variable is a instance of java class [Component](reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html).
+
 Take the first example, `$snippet.color`. It can have two meanings. It can mean, Look in the hashtable identified as snippet and return the attribute associated with the key `color`. But `$snippet.color` can also be referring to a `<color>` data element. `$snippet.color` could be an abbreviated way of writing `$snippet.attr['color]` or `$snippet.getAttribute('color')` for an attribute, or `$snippet.getChildren('color')` for an data element.
 
-{{< callout color="warning" >}}
-
-You can not use the `class` attribute directly like this `$snippet.data-content.class`, but instead `$snippet.data-content.attr['class']`.
-
-{{< /callout >}}
+<!-- MACRO{template|file=reflow-maven-skin/src/site/templates/snippets/snippet-property-table.html} -->
 
 ### Lookup Rules
 
@@ -166,25 +167,17 @@ As was mentioned earlier, properties refer to attribute or data element of the p
 - `getclass()`
 - `getClass()`
 - `get("class")`
-  - Returns `getAttribute("class")` attibute if exists
-  - if the property name has suffix "s" `getAttribute("class")`, returns a list.
+  - Returns `getAttrs()["class"]` attibute if exists
+  - if the property name has suffix "s" `getChildren("class")`, try returns a list .
   - `getChildren("class")` Returns the first element if exists.
 - isClass()
 
 {{< callout color="warning" level="5" title="Of course" >}}
 
+In this example, `$snippet.class` will returns a string containing `org.devacfr.maven.skins.reflow.snippet.Component`. It's not what you want.
 You can not use the `class` attribute directly like this `$snippet.data-content.class`, but instead `$snippet.data-content.attr['class']`.
 
 {{< /callout >}}
-
-### Property
-
-- `$snippet.name` -
-- `$snippet.parent` -
-- `$snippet.html` -
-- `$snippet.[attr]` -
-- `$snippet.attr[]` -
-- `$snippet.[data]` -
 
 ## Template
 

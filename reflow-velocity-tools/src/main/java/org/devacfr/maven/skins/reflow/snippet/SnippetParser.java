@@ -144,26 +144,8 @@ public class SnippetParser {
         stack.add(element);
     }
 
-    protected ArrayList<ComponentToken> getStack() {
-        return stack;
-    }
-
-    protected boolean isElementInQueue(final ComponentToken element) {
-        for (int pos = stack.size() - 1; pos >= 0; pos--) {
-            final ComponentToken next = stack.get(pos);
-            if (next == element) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     protected SnippetContext getSnippetContext() {
         return snippetContext;
-    }
-
-    protected ComponentResolver getResolver() {
-        return resolver;
     }
 
 }

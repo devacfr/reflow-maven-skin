@@ -18,15 +18,17 @@ package org.devacfr.maven.skins.reflow.snippet;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
+import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
@@ -140,18 +142,8 @@ public class Component<T extends Component<T>> {
         if (Strings.isNullOrEmpty(html)) {
             this.html = null;
         } else {
-            this.html = html;
+            this.html = StringUtil.normaliseWhitespace(html);
         }
-        return self();
-    }
-
-    /**
-     * @param name
-     * @param value
-     * @return
-     */
-    public T addAttribute(@Nonnull final String name, @Nonnull final String value) {
-        this.attributes.put(requireNonNull(name).toLowerCase(), requireNonNull(value));
         return self();
     }
 
@@ -190,15 +182,6 @@ public class Component<T extends Component<T>> {
     }
 
     /**
-     * @param name
-     * @return
-     */
-    public String getAttribute(@Nonnull final String name) {
-        requireNonNull(name);
-        return getAttribute(name, String.class, null);
-    }
-
-    /**
      * @return the children
      */
     public Components getChildren() {
@@ -213,35 +196,6 @@ public class Component<T extends Component<T>> {
         return Components.empty();
     }
 
-    /**
-     * @param <R>
-     * @param name
-     * @param targetType
-     * @param defaultValue
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public <R> R getAttribute(@Nonnull final String name,
-        @Nonnull final Class<R> targetType,
-        @Nullable final R defaultValue) {
-        requireNonNull(name);
-        requireNonNull(targetType);
-        final String value = this.attributes.get(name.toLowerCase());
-        if (Strings.isNullOrEmpty(value)) {
-            return defaultValue;
-        }
-
-        Object returnedValue = value;
-        if (targetType.isAssignableFrom(Boolean.class)) {
-            returnedValue = Boolean.valueOf(value);
-        } else if (targetType.isAssignableFrom(Integer.class)) {
-            returnedValue = Integer.valueOf(value);
-        } else if (targetType.isAssignableFrom(Long.class)) {
-            returnedValue = Long.valueOf(value);
-        }
-        return (R) returnedValue;
-    }
-
     public T addChild(final Component<?> component) {
         final String key = component.getName();
         Components value = null;
@@ -253,11 +207,6 @@ public class Component<T extends Component<T>> {
         }
         value.add(component);
         this.children.add(component);
-        return self();
-    }
-
-    public T addChildren(final Iterable<Component<?>> components) {
-        components.forEach((c) -> addChild(c));
         return self();
     }
 
@@ -287,4 +236,16 @@ public class Component<T extends Component<T>> {
         return (T) this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("name", this.name)
+                .add("isHtmlTag", this.isHtmlTag)
+                .add("attributes", this.attributes)
+                .add("children", this.children.stream().map((cpt) -> cpt.name).collect(Collectors.toList()))
+                .toString();
+    }
 }
