@@ -2,7 +2,7 @@
 
 When writing Maven site pages using most of the available file formats, such as [APT, XDoc or Markdown][doxia-formats], it is difficult to write anything more but a straightforward linear page with headings to split the content. Reflow skin allows customizing the page layout and reflowing the page using columns, thumbnails, or with the _carousel_ component.
 
-![section layout scheme](images/section-layout-scheme.png)
+![section layout scheme](../images/doc/section-layout-scheme.png)
 
 ## Usage
 
@@ -78,7 +78,7 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 
 _Carousel_ component provides a slideshow of images with captions.
 
-![carousel scheme](images/carousel-scheme.png)
+![carousel scheme](../images/doc/carousel-scheme.png)
 
 It is normally used in front page to advertise main features or showcase a portfolio, etc. See one in action at the top of the [front page of this site][carousel-reflow], or as a [Bootstrap component][carousel-bootstrap]. Carousel section is indicated using `<carousel />` element without any attributes:
 

@@ -4,7 +4,7 @@ Documentation layout is a feature to organize your documentation in single page 
 
 The layout is centered on a `navside` menu. Navside menu is vertical multi level menus for both desktop and mobile modes initialized with the `<menu>` element declared in a page with documentation layout type and a `frame` container where will be displayed the contain of each `frame` page.
 
-![documentation layout](images/documentation-layout-scheme.png)
+![documentation layout](../images/doc/documentation-layout-scheme.png)
 
 - [**Navside menu** can be customized][navside] as all other components in Reflow. It is created using `<menu>` element defined in documentation layout page.
 - **Frame container** allows to load the `frame` page. The `frame` type is for internal use to define referenced page in `<menu>` element in documentation layout. A `frame` page shouldn't use outside of documentation layout page where it is declared.
@@ -36,7 +36,7 @@ To declare a page as documentation layout, create an empty page (`documentation.
 
 The example above produces the following `navside` menu:
 
-![navside menu preview](images/navside-menu-preview.png)
+![navside menu preview](../images/doc/navside-menu-preview.png)
 
 <div class="bd-callout bd-callout-warning">
     <h4 class="no-anchor">You are a page in other project module displaying bizarrely</h4>
@@ -53,7 +53,7 @@ Doxia Sitetools has introduce the edit source feature in [decoration model 1.8][
 </project>
 ```
 
-![Improve this page](images/improve-this-page.png)
+![Improve this page](../images/doc/improve-this-page.png)
 
 [DOXIASITETOOLS-183]: https://issues.apache.org/jira/browse/DOXIASITETOOLS-183
 [decoration-model]: https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html

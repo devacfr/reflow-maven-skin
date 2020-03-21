@@ -201,11 +201,11 @@ This example above uses the Velocity macro `#render_html( $snippet )` allowing e
 
 ## $snippet Variable
 
-The `$snippet` variable is a instance of java class [Component](reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html).
+The `$snippet` variable is a instance of java class [Component](../reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html).
 
 Take the first example, `$snippet.color`. It can have two meanings. It can mean, Look in the hashtable identified as snippet and return the attribute associated with the key `color`. But `$snippet.color` can also be referring to a `<color>` data element. `$snippet.color` could be an abbreviated way of writing `$snippet.attr['color]` or `$snippet.getAttribute('color')` for an attribute, or `$snippet.getChildren('color')` for an data element.
 
-<!-- MACRO{partial|file=reflow-maven-skin/src/site/layouts/partials/snippets/snippet-property-table.html} -->
+<!-- MACRO{partial|file=src/site/layouts/partials/snippets/snippet-property-table.html} -->
 
 ### Lookup Rules
 

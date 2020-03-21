@@ -119,7 +119,7 @@ See [Bootstrap Migration to v4][bootstrap-migration] for a complete informatin o
 
 Doxia Sitetools has introduce the edit source feature in [decoration model 1.8][decoration-model] adding `<edit>` element allowing to add link on each document page that points to source file in scm ([DOXIASITETOOLS-183][DOXIASITETOOLS-183]).
 
-![Improve this page](images/improve-this-page.png)
+![Improve this page](../images/doc/improve-this-page.png)
 
 [DOXIASITETOOLS-183]: https://issues.apache.org/jira/browse/DOXIASITETOOLS-183
 [decoration-model]: https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html

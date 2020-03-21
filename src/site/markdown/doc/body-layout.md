@@ -2,7 +2,7 @@
 
 Body layout is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content. Let's be free in your inspiration to create a attractive home page.
 
-![body layout](images/body-layout-scheme.png)
+![body layout](../images/doc/body-layout-scheme.png)
 
 ## Usage
 

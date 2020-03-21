@@ -55,7 +55,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-cerulean.html"><img src="images/bootswatch-cerulean.png" /></a>
+        <a href="themes/bootswatch-cerulean.html"><img src="../images/doc/bootswatch-cerulean.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-cerulean.html">Cerulean</a></h5>
         <pre>
         <code>
@@ -75,7 +75,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-cosmo.html"><img src="images/bootswatch-cosmo.png" /></a>
+        <a href="themes/bootswatch-cosmo.html"><img src="../images/doc/bootswatch-cosmo.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-cosmo.html">Cosmo</a></h5>
         <pre>
         <code>
@@ -95,7 +95,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-darkly.html"><img src="images/bootswatch-darkly.png" /></a>
+        <a href="themes/bootswatch-darkly.html"><img src="../images/doc/bootswatch-darkly.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-darkly.html">Darkly</a></h5>
         <pre>
         <code>
@@ -115,7 +115,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-flatly.html"><img src="images/bootswatch-flatly.png" /></a>
+        <a href="themes/bootswatch-flatly.html"><img src="../images/doc/bootswatch-flatly.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Flatly</a></h5>
         <pre>
         <code>
@@ -135,7 +135,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-journal.html"><img src="images/bootswatch-journal.png" /></a>
+        <a href="themes/bootswatch-journal.html"><img src="../images/doc/bootswatch-journal.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Journal</a></h5>
         <pre>
         <code>
@@ -155,7 +155,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-litera.html"><img src="images/bootswatch-litera.png" /></a>
+        <a href="themes/bootswatch-litera.html"><img src="../images/doc/bootswatch-litera.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Litera</a></h5>
         <pre>
         <code>
@@ -175,7 +175,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-lumen.html"><img src="images/bootswatch-lumen.png" /></a>
+        <a href="themes/bootswatch-lumen.html"><img src="../images/doc/bootswatch-lumen.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Lumen</a></h5>
         <pre>
         <code>
@@ -195,7 +195,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-lux.html"><img src="images/bootswatch-lux.png" /></a>
+        <a href="themes/bootswatch-lux.html"><img src="../images/doc/bootswatch-lux.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Lux</a></h5>
         <pre>
         <code>
@@ -215,7 +215,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-materia.html"><img src="images/bootswatch-materia.png" /></a>
+        <a href="themes/bootswatch-materia.html"><img src="../images/doc/bootswatch-materia.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Materia</a></h5>
         <pre>
         <code>
@@ -235,7 +235,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-minty.html"><img src="images/bootswatch-minty.png" /></a>
+        <a href="themes/bootswatch-minty.html"><img src="../images/doc/bootswatch-minty.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Minty</a></h5>
         <pre>
         <code>
@@ -255,7 +255,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-pulse.html"><img src="images/bootswatch-pulse.png" /></a>
+        <a href="themes/bootswatch-pulse.html"><img src="../images/doc/bootswatch-pulse.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Pulse</a></h5>
         <pre>
         <code>
@@ -275,7 +275,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-sandstone.html"><img src="images/bootswatch-sandstone.png" /></a>
+        <a href="themes/bootswatch-sandstone.html"><img src="../images/doc/bootswatch-sandstone.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Sandstone</a></h5>
         <pre>
         <code>
@@ -295,7 +295,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-simplex.html"><img src="images/bootswatch-simplex.png" /></a>
+        <a href="themes/bootswatch-simplex.html"><img src="../images/doc/bootswatch-simplex.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Simplex</a></h5>
         <pre>
         <code>
@@ -315,7 +315,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-sketchy.html"><img src="images/bootswatch-sketchy.png" /></a>
+        <a href="themes/bootswatch-sketchy.html"><img src="../images/doc/bootswatch-sketchy.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Sketchy</a></h5>
         <pre>
         <code>
@@ -335,7 +335,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-slate.html"><img src="images/bootswatch-slate.png" /></a>
+        <a href="themes/bootswatch-slate.html"><img src="../images/doc/bootswatch-slate.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Slate</a></h5>
         <pre>
         <code>
@@ -355,7 +355,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-solar.html"><img src="images/bootswatch-solar.png" /></a>
+        <a href="themes/bootswatch-solar.html"><img src="../images/doc/bootswatch-solar.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Solar</a></h5>
         <pre>
         <code>
@@ -375,7 +375,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-spacelab.html"><img src="images/bootswatch-spacelab.png" /></a>
+        <a href="themes/bootswatch-spacelab.html"><img src="../images/doc/bootswatch-spacelab.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Spacelab</a></h5>
         <pre>
         <code>
@@ -395,7 +395,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-superhero.html"><img src="images/bootswatch-superhero.png" /></a>
+        <a href="themes/bootswatch-superhero.html"><img src="../images/doc/bootswatch-superhero.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Superhero</a></h5>
         <pre>
         <code>
@@ -415,7 +415,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-united.html"><img src="images/bootswatch-united.png" /></a>
+        <a href="themes/bootswatch-united.html"><img src="../images/doc/bootswatch-united.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">United</a></h5>
         <pre>
         <code>
@@ -435,7 +435,7 @@ There are several options for the `<theme>` value:
 
 ```
     <card-body>
-        <a href="themes/bootswatch-yeti.html"><img src="images/bootswatch-yeti.png" /></a>
+        <a href="themes/bootswatch-yeti.html"><img src="../images/doc/bootswatch-yeti.png" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-flatly.html">Yeti</a></h5>
         <pre>
         <code>

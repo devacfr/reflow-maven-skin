@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.Toc;
+import org.devacfr.maven.skins.reflow.model.TocSidebar;
 
 /**
  * The context associate to page of frame page.
@@ -46,7 +47,13 @@ public class FrameContext extends Context<FrameContext> {
     public FrameContext(final @Nonnull ISkinConfig config, @Nonnull final String documentParent) {
         super(config, ContextType.frame);
         final String type = config.getPropertyValue(Toc.COMPONENT, String.class, "sidebar");
-        toc = Toc.createToc(config, type);
+        // enforce sidebar
+        if ("top".equals(type) || "top".equals("sidebar")) {
+            toc = new TocSidebar(config);
+        } else {
+            toc = new Toc<Toc<?>>("", "") {};
+        }
+
         this.documentParent = requireNonNull(documentParent);
 
         this.addChildren(this.toc);

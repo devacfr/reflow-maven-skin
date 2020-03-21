@@ -27,7 +27,7 @@ The Header is the component displayed to top of page. If header element contains
 
 The Jumbotron Header is the container of the bootstrap Jumbotron. the Jumbotron contains your slogan, logo and banner to top of the page. The following [sample page][header-jumbotron] displays the configuration below:
 
-![header scheme](images/header-jumbotron-scheme.png)
+![header scheme](../images/doc/header-jumbotron-scheme.png)
 
 ```xml
 <header type="jumbotron" background="dark" cssClass="text-light"></header>
@@ -66,7 +66,7 @@ Reflow renders following html:
 
 The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following [sample page][header-banner] displays the configuration below:
 
-![header scheme](images/header-banner-scheme.png)
+![header scheme](../images/doc/header-banner-scheme.png)
 
 ```xml
 <header type="banner" cssClass="text-light"></header>

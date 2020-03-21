@@ -130,7 +130,7 @@ Reflow skin enables CSS pop-ups for image links on the website using [Lightbox 2
 - **false** - disable lightbox, image link will open the image itself
 
 [lightbox]: http://lokeshdhakar.com/projects/lightbox2/
-[lightbox-test]: images/snowdon.jpg "Lightbox example - climbing Snowdon in Wales, UK"
+[lightbox-test]: images/doc/snowdon.jpg "Lightbox example - climbing Snowdon in Wales, UK"
 
 ### Smooth scroll
 

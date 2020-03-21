@@ -2,7 +2,7 @@
 
 Navbar is Bootstrap responsive navigation header component fixed to the top of page. It contains all [`<body><links>` element][site-links] and filtered [`<body><menu>`][site-menus] declared in site.xml.
 
-![navbar scheme](images/navbar-scheme.png)
+![navbar scheme](../images/doc/navbar-scheme.png)
 
 ## Usage
 

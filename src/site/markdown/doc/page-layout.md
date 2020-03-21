@@ -2,7 +2,7 @@
 
 Page layout is the standard representation in Reflow skin.
 
-![page layout](images/page-layout-scheme.png)
+![page layout](../images/doc/page-layout-scheme.png)
 
 The content of page is put in `body` container. All components around the body are customized globally or locally to this page. To customized the `body` itself, see [Section Layout documention][section-layout] for more information
 

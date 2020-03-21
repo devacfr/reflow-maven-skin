@@ -2,7 +2,7 @@
 
 element <span class="badge badge-secondary">site.xml</span>
 
-![breadcrumb scheme](images/breadcrumb-scheme.png)
+![breadcrumb scheme](../images/doc/breadcrumb-scheme.png)
 
 Breadcrumbs are defined using standard Maven site element
 [`<body><breadcrumbs>`][mvn-site-breadcrumbs] in `site.xml`.
