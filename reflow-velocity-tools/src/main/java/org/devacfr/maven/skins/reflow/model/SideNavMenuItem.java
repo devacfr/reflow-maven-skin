@@ -145,7 +145,7 @@ public class SideNavMenuItem {
      * @return Returns {@code true} if has items, otherwise {@code false}.
      */
     public boolean isHasItems() {
-        return items != null && items.size() > 0;
+        return items != null && !items.isEmpty();
     }
 
     /**

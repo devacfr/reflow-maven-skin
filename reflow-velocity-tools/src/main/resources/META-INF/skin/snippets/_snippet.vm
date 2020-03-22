@@ -16,41 +16,54 @@
 #**
  * display information of snippet
  *#
-#macro( debug $snippet $included $indent )##
+#macro( debug $snippet $isRoot $indent )##
 #*  *##if ( $snippet )##
-#*      *##if( !$included )##
+#*      *##if( $isRoot )##
 #*          *##set( $indent = 0 )##
-<pre class="placeholder-debug">
+<pre class="placeholder-debug text-left">
     <code>
 #*      *##end##
 #*      *##set( $space = $display.space($indent) )##
 ##
 ${space}#if( $indent > 0)- #{end}name: ${snippet.name}
+#*      *##if( $isRoot)
+${space}type: ${snippet.type}
+#*      *##end##
 ##
 #*      *##if( $indent > 0)##
 #*          *##set( $indent2 = $indent + 2 )##
 #*          *##set($space = $display.space($indent2) )##
 #*      *##end##
 ##
-${space}attributes: ${snippet.attrs}
+#*  *##set( $html = "" )##
+#*  *##if( $snippet.ownHtml )##
+#*      *##set( $html = $esc.html( $htmlTool.normaliseWhitespace($snippet.ownHtml ) ) )##
+#*  *##end##
+#*  *##set( $attrs = "" )##
+#*  *##if( $snippet.attrs )##
+#*      *##set( $attrs = $esc.html( $htmlTool.normaliseWhitespace( $snippet.attrs.toString() ) ) )##
+#*  *##end##
+${space}attributes: $attrs
 ${space}isHtmlTag: ${snippet.isHtmlTag()}
-${space}html: "$esc.html( ${snippet.html} )"
-${space}parent: $!{snippet.parent}
+${space}ownHtml: '$html'
+${space}parent: $!snippet.parent.name
 ##
 #*      *##if( !${snippet.children.isEmpty()} )##
 ##
 ${space}children:
 ##
-#*          *##set( $indent1 = $indent + 4 )##
+#*          *##set( $indent = $indent + 4 )##
 #*          *##foreach( $child in ${snippet.children} )##
-#*              *##debug($child true $indent1)##
+#*              *##debug($child false $indent)##
 #*          *##end##
+#*          *##set( $indent = $indent - 4 )##
+#*          *##set($space = $display.space($indent) )##
 #*      *##end##
-#*      *##if( !$included )##
+#*      *##if( $isRoot )##
     </code>
 </pre>
 #*      *##end##
- #* *##end##
+#* *##end##
 #end##
 #**
  * render html snippet
@@ -65,7 +78,7 @@ ${space}children:
 ##
 ##
 #if( $snippet.attrs["debug"])##
-#*  *##debug( $snippet false 0)##
+#*  *##debug( $snippet true 0)##
 #end
 #**
  * execute snippet

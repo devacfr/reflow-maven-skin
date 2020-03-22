@@ -15,7 +15,10 @@
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
+import static java.util.Objects.requireNonNull;
+
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
@@ -26,22 +29,43 @@ import org.jsoup.nodes.Element;
  */
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 
-    public static SnippetComponent<?> createSnippet(@Nonnull final Element element, final Type type) {
-        if (Type.webComponent.equals(type)) {
-            return new SnippetComponent<>(element.tagName()).addAttributes(element.attributes())
-                    .withHtml(element.outerHtml());
-        } else if (Type.shortcode.equals(type)) {
-            return new SnippetComponent<>(element.tagName()).addAttributes(element.attributes())
-                    .withHtml(element.ownText());
-        }
-        return null;
+    /** */
+    final private Type type;
+
+    /**
+     * @param element
+     * @param startToken
+     * @param endToken
+     * @return
+     */
+    public static SnippetComponent<?> createSnippet(@Nonnull final Element element,
+        @Nonnull final ComponentToken startToken,
+        @Nullable final ComponentToken endToken) {
+        requireNonNull(element);
+        requireNonNull(startToken);
+        final Type type = startToken.type();
+        return new SnippetComponent<>(element.tagName(), type).addAttributes(element.attributes());
     }
 
     /**
      * @param name
      */
-    public SnippetComponent(@Nonnull final String name) {
+    public SnippetComponent(@Nonnull final String name, @Nonnull final Type type) {
         super(name, false);
+        this.type = requireNonNull(type);
+    }
+
+    /**
+     * @return
+     */
+    @Nonnull
+    public Type getType() {
+        return type;
+    }
+
+    @Override
+    protected SnippetComponent<?> getRootParent() {
+        return this;
     }
 
     /**

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
-import org.jsoup.internal.StringUtil;
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
@@ -70,7 +70,7 @@ public class Component<T extends Component<T>> {
     public static Component<?> createComponent(@Nonnull final Node element,
         final Component<?> parent,
         final boolean isKnownHtmlTag) {
-        String html = "".intern();
+        String html = null;
         String tagName = "";
 
         if (element instanceof Element) {
@@ -81,8 +81,6 @@ public class Component<T extends Component<T>> {
 
         if (isKnownHtmlTag) {
             html = element.outerHtml();
-        } else if (element instanceof Element) {
-            html = ((Element) element).html();
         }
 
         return new Component<>(tagName, isKnownHtmlTag).withParent(parent)
@@ -108,6 +106,14 @@ public class Component<T extends Component<T>> {
     /**
      * @return
      */
+    @Nonnull
+    Type getInternalType() {
+        return getRootParent().getType();
+    }
+
+    /**
+     * @return
+     */
     public boolean isHtmlTag() {
         return isHtmlTag;
     }
@@ -123,15 +129,17 @@ public class Component<T extends Component<T>> {
     }
 
     /**
+     * @return
+     */
+    public String getOwnHtml() {
+        return this.html;
+    }
+
+    /**
      * @return the parent
      */
     public Component<?> getParent() {
         return parent;
-    }
-
-    protected T withParent(final Component<?> parent) {
-        this.parent = parent;
-        return self();
     }
 
     /**
@@ -142,7 +150,7 @@ public class Component<T extends Component<T>> {
         if (Strings.isNullOrEmpty(html)) {
             this.html = null;
         } else {
-            this.html = StringUtil.normaliseWhitespace(html);
+            this.html = html;
         }
         return self();
     }
@@ -208,6 +216,20 @@ public class Component<T extends Component<T>> {
         value.add(component);
         this.children.add(component);
         return self();
+    }
+
+    protected T withParent(final Component<?> parent) {
+        this.parent = parent;
+        return self();
+    }
+
+    @Nonnull
+    protected SnippetComponent<?> getRootParent() {
+        Component<?> parent = this.parent;
+        while (!(parent instanceof SnippetComponent<?>)) {
+            parent = parent.parent;
+        }
+        return (SnippetComponent<?>) parent;
     }
 
     /**

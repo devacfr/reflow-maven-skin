@@ -194,7 +194,7 @@ public abstract class Processor {
         final ComponentToken endToken) {
         final SnippetContext snippetContext = parser.getSnippetContext();
         final Element componentElement = convertToHtml(startToken, endToken);
-        return snippetContext.create(componentElement, startToken.type());
+        return snippetContext.create(componentElement, startToken, endToken);
     }
 
     /**

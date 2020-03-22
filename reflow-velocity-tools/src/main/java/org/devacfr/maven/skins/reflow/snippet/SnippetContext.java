@@ -49,8 +49,9 @@ import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.ResourceTool;
 import org.apache.velocity.tools.generic.SortTool;
 import org.apache.velocity.tools.generic.XmlTool;
+import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
+import org.devacfr.maven.skins.reflow.URITool;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
@@ -126,9 +127,12 @@ public class SnippetContext {
     }
 
     @Nullable
-    public SnippetComponent<?> create(@Nonnull final Element element, final Type type) {
+    public SnippetComponent<?> create(@Nonnull final Element element,
+        @Nonnull final ComponentToken startToken,
+        @Nullable final ComponentToken endToken) {
         requireNonNull(element);
-        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, type);
+        requireNonNull(startToken);
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, startToken, endToken);
         addComponent(component);
         recurciveCreateComponent(element, component);
         return component;
@@ -164,8 +168,7 @@ public class SnippetContext {
         final StringWriter writer = new StringWriter();
         mergeTemplate(component, writer);
 
-        final String html = writer.toString();
-        return html;
+        return writer.toString();
     }
 
     protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
@@ -223,7 +226,9 @@ public class SnippetContext {
                 .tool(NumberTool.class)
                 .tool(ResourceTool.class)
                 .tool(SortTool.class)
-                .tool(XmlTool.class);
+                .tool(XmlTool.class)
+                .tool(URITool.class)
+                .tool(HtmlTool.class);
 
         final ToolManager manager = new ToolManager(false, false);
         manager.configure(config);

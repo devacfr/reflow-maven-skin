@@ -33,12 +33,14 @@ import java.util.Stack;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.jsoup.Jsoup;
+import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -113,6 +115,22 @@ public class HtmlTool extends SafeConfig {
         if (outputEncodingObj instanceof String) {
             this.outputEncoding = (String) outputEncodingObj;
         }
+    }
+
+    /**
+     * Normalise the whitespace within this string; multiple spaces collapse to a single, and all whitespace characters
+     * (e.g. newline, tab) convert to a simple space
+     *
+     * @param html
+     *            html content to normalise.
+     * @return Returns normalised string.
+     */
+    @Nullable
+    public String normaliseWhitespace(@Nullable final String html) {
+        if (Strings.isNullOrEmpty(html)) {
+            return null;
+        }
+        return StringUtil.normaliseWhitespace(html);
     }
 
     /**
@@ -1168,7 +1186,7 @@ public class HtmlTool extends SafeConfig {
 
     /**
      * Fixes table heads: wraps rows with {@code
-     * 
+     *
     <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
      *
      * @param content

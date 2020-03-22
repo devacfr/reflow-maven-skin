@@ -176,7 +176,7 @@ public class NavSideMenu extends BsComponent {
      * @return Returns {@code true} whether menu contains a least one menu item, otherwise returns {@code false}.
      */
     public boolean isHasItems() {
-        return items != null && items.size() > 0;
+        return items != null && !items.isEmpty();
     }
 
     /**

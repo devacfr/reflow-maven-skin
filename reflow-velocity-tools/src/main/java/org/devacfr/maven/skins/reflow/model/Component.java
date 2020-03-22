@@ -103,7 +103,7 @@ public abstract class Component {
 
     /**
      * generic pre-rendering method executed on all components of context.
-     * 
+     *
      * @param skinConfig
      *            the current skin config.
      * @param bodyContent
