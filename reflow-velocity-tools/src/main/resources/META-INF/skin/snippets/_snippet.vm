@@ -13,7 +13,9 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-#parse("META-INF/maven/site-macros.vm")
+#if( $templateTool.exists("META-INF/maven/site-macros.vm") )
+#*  *##parse("META-INF/maven/site-macros.vm")
+#end
 #**
  * display information of snippet
  *#

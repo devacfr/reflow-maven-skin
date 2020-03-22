@@ -56,9 +56,9 @@
   </developers>
 
   <modules>
-    <module>reflow-velocity-tools</module>
-    <module>reflow-default-webdeps</module>
     <module>reflow-maven-skin</module>
+    <module>reflow-velocity-tools</module>
+    <module>reflow-default-webdeps</module>    
   </modules>
 
   <scm>
