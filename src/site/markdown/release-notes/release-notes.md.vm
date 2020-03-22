@@ -1,3 +1,7 @@
+title: Reflow Release notes
+author: Christophe Friederich devacfr@mac.com
+email: devacfr@mac.com
+
 #set($h1 = '#')
 #set($h2 = '##')
 #set($h3 = '###')

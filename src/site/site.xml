@@ -290,9 +290,10 @@
             </item>
             <item name="Snippets">
               <item name="Working with Snippet" href="doc/snippets/snippet.html" />
-              <item name="Layout Grid" href="doc/snippets/layout-grid.html" />
+              <item name="Breadcrumb" href="doc/snippets/breadcrumb.html" />
               <item name="Carousel" href="doc/snippets/carousel.html" />
               <item name="Card" href="doc/snippets/card.html" />
+              <item name="Layout Grid" href="doc/snippets/layout-grid.html" />
             </item>
             <item name="Components">
               <item name="Components Overview" href="doc/components/components.html" />
@@ -320,6 +321,9 @@
         <doc-components-components>
           <toc>false</toc>
         </doc-components-components>
+        <doc-snippets-breadcrumb>
+          <shortTitle>Snippet Breadcrumb</shortTitle>
+        </doc-snippets-breadcrumb>
         <doc-test-toc-sidebar>
           <toc>sidebar</toc>
         </doc-test-toc-sidebar>

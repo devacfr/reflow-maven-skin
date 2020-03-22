@@ -761,6 +761,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     /**
      * @return Returns a {@link String} representing the relative path to root site.
      */
+    @Override
     @Nonnull
     public String getResourcePath() {
         final String absoluteResourceURL = this.value("absoluteResourceURL");

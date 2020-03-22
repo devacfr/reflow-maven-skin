@@ -233,7 +233,7 @@ public class HtmlTool extends SafeConfig {
         @Nonnull final JoinSeparator separatorStrategy) {
 
         requireNonNull(separatorStrategy);
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         final List<Element> separators = body.select(separatorCssSelector);
         if (separators.size() > 0) {
@@ -465,7 +465,7 @@ public class HtmlTool extends SafeConfig {
      */
     private List<Element> extractElements(final String content, final String selector, final int amount) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         List<Element> elements = body.select(selector);
         if (elements.size() > 0) {
@@ -618,7 +618,7 @@ public class HtmlTool extends SafeConfig {
      */
     public String setAttr(final String content, final String selector, final String attributeKey, final String value) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         final List<Element> elements = body.select(selector);
         if (elements.size() > 0) {
@@ -641,10 +641,10 @@ public class HtmlTool extends SafeConfig {
      *            body HTML fragment (can not be {@code null}).
      * @return the {@code body} element of the parsed content
      */
-    private Element parseContent(@Nonnull final String content) {
+    public Document parse(@Nonnull final String content) {
         final Document doc = Jsoup.parseBodyFragment(content);
         doc.outputSettings().charset(outputEncoding);
-        return doc.body();
+        return doc;
     }
 
     /**
@@ -662,7 +662,7 @@ public class HtmlTool extends SafeConfig {
      */
     public List<String> getAttr(final String content, final String selector, final String attributeKey) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         final List<Element> elements = body.select(selector);
         final List<String> attrs = new ArrayList<>();
@@ -694,7 +694,7 @@ public class HtmlTool extends SafeConfig {
         final List<String> classNames,
         final int amount) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         List<Element> elements = body.select(selector);
         if (amount >= 0) {
@@ -765,7 +765,7 @@ public class HtmlTool extends SafeConfig {
      */
     public String wrap(final String content, final String selector, final String wrapHtml, final int amount) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         List<Element> elements = body.select(selector);
         if (amount >= 0) {
@@ -798,7 +798,7 @@ public class HtmlTool extends SafeConfig {
      */
     public String remove(final String content, final String selector) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         final List<Element> elements = body.select(selector);
         if (elements.size() > 0) {
@@ -842,7 +842,7 @@ public class HtmlTool extends SafeConfig {
      */
     public String replaceAll(final String content, final Map<String, String> replacements) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         boolean modified = false;
         for (final Entry<String, String> replacementEntry : replacements.entrySet()) {
@@ -853,7 +853,7 @@ public class HtmlTool extends SafeConfig {
             if (elements.size() > 0) {
 
                 // take the first child
-                final Element replacementElem = parseContent(replacement).child(0);
+                final Element replacementElem = parse(replacement).body().child(0);
 
                 if (replacementElem != null) {
                     for (final Element element : elements) {
@@ -888,14 +888,14 @@ public class HtmlTool extends SafeConfig {
      */
     public String replaceWith(final String content, final String selector, final String newElement) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         boolean modified = false;
         final List<Element> elements = body.select(selector);
         if (elements.size() > 0) {
 
             // take the first child
-            final Element replacementElem = parseContent(newElement).child(0);
+            final Element replacementElem = parse(newElement).body().child(0);
 
             if (replacementElem != null) {
                 for (final Element element : elements) {
@@ -934,7 +934,7 @@ public class HtmlTool extends SafeConfig {
         if (Strings.isNullOrEmpty(content)) {
             return emptyList();
         }
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         final List<Element> elements = body.select(selector);
         final List<String> texts = new ArrayList<>();
@@ -969,7 +969,7 @@ public class HtmlTool extends SafeConfig {
      */
     public String headingAnchorToId(final String content) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         // selectors for headings without IDs
         final List<String> headNoIds = concat(HEADINGS, ":not([id])", true);
@@ -1094,7 +1094,7 @@ public class HtmlTool extends SafeConfig {
         final String idSeparator) {
         final List<String> excludedPages = Arrays.asList("checkstyle-aggregate", "checkstyle");
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         // exclude pages
         if (excludedPages.contains(currentPage)) {
@@ -1199,7 +1199,7 @@ public class HtmlTool extends SafeConfig {
      */
     public String fixTableHeads(final String content) {
 
-        final Element body = parseContent(content);
+        final Element body = parse(content).body();
 
         final List<Element> tables = body.select("table");
 
@@ -1294,7 +1294,7 @@ public class HtmlTool extends SafeConfig {
             if ("carousel".equals(sectionType)) {
                 continue;
             }
-            final Element body = parseContent(sectionContent);
+            final Element body = parse(sectionContent).body();
             // select all headings that have an ID
             final List<Element> headings = body.select(String.join(", ", headIds));
             for (final Element heading : headings) {

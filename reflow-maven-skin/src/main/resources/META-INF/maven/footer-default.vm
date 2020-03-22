@@ -15,6 +15,7 @@
 ##
 ##
 #macro ( renderFooter )##
+#*  *##set( $pageContext = $config.context)##
 #*  *##set( $datePosition = "#getDatePosition()" )##
   <!-- Footer -->
 <footer class="$pageContext.footer.cssClass">
