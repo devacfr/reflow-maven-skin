@@ -79,7 +79,7 @@
         </additionalMenu>
       </navbar>
       <navside-menu theme="light" background="light" />
-      <footer theme="dark" background="dark" />
+      <footer theme="dark" background="dark" class="py-5" />
       <!-- Split menus in the bottom navigation -->
       <bottomNav>
         <column>Main|Tools</column>

@@ -52,7 +52,7 @@ A `shortcode` and `web component` are a simple snippet inside a page that Reflow
 The shortcode can be construct as a empty element tag `{{< shortcode attribute="value" />}}` or with a start tag  `{{< shortcode attribute="value" >}}` with attributes and a end tag  `{{< /shortcode >}}`.
 One of these peculiarities is that it can mutate to web component. This particularity allows to resolve certain conflict with the Doxia renderer.
 
-One good shortcode sample is the Bootstrap badge. You want include a bagde inline the text.
+One good shortcode sample is the Bootstrap badge. You want include a badge inline the text.
 
 ```
 Lorem ipsum dolor sit amet {{< badge color="info" text="NEW" />}}, consectetur
@@ -91,49 +91,14 @@ The associated template,
 </div>
 ```
 
-That's work but I'm lucky, suppose i wanted to write the component like this:
-
-```html
-{{< callout color="warning" >}}
-
-#### Warning
-
-Why does the cry assume the dapper sugar?
-
-{{< /callout >}}
-```
-
-Now, That's not work. As Doxia renderer writes heading in section and the html generated is like this:
-
-```html
-<div class="bd-callout bd-callout-warning">
-<section>
-  <h4>Warning<h4>
-  <p>Why does the cry assume the dapper sugar?</p>
-  </div>
-...
-</section> <!-- Wrong -->
-```
-
-For the moment, I do not know how to solve the problem other than writing directly in html and use the shortcode as web component or remove all `section` elements when reflow rendering begins. I should write in the content page as following:
-
-```html
-{{% callout color="warning" %}}
-<!-- 
-<h4>Warning</h4>
-<p>Why does the cry assume the dapper sugar?</p>
--->
-{{% /callout %}}
-```
-
-No pretty... I decided to unwrap all section elements if the content page contains at least one snippet. There is another solution using the partial templates {{< badge color="danger" text="TODO - add link" />}}.
+The facility macro `#render_html` renders the content html of snippet and execute included Velocity Template Language (VTL) macro.
 
 ### Tag Syntax
 
 The shortcode must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.
 
 - whitespaces are required after `{{<` and before `>}}`
-- the empty line is required before after each start and end tag.
+- the empty line is required before and after each start and end tag.
 - start and end tags must be placed at the start of a line.
 - the empty tag `{{< shortcode />}}` or start and end tags can be used inline in same paragraph.
 
@@ -198,6 +163,49 @@ The template use `$snippet` variable to render the web component.
 ```
 
 This example above uses the Velocity macro `#render_html( $snippet )` allowing execute `#include` Velocity Template Language (VTL) directive declared inside `web component` snippet.
+
+### Debug Mode
+
+Reflow provides the possibility to help the developement your new snippet displaying its structure in adding the attribute `debug=true`. In this example, card web component will be used.
+
+{{< example >}}
+
+{{% card debug="true" style="width: 18rem;" %}}
+
+<!--
+  <card-image>
+    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
+      <title>Placeholder</title>
+      <rect width="100%" height="100%" fill="#868e96"></rect>
+      <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+    </svg>
+  </card-image>
+  <card-body>
+    <h5 class="card-title no-anchor">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </card-body>
+-->
+
+{{% /card %}}
+
+{{< /example >}}
+
+```xml
+{{% card debug="true" style="width: 18rem;" %}}
+
+<!--
+  <card-image src="..." alt="..." />
+  <card-body>
+    <h5 class="card-title no-anchor">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </card-body>
+-->
+
+{{% /card %}}
+```
+
 
 ## $snippet Variable
 

@@ -36,7 +36,7 @@ and stylistic customizations to create a modern-looking Maven-generated website 
 To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow]!
 
 [reflow]: http://devacfr.github.io/reflow-maven-skin/
-[migration]: http://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#migration.html
+[migration]: http://devacfr.github.io/reflow-maven-skin/doc/reflow-documentation.html#migration.html
 [bootstrap]: http://getbootstrap.com
 
 ## News
@@ -115,7 +115,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
 The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
 Refer to [documentation][reflow-config] for all configuration options.
 
-[reflow-config]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration
+[reflow-config]: https://devacfr.github.io/reflow-maven-skin/doc/reflow-documentation.html#get-started_toc_configuration
 
 A sample configuration file is given below:
 
@@ -205,7 +205,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
 
 **Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation)
 
-[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#multi-module.html
+[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/doc/reflow-documentation.html#multi-module.html
 
 ## Bug tracker
 
@@ -324,4 +324,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[release-management]: http://github.com/devacfr/reflow-maven-skin/development-documentation.html#dev-release-management
+[release-management]: http://github.com/devacfr/doc/development-documentation.html#dev-release-management

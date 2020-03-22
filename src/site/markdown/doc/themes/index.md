@@ -1,7 +1,7 @@
 # Themes
 
-support {{< bagde color="primary" text="v1.0" />}} <br/>
-element {{< bagde color="secondary" text="reflow" />}}
+support {{< badge color="primary" text="v1.0" />}} <br/>
+element {{< badge color="secondary" text="reflow" />}}
 
 Reflow skin builds on [Twitter Bootstrap][bootstrap] and supports predefined and custom
 Bootstrap themes. They are set using the `<theme>` element in the customization:
