@@ -62,8 +62,8 @@
                     <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documentation <b class="caret"></b></a>
                         <div class="dropdown-menu">
-                            <a href="reflow-maven-skin/reflow-documentation.html#get-started.html" title="Get Started"  class="dropdown-item ">Get Started</a>
-                            <a href="reflow-maven-skin/reflow-documentation.html#migration.html" title="Migration"  class="dropdown-item ">Migration</a>
+                            <a href="doc/reflow-documentation.html#get-started.html" title="Get Started"  class="dropdown-item ">Get Started</a>
+                            <a href="doc/reflow-documentation.html#migration.html" title="Migration"  class="dropdown-item ">Migration</a>
                             <a href="development-documentation.html" title="Developer Documentation"  class="dropdown-item ">Developer Documentation</a>
                         </div>
                     </li>
@@ -93,6 +93,8 @@
                                     <a href="surefire-report.html" title="Surefire Report"  class="dropdown-item ">Surefire Report</a>
                                     <a href="" title="Rat Report"  class="dropdown-item active">Rat Report</a>
                                     <a href="clover/index.html" title="Clover"  class="dropdown-item ">Clover</a>
+                                    <a href="cpd.html" title="CPD"  class="dropdown-item ">CPD</a>
+                                    <a href="pmd.html" title="PMD"  class="dropdown-item ">PMD</a>
                                 </div>
                             </div>
                         </div>
@@ -133,14 +135,14 @@
   <pre>*****************************************************
 Summary
 -------
-Generated at: 2020-03-21T15:01:57+01:00
+Generated at: 2020-03-22T13:02:15+01:00
 
 Notes: 2
 Binaries: 6
 Archives: 1
-Standards: 107
+Standards: 109
 
-Apache Licensed: 107
+Apache Licensed: 109
 Generated Documents: 0
 
 JavaDocs are generated, thus a license header is optional.
@@ -202,11 +204,11 @@ Archives:
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/Components.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/ComponentResolver.java
+  AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/PartialTemplateMacro.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/SnippetContext.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/Component.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/ComponentToken.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/Processor.java
-  AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/snippet/TemplateMacro.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/model/BsComponent.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/model/Navbar.java
   AL    reflow-velocity-tools/src/main/java/org/devacfr/maven/skins/reflow/model/Toc.java
@@ -266,6 +268,8 @@ Archives:
   AL    reflow-maven-skin/src/main/resources/META-INF/maven/body-body.vm
   AL    reflow-maven-skin/src/main/resources/META-INF/maven/body-doc.vm
   AL    mvnw
+  AL    check/pmd.xml
+  AL    check/spotbugs-exclude-filter.xml
   AL    check/checkstyle.xml
   AL    check/checkstyle-suppression.xml
   AL    check/checkstyle-header.txt
@@ -320,8 +324,8 @@ Contribute
                     <li class="nav-header">
 Documentation
                     </li>
-                    <li class="nav-item "><a  href="reflow-maven-skin/reflow-documentation.html#get-started.html"  title="Get Started"  class="nav-link" >Get Started</a></li>
-                    <li class="nav-item "><a  href="reflow-maven-skin/reflow-documentation.html#migration.html"  title="Migration"  class="nav-link" >Migration</a></li>
+                    <li class="nav-item "><a  href="doc/reflow-documentation.html#get-started.html"  title="Get Started"  class="nav-link" >Get Started</a></li>
+                    <li class="nav-item "><a  href="doc/reflow-documentation.html#migration.html"  title="Migration"  class="nav-link" >Migration</a></li>
                     <li class="nav-item "><a  href="development-documentation.html"  title="Developer Documentation"  class="nav-link" >Developer Documentation</a></li>
                     <li class="nav-header">
 Maven documentation
@@ -335,6 +339,8 @@ Maven documentation
                     <li class="nav-item "><a  href="surefire-report.html"  title="Surefire Report"  class="nav-link" >Surefire Report</a></li>
                     <li class="nav-item active"><a  href=""  title="Rat Report"  class="nav-link" >Rat Report</a></li>
                     <li class="nav-item "><a  href="clover/index.html"  title="Clover"  class="nav-link" >Clover</a></li>
+                    <li class="nav-item "><a  href="cpd.html"  title="CPD"  class="nav-link" >CPD</a></li>
+                    <li class="nav-item "><a  href="pmd.html"  title="PMD"  class="nav-link" >PMD</a></li>
         </ul>
 </li>
                 </ul>

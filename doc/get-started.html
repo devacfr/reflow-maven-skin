@@ -1,0 +1,245 @@
+ 
+
+
+  <div class="row no-gutters">
+    <div class="col-lg-12 col-xl-9">
+            <h1 id="doc-get-started_toc_get-started">Get Started</h1> 
+<p>This section explains how uses reflow maven skin and the basic configurations in your project.</p> 
+<h2 id="doc-get-started_toc_usage1">Usage</h2> 
+<p>To use this Maven skin, include it in your <a class="externalLink" href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html"><code>site.xml</code> site descriptor</a> file:</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;project&gt;
+  ...
+  &lt;skin&gt;
+    &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
+    &lt;artifactId&gt;reflow-maven-skin&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+  &lt;/skin&gt;
+  ...
+&lt;/project&gt;
+</pre> 
+ </div> 
+</div> 
+<p>The skin is provided on the <i>works on my computer</i> basis at the moment. I am using the newest versions of <code>maven-site-plugin</code> and other components and at the moment do not have any feedback on using the skin with Maven 2 site or other configurations.</p> 
+<h2 id="doc-get-started_toc_pom-dependencies">POM dependencies</h2> 
+<p>Add <a href="../reflow-velocity-tools"><code>reflow-velocity-tools</code></a> dependency to <code>maven-site-plugin</code> in the POM file:</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;build&gt;
+  &lt;plugins&gt;
+    ...
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-site-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.9.0&lt;/version&gt;
+      &lt;dependencies&gt;
+        ...
+        &lt;dependency&gt;
+          &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
+          &lt;artifactId&gt;reflow-velocity-tools&lt;/artifactId&gt;
+          &lt;version&gt;2.3.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        ...
+      &lt;/dependencies&gt;
+      ...
+    &lt;/plugin&gt;
+    ...
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</pre> 
+ </div> 
+</div> 
+<p>Reflow Velocity tools (<a href="../reflow-velocity-tools"><code>reflow-velocity-tools</code></a>) are required by the Reflow skin to read skin configuration and provides other functionality. The library must be available when generating Maven site.</p> 
+<hr> 
+<h2 id="doc-get-started_toc_configuration1">Configuration</h2> 
+<p>Reflow skin supports extensive configuration options, including theme, layout, new/updated page components and a large number of various other flags.</p> 
+<p>The configuration is specified in the <a class="externalLink" href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html"><code>site.xml</code> site descriptor</a> file, using the <code>&lt;custom&gt;&lt;reflowSkin&gt;</code> element.</p> 
+<p>The documentation is split over several pages, describing the various configuration options:</p> 
+<div class="row row-cols-1 row-cols-md-2"> 
+ <div class="col mb-4"> 
+  <div class="card h-100"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-get-started_toc_themes"><a href="#themes-index">Themes</a></h5> 
+    <p class="card-text text-secondary">How to configure own theme or select one of the excellent <a href="http://bootswatch.com" target="_blank" rel="noopener">Bootswatch</a> themes.</p> 
+   </div> 
+  </div> 
+ </div> 
+ <div class="col mb-4"> 
+  <div class="card h-100"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-get-started_toc_layouts"><a href="#layouts.html">Layouts</a></h5> 
+    <p class="card-text text-secondary">Reflow the page with different layouts: multi-column text, carousel, thumbnails and others.</p> 
+   </div> 
+  </div> 
+ </div> 
+ <div class="col mb-4"> 
+  <div class="card h-100"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-get-started_toc_components"><a href="#components.html">Components</a></h5> 
+    <p class="card-text text-secondary">Enable and configure various existing and new components: table of contents, headers, menus, etc.</p> 
+   </div> 
+  </div> 
+ </div> 
+ <div class="col mb-4"> 
+  <div class="card h-100"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-get-started_toc_other-configuration"><a href="#configuration.html">Other configuration</a></h5> 
+    <p class="card-text text-secondary">Various configuration options: page title, menus, javaScript goodies, CSS updates and more.</p> 
+   </div> 
+  </div> 
+ </div> 
+ <div class="col mb-4"> 
+  <div class="card h-100"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-get-started_toc_multi-module-site"><a href="#multi-module.html">Multi-module site</a></h5> 
+    <p class="card-text text-secondary">Additional support and notes for generating multi-module Maven sites.</p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<p>Note that all configuration options can be set on a per-page basis (<a href="#get-started_toc_per-page-configuration">see below</a>).</p> 
+<p>The skin is configurable using the <code>&lt;custom&gt;</code> element in your <code>site.xml</code> file. The available options are described in this documentation. A sample configuration file is below:</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;project&gt;
+  ...
+  &lt;custom&gt;
+    &lt;reflowSkin&gt;
+      &lt;theme&gt;bootswatch-spacelab&lt;/theme&gt;
+      &lt;highlightJs&gt;true&lt;/highlightJs&gt;
+      &lt;brand&gt;
+        &lt;name&gt;My Project&lt;/name&gt;
+        &lt;href&gt;https://github.com/devacfr/reflow-maven-skin&lt;/href&gt;
+      &lt;/brand&gt;
+      &lt;slogan&gt;Super interesting project doing good things.&lt;/slogan&gt;
+      &lt;titleTemplate&gt;%2$s | %1$s&lt;/titleTemplate&gt;
+      &lt;toc&gt;top&lt;/toc&gt;
+      &lt;navbar filterMenu="Download|reports" /&gt;
+      &lt;bottomNav&gt;
+        &lt;column&gt;Main|Download&lt;/column&gt;
+        &lt;column&gt;Documentation&lt;/column&gt;
+        &lt;column&gt;reports|modules&lt;/column&gt;
+      &lt;/bottomNav&gt;
+      &lt;bottomDescription&gt;
+        This is a very good project doing interesting and valuable things.
+      &lt;/bottomDescription&gt;
+      &lt;pages&gt;
+        &lt;index project="project-id"&gt;
+          &lt;shortTitle&gt;Welcome&lt;/shortTitle&gt;
+          &lt;breadcrumbs&gt;false&lt;/breadcrumbs&gt;
+          &lt;toc&gt;false&lt;/toc&gt;
+          &lt;sections&gt;
+            &lt;carousel /&gt;
+            &lt;body /&gt;
+            &lt;sidebar /&gt;
+            &lt;thumbs&gt;2&lt;/thumbs&gt;
+            &lt;columns&gt;3&lt;/columns&gt;
+          &lt;/sections&gt;
+        &lt;/index&gt;
+        &lt;developer-info&gt;
+            &lt;!-- inherit of parent value --&gt;
+            &lt;navbar filterMenu="inherit" cssClass="navbar-dark bg-dark " /&gt;
+          &lt;toc&gt;sidebar&lt;/toc&gt;
+        &lt;/developer-info&gt;
+        &lt;overview&gt;
+            &lt;toc&gt;false&lt;/toc&gt;
+            &lt;sections&gt;
+                &lt;thumbs&gt;3&lt;/thumbs&gt;
+                &lt;body /&gt;
+            &lt;/sections&gt;
+        &lt;/overview&gt;
+        &lt;documentation type="doc"&gt;
+          &lt;menu name="Documentation" selectFirstOnExpand="false"&gt;
+            &lt;item name="Overview" href="overview.html"/&gt;
+            &lt;item name="Installation"&gt;
+              &lt;item name="Standalone Installation" href="standalone-installation.html"/&gt;
+              &lt;item name="Linux And Mac Options" href="linux-mac-options.html"/&gt;
+              &lt;item name="Windows Options" href="windows-options.html"/&gt;
+            &lt;/item&gt;
+            &lt;item name="Develop" href="develop.html"/&gt;
+          &lt;/menu&gt;
+        &lt;/documentation&gt;
+      &lt;/pages&gt;
+    &lt;/reflowSkin&gt;
+  &lt;/custom&gt;
+  ...
+&lt;/project&gt;
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-get-started_toc_per-page-configuration">Per-page configuration</h3> 
+<p>Reflow skin has quite a number of configuration options, which can be applied either globally or limited to a specific page. The <i>per-page configuration</i> allows setting page-specific layouts, disable breadcrumbs or table of contents, or even change the theme for a single page.</p> 
+<p>All configuration options can be specified <i>per-page</i>. If the same configuration is specified both <i>globally</i> and <i>per-page</i>, the <i>per-page</i> one overrides the global option.</p> 
+<p>The configuration of a page is set using the <code>&lt;pages&gt;</code> element of the skin configuration. Each element within <code>&lt;pages&gt;</code> indicates the name of the page file being customized.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;custom&gt;
+  &lt;reflowSkin&gt;
+    ...
+    &lt;pages&gt;
+      &lt;index&gt;
+        &lt;!-- index.html (generated from index.apt, index.md or others):
+             will set the configuration for index.html in submodules as well. --&gt;
+        ...
+      &lt;/index&gt;
+      &lt;usage-basic project="my-project"&gt;
+        &lt;!-- usage/basic.html in "my-project" project only: submodules will not inherit --&gt;
+        ...
+      &lt;/usage-basic&gt;
+      ...
+    &lt;/pages&gt;
+    ...
+  &lt;/reflowSkin&gt;
+&lt;/custom&gt;
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-get-started_toc_page-id">Page Id</h3> 
+<p>Each page configuration is set within a <code>&lt;pages&gt;&lt;[pageId]&gt;</code> element.</p> 
+<p>The page Id is its file name without extension. This is because the pages may be generated from different file formats, e.g. <a class="externalLink" href="http://maven.apache.org/doxia/references/index.html">APT, XDoc, Markdown, etc</a>. The page ID characters must be of the same case as the generated file name.</p> 
+<p>For generated files that are in directories, <code>"-"</code> is used as the separator for directory structure. So a file in <i>./subdir/foo.html</i> is referred as <code>&lt;subdir-foo&gt;</code> in the configuration.</p> 
+<h3 id="doc-get-started_toc_configuration-inheritance">Configuration inheritance</h3> 
+<p>The page configuration is applied to all generated pages that have the indicated file name. For multi-module builds, child sites will inherit the configuration from parent site. So if the parent has defined a configuration for <code>&lt;index&gt;</code>, it will also be applied to <i>index.html</i> in the child project.</p> 
+<p>Sometimes this is undesirable, so one can use <code>project</code> attribute to indicate the project that the page applies to. For child pages, the project will be different from indicated and thus the configuration will not apply. The project is identified using its <code>artifactId</code>.</p> 
+<p>If you still encounter inheritance problems, try using <a class="externalLink" href="http://www.sonatype.com/people/2011/01/maven-how-to-merging-plugin-configuration-in-complex-projects/"><code>combine.self="override"</code> attribute</a> on the <code>site.xml</code> element to explicitly override it.</p> 
+<h2 id="doc-get-started_toc_responsive-design">Responsive design</h2> 
+<p>Reflow skin is built on <a class="externalLink" href="http://getbootstrap.com">Bootstrap</a> and provides responsive design features out of the box. The page layouts are rearranged for smaller screens to provide a good viewing experience.</p> 
+<h2 id="doc-get-started_toc_learn-by-example">Learn by example</h2> 
+<p>This website itself is generated using Reflow Maven skin and is written in Markdown. The source code is <a class="externalLink" href="https://github.com/devacfr/reflow-maven-skin" title="Reflow Maven skin source code">available on GitHub</a>.</p> 
+<p>Look for the site configuration and web page sources in <code>/src/site</code> of each module; and for plug-in configuration in respective POM files.</p>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/get-started.md.vm"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#doc-get-started_toc_get-started" title="Get Started">Get Started</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-get-started_toc_usage1" title="Usage">Usage</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-get-started_toc_pom-dependencies" title="POM dependencies">POM dependencies</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-get-started_toc_configuration1" title="Configuration">Configuration</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-get-started_toc_responsive-design" title="Responsive design">Responsive design</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-get-started_toc_learn-by-example" title="Learn by example">Learn by example</a>
+    </li>
+                    </ul>
+                </nav>
+           </div>
+    </div>
+</div>

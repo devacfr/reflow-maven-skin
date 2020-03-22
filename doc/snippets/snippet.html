@@ -1,0 +1,342 @@
+ 
+
+
+  <div class="row no-gutters">
+    <div class="col-lg-12 col-xl-9">
+            <h1 id="doc-snippets-snippet_toc_working-with-snippets-draft">Working with Snippets <span class="badge badge-warning">DRAFT</span> </h1> 
+<span class="badge badge-primary">New in v2.4</span> 
+<div class="bd-callout bd-callout-warning"> 
+ <h4 class="no-anchor" id="doc-snippets-snippet_toc_warning">Warning</h4> 
+ <p>Snippet feature is in preview version. The specification can change in the future.</p> 
+ <p>All recommendation and improvement are appreciated.</p> 
+</div> 
+<p>Markdown is simple content format, but there are times when Markdown falls short. Often, authors are forced to add raw HTML to Markdown content. Reflow created snippets to get around these limitations. A <code>shortcode</code> and <code>web component</code> are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format for the moment).</p> 
+<div class="row row-cols-1 row-cols-md-2"> 
+ <div class="col mb-4"> 
+  <div class="card"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_shortcode"><a href="#snippets-snippet_toc_web-component">Shortcode</a></h5> 
+    <p class="card-text text-secondary">as indicated by his name, for short stuff to create an unified layout, include a specific information, etc.</p> 
+   </div> 
+  </div> 
+ </div> 
+ <div class="col mb-4"> 
+  <div class="card"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_web-component"><a href="#snippets-snippet_toc_web-component">Web Component</a></h5> 
+    <p class="card-text text-secondary">It is a autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.</p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-snippet_toc_shortcodes1">Shortcodes</h2> 
+<p>The shortcode can be construct as a empty element tag <code>{{&lt; shortcode attribute="value" /&gt;}}</code> or with a start tag <code>{{&lt; shortcode attribute="value" &gt;}}</code> with attributes and a end tag <code>{{&lt; /shortcode &gt;}}</code>. One of these peculiarities is that it can mutate to web component. This particularity allows to resolve certain conflict with the Doxia renderer.</p> 
+<p>One good shortcode sample is the Bootstrap badge. You want include a badge inline the text.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>Lorem ipsum dolor sit amet {{&lt; badge color="info" text="NEW" /&gt;}}, consectetur
+adipiscing elit. Quare ad ea primum, si videtur; Hunc vos beatum; Nam ista vestra:
+Si gravis, brevis; Sed haec in pueris
+</pre> 
+ </div> 
+</div> 
+<p>Now, you are just to create a template file with the same name of shortcode <code>badge.vm</code> in folder <code>src/site/layouts/snippets</code> and add following lines:</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;!-- src/site/layouts/snippets/badge.vm --&gt;
+&lt;span class="badge ${snippet.color}"&gt;${snippet.text}&lt;/span&gt;
+</pre> 
+ </div> 
+</div> 
+<p>That’s it! It’s short, quick and stylishness.</p> 
+<p>Here is another example always so easy, I want generalise the component callout that use everywhere in content page.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; callout color="warning" level="5" title="Warning" &gt;}}
+
+Why does the cry assume the dapper sugar?
+
+{{&lt; /callout &gt;}}
+</pre> 
+ </div> 
+</div> 
+<p>The associated template,</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;!-- src/site/layouts/snippets/callout.vm --&gt;
+&lt;div class="bd-callout bd-callout-${snippet.color} $snippet.attr['class']"&gt;
+ #if( ${snippet.title} )##
+    &lt;h${snippet.level} class="no-anchor"&gt;${snippet.title}&lt;/h${snippet.level}&gt;
+ #end##
+  #render_html( ${snippet} )##
+&lt;/div&gt;
+</pre> 
+ </div> 
+</div> 
+<p>The facility macro <code>#render_html</code> renders the content html of snippet and execute included Velocity Template Language (VTL) macro.</p> 
+<h3 id="doc-snippets-snippet_toc_tag-syntax">&nbsp;Tag Syntax</h3> 
+<p>The shortcode must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.</p> 
+<ul> 
+ <li>whitespaces are required after <code>{{&lt;</code> and before <code>&gt;}}</code></li> 
+ <li>the empty line is required before and after each start and end tag.</li> 
+ <li>start and end tags must be placed at the start of a line.</li> 
+ <li>the empty tag <code>{{&lt; shortcode /&gt;}}</code> or start and end tags can be used inline in same paragraph.</li> 
+</ul> 
+<h3 id="doc-snippets-snippet_toc_nested-shortcodes">Nested Shortcodes</h3> 
+<p>You can include shortcodes within other shortcodes by creating your own templates that leverage the <code>$snippet.parent</code> property. <code>$snippet.parent</code> allows you to check the context in which the shortcode is being called.</p> 
+<h2 id="doc-snippets-snippet_toc_web-components">Web Components</h2> 
+<p>It is composed by start tag <code>{{% component attribute="value" %}}</code> with attributes and tag <code>{{% /component %}}</code>, an associated xhtml data structure and a velocity template file. The xhtml data part is enclosed in comment html element ( <code>&lt;!-- --&gt;</code>) or in highlighting block <code>&lt;pre&gt;...&lt;/pre&gt;</code>. This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, <code>&lt;svg&gt;</code> tag too :-1: ). The template file name should have the same name as web compenent and located in <code>src/site/snippets/component.vm</code>. In future, the web component will be managed directly by javascript using <a class="externalLink" href="https://www.webcomponents.org/">web component APIs</a>.</p> 
+<h3 id="doc-snippets-snippet_toc_tag-syntax1">Tag Syntax</h3> 
+<p>The <code>web component</code> must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.</p> 
+<ul> 
+ <li>whitespaces are required after <code>{{%</code> and before <code>%}}</code> tags.</li> 
+ <li>the empty line is required before after each start and end tag.</li> 
+ <li>start and end tags must be placed at the start of a line.</li> 
+</ul> 
+<h3 id="doc-snippets-snippet_toc_data-element">Data Element</h3> 
+<p>To be recognized by reflow, a data element <b>should</b> be a xml element with a tag name differents of existing html tag. the tag name must start with an alphabetic character (a .. z or A .. Z). The rest of the characters are limited to the following types of characters:</p> 
+<ul> 
+ <li>alphabetic (a .. z, A .. Z)</li> 
+ <li>numeric (0 .. 9)</li> 
+ <li>hyphen (“-”)</li> 
+ <li>underscore (“_”)</li> 
+</ul> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% component attribute="value" %}}
+
+&lt;!--
+&lt;data&gt;
+  &lt;data-item class="text-muted" &gt;Header Section&lt;/data-item&gt;
+  &lt;data-content&gt;
+    &lt;div&gt;html used in template&lt;/div&gt;
+    #include( 'src/site/svg/pretty.svg' )
+  &lt;/data-content&gt;
+&lt;/data&gt;
+--&gt;
+
+{{% /component%}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-snippet_toc_web-component-template">Web Component Template</h3> 
+<p>The template use <code>$snippet</code> variable to render the web component.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>#if( $snippet.attribute == 'value' )
+  &lt;div class="component"&gt;
+    &lt;h2&gt;$snippet.data-item.html&lt;/h2&gt;
+   &lt;div #if( $snippet.data-content.attr['class'] )class="$snippet.data-content.attr['class']"#end&gt;
+    #render_html( $snippet.data-content )
+   &lt;/div&gt;
+  &lt;/div&gt;
+#end
+</pre> 
+ </div> 
+</div> 
+<p>This example above uses the Velocity macro <code>#render_html( $snippet )</code> allowing execute <code>#include</code> Velocity Template Language (VTL) directive declared inside <code>web component</code> snippet.</p> 
+<h3 id="doc-snippets-snippet_toc_debug-mode">Debug Mode</h3> 
+<p>Reflow provides the possibility to help the developement your new snippet displaying its structure in adding the attribute <code>debug=true</code>. In this example, card web component will be used.</p> 
+<div class="bd-example"> 
+ <pre class="placeholder-debug text-left">    <code>
+name: card
+type: webComponent
+attributes: {debug=true, style=width: 18rem;}
+isHtmlTag: false
+ownHtml: ''
+parent: 
+children:
+    - name: card-image
+      attributes: {}
+      isHtmlTag: false
+      ownHtml: ''
+      parent: card
+      children:
+        - name: svg
+          attributes: {xmlns=http://www.w3.org/2000/svg, role=img, width=100%, focusable=false, class=bd-placeholder-img card-img-top, aria-label=Placeholder: Image cap, height=180, preserveaspectratio=xMidYMid slice}
+          isHtmlTag: true
+          ownHtml: '&lt;svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"&gt; &lt;title&gt;Placeholder&lt;/title&gt; &lt;rect width="100%" height="100%" fill="#868e96"&gt;&lt;/rect&gt; &lt;text x="50%" y="50%" fill="#dee2e6" dy=".3em"&gt; Image cap &lt;/text&gt; &lt;/svg&gt;'
+          parent: card-image
+    - name: card-body
+      attributes: {}
+      isHtmlTag: false
+      ownHtml: ''
+      parent: card
+      children:
+        - name: h5
+          attributes: {class=card-title no-anchor}
+          isHtmlTag: true
+          ownHtml: '&lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;'
+          parent: card-body
+        - name: p
+          attributes: {class=card-text}
+          isHtmlTag: true
+          ownHtml: '&lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;'
+          parent: card-body
+        - name: a
+          attributes: {href=#, class=btn btn-primary}
+          isHtmlTag: true
+          ownHtml: '&lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;'
+          parent: card-body
+    </code>
+</pre> 
+ <div class="card" style="width: 18rem;"> 
+  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Image cap 
+   </text> 
+  </svg> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_card-title">Card title</h5> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card debug="true" style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-snippet_toc_snippet-variable">$snippet Variable</h2> 
+<p>The <code>$snippet</code> variable is a instance of java class <a href="../reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html">Component</a>.</p> 
+<p>Take the first example, <code>$snippet.color</code>. It can have two meanings. It can mean, Look in the hashtable identified as snippet and return the attribute associated with the key <code>color</code>. But <code>$snippet.color</code> can also be referring to a <code>&lt;color&gt;</code> data element. <code>$snippet.color</code> could be an abbreviated way of writing <code>$snippet.attr['color]</code> or <code>$snippet.getAttribute('color')</code> for an attribute, or <code>$snippet.getChildren('color')</code> for an data element.</p> 
+<table class="table mt-5"> 
+ <thead> 
+  <tr> 
+   <th>Property</th> 
+   <th>Description</th> 
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr> 
+   <td><code>$snippet.name</code></td> 
+   <td>Gets the tag name of component.</td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.parent</code></td> 
+   <td>Gets the component parent of the current component if exists, otherwise <code>null</code>.</td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.html</code></td> 
+   <td>Gets the string representing the the element's inner HTML. E.g. on a <code>&lt;data-content&gt;</code> with one empty <code>&lt;p&gt;</code> , would return <code>&lt;p&gt;&lt;/p&gt;</code>.</td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.property</code></td> 
+   <td> </td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.attr[]</code></td> 
+   <td>Gets the string representing the value of attribute if exists, otherwise <code>null</code>.</td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.[xhtml data tag name]</code></td> 
+   <td></td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.getAttribute( attribute name )</code></td> 
+   <td>Gets the string representing the value of attribute if exists, otherwise <code>null</code>.</td> 
+  </tr> 
+  <tr> 
+   <td><code>$snippet.getChildren( component name )</code></td> 
+   <td>Gets the <a href="../reflow-velocity-tools/apidocs/org/devacfr/maven/skins/reflow/snippet/Component.html">Component</a> representing the children with specified name if exists, otherwise <code>null</code>.</td> 
+  </tr> 
+ </tbody> 
+</table> 
+<h3 id="doc-snippets-snippet_toc_lookup-rules">Lookup Rules</h3> 
+<p>As was mentioned earlier, properties refer to attribute or data element of the parent object. Reflow uses the following lookup sequence. For names, such as <code>$snippet.class</code>, the sequence is:</p> 
+<ul> 
+ <li><code>getclass()</code></li> 
+ <li><code>getClass()</code></li> 
+ <li><code>get("class")</code></li> 
+ <li>Returns <code>getAttrs()["class"]</code> attibute if exists</li> 
+ <li>if the property name has suffix “s” <code>getChildren("class")</code>, try returns a list .</li> 
+ <li><code>getChildren("class")</code> Returns the first element if exists.</li> 
+ <li>isClass()</li> 
+</ul> 
+<div class="bd-callout bd-callout-warning"> 
+ <h5 class="no-anchor" id="doc-snippets-snippet_toc_of-course">Of course</h5> 
+ <p>In this example, <code>$snippet.class</code> will returns a string representing the class name <code>"org.devacfr.maven.skins.reflow.snippet.SnippetComponent"</code>. It’s not what you want. You shouldn’t use the <code>class</code> attribute directly like this <code>$snippet.data-content.class</code>, but instead <code>$snippet.data-content.attr['class']</code>.</p> 
+</div> 
+<h2 id="doc-snippets-snippet_toc_template1">Template</h2> 
+<p>The template uses <a class="externalLink" href="https://velocity.apache.org/engine/1.7/developer-guide.html">Velocity Template</a> to generate html content. the file have to be located in path <code>src/site/layouts/snippets</code>.</p> 
+<h3 id="doc-snippets-snippet_toc_override-template">Override Template</h3> 
+<p>Template can override existing template.</p>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/snippet.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_working-with-snippets-draft" title="Working with Snippets DRAFT">Working with Snippets DRAFT</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_shortcodes1" title="Shortcodes">Shortcodes</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_tag-syntax" title="Tag Syntax">Tag Syntax</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_nested-shortcodes" title="Nested Shortcodes">Nested Shortcodes</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_web-components" title="Web Components">Web Components</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_tag-syntax1" title="Tag Syntax">Tag Syntax</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_data-element" title="Data Element">Data Element</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_web-component-template" title="Web Component Template">Web Component Template</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_debug-mode" title="Debug Mode">Debug Mode</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_snippet-variable" title="$snippet Variable">$snippet Variable</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_lookup-rules" title="Lookup Rules">Lookup Rules</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_template1" title="Template">Template</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_override-template" title="Override Template">Override Template</a>
+    </li>
+    </ul>
+                    </ul>
+                </nav>
+           </div>
+    </div>
+</div>

@@ -1,0 +1,218 @@
+ 
+
+
+  <div class="row no-gutters">
+    <div class="col-lg-12 col-xl-9">
+            <h1 id="doc-components-header_toc_header-components">Header Components</h1> 
+<p>Standard Maven site allows customising the website <i>banner</i>.</p> 
+<section> 
+ <h2 id="doc-components-header_toc_header1">Header</h2> 
+ <p>support <span class="badge badge-primary">v2.2</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+ <p>The Header is the component displayed to top of page. If header element contains a specific html, the contained will be used instead of the generated banner text.</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;header enabled="true|false"
+    type="jumbotron|banner|custom"
+    cssClass="css classes"
+    theme="your specific theme"
+    background="bootstrap colour theme" &gt;&lt;![CDATA[ custom html representing the header content ]]&gt;&lt;/header&gt;
+</pre> 
+  </div> 
+ </div> 
+ <ul> 
+  <li><b>type</b> <span class="badge badge-light">v2.3</span> - indicates the type of header.</li> 
+  <li><b>enabled</b> <span class="badge badge-light">v2.2</span> - Indicates whether the header is visible. The header is displayed by default.</li> 
+  <li><b>cssClass</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap support. The default value is <code>null</code>.</li> 
+  <li><b>theme</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap theme . The default value is <code>null</code>. the prefix css theme is <code>header-</code>.</li> 
+  <li><b>background</b> <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap colour theme. The default value is <code>null</code>.</li> 
+ </ul> 
+ <section> 
+  <h3 id="doc-components-header_toc_jumbotron-header">Jumbotron Header</h3> 
+  <p>The Jumbotron Header is the container of the bootstrap Jumbotron. the Jumbotron contains your slogan, logo and banner to top of the page. The following <a href="test/header-jumbotron.html">sample page</a> displays the configuration below:</p> 
+  <p><img src="../images/doc/header-jumbotron-scheme.png" alt="header scheme" class="img-fluid"></p> 
+  <div class="source"> 
+   <div class="source"> 
+    <pre>&lt;header type="jumbotron" background="dark" cssClass="text-light"&gt;&lt;/header&gt;
+</pre> 
+   </div> 
+  </div> 
+  <p>Reflow renders following html:</p> 
+  <div class="source"> 
+   <div class="source"> 
+    <pre>&lt;div class="header " role="main"&gt;
+    &lt;div class="container container-fluid"&gt;
+        &lt;div class="jumbotron header--jumbotron bg-dark text-light"&gt;
+            &lt;div id="banner" class="row header--banner"&gt;
+            &lt;div class="col-md-12"&gt;
+                &lt;div class="float-left header--banner--left bannerLeft"&gt;
+                      &lt;img class="float-left m-2 img-fluid" src="./images/logo.svg" alt="Reflow skin" width="144" height="144"&gt;
+                      &lt;h1 class="d-inline-block"&gt;&lt;span class="color-highlight"&gt;Reflow&lt;/span&gt; Maven Skin&lt;/h1&gt;
+                    &lt;p class="lead"&gt;Responsive Apache Maven skin to reflow the standard Maven site with a modern feel&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="float-right header--banner--right bannerRight"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre> 
+   </div> 
+  </div> 
+  <div class="bd-callout bd-callout-info"> 
+   <section class="no-anchor"> 
+    <h4 class="no-anchor" id="doc-components-header_toc_note1">Note</h4> 
+    <p>You can remark in example above, <code>theme</code> and <code>background</code> attributes are associated with <code>jumbotron</code> component rather the <code>header</code> container.</p> 
+   </section> 
+  </div> 
+ </section> 
+</section> 
+<section> 
+ <h3 id="doc-components-header_toc_banner-header">Banner Header</h3> 
+ <p>The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following <a href="test/header-banner.html">sample page</a> displays the configuration below:</p> 
+ <p><img src="../images/doc/header-banner-scheme.png" alt="header scheme" class="img-fluid"></p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;header type="banner" cssClass="text-light"&gt;&lt;/header&gt;
+</pre> 
+  </div> 
+ </div> 
+ <p>Reflow renders following html:</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;div class="header text-light" role="main"&gt;
+    &lt;div class="container container-fluid"&gt;
+        &lt;div id="banner" class="header--banner"&gt;
+            &lt;div class="row m-1"&gt;
+                &lt;div class="col-md-12"&gt;
+                    &lt;div class="float-left header--banner--left bannerLeft"&gt;
+                        &lt;a href="."&gt;
+                            &lt;img class="float-left m-2 img-fluid" src="./images/logo.svg" alt="Reflow skin" width="144" height="144"&gt;
+                            &lt;h1&gt;&lt;span class="color-highlight"&gt;Reflow&lt;/span&gt; Maven Skin&lt;/h1&gt;
+                        &lt;/a&gt;
+                        &lt;p class="lead"&gt;Responsive Apache Maven skin to reflow the standard Maven site with a modern feel&lt;/p&gt;
+                    &lt;/div&gt;
+                    &lt;div class="float-right header--banner--right bannerRight"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre> 
+  </div> 
+ </div> 
+</section> 
+<section> 
+ <h3 id="doc-components-header_toc_custom-header">Custom Header</h3> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;header enabled="true" cssClass="text-center text-light"&gt;
+    &lt;![CDATA[
+    &lt;!-- header content --&gt;
+    ]]&gt;
+&lt;/header&gt;
+</pre> 
+  </div> 
+ </div> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;div class="header text-light" role="main"&gt;
+    &lt;div class="container container-fluid"&gt;
+        &lt;div class="header--subhead"&gt;
+            &lt;!-- Content of header element --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre> 
+  </div> 
+ </div> 
+</section> 
+<section> 
+ <h2 id="doc-components-header_toc_banner1">Banner</h2> 
+ <p>element <span class="badge badge-secondary">site.xml</span></p> 
+ <p>The banner (big <i>Reflow Maven Skin</i> text on this website) is defined using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner">standard <code>&lt;bannerLeft&gt;</code> or <code>&lt;bannerRight&gt;</code> elements</a> in <code>site.xml</code> site descriptor instead of using <code>&lt;custom&gt;&lt;reflowSkin&gt;</code>:</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;project ...&gt;
+...
+  &lt;bannerLeft&gt;
+    &lt;!-- Reflow Maven Skin, but with "Reflow" highlighted --&gt;
+    &lt;name&gt;&lt;![CDATA[
+      &lt;span class="color-highlight"&gt;Reflow&lt;/span&gt; Maven Skin
+      ]]&gt;
+    &lt;/name&gt;
+    &lt;src&gt;./logo.png&lt;/src&gt;
+    &lt;href&gt;http://devacfr.github.io/reflow-maven-skin&lt;/href&gt;
+  &lt;/bannerLeft&gt;
+  ...
+&lt;/project&gt;
+</pre> 
+  </div> 
+ </div> 
+ <div class="bd-callout bd-callout-info"> 
+  <section> 
+   <section class="no-anchor"> 
+    <h4 class="no-anchor" id="doc-components-header_toc_note2">Note</h4> 
+    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title. Unlike maven fluido skin plugin, <code>&lt;name&gt;</code> is used to display h1 heading title. Use <code>alt</code> element instead <code>name</code>. <code>&lt;name&gt;</code> element can have <code>CDATA</code> element as its contents, allowing custom HTML content in the banner.</p> 
+   </section> 
+  </section> 
+ </div> 
+</section> 
+<section> 
+ <h2 id="doc-components-header_toc_slogan1">Slogan</h2> 
+ <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+ <p>The skin allows setting a website slogan in the banner. It would appear underneath the website title, either on the left or the right side.</p> 
+ <p>This website features a slogan “<i>Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</i>”.</p> 
+ <div class="source"> 
+  <div class="source"> 
+   <pre>&lt;slogan position="bannerRight|bannerLeft"&gt;The best website in the world&lt;/slogan&gt;
+</pre> 
+  </div> 
+ </div> 
+ <p>The <code>position</code> attribute indicates where to place the slogan:</p> 
+ <ul> 
+  <li><b>bannerLeft (default)</b> - aligned to the left (as in this website)</li> 
+  <li><b>bannerRight</b> - aligned to the right</li> 
+ </ul> 
+</section>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/components/header.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#doc-components-header_toc_header-components" title="Header Components">Header Components</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-components-header_toc_header1" title="Header">Header</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-components-header_toc_jumbotron-header" title="Jumbotron Header">Jumbotron Header</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-components-header_toc_banner-header" title="Banner Header">Banner Header</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-components-header_toc_custom-header" title="Custom Header">Custom Header</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-components-header_toc_banner1" title="Banner">Banner</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-components-header_toc_slogan1" title="Slogan">Slogan</a>
+    </li>
+                    </ul>
+                </nav>
+           </div>
+    </div>
+</div>

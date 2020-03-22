@@ -1,0 +1,1006 @@
+ 
+
+
+  <div class="row no-gutters">
+    <div class="col-lg-12 col-xl-9">
+            <h1 id="doc-snippets-card_toc_card">Card</h1> 
+<span class="badge badge-primary">New in v2.4</span> 
+<span class="badge badge-info">WEB COMPONENT</span> 
+<p><a class="externalLink" href="https://getbootstrap.com/docs/4.4/components/card/">Based on Bootstrap Card page</a></p> 
+<p>Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.</p> 
+<h2 id="doc-snippets-card_toc_about1">About</h2> 
+<p>A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.</p> 
+<h2 id="doc-snippets-card_toc_example1">Example</h2> 
+<p>Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no <code>margin</code> by default, so use <a class="externalLink" href="https://getbootstrap.com/docs/4.4/utilities/spacing/">spacing utilities</a> as needed.</p> 
+<p>Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various <a class="externalLink" href="https://getbootstrap.com/docs/4.4/components/card/#sizing">sizing options</a>.</p> 
+<div class="bd-example"> 
+ <div class="card" style="width: 18rem;"> 
+  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Image cap 
+   </text> 
+  </svg> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title">Card title</h5> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-card_toc_content-types">Content types</h2> 
+<p>Cards support a wide variety of content, including images, text, list groups, links, and more. Below are examples of what’s supported.</p> 
+<h3 id="doc-snippets-card_toc_body1">Body</h3> 
+<p>The building block of a card is the <code>&lt;card-body&gt;</code> element. Use it whenever you need a padded section within a card.</p> 
+<div class="bd-example"> 
+ <div class="card"> 
+  <div class="card-body">
+    This is some text within a card body. 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    This is some text within a card body.
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_titles-text-and-links">Titles, text, and links</h3> 
+<p>Card titles are used by adding <code>.card-title</code> to a <code>&lt;h*&gt;</code> tag. In the same way, links are added and placed next to each other by adding <code>.card-link</code> to an <code>&lt;a&gt;</code> tag.</p> 
+<p>Subtitles are used by adding a <code>.card-subtitle</code> to a <code>&lt;h*&gt;</code> tag. If the <code>.card-title</code> and the <code>.card-subtitle</code> items are placed in a <code>&lt;card-body&gt;</code> element, the card title and subtitle are aligned nicely.</p> 
+<div class="bd-example"> 
+ <div class="card" style="width: 18rem;"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title1">Card title</h5> 
+   <h6 class="card-subtitle no-anchor mb-2 text-muted" id="doc-snippets-card_toc_card-subtitle">Card subtitle</h6> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="card-link">Card link</a> 
+   <a href="#" class="card-link">Another link</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;h6 class="card-subtitle no-anchor mb-2 text-muted"&gt;Card subtitle&lt;/h6&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="card-link"&gt;Card link&lt;/a&gt;
+    &lt;a href="#" class="card-link"&gt;Another link&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_images1">Images</h3> 
+<p><code>caps="top"</code> (default value, can be omitted) attribute places an image to the top of the card. With <code>.card-text</code>, text can be added to the card. Text within <code>.card-text</code> can also be styled with the standard HTML tags.</p> 
+<div class="bd-example"> 
+ <div class="card" style="width: 18rem;"> 
+  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Image cap 
+   </text> 
+  </svg> 
+  <div class="card-body">
+    This is some text within a card body. 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card caps="top" style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_header-and-footer">&nbsp;Header and footer</h3> 
+<p>Add an optional header and/or footer within a card.</p> 
+<div class="bd-example"> 
+ <div class="card"> 
+  <div class="card-header">
+    Featured 
+  </div> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_special-title-treatment">Special title treatment</h5> 
+   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card %}}
+
+&lt;!--
+  &lt;card-header&gt;Featured&lt;/card-header&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Special title treatment&lt;/h5&gt;
+    &lt;p class="card-text"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<p>Card headers can be use <code>&lt;h*&gt;</code> elements by adding <code>level="[1-6]"</code> attribute to <code>&lt;card-header&gt;</code> elements.</p> 
+<div class="bd-example"> 
+ <div class="card"> 
+  <h5 class="card-header no-anchor" id="doc-snippets-card_toc_featured"> Featured </h5> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_special-title-treatment1">Special title treatment</h5> 
+   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card %}}
+
+&lt;!--
+  &lt;card-header level="5"&gt;Featured&lt;/card-header&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Special title treatment&lt;/h5&gt;
+    &lt;p class="card-text"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-card_toc_sizing1">Sizing</h2> 
+<p>Cards assume no specific <code>width</code> to start, so they’ll be 100% wide unless otherwise stated. You can change this as needed with custom CSS, grid classes, grid Sass mixins, or utilities.</p> 
+<h3 id="doc-snippets-card_toc_using-grid-markup">Using grid markup</h3> 
+<p>Using the grid, wrap cards in columns and rows as needed.</p> 
+<div class="bd-example"> 
+ <div class="row"> 
+  <div class="col"> 
+   <div class="card"> 
+    <div class="card-body"> 
+     <h5 class="card-title no-anchor" id="doc-snippets-card_toc_special-title-treatment2">Special title treatment</h5> 
+     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+     <a href="#" class="btn btn-primary">Go somewhere</a> 
+    </div> 
+    <div class="card-footer text-muted">
+      2 days ago 
+    </div> 
+   </div> 
+  </div> 
+  <div class="col"> 
+   <div class="card"> 
+    <div class="card-body"> 
+     <h5 class="card-title no-anchor" id="doc-snippets-card_toc_special-title-treatment3">Special title treatment</h5> 
+     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+     <a href="#" class="btn btn-primary">Go somewhere</a> 
+    </div> 
+    <div class="card-footer text-muted">
+      2 days ago 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; row &gt;}}
+
+{{&lt; column &gt;}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-header class="text-center"&gt;Featured&lt;/card-header&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Special title treatment&lt;/h5&gt;
+    &lt;p class="card-text"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+  &lt;card-footer class="text-muted"&gt;
+    2 days ago
+  &lt;/card-footer&gt;
+--&gt;
+
+{{% /card %}}
+
+{{&lt; /column &gt;}}
+
+{{&lt; column &gt;}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-header class="text-center"&gt;Featured&lt;/card-header&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Special title treatment&lt;/h5&gt;
+    &lt;p class="card-text"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+  &lt;card-footer class="text-muted"&gt;
+    2 days ago
+  &lt;/card-footer&gt;
+--&gt;
+
+{{% /card %}}
+
+{{&lt; /column &gt;}}
+
+{{&lt; /row &gt;}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_using-utilities">&nbsp;Using utilities</h3> 
+<p>Use our handful of <a class="externalLink" href="https://getbootstrap.com/docs/4.4/utilities/sizing/">available sizing utilities</a> to quickly set a card’s width.</p> 
+<div class="bd-example"> 
+ <div class="card w-75"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title2">Card title</h5> 
+   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+   <a href="#" class="btn btn-primary">Button</a> 
+  </div> 
+ </div> 
+ <div class="card w-50"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title3">Card title</h5> 
+   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+   <a href="#" class="btn btn-primary">Button</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card class="w-75" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Button&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="w-50" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Button&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-card_toc_text-alignment">Text alignment</h2> 
+<p>You can quickly change the text alignment of any card—in its entirety or specific parts—with our <a class="externalLink" href="https://getbootstrap.com/docs/4.4/utilities/text/#text-alignment">text align classes</a>.</p> 
+<div class="bd-example"> 
+ <div class="card" style="width: 18rem;"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title4">Card title</h5> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+ <div class="card text-center" style="width: 18rem;"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title5">Card title</h5> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+ <div class="card text-right" style="width: 18rem;"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title6">Card title</h5> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="text-center" style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="text-right" style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-card_toc_images2">Images</h2> 
+<p>Cards include a few options for working with images. Choose from appending “image caps” at either end of a card, overlaying images with card content, or simply embedding the image in a card.</p> 
+<h3 id="doc-snippets-card_toc_image-caps">Image caps</h3> 
+<p>Similar to headers and footers, cards can include top and bottom “image caps”—images at the top or bottom of a card.</p> 
+<div class="bd-example"> 
+ <div class="card mb-3"> 
+  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Image cap 
+   </text> 
+  </svg> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title7">Card title</h5> 
+   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+  </div> 
+ </div> 
+ <div class="card"> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title8">Card title</h5> 
+   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+  </div> 
+  <svg class="bd-placeholder-img card-img-bottom" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Image cap 
+   </text> 
+  </svg> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card caps="top" class="mb-3" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card caps="bottom" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_image-overlays">Image overlays</h3> 
+<p>Turn an image into a card background and overlay your card’s text. Depending on the image, you may or may not need additional styles or utilities.</p> 
+<div class="bd-example"> 
+ <div class="card bg-dark text-white"> 
+  <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="270" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Card image"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Card image 
+   </text> 
+  </svg> 
+  <div class="card-img-overlay"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title9">Card title</h5> 
+   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+   <p class="card-text">Last updated 3 mins ago</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card img-overlay="true" class="bg-dark text-white" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;Last updated 3 mins ago&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-card_toc_horizontal">&nbsp;Horizontal</h2> 
+<p>Using <code>horizontal="true"</code> attribute, cards can be made horizontal in a mobile-friendly and responsive way.</p> 
+<div class="bd-example"> 
+ <div class="card mb-3" style="max-width: 540px;"> 
+  <div class="row no-gutters"> 
+   <div class="col-md-4 text-center"> 
+    <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image"> 
+     <title>Placeholder</title> 
+     <rect width="100%" height="100%" fill="#868e96"></rect> 
+     <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+       Image 
+     </text> 
+    </svg> 
+   </div> 
+   <div class="col-md-8"> 
+    <div class="card-body"> 
+     <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title10">Card title</h5> 
+     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+    </div> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card horizontal="true" class="mb-3" style="max-width: 540px;" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
+<h2 id="doc-snippets-card_toc_card-layout">Card layout</h2> 
+<p>In addition to styling the content within cards, Bootstrap includes a few options for laying out series of cards. For the time being, <b>these layout options are not yet responsive</b>.</p> 
+<h3 id="doc-snippets-card_toc_card-groups">Card groups</h3> 
+<span class="badge badge-primary">New in v2.4</span> 
+<span class="badge badge-info">SHORTCODE</span> 
+<p>Use card groups to render cards as a single, attached element with equal width and height columns. Card groups use <code>{{&lt; card-group &gt;}}</code> shortcode to achieve their uniform sizing.</p> 
+<div class="bd-example"> 
+ <div class="card-group"> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title11">Card title</h5> 
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title12">Card title</h5> 
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title13">Card title</h5> 
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; card-group &gt;}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{&lt; /card-group &gt;}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_card-decks">Card decks</h3> 
+<p>Need a set of equal width and height cards that aren’t attached to one another? Use card decks.</p> 
+<div class="bd-example"> 
+ <div class="card-deck"> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title14">Card title</h5> 
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title15">Card title</h5> 
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title16">Card title</h5> 
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; card-group type="deck" &gt;}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{&lt; /card-group &gt;}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-card_toc_card-columns">Card columns</h3> 
+<p>Cards can be organized into <a class="externalLink" href="https://masonry.desandro.com/">Masonry</a> -like columns. Cards are ordered from top to bottom and left to right.</p> 
+<div class="bd-example"> 
+ <div class="card-columns"> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="160" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title-that-wraps-to-a-new-line">Card title that wraps to a new line</h5> 
+    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> 
+   </div> 
+  </div> 
+  <div class="card p-3"> 
+   <div class="card-body"> 
+    <blockquote class="blockquote mb-0"> 
+     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p> 
+     <footer class="blockquote-footer"> 
+      <small class="text-muted"> Someone famous in <cite title="Source Title">Source Title</cite> </small> 
+     </footer> 
+    </blockquote> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="160" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title17">Card title</h5> 
+    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+  <div class="card bg-primary text-white text-center p-3"> 
+   <div class="card-body"> 
+    <blockquote class="blockquote mb-0"> 
+     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p> 
+     <footer class="blockquote-footer text-white"> 
+      <small> Someone famous in <cite title="Source Title">Source Title</cite> </small> 
+     </footer> 
+    </blockquote> 
+   </div> 
+  </div> 
+  <div class="card text-center"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title18">Card title</h5> 
+    <p class="card-text">This card has a regular title and short paragraphy of text below it.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+  </div> 
+  <div class="card p-3 text-right"> 
+   <div class="card-body"> 
+    <blockquote class="blockquote mb-0"> 
+     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p> 
+     <footer class="blockquote-footer"> 
+      <small class="text-muted"> Someone famous in <cite title="Source Title">Source Title</cite> </small> 
+     </footer> 
+    </blockquote> 
+   </div> 
+  </div> 
+  <div class="card"> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-card_toc_card-title19">Card title</h5> 
+    <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p> 
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; card-group type="columns" &gt;}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title that wraps to a new line&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="p-3" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;blockquote class="blockquote mb-0"&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.&lt;/p&gt;
+      &lt;footer class="blockquote-footer"&gt;
+        &lt;small class="text-muted"&gt;
+          Someone famous in &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+        &lt;/small&gt;
+    &lt;/blockquote&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This card has supporting text below as a natural lead-in to additional content.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="bg-primary text-white text-center p-3" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;blockquote class="blockquote mb-0"&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.&lt;/p&gt;
+      &lt;footer class="blockquote-footer text-white"&gt;
+        &lt;small&gt;
+          Someone famous in &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+        &lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/blockquote&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="text-center" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This card has a regular title and short paragraphy of text below it.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card class="p-3 text-right" %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;blockquote class="blockquote mb-0"&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.&lt;/p&gt;
+      &lt;footer class="blockquote-footer"&gt;
+        &lt;small class="text-muted"&gt;
+          Someone famous in &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+        &lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/blockquote&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{% card %}}
+
+&lt;!--
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.&lt;/p&gt;
+    &lt;p class="card-text"&gt;&lt;small class="text-muted"&gt;Last updated 3 mins ago&lt;/small&gt;&lt;/p&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+
+{{&lt; /card-group &gt;}}
+</pre> 
+ </div> 
+</div>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/card.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#doc-snippets-card_toc_card" title="Card">Card</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_about1" title="About">About</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_example1" title="Example">Example</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_content-types" title="Content types">Content types</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_body1" title="Body">Body</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_titles-text-and-links" title="Titles, text, and links">Titles, text, and links</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_images1" title="Images">Images</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_header-and-footer" title="Header and footer">Header and footer</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_sizing1" title="Sizing">Sizing</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_using-grid-markup" title="Using grid markup">Using grid markup</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_using-utilities" title="Using utilities">Using utilities</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_text-alignment" title="Text alignment">Text alignment</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_images2" title="Images">Images</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_image-caps" title="Image caps">Image caps</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_image-overlays" title="Image overlays">Image overlays</a>
+    </li>
+    </ul>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_horizontal" title="Horizontal">Horizontal</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-card_toc_card-layout" title="Card layout">Card layout</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_card-groups" title="Card groups">Card groups</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_card-decks" title="Card decks">Card decks</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-card_toc_card-columns" title="Card columns">Card columns</a>
+    </li>
+    </ul>
+                    </ul>
+                </nav>
+           </div>
+    </div>
+</div>

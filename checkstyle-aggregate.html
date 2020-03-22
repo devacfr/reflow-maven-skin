@@ -62,8 +62,8 @@
                     <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Documentation <b class="caret"></b></a>
                         <div class="dropdown-menu">
-                            <a href="reflow-maven-skin/reflow-documentation.html#get-started.html" title="Get Started"  class="dropdown-item ">Get Started</a>
-                            <a href="reflow-maven-skin/reflow-documentation.html#migration.html" title="Migration"  class="dropdown-item ">Migration</a>
+                            <a href="doc/reflow-documentation.html#get-started.html" title="Get Started"  class="dropdown-item ">Get Started</a>
+                            <a href="doc/reflow-documentation.html#migration.html" title="Migration"  class="dropdown-item ">Migration</a>
                             <a href="development-documentation.html" title="Developer Documentation"  class="dropdown-item ">Developer Documentation</a>
                         </div>
                     </li>
@@ -93,6 +93,8 @@
                                     <a href="surefire-report.html" title="Surefire Report"  class="dropdown-item ">Surefire Report</a>
                                     <a href="rat-report.html" title="Rat Report"  class="dropdown-item ">Rat Report</a>
                                     <a href="clover/index.html" title="Clover"  class="dropdown-item ">Clover</a>
+                                    <a href="cpd.html" title="CPD"  class="dropdown-item ">CPD</a>
+                                    <a href="pmd.html" title="PMD"  class="dropdown-item ">PMD</a>
                                 </div>
                             </div>
                         </div>
@@ -146,13 +148,35 @@
                                 <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
                                 <a class="dropdown-item" href="#Details" title="Details">Details</a>
                                 <div class="dropdown-divider"></div>
-                                              <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.Context.java" title="org/devacfr/maven/skins/reflow/context/Context.java">org/devacfr/maven/skins/reflow/context/Context.java</a>
+                                              <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.HtmlTool.java" title="org/devacfr/maven/skins/reflow/HtmlTool.java">org/devacfr/maven/skins/reflow/HtmlTool.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.ISkinConfig.java" title="org/devacfr/maven/skins/reflow/ISkinConfig.java">org/devacfr/maven/skins/reflow/ISkinConfig.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.SkinConfigTool.java" title="org/devacfr/maven/skins/reflow/SkinConfigTool.java">org/devacfr/maven/skins/reflow/SkinConfigTool.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.URITool.java" title="org/devacfr/maven/skins/reflow/URITool.java">org/devacfr/maven/skins/reflow/URITool.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.Xpp3Utils.java" title="org/devacfr/maven/skins/reflow/Xpp3Utils.java">org/devacfr/maven/skins/reflow/Xpp3Utils.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.BodyContext.java" title="org/devacfr/maven/skins/reflow/context/BodyContext.java">org/devacfr/maven/skins/reflow/context/BodyContext.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.Context.java" title="org/devacfr/maven/skins/reflow/context/Context.java">org/devacfr/maven/skins/reflow/context/Context.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.ContextType.java" title="org/devacfr/maven/skins/reflow/context/ContextType.java">org/devacfr/maven/skins/reflow/context/ContextType.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.DocumentContext.java" title="org/devacfr/maven/skins/reflow/context/DocumentContext.java">org/devacfr/maven/skins/reflow/context/DocumentContext.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.FrameContext.java" title="org/devacfr/maven/skins/reflow/context/FrameContext.java">org/devacfr/maven/skins/reflow/context/FrameContext.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.context.PageContext.java" title="org/devacfr/maven/skins/reflow/context/PageContext.java">org/devacfr/maven/skins/reflow/context/PageContext.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.BsComponent.java" title="org/devacfr/maven/skins/reflow/model/BsComponent.java">org/devacfr/maven/skins/reflow/model/BsComponent.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Component.java" title="org/devacfr/maven/skins/reflow/model/Component.java">org/devacfr/maven/skins/reflow/model/Component.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Footer.java" title="org/devacfr/maven/skins/reflow/model/Footer.java">org/devacfr/maven/skins/reflow/model/Footer.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Header.java" title="org/devacfr/maven/skins/reflow/model/Header.java">org/devacfr/maven/skins/reflow/model/Header.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Menu.java" title="org/devacfr/maven/skins/reflow/model/Menu.java">org/devacfr/maven/skins/reflow/model/Menu.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.MenuItem.java" title="org/devacfr/maven/skins/reflow/model/MenuItem.java">org/devacfr/maven/skins/reflow/model/MenuItem.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.NavSideMenu.java" title="org/devacfr/maven/skins/reflow/model/NavSideMenu.java">org/devacfr/maven/skins/reflow/model/NavSideMenu.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Navbar.java" title="org/devacfr/maven/skins/reflow/model/Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.ScrollTop.java" title="org/devacfr/maven/skins/reflow/model/ScrollTop.java">org/devacfr/maven/skins/reflow/model/ScrollTop.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.SideNavMenuItem.java" title="org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java">org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.Toc.java" title="org/devacfr/maven/skins/reflow/model/Toc.java">org/devacfr/maven/skins/reflow/model/Toc.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.TocSidebar.java" title="org/devacfr/maven/skins/reflow/model/TocSidebar.java">org/devacfr/maven/skins/reflow/model/TocSidebar.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.model.TocTopBar.java" title="org/devacfr/maven/skins/reflow/model/TocTopBar.java">org/devacfr/maven/skins/reflow/model/TocTopBar.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.Component.java" title="org/devacfr/maven/skins/reflow/snippet/Component.java">org/devacfr/maven/skins/reflow/snippet/Component.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.ComponentResolver.java" title="org/devacfr/maven/skins/reflow/snippet/ComponentResolver.java">org/devacfr/maven/skins/reflow/snippet/ComponentResolver.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.ComponentToken.java" title="org/devacfr/maven/skins/reflow/snippet/ComponentToken.java">org/devacfr/maven/skins/reflow/snippet/ComponentToken.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.Components.java" title="org/devacfr/maven/skins/reflow/snippet/Components.java">org/devacfr/maven/skins/reflow/snippet/Components.java</a>
+                <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.PartialTemplateMacro.java" title="org/devacfr/maven/skins/reflow/snippet/PartialTemplateMacro.java">org/devacfr/maven/skins/reflow/snippet/PartialTemplateMacro.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.Processor.java" title="org/devacfr/maven/skins/reflow/snippet/Processor.java">org/devacfr/maven/skins/reflow/snippet/Processor.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.SnippetComponent.java" title="org/devacfr/maven/skins/reflow/snippet/SnippetComponent.java">org/devacfr/maven/skins/reflow/snippet/SnippetComponent.java</a>
                 <a class="dropdown-item" href="#org.devacfr.maven.skins.reflow.snippet.SnippetContext.java" title="org/devacfr/maven/skins/reflow/snippet/SnippetContext.java">org/devacfr/maven/skins/reflow/snippet/SnippetContext.java</a>
@@ -198,7 +222,7 @@
    <tr class="b"> 
     <td>33</td> 
     <td>0</td> 
-    <td>77</td> 
+    <td>119</td> 
     <td>0</td> 
    </tr> 
   </tbody> 
@@ -226,57 +250,189 @@
   </thead> 
   <tbody> 
    <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.HtmlTool.java">org/devacfr/maven/skins/reflow/HtmlTool.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.ISkinConfig.java">org/devacfr/maven/skins/reflow/ISkinConfig.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.SkinConfigTool.java">org/devacfr/maven/skins/reflow/SkinConfigTool.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.URITool.java">org/devacfr/maven/skins/reflow/URITool.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.Xpp3Utils.java">org/devacfr/maven/skins/reflow/Xpp3Utils.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.context.BodyContext.java">org/devacfr/maven/skins/reflow/context/BodyContext.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
     <td><a href="#org.devacfr.maven.skins.reflow.context.Context.java">org/devacfr/maven/skins/reflow/context/Context.java</a></td> 
-    <td>0</td> 
-    <td>1</td> 
-    <td>0</td> 
-   </tr> 
-   <tr class="a"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.model.Header.java">org/devacfr/maven/skins/reflow/model/Header.java</a></td> 
-    <td>0</td> 
-    <td>1</td> 
-    <td>0</td> 
-   </tr> 
-   <tr class="b"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.model.Toc.java">org/devacfr/maven/skins/reflow/model/Toc.java</a></td> 
-    <td>0</td> 
-    <td>1</td> 
-    <td>0</td> 
-   </tr> 
-   <tr class="a"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.snippet.Component.java">org/devacfr/maven/skins/reflow/snippet/Component.java</a></td> 
-    <td>0</td> 
-    <td>22</td> 
-    <td>0</td> 
-   </tr> 
-   <tr class="b"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.snippet.ComponentResolver.java">org/devacfr/maven/skins/reflow/snippet/ComponentResolver.java</a></td> 
-    <td>0</td> 
-    <td>3</td> 
-    <td>0</td> 
-   </tr> 
-   <tr class="a"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.snippet.ComponentToken.java">org/devacfr/maven/skins/reflow/snippet/ComponentToken.java</a></td> 
-    <td>0</td> 
-    <td>15</td> 
-    <td>0</td> 
-   </tr> 
-   <tr class="b"> 
-    <td><a href="#org.devacfr.maven.skins.reflow.snippet.Components.java">org/devacfr/maven/skins/reflow/snippet/Components.java</a></td> 
     <td>0</td> 
     <td>2</td> 
     <td>0</td> 
    </tr> 
    <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.context.ContextType.java">org/devacfr/maven/skins/reflow/context/ContextType.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.context.DocumentContext.java">org/devacfr/maven/skins/reflow/context/DocumentContext.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.context.FrameContext.java">org/devacfr/maven/skins/reflow/context/FrameContext.java</a></td> 
+    <td>0</td> 
+    <td>3</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.context.PageContext.java">org/devacfr/maven/skins/reflow/context/PageContext.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.BsComponent.java">org/devacfr/maven/skins/reflow/model/BsComponent.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.Component.java">org/devacfr/maven/skins/reflow/model/Component.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.Footer.java">org/devacfr/maven/skins/reflow/model/Footer.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.Header.java">org/devacfr/maven/skins/reflow/model/Header.java</a></td> 
+    <td>0</td> 
+    <td>2</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.Menu.java">org/devacfr/maven/skins/reflow/model/Menu.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.MenuItem.java">org/devacfr/maven/skins/reflow/model/MenuItem.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.NavSideMenu.java">org/devacfr/maven/skins/reflow/model/NavSideMenu.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.ScrollTop.java">org/devacfr/maven/skins/reflow/model/ScrollTop.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.SideNavMenuItem.java">org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.Toc.java">org/devacfr/maven/skins/reflow/model/Toc.java</a></td> 
+    <td>0</td> 
+    <td>2</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.TocSidebar.java">org/devacfr/maven/skins/reflow/model/TocSidebar.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.model.TocTopBar.java">org/devacfr/maven/skins/reflow/model/TocTopBar.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.snippet.Component.java">org/devacfr/maven/skins/reflow/snippet/Component.java</a></td> 
+    <td>0</td> 
+    <td>25</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.snippet.ComponentResolver.java">org/devacfr/maven/skins/reflow/snippet/ComponentResolver.java</a></td> 
+    <td>0</td> 
+    <td>4</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.snippet.ComponentToken.java">org/devacfr/maven/skins/reflow/snippet/ComponentToken.java</a></td> 
+    <td>0</td> 
+    <td>16</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.snippet.Components.java">org/devacfr/maven/skins/reflow/snippet/Components.java</a></td> 
+    <td>0</td> 
+    <td>3</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="b"> 
+    <td><a href="#org.devacfr.maven.skins.reflow.snippet.PartialTemplateMacro.java">org/devacfr/maven/skins/reflow/snippet/PartialTemplateMacro.java</a></td> 
+    <td>0</td> 
+    <td>1</td> 
+    <td>0</td> 
+   </tr> 
+   <tr class="a"> 
     <td><a href="#org.devacfr.maven.skins.reflow.snippet.Processor.java">org/devacfr/maven/skins/reflow/snippet/Processor.java</a></td> 
     <td>0</td> 
-    <td>8</td> 
+    <td>9</td> 
     <td>0</td> 
    </tr> 
    <tr class="b"> 
     <td><a href="#org.devacfr.maven.skins.reflow.snippet.SnippetComponent.java">org/devacfr/maven/skins/reflow/snippet/SnippetComponent.java</a></td> 
     <td>0</td> 
-    <td>5</td> 
+    <td>12</td> 
     <td>0</td> 
    </tr> 
    <tr class="a"> 
@@ -288,7 +444,7 @@
    <tr class="b"> 
     <td><a href="#org.devacfr.maven.skins.reflow.snippet.SnippetParser.java">org/devacfr/maven/skins/reflow/snippet/SnippetParser.java</a></td> 
     <td>0</td> 
-    <td>10</td> 
+    <td>11</td> 
     <td>0</td> 
    </tr> 
   </tbody> 
@@ -296,6 +452,162 @@
 </section> 
 <section> 
  <h2 id="Details">Details</h2> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.HtmlTool.java">org/devacfr/maven/skins/reflow/HtmlTool.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/HtmlTool.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.ISkinConfig.java">org/devacfr/maven/skins/reflow/ISkinConfig.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/ISkinConfig.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.SkinConfigTool.java">org/devacfr/maven/skins/reflow/SkinConfigTool.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/SkinConfigTool.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.URITool.java">org/devacfr/maven/skins/reflow/URITool.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/URITool.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.Xpp3Utils.java">org/devacfr/maven/skins/reflow/Xpp3Utils.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/Xpp3Utils.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.context.BodyContext.java">org/devacfr/maven/skins/reflow/context/BodyContext.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/BodyContext.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
  <section> 
   <h3 id="org.devacfr.maven.skins.reflow.context.Context.java">org/devacfr/maven/skins/reflow/context/Context.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
@@ -314,6 +626,16 @@
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/Context.html#L4">4</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
@@ -323,7 +645,245 @@
   </table> 
  </section> 
  <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.context.ContextType.java">org/devacfr/maven/skins/reflow/context/ContextType.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/ContextType.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.context.DocumentContext.java">org/devacfr/maven/skins/reflow/context/DocumentContext.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/DocumentContext.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.context.FrameContext.java">org/devacfr/maven/skins/reflow/context/FrameContext.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/FrameContext.html#L4">4</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>whitespace</td> 
+     <td>WhitespaceAround</td> 
+     <td>'{' is not followed by whitespace.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/FrameContext.html#L54">54</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>whitespace</td> 
+     <td>WhitespaceAround</td> 
+     <td>'}' is not preceded with whitespace.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/FrameContext.html#L54">54</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.context.PageContext.java">org/devacfr/maven/skins/reflow/context/PageContext.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/context/PageContext.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.BsComponent.java">org/devacfr/maven/skins/reflow/model/BsComponent.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/BsComponent.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.Component.java">org/devacfr/maven/skins/reflow/model/Component.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Component.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.Footer.java">org/devacfr/maven/skins/reflow/model/Footer.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Footer.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
   <h3 id="org.devacfr.maven.skins.reflow.model.Header.java">org/devacfr/maven/skins/reflow/model/Header.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Header.html#L4">4</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocVariable</td> 
+     <td>Missing a Javadoc comment.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Header.html#L41">41</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.Menu.java">org/devacfr/maven/skins/reflow/model/Menu.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
     <tr class="a"> 
@@ -340,10 +900,140 @@
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
-     <td>javadoc</td> 
-     <td>JavadocVariable</td> 
-     <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Header.html#L41">41</a></td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Menu.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.MenuItem.java">org/devacfr/maven/skins/reflow/model/MenuItem.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/MenuItem.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.NavSideMenu.java">org/devacfr/maven/skins/reflow/model/NavSideMenu.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/NavSideMenu.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.Navbar.java">org/devacfr/maven/skins/reflow/model/Navbar.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Navbar.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.ScrollTop.java">org/devacfr/maven/skins/reflow/model/ScrollTop.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/ScrollTop.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.SideNavMenuItem.java">org/devacfr/maven/skins/reflow/model/SideNavMenuItem.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/SideNavMenuItem.html#L4">4</a></td> 
     </tr> 
    </tbody> 
   </table> 
@@ -366,6 +1056,16 @@
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/Toc.html#L4">4</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
      <td>JavadocVariable</td> 
      <td>Missing a Javadoc comment.</td> 
@@ -375,10 +1075,10 @@
   </table> 
  </section> 
  <section> 
-  <h3 id="org.devacfr.maven.skins.reflow.snippet.Component.java">org/devacfr/maven/skins/reflow/snippet/Component.java</h3> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.TocSidebar.java">org/devacfr/maven/skins/reflow/model/TocSidebar.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
-    <tr class="a"> 
+    <tr class="b"> 
      <th>Severity</th> 
      <th>Category</th> 
      <th>Rule</th> 
@@ -387,6 +1087,68 @@
     </tr> 
    </thead> 
    <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/TocSidebar.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.model.TocTopBar.java">org/devacfr/maven/skins/reflow/model/TocTopBar.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/model/TocTopBar.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.snippet.Component.java">org/devacfr/maven/skins/reflow/snippet/Component.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L4">4</a></td> 
+    </tr> 
     <tr class="b"> 
      <td> 
       <figure> 
@@ -445,7 +1207,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @param tag for 'name'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L96">96</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L94">94</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -455,7 +1217,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @param tag for 'isHtmlTag'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L96">96</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L94">94</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -465,7 +1227,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L111">111</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L117">117</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -475,7 +1237,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L118">118</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L124">124</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -484,8 +1246,8 @@
       </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
-     <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L132">132</a></td> 
+     <td>Expected @return tag.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L134">134</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -495,7 +1257,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L141">141</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L149">149</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -505,7 +1267,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @param tag for 'html'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L141">141</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L149">149</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -515,7 +1277,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L154">154</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L162">162</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -525,7 +1287,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @param tag for 'name'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L154">154</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L162">162</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -535,19 +1297,9 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L180">180</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L188">188</a></td> 
     </tr> 
     <tr class="a"> 
-     <td> 
-      <figure> 
-       <i class="fas fa-exclamation-triangle"></i> 
-      </figure>&nbsp;Warning</td> 
-     <td>javadoc</td> 
-     <td>JavadocMethod</td> 
-     <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L191">191</a></td> 
-    </tr> 
-    <tr class="b"> 
      <td> 
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
@@ -557,6 +1309,36 @@
      <td>Missing a Javadoc comment.</td> 
      <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L199">199</a></td> 
     </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Missing a Javadoc comment.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L207">207</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Missing a Javadoc comment.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L221">221</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Missing a Javadoc comment.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L226">226</a></td> 
+    </tr> 
     <tr class="a"> 
      <td> 
       <figure> 
@@ -565,7 +1347,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L217">217</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L239">239</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -575,7 +1357,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @param tag for 'attrs'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L217">217</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L239">239</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -585,7 +1367,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L226">226</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L248">248</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -595,7 +1377,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @param tag for 'attr'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L226">226</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L248">248</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -605,7 +1387,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L234">234</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Component.html#L256">256</a></td> 
     </tr> 
    </tbody> 
   </table> 
@@ -628,12 +1410,22 @@
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/ComponentResolver.html#L4">4</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
      <td>JavadocVariable</td> 
      <td>Missing a Javadoc comment.</td> 
      <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/ComponentResolver.html#L52">52</a></td> 
     </tr> 
-    <tr class="b"> 
+    <tr class="a"> 
      <td> 
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
@@ -643,7 +1435,7 @@
      <td>First sentence should end with a period.</td> 
      <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/ComponentResolver.html#L55">55</a></td> 
     </tr> 
-    <tr class="a"> 
+    <tr class="b"> 
      <td> 
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
@@ -651,7 +1443,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/ComponentResolver.html#L143">143</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/ComponentResolver.html#L147">147</a></td> 
     </tr> 
    </tbody> 
   </table> 
@@ -660,7 +1452,7 @@
   <h3 id="org.devacfr.maven.skins.reflow.snippet.ComponentToken.java">org/devacfr/maven/skins/reflow/snippet/ComponentToken.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
-    <tr class="b"> 
+    <tr class="a"> 
      <th>Severity</th> 
      <th>Category</th> 
      <th>Rule</th> 
@@ -669,6 +1461,16 @@
     </tr> 
    </thead> 
    <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/ComponentToken.html#L4">4</a></td> 
+    </tr> 
     <tr class="a"> 
      <td> 
       <figure> 
@@ -840,12 +1642,22 @@
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Components.html#L4">4</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
      <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Components.html#L35">35</a></td> 
     </tr> 
-    <tr class="b"> 
+    <tr class="a"> 
      <td> 
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
@@ -859,10 +1671,10 @@
   </table> 
  </section> 
  <section> 
-  <h3 id="org.devacfr.maven.skins.reflow.snippet.Processor.java">org/devacfr/maven/skins/reflow/snippet/Processor.java</h3> 
+  <h3 id="org.devacfr.maven.skins.reflow.snippet.PartialTemplateMacro.java">org/devacfr/maven/skins/reflow/snippet/PartialTemplateMacro.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
-    <tr class="a"> 
+    <tr class="b"> 
      <th>Severity</th> 
      <th>Category</th> 
      <th>Rule</th> 
@@ -871,6 +1683,42 @@
     </tr> 
    </thead> 
    <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/PartialTemplateMacro.html#L4">4</a></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </section> 
+ <section> 
+  <h3 id="org.devacfr.maven.skins.reflow.snippet.Processor.java">org/devacfr/maven/skins/reflow/snippet/Processor.java</h3> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="b"> 
+     <th>Severity</th> 
+     <th>Category</th> 
+     <th>Rule</th> 
+     <th>Message</th> 
+     <th>Line</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/Processor.html#L4">4</a></td> 
+    </tr> 
     <tr class="b"> 
      <td> 
       <figure> 
@@ -972,10 +1820,10 @@
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
-     <td>javadoc</td> 
-     <td>JavadocType</td> 
-     <td>Type Javadoc comment is missing @param &lt;T&gt; tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L27">27</a></td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L4">4</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -983,19 +1831,19 @@
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
-     <td>JavadocMethod</td> 
-     <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L29">29</a></td> 
+     <td>JavadocType</td> 
+     <td>Type Javadoc comment is missing @param &lt;T&gt; tag.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L30">30</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
       </figure>&nbsp;Warning</td> 
-     <td>javadoc</td> 
-     <td>JavadocMethod</td> 
-     <td>Expected @param tag for 'name'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L43">43</a></td> 
+     <td>modifier</td> 
+     <td>ModifierOrder</td> 
+     <td>'private' modifier out of order with the JLS suggestions.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L33">33</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -1005,7 +1853,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Expected @return tag.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L51">51</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L41">41</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -1014,8 +1862,78 @@
       </figure>&nbsp;Warning</td> 
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'element'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L41">41</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'startToken'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L42">42</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'endToken'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L43">43</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'name'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L53">53</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @param tag for 'type'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L53">53</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @return tag.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L61">61</a></td> 
+    </tr> 
+    <tr class="a"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Expected @return tag.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L75">75</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
      <td>Expected @param tag for 'context'.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L51">51</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#L75">75</a></td> 
     </tr> 
    </tbody> 
   </table> 
@@ -1024,7 +1942,7 @@
   <h3 id="org.devacfr.maven.skins.reflow.snippet.SnippetContext.java">org/devacfr/maven/skins/reflow/snippet/SnippetContext.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
-    <tr class="b"> 
+    <tr class="a"> 
      <th>Severity</th> 
      <th>Category</th> 
      <th>Rule</th> 
@@ -1033,7 +1951,7 @@
     </tr> 
    </thead> 
    <tbody> 
-    <tr class="a"> 
+    <tr class="b"> 
      <td> 
       <figure> 
        <i class="fas fa-exclamation-triangle"></i> 
@@ -1043,16 +1961,6 @@
      <td>Line does not match expected header line of '/*'.</td> 
      <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L1">1</a></td> 
     </tr> 
-    <tr class="b"> 
-     <td> 
-      <figure> 
-       <i class="fas fa-exclamation-triangle"></i> 
-      </figure>&nbsp;Warning</td> 
-     <td>javadoc</td> 
-     <td>JavadocMethod</td> 
-     <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L86">86</a></td> 
-    </tr> 
     <tr class="a"> 
      <td> 
       <figure> 
@@ -1061,7 +1969,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L89">89</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L88">88</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -1071,7 +1979,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L95">95</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L91">91</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -1081,7 +1989,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L99">99</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L97">97</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -1091,7 +1999,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L123">123</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L101">101</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -1101,7 +2009,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L127">127</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L125">125</a></td> 
     </tr> 
     <tr class="b"> 
      <td> 
@@ -1111,7 +2019,7 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L161">161</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L129">129</a></td> 
     </tr> 
     <tr class="a"> 
      <td> 
@@ -1121,7 +2029,17 @@
      <td>javadoc</td> 
      <td>JavadocMethod</td> 
      <td>Missing a Javadoc comment.</td> 
-     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L170">170</a></td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L166">166</a></td> 
+    </tr> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>javadoc</td> 
+     <td>JavadocMethod</td> 
+     <td>Missing a Javadoc comment.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#L174">174</a></td> 
     </tr> 
    </tbody> 
   </table> 
@@ -1130,7 +2048,7 @@
   <h3 id="org.devacfr.maven.skins.reflow.snippet.SnippetParser.java">org/devacfr/maven/skins/reflow/snippet/SnippetParser.java</h3> 
   <table border="0" class="bodyTable table table-striped table-hover"> 
    <thead> 
-    <tr class="b"> 
+    <tr class="a"> 
      <th>Severity</th> 
      <th>Category</th> 
      <th>Rule</th> 
@@ -1139,6 +2057,16 @@
     </tr> 
    </thead> 
    <tbody> 
+    <tr class="b"> 
+     <td> 
+      <figure> 
+       <i class="fas fa-exclamation-triangle"></i> 
+      </figure>&nbsp;Warning</td> 
+     <td>header</td> 
+     <td>Header</td> 
+     <td>Line does not match expected header line of ' * You may obtain a copy of the License at'.</td> 
+     <td><a href="./xref/org/devacfr/maven/skins/reflow/snippet/SnippetParser.html#L4">4</a></td> 
+    </tr> 
     <tr class="a"> 
      <td> 
       <figure> 
@@ -1285,8 +2213,8 @@ Contribute
                     <li class="nav-header">
 Documentation
                     </li>
-                    <li class="nav-item "><a  href="reflow-maven-skin/reflow-documentation.html#get-started.html"  title="Get Started"  class="nav-link" >Get Started</a></li>
-                    <li class="nav-item "><a  href="reflow-maven-skin/reflow-documentation.html#migration.html"  title="Migration"  class="nav-link" >Migration</a></li>
+                    <li class="nav-item "><a  href="doc/reflow-documentation.html#get-started.html"  title="Get Started"  class="nav-link" >Get Started</a></li>
+                    <li class="nav-item "><a  href="doc/reflow-documentation.html#migration.html"  title="Migration"  class="nav-link" >Migration</a></li>
                     <li class="nav-item "><a  href="development-documentation.html"  title="Developer Documentation"  class="nav-link" >Developer Documentation</a></li>
                     <li class="nav-header">
 Maven documentation
@@ -1300,6 +2228,8 @@ Maven documentation
                     <li class="nav-item "><a  href="surefire-report.html"  title="Surefire Report"  class="nav-link" >Surefire Report</a></li>
                     <li class="nav-item "><a  href="rat-report.html"  title="Rat Report"  class="nav-link" >Rat Report</a></li>
                     <li class="nav-item "><a  href="clover/index.html"  title="Clover"  class="nav-link" >Clover</a></li>
+                    <li class="nav-item "><a  href="cpd.html"  title="CPD"  class="nav-link" >CPD</a></li>
+                    <li class="nav-item "><a  href="pmd.html"  title="PMD"  class="nav-link" >PMD</a></li>
         </ul>
 </li>
                 </ul>
