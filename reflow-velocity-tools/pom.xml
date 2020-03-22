@@ -120,6 +120,12 @@
       <version>${doxia-module.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.github.devacfr.maven.skins</groupId>
+      <artifactId>reflow-maven-skin</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- ================================================================================ -->
     <!-- Log dependencies -->
