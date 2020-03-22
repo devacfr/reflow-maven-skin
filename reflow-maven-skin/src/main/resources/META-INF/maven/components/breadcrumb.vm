@@ -18,6 +18,9 @@
  *
  *###
 #macro( renderBreadcrumbs )##
+#*  *##set( $title = "#getTitlePage()" )##
+#*  *##set( $shortTitle = "#getShortTitlePage()" )##
+#*  *##set( $datePosition = "#getDatePosition()" )##
 #*  *##if ( !$config.not( "breadcrumbs" )
       && (( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0)
         || $datePosition == "left" || $versionPosition == "left"

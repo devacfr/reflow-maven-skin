@@ -214,3 +214,78 @@
             </ul>
         </div>
 #end##
+#**
+ * Gets title page
+ * usage: set( $title = "#getTitlePage()")
+ * Returns the output title of page
+*###
+#macro ( getShortTitlePage )##
+#*  *### generate a short title if one does not exist or is specified explicitly
+#*  *### if specified explicitly, use that
+#*  *##set ( $shortTitle = $!{config.shortTitle.value} )##
+#*  *### Page title generation is enabled by default, so check for false and negate
+#*  *##if ( !$shortTitle && ( $shortTitle == "generate" || $shortTitle == "true" ) )##
+#*      *### Generate the title.
+#*      *### To generate the title, we take the contents of the first h1 tag in the document.
+#*      *### If it does not exist, we take the contents of the first h2 tag.
+#*      *##set ( $hTexts = $htmlTool.text( $bodyContent, "h1" ) )##
+#*      *##if ( $hTexts.size() == 0 )##
+#*          *##set ( $hTexts = $htmlTool.text( $bodyContent, "h2" ) )##
+#*      *##end##
+#*      *##if ( $hTexts.size() > 0 )##
+#*          *##set ( $shortTitle = $hTexts.get(0) )##
+#*      *##end##
+#*  *##end##
+$!{shortTitle}
+#end##
+#**
+ * Gets title page
+ * usage: set( $title = "#getTitlePage()")
+ * Returns the output title of page
+*###
+#macro ( getTitlePage )##
+#*  *##set ( $shortTitle = "#getShortTitlePage()" )##
+## If title template is provided, use it to generate title.
+## Also regenerate title if a new short title was generated.
+#*  *##if ( $config.titleTemplate || $shortTitle )##
+#*      *### read the title template from configuration
+#*      *##if ( $config.titleTemplate )##
+#*          *##set ( $titleTemplate = $config.titleTemplate.getValue() )##
+#*      *##else##
+#*          *### default template is "projectName - shortTitle"
+#*          *##set ( $titleTemplate = "%1${esc.d}s - %2${esc.d}s" )##
+#*      *##end##
+#*      *### the company/project name is retrieved from decoration ( <project name="Foo">)
+#*      *### or from the project itself
+#*      *##if ( $decoration.name )##
+#*          *##set ( $titleProjectName = $decoration.name )##
+#*      *##elseif ( $project.name )##
+#*          *##set ( $titleProjectName = $project.name )##
+#*      *##else##
+#*          *##set ( $titleProjectName = "" )##
+#*      *##end##
+#*      *### use String.format() to create new title
+$titleTemplate.format( $titleTemplate, $titleProjectName, $shortTitle )##
+#*  *##end##
+#end##
+##
+#macro( getDatePosition )
+#*  *### resolve date position, or set the default otherwise (bottom)
+#*  *### Note, that currently we do not support "navigation-top" position for either publishDate or version.
+#*  *##set ( $datePosition = "bottom" )##
+#*  *##if ( $decoration.publishDate.position )##
+#*  *##set ( $datePosition = $decoration.publishDate.position )##
+#*  *##end##
+#*  *### resolve version position, or set the default otherwise (bottom)
+#*  *##set ( $versionPosition = "bottom" )##
+#*  *##if ( $decoration.version.position )##
+#*      *##set ( $versionPosition = $decoration.version.position )##
+#*  *##end##
+##
+#*  *##if ( $decoration.publishDate.position )##
+#*      *##set ( $datePosition = $decoration.publishDate.position )##
+#*  *##else##
+#*      *##set ( $datePosition = "bottom" )##
+#*  *##end##
+$!{datePosition}
+#end

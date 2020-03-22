@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import static java.util.Collections.emptyList;
 import static java.util.Objects.requireNonNull;
 
 import java.text.Normalizer;
@@ -929,8 +930,10 @@ public class HtmlTool extends SafeConfig {
      * @return A list of element texts as rendered to display. Empty list if no elements are found.
      * @since 1.0
      */
-    public List<String> text(final String content, final String selector) {
-
+    public List<String> text(@Nullable final String content, @Nonnull final String selector) {
+        if (Strings.isNullOrEmpty(content)) {
+            return emptyList();
+        }
         final Element body = parseContent(content);
 
         final List<Element> elements = body.select(selector);

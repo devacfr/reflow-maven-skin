@@ -13,6 +13,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
+#parse("META-INF/maven/site-macros.vm")
 #**
  * display information of snippet
  *#
