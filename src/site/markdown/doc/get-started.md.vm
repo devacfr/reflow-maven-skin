@@ -68,7 +68,7 @@ The configuration is specified in the [`site.xml` site descriptor][site-xml] fil
 
 The documentation is split over several pages, describing the various configuration options:
 
-{{< row class="row-cols-1 row-cols-md-2" >}}
+{{< layout-grid number-columns="2" >}}
 
 {{< column class="mb-4" >}}
 
@@ -145,7 +145,7 @@ The documentation is split over several pages, describing the various configurat
 
 {{< /column >}}
 
-{{< /row >}}
+{{< /layout-grid >}}
 
 Note that all configuration options can be set on a per-page basis ([see below](#get-started_toc_per-page-configuration)).
 
