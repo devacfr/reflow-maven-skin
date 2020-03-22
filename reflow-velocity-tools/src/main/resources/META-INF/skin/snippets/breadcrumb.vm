@@ -17,5 +17,8 @@
  * Render a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
  *
  *###
-#parse("META-INF/maven/components/breadcrumb.vm")
-#renderBreadcrumbs()
+#if( $velocity.resourceExists("META-INF/maven/components/breadcrumb.vm") )##
+#*  *##parse("META-INF/maven/components/breadcrumb.vm")##
+#*  *##renderBreadcrumbs()
+#end##
+
