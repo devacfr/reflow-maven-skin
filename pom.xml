@@ -120,6 +120,9 @@
     <site.deploy.id>github</site.deploy.id>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
+    <spotbugs.excludefilterfile.path>${main.basedir}/check/spotbugs-exclude-filter.xml</spotbugs.excludefilterfile.path>
+    <spotbugs.only.analyze>com.pmi.tpd.-</spotbugs.only.analyze>
+
     <!-- ================================================================================ -->
     <!-- Web dependencies version -->
     <!-- ================================================================================ -->
@@ -170,14 +173,15 @@
     <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
     <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
     <!-- used in site generation -->
+    <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
+    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+    <maven-clover-plugin.version>4.4.1</maven-clover-plugin.version>
+    <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+    <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
+    <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
     <maven-site-plugin-version>${maven-site-plugin.version}</maven-site-plugin-version>
     <maven-spotbugs-plugin.version>3.1.12.2</maven-spotbugs-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-    <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
-    <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
-    <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
-    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-    <maven-clover-plugin.version>4.4.1</maven-clover-plugin.version>
     <maven-surefire-report-plugin.version>${maven-surefire-plugin.version}</maven-surefire-report-plugin.version>
   </properties>
 
@@ -699,10 +703,47 @@
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>${maven-spotbugs-plugin.version}</version>
+        <configuration>
+          <!-- Corporate specific rules -->
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+          <includeTests>false</includeTests>
+          <excludeFilterFile>${spotbugs.excludefilterfile.path}</excludeFilterFile>
+          <!-- Enable XML output for reporting tools (Bamboo, Hudson) -->
+          <spotbugsXmlOutput>true</spotbugsXmlOutput>
+          <!-- Configures the directory in which the XML report is created -->
+          <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs</spotbugsXmlOutputDirectory>
+          <xmlOutput>true</xmlOutput>
+          <onlyAnalyze>${spotbugs.only.analyze}</onlyAnalyze>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${maven-pmd-plugin.version}</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <aggregate>true</aggregate>
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <targetJdk>${maven.compiler.target}</targetJdk>
+          <verbose>false</verbose>
+          <failOnViolation>false</failOnViolation>
+          <!-- TODO make it 'true' when we will be ready -->
+          <failurePriority>2</failurePriority>
+          <rulesets>
+            <ruleset>${main.basedir}/check/pmd.xml</ruleset>
+          </rulesets>
+        </configuration>
         <reportSets>
           <reportSet>
+            <id>aggregate</id>
+            <inherited>false</inherited>
+            <configuration>
+              <aggregate>true</aggregate>
+            </configuration>
             <reports>
-              <report>spotbugs</report>
+              <report>cpd</report>
+              <report>pmd</report>
             </reports>
           </reportSet>
         </reportSets>
