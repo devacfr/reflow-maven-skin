@@ -1,0 +1,118 @@
+ 
+
+
+  <div class="row no-gutters">
+    <div class="col-lg-12 col-xl-9">
+            <h1 id="doc-snippets-twitter_toc_twitter-feed">Twitter Feed</h1> 
+<span class="badge badge-primary">New in v2.4</span> 
+<span class="badge badge-info">SHORTCODE</span> 
+<h2 id="doc-snippets-twitter_toc_example">&nbsp;Example</h2> 
+<div class="bd-example"> 
+ <a class="twitter-timeline" data-width="400" data-height="500" data-dnt="true" data-theme="light" href="https://twitter.com/getbootstrap?ref_src=twsrc%5Etfw">Tweets By Bootstrap</a> 
+ <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" /&gt;}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-twitter_toc_custom-chrome">&nbsp;Custom chrome</h3> 
+<p>Control the frame around the linear timeline by setting a data-chrome attribute with space-separated tokens for each chrome component.</p> 
+<table border="0" class="bodyTable table table-striped table-hover"> 
+ <thead> 
+  <tr class="a"> 
+   <th> Attributes </th> 
+   <th> Description </th> 
+  </tr> 
+ </thead> 
+ <tbody> 
+  <tr class="b"> 
+   <td> <code>noheader</code> </td> 
+   <td> Hides the timeline header. Implementing sites must add their own Twitter attribution, link to the source timeline, and comply with other Twitter display requirements. </td> 
+  </tr> 
+  <tr class="a"> 
+   <td> <code>nofooter</code> </td> 
+   <td> Hides the timeline footer and Tweet composer link, if included in the timeline widget type. </td> 
+  </tr> 
+  <tr class="b"> 
+   <td> <code>noborders</code> </td> 
+   <td> Removes all borders within the widget including borders surrounding the widget area and separating Tweets. </td> 
+  </tr> 
+  <tr class="a"> 
+   <td> <code>noscrollbar</code> </td> 
+   <td> Crops and hides the main timeline scrollbar, if visible. Please consider that hiding standard user interface components can affect the accessibility of your website. </td> 
+  </tr> 
+  <tr class="b"> 
+   <td> <code>transparent</code> </td> 
+   <td> Removes the widget’s background color. </td> 
+  </tr> 
+ </tbody> 
+</table> 
+<div class="bd-example"> 
+ <a class="twitter-timeline" data-chrome=" nofooter noborders" data-width="400" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/getbootstrap?ref_src=twsrc%5Etfw">Tweets By Bootstrap</a> 
+ <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" nofooter noborders theme="dark" /&gt;}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-twitter_toc_dimensions">&nbsp;Dimensions</h3> 
+<div class="bd-example"> 
+ <a class="twitter-timeline" data-width="600" data-height="300" data-dnt="true" data-theme="light" href="https://twitter.com/getbootstrap?ref_src=twsrc%5Etfw">Tweets By Bootstrap</a> 
+ <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" width="600" height="300" /&gt;}}
+</pre> 
+ </div> 
+</div> 
+<h3 id="doc-snippets-twitter_toc_limiting-the-number-of-tweets-displayed">Limiting the number of Tweets displayed</h3> 
+<p>Display a specific number of items between 1 and 20 by customizing your embed HTML. Add a <code>tweet-limit</code> attribute to the embed code to specify a number of Tweets. The timeline will automatically adjust its height to display specified number of Tweets. The timeline is fixed after display; it will not poll for new Tweets.</p> 
+<div class="bd-example"> 
+ <a class="twitter-timeline" data-width="400" data-height="300" data-dnt="true" data-theme="light" data-tweet-limit="3" href="https://twitter.com/getbootstrap?ref_src=twsrc%5Etfw">Tweets By Bootstrap</a> 
+ <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{&lt; twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" tweet-limit="3" height="300" /&gt;}}
+</pre> 
+ </div> 
+</div>
+        </div>
+    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/twitter.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+                </li>
+            </ul>
+        </div>
+            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
+                <nav id="m-toc-sidebar-nav flex-column">
+                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+    <li class="h1">
+        <a class="nav-link" href="#doc-snippets-twitter_toc_twitter-feed" title="Twitter Feed">Twitter Feed</a>
+    </li>
+    <li class="h2">
+        <a class="nav-link" href="#doc-snippets-twitter_toc_example" title="Example">Example</a>
+    </li>
+    <ul class="nav flex-column flex-nowrap nav-collapsible">
+            <li class="h3">
+        <a class="nav-link" href="#doc-snippets-twitter_toc_custom-chrome" title="Custom chrome">Custom chrome</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-twitter_toc_dimensions" title="Dimensions">Dimensions</a>
+    </li>
+    <li class="h3">
+        <a class="nav-link" href="#doc-snippets-twitter_toc_limiting-the-number-of-tweets-displayed" title="Limiting the number of Tweets displayed">Limiting the number of Tweets displayed</a>
+    </li>
+    </ul>
+                    </ul>
+                </nav>
+           </div>
+    </div>
+</div>
