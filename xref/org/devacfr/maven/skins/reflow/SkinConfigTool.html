@@ -769,22 +769,23 @@
 <a class="jxr_linenumber" name="L761" href="#L761">761</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L762" href="#L762">762</a> <em class="jxr_javadoccomment">     * @return Returns a {@link String} representing the relative path to root site.</em>
 <a class="jxr_linenumber" name="L763" href="#L763">763</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L764" href="#L764">764</a>     @Nonnull
-<a class="jxr_linenumber" name="L765" href="#L765">765</a>     <strong class="jxr_keyword">public</strong> String getResourcePath() {
-<a class="jxr_linenumber" name="L766" href="#L766">766</a>         <strong class="jxr_keyword">final</strong> String absoluteResourceURL = <strong class="jxr_keyword">this</strong>.value(<span class="jxr_string">"absoluteResourceURL"</span>);
-<a class="jxr_linenumber" name="L767" href="#L767">767</a>         String projectUrl = getProjectLocation();
-<a class="jxr_linenumber" name="L768" href="#L768">768</a>         <strong class="jxr_keyword">final</strong> String currentFileName = getCurrentFileName();
-<a class="jxr_linenumber" name="L769" href="#L769">769</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(projectUrl) &amp;&amp; currentFileName != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L770" href="#L770">770</a>             <strong class="jxr_keyword">if</strong> (projectUrl.charAt(projectUrl.length() - 1) != '/') {
-<a class="jxr_linenumber" name="L771" href="#L771">771</a>                 projectUrl += '/';
-<a class="jxr_linenumber" name="L772" href="#L772">772</a>             }
-<a class="jxr_linenumber" name="L773" href="#L773">773</a>             <strong class="jxr_keyword">final</strong> String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(<span class="jxr_string">"."</span>).toString();
-<a class="jxr_linenumber" name="L774" href="#L774">774</a>             <strong class="jxr_keyword">return</strong> URITool.relativizeLink(currentFileDir, absoluteResourceURL);
-<a class="jxr_linenumber" name="L775" href="#L775">775</a>         }
-<a class="jxr_linenumber" name="L776" href="#L776">776</a>         <strong class="jxr_keyword">return</strong> (String) velocityContext.get(<span class="jxr_string">"relativePath"</span>);
-<a class="jxr_linenumber" name="L777" href="#L777">777</a>     }
-<a class="jxr_linenumber" name="L778" href="#L778">778</a> 
-<a class="jxr_linenumber" name="L779" href="#L779">779</a> }
+<a class="jxr_linenumber" name="L764" href="#L764">764</a>     @Override
+<a class="jxr_linenumber" name="L765" href="#L765">765</a>     @Nonnull
+<a class="jxr_linenumber" name="L766" href="#L766">766</a>     <strong class="jxr_keyword">public</strong> String getResourcePath() {
+<a class="jxr_linenumber" name="L767" href="#L767">767</a>         <strong class="jxr_keyword">final</strong> String absoluteResourceURL = <strong class="jxr_keyword">this</strong>.value(<span class="jxr_string">"absoluteResourceURL"</span>);
+<a class="jxr_linenumber" name="L768" href="#L768">768</a>         String projectUrl = getProjectLocation();
+<a class="jxr_linenumber" name="L769" href="#L769">769</a>         <strong class="jxr_keyword">final</strong> String currentFileName = getCurrentFileName();
+<a class="jxr_linenumber" name="L770" href="#L770">770</a>         <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(projectUrl) &amp;&amp; currentFileName != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L771" href="#L771">771</a>             <strong class="jxr_keyword">if</strong> (projectUrl.charAt(projectUrl.length() - 1) != '/') {
+<a class="jxr_linenumber" name="L772" href="#L772">772</a>                 projectUrl += '/';
+<a class="jxr_linenumber" name="L773" href="#L773">773</a>             }
+<a class="jxr_linenumber" name="L774" href="#L774">774</a>             <strong class="jxr_keyword">final</strong> String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(<span class="jxr_string">"."</span>).toString();
+<a class="jxr_linenumber" name="L775" href="#L775">775</a>             <strong class="jxr_keyword">return</strong> URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+<a class="jxr_linenumber" name="L776" href="#L776">776</a>         }
+<a class="jxr_linenumber" name="L777" href="#L777">777</a>         <strong class="jxr_keyword">return</strong> (String) velocityContext.get(<span class="jxr_string">"relativePath"</span>);
+<a class="jxr_linenumber" name="L778" href="#L778">778</a>     }
+<a class="jxr_linenumber" name="L779" href="#L779">779</a> 
+<a class="jxr_linenumber" name="L780" href="#L780">780</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2012&#x2013;2020 <a href="http://devacfr.github.io">Friederich Christophe</a>. All rights reserved.</div>

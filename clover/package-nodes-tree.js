@@ -43,7 +43,7 @@ var Packages = {
     "text": "maven.skins.reflow",
     "package": "org.devacfr.maven.skins.reflow",
     "url": "org/devacfr/maven/skins/reflow/pkg-summary.html",
-            "coverage": "83.9%",
+            "coverage": "83.8%",
         "icon": "aui-icon aui-icon-small aui-iconfont-devtools-folder-closed",
             "li_attr": {"data-is-link": "true"},
         "a_attr": {"href": "org/devacfr/maven/skins/reflow/pkg-summary.html"},
