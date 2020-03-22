@@ -1,6 +1,6 @@
-var treeMapJson = {"id":"Clover database Sun Mar 22 2020 18:12:48 CET0","name":"","data":{
-    "$area":2169.0,"$color":74.31996,"title":
-    " 2169 Elements, 74.3% Coverage"},"children":[{"id":
+var treeMapJson = {"id":"Clover database Sun Mar 22 2020 18:43:22 CET0","name":"","data":{
+    "$area":2170.0,"$color":74.331795,"title":
+    " 2170 Elements, 74.3% Coverage"},"children":[{"id":
       "org.devacfr.maven.skins.reflow0","name":
       "org.devacfr.maven.skins.reflow","data":{"$area":902.0,"$color":
         79.04656,"title":
@@ -145,9 +145,9 @@ var treeMapJson = {"id":"Clover database Sun Mar 22 2020 18:12:48 CET0","name":"
             "org/devacfr/maven/skins/reflow/context/PageContext.html#PageContext",
             "title":"PageContext 9 Elements, 77.8% Coverage"},"children":[]}]},
     {"id":"org.devacfr.maven.skins.reflow.snippet1630","name":
-      "org.devacfr.maven.skins.reflow.snippet","data":{"$area":539.0,
-        "$color":77.73655,"title":
-        "org.devacfr.maven.skins.reflow.snippet 539 Elements, 77.7% Coverage"},
+      "org.devacfr.maven.skins.reflow.snippet","data":{"$area":540.0,
+        "$color":77.77778,"title":
+        "org.devacfr.maven.skins.reflow.snippet 540 Elements, 77.8% Coverage"},
       "children":[{"id":"Component1630","name":"Component","data":{"$area":
             107.0,"$color":74.76636,"path":
             "org/devacfr/maven/skins/reflow/snippet/Component.html#Component",
@@ -203,10 +203,10 @@ var treeMapJson = {"id":"Clover database Sun Mar 22 2020 18:12:48 CET0","name":"
             "org/devacfr/maven/skins/reflow/snippet/SnippetComponent.html#SnippetComponent",
             "title":"SnippetComponent 16 Elements, 68.8% Coverage"},
           "children":[]},{"id":"SnippetContext2023","name":
-          "SnippetContext","data":{"$area":83.0,"$color":90.36144,"path":
+          "SnippetContext","data":{"$area":84.0,"$color":90.47619,"path":
             "org/devacfr/maven/skins/reflow/snippet/SnippetContext.html#SnippetContext",
-            "title":"SnippetContext 83 Elements, 90.4% Coverage"},"children":
-          []},{"id":"SnippetParser2106","name":"SnippetParser","data":{
+            "title":"SnippetContext 84 Elements, 90.5% Coverage"},"children":
+          []},{"id":"SnippetParser2107","name":"SnippetParser","data":{
             "$area":63.0,"$color":76.190475,"path":
             "org/devacfr/maven/skins/reflow/snippet/SnippetParser.html#SnippetParser",
             "title":"SnippetParser 63 Elements, 76.2% Coverage"},"children":[]}]}]}

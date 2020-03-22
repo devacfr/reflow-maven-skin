@@ -191,60 +191,61 @@
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>                 context.put(<span class="jxr_string">"snippet"</span>, component);
 <a class="jxr_linenumber" name="L184" href="#L184">184</a>                 context.put(<span class="jxr_string">"snippetPath"</span>, filePath);
 <a class="jxr_linenumber" name="L185" href="#L185">185</a>                 context.put(<span class="jxr_string">"config"</span>, <strong class="jxr_keyword">this</strong>.config);
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>                 context.put(<span class="jxr_string">"decoration"</span>, <strong class="jxr_keyword">this</strong>.config.getDecoration());
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>                 <em class="jxr_comment">// Use config option &lt;absoluteResourceURL&gt;http://mysite.com/&lt;/absoluteResourceURL&gt;</em>
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>                 context.put(<span class="jxr_string">"resourcePath"</span>, <strong class="jxr_keyword">this</strong>.config.getResourcePath());
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>                 Velocity.mergeTemplate(<span class="jxr_string">"META-INF/skin/snippets/_snippet.vm"</span>,
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>                     RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>                     context,
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>                     writer);
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>             }
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> 
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>         }
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>         <strong class="jxr_keyword">if</strong> (!found) {
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>             LOGGER.warn(<span class="jxr_string">"The snippet '{}' template doesn't exist"</span>, component.getName());
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>         }
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>     }
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     * Creates a Velocity Context with all generic tools configured wit the site rendering context.</em>
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     * @return a Velocity tools managed context</em>
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>     <strong class="jxr_keyword">protected</strong> Context createToolManagedVelocityContext() {
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> 
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>         <strong class="jxr_keyword">final</strong> EasyFactoryConfiguration config = <strong class="jxr_keyword">new</strong> EasyFactoryConfiguration(false);
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>         config.property(<span class="jxr_string">"safeMode"</span>, Boolean.FALSE);
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>         config.toolbox(Scope.REQUEST)
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>                 .tool(ContextTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>                 .tool(LinkTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>                 .tool(LoopTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>                 .tool(RenderTool.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>         config.toolbox(Scope.APPLICATION)
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>                 .tool(AlternatorTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>                 .tool(ClassTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>                 .tool(ComparisonDateTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>                 .tool(ConversionTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>                 .tool(DisplayTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>                 .tool(EscapeTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>                 .tool(FieldTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>                 .tool(MathTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>                 .tool(NumberTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>                 .tool(ResourceTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 .tool(SortTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 .tool(XmlTool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>                 .tool(URITool.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 .tool(HtmlTool.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L232" href="#L232">232</a> 
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>         <strong class="jxr_keyword">final</strong> ToolManager manager = <strong class="jxr_keyword">new</strong> ToolManager(false, false);
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>         manager.configure(config);
-<a class="jxr_linenumber" name="L235" href="#L235">235</a> 
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>         <strong class="jxr_keyword">return</strong> manager.createContext();
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>     }
-<a class="jxr_linenumber" name="L238" href="#L238">238</a> 
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> }
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>                 context.put(<span class="jxr_string">"velocity"</span>, Velocity.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>                 context.put(<span class="jxr_string">"decoration"</span>, <strong class="jxr_keyword">this</strong>.config.getDecoration());
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>                 <em class="jxr_comment">// Use config option &lt;absoluteResourceURL&gt;http://mysite.com/&lt;/absoluteResourceURL&gt;</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>                 context.put(<span class="jxr_string">"resourcePath"</span>, <strong class="jxr_keyword">this</strong>.config.getResourcePath());
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>                 Velocity.mergeTemplate(<span class="jxr_string">"META-INF/skin/snippets/_snippet.vm"</span>,
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>                     RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>                     context,
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>                     writer);
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>             }
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>         }
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>         <strong class="jxr_keyword">if</strong> (!found) {
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>             LOGGER.warn(<span class="jxr_string">"The snippet '{}' template doesn't exist"</span>, component.getName());
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>         }
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>     }
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> 
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">     * Creates a Velocity Context with all generic tools configured wit the site rendering context.</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     * @return a Velocity tools managed context</em>
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>     <strong class="jxr_keyword">protected</strong> Context createToolManagedVelocityContext() {
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> 
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>         <strong class="jxr_keyword">final</strong> EasyFactoryConfiguration config = <strong class="jxr_keyword">new</strong> EasyFactoryConfiguration(false);
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>         config.property(<span class="jxr_string">"safeMode"</span>, Boolean.FALSE);
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>         config.toolbox(Scope.REQUEST)
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>                 .tool(ContextTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L215" href="#L215">215</a>                 .tool(LinkTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>                 .tool(LoopTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>                 .tool(RenderTool.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>         config.toolbox(Scope.APPLICATION)
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>                 .tool(AlternatorTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>                 .tool(ClassTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>                 .tool(ComparisonDateTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>                 .tool(ConversionTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>                 .tool(DisplayTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>                 .tool(EscapeTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>                 .tool(FieldTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>                 .tool(MathTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>                 .tool(NumberTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 .tool(ResourceTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 .tool(SortTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>                 .tool(XmlTool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 .tool(URITool.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 .tool(HtmlTool.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> 
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>         <strong class="jxr_keyword">final</strong> ToolManager manager = <strong class="jxr_keyword">new</strong> ToolManager(false, false);
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>         manager.configure(config);
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> 
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>         <strong class="jxr_keyword">return</strong> manager.createContext();
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>     }
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> 
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2012&#x2013;2020 <a href="http://devacfr.github.io">Friederich Christophe</a>. All rights reserved.</div>
