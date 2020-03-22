@@ -4,8 +4,8 @@ Standard Maven site allows customising the website _banner_.
 
 ## Header
 
-support <span class="badge badge-primary">v2.2</span><br/>
-element <span class="badge badge-secondary">reflow</span>
+support {{< badge color="primary" text="v2.2" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}}
 
 The Header is the component displayed to top of page. If header element contains a specific html, the contained will be used instead of the generated banner text.
 
@@ -17,11 +17,11 @@ The Header is the component displayed to top of page. If header element contains
     background="bootstrap colour theme" ><![CDATA[ custom html representing the header content ]]></header>
 ```
 
-- **type** <span class="badge badge-light">v2.3</span> - indicates the type of header.
-- **enabled** <span class="badge badge-light">v2.2</span> - Indicates whether the header is visible. The header is displayed by default.
-- **cssClass** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
-- **theme** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap theme . The default value is `null`. the prefix css theme is `header-`.
-- **background** <span class="badge badge-light">v2.2</span> - Sets the css class with built-in Bootstrap colour theme. The default value is `null`.
+- **type** {{< badge color="light" text="v2.3" />}} - indicates the type of header.
+- **enabled** {{< badge color="light" text="v2.2" />}} - Indicates whether the header is visible. The header is displayed by default.
+- **cssClass** {{< badge color="light" text="v2.2" />}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
+- **theme** {{< badge color="light" text="v2.2" />}} - Sets the css class with built-in Bootstrap theme . The default value is `null`. the prefix css theme is `header-`.
+- **background** {{< badge color="light" text="v2.2" />}} - Sets the css class with built-in Bootstrap colour theme. The default value is `null`.
 
 ### Jumbotron Header
 
@@ -55,10 +55,11 @@ Reflow renders following html:
 </div>
 ```
 
-<div class="bd-callout bd-callout-info">
-    <h4 class="no-anchor">Note</h4>
-    <p>You can remark in example above, <code>theme</code> and <code>background</code> attributes are associated with <code>jumbotron</code> component rather the <code>header</code> container.</p>
-</div>
+{{< callout color="info" title="Note" level="5" >}}
+
+You can remark in example above, `theme` and `background` attributes are associated with `jumbotron` component rather the `header` container.
+
+{{< /callout >}}
 
 [header-jumbotron]: test/header-jumbotron.html
 
@@ -120,7 +121,7 @@ Reflow renders following html:
 
 ## Banner
 
-element <span class="badge badge-secondary">site.xml</span>
+element {{< badge color="secondary" text="site.xml" />}}
 
 The banner (big _Reflow Maven Skin_ text on this website) is defined using [standard `<bannerLeft>` or `<bannerRight>` elements][mvn-site-banner] in `site.xml` site
 descriptor instead of using `<custom><reflowSkin>`:
@@ -141,17 +142,18 @@ descriptor instead of using `<custom><reflowSkin>`:
 </project>
 ```
 
-<div class="bd-callout bd-callout-info">
-    <h4 class="no-anchor">Note</h4>
-    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title. Unlike maven fluido skin plugin, <code>&lt;name&gt;</code> is used to display h1 heading title. Use <code>alt</code> element instead <code>name</code>. <code>&lt;name&gt;</code> element can have <code>CDATA</code> element as its contents, allowing custom HTML content in the banner.</p>
-</div>
+{{< callout color="info" title="Note" level="5" >}}
+
+Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title. Unlike maven fluido skin plugin, `<name>` is used to display h1 heading title. Use `alt` element instead `name`. `<name>` element can have `CDATA` element as its contents, allowing custom HTML content in the banner.
+
+{{< /callout >}}
 
 [mvn-site-banner]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner
 
 ## Slogan
 
-support <span class="badge badge-primary">v1.0</span><br/>
-element <span class="badge badge-secondary">reflow</span>
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}}
 
 The skin allows setting a website slogan in the banner. It would appear underneath the website
 title, either on the left or the right side.
