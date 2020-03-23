@@ -18,7 +18,7 @@
 #*  *##set( $pageContext = $config.context)##
 #*  *##set( $datePosition = "#getDatePosition()" )##
   <!-- Footer -->
-<footer class="$pageContext.footer.cssClass">
+<footer class="footer $pageContext.footer.cssClass">
     <div class="container">
         <div class="row">
             ## if menus are available, display bottom navigation
@@ -30,7 +30,7 @@
 #*              *##htmlContent ( $config.bottomDescription.getChildren() )
 #*      *##elseif ( $config.bottomDescription.getAttribute("quote") && 'false' == $config.bottomDescription.getAttribute("quote") )
                 ## no quote
-#*              *#$config.bottomDescription.getValue()
+#*              *##evaluate( $config.bottomDescription.getValue() )
 #*      *##else
                 <blockquote class="blockquote">$config.bottomDescription.getValue()</blockquote>
 #*      *##end
