@@ -47,7 +47,7 @@ There are several options for the `<theme>` value:
 [bootswatch]: http://bootswatch.com
 [bootswatch-gallery]: http://bootswatch.com/#gallery
 
-{{< row class="row-cols-1 row-cols-md-3" >}}
+{{< grid-layout number-columns="3" >}}
 
 {{< column class="mb-4" >}}
 
@@ -468,6 +468,6 @@ There are several options for the `<theme>` value:
 
 {{< /column >}}
 
-{{< /row >}}
+{{< /grid-layout >}}
 
 All theme images above are from the [Bootswatch gallery][bootswatch-gallery].

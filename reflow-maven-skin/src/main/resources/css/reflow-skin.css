@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 pre.placeholder-debug {
-	font-size: .7rem;
+    font-size: .7rem;
 }
 
 body {
@@ -625,6 +625,13 @@ footer .blockquote {
     padding: 0px 20px;
     font-size: 1rem !important;
 }
+
+footer.footer-dark time,
+footer.footer-light time {
+    color: var(--secondary);
+    font-size: .8rem;
+}
+
 
 footer p,
 .subfooter p {

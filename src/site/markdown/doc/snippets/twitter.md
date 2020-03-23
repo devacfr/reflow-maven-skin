@@ -16,7 +16,7 @@
 {{< twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" />}}
 ```
 
-### Custom chrome
+## Custom chrome
 
 Control the frame around the linear timeline by setting a data-chrome attribute with space-separated tokens for each chrome component.
 
@@ -38,7 +38,7 @@ Control the frame around the linear timeline by setting a data-chrome attribute 
 {{< twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" nofooter noborders theme="dark" />}}
 ```
 
-### Dimensions
+## Dimensions
 
 {{< example >}}
 
@@ -50,7 +50,7 @@ Control the frame around the linear timeline by setting a data-chrome attribute 
 {{< twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" width="600" height="300" />}}
 ```
 
-### Limiting the number of Tweets displayed
+## Limiting the number of Tweets displayed
 
 Display a specific number of items between 1 and 20 by customizing your embed HTML.
 Add a `tweet-limit` attribute to the embed code to specify a number of Tweets. The timeline will automatically adjust its height to display specified number of Tweets. The timeline is fixed after display; it will not poll for new Tweets.

@@ -13,7 +13,7 @@ All recommendation and improvement are appreciated.
 Markdown is simple content format, but there are times when Markdown falls short. Often, authors are forced to add raw HTML to Markdown content. Reflow created snippets to get around these limitations.
 A `shortcode` and `web component` are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format for the moment).
 
-{{< row class="row-cols-1 row-cols-md-2" >}}
+{{< grid-layout number-columns="2" >}}
 
 {{< column class="mb-4" >}}
 
@@ -45,7 +45,8 @@ A `shortcode` and `web component` are a simple snippet inside a page that Reflow
 
 {{< /column >}}
 
-{{< /row >}}
+{{< /grid-layout >}}
+
 
 ## Shortcodes
 
@@ -123,7 +124,7 @@ The `web component` must respect a strict shorthand notation so as not to be in 
 
 ### Data Element
 
-To be recognized by reflow, a data element **should** be a xml element with a tag name differents of existing html tag.
+To be recognized by reflow, a data element **should** be a xhtml element with a tag name differents of existing html tags.
 the tag name must start with an alphabetic character (a .. z or A .. Z). The rest of the characters are limited to the following types of characters:
 
 - alphabetic (a .. z, A .. Z)
@@ -205,7 +206,6 @@ Reflow provides the possibility to help the developement your new snippet displa
 
 {{% /card %}}
 ```
-
 
 ## $snippet Variable
 

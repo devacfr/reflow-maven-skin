@@ -16,16 +16,16 @@
 #**
  * Render layout snippet
  * Usage:
- * {{< layout-grid number-columns="" >}}
+ * {{< grid-layout number-columns="" >}}
  * ...
- * {{< /layout-grid >}}
+ * {{< /grid-layout >}}
  *#
 #*  *##if( ${snippet.html})##
 #*      *##set($number-columns = "2" )
-#*      *##if( $snippet.attr['number-columns'])
-#*          *##set($number-columns = $snippet.attr['number-columns'])
+#*      *##if( $snippet.attrs['number-columns'])
+#*          *##set($number-columns = $snippet.attrs['number-columns'])
 #*      *##end
-<div class="row row-cols-1 row-cols-md-$number-columns">
+<div class="row row-cols-1 row-cols-md-${number-columns}">
     #render_html( ${snippet} )
 </div>
 #*  *##end

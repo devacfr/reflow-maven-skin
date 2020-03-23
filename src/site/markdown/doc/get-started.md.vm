@@ -68,7 +68,7 @@ The configuration is specified in the [`site.xml` site descriptor][site-xml] fil
 
 The documentation is split over several pages, describing the various configuration options:
 
-{{< layout-grid number-columns="2" >}}
+{{< grid-layout number-columns="2" >}}
 
 {{< column class="mb-4" >}}
 
@@ -121,6 +121,21 @@ The documentation is split over several pages, describing the various configurat
 
 ```
   <card-body>
+    <h5 class="card-title no-anchor"><a href="#snippet.html">Snippets</a></h5>
+    <p class="card-text text-secondary">A <code>shortcode</code> and <code>web component</code> are a simple snippet inside a page that Reflow will render using a predefined template..</p>
+  </card-body>
+```
+
+{{% /card  %}}
+
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+
+{{% card class="h-100" %}}
+
+```
+  <card-body>
     <h5 class="card-title no-anchor"><a href="#configuration.html">Other configuration</a></h5>
     <p class="card-text text-secondary">Various configuration options: page title, menus, javaScript goodies, CSS updates and more.</p>
   </card-body>
@@ -145,7 +160,9 @@ The documentation is split over several pages, describing the various configurat
 
 {{< /column >}}
 
-{{< /layout-grid >}}
+{{< /grid-layout >}}
+
+---
 
 Note that all configuration options can be set on a per-page basis ([see below](#get-started_toc_per-page-configuration)).
 

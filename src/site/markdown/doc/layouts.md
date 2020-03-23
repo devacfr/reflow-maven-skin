@@ -1,6 +1,6 @@
 # Layout
 
-{{< layout-grid number-columns="2" >}}
+{{< grid-layout number-columns="2" >}}
 
 {{< column class="mb-4" >}}
 
@@ -62,4 +62,4 @@
 
 {{< /column >}}
 
-{{< /layout-grid >}}
+{{< /grid-layout >}}
