@@ -15,8 +15,8 @@ To support such deployments of Reflow skin, the configuration allows using local
 
 $h2 Local Bootstrap & jQuery
 
-support <span class="badge badge-primary">v1.1</span><br/>
-element <span class="badge badge-secondary">reflow</span>
+support {< badge color="primary" text="v1.1" />}}<br/>
+element {< badge color="secondary" text="reflow" />}}
 
 To force the generated site use only local CSS/JavaScript resources, use the `<localResources>`
 flag:
@@ -93,7 +93,7 @@ these files will have to be repeated for each sub-module.
 
 $h2 Additional CSS files
 
-element <span class="badge badge-secondary">site.xml</span>
+element {< badge color="secondary" text="site.xml" />}}
 
 Additional CSS files (or other resources) can be added to the page head using [`<body><head>` configuration][body-head-config] in the `site.xml` site descriptor.
 This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.
@@ -137,8 +137,8 @@ Furthermore, the injected XHTML allows using Velocity variables. Therefore you c
 
 $h2 Additional JavaScript files
 
-support <span class="badge badge-primary">v1.1</span><br/>
-element <span class="badge badge-secondary">reflow</span>
+support {< badge color="primary" text="v1.1" />}}<br/>
+element {< badge color="secondary" text="reflow" />}}
 
 JavaScript files can be added to the page head together with CSS files. However, for performance reasons, it can be better to reference JavaScript files at the end of the document. To place custom XHTML at the end of the page (before the `</body>` tag), use the `<endContent>` element, which also supports Velocity variables, e.g.:
 

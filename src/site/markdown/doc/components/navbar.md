@@ -6,8 +6,8 @@ Navbar is Bootstrap responsive navigation header component fixed to the top of p
 
 ## Usage
 
-support <span class="badge badge-primary">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+support {< badge color="primary" text="v2.0" />}}<br/>
+element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="component" />}}
 
 ```xml
 <navbar filterMenu="Regex filter"
@@ -25,21 +25,21 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
 </navbar>
 ```
 
-- **filterMenu** <span class="badge badge-light">v2.0</span> - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
+- **filterMenu** {< badge color="light" text="v2.0" />}} - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
     expression matches, adds the menu to the top navigation.
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
-- **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
-- **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
-- **center** <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
-- **alignMenu** <span class="badge badge-light">v2.1</span> - Sets the alignment of menu to the `left` or pushing to the `right` (**default**).
+- **cssClass** {< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
+- **theme** {< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
+- **background** {< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
+- **center** {< badge color="light" text="v2.1" />}} - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
+- **alignMenu** {< badge color="light" text="v2.1" />}} - Sets the alignment of menu to the `left` or pushing to the `right` (**default**).
 
 ### Image element
 
 Add image to the brand part of navbar.
 
-- **src** <span class="badge badge-light">v2.0</span> - the path location of image to use.
-- **width** <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or `null`.
-- **height** <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or `null`.
+- **src** {< badge color="light" text="v2.0" />}} - the path location of image to use.
+- **width** {< badge color="light" text="v2.0" />}} - the width of image, 30 is the default if value is empty or `null`.
+- **height** {< badge color="light" text="v2.0" />}} - the height of image, 30 is the default if value is empty or `null`.
 
 ### Additional Menu
 
@@ -94,8 +94,8 @@ Here is a table containing different configuration of Navbar.
 
 ## Brand
 
-support <span class="badge badge-primary">v1.0</span><br/>
-element <span class="badge badge-secondary">reflow</span>
+support {< badge color="primary" text="v1.0" />}}<br/>
+element {< badge color="secondary" text="reflow" />}}
 
 The brand text (or image) appearing in the left of the top navigation bar can be customised using
 `<brand>` element. You can set both the contents and the link.

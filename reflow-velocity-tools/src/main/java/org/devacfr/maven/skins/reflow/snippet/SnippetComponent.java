@@ -43,7 +43,8 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     }
 
     /**
-     * @param name
+     * @param element
+     * @param type
      */
     public SnippetComponent(@Nonnull final Element element, @Nonnull final Type type) {
         super(element);
@@ -66,8 +67,8 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     /**
      * Render the {@link SnippetComponent} between the {@code startElement} and {@code endElement} include.
      *
-     * @param component
-     *            the snippet component to render
+     * @param context
+     *            the snippet context to use
      */
     public void render(final SnippetContext context) {
         try {

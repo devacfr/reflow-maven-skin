@@ -4,8 +4,8 @@ Navside menu component is a part of page [documentation layout][documentation-la
 
 ## Usage
 
-support <span class="badge badge-primary">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span>
+support {< badge color="primary" text="v2.0" />}}<br/>
+element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="component" />}}
 
 
 
@@ -15,8 +15,8 @@ element <span class="badge badge-secondary">reflow</span> <span class="badge bad
               background="bootstrap colour theme" />
 ```
 
-- **cssClass** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is `null`.
-- **theme** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
-- **background** <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
+- **cssClass** {< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
+- **theme** {< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
+- **background** {< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
 
 [documentation-layout]: #documentation-layout

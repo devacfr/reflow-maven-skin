@@ -11,8 +11,8 @@ The layout is centered on a `navside` menu. Navside menu is vertical multi level
 
 ## Usage
 
-support <span class="badge badge-primary">v2.0</span><br/>
-element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span>
+support {< badge color="primary" text="v2.0" />}}<br/>
+element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="element" />}}
 
 To declare a page as documentation layout, create an empty page (`documentation.html` in example below) and set `type` attribute with value `doc` and add a **required** `<menu>` element as example below.
 
@@ -31,8 +31,8 @@ To declare a page as documentation layout, create an empty page (`documentation.
 </pages>
 ```
 
-- **project** <span class="badge badge-light">v1.0</span> - `project` attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. **Be careful** that `name` attribute in root `<project>` element in site.xml is used to set the site title.
-- **selectFirstOnExpand** <span class="badge badge-light">v2.0</span> - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is `true`.
+- **project** {< badge color="light" text="v1.0" />}} - `project` attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. **Be careful** that `name` attribute in root `<project>` element in site.xml is used to set the site title.
+- **selectFirstOnExpand** {< badge color="light" text="v2.0" />}} - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is `true`.
 
 The example above produces the following `navside` menu:
 

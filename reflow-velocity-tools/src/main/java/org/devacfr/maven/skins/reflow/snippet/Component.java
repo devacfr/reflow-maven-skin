@@ -70,9 +70,9 @@ public class Component<T extends Component<T>> {
     }
 
     /**
-     * @param name
+     * @param node
      */
-    public Component(@Nonnull final Node node) {
+    protected Component(@Nonnull final Node node) {
         this.node = requireNonNull(node);
     }
 

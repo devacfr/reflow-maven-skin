@@ -6,8 +6,8 @@ Body layout is composed only header (navbar), body and footer. You can play only
 
 ## Usage
 
-support <span class="badge badge-primary">v2.3</span> <span class="badge badge-success">new</span><br/>
-element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span>
+support {{< badge color="primary" text="New in v2.3" />}} <br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="element" />}}
 
 To declare a page as body layout, create an page (`index.html` in example below) and set `type` attribute with value `body`.
 
@@ -20,4 +20,4 @@ To declare a page as body layout, create an page (`index.html` in example below)
 </pages>
 ```
 
-- **project** <span class="badge badge-light">v1.0</span> - `project` attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. **Be careful** that `name` attribute in root `<project>` element in site.xml is used to set the site title.
+- **project** {{< badge color="light" text="v1.0" />}} - `project` attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. **Be careful** that `name` attribute in root `<project>` element in site.xml is used to set the site title.
