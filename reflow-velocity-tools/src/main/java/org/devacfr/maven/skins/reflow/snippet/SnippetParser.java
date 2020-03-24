@@ -87,7 +87,7 @@ public class SnippetParser {
         snippetContext.reset();
         snippetContext.setConfig(config);
 
-        // find all snippet start
+        // find all snippets
         final Document doc = resolver.normalize(Jsoup.parse(htmlSource));
 
         final Elements elements = resolver.collect(doc);
@@ -96,7 +96,7 @@ public class SnippetParser {
             try {
                 parse();
             } catch (final Exception ex) {
-                throw new RuntimeException("error on parse token " + currentToken, ex);
+                throw new SnippetParseException("error on parse token " + currentToken, ex);
             }
         }
         snippetContext.setHtmlSource(doc.html());
@@ -105,12 +105,12 @@ public class SnippetParser {
 
     protected void parse() {
         if (!it.hasNext()) {
-            throw new RuntimeException("EOF");
+            throw new SnippetParseException("EOF");
         }
         final Element element = it.next();
         currentToken = resolver.create(element);
         if (currentToken == null) {
-            throw new RuntimeException("unknown component: " + element);
+            throw new SnippetParseException("unknown component: " + element);
         }
         switch (currentToken.type()) {
             case webComponent:

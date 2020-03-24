@@ -13,30 +13,32 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-#if( $velocity.resourceExists("META-INF/maven/site-macros.vm") )
-#*  *##parse("META-INF/maven/site-macros.vm")
-#end
+#if( $velocity.resourceExists("META-INF/maven/site-macros.vm") )##
+#*  *##parse("META-INF/maven/site-macros.vm")##
+#end##
 #**
  * display information of snippet
  *#
 #macro( debug $snippet $isRoot $indent )##
-#*  *##if ( $snippet )##
-#*      *##if( $isRoot )##
-#*          *##set( $indent = 0 )##
+#*  *##if ( !$snippet )##
+#*      *##break##
+#* *##end##
+#*  *##if( $isRoot )##
+#*      *##set( $indent = 0 )##
 <pre class="placeholder-debug text-left">
     <code>
-#*      *##end##
-#*      *##set( $space = $display.space($indent) )##
+#*  *##end##
+#*  *##set( $sp = $display.space( $indent ) )##
 ##
-${space}#if( $indent > 0)- #{end}name: ${snippet.name}
-#*      *##if( $isRoot)
-${space}type: ${snippet.type}
-#*      *##end##
+${sp}#if( $indent > 0 )- #{end}name: ${snippet.name}
 ##
-#*      *##if( $indent > 0)##
-#*          *##set( $indent2 = $indent + 2 )##
-#*          *##set($space = $display.space($indent2) )##
-#*      *##end##
+#*  *##if( $indent > 0 )##
+#*      *##set( $indent2 = $indent + 2 )##
+#*      *##set( $sp = $display.space( $indent2 ) )##
+#*  *##end##
+#*  *##if( ${snippet.type} )
+${sp}type: ${snippet.type}
+#*  *##end##
 ##
 #*  *##set( $html = "" )##
 #*  *##if( $snippet.ownHtml )##
@@ -46,32 +48,31 @@ ${space}type: ${snippet.type}
 #*  *##if( $snippet.attrs )##
 #*      *##set( $attrs = $esc.html( $htmlTool.normaliseWhitespace( $snippet.attrs.toString() ) ) )##
 #*  *##end##
-${space}attributes: $attrs
-${space}isHtmlTag: ${snippet.isHtmlTag()}
-${space}ownHtml: '$html'
-${space}parent: $!snippet.parent.name
+${sp}attributes: $attrs
+${sp}isHtmlTag: ${snippet.isHtmlTag()}
+${sp}ownHtml: '$html'
+${sp}parent: $!snippet.parent.name
 ##
-#*      *##if( !${snippet.children.isEmpty()} )##
+#*  *##if( !${snippet.children.isEmpty()} )##
 ##
-${space}children:
+${sp}children:
 ##
-#*          *##set( $indent = $indent + 4 )##
-#*          *##foreach( $child in ${snippet.children} )##
-#*              *##debug($child false $indent)##
-#*          *##end##
-#*          *##set( $indent = $indent - 4 )##
-#*          *##set($space = $display.space($indent) )##
+#*      *##set( $indent = $indent + 4 )##
+#*      *##foreach( $child in ${snippet.children} )##
+#*          *##debug( $child false $indent )##
 #*      *##end##
-#*      *##if( $isRoot )##
+#*      *##set( $indent = $indent - 4 )##
+#*      *##set( $sp = $display.space($indent) )##
+#*  *##end##
+#*  *##if( $isRoot )##
     </code>
 </pre>
-#*      *##end##
-#* *##end##
+#*  *##end##
 #end##
 #**
  * render html snippet
  *#
-#macro(render_html $snippet )##
+#macro( render_html $snippet )##
 #*  *##if( ${snippet} && ${snippet.html} )##
 #*      *##evaluate( ${snippet.html} )##
 #*  *##end##

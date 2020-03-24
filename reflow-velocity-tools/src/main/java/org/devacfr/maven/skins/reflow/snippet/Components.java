@@ -51,7 +51,10 @@ public class Components extends ArrayList<Component<?>> {
             if (sb.length() != 0) {
                 sb.append("\n");
             }
-            sb.append(component.getHtml());
+            final String html = component.getHtml();
+            if (html != null) {
+                sb.append(html);
+            }
         }
         return StringUtil.releaseBuilder(sb);
     }

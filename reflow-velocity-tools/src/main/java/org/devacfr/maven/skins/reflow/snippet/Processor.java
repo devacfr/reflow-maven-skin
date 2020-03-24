@@ -59,7 +59,7 @@ public abstract class Processor {
     public void parse(final ComponentToken token) {
         switch (token.tag()) {
             case empty: {
-                render(createSnippetComponent(token, null), token.getElement(), null);
+                parser.getSnippetContext().render(createSnippetComponent(token, null));
                 break;
             }
             case start: {
@@ -73,56 +73,11 @@ public abstract class Processor {
                     throw new RuntimeException(
                             "start token " + startToken + " should be closed, but next token is " + token);
                 }
-                render(createSnippetComponent(startToken, token), startToken.getElement(), token.getElement());
+                parser.getSnippetContext().render(createSnippetComponent(startToken, token));
                 break;
             }
             default:
                 break;
-        }
-    }
-
-    /**
-     * Render the {@link SnippetComponent} between the {@code startElement} and {@code endElement} include.
-     *
-     * @param component
-     *            the snippet component to render
-     * @param startElement
-     *            the start element located the start of rendering
-     * @param endElement
-     *            the end element located the end of rendering
-     */
-    public void render(final SnippetComponent<?> component, final Element startElement, final Element endElement) {
-        final Element parent = startElement.parent();
-        final Node previousElement = startElement.previousSibling();
-        final SnippetContext snippetContext = parser.getSnippetContext();
-        if (endElement != null) {
-            boolean startCopy = false;
-            final List<Node> nodesToRemove = Lists.newArrayList();
-            for (final Node n : parent.childNodes()) {
-
-                if (n.equals(startElement)) {
-                    startCopy = true;
-                }
-                if (startCopy) {
-                    nodesToRemove.add(n);
-                }
-                if (n.equals(endElement)) {
-                    break;
-                }
-            }
-            nodesToRemove.forEach((node) -> node.remove());
-        } else {
-            startElement.remove();
-        }
-
-        if (previousElement != null) {
-            previousElement.after(component.render(snippetContext));
-        } else {
-            if (parent.children().first() != null) {
-                parent.children().first().before(component.render(snippetContext));
-            } else {
-                parent.append(component.render(snippetContext));
-            }
         }
     }
 
@@ -149,6 +104,7 @@ public abstract class Processor {
      */
     protected Element convertToHtml(@Nonnull final ComponentToken startToken, @Nullable final ComponentToken endToken) {
         final Element startElement = startToken.getElement();
+        final Node previousElement = startElement.previousSibling();
         Element endElement = null;
         if (endToken != null) {
             endElement = endToken.getElement();
@@ -157,10 +113,14 @@ public abstract class Processor {
         final Node parent = startElement.parentNode();
 
         final StringBuilder html = new StringBuilder(convertElementToHtml(startElement));
+        final List<Node> nodesToRemove = Lists.newArrayList();
+        nodesToRemove.add(startElement);
         if (endElement != null) {
             boolean startCopy = false;
+
             for (final Node n : parent.childNodes()) {
                 if (n.equals(endElement)) {
+                    nodesToRemove.add(n);
                     break;
                 }
                 if (startCopy) {
@@ -169,6 +129,7 @@ public abstract class Processor {
                     } catch (final IOException e) {
                         throw new RuntimeException(e.getMessage(), e);
                     }
+                    nodesToRemove.add(n);
                 }
                 if (n.equals(startElement)) {
                     startCopy = true;
@@ -177,7 +138,20 @@ public abstract class Processor {
             html.append(convertElementToHtml(endElement));
         }
         tmp.append(html.toString());
-        return tmp.children().first();
+        final Element component = tmp.children().first();
+        final Element parentElement = startElement.parent();
+
+        if (previousElement != null) {
+            previousElement.after(component);
+        } else {
+            if (parentElement.children().first() != null) {
+                parentElement.children().first().before(component);
+            } else {
+                parentElement.children().add(component);
+            }
+        }
+        nodesToRemove.forEach((node) -> node.remove());
+        return component;
     }
 
     /**

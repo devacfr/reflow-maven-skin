@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2012-2020 Christophe Friederich
  *
@@ -22,6 +21,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -52,9 +52,11 @@ import org.apache.velocity.tools.generic.XmlTool;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.URITool;
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,7 +87,11 @@ public class SnippetContext {
     /** */
     private ISkinConfig config;
 
+    /** */
+    private final ToolManager toolManager;
+
     public SnippetContext() {
+        this.toolManager = createToolManaged();
     }
 
     public void reset() {
@@ -126,13 +132,28 @@ public class SnippetContext {
         return htmlSource;
     }
 
-    @Nullable
-    public SnippetComponent<?> create(@Nonnull final Element element,
+    @Nonnull
+    SnippetComponent<?> create(@Nonnull final Element element,
         @Nonnull final ComponentToken startToken,
         @Nullable final ComponentToken endToken) {
         requireNonNull(element);
         requireNonNull(startToken);
-        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, startToken, endToken);
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, null, startToken.type());
+        addComponent(component);
+        recurciveCreateComponent(element, component);
+        return component;
+    }
+
+    @Nullable
+    private SnippetComponent<?> create(@Nonnull final Element element, final Component<?> commponent) {
+        requireNonNull(element);
+        Type type = null;
+        if (element.hasAttr("shortcode")) {
+            type = Type.shortcode;
+        } else if (element.hasAttr("webcomponent")) {
+            type = Type.webComponent;
+        }
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, commponent, type);
         addComponent(component);
         recurciveCreateComponent(element, component);
         return component;
@@ -148,26 +169,46 @@ public class SnippetContext {
                 component = Component.createComponent(child, parent, isKnownHtmlTag);
             } else if (child instanceof Element) {
                 final Element el = (Element) child;
-                isKnownHtmlTag = el.tag().isKnownTag();
-                component = Component.createComponent(el, parent, isKnownHtmlTag);
+                if (isSnippet(el)) {
+                    component = create(el, parent);
+                } else {
+                    isKnownHtmlTag = el.tag().isKnownTag();
+                    component = Component.createComponent(el, parent, isKnownHtmlTag);
+                    recurciveCreateComponent(el, component);
+                }
             }
-            if (component == null) {
-                return;
+            if (component != null) {
+                parent.addChild(component);
             }
-            parent.addChild(component);
-            // is html tag?
-            if (!isKnownHtmlTag) {
-                recurciveCreateComponent(child, component);
-            }
-
         });
     }
 
-    public String render(final SnippetComponent<?> component) {
+    private boolean isSnippet(final Element element) {
+        return element.hasAttr("shortcode") || element.hasAttr("webcomponent");
+    }
 
+    private boolean hasChildrenSnippet(final Element element) {
+        final Elements els = element.select("[shortcode],[webcomponent]");
+        return !els.isEmpty();
+    }
+
+    protected void render(final SnippetComponent<?> component) {
+        traverseTee(component, (c) -> {
+            if (c instanceof SnippetComponent) {
+                ((SnippetComponent<?>) c).render(this);
+            }
+        });
+        component.render(this);
+    }
+
+    private void traverseTee(final Component<?> component, final Consumer<Component<?>> consumer) {
+        final Consumer<Component<?>> traverse = (c) -> traverseTee(c, consumer);
+        component.getChildren().forEach(consumer.andThen(traverse));
+    }
+
+    protected String renderComponent(final SnippetComponent<?> component) {
         final StringWriter writer = new StringWriter();
         mergeTemplate(component, writer);
-
         return writer.toString();
     }
 
@@ -179,7 +220,7 @@ public class SnippetContext {
             final String filePath = path + '/' + component.getName() + ".vm";
             if (Velocity.resourceExists(filePath)) {
                 found = true;
-                final Context context = createToolManagedVelocityContext();
+                final Context context = createVelocityContext();
                 context.put("snippet", component);
                 context.put("snippetPath", filePath);
                 context.put("config", this.config);
@@ -206,7 +247,14 @@ public class SnippetContext {
      *
      * @return a Velocity tools managed context
      */
-    protected Context createToolManagedVelocityContext() {
+    protected Context createVelocityContext() {
+        return toolManager.createContext();
+    }
+
+    /**
+     * @return
+     */
+    protected ToolManager createToolManaged() {
 
         final EasyFactoryConfiguration config = new EasyFactoryConfiguration(false);
         config.property("safeMode", Boolean.FALSE);
@@ -233,8 +281,7 @@ public class SnippetContext {
 
         final ToolManager manager = new ToolManager(false, false);
         manager.configure(config);
-
-        return manager.createContext();
+        return manager;
     }
 
 }

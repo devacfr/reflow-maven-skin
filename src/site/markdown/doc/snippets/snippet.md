@@ -47,7 +47,6 @@ A `shortcode` and `web component` are a simple snippet inside a page that Reflow
 
 {{< /grid-layout >}}
 
-
 ## Shortcodes
 
 The shortcode can be construct as a empty element tag `{{< shortcode attribute="value" />}}` or with a start tag  `{{< shortcode attribute="value" >}}` with attributes and a end tag  `{{< /shortcode >}}`.
@@ -146,6 +145,48 @@ the tag name must start with an alphabetic character (a .. z or A .. Z). The res
 -->
 
 {{% /component%}}
+```
+
+### Nested Snippets
+
+Yes, it is possible to add snippets in a web component. The snippet is written in html format `<component shortcode|webcomponent attribute="value">` by indicating the type of snippet. This example includes the shortcode `badge`.
+
+{{< example >}}
+
+{{% card style="width: 18rem;" %}}
+
+<!--
+  <card-image>
+    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
+      <title>Placeholder</title>
+      <rect width="100%" height="100%" fill="#868e96"></rect>
+      <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+    </svg>
+  </card-image>
+  <card-body>
+    <h5 class="card-title no-anchor">Card title <badge shortcode color="success" text="NEW" /></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </card-body>
+-->
+
+{{% /card %}}
+
+{{< /example >}}
+
+```xml
+{{% card style="width: 18rem;" %}}
+
+<!--
+  <card-image src="..." alt="..." />
+  <card-body>
+    <h5 class="card-title no-anchor">Card title <badge shortcode color="success" text="NEW" /></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </card-body>
+-->
+
+{{% /card %}}
 ```
 
 ### Web Component Template

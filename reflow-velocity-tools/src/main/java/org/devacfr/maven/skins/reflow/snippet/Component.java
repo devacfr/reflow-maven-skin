@@ -21,15 +21,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
+import org.jsoup.parser.Tag;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
 /**
@@ -39,15 +41,6 @@ import com.google.common.collect.Maps;
  * @version 2.4
  */
 public class Component<T extends Component<T>> {
-
-    /** */
-    private final String name;
-
-    /** */
-    private String html;
-
-    /** */
-    private final boolean isHtmlTag;
 
     /** */
     private final Map<String, String> attributes = Maps.newHashMap();
@@ -61,46 +54,33 @@ public class Component<T extends Component<T>> {
     /** */
     private final Map<String, Components> childrenMap = Maps.newHashMap();
 
+    /** */
+    private final Node node;
+
     /**
-     * @param element
+     * @param node
      * @param parent
      * @param isKnownHtmlTag
      * @return
      */
-    public static Component<?> createComponent(@Nonnull final Node element,
+    public static Component<?> createComponent(@Nonnull final Node node,
         final Component<?> parent,
         final boolean isKnownHtmlTag) {
-        String html = null;
-        String tagName = "";
-
-        if (element instanceof Element) {
-            tagName = ((Element) element).tagName();
-        } else {
-            tagName = element.nodeName();
-        }
-
-        if (isKnownHtmlTag) {
-            html = element.outerHtml();
-        }
-
-        return new Component<>(tagName, isKnownHtmlTag).withParent(parent)
-                .addAttributes(element.attributes())
-                .withHtml(html);
+        return new Component<>(node).withParent(parent).addAttributes(node.attributes());
     }
 
     /**
      * @param name
      */
-    public Component(@Nonnull final String name, final boolean isHtmlTag) {
-        this.name = requireNonNull(name.toLowerCase());
-        this.isHtmlTag = isHtmlTag;
+    public Component(@Nonnull final Node node) {
+        this.node = requireNonNull(node);
     }
 
     /**
      * @return the name
      */
     public String getName() {
-        return name;
+        return node.nodeName();
     }
 
     /**
@@ -115,24 +95,33 @@ public class Component<T extends Component<T>> {
      * @return
      */
     public boolean isHtmlTag() {
-        return isHtmlTag;
+        return node instanceof TextNode || Tag.isKnownTag(node.nodeName());
     }
 
     /**
      * @return
      */
     public String getHtml() {
-        if (this.children.isEmpty()) {
-            return this.html;
+        if (!isHtmlTag()) {
+            if (children.isEmpty()) {
+                return null;
+            } else {
+                return children.html();
+            }
+        } else {
+            return this.node.outerHtml();
         }
-        return this.children.html();
     }
 
     /**
      * @return
      */
     public String getOwnHtml() {
-        return this.html;
+        if (!isHtmlTag()) {
+            return null;
+        } else {
+            return this.node.outerHtml();
+        }
     }
 
     /**
@@ -142,17 +131,12 @@ public class Component<T extends Component<T>> {
         return parent;
     }
 
-    /**
-     * @param html
-     * @return
-     */
-    public T withHtml(final String html) {
-        if (Strings.isNullOrEmpty(html)) {
-            this.html = null;
-        } else {
-            this.html = html;
+    @Nullable
+    protected Element getElement() {
+        if (this.node instanceof Element) {
+            return (Element) this.node;
         }
-        return self();
+        return null;
     }
 
     /**
@@ -264,10 +248,10 @@ public class Component<T extends Component<T>> {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("name", this.name)
-                .add("isHtmlTag", this.isHtmlTag)
+                .add("name", this.getName())
+                .add("isHtmlTag", this.isHtmlTag())
                 .add("attributes", this.attributes)
-                .add("children", this.children.stream().map((cpt) -> cpt.name).collect(Collectors.toList()))
+                .add("children", this.children.stream().map((cpt) -> cpt.getName()).collect(Collectors.toList()))
                 .toString();
     }
 }

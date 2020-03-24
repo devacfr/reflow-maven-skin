@@ -451,7 +451,8 @@
         <div class="row">
           <div class="col-md-12">
             <p class="copyright" style="font-size: .8rem">
-            &copy; ${this.inceptionYear}-2020 Friederich Christophe. <br/> Apache&copy;, Apache Maven&copy;, Apache Doxia&copy; are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries.
+            #set ( $currentYear = ${currentDate.year} + 1900 )
+            &copy; ${this.inceptionYear}-${currentYear} Friederich Christophe. All rights reserved.<br/> Apache&copy;, Apache Maven&copy;, Apache Doxia&copy; are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries.
             All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes. Other names may be trademarks of their respective owners.
             </p>
           </div>

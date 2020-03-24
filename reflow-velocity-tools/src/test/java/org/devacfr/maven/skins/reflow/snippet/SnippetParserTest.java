@@ -30,12 +30,8 @@ public class SnippetParserTest extends MockitoTestCase {
     @Test
     public void shouldReplaceSnippetByHtml() throws Exception {
         verify((htmlSource) -> {
-            SnippetContext contextSnippet;
             try {
-                contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(config, htmlSource);
-                final String html = contextSnippet.html();
-                return html;
+                return createParser().parse(config, htmlSource).html();
             } catch (final IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }
@@ -46,12 +42,8 @@ public class SnippetParserTest extends MockitoTestCase {
     @Test
     public void shouldRenderCard() {
         verify((htmlSource) -> {
-            SnippetContext contextSnippet;
             try {
-                contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(config, htmlSource);
-                final String html = contextSnippet.html();
-                return html;
+                return createParser().parse(config, htmlSource).html();
             } catch (final IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }
@@ -62,12 +54,8 @@ public class SnippetParserTest extends MockitoTestCase {
     @Test
     public void shouldRenderBadge() {
         verify((htmlSource) -> {
-            SnippetContext contextSnippet;
             try {
-                contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(config, htmlSource);
-                final String html = contextSnippet.html();
-                return html;
+                return createParser().parse(config, htmlSource).html();
             } catch (final IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }
@@ -78,17 +66,29 @@ public class SnippetParserTest extends MockitoTestCase {
     @Test
     public void shouldRenderLayout() {
         verify((htmlSource) -> {
-            SnippetContext contextSnippet;
             try {
-                contextSnippet = new SnippetParser().insertResourcePath(getPackagePath().toString(), 0)
-                        .parse(config, htmlSource);
-                final String html = contextSnippet.html();
-                return html;
+                return createParser().parse(config, htmlSource).html();
             } catch (final IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }
 
         }, "html");
+    }
+
+    @Test
+    public void shouldRenderNestedComponent() {
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+
+        }, "html");
+    }
+
+    private SnippetParser createParser() {
+        return new SnippetParser().insertResourcePath(getPackagePath().toString(), 0);
     }
 
 }

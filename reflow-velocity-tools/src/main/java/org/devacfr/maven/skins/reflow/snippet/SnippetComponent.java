@@ -21,6 +21,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 /**
@@ -32,26 +34,19 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     /** */
     final private Type type;
 
-    /**
-     * @param element
-     * @param startToken
-     * @param endToken
-     * @return
-     */
+    @Nullable
     public static SnippetComponent<?> createSnippet(@Nonnull final Element element,
-        @Nonnull final ComponentToken startToken,
-        @Nullable final ComponentToken endToken) {
+        final Component<?> parent,
+        final Type type) {
         requireNonNull(element);
-        requireNonNull(startToken);
-        final Type type = startToken.type();
-        return new SnippetComponent<>(element.tagName(), type).addAttributes(element.attributes());
+        return new SnippetComponent<>(element, type).addAttributes(element.attributes()).withParent(parent);
     }
 
     /**
      * @param name
      */
-    public SnippetComponent(@Nonnull final String name, @Nonnull final Type type) {
-        super(name, false);
+    public SnippetComponent(@Nonnull final Element element, @Nonnull final Type type) {
+        super(element);
         this.type = requireNonNull(type);
     }
 
@@ -69,12 +64,26 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     }
 
     /**
-     * @param context
-     * @return
+     * Render the {@link SnippetComponent} between the {@code startElement} and {@code endElement} include.
+     *
+     * @param component
+     *            the snippet component to render
      */
-    public String render(final SnippetContext context) {
+    public void render(final SnippetContext context) {
         try {
-            return context.render(this);
+            final Element element = getElement();
+            final Document doc = Jsoup.parse(context.renderComponent(this));
+            if (doc.body().children().isEmpty()) {
+                return;
+            }
+            if (doc.body().children().size() > 1) {
+                final Element div = new Element("div");
+                doc.body().children().forEach((e) -> div.appendChild(e));
+                element.replaceWith(div);
+            } else {
+                final Element el = doc.body().children().first();
+                element.replaceWith(el);
+            }
         } catch (final Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
