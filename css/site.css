@@ -187,6 +187,18 @@ h3 {
     fill: #46484a;
 }
 
+.footer .footer--news {
+    border-radius: 5px;
+    border-color: var(--secondary);
+    border-width: 1px;
+    border-style: dashed;
+}
+
+.footer--news a {
+    color: var(--yellow);
+}
+
+
 
 
 .highlight {

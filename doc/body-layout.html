@@ -6,25 +6,24 @@
             <h1 id="doc-body-layout_toc_page-body-layout">Page Body layout</h1> 
 <p>Body layout is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content. Let’s be free in your inspiration to create a attractive home page.</p> 
 <p><img src="../images/doc/body-layout-scheme.png" alt="body layout" class="img-fluid"></p> 
-<section> 
- <h2 id="doc-body-layout_toc_usage1">Usage</h2> 
- <p>support <span class="badge badge-primary">v2.3</span> <span class="badge badge-success">new</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
- <p>To declare a page as body layout, create an page (<code>index.html</code> in example below) and set <code>type</code> attribute with value <code>body</code>.</p> 
+<h2 id="doc-body-layout_toc_usage1">Usage</h2> 
+<p>support <span class="badge badge-primary">New in v2.3</span> <br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
+<p>To declare a page as body layout, create an page (<code>index.html</code> in example below) and set <code>type</code> attribute with value <code>body</code>.</p> 
+<div class="source"> 
  <div class="source"> 
-  <div class="source"> 
-   <pre>&lt;pages&gt;
+  <pre>&lt;pages&gt;
     ...
     &lt;index type="body" project="project-id"&gt;
     &lt;/index&gt;
     ...
 &lt;/pages&gt;
 </pre> 
-  </div> 
  </div> 
- <ul> 
-  <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code>&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
- </ul> 
-</section>
+</div> 
+<ul> 
+ <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code> 
+   <project></project></code> element in site.xml is used to set the site title.</li> 
+</ul>
         </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">

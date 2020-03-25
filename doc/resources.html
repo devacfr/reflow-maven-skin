@@ -8,7 +8,7 @@
 <p>To support such deployments of Reflow skin, the configuration allows using local resources. Furthermore, custom resources can also be easily added to the generated website. These include newer versions of the used libraries as well as arbitrary scripts.</p> 
 <section> 
  <h2 id="doc-resources_toc_local-bootstrap--jquery">Local Bootstrap &amp; jQuery</h2> 
- <p>support <span class="badge badge-primary">v1.1</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+ <p>support {&lt; badge color=“primary” text=“v1.1” /&gt;}}<br> element {&lt; badge color=“secondary” text=“reflow” /&gt;}}</p> 
  <p>To force the generated site use only local CSS/JavaScript resources, use the <code>&lt;localResources&gt;</code> flag:</p> 
  <div class="source"> 
   <div class="source"> 
@@ -77,7 +77,7 @@
 </section> 
 <section> 
  <h2 id="doc-resources_toc_additional-css-files">Additional CSS files</h2> 
- <p>element <span class="badge badge-secondary">site.xml</span></p> 
+ <p>element {&lt; badge color=“secondary” text=“site.xml” /&gt;}}</p> 
  <p>Additional CSS files (or other resources) can be added to the page head using <a class="externalLink" href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head"><code>&lt;body&gt;&lt;head&gt;</code> configuration</a> in the <code>site.xml</code> site descriptor. This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.</p> 
  <p>The <code>&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="reflow-documentation.html#configuration_toc_code-highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code>&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p> 
  <div class="source"> 
@@ -115,7 +115,7 @@
 </section> 
 <section> 
  <h2 id="doc-resources_toc_additional-javascript-files">Additional JavaScript files</h2> 
- <p>support <span class="badge badge-primary">v1.1</span><br> element <span class="badge badge-secondary">reflow</span></p> 
+ <p>support {&lt; badge color=“primary” text=“v1.1” /&gt;}}<br> element {&lt; badge color=“secondary” text=“reflow” /&gt;}}</p> 
  <p>JavaScript files can be added to the page head together with CSS files. However, for performance reasons, it can be better to reference JavaScript files at the end of the document. To place custom XHTML at the end of the page (before the <code>&lt;/body&gt;</code> tag), use the <code>&lt;endContent&gt;</code> element, which also supports Velocity variables, e.g.:</p> 
  <div class="source"> 
   <div class="source"> 

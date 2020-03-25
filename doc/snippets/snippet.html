@@ -3,7 +3,7 @@
 
   <div class="row no-gutters">
     <div class="col-lg-12 col-xl-9">
-            <h1 id="doc-snippets-snippet_toc_working-with-snippets-draft">Working with Snippets <span class="badge badge-warning">DRAFT</span> </h1> 
+            <h1 id="doc-snippets-snippet_toc_working-with-snippets-draft">Working with Snippets <span class="badge badge-warning">DRAFT</span></h1> 
 <span class="badge badge-primary">New in v2.4</span> 
 <div class="bd-callout bd-callout-warning"> 
  <h4 class="no-anchor" id="doc-snippets-snippet_toc_warning">Warning</h4> 
@@ -94,7 +94,7 @@ Why does the cry assume the dapper sugar?
  <li>start and end tags must be placed at the start of a line.</li> 
 </ul> 
 <h3 id="doc-snippets-snippet_toc_data-element">Data Element</h3> 
-<p>To be recognized by reflow, a data element <b>should</b> be a xml element with a tag name differents of existing html tag. the tag name must start with an alphabetic character (a .. z or A .. Z). The rest of the characters are limited to the following types of characters:</p> 
+<p>To be recognized by reflow, a data element <b>should</b> be a xhtml element with a tag name differents of existing html tags. the tag name must start with an alphabetic character (a .. z or A .. Z). The rest of the characters are limited to the following types of characters:</p> 
 <ul> 
  <li>alphabetic (a .. z, A .. Z)</li> 
  <li>numeric (0 .. 9)</li> 
@@ -119,6 +119,41 @@ Why does the cry assume the dapper sugar?
 </pre> 
  </div> 
 </div> 
+<h3 id="doc-snippets-snippet_toc_nested-snippets">Nested Snippets</h3> 
+<p>Yes, it is possible to add snippets in a web component. The snippet is written in html format <code>&lt;component shortcode|webcomponent attribute="value"&gt;</code> by indicating the type of snippet. This example includes the shortcode <code>badge</code>.</p> 
+<div class="bd-example"> 
+ <div class="card" style="width: 18rem;"> 
+  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+   <title>Placeholder</title> 
+   <rect width="100%" height="100%" fill="#868e96"></rect> 
+   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+     Image cap 
+   </text> 
+  </svg> 
+  <div class="card-body"> 
+   <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_card-title-new">Card title <span class="badge badge-success">NEW</span></h5> 
+   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  </div> 
+ </div> 
+</div> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>{{% card style="width: 18rem;" %}}
+
+&lt;!--
+  &lt;card-image src="..." alt="..." /&gt;
+  &lt;card-body&gt;
+    &lt;h5 class="card-title no-anchor"&gt;Card title &lt;badge shortcode color="success" text="NEW" /&gt;&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/card-body&gt;
+--&gt;
+
+{{% /card %}}
+</pre> 
+ </div> 
+</div> 
 <h3 id="doc-snippets-snippet_toc_web-component-template">Web Component Template</h3> 
 <p>The template use <code>$snippet</code> variable to render the web component.</p> 
 <div class="source"> 
@@ -138,7 +173,8 @@ Why does the cry assume the dapper sugar?
 <h3 id="doc-snippets-snippet_toc_debug-mode">Debug Mode</h3> 
 <p>Reflow provides the possibility to help the developement your new snippet displaying its structure in adding the attribute <code>debug=true</code>. In this example, card web component will be used.</p> 
 <div class="bd-example"> 
- <pre class="placeholder-debug text-left">    <code>
+ <div> 
+  <pre class="placeholder-debug text-left">    <code>
 name: card
 type: webComponent
 attributes: {debug=true, style=width: 18rem;}
@@ -157,6 +193,34 @@ children:
           isHtmlTag: true
           ownHtml: '&lt;svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"&gt; &lt;title&gt;Placeholder&lt;/title&gt; &lt;rect width="100%" height="100%" fill="#868e96"&gt;&lt;/rect&gt; &lt;text x="50%" y="50%" fill="#dee2e6" dy=".3em"&gt; Image cap &lt;/text&gt; &lt;/svg&gt;'
           parent: card-image
+          children:
+            - name: title
+              attributes: {}
+              isHtmlTag: true
+              ownHtml: '&lt;title&gt;Placeholder&lt;/title&gt;'
+              parent: svg
+              children:
+                - name: #text
+                  attributes: {#text=Placeholder}
+                  isHtmlTag: true
+                  ownHtml: 'Placeholder'
+                  parent: title
+            - name: rect
+              attributes: {width=100%, fill=#868e96, height=100%}
+              isHtmlTag: false
+              ownHtml: ''
+              parent: svg
+            - name: text
+              attributes: {dy=.3em, x=50%, y=50%, fill=#dee2e6}
+              isHtmlTag: false
+              ownHtml: ''
+              parent: svg
+              children:
+                - name: #text
+                  attributes: {#text=Image cap}
+                  isHtmlTag: true
+                  ownHtml: ' Image cap'
+                  parent: text
     - name: card-body
       attributes: {}
       isHtmlTag: false
@@ -168,30 +232,49 @@ children:
           isHtmlTag: true
           ownHtml: '&lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;'
           parent: card-body
+          children:
+            - name: #text
+              attributes: {#text=Card title}
+              isHtmlTag: true
+              ownHtml: 'Card title'
+              parent: h5
         - name: p
           attributes: {class=card-text}
           isHtmlTag: true
           ownHtml: '&lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;'
           parent: card-body
+          children:
+            - name: #text
+              attributes: {#text=Some quick example text to build on the card title and make up the bulk of the card's content.}
+              isHtmlTag: true
+              ownHtml: 'Some quick example text to build on the card title and make up the bulk of the card's content.'
+              parent: p
         - name: a
           attributes: {href=#, class=btn btn-primary}
           isHtmlTag: true
           ownHtml: '&lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;'
           parent: card-body
+          children:
+            - name: #text
+              attributes: {#text=Go somewhere}
+              isHtmlTag: true
+              ownHtml: 'Go somewhere'
+              parent: a
     </code>
 </pre> 
- <div class="card" style="width: 18rem;"> 
-  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
-   <title>Placeholder</title> 
-   <rect width="100%" height="100%" fill="#868e96"></rect> 
-   <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
-     Image cap 
-   </text> 
-  </svg> 
-  <div class="card-body"> 
-   <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_card-title">Card title</h5> 
-   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-   <a href="#" class="btn btn-primary">Go somewhere</a> 
+  <div class="card" style="width: 18rem;"> 
+   <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"> 
+    <title>Placeholder</title> 
+    <rect width="100%" height="100%" fill="#868e96"></rect> 
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+      Image cap 
+    </text> 
+   </svg> 
+   <div class="card-body"> 
+    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_card-title">Card title</h5> 
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+    <a href="#" class="btn btn-primary">Go somewhere</a> 
+   </div> 
   </div> 
  </div> 
 </div> 
@@ -274,6 +357,34 @@ children:
 </div> 
 <h2 id="doc-snippets-snippet_toc_template1">Template</h2> 
 <p>The template uses <a class="externalLink" href="https://velocity.apache.org/engine/1.7/developer-guide.html">Velocity Template</a> to generate html content. the file have to be located in path <code>src/site/layouts/snippets</code>.</p> 
+<h3 id="doc-snippets-snippet_toc_partial-template">Partial Template</h3> 
+<p>The partial template can be include in content page using <code>partial</code> <a class="externalLink" href="https://maven.apache.org/doxia/macros/index.html">Doxia macro</a>.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;!-- MACRO{partial|file=src/site/layouts/partials/template.html} --&gt;
+</pre> 
+ </div> 
+</div> 
+<p>The path is relative to base directory of project.</p> 
+<p>One of the peculiarities of a partial template is that this content is not modified by Doxia renderer. This means that the tags used in a page can be written directly in html. you just need to set them as a snippet by adding the <code>shortcode</code> or <code>webcomponent</code> attribute.</p> 
+<div class="source"> 
+ <div class="source"> 
+  <pre>&lt;!-- src/site/layouts/partials/template.html --&gt;
+&lt;layout shortcode class="text-center text-light" role="main"&gt;
+    &lt;layout shortcode class="container container-fluid"&gt;
+      &lt;card webcomponent&gt;
+        &lt;card-image src="..." alt="..." /&gt;
+        &lt;card-body&gt;
+          &lt;h5 class="card-title no-anchor"&gt;Card title&lt;/h5&gt;
+          &lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+          &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+        &lt;/card-body&gt;
+      &lt;/card&gt;
+    &lt;/layout&gt;
+&lt;/layout&gt;
+</pre> 
+ </div> 
+</div> 
 <h3 id="doc-snippets-snippet_toc_override-template">Override Template</h3> 
 <p>Template can override existing template.</p>
         </div>
@@ -313,6 +424,9 @@ children:
         <a class="nav-link" href="#doc-snippets-snippet_toc_data-element" title="Data Element">Data Element</a>
     </li>
     <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_nested-snippets" title="Nested Snippets">Nested Snippets</a>
+    </li>
+    <li class="h3">
         <a class="nav-link" href="#doc-snippets-snippet_toc_web-component-template" title="Web Component Template">Web Component Template</a>
     </li>
     <li class="h3">
@@ -332,6 +446,9 @@ children:
     </li>
     <ul class="nav flex-column flex-nowrap nav-collapsible">
             <li class="h3">
+        <a class="nav-link" href="#doc-snippets-snippet_toc_partial-template" title="Partial Template">Partial Template</a>
+    </li>
+    <li class="h3">
         <a class="nav-link" href="#doc-snippets-snippet_toc_override-template" title="Override Template">Override Template</a>
     </li>
     </ul>

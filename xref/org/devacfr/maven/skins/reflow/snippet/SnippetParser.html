@@ -95,7 +95,7 @@
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>          snippetContext.reset();
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>          snippetContext.setConfig(config);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <em class="jxr_comment">// find all snippet start</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <em class="jxr_comment">// find all snippets</em>
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>          <strong class="jxr_keyword">final</strong> Document doc = resolver.normalize(Jsoup.parse(htmlSource));
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> Elements elements = resolver.collect(doc);
@@ -104,7 +104,7 @@
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>              <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>                  parse();
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>              } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception ex) {
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"error on parse token "</span> + currentToken, ex);
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/snippet/SnippetParseException.html">SnippetParseException</a>(<span class="jxr_string">"error on parse token "</span> + currentToken, ex);
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>             }
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>         }
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>         snippetContext.setHtmlSource(doc.html());
@@ -113,12 +113,12 @@
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> parse() {
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">if</strong> (!it.hasNext()) {
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"EOF"</span>);
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/snippet/SnippetParseException.html">SnippetParseException</a>(<span class="jxr_string">"EOF"</span>);
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>         }
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">final</strong> Element element = it.next();
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>         currentToken = resolver.create(element);
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">if</strong> (currentToken == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"unknown component: "</span> + element);
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/snippet/SnippetParseException.html">SnippetParseException</a>(<span class="jxr_string">"unknown component: "</span> + element);
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>         }
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>         <strong class="jxr_keyword">switch</strong> (currentToken.type()) {
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>             <strong class="jxr_keyword">case</strong> webComponent:
@@ -128,7 +128,7 @@
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>                 state = shortcodeProcessor;
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>                 <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>             <strong class="jxr_keyword">default</strong>:
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>                 <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../org/devacfr/maven/skins/reflow/snippet/SnippetParseException.html">SnippetParseException</a>(<span class="jxr_string">"unknown token type "</span> + currentToken.type());
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>         }
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>         parse(currentToken);
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>         currentToken = <strong class="jxr_keyword">null</strong>;

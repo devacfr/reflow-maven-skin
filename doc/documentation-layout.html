@@ -13,7 +13,7 @@
 </ul> 
 <section> 
  <h2 id="doc-documentation-layout_toc_usage1">Usage</h2> 
- <p>support <span class="badge badge-primary">v2.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p> 
+ <p>support {&lt; badge color=“primary” text=“v2.0” /&gt;}}<br> element {&lt; badge color=“secondary” text=“reflow” /&gt;}} {&lt; badge color=“info” text=“element” /&gt;}}</p> 
  <p>To declare a page as documentation layout, create an empty page (<code>documentation.html</code> in example below) and set <code>type</code> attribute with value <code>doc</code> and add a <b>required</b> <code>&lt;menu&gt;</code> element as example below.</p> 
  <div class="source"> 
   <div class="source"> 
@@ -33,8 +33,8 @@
   </div> 
  </div> 
  <ul> 
-  <li><b>project</b> <span class="badge badge-light">v1.0</span> - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code>&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
-  <li><b>selectFirstOnExpand</b> <span class="badge badge-light">v2.0</span> - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is <code>true</code>.</li> 
+  <li><b>project</b> {&lt; badge color=“light” text=“v1.0” /&gt;}} - <code>project</code> attribute associates the page to specific Maven artifactId declaring in the project. This can be useful to exclude all inherit configuration on same page name localized in other module in project. <b>Be careful</b> that <code>name</code> attribute in root <code>&lt;project&gt;</code> element in site.xml is used to set the site title.</li> 
+  <li><b>selectFirstOnExpand</b> {&lt; badge color=“light” text=“v2.0” /&gt;}} - Sets the indicating whether the first child menu item in section item menu (containing children menu items) is selected when click on it. the default value is <code>true</code>.</li> 
  </ul> 
  <p>The example above produces the following <code>navside</code> menu:</p> 
  <p><img src="../images/doc/navside-menu-preview.png" alt="navside menu preview" class="img-fluid"></p> 
