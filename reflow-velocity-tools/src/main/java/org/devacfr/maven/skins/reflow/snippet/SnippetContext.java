@@ -162,19 +162,16 @@ public class SnippetContext {
 
     private void recurciveCreateComponent(@Nonnull final Node element, final Component<?> parent) {
         element.childNodes().forEach((child) -> {
-            boolean isKnownHtmlTag = false;
             Component<?> component = null;
             // accept textnode not empty as component.
             if (child instanceof TextNode && ((TextNode) child).text().length() > 1) {
-                isKnownHtmlTag = true;
-                component = Component.createComponent(child, parent, isKnownHtmlTag);
+                component = Component.createComponent(child, parent);
             } else if (child instanceof Element) {
                 final Element el = (Element) child;
                 if (ComponentResolver.isSnippet(el)) {
                     component = create(el, parent);
                 } else {
-                    isKnownHtmlTag = el.tag().isKnownTag();
-                    component = Component.createComponent(el, parent, isKnownHtmlTag);
+                    component = Component.createComponent(el, parent);
                     recurciveCreateComponent(el, component);
                 }
             }

@@ -18,8 +18,11 @@
  * Usage:
  * {{< badge color="" text="" />}}
  *#
-#*  *##set( $color = "")
-#*  *##if( ${snippet.attrs['color']})
-#*      *##set( $color = "badge-${snippet.attrs['color']}")
+#*  *##set( $class = "badge")
+#*  *##if( ${snippet.attrs['pill']})
+#*      *##set( $class = "$class badge-pill")
 #*  *##end##
-<span class="badge $color">${snippet.text}</span>
+#*  *##if( ${snippet.attrs['color']})
+#*      *##set( $class = "$class badge-${snippet.attrs['color']}")
+#*  *##end##
+<span class="$class">${snippet.text}</span>

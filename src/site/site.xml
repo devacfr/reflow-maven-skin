@@ -298,6 +298,7 @@
             </item>
             <item name="Snippets">
               <item name="Working with Snippet" href="doc/snippets/snippet.html" />
+              <item name="Badge" href="doc/snippets/badge.html" />
               <item name="Breadcrumb" href="doc/snippets/breadcrumb.html" />
               <item name="Carousel" href="doc/snippets/carousel.html" />
               <item name="Card" href="doc/snippets/card.html" />
@@ -452,7 +453,7 @@
           <div class="col-md-12">
             <p class="copyright" style="font-size: .8rem">
             #set ( $currentYear = ${currentDate.year} + 1900 )
-            &copy; ${this.inceptionYear}-${currentYear} Friederich Christophe. All rights reserved.<br/> Apache&copy;, Apache Maven&copy;, Apache Doxia&copy; are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries.
+            &copy; ${this.inceptionYear}-${currentYear} Friederich Christophe. All rights reserved.<br/> Apache&copy;, Apache Maven&copy;, Apache Doxia&copy; and Apache Velocity&copy; are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries.
             All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes. Other names may be trademarks of their respective owners.
             </p>
           </div>

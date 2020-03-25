@@ -4,10 +4,25 @@
 </head>
 
 <body>
-    <h2>card example</h2>
-    <p><b>Type:</b> {{< badge color="info" text="BADGE INFO" />}} <code>element</code>.</p>
-    <p><b>Type:</b> {{< badge color="info" text="BADGE INFO" />}} <code>element</code>. Format
-        {{< badge color="secondary" text="HTML" />}}</p>
+  <h2>badge example</h2>
+  <p>{{< layout >}}</p>
+  <p>
+    <b>Type:</b> {{< badge color="info" text="BADGE INFO" />}}
+    <code>element</code>
+    .
+  </p>
+  <p>
+    <b>Type:</b> {{< badge color="info" text="BADGE INFO" />}}
+    <code>element</code>
+    . Format {{< badge color="secondary" text="HTML" />}}
+  </p>
+  <p>{{< /layout >}}</p>
+  <h2>badge example in web component</h2>
+  <p>{{% example %}}</p>
+<!--
+<h6 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h6>
+-->
+  <p>{{% /example %}}</p>
 </body>
 
 </html>

@@ -279,6 +279,34 @@ You shouldn't use the `class` attribute directly like this `$snippet.data-conten
 
 The template uses [Velocity Template](https://velocity.apache.org/engine/1.7/developer-guide.html) to generate html content. the file have to be located in path `src/site/layouts/snippets`.
 
+### Partial Template
+
+The partial template can be include in content page using `partial` [Doxia macro](https://maven.apache.org/doxia/macros/index.html).
+
+```
+<!-- MACRO{partial|file=src/site/layouts/partials/template.html} -->
+```
+
+The path is relative to base directory of project.
+
+One of the peculiarities of a partial template is that this content is not modified by Doxia renderer. This means that the tags used in a page can be written directly in html. you just need to set them as a snippet by adding the `shortcode` or `webcomponent` attribute.
+
+```html
+<!-- src/site/layouts/partials/template.html -->
+<layout shortcode class="text-center text-light" role="main">
+    <layout shortcode class="container container-fluid">
+      <card webcomponent>
+        <card-image src="..." alt="..." />
+        <card-body>
+          <h5 class="card-title no-anchor">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </card-body>
+      </card>
+    </layout>
+</layout>
+```
+
 ### Override Template
 
 Template can override existing template.

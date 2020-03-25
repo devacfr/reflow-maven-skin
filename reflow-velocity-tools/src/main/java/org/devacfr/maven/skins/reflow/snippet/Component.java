@@ -60,12 +60,9 @@ public class Component<T extends Component<T>> {
     /**
      * @param node
      * @param parent
-     * @param isKnownHtmlTag
      * @return
      */
-    public static Component<?> createComponent(@Nonnull final Node node,
-        final Component<?> parent,
-        final boolean isKnownHtmlTag) {
+    public static Component<?> createComponent(@Nonnull final Node node, final Component<?> parent) {
         return new Component<>(node).withParent(parent).addAttributes(node.attributes());
     }
 
