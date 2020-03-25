@@ -35,7 +35,9 @@ public class ComponentToken {
         /** start-tag */
         start,
         /** end-tag */
-        end
+        end,
+        /** end-tag */
+        html
     }
 
     /**

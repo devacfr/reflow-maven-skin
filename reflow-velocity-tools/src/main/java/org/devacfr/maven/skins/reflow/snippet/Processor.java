@@ -21,6 +21,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -76,9 +77,14 @@ public abstract class Processor {
                 parser.getSnippetContext().render(createSnippetComponent(startToken, token));
                 break;
             }
-            default:
+            case html: {
+                parser.getSnippetContext().render(createSnippetComponent(token, null));
                 break;
+            }
+            default:
+                throw new SnippetParseException("unknown token tag " + token.tag());
         }
+
     }
 
     /**
@@ -167,7 +173,12 @@ public abstract class Processor {
     protected SnippetComponent<?> createSnippetComponent(final ComponentToken startToken,
         final ComponentToken endToken) {
         final SnippetContext snippetContext = parser.getSnippetContext();
-        final Element componentElement = convertToHtml(startToken, endToken);
+        Element componentElement = null;
+        if (Tag.html.equals(startToken.tag())) {
+            componentElement = startToken.getElement();
+        } else {
+            componentElement = convertToHtml(startToken, endToken);
+        }
         return snippetContext.create(componentElement, startToken, endToken);
     }
 

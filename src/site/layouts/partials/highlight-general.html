@@ -1,77 +1,62 @@
-{{< layout class="highlight highlight-general" >}}
-
-{{< layout class="container" >}}
-
-{{< card-group >}}
-
-{{% card class="border-0 text-center" %}}
-
-<card-body>
-    #include( "src/site/svg/roller.svg" )
-    <h4 class="text-secondary">Configure</h4>
-    <p class="card-text">Many features and components are configurable to enhance your web site.</p>
-</card-body>
-<card-footer class="border-0 bg-transparent">
-    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
-        href="$resourcePath/doc/reflow-documentation.html#get-started_toc_configuration">Read more
-        #include( "src/site/svg/angle-double-right.svg" )
-    </a>
-</card-footer>
-
-{{% /card %}}
-
-{{% card class="border-0 text-center" %}}
-
-<card-body>
-    #include( "src/site/svg/puzzle.svg" )
-    <h4 class="text-secondary">Snippet</h4>
-    <p class="card-text">We want more flexibility for your markdown page. Reflow snippets allow for both stylishness and
-        flexibility.</p>
-</card-body>
-<card-footer class="border-0 bg-transparent">
-    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
-        href="$resourcePath/doc/reflow-documentation.html#snippets-snippet">Read More
-        #include( "src/site/svg/angle-double-right.svg" )
-    </a>
-</card-footer>
-
-{{% /card %}}
-
-{{% card class="border-0 text-center" %}}
-
-<card-body>
-    #include( "src/site/svg/flower.svg" )
-    <h4 class="text-secondary">Theme</h4>
-    <p class="card-text">Select a Bootstrap theme to give an easy makeover for your Maven site.</p>
-</card-body>
-<card-footer class="border-0 bg-transparent">
-    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
-        href="$resourcePath/doc/reflow-documentation.html#doc-themes-index">Browse theme
-        #include( "src/site/svg/angle-double-right.svg" )
-    </a>
-</card-footer>
-
-{{% /card %}}
-
-{{% card class="border-0 text-center" %}}
-
-<card-body>
-    #include( "src/site/svg/code-github.svg" )
-    <h4 class="text-secondary">Contribute</h4>
-    <p class="card-text">Contribute by reporting issues, suggesting new features, or forking the Git repository on
-        GitHub and adding some good code!</p>
-</card-body>
-<card-footer class="border-0 bg-transparent">
-    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
-        href="$resourcePath/development-documentation.html#dev-contribute">Contribute
-        #include( "src/site/svg/angle-double-right.svg" )
-    </a>
-</card-footer>
-
-{{% /card %}}
-
-{{< /card-group >}}
-
-{{< /layout >}}
-
-{{< /layout >}}
+<layout shortcode class="highlight highlight-general">
+    <layout shortcode class="container">
+        <card-group shortcode>
+            <card webcomponent class="border-0 text-center">
+                <card-body>
+                    #include( "src/site/svg/roller.svg" )
+                    <h4 class="text-secondary">Configure</h4>
+                    <p class="card-text">Many features and components are configurable to enhance your web site.</p>
+                </card-body>
+                <card-footer class="border-0 bg-transparent">
+                    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
+                        href="$resourcePath/doc/reflow-documentation.html#get-started_toc_configuration">Read more
+                        #include( "src/site/svg/angle-double-right.svg" )
+                    </a>
+                </card-footer>
+            </card>
+            <card webcomponent class="border-0 text-center">
+                <card-body>
+                    #include( "src/site/svg/puzzle.svg" )
+                    <h4 class="text-secondary">Snippet</h4>
+                    <p class="card-text">We want more flexibility for your markdown page. Reflow snippets allow for both
+                        stylishness and
+                        flexibility.</p>
+                </card-body>
+                <card-footer class="border-0 bg-transparent">
+                    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
+                        href="$resourcePath/doc/reflow-documentation.html#snippets-snippet">Read More
+                        #include( "src/site/svg/angle-double-right.svg" )
+                    </a>
+                </card-footer>
+            </card>
+            <card webcomponent class="border-0 text-center">
+                <card-body>
+                    #include( "src/site/svg/flower.svg" )
+                    <h4 class="text-secondary">Theme</h4>
+                    <p class="card-text">Select a Bootstrap theme to give an easy makeover for your Maven site.</p>
+                </card-body>
+                <card-footer class="border-0 bg-transparent">
+                    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
+                        href="$resourcePath/doc/reflow-documentation.html#doc-themes-index">Browse theme
+                        #include( "src/site/svg/angle-double-right.svg" )
+                    </a>
+                </card-footer>
+            </card>
+            <card webcomponent class="border-0 text-center">
+                <card-body>
+                    #include( "src/site/svg/code-github.svg" )
+                    <h4 class="text-secondary">Contribute</h4>
+                    <p class="card-text">Contribute by reporting issues, suggesting new features, or forking the Git
+                        repository on
+                        GitHub and adding some good code!</p>
+                </card-body>
+                <card-footer class="border-0 bg-transparent">
+                    <a class="btn btn-outline-primary btn-md mb-2 mr-2 ml-2 pill-btn"
+                        href="$resourcePath/development-documentation.html#dev-contribute">Contribute
+                        #include( "src/site/svg/angle-double-right.svg" )
+                    </a>
+                </card-footer>
+            </card>
+        </card-group>
+    </layout>
+</layout>

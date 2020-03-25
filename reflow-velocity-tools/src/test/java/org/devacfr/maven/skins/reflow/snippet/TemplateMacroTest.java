@@ -45,4 +45,16 @@ public class TemplateMacroTest extends PlexusTestCase {
 
     }
 
+    @Test
+    public void shouldConvertHtmlSnippet() {
+        final PartialTemplateMacro macro = new PartialTemplateMacro();
+        verify((actual) -> {
+            try {
+                return macro.convertSnippet(CharSource.wrap(actual));
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
+    }
+
 }

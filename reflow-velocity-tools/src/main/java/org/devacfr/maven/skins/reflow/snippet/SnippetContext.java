@@ -56,7 +56,6 @@ import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -144,7 +143,7 @@ public class SnippetContext {
         return component;
     }
 
-    @Nullable
+    @Nonnull
     private SnippetComponent<?> create(@Nonnull final Element element, final Component<?> commponent) {
         requireNonNull(element);
         Type type = null;
@@ -152,6 +151,8 @@ public class SnippetContext {
             type = Type.shortcode;
         } else if (element.hasAttr("webcomponent")) {
             type = Type.webComponent;
+        } else {
+            throw new SnippetParseException("Unknown snippet element");
         }
         final SnippetComponent<?> component = SnippetComponent.createSnippet(element, commponent, type);
         addComponent(component);
@@ -169,7 +170,7 @@ public class SnippetContext {
                 component = Component.createComponent(child, parent, isKnownHtmlTag);
             } else if (child instanceof Element) {
                 final Element el = (Element) child;
-                if (isSnippet(el)) {
+                if (ComponentResolver.isSnippet(el)) {
                     component = create(el, parent);
                 } else {
                     isKnownHtmlTag = el.tag().isKnownTag();
@@ -181,15 +182,6 @@ public class SnippetContext {
                 parent.addChild(component);
             }
         });
-    }
-
-    private boolean isSnippet(final Element element) {
-        return element.hasAttr("shortcode") || element.hasAttr("webcomponent");
-    }
-
-    private boolean hasChildrenSnippet(final Element element) {
-        final Elements els = element.select("[shortcode],[webcomponent]");
-        return !els.isEmpty();
     }
 
     protected void render(final SnippetComponent<?> component) {

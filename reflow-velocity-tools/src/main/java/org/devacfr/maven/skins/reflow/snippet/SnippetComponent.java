@@ -77,6 +77,7 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
             if (doc.body().children().isEmpty()) {
                 return;
             }
+            // normally, when debug trace is activated
             if (doc.body().children().size() > 1) {
                 final Element div = new Element("div");
                 doc.body().children().forEach((e) -> div.appendChild(e));

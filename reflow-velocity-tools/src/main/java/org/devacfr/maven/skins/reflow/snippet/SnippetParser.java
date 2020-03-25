@@ -120,7 +120,7 @@ public class SnippetParser {
                 state = shortcodeProcessor;
                 break;
             default:
-                break;
+                throw new SnippetParseException("unknown token type " + currentToken.type());
         }
         parse(currentToken);
         currentToken = null;

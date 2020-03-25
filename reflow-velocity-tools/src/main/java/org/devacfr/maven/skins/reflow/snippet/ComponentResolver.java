@@ -21,16 +21,17 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-
 import org.apache.commons.lang.StringEscapeUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Collector;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
+import org.jsoup.select.NodeTraversor;
+import org.jsoup.select.NodeVisitor;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -60,6 +61,10 @@ public class ComponentResolver {
 
     }
 
+    public static boolean isSnippet(final Node node) {
+        return node.hasAttr("shortcode") || node.hasAttr("webcomponent");
+    }
+
     /**
      * Collects all (start,end,empty) Element corresponding to a snippet component.
      *
@@ -68,8 +73,7 @@ public class ComponentResolver {
      * @return Return a {@link Elements} representing all web components contained in Jsoup document.
      */
     public Elements collect(final Document document) {
-        final Evaluator evaluator = new ContainsOwnText(RESOLVER_PATTERN, -1);
-        return Collector.collect(evaluator, document);
+        return collect(document, RESOLVER_PATTERN);
     }
 
     /**
@@ -120,10 +124,20 @@ public class ComponentResolver {
      * @return Return a new instance of {@link ComponentToken} representing the element.
      */
     public ComponentToken create(final Element element) {
-        final Matcher matcher = RESOLVER_PATTERN.matcher(element.ownText());
+        if (isSnippet(element)) {
+            Type type = null;
+            if (element.hasAttr("shortcode")) {
+                type = Type.shortcode;
+            } else if (element.hasAttr("webcomponent")) {
+                type = Type.webComponent;
+            }
+            return new ComponentToken(element, element.tagName(), Tag.html, type);
+        } else {
+            final Matcher matcher = RESOLVER_PATTERN.matcher(element.ownText());
 
-        if (matcher.matches()) {
-            return createToken(element, matcher);
+            if (matcher.matches()) {
+                return createToken(element, matcher);
+            }
         }
         return null;
     }
@@ -153,49 +167,52 @@ public class ComponentResolver {
         return attrs;
     }
 
-    /**
-     * JSoup {@link Evaluator} allowing to evaluate that an element matches the regex selector.
-     *
-     * @author Christophe Friederich
-     * @version 2.4
-     */
-    public static final class ContainsOwnText extends Evaluator {
+    public static Elements collect(final Element root, final Pattern searchPattern) {
+        final Elements elements = new Elements();
+        NodeTraversor.traverse(new Accumulator(root, elements, searchPattern), root);
+        return elements;
+    }
+
+    private static class Accumulator implements NodeVisitor {
 
         /** */
         private final Pattern searchPattern;
 
-        /** */
-        private int fromSiblingIndex = -1;
+        private final Element root;
 
-        /**
-         * Default constructor.
-         *
-         * @param regex
-         *            a regex pattern.
-         * @param fromSiblingIndex
-         *            the sibling index from where begin to match.
-         */
-        public ContainsOwnText(@Nonnull final Pattern regex, final int fromSiblingIndex) {
-            this.searchPattern = regex;
-            this.fromSiblingIndex = fromSiblingIndex;
+        private final Elements elements;
+
+        Accumulator(final Element root, final Elements elements, final Pattern searchPattern) {
+            this.root = root;
+            this.elements = elements;
+            this.searchPattern = searchPattern;
         }
 
-        /**
-         * {@inheritDoc}
-         */
         @Override
+        public void head(final Node node, final int depth) {
+            if (node instanceof Element) {
+                final Element el = (Element) node;
+                if (matches(root, el)) {
+                    elements.add(el);
+                }
+            }
+        }
+
         public boolean matches(final Element root, final Element element) {
             // exclude if in <pre> element, allowing highlight component in documentation
             if ("pre".equals(element.tagName()) || "code".equals(element.tagName())
                     || element.hasParent() && "pre".equals(element.parent().tagName())) {
                 return false;
             }
-            if (fromSiblingIndex == -1 || element.siblingIndex() >= fromSiblingIndex) {
-                return searchPattern.matcher(element.ownText()).find();
-            }
-            return false;
+            return searchPattern.matcher(element.ownText()).find();
         }
 
+        @Override
+        public void tail(final Node node, final int depth) {
+            if (node instanceof Element && isSnippet(node)) {
+                elements.add((Element) node);
+            }
+        }
     }
 
 }
