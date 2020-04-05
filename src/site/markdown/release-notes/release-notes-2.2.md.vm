@@ -11,14 +11,14 @@ $h2 Highlights of this release
 This focus of this release is:
 
 * Support [header as component](../reflow-maven-skin/reflow-documentation.html#components-header)
-  * Add `enabled` attribute - Indicates whether the header is visible. The header is displayed by default.
-  * Add `cssClass` attribute - Sets the css class with built-in Bootstrap support.
-  * Add `theme` attribute - Sets the css class with built-in Bootstrap theme. The prefix css theme is header-.
-  * Add `background` attribute - Sets the css class with built-in Bootstrap colour theme.
+    * Add `enabled` attribute - Indicates whether the header is visible. The header is displayed by default.
+    * Add `cssClass` attribute - Sets the css class with built-in Bootstrap support.
+    * Add `theme` attribute - Sets the css class with built-in Bootstrap theme. The prefix css theme is header-.
+    * Add `background` attribute - Sets the css class with built-in Bootstrap colour theme.
 * Bug fix and maintenance change
-  * test failed when running on windows [Pull Request #56][PR-56] ([GatiGato](https://github.com/GatiGato)).
-  * Fix the pre-rendering of components and especially toc sidebar and the generation of heading identifier.
-  * Fix naming of slug name heading (replace default slug separtor by \'-\' instead \'_\')
+    * test failed when running on windows [Pull Request #56][PR-56] ([GatiGato](https://github.com/GatiGato)).
+    * Fix the pre-rendering of components and especially toc sidebar and the generation of heading identifier.
+    * Fix naming of slug name heading (replace default slug separtor by \'-\' instead \'_\')
 
 $h2 Changelog
 **2020-01-31**

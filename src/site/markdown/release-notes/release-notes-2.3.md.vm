@@ -24,9 +24,11 @@ you can also integrate a free content directly (without modification) in body pa
 </reflowSkin>
 ```
 
-> **Be careful**
-> The cssClass attribute do not override anymore `theme` and `background` attribute.
-> you can not write `<navbar cssClass="navbar-dark bg-primary border-bottom">`, but instead `<navbar theme="dark" background="primary" cssClass="border-bottom">`.
+ {{< callout color="warning" title="Attention is Required" >}}
+
+The cssClass attribute do not override anymore `theme` and `background` attribute. you can not write `<navbar cssClass="navbar-dark bg-primary border-bottom">`, but instead `<navbar theme="dark" background="primary" cssClass="border-bottom">`.
+
+{{< /callout >}}
 
 $h2 Other Enhancements
 

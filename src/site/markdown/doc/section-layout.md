@@ -6,8 +6,8 @@ When writing Maven site pages using most of the available file formats, such as 
 
 ## Usage
 
-support {< badge color="primary" text="v1.0" />}}<br/>
-element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="element" />}}
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="element" />}}
 
 The page is divided into _sections_ and each section can be assigned a special layout for its contents. The different layouts are discussed in more detail below. The sections are specified using `<sections>` element in the per-page or global configuration:
 
@@ -53,8 +53,8 @@ Note that the layout actually defines how the _subsections_ of each section are 
 
 ## Body
 
-support {< badge color="primary" text="v1.0" />}}<br/>
-element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="layout" />}}
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="layout" />}}
 
 _Body_ layout just outputs the page contents as they are. The subsections are output sequentially. If no _sidebar_ (or sidebar ToC) is indicated, the _body_ text occupies full page width. Otherwise
 it accommodates the sidebar and takes 3/4 of the page.
@@ -73,8 +73,8 @@ Body section is indicated using `<body />` element without any attributes. The l
 
 ## Carousel
 
-support {< badge color="primary" text="v1.0" />}}<br/>
-element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="layout" />}}
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="layout" />}}
 
 _Carousel_ component provides a slideshow of images with captions.
 
@@ -123,8 +123,8 @@ Text Description of carousel item.
 
 ## Columns
 
-support {< badge color="primary" text="v1.0" />}}<br/>
-element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="layout" />}}
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="layout" />}}
 
 _Columns_ layout puts the section parts into columns. Each subsection is placed in the subsequent column. The layout requires the number of columns to be indicated. Bootstrap uses a 12-column
 ruler, so for best results, use 1, 2, 3, 4, 6 or 12 column layout. A 2-column layout is used [here][columns-reflow].
@@ -145,8 +145,8 @@ Columns section with the number of columns is indicated using `<columns>num</col
 
 ## Thumbnails
 
-support {< badge color="primary" text="v1.0" />}}<br/>
-element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="layout" />}}
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="layout" />}}
 
 _Thumbnails_ layout is best suited to produce a gallery of images. Each subsection constitutes a thumbnail block, with its first image followed by the subsection heading and text. The [themes
 page][themes-reflow] uses thumbnails to showcase examples of Bootswatch themes.
@@ -167,8 +167,8 @@ Thumbnails are placed in columns, so the same requirements as in _columns_ layou
 
 ## Sidebar
 
-support {< badge color="primary" text="v1.0" />}}<br/>
-element {< badge color="secondary" text="reflow" />}} {< badge color="info" text="layout" />}}
+support {{< badge color="primary" text="v1.0" />}}<br/>
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="layout" />}}
 
 _Sidebar_ layout places the section contents into a sidebar with shaded background. If the sidebar follows _body_ section, it is placed side-by-side with the body text. Otherwise it occupies a whole
 row.

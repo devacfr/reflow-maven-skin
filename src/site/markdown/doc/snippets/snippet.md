@@ -270,7 +270,7 @@ As was mentioned earlier, properties refer to attribute or data element of the p
 
 {{< callout color="warning" level="5" title="Of course" >}}
 
-In this example, `\$snippet.class` will returns a string representing the class name `"org.devacfr.maven.skins.reflow.snippet.SnippetComponent"`. It's not what you want.
+In this example, `\$snippet.class` will return a string representing the class name `"org.devacfr.maven.skins.reflow.snippet.SnippetComponent"`. It's not what you want.
 You shouldn't use the `class` attribute directly like this `$snippet.data-content.class`, but instead `$snippet.data-content.attr['class']`.
 
 {{< /callout >}}
