@@ -32,6 +32,7 @@ import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
 import org.jsoup.select.NodeTraversor;
 import org.jsoup.select.NodeVisitor;
+import org.jsoup.select.QueryParser;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -47,7 +48,7 @@ public class ComponentResolver {
 
     /** **/
     private static final Pattern RESOLVER_PATTERN = Pattern.compile(
-        "\\{\\{(<|%) (\\/?)([a-zA-Z\\-_]*)(?:\\s+([^\\/>%]*))(\\/?)(>|%)\\}\\}",
+        "\\{\\{(<|%) (\\/?)([\\w\\-_]*)(\\s?(?:[\\w\\-_]*)=[\\u201c;|\"](?:[\\s\\w\\p{Punct}]*)[\\u201d|\"])* (\\/?)(>|%)\\}\\}",
         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
     private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=\"(\\w*)\"\\s?",
@@ -69,11 +70,20 @@ public class ComponentResolver {
      * Collects all (start,end,empty) Element corresponding to a snippet component.
      *
      * @param document
-     *            the Jsoup document to use
+     *            the Jsoup element to use
      * @return Return a {@link Elements} representing all web components contained in Jsoup document.
      */
-    public Elements collect(final Document document) {
+    public Elements collect(final Element document) {
         return collect(document, RESOLVER_PATTERN);
+    }
+
+    /**
+     * @param document
+     *            the Jsoup element to use
+     * @return
+     */
+    public static boolean hasIncludedSnippetComponent(final Element document) {
+        return Collector.findFirst(QueryParser.parse("[shortcode],[webcomponent]"), document) != null;
     }
 
     /**
@@ -86,6 +96,7 @@ public class ComponentResolver {
     public Document normalize(final Document document) {
 
         final Elements elements = collect(document);
+        // remove all section tags
         if (!elements.isEmpty()) {
             final Elements sections = Collector.collect(new Evaluator.Tag("section"), document);
             sections.forEach((section) -> section.unwrap());

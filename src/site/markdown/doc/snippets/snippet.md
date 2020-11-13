@@ -1,6 +1,6 @@
 # Working with Snippets {{< badge color="warning" text="DRAFT" />}}
 
-{{< badge color="primary" text="New in v2.4" />}}
+{{< badge color="primary" text="New in v2.4-beta1" />}}
 
 {{< callout color="warning" title="Warning" >}}
 
@@ -15,35 +15,21 @@ A `shortcode` and `web component` are a simple snippet inside a page that Reflow
 
 {{< grid-layout number-columns="2" >}}
 
-{{< column class="mb-4" >}}
+{{% card-section title="Shortcode" href="#doc-snippets-snippet_toc_shortcodes1" %}}
 
-{{% card %}}
+<!--
+as indicated by his name, for short stuff to create an unified layout, include a specific information, etc.
+-->
 
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#snippets-snippet_toc_web-component">Shortcode</a></h5>
-    <p class="card-text text-secondary">as indicated by his name, for short stuff to create an unified layout, include a specific information, etc.</p>
-  </card-body>
-```
+{{% /card-section  %}}
 
-{{% /card %}}
+{{% card-section title="Web Component" href="#doc-snippets-snippet_toc_web-components" %}}
 
-{{< /column >}}
+<!--
+It is a autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.
+-->
 
-{{< column class="mb-4" >}}
-
-{{% card %}}
-
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#snippets-snippet_toc_web-component">Web Component</a></h5>
-    <p class="card-text text-secondary">It is a autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.</p>
-  </card-body>
-```
-
-{{% /card %}}
-
-{{< /column >}}
+{{% /card-section  %}}
 
 {{< /grid-layout >}}
 

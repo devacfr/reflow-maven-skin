@@ -52,6 +52,18 @@ public class SnippetParserTest extends MockitoTestCase {
     }
 
     @Test
+    public void shouldRenderCardRecursively () {
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+
+        }, "html");
+    }
+
+    @Test
     public void shouldRenderBadge() {
         verify((htmlSource) -> {
             try {

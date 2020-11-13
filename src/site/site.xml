@@ -68,10 +68,10 @@
             <li class="nav-item" data-toggle="tooltip" title="Twitter">
                 <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-twitter"></i></a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="left" title="Mail me">
+            <li class="nav-item" data-toggle="tooltip" title="Mail me">
                 <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-lg fa-envelope"></i></a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="left" title="Gitter">
+            <li class="nav-item" data-toggle="tooltip" title="Gitter">
                 <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-gitter"></i></a>
             </li>
           </ul>

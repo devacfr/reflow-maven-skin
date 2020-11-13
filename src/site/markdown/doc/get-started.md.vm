@@ -70,95 +70,53 @@ The documentation is split over several pages, describing the various configurat
 
 {{< grid-layout number-columns="2" >}}
 
-{{< column class="mb-4" >}}
+{{% card-section title="Themes" href="#themes-index" %}}
 
-{{% card class="h-100" %}}
+<!--
+How to configure own theme or select one of the excellent <a href="http://bootswatch.com" target="_blank" rel="noopener">Bootswatch</a> themes.
+-->
 
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#themes-index">Themes</a></h5>
-    <p class="card-text text-secondary">How to configure own theme or select one of the excellent <a href="http://bootswatch.com" target="_blank" rel="noopener">Bootswatch</a> themes.</p>
-  </card-body>
-```
+{{% /card-section  %}}
 
-{{% /card  %}}
+{{% card-section title="Layouts" href="#layouts.html" %}}
 
-{{< /column >}}
+<!--
+Reflow the page with different layouts: multi-column text, carousel, thumbnails and others.
+-->
 
-{{< column class="mb-4" >}}
+{{% /card-section  %}}
 
-{{% card class="h-100" %}}
+{{% card-section title="Components" href="#components.html" %}}
 
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#layouts.html">Layouts</a></h5>
-    <p class="card-text text-secondary">Reflow the page with different layouts: multi-column text, carousel, thumbnails and others.</p>
-  </card-body>
-```
+<!--
+Enable and configure various existing and new components: table of contents, headers, menus, etc.
+-->
 
-{{% /card  %}}
+{{% /card-section  %}}
 
-{{< /column >}}
+{{% card-section title="Snippets" href="#snippet.html" %}}
 
-{{< column class="mb-4" >}}
+<!--
+A <code>shortcode</code> and <code>web component</code> are a simple snippet inside a page that Reflow will render using a predefined template..
+-->
 
-{{% card class="h-100" %}}
+{{% /card-section  %}}
 
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#components.html">Components</a></h5>
-    <p class="card-text text-secondary">Enable and configure various existing and new components: table of contents, headers, menus, etc.</p>
-  </card-body>
-```
+{{% card-section title="Other configuration" href="#configuration.html" %}}
 
-{{% /card  %}}
+<!--
+Various configuration options: page title, menus, javaScript goodies, CSS updates and more.
+-->
 
-{{< /column >}}
+{{% /card-section  %}}
 
-{{< column class="mb-4" >}}
+{{% card-section title="Multi-module site" href="#multi-module.html" %}}
 
-{{% card class="h-100" %}}
+<!--
+Additional support and notes for generating multi-module Maven sites.
+-->
 
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#snippet.html">Snippets</a></h5>
-    <p class="card-text text-secondary">A <code>shortcode</code> and <code>web component</code> are a simple snippet inside a page that Reflow will render using a predefined template..</p>
-  </card-body>
-```
-
-{{% /card  %}}
-
-{{< /column >}}
-
-{{< column class="mb-4" >}}
-
-{{% card class="h-100" %}}
-
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#configuration.html">Other configuration</a></h5>
-    <p class="card-text text-secondary">Various configuration options: page title, menus, javaScript goodies, CSS updates and more.</p>
-  </card-body>
-```
-
-{{% /card  %}}
-
-{{< /column >}}
-
-{{< column class="mb-4" >}}
-
-{{% card class="h-100" %}}
-
-```
-  <card-body>
-    <h5 class="card-title no-anchor"><a href="#multi-module.html">Multi-module site</a></h5>
-    <p class="card-text text-secondary">Additional support and notes for generating multi-module Maven sites.</p>
-  </card-body>
-```
-
-{{% /card  %}}
-
-{{< /column >}}
+{{% /card-section  %}}
 
 {{< /grid-layout >}}
 

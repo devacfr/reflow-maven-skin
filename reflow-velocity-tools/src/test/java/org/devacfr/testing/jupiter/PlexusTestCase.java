@@ -28,16 +28,12 @@ import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.context.DefaultContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Christophe Friederich
  * @since 2.4
  */
 public abstract class PlexusTestCase extends TestCase {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private PlexusContainer container;
 
@@ -139,7 +135,7 @@ public abstract class PlexusTestCase extends TestCase {
      * would be used to configure the Plexus container before running your test.
      *
      * @param subname
-     *            the subname
+     *                    the subname
      * @return A configruation name
      */
     protected String getConfigurationName(final String subname) {

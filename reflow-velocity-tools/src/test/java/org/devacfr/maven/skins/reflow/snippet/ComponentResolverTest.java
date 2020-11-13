@@ -32,6 +32,16 @@ public class ComponentResolverTest {
     }
 
     @Test
+    public void shouldBeStartWebComponentWithAttributes() {
+        check("{{% component style=\"width: 18rem;\" attr2=\"val\" %}}", "component", Type.webComponent, Tag.start);
+    }
+
+    @Test
+    public void shouldBeStartWebComponentWithNumberAttributes() {
+        check("{{% component length=\"120\" %}}", "component", Type.webComponent, Tag.start);
+    }
+
+    @Test
     public void shouldBeEndWebComponent() {
         check("{{% /component %}}", "component", Type.webComponent, Tag.end);
     }
@@ -71,6 +81,17 @@ public class ComponentResolverTest {
     @Test
     public void shouldElementStartWebComponentContainingAttributes() {
         check("{{% component attr=\"value\" attr1=\"value1\" %}}", "component", Type.webComponent, Tag.start);
+    }
+
+    @Test
+    public void shouldContainSnippetComponent() {
+        assertEquals(true,
+            ComponentResolver.hasIncludedSnippetComponent(
+                new Element("body").append("<test webcomponent class=\"cl\"></test>")));
+        assertEquals(true,
+            ComponentResolver
+                    .hasIncludedSnippetComponent(new Element("body").append("<test shortcode class=\"cl\"></test>")));
+        assertEquals(false, ComponentResolver.hasIncludedSnippetComponent(new Element("body").append("<test></test>")));
     }
 
     private void check(final String text, final String name, final Type type, final Tag state) {

@@ -64,7 +64,7 @@ public class SnippetParser {
     public SnippetParser() {
         resolver = new ComponentResolver();
         stack = new ArrayList<>(32);
-        snippetContext = new SnippetContext();
+        snippetContext = new SnippetContext(this);
         webComponentProcessor = new WebComponentProcessor(this);
         shortcodeProcessor = new ShortcodeProcessor(this);
     }
@@ -96,7 +96,8 @@ public class SnippetParser {
             try {
                 parse();
             } catch (final Exception ex) {
-                throw new SnippetParseException("error on parse token " + currentToken, ex);
+                throw new SnippetParseException(
+                        "error on parse token " + currentToken + " when generate file " + config.getFileId(), ex);
             }
         }
         snippetContext.setHtmlSource(doc.html());

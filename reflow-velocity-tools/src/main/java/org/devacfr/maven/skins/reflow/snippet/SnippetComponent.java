@@ -73,7 +73,8 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     public void render(final SnippetContext context) {
         try {
             final Element element = getElement();
-            final Document doc = Jsoup.parse(context.renderComponent(this));
+            final String html = context.renderComponent(this);
+            final Document doc = Jsoup.parse(html);
             if (doc.body().children().isEmpty()) {
                 return;
             }
@@ -84,7 +85,14 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
                 element.replaceWith(div);
             } else {
                 final Element el = doc.body().children().first();
-                element.replaceWith(el);
+                // if snippet contains rendered snippet.
+                if (ComponentResolver.hasIncludedSnippetComponent(el)) {
+                    final SnippetParser parser = context.createChildParser();
+                    final Document childDoc = parser.parse(context.getConfig(), el.outerHtml()).document();
+                    element.replaceWith(childDoc.body().children().first());
+                } else {
+                    element.replaceWith(el);
+                }
             }
         } catch (final Exception e) {
             throw new RuntimeException(e.getMessage(), e);

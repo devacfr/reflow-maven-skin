@@ -19,6 +19,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -53,6 +54,8 @@ import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.URITool;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
@@ -89,8 +92,12 @@ public class SnippetContext {
     /** */
     private final ToolManager toolManager;
 
-    public SnippetContext() {
+    /** */
+    private final WeakReference<SnippetParser> parser;
+
+    public SnippetContext(final SnippetParser parser) {
         this.toolManager = createToolManaged();
+        this.parser = new WeakReference<>(parser);
     }
 
     public void reset() {
@@ -107,8 +114,26 @@ public class SnippetContext {
         return components;
     }
 
+    public SnippetParser getParser() {
+        return this.parser.get();
+    }
+
+    public ISkinConfig getConfig() {
+        return config;
+    }
+
+    public SnippetParser createChildParser() {
+        final SnippetParser parser = new SnippetParser();
+        getSnippetPaths().forEach((path) -> parser.addResourcePath(path));
+        return parser;
+    }
+
     void setConfig(final ISkinConfig config) {
         this.config = config;
+    }
+
+    public List<String> getSnippetPaths() {
+        return snippetPaths;
     }
 
     void addComponent(final SnippetComponent<?> component) {
@@ -129,6 +154,10 @@ public class SnippetContext {
 
     public String html() {
         return htmlSource;
+    }
+
+    public Document document() {
+        return Jsoup.parse(html());
     }
 
     @Nonnull
@@ -203,12 +232,10 @@ public class SnippetContext {
 
     protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
         boolean found = false;
-
         for (final String path : this.snippetPaths) {
-
+            found = true;
             final String filePath = path + '/' + component.getName() + ".vm";
             if (Velocity.resourceExists(filePath)) {
-                found = true;
                 final Context context = createVelocityContext();
                 context.put("snippet", component);
                 context.put("snippetPath", filePath);
@@ -222,6 +249,7 @@ public class SnippetContext {
                     RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
                     context,
                     writer);
+                break;
             }
 
         }
