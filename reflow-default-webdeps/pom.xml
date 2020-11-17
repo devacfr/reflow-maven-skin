@@ -191,7 +191,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/cerulean/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/cerulean/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/cerulean</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -203,7 +203,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/cosmo/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/cosmo/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/cosmo</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -215,7 +215,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/cyborg/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/cyborg/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/cyborg</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -227,7 +227,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/darkly/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/darkly/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/darkly</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -239,7 +239,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/flatly/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/flatly/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/flatly</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -251,7 +251,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/journal/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/journal/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/journal</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -263,7 +263,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/litera/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/litera/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/litera</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -275,7 +275,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/lumen/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/lumen/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/lumen</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -287,7 +287,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/lux/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/lux/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/lux</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -299,7 +299,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/materia/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/materia/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/materia</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -311,7 +311,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/minty/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/minty/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/minty</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -323,7 +323,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/pulse/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/pulse/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/pulse</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -335,7 +335,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/sandstone/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/sandstone/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/sandstone</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -347,7 +347,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/simplex/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/simplex/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/simplex</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -359,7 +359,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/sketchy/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/sketchy/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/sketchy</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -371,7 +371,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/slate/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/slate/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/slate</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -383,7 +383,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/solar/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/solar/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/solar</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -395,7 +395,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/spacelab/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/spacelab/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/spacelab</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -407,7 +407,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/superhero/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/superhero/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/superhero</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -419,7 +419,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/united/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/united/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/united</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -431,7 +431,7 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://stackpath.bootstrapcdn.com/bootswatch/${bootswatchVersion}/yeti/bootstrap.min.css</url>
+              <url>https://github.com/thomaspark/bootswatch/blob/v${bootswatchVersion}/dist/yeti/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/yeti</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
