@@ -1,6 +1,6 @@
-var treeMapJson = {"id":"Clover database Sun Apr 5 2020 05:13:55 CEST0","name":"","data":{
-    "$area":2233.0,"$color":73.48858,"title":
-    " 2233 Elements, 73.5% Coverage"},"children":[{"id":
+var treeMapJson = {"id":"Clover database Tue Nov 17 2020 17:21:22 CET0","name":"","data":{
+    "$area":2256.0,"$color":74.55674,"title":
+    " 2256 Elements, 74.6% Coverage"},"children":[{"id":
       "org.devacfr.maven.skins.reflow0","name":
       "org.devacfr.maven.skins.reflow","data":{"$area":902.0,"$color":
         79.04656,"title":
@@ -15,8 +15,8 @@ var treeMapJson = {"id":"Clover database Sun Apr 5 2020 05:13:55 CEST0","name":"
         "org.devacfr.maven.skins.reflow.context 132 Elements, 85.6% Coverage"},
       "children":[]},{"id":"org.devacfr.maven.skins.reflow.snippet1630",
       "name":"org.devacfr.maven.skins.reflow.snippet","data":{"$area":
-        603.0,"$color":74.2952,"title":
-        "org.devacfr.maven.skins.reflow.snippet 603 Elements, 74.3% Coverage"},
+        626.0,"$color":78.11501,"title":
+        "org.devacfr.maven.skins.reflow.snippet 626 Elements, 78.1% Coverage"},
       "children":[]}]}
 ;
 processTreeMapDashJson (treeMapJson);
