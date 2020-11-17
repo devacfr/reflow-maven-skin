@@ -56,7 +56,7 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/** **/</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pattern RESOLVER_PATTERN = Pattern.compile(
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          <span class="jxr_string">"&#92;&#92;{&#92;&#92;{(&lt;|%) (&#92;&#92;/?)([&#92;&#92;w&#92;&#92;-_]*)(&#92;&#92;s?(?:[&#92;&#92;w&#92;&#92;-_]*)=[&#92;&#92;u201c;|\&quot;](?:[&#92;&#92;s&#92;&#92;w&#92;&#92;p{Punct}]*)[&#92;&#92;u201d|\&quot;])* (&#92;&#92;/?)(&gt;|%)&#92;&#92;}&#92;&#92;}"</span>,
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          <span class="jxr_string">"&#92;&#92;{&#92;&#92;{(&lt;|%) (&#92;&#92;/?)([&#92;&#92;w&#92;&#92;-_]*)(&#92;&#92;s?(?:[&#92;&#92;w&#92;&#92;-_]*)(?:=[&#92;&#92;u201c;|\&quot;](?:[&#92;&#92;s&#92;&#92;w&#92;&#92;p{Punct}]*)[&#92;&#92;u201d|\&quot;])?)* (&#92;&#92;/?)(&gt;|%)&#92;&#92;}&#92;&#92;}"</span>,
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>          Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Pattern ATTRIBUTE_PATTERN = Pattern.compile(<span class="jxr_string">"&#92;&#92;s?(&#92;&#92;w*)=\&quot;(&#92;&#92;w*)\&quot;&#92;&#92;s?"</span>,

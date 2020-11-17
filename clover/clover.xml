@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1605630148851" clover="4.4.1">
-   <project name="Reflow Maven Skin Parent 2.4.0-beta2-SNAPSHOT" timestamp="1605630091437">
+<coverage generated="1605631051614" clover="4.4.1">
+   <project name="Reflow Maven Skin Parent 2.4.0-beta2-SNAPSHOT" timestamp="1605630996510">
       <metrics coveredelements="1682" complexity="623" loc="7143" methods="336" classes="47" statements="1442" packages="4" coveredconditionals="310" coveredmethods="237" elements="2256" ncloc="3353" files="34" conditionals="478" coveredstatements="1135"/>
       <package name="org.devacfr.maven.skins.reflow">
          <metrics coveredelements="713" complexity="222" loc="2779" methods="91" classes="11" statements="581" coveredconditionals="152" coveredmethods="80" elements="902" ncloc="1207" files="5" conditionals="230" coveredstatements="481"/>
@@ -1743,10 +1743,10 @@
             <class name="ComponentResolver.Accumulator">
                <metrics coveredelements="24" coveredconditionals="8" complexity="12" coveredmethods="4" methods="4" elements="24" statements="12" conditionals="8" coveredstatements="12"/>
             </class>
-            <line complexity="1" visibility="public" signature="ComponentResolver()" num="60" count="20" type="method"/>
-            <line num="61" count="20" type="stmt"/>
-            <line complexity="1" visibility="public" signature="isSnippet(Node) : boolean" num="65" count="521" type="method"/>
-            <line num="66" count="521" type="stmt"/>
+            <line complexity="1" visibility="public" signature="ComponentResolver()" num="60" count="21" type="method"/>
+            <line num="61" count="21" type="stmt"/>
+            <line complexity="1" visibility="public" signature="isSnippet(Node) : boolean" num="65" count="522" type="method"/>
+            <line num="66" count="522" type="stmt"/>
             <line complexity="1" visibility="public" signature="collect(Element) : Elements" num="76" count="16" type="method"/>
             <line num="77" count="16" type="stmt"/>
             <line complexity="1" visibility="public" signature="hasIncludedSnippetComponent(Element) : boolean" num="85" count="34" type="method"/>
@@ -1774,9 +1774,9 @@
             <line num="120" count="7" type="stmt"/>
             <line num="123" count="3" type="stmt"/>
             <line num="127" count="9" type="stmt"/>
-            <line complexity="5" visibility="public" signature="create(Element) : ComponentToken" num="137" count="64" type="method"/>
-            <line num="138" count="64" type="stmt"/>
-            <line falsecount="62" truecount="2" num="138" type="cond"/>
+            <line complexity="5" visibility="public" signature="create(Element) : ComponentToken" num="137" count="65" type="method"/>
+            <line num="138" count="65" type="stmt"/>
+            <line falsecount="63" truecount="2" num="138" type="cond"/>
             <line num="139" count="2" type="stmt"/>
             <line num="140" count="2" type="stmt"/>
             <line falsecount="1" truecount="1" num="140" type="cond"/>
@@ -1785,25 +1785,25 @@
             <line falsecount="0" truecount="1" num="142" type="cond"/>
             <line num="143" count="1" type="stmt"/>
             <line num="145" count="2" type="stmt"/>
-            <line num="147" count="62" type="stmt"/>
-            <line num="149" count="62" type="stmt"/>
-            <line falsecount="1" truecount="61" num="149" type="cond"/>
-            <line num="150" count="61" type="stmt"/>
+            <line num="147" count="63" type="stmt"/>
+            <line num="149" count="63" type="stmt"/>
+            <line falsecount="1" truecount="62" num="149" type="cond"/>
+            <line num="150" count="62" type="stmt"/>
             <line num="153" count="1" type="stmt"/>
-            <line complexity="6" visibility="private" signature="createToken(Element,Matcher) : ComponentToken" num="156" count="61" type="method"/>
-            <line num="157" count="61" type="stmt"/>
-            <line falsecount="60" truecount="1" num="157" type="cond"/>
+            <line complexity="6" visibility="private" signature="createToken(Element,Matcher) : ComponentToken" num="156" count="62" type="method"/>
+            <line num="157" count="62" type="stmt"/>
+            <line falsecount="61" truecount="1" num="157" type="cond"/>
             <line num="159" count="1" type="stmt"/>
-            <line num="161" count="60" type="stmt"/>
-            <line falsecount="32" truecount="28" num="161" type="cond"/>
-            <line num="162" count="60" type="stmt"/>
-            <line num="163" count="60" type="stmt"/>
-            <line falsecount="34" truecount="26" num="163" type="cond"/>
+            <line num="161" count="61" type="stmt"/>
+            <line falsecount="33" truecount="28" num="161" type="cond"/>
+            <line num="162" count="61" type="stmt"/>
+            <line num="163" count="61" type="stmt"/>
+            <line falsecount="35" truecount="26" num="163" type="cond"/>
             <line num="164" count="26" type="stmt"/>
-            <line num="165" count="34" type="stmt"/>
-            <line falsecount="29" truecount="5" num="165" type="cond"/>
+            <line num="165" count="35" type="stmt"/>
+            <line falsecount="30" truecount="5" num="165" type="cond"/>
             <line num="166" count="5" type="stmt"/>
-            <line num="169" count="60" type="stmt"/>
+            <line num="169" count="61" type="stmt"/>
             <line complexity="2" visibility="protected" signature="extractAttributes(String) : Map&lt;String, String&gt;" num="172" count="0" type="method"/>
             <line num="173" count="0" type="stmt"/>
             <line num="174" count="0" type="stmt"/>
@@ -1847,19 +1847,19 @@
             <class name="ComponentToken.Type">
                <metrics coveredelements="0" coveredconditionals="0" complexity="0" coveredmethods="0" methods="0" elements="0" statements="0" conditionals="0" coveredstatements="0"/>
             </class>
-            <line complexity="1" visibility="public" signature="ComponentToken(Element,String,Tag,Type)" num="72" count="62" type="method"/>
-            <line num="73" count="62" type="stmt"/>
-            <line num="74" count="62" type="stmt"/>
-            <line num="75" count="62" type="stmt"/>
-            <line num="76" count="62" type="stmt"/>
+            <line complexity="1" visibility="public" signature="ComponentToken(Element,String,Tag,Type)" num="72" count="63" type="method"/>
+            <line num="73" count="63" type="stmt"/>
+            <line num="74" count="63" type="stmt"/>
+            <line num="75" count="63" type="stmt"/>
+            <line num="76" count="63" type="stmt"/>
             <line complexity="1" visibility="public" signature="getElement() : Element" num="79" count="53" type="method"/>
             <line num="80" count="53" type="stmt"/>
-            <line complexity="1" visibility="public" signature="name() : String" num="83" count="9" type="method"/>
-            <line num="84" count="9" type="stmt"/>
-            <line complexity="1" visibility="public" signature="type() : Type" num="87" count="91" type="method"/>
-            <line num="88" count="91" type="stmt"/>
-            <line complexity="1" visibility="public" signature="tag() : Tag" num="91" count="91" type="method"/>
-            <line num="92" count="91" type="stmt"/>
+            <line complexity="1" visibility="public" signature="name() : String" num="83" count="10" type="method"/>
+            <line num="84" count="10" type="stmt"/>
+            <line complexity="1" visibility="public" signature="type() : Type" num="87" count="92" type="method"/>
+            <line num="88" count="92" type="stmt"/>
+            <line complexity="1" visibility="public" signature="tag() : Tag" num="91" count="92" type="method"/>
+            <line num="92" count="92" type="stmt"/>
             <line complexity="1" visibility="public" signature="isCloseTagOf(ComponentToken) : boolean" num="95" count="24" type="method"/>
             <line num="96" count="24" type="stmt"/>
             <line complexity="1" visibility="public" signature="toString() : String" num="103" count="0" type="method"/>
@@ -2275,25 +2275,25 @@
          </file>
       </package>
    </project>
-   <testproject name="Reflow Maven Skin Parent 2.4.0-beta2-SNAPSHOT" timestamp="1605630091437">
-      <metrics coveredelements="645" complexity="245" loc="3234" methods="194" classes="21" statements="664" packages="7" coveredconditionals="24" coveredmethods="122" elements="896" ncloc="1587" files="20" conditionals="38" coveredstatements="499"/>
+   <testproject name="Reflow Maven Skin Parent 2.4.0-beta2-SNAPSHOT" timestamp="1605630996510">
+      <metrics coveredelements="647" complexity="246" loc="3239" methods="195" classes="21" statements="665" packages="7" coveredconditionals="24" coveredmethods="123" elements="898" ncloc="1591" files="20" conditionals="38" coveredstatements="500"/>
       <package name="org.devacfr.maven.skins.reflow">
          <metrics coveredelements="264" complexity="53" loc="595" methods="48" classes="4" statements="210" coveredconditionals="6" coveredmethods="48" elements="264" ncloc="431" files="4" conditionals="6" coveredstatements="210"/>
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/HtmlToolTest.java" name="HtmlToolTest.java">
             <metrics coveredelements="117" coveredconditionals="0" complexity="23" loc="259" coveredmethods="23" methods="23" elements="117" classes="1" ncloc="198" statements="94" conditionals="0" coveredstatements="94"/>
             <class name="HtmlToolTest">
-               <metrics coveredelements="117" complexity="23" methods="23" testruns="22" statements="94" coveredconditionals="0" coveredmethods="23" elements="117" testfailures="0" testduration="0.035" conditionals="0" coveredstatements="94" testpasses="22"/>
+               <metrics coveredelements="117" complexity="23" methods="23" testruns="22" statements="94" coveredconditionals="0" coveredmethods="23" elements="117" testfailures="0" testduration="0.032" conditionals="0" coveredstatements="94" testpasses="22"/>
             </class>
             <line complexity="1" visibility="public" signature="setup() : void" num="41" count="22" type="method"/>
             <line num="43" count="22" type="stmt"/>
             <line num="44" count="22" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldSplitBodyFragment() : void" num="53" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldSplitBodyFragment() : void" num="53" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="55" count="1" type="stmt"/>
             <line num="56" count="1" type="stmt"/>
             <line num="57" count="1" type="stmt"/>
             <line num="58" count="1" type="stmt"/>
             <line num="59" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldNotSplit() : void" num="65" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldNotSplit() : void" num="65" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="67" count="1" type="stmt"/>
             <line num="68" count="1" type="stmt"/>
             <line num="69" count="1" type="stmt"/>
@@ -2313,7 +2313,7 @@
             <line num="93" count="1" type="stmt"/>
             <line num="94" count="1" type="stmt"/>
             <line num="95" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldSplitJoinSeparatorAfter() : void" num="98" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldSplitJoinSeparatorAfter() : void" num="98" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="100" count="1" type="stmt"/>
             <line num="101" count="1" type="stmt"/>
             <line num="102" count="1" type="stmt"/>
@@ -2333,12 +2333,12 @@
             <line num="121" count="1" type="stmt"/>
             <line num="122" count="1" type="stmt"/>
             <line num="123" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldSplitOnStarts() : void" num="126" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldSplitOnStarts() : void" num="126" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="128" count="1" type="stmt"/>
             <line num="129" count="1" type="stmt"/>
             <line num="130" count="1" type="stmt"/>
             <line num="131" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="fixTableHeadsWithTagListReportOuput() : void" num="134" testsuccess="true" count="1" testduration="0.006" type="method"/>
+            <line complexity="1" visibility="public" signature="fixTableHeadsWithTagListReportOuput() : void" num="134" testsuccess="true" count="1" testduration="0.005" type="method"/>
             <line num="136" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="shouldReorderToTopOneSection() : void" num="139" testsuccess="true" count="1" testduration="0.002" type="method"/>
             <line num="141" count="1" type="stmt"/>
@@ -2352,7 +2352,7 @@
             <line num="154" count="1" type="stmt"/>
             <line num="158" count="1" type="stmt"/>
             <line num="159" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldSetAttribute() : void" num="162" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldSetAttribute() : void" num="162" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="164" count="1" type="stmt"/>
             <line num="165" count="1" type="stmt"/>
             <line num="166" count="1" type="stmt"/>
@@ -2372,18 +2372,18 @@
             <line num="192" count="1" type="stmt"/>
             <line num="193" count="1" type="stmt"/>
             <line num="194" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldReplace() : void" num="197" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldReplace() : void" num="197" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="199" count="1" type="stmt"/>
             <line num="200" count="1" type="stmt"/>
             <line num="201" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="shouldReplaceWith() : void" num="204" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="206" count="1" type="stmt"/>
             <line num="208" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldExtractText() : void" num="211" testsuccess="true" count="1" testduration="0.002" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldExtractText() : void" num="211" testsuccess="true" count="1" testduration="0.003" type="method"/>
             <line num="213" count="1" type="stmt"/>
             <line num="214" count="1" type="stmt"/>
             <line num="215" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldHeadingAnchorToId() : void" num="218" testsuccess="true" count="1" testduration="0.004" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldHeadingAnchorToId() : void" num="218" testsuccess="true" count="1" testduration="0.003" type="method"/>
             <line num="220" count="1" type="stmt"/>
             <line num="221" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="shouldEnsureHeadingIds() : void" num="225" testsuccess="true" count="1" testduration="0.002" type="method"/>
@@ -2405,7 +2405,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/SkinConfigToolTest.java" name="SkinConfigToolTest.java">
             <metrics coveredelements="47" coveredconditionals="0" complexity="9" loc="120" coveredmethods="7" methods="7" elements="47" classes="1" ncloc="82" statements="40" conditionals="0" coveredstatements="40"/>
             <class name="SkinConfigToolTest">
-               <metrics coveredelements="47" complexity="9" methods="7" testruns="6" statements="40" coveredconditionals="0" coveredmethods="7" elements="47" testfailures="0" testduration="0.003" conditionals="0" coveredstatements="40" testpasses="6"/>
+               <metrics coveredelements="47" complexity="9" methods="7" testruns="6" statements="40" coveredconditionals="0" coveredmethods="7" elements="47" testfailures="0" testduration="0.0" conditionals="0" coveredstatements="40" testpasses="6"/>
             </class>
             <line complexity="3" visibility="public" signature="setup() : void" num="42" count="6" type="method"/>
             <line num="44" count="6" type="stmt"/>
@@ -2427,7 +2427,7 @@
             <line complexity="1" visibility="public" signature="testIs() : void" num="66" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="68" count="1" type="stmt"/>
             <line num="69" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="testNot() : void" num="72" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="testNot() : void" num="72" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="74" count="1" type="stmt"/>
             <line num="75" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="testIsValue() : void" num="78" testsuccess="true" count="1" testduration="0.0" type="method"/>
@@ -2441,7 +2441,7 @@
             <line num="92" count="1" type="stmt"/>
             <line num="93" count="1" type="stmt"/>
             <line num="94" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="testIsExternalLink() : void" num="97" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="testIsExternalLink() : void" num="97" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="100" count="1" type="stmt"/>
             <line num="101" count="1" type="stmt"/>
             <line num="102" count="1" type="stmt"/>
@@ -2450,7 +2450,7 @@
             <line num="106" count="1" type="stmt"/>
             <line num="107" count="1" type="stmt"/>
             <line num="108" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="testSlugFilename() : void" num="113" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="testSlugFilename() : void" num="113" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="115" count="1" type="stmt"/>
             <line num="116" count="1" type="stmt"/>
             <line num="117" count="1" type="stmt"/>
@@ -2458,7 +2458,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/URIToolTest.java" name="URIToolTest.java">
             <metrics coveredelements="56" coveredconditionals="0" complexity="10" loc="118" coveredmethods="10" methods="10" elements="56" classes="1" ncloc="85" statements="46" conditionals="0" coveredstatements="46"/>
             <class name="URIToolTest">
-               <metrics coveredelements="56" complexity="10" methods="10" testruns="10" statements="46" coveredconditionals="0" coveredmethods="10" elements="56" testfailures="0" testduration="0.004" conditionals="0" coveredstatements="46" testpasses="10"/>
+               <metrics coveredelements="56" complexity="10" methods="10" testruns="10" statements="46" coveredconditionals="0" coveredmethods="10" elements="56" testfailures="0" testduration="0.001" conditionals="0" coveredstatements="46" testpasses="10"/>
             </class>
             <line complexity="1" visibility="public" signature="shouldRelativizeLinkAccetupNullBase() : void" num="27" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="29" count="1" type="stmt"/>
@@ -2480,14 +2480,14 @@
             <line num="56" count="1" type="stmt"/>
             <line num="57" count="1" type="stmt"/>
             <line num="58" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="relativeSubFolderLink() : void" num="61" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="relativeSubFolderLink() : void" num="61" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="63" count="1" type="stmt"/>
             <line num="64" count="1" type="stmt"/>
             <line num="65" count="1" type="stmt"/>
             <line num="67" count="1" type="stmt"/>
             <line num="68" count="1" type="stmt"/>
             <line num="69" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldNormalisedBaseUrlAcceptNullParameter() : void" num="72" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldNormalisedBaseUrlAcceptNullParameter() : void" num="72" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="74" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="rebaseUrlNonInterpolate() : void" num="77" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="79" count="1" type="stmt"/>
@@ -2497,7 +2497,7 @@
             <line num="83" count="1" type="stmt"/>
             <line num="84" count="1" type="stmt"/>
             <line num="85" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="rebaseUrlOnRootProject() : void" num="89" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="rebaseUrlOnRootProject() : void" num="89" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="91" count="1" type="stmt"/>
             <line num="92" count="1" type="stmt"/>
             <line num="93" count="1" type="stmt"/>
@@ -2530,7 +2530,7 @@
             <line num="38" count="1" type="stmt"/>
             <line num="39" count="1" type="stmt"/>
             <line num="41" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldChildNodeNotExist() : void" num="44" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldChildNodeNotExist() : void" num="44" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="46" count="1" type="stmt"/>
             <line num="47" count="1" type="stmt"/>
             <line num="48" count="1" type="stmt"/>
@@ -2549,7 +2549,7 @@
             <line num="70" count="10" type="stmt"/>
             <line num="73" count="1" type="stmt"/>
             <line num="74" count="1" type="stmt"/>
-            <line complexity="3" visibility="public" signature="shouldChildrenNodesReturnSpecificChildrenNodes() : void" num="77" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="3" visibility="public" signature="shouldChildrenNodesReturnSpecificChildrenNodes() : void" num="77" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="79" count="1" type="stmt"/>
             <line num="80" count="1" type="stmt"/>
             <line falsecount="1" truecount="10" num="80" type="cond"/>
@@ -2570,7 +2570,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/context/BodyContextTest.java" name="BodyContextTest.java">
             <metrics coveredelements="40" coveredconditionals="0" complexity="3" loc="104" coveredmethods="3" methods="3" elements="40" classes="1" ncloc="70" statements="37" conditionals="0" coveredstatements="37"/>
             <class name="BodyContextTest">
-               <metrics coveredelements="40" complexity="3" methods="3" testruns="2" statements="37" coveredconditionals="0" coveredmethods="3" elements="40" testfailures="0" testduration="0.023" conditionals="0" coveredstatements="37" testpasses="2"/>
+               <metrics coveredelements="40" complexity="3" methods="3" testruns="2" statements="37" coveredconditionals="0" coveredmethods="3" elements="40" testfailures="0" testduration="0.017" conditionals="0" coveredstatements="37" testpasses="2"/>
             </class>
             <line complexity="1" visibility="public" signature="setup() : void" num="41" count="2" type="method"/>
             <line num="44" count="2" type="stmt"/>
@@ -2581,7 +2581,7 @@
             <line num="50" count="2" type="stmt"/>
             <line num="51" count="2" type="stmt"/>
             <line num="53" count="2" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBuildBodyContext() : void" num="57" testsuccess="true" count="1" testduration="0.002" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBuildBodyContext() : void" num="57" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="59" count="1" type="stmt"/>
             <line num="60" count="1" type="stmt"/>
             <line num="62" count="1" type="stmt"/>
@@ -2603,7 +2603,7 @@
             <line num="83" count="1" type="stmt"/>
             <line num="84" count="1" type="stmt"/>
             <line num="85" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldRenderBodyWihoutModify() : void" num="88" testsuccess="true" count="1" testduration="0.021" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldRenderBodyWihoutModify() : void" num="88" testsuccess="true" count="1" testduration="0.016" type="method"/>
             <line num="90" count="1" type="stmt"/>
             <line num="91" count="1" type="stmt"/>
             <line num="93" count="1" type="stmt"/>
@@ -2616,7 +2616,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/context/ContextTest.java" name="ContextTest.java">
             <metrics coveredelements="38" coveredconditionals="0" complexity="5" loc="104" coveredmethods="5" methods="5" elements="38" classes="1" ncloc="70" statements="33" conditionals="0" coveredstatements="33"/>
             <class name="ContextTest">
-               <metrics coveredelements="38" complexity="5" methods="5" testruns="4" statements="33" coveredconditionals="0" coveredmethods="5" elements="38" testfailures="0" testduration="0.12200000000000001" conditionals="0" coveredstatements="33" testpasses="4"/>
+               <metrics coveredelements="38" complexity="5" methods="5" testruns="4" statements="33" coveredconditionals="0" coveredmethods="5" elements="38" testfailures="0" testduration="0.106" conditionals="0" coveredstatements="33" testpasses="4"/>
             </class>
             <line complexity="1" visibility="public" signature="setup() : void" num="35" count="4" type="method"/>
             <line num="38" count="4" type="stmt"/>
@@ -2628,7 +2628,7 @@
             <line num="45" count="4" type="stmt"/>
             <line num="47" count="4" type="stmt"/>
             <line num="50" count="4" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldReplaceTTTag() : void" num="53" testsuccess="true" count="1" testduration="0.017" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldReplaceTTTag() : void" num="53" testsuccess="true" count="1" testduration="0.007" type="method"/>
             <line num="55" count="1" type="stmt"/>
             <line num="56" count="1" type="stmt"/>
             <line num="58" count="1" type="stmt"/>
@@ -2642,14 +2642,14 @@
             <line num="73" count="1" type="stmt"/>
             <line num="74" count="1" type="stmt"/>
             <line num="75" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldApplyBootstrapCss() : void" num="79" testsuccess="true" count="1" testduration="0.013" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldApplyBootstrapCss() : void" num="79" testsuccess="true" count="1" testduration="0.019" type="method"/>
             <line num="81" count="1" type="stmt"/>
             <line num="82" count="1" type="stmt"/>
             <line num="84" count="1" type="stmt"/>
             <line num="86" count="1" type="stmt"/>
             <line num="87" count="1" type="stmt"/>
             <line num="88" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldReplaceIcons() : void" num="92" testsuccess="true" count="1" testduration="0.085" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldReplaceIcons() : void" num="92" testsuccess="true" count="1" testduration="0.073" type="method"/>
             <line num="94" count="1" type="stmt"/>
             <line num="95" count="1" type="stmt"/>
             <line num="97" count="1" type="stmt"/>
@@ -2660,7 +2660,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/context/DocumentContextTest.java" name="DocumentContextTest.java">
             <metrics coveredelements="20" coveredconditionals="0" complexity="2" loc="73" coveredmethods="2" methods="2" elements="20" classes="1" ncloc="45" statements="18" conditionals="0" coveredstatements="18"/>
             <class name="DocumentContextTest">
-               <metrics coveredelements="20" complexity="2" methods="2" testruns="1" statements="18" coveredconditionals="0" coveredmethods="2" elements="20" testfailures="0" testduration="0.003" conditionals="0" coveredstatements="18" testpasses="1"/>
+               <metrics coveredelements="20" complexity="2" methods="2" testruns="1" statements="18" coveredconditionals="0" coveredmethods="2" elements="20" testfailures="0" testduration="0.002" conditionals="0" coveredstatements="18" testpasses="1"/>
             </class>
             <line complexity="1" visibility="public" signature="setup() : void" num="39" count="1" type="method"/>
             <line num="42" count="1" type="stmt"/>
@@ -2671,7 +2671,7 @@
             <line num="48" count="1" type="stmt"/>
             <line num="49" count="1" type="stmt"/>
             <line num="51" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBuildDocumentContext() : void" num="55" testsuccess="true" count="1" testduration="0.003" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBuildDocumentContext() : void" num="55" testsuccess="true" count="1" testduration="0.002" type="method"/>
             <line num="57" count="1" type="stmt"/>
             <line num="58" count="1" type="stmt"/>
             <line num="60" count="1" type="stmt"/>
@@ -2686,7 +2686,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/context/FrameContextTest.java" name="FrameContextTest.java">
             <metrics coveredelements="40" coveredconditionals="0" complexity="2" loc="110" coveredmethods="2" methods="2" elements="40" classes="1" ncloc="78" statements="38" conditionals="0" coveredstatements="38"/>
             <class name="FrameContextTest">
-               <metrics coveredelements="40" complexity="2" methods="2" testruns="1" statements="38" coveredconditionals="0" coveredmethods="2" elements="40" testfailures="0" testduration="0.036" conditionals="0" coveredstatements="38" testpasses="1"/>
+               <metrics coveredelements="40" complexity="2" methods="2" testruns="1" statements="38" coveredconditionals="0" coveredmethods="2" elements="40" testfailures="0" testduration="0.029" conditionals="0" coveredstatements="38" testpasses="1"/>
             </class>
             <line complexity="1" visibility="public" signature="setup() : void" num="43" count="1" type="method"/>
             <line num="46" count="1" type="stmt"/>
@@ -2697,7 +2697,7 @@
             <line num="52" count="1" type="stmt"/>
             <line num="53" count="1" type="stmt"/>
             <line num="55" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBuildFrameContext() : void" num="59" testsuccess="true" count="1" testduration="0.036" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBuildFrameContext() : void" num="59" testsuccess="true" count="1" testduration="0.029" type="method"/>
             <line num="61" count="1" type="stmt"/>
             <line num="70" count="1" type="stmt"/>
             <line num="71" count="1" type="stmt"/>
@@ -2732,7 +2732,7 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/context/PageContextTest.java" name="PageContextTest.java">
             <metrics coveredelements="44" coveredconditionals="0" complexity="3" loc="109" coveredmethods="3" methods="3" elements="44" classes="1" ncloc="72" statements="41" conditionals="0" coveredstatements="41"/>
             <class name="PageContextTest">
-               <metrics coveredelements="44" complexity="3" methods="3" testruns="2" statements="41" coveredconditionals="0" coveredmethods="3" elements="44" testfailures="0" testduration="0.184" conditionals="0" coveredstatements="41" testpasses="2"/>
+               <metrics coveredelements="44" complexity="3" methods="3" testruns="2" statements="41" coveredconditionals="0" coveredmethods="3" elements="44" testfailures="0" testduration="0.201" conditionals="0" coveredstatements="41" testpasses="2"/>
             </class>
             <line complexity="1" visibility="public" signature="setup() : void" num="39" count="2" type="method"/>
             <line num="42" count="2" type="stmt"/>
@@ -2743,7 +2743,7 @@
             <line num="48" count="2" type="stmt"/>
             <line num="49" count="2" type="stmt"/>
             <line num="51" count="2" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBuildPageContext() : void" num="58" testsuccess="true" count="1" testduration="0.182" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBuildPageContext() : void" num="58" testsuccess="true" count="1" testduration="0.199" type="method"/>
             <line num="60" count="1" type="stmt"/>
             <line num="62" count="1" type="stmt"/>
             <line num="63" count="1" type="stmt"/>
@@ -2781,56 +2781,58 @@
          </file>
       </package>
       <package name="org.devacfr.maven.skins.reflow.snippet">
-         <metrics coveredelements="70" complexity="31" loc="270" methods="23" classes="3" statements="55" coveredconditionals="0" coveredmethods="23" elements="78" ncloc="180" files="3" conditionals="0" coveredstatements="47"/>
+         <metrics coveredelements="72" complexity="32" loc="275" methods="24" classes="3" statements="56" coveredconditionals="0" coveredmethods="24" elements="80" ncloc="184" files="3" conditionals="0" coveredstatements="48"/>
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/snippet/ComponentResolverTest.java" name="ComponentResolverTest.java">
-            <metrics coveredelements="32" coveredconditionals="0" complexity="13" loc="104" coveredmethods="13" methods="13" elements="32" classes="1" ncloc="72" statements="19" conditionals="0" coveredstatements="19"/>
+            <metrics coveredelements="34" coveredconditionals="0" complexity="14" loc="109" coveredmethods="14" methods="14" elements="34" classes="1" ncloc="76" statements="20" conditionals="0" coveredstatements="20"/>
             <class name="ComponentResolverTest">
-               <metrics coveredelements="32" complexity="13" methods="13" testruns="12" statements="19" coveredconditionals="0" coveredmethods="13" elements="32" testfailures="0" testduration="0.006" conditionals="0" coveredstatements="19" testpasses="12"/>
+               <metrics coveredelements="34" complexity="14" methods="14" testruns="13" statements="20" coveredconditionals="0" coveredmethods="14" elements="34" testfailures="0" testduration="0.004" conditionals="0" coveredstatements="20" testpasses="13"/>
             </class>
             <line complexity="1" visibility="public" signature="shouldBeStartWebComponent() : void" num="29" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="31" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="shouldBeStartWebComponentWithAttributes() : void" num="34" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="36" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBeStartWebComponentWithNumberAttributes() : void" num="39" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeStartWebComponentWithAttributeWithoutValue() : void" num="39" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="41" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBeEndWebComponent() : void" num="44" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeStartWebComponentWithNumberAttributes() : void" num="44" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="46" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBeEmptyWebComponent() : void" num="49" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeEndWebComponent() : void" num="49" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="51" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBeStartShortcode() : void" num="54" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeEmptyWebComponent() : void" num="54" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="56" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBeEndShortcode() : void" num="59" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeStartShortcode() : void" num="59" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="61" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldBeEmptyShortcode() : void" num="64" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeEndShortcode() : void" num="64" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="66" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldFailedOnMalformed() : void" num="69" testsuccess="true" count="1" testduration="0.002" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldBeEmptyShortcode() : void" num="69" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="71" count="1" type="stmt"/>
-            <line num="72" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldFailedUnknownComponent() : void" num="76" testsuccess="true" count="1" testduration="0.0" type="method"/>
-            <line num="78" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldElementStartWebComponentContainingAttributes() : void" num="81" testsuccess="true" count="1" testduration="0.0" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldFailedOnMalformed() : void" num="74" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line num="76" count="1" type="stmt"/>
+            <line num="77" count="1" type="stmt"/>
+            <line complexity="1" visibility="public" signature="shouldFailedUnknownComponent() : void" num="81" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="83" count="1" type="stmt"/>
-            <line complexity="1" visibility="public" signature="shouldContainSnippetComponent() : void" num="86" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line complexity="1" visibility="public" signature="shouldElementStartWebComponentContainingAttributes() : void" num="86" testsuccess="true" count="1" testduration="0.0" type="method"/>
             <line num="88" count="1" type="stmt"/>
-            <line num="91" count="1" type="stmt"/>
-            <line num="94" count="1" type="stmt"/>
-            <line complexity="1" visibility="private" signature="check(String,String,Type,Tag) : void" num="97" count="9" type="method"/>
-            <line num="98" count="9" type="stmt"/>
-            <line num="99" count="9" type="stmt"/>
-            <line num="100" count="9" type="stmt"/>
-            <line num="101" count="9" type="stmt"/>
+            <line complexity="1" visibility="public" signature="shouldContainSnippetComponent() : void" num="91" testsuccess="true" count="1" testduration="0.001" type="method"/>
+            <line num="93" count="1" type="stmt"/>
+            <line num="96" count="1" type="stmt"/>
+            <line num="99" count="1" type="stmt"/>
+            <line complexity="1" visibility="private" signature="check(String,String,Type,Tag) : void" num="102" count="10" type="method"/>
+            <line num="103" count="10" type="stmt"/>
+            <line num="104" count="10" type="stmt"/>
+            <line num="105" count="10" type="stmt"/>
+            <line num="106" count="10" type="stmt"/>
          </file>
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/snippet/SnippetParserTest.java" name="SnippetParserTest.java">
             <metrics coveredelements="26" coveredconditionals="0" complexity="13" loc="106" coveredmethods="7" methods="7" elements="32" classes="1" ncloc="73" statements="25" conditionals="0" coveredstatements="19"/>
             <class name="SnippetParserTest">
-               <metrics coveredelements="26" complexity="13" methods="7" testruns="6" statements="25" coveredconditionals="0" coveredmethods="7" elements="32" testfailures="0" testduration="0.278" conditionals="0" coveredstatements="19" testpasses="6"/>
+               <metrics coveredelements="26" complexity="13" methods="7" testruns="6" statements="25" coveredconditionals="0" coveredmethods="7" elements="32" testfailures="0" testduration="0.263" conditionals="0" coveredstatements="19" testpasses="6"/>
             </class>
             <line complexity="2" visibility="public" signature="shouldReplaceSnippetByHtml() : void" num="30" testsuccess="true" count="1" testduration="0.038" type="method"/>
             <line num="32" count="1" type="stmt"/>
             <line num="33" count="1" type="stmt"/>
             <line num="34" count="1" type="stmt"/>
             <line num="36" count="0" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldRenderCard() : void" num="42" testsuccess="true" count="1" testduration="0.034" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldRenderCard() : void" num="42" testsuccess="true" count="1" testduration="0.044" type="method"/>
             <line num="44" count="1" type="stmt"/>
             <line num="45" count="1" type="stmt"/>
             <line num="46" count="1" type="stmt"/>
@@ -2840,17 +2842,17 @@
             <line num="57" count="1" type="stmt"/>
             <line num="58" count="1" type="stmt"/>
             <line num="60" count="0" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldRenderBadge() : void" num="66" testsuccess="true" count="1" testduration="0.029" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldRenderBadge() : void" num="66" testsuccess="true" count="1" testduration="0.032" type="method"/>
             <line num="68" count="1" type="stmt"/>
             <line num="69" count="1" type="stmt"/>
             <line num="70" count="1" type="stmt"/>
             <line num="72" count="0" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldRenderLayout() : void" num="78" testsuccess="true" count="1" testduration="0.149" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldRenderLayout() : void" num="78" testsuccess="true" count="1" testduration="0.123" type="method"/>
             <line num="80" count="1" type="stmt"/>
             <line num="81" count="1" type="stmt"/>
             <line num="82" count="1" type="stmt"/>
             <line num="84" count="0" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldRenderNestedComponent() : void" num="90" testsuccess="true" count="1" testduration="0.012" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldRenderNestedComponent() : void" num="90" testsuccess="true" count="1" testduration="0.01" type="method"/>
             <line num="92" count="1" type="stmt"/>
             <line num="93" count="1" type="stmt"/>
             <line num="94" count="1" type="stmt"/>
@@ -2861,17 +2863,17 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/devacfr/maven/skins/reflow/snippet/TemplateMacroTest.java" name="TemplateMacroTest.java">
             <metrics coveredelements="12" coveredconditionals="0" complexity="5" loc="60" coveredmethods="3" methods="3" elements="14" classes="1" ncloc="35" statements="11" conditionals="0" coveredstatements="9"/>
             <class name="TemplateMacroTest">
-               <metrics coveredelements="12" complexity="5" methods="3" testruns="2" statements="11" coveredconditionals="0" coveredmethods="3" elements="14" testfailures="0" testduration="0.032" conditionals="0" coveredstatements="9" testpasses="2"/>
+               <metrics coveredelements="12" complexity="5" methods="3" testruns="2" statements="11" coveredconditionals="0" coveredmethods="3" elements="14" testfailures="0" testduration="0.022000000000000002" conditionals="0" coveredstatements="9" testpasses="2"/>
             </class>
             <line complexity="1" visibility="public" signature="tearDown() : void" num="28" count="2" type="method"/>
             <line num="31" count="2" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldConvert() : void" num="34" testsuccess="true" count="1" testduration="0.03" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldConvert() : void" num="34" testsuccess="true" count="1" testduration="0.021" type="method"/>
             <line num="36" count="1" type="stmt"/>
             <line num="38" count="1" type="stmt"/>
             <line num="39" count="1" type="stmt"/>
             <line num="40" count="1" type="stmt"/>
             <line num="42" count="0" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldConvertHtmlSnippet() : void" num="48" testsuccess="true" count="1" testduration="0.002" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldConvertHtmlSnippet() : void" num="48" testsuccess="true" count="1" testduration="0.001" type="method"/>
             <line num="50" count="1" type="stmt"/>
             <line num="51" count="1" type="stmt"/>
             <line num="52" count="1" type="stmt"/>
@@ -3036,13 +3038,13 @@
          <file path="/Users/devacfr/Development/github/reflow-maven-skin/reflow-velocity-tools/src/test/java/org/apache/maven/doxia/module/markdown/MarkdownParserTest.java" name="MarkdownParserTest.java">
             <metrics coveredelements="13" coveredconditionals="0" complexity="7" loc="67" coveredmethods="4" methods="4" elements="15" classes="1" ncloc="39" statements="11" conditionals="0" coveredstatements="9"/>
             <class name="MarkdownParserTest">
-               <metrics coveredelements="13" complexity="7" methods="4" testruns="1" statements="11" coveredconditionals="0" coveredmethods="4" elements="15" testfailures="0" testduration="0.344" conditionals="0" coveredstatements="9" testpasses="1"/>
+               <metrics coveredelements="13" complexity="7" methods="4" testruns="1" statements="11" coveredconditionals="0" coveredmethods="4" elements="15" testfailures="0" testduration="0.214" conditionals="0" coveredstatements="9" testpasses="1"/>
             </class>
             <line complexity="1" visibility="public" signature="setUp() : void" num="34" count="1" type="method"/>
             <line num="36" count="1" type="stmt"/>
             <line complexity="1" visibility="public" signature="tearDown() : void" num="39" count="1" type="method"/>
             <line num="42" count="1" type="stmt"/>
-            <line complexity="2" visibility="public" signature="shouldParseToHtml() : void" num="45" testsuccess="true" count="1" testduration="0.344" type="method"/>
+            <line complexity="2" visibility="public" signature="shouldParseToHtml() : void" num="45" testsuccess="true" count="1" testduration="0.214" type="method"/>
             <line num="47" count="1" type="stmt"/>
             <line num="48" count="1" type="stmt"/>
             <line num="49" count="1" type="stmt"/>
