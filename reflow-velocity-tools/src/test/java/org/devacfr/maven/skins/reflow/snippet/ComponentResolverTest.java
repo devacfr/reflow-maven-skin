@@ -37,6 +37,11 @@ public class ComponentResolverTest {
     }
 
     @Test
+    public void shouldBeStartWebComponentWithAttributeWithoutValue() {
+        check("{{% component pill %}}", "component", Type.webComponent, Tag.start);
+    }
+
+    @Test
     public void shouldBeStartWebComponentWithNumberAttributes() {
         check("{{% component length=\"120\" %}}", "component", Type.webComponent, Tag.start);
     }

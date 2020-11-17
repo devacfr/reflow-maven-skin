@@ -48,7 +48,7 @@ public class ComponentResolver {
 
     /** **/
     private static final Pattern RESOLVER_PATTERN = Pattern.compile(
-        "\\{\\{(<|%) (\\/?)([\\w\\-_]*)(\\s?(?:[\\w\\-_]*)=[\\u201c;|\"](?:[\\s\\w\\p{Punct}]*)[\\u201d|\"])* (\\/?)(>|%)\\}\\}",
+        "\\{\\{(<|%) (\\/?)([\\w\\-_]*)(\\s?(?:[\\w\\-_]*)(?:=[\\u201c;|\"](?:[\\s\\w\\p{Punct}]*)[\\u201d|\"])?)* (\\/?)(>|%)\\}\\}",
         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
     private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=\"(\\w*)\"\\s?",
