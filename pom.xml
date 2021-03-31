@@ -143,7 +143,7 @@
     <doxia.sitetools.version>1.9.1</doxia.sitetools.version>
     <doxia-module.version>1.9.1</doxia-module.version>
 
-    <guava.version>28.2-jre</guava.version>
+    <guava.version>29.0-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
