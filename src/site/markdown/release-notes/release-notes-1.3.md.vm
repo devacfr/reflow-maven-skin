@@ -34,4 +34,4 @@ $h2 Bug fixes
 - Fix scroll to Top.
 - Fix url project in copyright.
 
-[#23]: ${issue-url}/23
+[#23]: ${issue_url}/23

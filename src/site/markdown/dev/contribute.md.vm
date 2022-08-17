@@ -92,7 +92,7 @@ $h2 Issues (bug and feature tracker)
 Please report any bugs found, feature requests or other issues on
 [Reflow skin GitHub tracker][reflow-issues].
 
-[reflow-issues]: ${issue-url}
+[reflow-issues]: ${issue_url}
 
 $h2 Fork, patch and contribute code
 
@@ -100,10 +100,10 @@ Feel free to fork Reflow skin&apos;s [Git repository at GitHub][reflow-github] f
 updates.
 
 Contribute your fixes and new features back to the main codebase using
-[GitHub pull requests][github-pull-req].
+[GitHub pull requests][github_pull_req].
 
-[reflow-github]: ${scm-url}
-[github-pull-req]: http://help.github.com/articles/using-pull-requests
+[reflow-github]: ${scm_url}
+[github_pull_req]: http://help.github.com/articles/using-pull-requests
 
 $h2 Support
 

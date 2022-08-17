@@ -30,7 +30,7 @@ $h3 Minor enhancements
 $h3 Bug fix
 * test failed when running on windows ([#55][])
 
-[#37]: ${issue-url}/37
-[#55]: ${issue-url}/55
+[#37]: ${issue_url}/37
+[#55]: ${issue_url}/55
 
 [PR-56]: https://github.com/devacfr/reflow-maven-skin/pull/56

@@ -54,9 +54,9 @@ $h3 Bug fix
 
 * Error when scroll top with smooth scroll is disabled. ([#62][]).
 
-[#58]: ${issue-url}/58
-[#59]: ${issue-url}/59
-[#60]: ${issue-url}/60
-[#61]: ${issue-url}/61
-[#62]: ${issue-url}/62
-[#64]: ${issue-url}/64
+[#58]: ${issue_url}/58
+[#59]: ${issue_url}/59
+[#60]: ${issue_url}/60
+[#61]: ${issue_url}/61
+[#62]: ${issue_url}/62
+[#64]: ${issue_url}/64
