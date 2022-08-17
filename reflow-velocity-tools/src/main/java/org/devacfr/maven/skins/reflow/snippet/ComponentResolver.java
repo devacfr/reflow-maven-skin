@@ -21,7 +21,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Document;
@@ -99,11 +99,11 @@ public class ComponentResolver {
         // remove all section tags
         if (!elements.isEmpty()) {
             final Elements sections = Collector.collect(new Evaluator.Tag("section"), document);
-            sections.forEach((section) -> section.unwrap());
+            sections.forEach(Element::unwrap);
         }
 
-        elements.forEach((element) -> {
-            String text = StringEscapeUtils.unescapeHtml(element.html());
+        elements.forEach(element -> {
+            String text = StringEscapeUtils.unescapeHtml4(element.html());
             final Matcher matcher = RESOLVER_PATTERN.matcher(text);
 
             final List<MatchResult> results = Lists.newArrayList();
@@ -117,7 +117,7 @@ public class ComponentResolver {
             if (!results.isEmpty()) {
                 for (final MatchResult matchResult : results) {
                     final String snippet = text.substring(matchResult.start(), matchResult.end());
-                    text = text.substring(0, matchResult.start()) + "<span>" + StringEscapeUtils.escapeHtml(snippet)
+                    text = text.substring(0, matchResult.start()) + "<span>" + StringEscapeUtils.escapeHtml4(snippet)
                             + "</span>" + text.substring(matchResult.end());
                 }
                 element.html(text);

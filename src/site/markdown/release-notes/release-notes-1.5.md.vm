@@ -28,9 +28,9 @@ $h3 Bug fixes
 
 - Remove using of awesome font in toc sidebar ([#27][]).
 
-[#29]: ${issue-url}/29
-[#28]: ${issue-url}/28
-[#5]: ${issue-url}/5
-[#25]: ${issue-url}/25
-[#26]: ${issue-url}/26
-[#27]: ${issue-url}/27
+[#29]: ${issue_url}/29
+[#28]: ${issue_url}/28
+[#5]: ${issue_url}/5
+[#25]: ${issue_url}/25
+[#26]: ${issue_url}/26
+[#27]: ${issue_url}/27

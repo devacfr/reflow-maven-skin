@@ -18,6 +18,7 @@ package org.devacfr.testing.util;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.file.Path;
@@ -35,6 +36,8 @@ import com.cloudbees.diff.Diff;
 import com.cloudbees.diff.provider.BuiltInDiffProvider;
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
+import com.google.common.io.CharSink;
+import com.google.common.io.Files;
 import com.google.common.io.Resources;
 
 /**
@@ -43,7 +46,7 @@ import com.google.common.io.Resources;
  */
 public final class Approvals {
 
-    public static final Function<String, String> REMOVE_CARRIAGE_RETURN_LINEFEED = (text) -> text.replaceAll("\r", "");
+    public static final Function<String, String> REMOVE_CARRIAGE_RETURN_LINEFEED = text -> text.replaceAll("\r", "");
 
     private Approvals() {
         throw new UnsupportedOperationException();
@@ -143,6 +146,19 @@ public final class Approvals {
             actual = transform.apply(actual);
         }
         final String expected = getExpectedResource(location, testClass, testName, extension, null);
+
+        final File path = new File("target/approval/actuals/");
+        if (!path.exists()) {
+            path.mkdirs();
+        }
+        final File file = new File(path, testClass.getSimpleName() + "." + testName);
+
+        final CharSink sink = Files.asCharSink(file, Charsets.UTF_8);
+        try {
+            sink.write(actual);
+        } catch (final IOException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
 
         final Matcher<String> matcher = IsEqualCompressingWhiteSpace.equalToCompressingWhiteSpace(expected);
         if (!matcher.matches(actual)) {

@@ -37,7 +37,7 @@ Add [`reflow-velocity-tools`][reflow-tools] dependency to `maven-site-plugin` in
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>${maven-site-plugin-version}</version>
+      <version>${maven_site_plugin_version}</version>
       <dependencies>
         ...
         <dependency>
@@ -135,7 +135,7 @@ The skin is configurable using the `<custom>` element in your `site.xml` file. T
       <highlightJs>true</highlightJs>
       <brand>
         <name>My Project</name>
-        <href>${scm-url}</href>
+        <href>${scm_url}</href>
       </brand>
       <slogan>Super interesting project doing good things.</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
@@ -263,4 +263,4 @@ and for plug-in configuration in respective POM files.
 
 [reflow-tools]: ../reflow-velocity-tools
 [site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
-[reflow-src]: ${scm-url} "Reflow Maven skin source code"
+[reflow-src]: ${scm_url} "Reflow Maven skin source code"

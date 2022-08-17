@@ -24,7 +24,6 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.devacfr.testing.VelocityTestTool;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.Logger;
@@ -48,7 +47,6 @@ public abstract class AbstractVelocityTestCase extends MockitoTestCase {
 
     @BeforeEach
     protected void setUp() throws Exception {
-        this.setEngine(VelocityTestTool.newEngine());
         this.setTemplate("");
         this.setContext(new VelocityContext());
         this.setExpected("");

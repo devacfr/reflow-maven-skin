@@ -34,11 +34,9 @@ import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.tools.Scope;
 import org.apache.velocity.tools.ToolManager;
 import org.apache.velocity.tools.config.EasyFactoryConfiguration;
-import org.apache.velocity.tools.generic.AlternatorTool;
 import org.apache.velocity.tools.generic.ClassTool;
 import org.apache.velocity.tools.generic.ComparisonDateTool;
 import org.apache.velocity.tools.generic.ContextTool;
-import org.apache.velocity.tools.generic.ConversionTool;
 import org.apache.velocity.tools.generic.DisplayTool;
 import org.apache.velocity.tools.generic.EscapeTool;
 import org.apache.velocity.tools.generic.FieldTool;
@@ -48,7 +46,6 @@ import org.apache.velocity.tools.generic.MathTool;
 import org.apache.velocity.tools.generic.NumberTool;
 import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.ResourceTool;
-import org.apache.velocity.tools.generic.SortTool;
 import org.apache.velocity.tools.generic.XmlTool;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
@@ -124,7 +121,7 @@ public class SnippetContext {
 
     public SnippetParser createChildParser() {
         final SnippetParser parser = new SnippetParser();
-        getSnippetPaths().forEach((path) -> parser.addResourcePath(path));
+        getSnippetPaths().forEach(path -> parser.addResourcePath(path));
         return parser;
     }
 
@@ -190,7 +187,7 @@ public class SnippetContext {
     }
 
     private void recurciveCreateComponent(@Nonnull final Node element, final Component<?> parent) {
-        element.childNodes().forEach((child) -> {
+        element.childNodes().forEach(child -> {
             Component<?> component = null;
             // accept textnode not empty as component.
             if (child instanceof TextNode && ((TextNode) child).text().length() > 1) {
@@ -211,7 +208,7 @@ public class SnippetContext {
     }
 
     protected void render(final SnippetComponent<?> component) {
-        traverseTee(component, (c) -> {
+        traverseTee(component, c -> {
             if (c instanceof SnippetComponent) {
                 ((SnippetComponent<?>) c).render(this);
             }
@@ -220,7 +217,7 @@ public class SnippetContext {
     }
 
     private void traverseTee(final Component<?> component, final Consumer<Component<?>> consumer) {
-        final Consumer<Component<?>> traverse = (c) -> traverseTee(c, consumer);
+        final Consumer<Component<?>> traverse = c -> traverseTee(c, consumer);
         component.getChildren().forEach(consumer.andThen(traverse));
     }
 
@@ -281,17 +278,14 @@ public class SnippetContext {
                 .tool(LoopTool.class)
                 .tool(RenderTool.class);
         config.toolbox(Scope.APPLICATION)
-                .tool(AlternatorTool.class)
                 .tool(ClassTool.class)
                 .tool(ComparisonDateTool.class)
-                .tool(ConversionTool.class)
                 .tool(DisplayTool.class)
                 .tool(EscapeTool.class)
                 .tool(FieldTool.class)
                 .tool(MathTool.class)
                 .tool(NumberTool.class)
                 .tool(ResourceTool.class)
-                .tool(SortTool.class)
                 .tool(XmlTool.class)
                 .tool(URITool.class)
                 .tool(HtmlTool.class);
