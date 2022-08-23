@@ -56,6 +56,20 @@ public class MarkdownParserTest extends PlexusTestCase {
         }, "md");
     }
 
+    @Test
+    public void shouldParseSnippetToHtml() {
+        assertNotNull(parser);
+        verify(content -> {
+            try {
+                final String html = parseFileToHtml(content);
+                return Jsoup.parse(html).html();
+            } catch (final Exception e) {
+                Throwables.throwIfUnchecked(e);
+                throw new RuntimeException(e);
+            }
+        }, "md");
+    }
+
     protected String parseFileToHtml(final String content) throws Exception {
         try (Reader reader = new StringReader(content)) {
             // final Method toHtml = parser.getClass().getDeclaredMethod("toHtml", Reader.class);

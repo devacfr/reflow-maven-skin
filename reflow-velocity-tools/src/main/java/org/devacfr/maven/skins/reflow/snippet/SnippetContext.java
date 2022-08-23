@@ -247,6 +247,10 @@ public class SnippetContext {
                     context,
                     writer);
                 break;
+            } else {
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Template for component '{}' not found in path:{} ", component, filePath);
+                }
             }
 
         }

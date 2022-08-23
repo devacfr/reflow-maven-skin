@@ -30,12 +30,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Christophe Friederich
  * @version 2.4
  */
 public class SnippetParser {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SnippetParser.class);
 
     /** */
     private final ComponentResolver resolver;
@@ -86,6 +90,11 @@ public class SnippetParser {
 
         snippetContext.reset();
         snippetContext.setConfig(config);
+
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Parse Snippet");
+            LOGGER.debug(htmlSource);
+        }
 
         // find all snippets
         final Document doc = resolver.normalize(Jsoup.parse(htmlSource));
@@ -138,11 +147,21 @@ public class SnippetParser {
 
     protected ComponentToken pop() {
         final int size = stack.size();
-        return stack.remove(size - 1);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Stack size befor pop: {}", size);
+        }
+        final ComponentToken element = stack.remove(size - 1);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Remove component from stack: {}", element);
+        }
+        return element;
     }
 
     protected void push(final ComponentToken element) {
         stack.add(element);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Add component to stack: {}", element);
+        }
     }
 
     protected SnippetContext getSnippetContext() {

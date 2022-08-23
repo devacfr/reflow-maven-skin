@@ -26,6 +26,8 @@ import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -37,6 +39,8 @@ import com.google.common.collect.Lists;
  * @version 2.4
  */
 public abstract class Processor {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Processor.class);
 
     /** */
     protected final SnippetParser parser;
@@ -58,6 +62,9 @@ public abstract class Processor {
      *            the current token.
      */
     public void parse(final ComponentToken token) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Parse Token: {}", token);
+        }
         switch (token.tag()) {
             case empty: {
                 parser.getSnippetContext().render(createSnippetComponent(token, null));
@@ -156,7 +163,7 @@ public abstract class Processor {
                 parentElement.children().add(component);
             }
         }
-        nodesToRemove.forEach((node) -> node.remove());
+        nodesToRemove.forEach(Node::remove);
         return component;
     }
 
@@ -231,7 +238,7 @@ public abstract class Processor {
                     writer.append(el.text());
                 } else {
                     // comment can be enclose in <p> element.
-                    if (Iterables.tryFind(el.childNodes(), (n) -> n instanceof Comment).isPresent()) {
+                    if (Iterables.tryFind(el.childNodes(), n -> n instanceof Comment).isPresent()) {
                         writer.append(el.data());
                     } else {
                         writer.append(el.outerHtml());

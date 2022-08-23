@@ -33,6 +33,8 @@ import org.jsoup.select.Evaluator;
 import org.jsoup.select.NodeTraversor;
 import org.jsoup.select.NodeVisitor;
 import org.jsoup.select.QueryParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -46,12 +48,14 @@ import com.google.common.collect.Maps;
  */
 public class ComponentResolver {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentResolver.class);
+
     /** **/
     private static final Pattern RESOLVER_PATTERN = Pattern.compile(
         "\\{\\{(<|%) (\\/?)([\\w\\-_]*)(\\s?(?:[\\w\\-_]*)(?:=[\\u201c;|\"](?:[\\s\\w\\p{Punct}]*)[\\u201d|\"])?)* (\\/?)(>|%)\\}\\}",
         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
-    private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=\"(\\w*)\"\\s?",
+    private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=(\\\")?(\\w*)\2\\s?",
         Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
     /**
@@ -96,6 +100,10 @@ public class ComponentResolver {
     public Document normalize(final Document document) {
 
         final Elements elements = collect(document);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Snippet Collected");
+            LOGGER.debug(elements.toString());
+        }
         // remove all section tags
         if (!elements.isEmpty()) {
             final Elements sections = Collector.collect(new Evaluator.Tag("section"), document);
@@ -173,7 +181,7 @@ public class ComponentResolver {
         final Map<String, String> attrs = Maps.newHashMap();
         final Matcher matcher = ATTRIBUTE_PATTERN.matcher(text);
         while (matcher.find()) {
-            attrs.put(matcher.group(1).toLowerCase(), matcher.group(2));
+            attrs.put(matcher.group(1).toLowerCase(), matcher.group(3));
         }
         return attrs;
     }
