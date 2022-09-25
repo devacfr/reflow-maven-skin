@@ -15,37 +15,45 @@
  */
 package org.apache.maven.doxia.module.markdown;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.io.Reader;
 import java.io.StringReader;
 
+import javax.inject.Inject;
+
 import org.apache.maven.doxia.parser.Parser;
-import org.devacfr.testing.jupiter.PlexusTestCase;
+import org.devacfr.testing.jupiter.ParserTestCase;
 import org.jsoup.Jsoup;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.base.Throwables;
 
-public class MarkdownParserTest extends PlexusTestCase {
+public class MarkdownParserTest extends ParserTestCase {
 
+    @Inject
     private MarkdownParser parser;
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        parser = lookup(Parser.ROLE, MarkdownParser.ROLE_HINT);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Parser createParser() {
+        return parser;
     }
 
-    @AfterEach
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
+    protected String outputExtension() {
+        return MarkdownParserModule.FILE_EXTENSION;
     }
 
     @Test
     public void shouldParseToHtml() {
         assertNotNull(parser);
-        verify((conten) -> {
+        verify(conten -> {
             try {
                 return Jsoup.parse(parseFileToHtml("md")).html();
             } catch (final Exception e) {

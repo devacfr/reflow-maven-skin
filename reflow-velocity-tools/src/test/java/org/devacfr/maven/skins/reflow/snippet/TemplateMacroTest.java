@@ -18,24 +18,17 @@ package org.devacfr.maven.skins.reflow.snippet;
 import java.io.IOException;
 
 import org.devacfr.testing.jupiter.PlexusTestCase;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.io.CharSource;
 
 public class TemplateMacroTest extends PlexusTestCase {
 
-    @Override
-    @AfterEach
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     @Test
     public void shouldConvert() {
         final PartialTemplateMacro macro = new PartialTemplateMacro();
 
-        verify((actual) -> {
+        verify(actual -> {
             try {
                 return macro.convertSnippet(CharSource.wrap(actual));
             } catch (final IOException e) {
@@ -48,7 +41,7 @@ public class TemplateMacroTest extends PlexusTestCase {
     @Test
     public void shouldConvertHtmlSnippet() {
         final PartialTemplateMacro macro = new PartialTemplateMacro();
-        verify((actual) -> {
+        verify(actual -> {
             try {
                 return macro.convertSnippet(CharSource.wrap(actual));
             } catch (final IOException e) {

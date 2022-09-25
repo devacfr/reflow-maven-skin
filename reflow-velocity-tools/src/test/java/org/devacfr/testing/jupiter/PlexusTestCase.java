@@ -28,16 +28,12 @@ import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.context.DefaultContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Christophe Friederich
  * @since 2.4
  */
 public abstract class PlexusTestCase extends TestCase {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private PlexusContainer container;
 

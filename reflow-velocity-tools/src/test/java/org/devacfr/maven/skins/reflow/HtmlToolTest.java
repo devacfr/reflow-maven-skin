@@ -138,9 +138,8 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldReorderToTopOneSection() {
-        verify((content) -> {
-            return htmlTool.reorderToTop(content, "a:has(img), img", 1, "<div class=\"caption\"></div>");
-        }, "html");
+        verify(content -> htmlTool.reorderToTop(content, "a:has(img), img", 1, "<div class=\"caption\"></div>"),
+            "html");
     }
 
     @Test
@@ -184,7 +183,7 @@ public class HtmlToolTest extends TestCase {
     public void shouldWrapElement() {
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.wrap(content, "span", "<a href=\"http://reflow.com\"></a>", 1);
-        assertEquals("<div>\n <a href=\"http://reflow.com\"><span></span></a>\n</div>", actual);
+        assertEquals("<div>\n <a href=\"http://reflow.com\">\n  <span></span>\n </a>\n</div>", actual);
     }
 
     @Test
@@ -205,7 +204,8 @@ public class HtmlToolTest extends TestCase {
     public void shouldReplaceWith() {
         final String actual = htmlTool
                 .replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
-        assertEquals("<p>text <code class=\"literal\">foo value</code> end text.</p>", actual);
+        assertEquals("<p>\n" + " text \n" + " <code class=\"literal\">foo value</code>\n" + "  end text.\n" + "</p>",
+            actual);
     }
 
     @Test
@@ -217,23 +217,19 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldHeadingAnchorToId() {
-        verify((content) -> {
-            return htmlTool.headingAnchorToId(content);
-        }, "html");
+        verify(content -> htmlTool.headingAnchorToId(content), "html");
     }
 
     @Test
     public void shouldEnsureHeadingIds() {
-        verify((content) -> {
-            return htmlTool.ensureHeadingIds("page", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
-        }, "html");
+        verify(content -> htmlTool.ensureHeadingIds("page", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR),
+            "html");
     }
 
     @Test
     public void shouldEnsureHeadingIdsForFrame() {
-        verify((content) -> {
-            return htmlTool.ensureHeadingIds("frame", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR);
-        }, "html");
+        verify(content -> htmlTool.ensureHeadingIds("frame", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR),
+            "html");
     }
 
     @Test
