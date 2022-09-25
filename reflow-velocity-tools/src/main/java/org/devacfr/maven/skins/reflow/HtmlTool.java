@@ -643,7 +643,7 @@ public class HtmlTool extends SafeConfig {
      */
     public Document parse(@Nonnull final String content) {
         final Document doc = Jsoup.parseBodyFragment(content);
-        doc.outputSettings().charset(outputEncoding);
+        doc.outputSettings().charset(outputEncoding).outline(true);
         return doc;
     }
 

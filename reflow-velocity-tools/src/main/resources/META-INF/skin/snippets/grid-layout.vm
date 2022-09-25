@@ -21,11 +21,11 @@
  * {{< /grid-layout >}}
  *#
 #*  *##if( ${snippet.html})##
-#*      *##set( $numberColumns = "2" )
+#*      *##set($numberColumns = "2" )
 #*      *##if( $snippet.attrs['number-columns'])
-#*          *##set($numberColumns = $snippet.attrs['number-columns'])
+#*          *##set($numberColumn = $snippet.attrs['number-columns'])
 #*      *##end
-<div class="row row-cols-1 row-cols-md-${numberColumns}">
+<div class="row row-cols-1 row-cols-md-${numberColumn}">
     #render_html( ${snippet} )
 </div>
 #*  *##end

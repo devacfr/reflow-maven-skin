@@ -104,7 +104,9 @@ public class PartialTemplateMacro extends AbstractMacro implements Contextualiza
 
         } catch (final IOException e) {
             if (ignoreDownloadError) {
-                getLog().debug("IOException which reading " + file + ": " + e);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("IOException which reading " + file + ": " + e);
+                }
                 return "Error during retrieving content skip as ignoreDownloadError activated.";
             } else {
                 throw e;

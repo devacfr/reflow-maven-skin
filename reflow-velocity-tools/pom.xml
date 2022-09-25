@@ -38,7 +38,7 @@
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-core</artifactId>
-      <version>${doxia.sitetools.version}</version>
+      <version>${doxia.version}</version>
       <exclusions>
         <exclusion>
           <groupId>com.google.collections</groupId>
@@ -111,8 +111,21 @@
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-module-markdown</artifactId>
-      <version>${doxia-module.version}</version>
+      <version>${doxia.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-core</artifactId>
+      <type>test-jar</type>
+      <scope>test</scope>
+      <version>${doxia.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-testing</artifactId>
+      <scope>test</scope>
+      <version>1.1.0</version>
     </dependency>
 
     <!-- ================================================================================ -->

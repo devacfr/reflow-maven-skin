@@ -19,22 +19,22 @@
   <p>Strikethrough uses two tildes. <del>Scratch this.</del></p>
   <p>code in paragraph <code>&lt;div cleas="border-line"&gt;&lt;/div&gt;</code>.</p>
   <h2>Lists</h2>
-  <ol> 
+  <ol>
    <li>First ordered list item</li>
    <li>Another item ⋅⋅* Unordered sub-list.</li>
    <li>Actual numbers don't matter, just that it's a number ⋅⋅1. Ordered sub-list</li>
-   <li>And another item.</li> 
+   <li>And another item.</li>
   </ol>
   <p>⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).</p>
   <p>⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅ ⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅ ⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
-  <ul> 
-   <li>Unordered list can use asterisks</li> 
+  <ul>
+   <li>Unordered list can use asterisks</li>
   </ul>
-  <ul> 
-   <li>Or minuses</li> 
+  <ul>
+   <li>Or minuses</li>
   </ul>
-  <ul> 
-   <li>Or pluses</li> 
+  <ul>
+   <li>Or pluses</li>
   </ul>
   <h2>Links</h2>
   <p><a href="https://www.google.com">I'm an inline-style link</a></p>
@@ -50,27 +50,27 @@
   <p>Inline-style: <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 1"></p>
   <p>Reference-style: <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 2"></p>
   <h2>Code and Syntax Highlighting</h2>
-  <p>Inline <code>code</code> has <code>back-ticks around</code> it.</p> 
+  <p>Inline <code>code</code> has <code>back-ticks around</code> it.</p>
   <pre><code class="language-javascript">var s = "JavaScript syntax highlighting";
 alert(s);
-</code></pre> 
+</code></pre>
   <pre><code class="language-python">s = "Python syntax highlighting"
 print s
-</code></pre> 
+</code></pre>
   <pre><code>No language indicated, so no syntax highlighting. 
 But let's throw in a &lt;b&gt;tag&lt;/b&gt;.
 </code></pre>
   <h2>Tables</h2>
   <p>Colons can be used to align columns.</p>
-  <table> 
-   <thead> 
+  <table>
+   <thead>
     <tr>
      <th>Tables</th>
      <th align="center">Are</th>
      <th align="right">Cool</th>
-    </tr> 
+    </tr>
    </thead>
-   <tbody> 
+   <tbody>
     <tr>
      <td>col 3 is</td>
      <td align="center">right-aligned</td>
@@ -85,19 +85,19 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.
      <td>zebra stripes</td>
      <td align="center">are neat</td>
      <td align="right">$1</td>
-    </tr> 
-   </tbody> 
+    </tr>
+   </tbody>
   </table>
   <p>There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.</p>
-  <table> 
-   <thead> 
+  <table>
+   <thead>
     <tr>
      <th>Markdown</th>
      <th>Less</th>
      <th>Pretty</th>
-    </tr> 
+    </tr>
    </thead>
-   <tbody> 
+   <tbody>
     <tr>
      <td><em>Still</em></td>
      <td><code>renders</code></td>
@@ -107,32 +107,32 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.
      <td>1</td>
      <td>2</td>
      <td>3</td>
-    </tr> 
-   </tbody> 
+    </tr>
+   </tbody>
   </table>
   <h2>Blockquotes</h2>
-  <blockquote> 
-   <p>Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.</p> 
+  <blockquote>
+   <p>Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.</p>
   </blockquote>
   <p>Quote break.</p>
-  <blockquote> 
-   <p>This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can <em>put</em> <strong>Markdown</strong> into a blockquote.</p> 
+  <blockquote>
+   <p>This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can <em>put</em> <strong>Markdown</strong> into a blockquote.</p>
   </blockquote>
-  <p>##&nbsp;Inline Html</p> 
-  <dl> 
+  <p>##&nbsp;Inline Html</p>
+  <dl>
    <dt>
     Definition list
-   </dt> 
+   </dt>
    <dd>
     Is something people use sometimes.
-   </dd> 
+   </dd>
    <dt>
     Markdown in HTML
-   </dt> 
+   </dt>
    <dd>
     Does *not* work **very** well. Use HTML <em>tags</em>.
-   </dd> 
-  </dl> 
+   </dd>
+  </dl>
   <h2>Horizontal Rule</h2>
   <p>Three or more…</p>
   <hr>

@@ -18,13 +18,13 @@
  *
  *#
 #macro( render_image )##
-#*  *##if( ${snippet["card-image"]})##
+#*  *##if( ${snippet['card-image']})##
 #*      *##if( ${snippet["card-image"].html})##
             #render_html( ${snippet["card-image"]} )
 #*      *##else##
-    <img src="${snippet["card-image"].src}"##
-#*          *# class="card-img-${caps}#if( ${snippet["card-image"].attrs['class']} ) ${snippet["card-image"].attrs['class']}#end"
-#*          *# #if( ${snippet["card-image"].alt} )alt="${snippet["card-image"].alt}"#end>
+    <img src="${snippet['card-image'].src}"##
+#*          *# class="card-img-${caps}#if( ${snippet['card-image'].attrs['class']} ) ${snippet['card-image'].attrs['class']}#end"
+#*          *# #if( ${snippet['card-image'].alt} )alt="${snippet['card-image'].alt}"#end>
 #*      *##end##
 #*  *##end##
 #end##
@@ -33,14 +33,14 @@
  *
  *#
 #macro( render_header )##
-#*  *##if( ${snippet["card-header"]} && ${snippet["card-header"].html})##
+#*  *##if( ${snippet['card-header']} && ${snippet['card-header'].html})##
 #*      *##if( ${snippet["card-header"].level})##
-    <h${snippet["card-header"].level} class="card-header#if( ${snippet["card-header"].attrs['class']} ) ${snippet["card-header"].attrs['class']}#end">
+    <h${snippet["card-header"].level} class="card-header#if( ${snippet['card-header'].attrs['class']} ) ${snippet['card-header'].attrs['class']}#end">
          #render_html( ${snippet["card-header"]} )
     </h${snippet["card-header"].level}>
 #*      *##else##
-    <div class="card-header#if( ${snippet["card-header"].attrs['class']} ) ${snippet["card-header"].attrs['class']}#end">
-        #render_html( ${snippet["card-header"]} )
+    <div class="card-header#if( ${snippet['card-header'].attrs['class']} ) ${snippet['card-header'].attrs['class']}#end">
+        #render_html( ${snippet[".card-header"]} )
     </div>
 #*      *##end##
 #*  *##end##
@@ -55,7 +55,7 @@
 #*      *##set( $class = "card-img-overlay")
 #*  *##end##
 #*  *##if( ${snippet["card-body"]} && ${snippet["card-body"].html})##
-    <div class="${class}#if( ${snippet["card-body"].attrs['class']} ) ${snippet["card-body"].attrs['class']}#end">
+    <div class="${class}#if( ${snippet['card-body'].attrs['class']} ) ${snippet['card-body'].attrs['class']}#end">
         #render_html( ${snippet["card-body"]} )
     </div>
 #*  *##end##
@@ -66,7 +66,7 @@
  *#
 #macro( render_footer )##
 #*  *##if( ${snippet["card-footer"]} && ${snippet["card-footer"].html})##
-    <div class="card-footer#if( ${snippet["card-footer"].attrs['class']} ) ${snippet["card-footer"].attrs['class']}#end">
+    <div class="card-footer#if( ${snippet['card-footer'].attrs['class']} ) ${snippet['card-footer'].attrs['class']}#end">
         #render_html( ${snippet["card-footer"]} )
     </div>
 #*  *##end##

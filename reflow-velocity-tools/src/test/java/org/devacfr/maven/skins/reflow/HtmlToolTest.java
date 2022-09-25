@@ -184,7 +184,7 @@ public class HtmlToolTest extends TestCase {
     public void shouldWrapElement() {
         final String content = "<div><span></span></div>";
         final String actual = htmlTool.wrap(content, "span", "<a href=\"http://reflow.com\"></a>", 1);
-        assertEquals("<div>\n <a href=\"http://reflow.com\"><span></span></a>\n</div>", actual);
+        assertEquals("<div>\n <a href=\"http://reflow.com\">\n  <span></span>\n </a>\n</div>", actual);
     }
 
     @Test
@@ -205,7 +205,8 @@ public class HtmlToolTest extends TestCase {
     public void shouldReplaceWith() {
         final String actual = htmlTool
                 .replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
-        assertEquals("<p>text <code class=\"literal\">foo value</code> end text.</p>", actual);
+        assertEquals("<p>\n" + " text \n" + " <code class=\"literal\">foo value</code>\n" + "  end text.\n" + "</p>",
+            actual);
     }
 
     @Test
