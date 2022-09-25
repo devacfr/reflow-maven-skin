@@ -110,7 +110,7 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>2.2.0</version>
+          <version>2.3.1</version>
         </dependency>
         ...
       </dependencies>
@@ -193,7 +193,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                 <artifactItem>
                     <groupId>io.github.devacfr.maven.skins</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.3.0</version>
+                    <version>2.3.1</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>
