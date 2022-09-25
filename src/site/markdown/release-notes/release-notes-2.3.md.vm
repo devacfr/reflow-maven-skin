@@ -37,7 +37,20 @@ $h2 Other Enhancements
 * Fix should not override heading ids if the TOC is disabled (thanks [Aurelien Baudet](https://github.com/aurelien-baudet)).
 
 $h2 Changelog
-**2020-03-13**
+
+$h3 Release 2.3.1
+
+**2022-09-25**
+
+$h3 Bug fix
+
+* Bump maven-site-plugin version to 4.0.0-M3 ([#81][]) [Maxim Solodovnik](solomax666@gmail.com).
+  * Bump velocity-tools version to 3.1 with new name velocity-tools-generic
+  * Upgrade doxia-sitetool to 1.11.1
+
+$h3 Release 2.3.0
+
+**2020-03-13 Release 2.3.0**
 
 $h3 Minor enhancements
 
@@ -60,3 +73,4 @@ $h3 Bug fix
 [#61]: ${issue_url}/61
 [#62]: ${issue_url}/62
 [#64]: ${issue_url}/64
+[#81]: ${issue_url}/81
