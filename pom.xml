@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- Licensed under the Apache License, Version 2.0 (the "License"); -->
-<!-- you may not use this file except in compliance with the License. -->
-<!-- You may obtain a copy of the License at -->
-<!-- -->
-<!-- http://www.apache.org/licenses/LICENSE-2.0 -->
-<!-- -->
-<!-- Unless required by applicable law or agreed to in writing, software -->
-<!-- distributed under the License is distributed on an "AS IS" BASIS, -->
-<!-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
-<!-- See the License for the specific language governing permissions and -->
-<!-- limitations under the License. -->
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file
+  distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under
+  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
+  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to
+  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+  ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
+  the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -149,11 +145,10 @@
 
     <guava.version>29.0-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.2.9</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
     <jsoup.version>1.15.3</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
-    <velocity.version>2.3</velocity.version>
     <velocity-tools.version>3.1</velocity-tools.version>
 
 
@@ -165,7 +160,7 @@
     <hamcrest.version>2.2</hamcrest.version>
 
     <apache-rat-plugin.version>0.14</apache-rat-plugin.version>
-    <maven-jgitflow-plugin.version>1.0-m5.1</maven-jgitflow-plugin.version>
+    <maven-gitflow-plugin.version>1.18.0</maven-gitflow-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
@@ -221,9 +216,9 @@
         <version>${maven-project.version}</version>
       </dependency>
       <dependency>
-          <groupId>org.apache.velocity.tools</groupId>
-          <artifactId>velocity-tools-generic</artifactId>
-          <version>${velocity-tools.version}</version>
+        <groupId>org.apache.velocity.tools</groupId>
+        <artifactId>velocity-tools-generic</artifactId>
+        <version>${velocity-tools.version}</version>
       </dependency>
       <!-- ================================================================================ -->
       <!-- Log Dependencies -->
@@ -443,19 +438,24 @@
         <version>${maven-deploy-plugin.version}</version>
       </plugin>
       <plugin>
-        <groupId>external.atlassian.jgitflow</groupId>
-        <artifactId>jgitflow-maven-plugin</artifactId>
-        <version>${maven-jgitflow-plugin.version}</version>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${maven-gitflow-plugin.version}</version>
         <configuration>
-          <flowInitContext>
-            <masterBranchName>master</masterBranchName>
-            <developBranchName>develop</developBranchName>
+          <installProject>false</installProject>
+          <fetchRemote>false</fetchRemote>
+          <pushRemote>false</pushRemote>
+          <useSnapshotInHotfix>true</useSnapshotInHotfix>
+          <gitFlowConfig>
+            <productionBranch>master</productionBranch>
+            <developmentBranch>develop</developmentBranch>
             <featureBranchPrefix>feature/</featureBranchPrefix>
             <releaseBranchPrefix>release/</releaseBranchPrefix>
             <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+            <supportBranchPrefix>support/</supportBranchPrefix>
             <versionTagPrefix>v</versionTagPrefix>
-          </flowInitContext>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
+            <origin>origin</origin>
+          </gitFlowConfig>
         </configuration>
       </plugin>
       <!-- Configure Maven site plugin for Reflow skin and Markdown support -->
