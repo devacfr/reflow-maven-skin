@@ -64,12 +64,12 @@
   <scm>
     <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
-    <url>${scm-url}/tree/master</url>
+    <url>${scm_url}/tree/master</url>
     <tag>v2.0.0</tag>
   </scm>
   <issueManagement>
     <system>${issue-system}</system>
-    <url>${issue-url}</url>
+    <url>${issue_url}</url>
   </issueManagement>
   <distributionManagement>
     <repository>
@@ -106,10 +106,10 @@
     <repositoryName>reflow-maven-skin</repositoryName>
     <repositoryOwner>devacfr</repositoryOwner>
 
-    <scm-url>https://github.com/devacfr/reflow-maven-skin</scm-url>
+    <scm_url>https://github.com/devacfr/reflow-maven-skin</scm_url>
     <issue-system>github</issue-system>
-    <issue-url>${scm-url}/issues</issue-url>
-    <ci.url>${scm-url}</ci.url>
+    <issue_url>${scm_url}/issues</issue_url>
+    <ci.url>${scm_url}</ci.url>
     <ci.system>Travis</ci.system>
     <ci.contact-admin>christophefriederich@mac.com</ci.contact-admin>
 
@@ -140,16 +140,17 @@
     <!-- ================================================================================ -->
     <!-- Java dependencies version -->
     <!-- ================================================================================ -->
-    <doxia.sitetools.version>1.9.1</doxia.sitetools.version>
-    <doxia-module.version>1.9.1</doxia-module.version>
+    <commons-lang.version>3.5</commons-lang.version>
+    <doxia.sitetools.version>1.11.1</doxia.sitetools.version>
 
     <guava.version>29.0-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.2.9</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
     <jsoup.version>1.15.3</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
-    <velocity-tools.version>2.0</velocity-tools.version>
+    <velocity-tools.version>3.1</velocity-tools.version>
+
 
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
@@ -159,21 +160,25 @@
     <hamcrest.version>2.2</hamcrest.version>
 
     <apache-rat-plugin.version>0.13</apache-rat-plugin.version>
+    <maven-gitflow-plugin.version>1.18.0</maven-gitflow-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-download-plugin.version>1.5.0</maven-download-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-    <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-    <maven-jgitflow-plugin.version>1.0-m5.1</maven-jgitflow-plugin.version>
+    <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-    <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
+    <maven-site-plugin.version>4.0.0-M3</maven-site-plugin.version>
     <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
     <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
     <!-- used in site generation -->
+    <maven_site_plugin_version>${maven-site-plugin.version}</maven_site_plugin_version>
+    <maven-spotbugs-plugin.version>3.1.12.2</maven-spotbugs-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <maven-clover-plugin.version>4.4.1</maven-clover-plugin.version>
@@ -188,6 +193,11 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.google.code.findbugs</groupId>
         <artifactId>jsr305</artifactId>
@@ -210,8 +220,8 @@
         <version>${maven-project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.velocity</groupId>
-        <artifactId>velocity-tools</artifactId>
+        <groupId>org.apache.velocity.tools</groupId>
+        <artifactId>velocity-tools-generic</artifactId>
         <version>${velocity-tools.version}</version>
       </dependency>
       <!-- ================================================================================ -->
@@ -432,19 +442,24 @@
         <version>${maven-deploy-plugin.version}</version>
       </plugin>
       <plugin>
-        <groupId>external.atlassian.jgitflow</groupId>
-        <artifactId>jgitflow-maven-plugin</artifactId>
-        <version>${maven-jgitflow-plugin.version}</version>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${maven-gitflow-plugin.version}</version>
         <configuration>
-          <flowInitContext>
-            <masterBranchName>master</masterBranchName>
-            <developBranchName>develop</developBranchName>
+          <installProject>false</installProject>
+          <fetchRemote>false</fetchRemote>
+          <pushRemote>false</pushRemote>
+          <useSnapshotInHotfix>true</useSnapshotInHotfix>
+          <gitFlowConfig>
+            <productionBranch>master</productionBranch>
+            <developmentBranch>develop</developmentBranch>
             <featureBranchPrefix>feature/</featureBranchPrefix>
             <releaseBranchPrefix>release/</releaseBranchPrefix>
             <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+            <supportBranchPrefix>support/</supportBranchPrefix>
             <versionTagPrefix>v</versionTagPrefix>
-          </flowInitContext>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
+            <origin>origin</origin>
+          </gitFlowConfig>
         </configuration>
       </plugin>
       <!-- Configure Maven site plugin for Reflow skin and Markdown support -->
@@ -456,11 +471,6 @@
             <groupId>io.github.devacfr.maven.skins</groupId>
             <artifactId>reflow-velocity-tools</artifactId>
             <version>${project.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.maven.doxia</groupId>
-            <artifactId>doxia-module-markdown</artifactId>
-            <version>${doxia-module.version}</version>
           </dependency>
         </dependencies>
         <configuration>

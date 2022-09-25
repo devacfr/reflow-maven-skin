@@ -40,9 +40,26 @@ $h2 Other Enhancements
 
 $h2 Changelog
 
-$h4 2020-03-13 Release 2.3.0
+$h3 Release 2.3.1
 
-$h5 Minor enhancements
+**2022-09-25**
+
+$h3 Bug fix
+
+* Bump maven-site-plugin version to 4.0.0-M3 ([#81][]) [Maxim Solodovnik](solomax666@gmail.com).
+  * Bump velocity-tools version to 3.1 with new name velocity-tools-generic
+  * Upgrade doxia-sitetool to 1.11.1
+
+$h3 Vunerability
+
+* Bump logback-core from 1.2.3 to 1.2.9
+* Bump jsoup from 1.14.2 to 1.15.3
+
+$h3 Release 2.3.0
+
+**2020-03-13 Release 2.3.0**
+
+$h3 Minor enhancements
 
 * Add different types of rendering for header component. ([#58][]).
 * Add new body page type. ([#61][]).
@@ -57,9 +74,10 @@ $h5 Bug fix
 
 * Error when scroll top with smooth scroll is disabled. ([#62][]).
 
-[#58]: ${issue-url}/58
-[#59]: ${issue-url}/59
-[#60]: ${issue-url}/60
-[#61]: ${issue-url}/61
-[#62]: ${issue-url}/62
-[#64]: ${issue-url}/64
+[#58]: ${issue_url}/58
+[#59]: ${issue_url}/59
+[#60]: ${issue_url}/60
+[#61]: ${issue_url}/61
+[#62]: ${issue_url}/62
+[#64]: ${issue_url}/64
+[#81]: ${issue_url}/81

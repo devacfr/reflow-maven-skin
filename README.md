@@ -41,7 +41,18 @@ To get started and see how the skin looks by default, check out [reflow-maven-sk
 
 ## News
 
-### Release 2.3.0
+Reflow Maven skin 2.3.1 Maintenance Release:
+
+This release allow to keep compatibility with latest maven-site-plugin version.
+
+Bump maven-site-plugin version to 4.0.0-M3
+
+- Bump velocity-tools version to 3.1 with new name velocity-tools-generic
+- Upgrade doxia-sitetool to 1.11.1
+
+Read more in the [Reflow Maven skin 2.3 Release Notes and changeslog](https://devacfr.github.io/reflow-maven-skin/release-notes/release-notes-2.3.html).
+
+---
 
 Reflow Maven skin 2.3.0 is officially out :tada:.
 
@@ -77,7 +88,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>2.3.0</version>
+    <version>2.3.1</version>
   </skin>
   ...
 </project>

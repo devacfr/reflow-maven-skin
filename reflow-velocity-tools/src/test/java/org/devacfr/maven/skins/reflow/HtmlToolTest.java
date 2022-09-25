@@ -77,8 +77,8 @@ public class HtmlToolTest extends TestCase {
         final String body = getActualResource();
         final List<String> fragments = htmlTool.split(body, ".section");
         assertEquals(2, fragments.size());
-        assertEquals("<h2>section1</h2>\n<div>  \n</div>", fragments.get(0));
-        assertEquals("<div>  \n</div>", fragments.get(1));
+        assertEquals("<h2>section1</h2>\n<div>\n</div>", fragments.get(0));
+        assertEquals("<div>\n</div>", fragments.get(1));
     }
 
     @Test
@@ -242,17 +242,17 @@ public class HtmlToolTest extends TestCase {
                 .ensureHeadingIds("page", "overview", getActualResource("html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
         final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
         // check root element
-        assertThat(idElements.stream().map((el) -> el.getId()).collect(Collectors.toList()),
+        assertThat(idElements.stream().map(IdElement::getId).collect(Collectors.toList()),
             contains("apache-maven-site-plugin"));
-        assertThat(idElements.stream().map((el) -> el.getTagName()).collect(Collectors.toList()), contains("h2"));
-        assertThat(idElements.stream().map((el) -> el.getText()).collect(Collectors.toList()),
+        assertThat(idElements.stream().map(IdElement::getTagName).collect(Collectors.toList()), contains("h2"));
+        assertThat(idElements.stream().map(IdElement::getText).collect(Collectors.toList()),
             contains("Apache Maven Site Plugin"));
 
         // check children
-        assertThat(idElements.stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()), contains(2));
-        assertThat(idElements.get(0).getItems().stream().map((el) -> el.getId()).collect(Collectors.toList()),
+        assertThat(idElements.stream().map(IdElement::getHeadingLevel).collect(Collectors.toList()), contains(2));
+        assertThat(idElements.get(0).getItems().stream().map(IdElement::getId).collect(Collectors.toList()),
             contains("goals-overview", "usage"));
-        assertThat(idElements.get(0).getItems().stream().map((el) -> el.getHeadingLevel()).collect(Collectors.toList()),
+        assertThat(idElements.get(0).getItems().stream().map(IdElement::getHeadingLevel).collect(Collectors.toList()),
             contains(3, 3));
 
     }

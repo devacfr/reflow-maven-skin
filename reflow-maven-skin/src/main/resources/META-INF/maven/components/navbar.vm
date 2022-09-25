@@ -34,7 +34,7 @@
 #*  *##else##
             <div class="navbar-brand mb-0 h1">
 #*      *##if ( $pageContext.navbar.image )##
-                <img src=$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
+                <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
 #*      *##end##
 #*      *##if ( $pageContext.navbar.brandName )##
                 ${pageContext.navbar.brandName}
