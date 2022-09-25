@@ -22,6 +22,6 @@ $h2 Bug fixes
 * Rename Rename `index.md.mv` to `index.md.vm`
 * Maven Site Plugin 3.6 compatibility ([#1][])
 
-[#1]: ${issue-url}/1
-[#17]: ${issue-url}/17
+[#1]: ${issue_url}/1
+[#17]: ${issue_url}/17
 

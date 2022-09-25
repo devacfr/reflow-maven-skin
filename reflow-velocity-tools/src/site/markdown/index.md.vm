@@ -43,7 +43,7 @@ file:
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>${maven-site-plugin-version}</version>
+      <version>${maven_site_plugin_version}</version>
       <dependencies>
         ...
         <dependency>

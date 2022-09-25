@@ -155,7 +155,7 @@
     </head>
 
     <links>
-      <item name="GitHub project" href="${this.scm-url}" target="_blank" />
+      <item name="GitHub project" href="${this.scm_url}" target="_blank" />
     </links>
 
     <breadcrumbs>
@@ -164,7 +164,7 @@
 
     <menu name="Main" inherit="top">
       <item name="Home" href="./" />
-      <item name="GitHub project" href="${this.scm-url}" />
+      <item name="GitHub project" href="${this.scm_url}" />
       <item name="Release notes" href="release-notes/release-notes.html" />
       <item name="Licenses" href="licenses.html" />
     </menu>
@@ -175,7 +175,7 @@
     <menu name="Contribute" inherit="bottom">
       <item name="Contribute" href="development-documentation.html#dev-contribute" />
       <item name="Issues" href="${this.issueManagement.url}" />
-      <item name="Fork on GitHub" href="${this.scm-url}" />
+      <item name="Fork on GitHub" href="${this.scm_url}" />
     </menu>
     <menu name="Documentation" inherit="bottom">
       <item name="Get Started" href="reflow-maven-skin/reflow-documentation.html#get-started.html" />

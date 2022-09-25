@@ -61,15 +61,15 @@ $h3 Bug fixes
 - Fix NPE when navbar element is not declared ([#45][]).
 - Fix highlighting with asciidoc rendering.
 
-[#7]: ${issue-url}/7
-[#19]: ${issue-url}/19
-[#28]: ${issue-url}/28
-[#30]: ${issue-url}/30
-[#32]: ${issue-url}/32
-[#34]: ${issue-url}/34
-[#35]: ${issue-url}/35
-[#45]: ${issue-url}/45
-[#50]: ${issue-url}/50
-[#48]: ${issue-url}/48
-[#47]: ${issue-url}/47
-[#49]: ${issue-url}/49
+[#7]: ${issue_url}/7
+[#19]: ${issue_url}/19
+[#28]: ${issue_url}/28
+[#30]: ${issue_url}/30
+[#32]: ${issue_url}/32
+[#34]: ${issue_url}/34
+[#35]: ${issue_url}/35
+[#45]: ${issue_url}/45
+[#50]: ${issue_url}/50
+[#48]: ${issue_url}/48
+[#47]: ${issue_url}/47
+[#49]: ${issue_url}/49

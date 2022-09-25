@@ -106,17 +106,16 @@
 #*      *##set ( $format = "yyyy-MM-dd" )##
 #*  *##end##
 ##
-#*  *#$dateFormat.applyPattern( $format )##
 ##
 #*  *##if ( $publishDate )##
-#*      *##set ( $dateValue = $dateFormat.format( $publishDate ) )##
+#*      *##set ( $dateValue = $date.format( $format, $publishDate ) )##
 #*  *##elseif ( $config.publishDate )##
 #*      *##set ( $dateValue = $config.publishDate.getValue() )##
 #*  *##else##
-#*      *##set ( $dateValue = $dateFormat.format( $currentDate ) )##
+#*      *##set ( $dateValue = $date.get( $format ) )##
 #*  *##end##
 #*  *### render with internationalization support
-    $i18n.getString( "site-renderer", $locale, "template.lastpublished" ): $dateValue##
+    $text.get( "template.lastpublished" ): $dateValue##
 #end##
 ##
 #**
@@ -125,7 +124,7 @@
  *###
 #macro ( version )##
 #*  *### render with internationalization support
-#*  *#$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}##
+#*  *#$text.get( "template.version" ): ${project.version}##
 #end##
 ##
 #**

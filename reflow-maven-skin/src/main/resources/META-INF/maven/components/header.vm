@@ -90,7 +90,7 @@
 #*      *##end##
 ##
 #*      *##if ( $banner.src )##
-            <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end
+            <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end##
 #*          *##if ( $banner.border ) border="$banner.border"#end##
 #*          *##if ( $banner.width ) width="$banner.width"#end##
 #*          *##if ( $banner.height ) height="$banner.height"#end##

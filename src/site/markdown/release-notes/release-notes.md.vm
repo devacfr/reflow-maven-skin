@@ -8,7 +8,7 @@ $h1 Release notes
 
 The history of Reflow Maven skin releases is documented below. For details of changes refer to the [project\'s GitHub issues][reflow-issues] or the [GitHub report][github-report].
 
-[reflow-issues]: ${issue-url}?state=closed
+[reflow-issues]: ${issue_url}?state=closed
 [github-report]: github-report.html
 
 $h2 Reflow Maven skin 2.3 Release Notes
