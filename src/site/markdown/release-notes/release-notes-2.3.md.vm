@@ -48,6 +48,11 @@ $h3 Bug fix
   * Bump velocity-tools version to 3.1 with new name velocity-tools-generic
   * Upgrade doxia-sitetool to 1.11.1
 
+$h3 Vunerability
+
+* Bump logback-core from 1.2.3 to 1.2.9
+* Bump jsoup from 1.14.2 to 1.15.3
+
 $h3 Release 2.3.0
 
 **2020-03-13 Release 2.3.0**
