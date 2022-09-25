@@ -153,7 +153,7 @@
     <hamcrest.version>2.2</hamcrest.version>
 
     <apache-rat-plugin.version>0.13</apache-rat-plugin.version>
-    <maven-jgitflow-plugin.version>1.0-m5.1</maven-jgitflow-plugin.version>
+    <maven-gitflow-plugin.version>1.18.0</maven-gitflow-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
@@ -425,19 +425,23 @@
         <version>${maven-deploy-plugin.version}</version>
       </plugin>
       <plugin>
-        <groupId>external.atlassian.jgitflow</groupId>
-        <artifactId>jgitflow-maven-plugin</artifactId>
-        <version>${maven-jgitflow-plugin.version}</version>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${maven-gitflow-plugin.version}</version>
         <configuration>
-          <flowInitContext>
-            <masterBranchName>master</masterBranchName>
-            <developBranchName>develop</developBranchName>
+          <installProject>false</installProject>
+          <fetchRemote>false</fetchRemote>
+          <pushRemote>false</pushRemote>
+          <gitFlowConfig>
+            <productionBranch>master</productionBranch>
+            <developmentBranch>develop</developmentBranch>
             <featureBranchPrefix>feature/</featureBranchPrefix>
             <releaseBranchPrefix>release/</releaseBranchPrefix>
             <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+            <supportBranchPrefix>support/</supportBranchPrefix>
             <versionTagPrefix>v</versionTagPrefix>
-          </flowInitContext>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
+            <origin>origin</origin>
+          </gitFlowConfig>
         </configuration>
       </plugin>
       <!-- Configure Maven site plugin for Reflow skin and Markdown support -->

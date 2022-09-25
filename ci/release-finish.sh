@@ -42,7 +42,7 @@ case $i in
 esac
 done
 
-${maven_cmd} jgitflow:release-finish -Prelease-offline
+${maven_cmd} gitflow:release-finish -Prelease-offline
 # git checkout master
 ${maven_cmd} clean deploy -Pgpg
 
