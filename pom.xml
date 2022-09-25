@@ -434,6 +434,7 @@
           <installProject>false</installProject>
           <fetchRemote>false</fetchRemote>
           <pushRemote>false</pushRemote>
+          <useSnapshotInHotfix>true</useSnapshotInHotfix>
           <gitFlowConfig>
             <productionBranch>master</productionBranch>
             <developmentBranch>develop</developmentBranch>
