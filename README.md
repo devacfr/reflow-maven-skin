@@ -45,8 +45,7 @@ Reflow Maven skin 2.3.1 Maintenance Release:
 
 This release allow to keep compatibility with latest maven-site-plugin version.
 
-Bump maven-site-plugin version to 4.0.0-M3
-
+- Bump maven-site-plugin version to 4.0.0-M3
 - Bump velocity-tools version to 3.1 with new name velocity-tools-generic
 - Upgrade doxia-sitetool to 1.11.1
 
