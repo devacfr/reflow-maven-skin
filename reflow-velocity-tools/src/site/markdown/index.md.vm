@@ -42,13 +42,13 @@ file:
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>${maven_site_plugin_version}</version>
+      <version>${context["maven-site-plugin.version"]}</version>
       <dependencies>
         ...
         <dependency>
           <groupId>${project.groupId}</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>${reflow-current-version}</version>
+          <version>${context["reflow-current-version"]}</version>
         </dependency>
         ...
       </dependencies>
