@@ -15,6 +15,8 @@
  */
 package org.apache.maven.doxia.siterenderer;
 
+import static org.apache.commons.io.IOUtils.closeQuietly;
+import static org.apache.commons.io.IOUtils.copy;
 import static org.codehaus.plexus.testing.PlexusExtension.getBasedir;
 import static org.codehaus.plexus.testing.PlexusExtension.getTestFile;
 
@@ -24,10 +26,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.jar.JarOutputStream;
@@ -40,26 +41,20 @@ import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.doxia.site.decoration.io.xpp3.DecorationXpp3Reader;
-import org.apache.maven.doxia.xsd.AbstractXmlValidator;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.testing.PlexusTest;
 import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
-import org.codehaus.plexus.util.ReaderFactory;
-import org.codehaus.plexus.util.StringUtils;
+import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.xml.sax.EntityResolver;
-
-import com.vladsch.flexmark.ext.typographic.TypographicExtension;
 
 /**
  * @author <a href="mailto:vincent.siveton@gmail.com">Vincent Siveton</a>
  * @author <a href="mailto:evenisse@codehaus.org">Emmanuel Venisse</a>
  */
 @PlexusTest
-public class DefaultSiteRendererTest {
+public class DefaultSiteRendererTest extends TestCase {
 
     /**
      * All output produced by this test will go here.
@@ -91,15 +86,15 @@ public class DefaultSiteRendererTest {
     protected void setUp() throws Exception {
         renderer = container.lookup(Renderer.class);
 
-        InputStream skinIS = getClass().getResourceAsStream("velocity-toolmanager.vm");
+        InputStream skinIS = getResource("velocity-toolmanager.vm").openStream();
         JarOutputStream jarOS = new JarOutputStream(new FileOutputStream(skinJar));
         try {
             jarOS.putNextEntry(new ZipEntry("META-INF/maven/site.vm"));
-            IOUtil.copy(skinIS, jarOS);
+            copy(skinIS, jarOS);
             jarOS.closeEntry();
         } finally {
-            IOUtil.close(skinIS);
-            IOUtil.close(jarOS);
+            closeQuietly(skinIS);
+            closeQuietly(jarOS);
         }
 
         skinIS = new ByteArrayInputStream(
@@ -107,11 +102,11 @@ public class DefaultSiteRendererTest {
         jarOS = new JarOutputStream(new FileOutputStream(minimalSkinJar));
         try {
             jarOS.putNextEntry(new ZipEntry("META-INF/maven/site.vm"));
-            IOUtil.copy(skinIS, jarOS);
+            copy(skinIS, jarOS);
             jarOS.closeEntry();
         } finally {
-            IOUtil.close(skinIS);
-            IOUtil.close(jarOS);
+            closeQuietly(skinIS);
+            closeQuietly(jarOS);
         }
 
         oldLocale = Locale.getDefault();
@@ -134,7 +129,7 @@ public class DefaultSiteRendererTest {
      *             if something goes wrong.
      */
     @Test
-    public void testRender() throws Exception {
+    public void shouldAcceptSnippet() throws Exception {
         // Safety
         FileUtils.deleteDirectory(getTestFile(OUTPUT));
 
@@ -144,14 +139,18 @@ public class DefaultSiteRendererTest {
         final DecorationModel decoration = new DecorationXpp3Reader()
                 .read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
 
-        final SiteRenderingContext ctxt = getSiteRenderingContext(decoration, "src/test/resources/site", false);
-        ctxt.setRootDirectory(getTestFile(""));
-        renderer.render(renderer.locateDocumentFiles(ctxt, true).values(), ctxt, getTestFile(OUTPUT));
+        final Path targetSite = getTestFile(OUTPUT).toPath();
+        final Path srcSite = getTestFile("src/test/resources/site").toPath();
+        final SiteRenderingContext ctxt = getSiteRenderingContext(decoration, srcSite, false);
 
+        ctxt.setRootDirectory(getTestFile(""));
+        renderer.render(renderer.locateDocumentFiles(ctxt, true).values(), ctxt, targetSite.toFile());
+
+        verify(targetSite.resolve("snippet.html"), getPackagePath().resolve("snippet.approved.html"));
     }
 
     private SiteRenderingContext getSiteRenderingContext(final DecorationModel decoration,
-        final String siteDir,
+        final Path siteDir,
         final boolean validate) throws RendererException, IOException {
         final File skinFile = minimalSkinJar;
 
@@ -163,84 +162,10 @@ public class DefaultSiteRendererTest {
         skin.setFile(skinFile);
         final SiteRenderingContext siteRenderingContext = renderer
                 .createContextForSkin(skin, attributes, decoration, "defaultWindowTitle", Locale.ENGLISH);
-        siteRenderingContext.addSiteDirectory(getTestFile(siteDir));
+        siteRenderingContext.addSiteDirectory(siteDir.toFile());
         siteRenderingContext.setValidate(validate);
 
         return siteRenderingContext;
     }
 
-    /**
-     * Validate the generated pages.
-     *
-     * @throws Exception
-     *             if something goes wrong.
-     * @since 1.1.1
-     */
-    public void validatePages() throws Exception {
-        new Xhtml5ValidatorTest().validateGeneratedPages();
-    }
-
-    protected static class Xhtml5ValidatorTest extends AbstractXmlValidator {
-
-        /**
-         * Validate the generated documents.
-         *
-         * @throws Exception
-         */
-        public void validateGeneratedPages() throws Exception {
-            setValidate(false);
-            try {
-                testValidateFiles();
-            } finally {
-                tearDown();
-            }
-        }
-
-        private static String[] getIncludes() {
-            return new String[] { "**/*.html" };
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected String addNamespaces(final String content) {
-            return content;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected EntityResolver getEntityResolver() {
-            /* HTML5 restricts use of entities to XML only */
-            return null;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected Map<String, String> getTestDocuments() throws IOException {
-            final Map<String, String> testDocs = new HashMap<>();
-
-            final File dir = new File(getBasedir(), "target/output");
-
-            final List<String> l = FileUtils
-                    .getFileNames(dir, getIncludes()[0], FileUtils.getDefaultExcludesAsString(), true);
-
-            for (String file : l) {
-                file = StringUtils.replace(file, "\\", "/");
-
-                final Reader reader = ReaderFactory.newXmlReader(new File(file));
-                try {
-                    testDocs.put(file, IOUtil.toString(reader));
-                } finally {
-                    IOUtil.close(reader);
-                }
-            }
-
-            return testDocs;
-        }
-
-        /** {@inheritDoc} */
-        @Override
-        protected boolean isFailErrorMessage(final String message) {
-            return true;
-        }
-    }
 }

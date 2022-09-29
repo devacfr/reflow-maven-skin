@@ -1,0 +1,29 @@
+<main id="contentBox"><section>
+<h1><a name="Header"></a>Header</h1><section>
+<h2><a name="Inline_Short_Code"></a>Inline Short Code</h2>
+<p>element {{&lt; badget color="primary" text="new" /&gt;}}.</p></section><section>
+<h2><a name="Web_component_in_comment_block"></a>Web component in comment block</h2>
+<p>{{% component attribute="value" %}}</p><!--
+<data>
+  <data-item class="text-muted" >Header Section</data-item>
+  <data-content>
+    <div>html used in template</div>
+    #include( 'src/site/svg/pretty.svg' )
+  </data-content>
+</data>
+-->
+
+<p>{{% /component%}}</p></section><section>
+<h2><a name="Web_component_in_markdown_code_block"></a>Web component in markdown code block</h2>
+<p>{{% component attribute="value" %}}</p>
+
+<div class="source">
+<pre><code>&lt;data&gt;
+  &lt;data-item class=&quot;text-muted&quot; &gt;Header Section&lt;/data-item&gt;
+  &lt;data-content&gt;
+    &lt;div&gt;html used in template&lt;/div&gt;
+    #include( 'src/site/svg/pretty.svg' )
+  &lt;/data-content&gt;
+&lt;/data&gt;
+</code></pre></div>
+<p>{{% /component%}}</p></section></section></main>

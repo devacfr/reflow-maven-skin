@@ -103,6 +103,10 @@ public class TestCase extends Assertions {
                 .verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
     }
 
+    public void verify(final Path actualFile, final Path expectedFile) {
+        Approvals.verify(actualFile, expectedFile);
+    }
+
     public void verify(final Function<String, String> transform) {
         Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, null);
     }

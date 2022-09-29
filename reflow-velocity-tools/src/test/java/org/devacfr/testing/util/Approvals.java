@@ -15,6 +15,7 @@
  */
 package org.devacfr.testing.util;
 
+import static com.google.common.base.Throwables.throwIfUnchecked;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
@@ -89,7 +90,7 @@ public final class Approvals {
         @Nonnull final Class<?> testClass,
         @Nonnull final String testName,
         @Nullable final String extension,
-        final Function<String, String> transformer) {
+        @Nullable final Function<String, String> transformer) {
         final String ext = !Strings.isNullOrEmpty(extension) ? "." + extension : "";
         final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, ext);
         final String text = Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(location.resolve(fileName)));
@@ -122,6 +123,23 @@ public final class Approvals {
         assertThat(actual, equalToCompressingWhiteSpace(expected));
     }
 
+    public static void verify(final Path actualFile, final Path expectedFile) {
+        try {
+            final String actual = Files.asCharSource(actualFile.toFile(), Charsets.UTF_8).read();
+            final String expected = Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(expectedFile));
+            final Matcher<String> matcher = IsEqualCompressingWhiteSpace.equalToCompressingWhiteSpace(expected);
+            if (!matcher.matches(actual)) {
+                final Description description = new StringDescription();
+                matcher.describeMismatch(actual, description);
+
+                throw new AssertionError(description.toString());
+            }
+        } catch (final IOException e) {
+            throwIfUnchecked(e);
+        }
+
+    }
+
     /**
      * Verify the {@code actual} text is equals to expected text stored in file [testClass].[testName].approved.
      *
@@ -147,7 +165,7 @@ public final class Approvals {
         }
         final String expected = getExpectedResource(location, testClass, testName, extension, null);
 
-        final File path = new File("target/approval/actuals/");
+        final File path = new File("target/approval/actual/");
         if (!path.exists()) {
             path.mkdirs();
         }
@@ -157,7 +175,7 @@ public final class Approvals {
         try {
             sink.write(actual);
         } catch (final IOException e) {
-            throw new RuntimeException(e.getMessage(), e);
+            throwIfUnchecked(e);
         }
 
         final Matcher<String> matcher = IsEqualCompressingWhiteSpace.equalToCompressingWhiteSpace(expected);

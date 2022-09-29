@@ -95,7 +95,7 @@ You can include shortcodes within other shortcodes by creating your own template
 ## Web Components
 
 It is composed by start tag `{{% component attribute="value" %}}` with attributes and tag `{{% /component %}}`, an associated xhtml data structure and a velocity template file.
-The xhtml data part is enclosed in comment html element ( `<!-- -->`) or in highlighting block `<pre>...</pre>`. This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, `<svg>` tag too :-1: ).
+The xhtml data part is enclosed in comment html element ( `<!-- -->`) or in markdown code block. This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, `<svg>` tag too :-1: ).
 The template file name should have the same name as web compenent and located in `src/site/snippets/component.vm`.
 In future, the web component will be managed directly by javascript using [web component APIs](https://www.webcomponents.org/).
 
