@@ -230,9 +230,9 @@ public class SnippetContext {
     protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
         boolean found = false;
         for (final String path : this.snippetPaths) {
-            found = true;
             final String filePath = path + '/' + component.getName() + ".vm";
             if (Velocity.resourceExists(filePath)) {
+                found = true;
                 final Context context = createVelocityContext();
                 context.put("snippet", component);
                 context.put("snippetPath", filePath);

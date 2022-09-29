@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
+  name="Plexus">
+  <bannerLeft>
+    <name>Plexus</name>
+    <src>http://plexus.codehaus.org/images/plexus-logo.png</src>
+    <href>http://plexus.codehaus.org</href>
+  </bannerLeft>
+  <bannerRight>
+    <src>http://media.codehaus.org/images/unity-codehaus-logo.png</src>
+    <href>http://www.codehaus.org</href>
+  </bannerRight>
+  <body>
+    <links>
+      <item name="Plexus" href="http://plexus.codehaus.org"/>
+      <item name="The Codehaus" href="http://www.codehaus.org"/>
+    </links>
+    <menu name="Quick Links">
+      <item name="CDC" href="/cdc.html"/>
+      <item name="nestedItems" href="/nestedItems.html"/>
+      <item name="entities, cdata, comment" href="/entityTest.html"/>
+      <item name="javascript alert" href="/javascript.html"/>
+      <item name="sub-menu" href="/confluence/link.html" collapse="true">
+        <item name="nested-list" href="/confluence/nested-list.html"/>
+        <item name="sub-sub-menu" href="/confluence/section.html" collapse="true">
+          <item name="table" href="/confluence/table.html"/>
+          <item name="test" href="/confluence/test.html"/>
+        </item>
+      </item>
+    </menu>
+  </body>
+</project>

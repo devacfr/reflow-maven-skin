@@ -37,6 +37,11 @@ public class ComponentResolverTest {
     }
 
     @Test
+    public void shouldBeStartWebComponentWithAttributesLeftAndRightDoubleQuote() {
+        check("{{% component style=“width: 18rem;” attr2=“val” %}}", "component", Type.webComponent, Tag.start);
+    }
+
+    @Test
     public void shouldBeStartWebComponentWithAttributeWithoutValue() {
         check("{{% component pill %}}", "component", Type.webComponent, Tag.start);
     }
@@ -99,11 +104,12 @@ public class ComponentResolverTest {
         assertEquals(false, ComponentResolver.hasIncludedSnippetComponent(new Element("body").append("<test></test>")));
     }
 
-    private void check(final String text, final String name, final Type type, final Tag state) {
+    private ComponentToken check(final String text, final String name, final Type type, final Tag state) {
         final ComponentToken element = new ComponentResolver().create(new Element("p").text(text));
         assertEquals(name, element.name());
         assertEquals(type, element.type());
         assertEquals(state, element.tag());
+        return element;
     }
 
 }

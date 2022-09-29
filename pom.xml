@@ -136,7 +136,7 @@
     <!-- Java dependencies version -->
     <!-- ================================================================================ -->
     <commons-lang.version>3.5</commons-lang.version>
-    <doxia.sitetools.version>1.11.1</doxia.sitetools.version>
+    <doxia.sitetools.version>2.0.0-M3</doxia.sitetools.version>
     <doxia.version>2.0.0-M3</doxia.version>
 
     <guava.version>29.0-jre</guava.version>
