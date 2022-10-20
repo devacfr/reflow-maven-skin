@@ -1,137 +1,40 @@
- 
-
-
-  <div class="row no-gutters">
+<div class="row no-gutters">
     <div class="col-lg-12 col-xl-9">
-            <section>
- <h1 id="dev-code-conventions_toc_code-conventions">
-  <a id="code_conventions"></a>
-   Code Conventions
- </h1>
+<section>
+ <h1 id="dev-code-conventions_toc_code-conventions"><a id="code_conventions"></a>Code Conventions</h1>
  <p>This chapter describes how developers (contributors) should write code. The reasoning of these styles and conventions is mainly for consistency, readability and maintainability reasons.</p>
  <section>
-  <h2 id="dev-code-conventions_toc_generic-code-style-and-convention">
-   <a id="generic_code_style_and_convention"></a>
-    Generic Code Style and Convention
-  </h2>
+  <h2 id="dev-code-conventions_toc_generic-code-style-and-convention"><a id="generic_code_style_and_convention"></a>Generic Code Style and Convention</h2>
   <p>All working files (java, xml, others) should respect the following conventions:</p>
   <ul>
-   <li>
-    <strong>Trailing Whitespaces</strong>
-     , remove all trailing white-spaces
-   </li>
-   <li>
-    <strong>Indentation</strong>
-     , never use tabs!
-   </li>
-   <li>
-    <strong>Line wrapping</strong>
-     , always use a 120-column line width
-   </li>
+   <li><strong>Trailing Whitespaces</strong>, remove all trailing white-spaces</li>
+   <li><strong>Indentation</strong>, never use tabs!</li>
+   <li><strong>Line wrapping</strong>, always use a 120-column line width</li>
   </ul>
  </section>
  <section>
-  <h2 id="dev-code-conventions_toc_java-code-covention">
-   <a id="java_code_covention"></a>
-    Java Code Covention
-  </h2>
-  <p>
-   Our basic style guide for Java is to use 
-   <a href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html" class="externalLink">Sun's Java guide Code Conventions for the Java TM Programming Language</a>
-    , but we do have a few subtle differences.
-  </p>
+  <h2 id="dev-code-conventions_toc_java-code-covention"><a id="java_code_covention"></a>Java Code Covention</h2>
+  <p>Our basic style guide for Java is to use <a href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html" class="externalLink">Sun's Java guide Code Conventions for the Java TM Programming Language</a>, but we do have a few subtle differences.</p>
   <ul>
-   <li>
-    <strong>White space</strong>
-     : One space after control statements and between arguments (i.e. 
-    <code>if ( foo )</code>
-     instead of 
-    <code>if(foo)</code>
-     ), 
-    <code>myFunc( foo, bar, baz )</code>
-     instead of 
-    <code>myFunc(foo,bar,baz)</code>
-     ). No spaces after methods names (i.e. 
-    <code>void myMethod()</code>
-     , 
-    <code>myMethod( "foo" )</code>
-     )
-   </li>
-   <li>
-    <strong>Indentation</strong>
-     : Always use 4 spaces indents for java file, 2 spaces for xml file and 
-    <strong>never</strong>
-     use tabs!
-   </li>
-   <li>
-    <strong>Blocks</strong>
-     : Always enclose with a new line brace.
-   </li>
-   <li>
-    <strong>Line wrapping</strong>
-     : Always use a 120-column line width for Java code and Javadoc.
-   </li>
-   <li>
-    <strong>Design idioms</strong>
-     : Avoid creating internal objects as much as possible. Favor dependency injection whenever possible.
-   </li>
-   <li>
-    <strong>Organization</strong>
-     : Avoid using a lot of public inner classes. Prefer interfaces instead of default implementation.
-   </li>
-   <li>
-    <strong>Modifier</strong>
-     :Avoid using final modifier on all member variables and arguments. Prefer using private or protected member instead of public member.
-   </li>
-   <li>
-    <strong>Standard Annotations</strong>
-     : Use 
-    <code>@Override</code>
-     where required, use 
-    <code>@Deprecated</code>
-     when something is deprecated, but still functions, and use 
-    <code>@SuppressWarnings</code>
-     only when it's impossible to eliminate the warning.
-   </li>
-   <li>
-    <strong>Exceptions</strong>
-     : Throw meaningful exceptions to makes debugging and testing more easy. If you're not doing anything meaningful with an exception, throw it to the caller. Wrapping with a RuntimeException is fine if it's an exception that is only going to occur in the event of a programming error rather than a logical error (i.e. the same reason why unchecked exceptions exist in the first place).
-   </li>
-   <li>
-    <strong>Scope</strong>
-     : Limit scope as much as possible. If you have a member that is a private part of your interface, but that you need to get access to for testing (such as an internal constant), make it package private (default).
-   </li>
-   <li>
-    <strong>Documentation</strong>
-     : Document public interfaces well, i.e. all non-trivial public and protected functions should include Javadoc that indicates what it does, expected inputs, return values, exceptions thrown, and any implementation notes. 
+   <li><strong>White space</strong>: One space after control statements and between arguments (i.e. <code>if ( foo )</code> instead of <code>if(foo)</code>), <code>myFunc( foo, bar, baz )</code> instead of <code>myFunc(foo,bar,baz)</code>). No spaces after methods names (i.e. <code>void myMethod()</code>, <code>myMethod( "foo" )</code>)</li>
+   <li><strong>Indentation</strong>: Always use 4 spaces indents for java file, 2 spaces for xml file and <strong>never</strong> use tabs!</li>
+   <li><strong>Blocks</strong>: Always enclose with a new line brace.</li>
+   <li><strong>Line wrapping</strong>: Always use a 120-column line width for Java code and Javadoc.</li>
+   <li><strong>Design idioms</strong>: Avoid creating internal objects as much as possible. Favor dependency injection whenever possible.</li>
+   <li><strong>Organization</strong>: Avoid using a lot of public inner classes. Prefer interfaces instead of default implementation.</li>
+   <li><strong>Modifier</strong>:Avoid using final modifier on all member variables and arguments. Prefer using private or protected member instead of public member.</li>
+   <li><strong>Standard Annotations</strong>: Use <code>@Override</code> where required, use <code>@Deprecated</code> when something is deprecated, but still functions, and use <code>@SuppressWarnings</code> only when it's impossible to eliminate the warning.</li>
+   <li><strong>Exceptions</strong>: Throw meaningful exceptions to makes debugging and testing more easy. If you're not doing anything meaningful with an exception, throw it to the caller. Wrapping with a RuntimeException is fine if it's an exception that is only going to occur in the event of a programming error rather than a logical error (i.e. the same reason why unchecked exceptions exist in the first place).</li>
+   <li><strong>Scope</strong>: Limit scope as much as possible. If you have a member that is a private part of your interface, but that you need to get access to for testing (such as an internal constant), make it package private (default).</li>
+   <li><strong>Documentation</strong>: Document public interfaces well, i.e. all non-trivial public and protected functions should include Javadoc that indicates what it does, expected inputs, return values, exceptions thrown, and any implementation notes. 
     <ul>
      <li>Do not include authorship information.</li>
      <li>Don't waste time with redundant and obvious comments. This means getters and setters probably don't need comments at all.</li>
-     <li>
-      Use the notation 
-      <code>TODO</code>
-       : comment when leaving a comment about future work that needs to be done. This is automatically picked up by Eclipse the auto generated 
-      <a href="http://www.mojohaus.org/taglist-maven-plugin/" class="externalLink">Taglist report</a>
-       and other editors, and it makes finding them useful. Don't put user ids or specific dates.
-     </li>
-    </ul>
-   </li>
-   <li>
-    <strong>Testing</strong>
-     : All non-trivial public classes should include a corresponding unit test. We use 
-    <code>JUnit</code>
-     , 
-    <code>PowerMock</code>
-     , 
-    <code>Mockito</code>
-     and 
-    <code>EasyMock</code>
-     (preferred) to make testing easier. Patches will be refused without corresponding test cases. Classes should have all feasible branches covered, any branch that isn't covered must be explained in comments.
-   </li>
+     <li>Use the notation <code>TODO</code>: comment when leaving a comment about future work that needs to be done. This is automatically picked up by Eclipse the auto generated <a href="http://www.mojohaus.org/taglist-maven-plugin/" class="externalLink">Taglist report</a> and other editors, and it makes finding them useful. Don't put user ids or specific dates.</li>
+    </ul></li>
+   <li><strong>Testing</strong>: All non-trivial public classes should include a corresponding unit test. We use <code>JUnit</code>, <code>PowerMock</code>, <code>Mockito</code> and <code>EasyMock</code> (preferred) to make testing easier. Patches will be refused without corresponding test cases. Classes should have all feasible branches covered, any branch that isn't covered must be explained in comments.</li>
   </ul>
-  <p>
-   <strong>Naming</strong>
-  </p>
+  <p><strong>Naming</strong></p>
   <ul>
    <li>Treat acronyms as words. This means “HtmlParser” and not “HTMLParser”. Java's standard libraries are inconsistent about this, but we shouldn't be.</li>
    <li>Constants (static final members) should always use an ALL_CAPS form.</li>
@@ -140,18 +43,10 @@
   </ul>
  </section>
  <section>
-  <h2 id="dev-code-conventions_toc_versioning-naming-convention">
-   <a id="versioning_naming_convention"></a>
-    Versioning Naming Convention
-  </h2>
-  <p>
-   The version name is normalized according to 
-   <a href="http://semver.org/" class="externalLink">Semantic Versioning</a>
-    .
-  </p>
+  <h2 id="dev-code-conventions_toc_versioning-naming-convention"><a id="versioning_naming_convention"></a>Versioning Naming Convention</h2>
+  <p>The version name is normalized according to <a href="http://semver.org/" class="externalLink">Semantic Versioning</a>.</p>
  </section>
-</section>
-        </div>
+</section>    </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">

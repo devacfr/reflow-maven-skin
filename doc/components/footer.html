@@ -1,155 +1,50 @@
- 
-
-
-  <div class="row no-gutters">
+<div class="row no-gutters">
     <div class="col-lg-12 col-xl-9">
-            <h1 id="doc-components-footer_toc_footer-component">
- <a id="footer_component"></a>
-  Footer Component
-</h1>
-<h2 id="doc-components-footer_toc_usage1">
- <a id="usage"></a>
-  Usage
-</h2>
+<h1 id="doc-components-footer_toc_footer-component"><a id="footer_component"></a>Footer Component</h1>
+<h2 id="doc-components-footer_toc_usage1"><a id="usage"></a>Usage</h2>
 <div class="source">
- <pre>  
-  <code class="language-xml">&lt;footer cssClass="css classes"
+ <pre><code class="language-xml">&lt;footer cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme" /&gt;
-</code>
- 
- </pre>
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>cssClass</strong>
-  <span class="badge badge-light">v2.0</span>
-   - Sets the css class with built-in Bootstrap support. The default value is 
-  <code>null</code>
-   .
- </li>
- <li>
-  <strong>theme</strong>
-  <span class="badge badge-light">v2.0</span>
-   - Sets the css class with built-in Bootstrap theme . 
-  <code>light</code>
-   is the default value if value is empty or 
-  <code>null</code>
-   .
- </li>
- <li>
-  <strong>background</strong>
-  <span class="badge badge-light">v2.0</span>
-   - Sets the css class with built-in Bootstrap colour theme. 
-  <code>light</code>
-   is the default value if value is empty or 
-  <code>null</code>
-   .
- </li>
+ <li><strong>cssClass</strong> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is <code>null</code>.</li>
+ <li><strong>theme</strong> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code>light</code> is the default value if value is empty or <code>null</code>.</li>
+ <li><strong>background</strong> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code>light</code> is the default value if value is empty or <code>null</code>.</li>
 </ul>
-<h3 id="doc-components-footer_toc_bottom-navigation">
- <a id="bottom_navigation"></a>
-  Bottom navigation
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
- <span class="badge badge-info">element</span>
-</p>
-<p>
- The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the 
- <code>bottomNav</code>
-  element. If configuration is not available, lists all menus in a single column.
-</p>
+<h3 id="doc-components-footer_toc_bottom-navigation"><a id="bottom_navigation"></a>Bottom navigation</h3>
+<p>support <span class="badge badge-primary">v1.0</span> <br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p>
+<p>The bottom navigation is placed in the footer, to the left of website description. It can feature a number of columns with menu items. The columns are indicated using the <code>bottomNav</code> element. If configuration is not available, lists all menus in a single column.</p>
 <div class="source">
- <pre>  
-  <code class="language-xml">&lt;bottomNav&gt;
+ <pre><code class="language-xml">&lt;bottomNav&gt;
   &lt;column&gt;RegEx&lt;/column&gt;
   &lt;column&gt;RegEx&lt;/column&gt;
   &lt;column&gt;RegEx&lt;/column&gt;
 &lt;/bottomNav&gt;
-</code>
- 
- </pre>
+</code></pre>
 </div>
 <ul>
- <li>
-  Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only 
-  <em>Home</em>
-   and 
-  <em>Download</em>
-   items, use 
-  <code>Home|Download</code>
-   for the regular expression.
- </li>
+ <li>Each column in the configuration defines a regular expression for menu items that will be listed in said column. For example, to include only <em>Home</em> and <em>Download</em> items, use <code>Home|Download</code> for the regular expression.</li>
 </ul>
-<h2 id="doc-components-footer_toc_bottom-description">
- <a id="bottom_description"></a>
-  Bottom description
-</h2>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
- <span class="badge badge-info">element</span>
-</p>
-<p>
- It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using 
- <code>&lt;bottomDescription&gt;</code>
-  element:
-</p>
+<h2 id="doc-components-footer_toc_bottom-description"><a id="bottom_description"></a>Bottom description</h2>
+<p>support <span class="badge badge-primary">v1.0</span> <br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p>
+<p>It is placed on the right of the bottom navigation area. Site description takes up space remaining after the bottom navigation. The bottom description is set using <code>&lt;bottomDescription&gt;</code> element:</p>
 <div class="source">
- <pre>  
-  <code class="language-xml">&lt;bottomDescription quote="true|false"&gt;description&lt;/bottomDescription&gt;
-</code>
- 
- </pre>
+ <pre><code class="language-xml">&lt;bottomDescription quote="true|false"&gt;description&lt;/bottomDescription&gt;
+</code></pre>
 </div>
-<p>
- The 
- <code>quote</code>
-  attribute wraps the text into a 
- <code>&lt;blockquote&gt;</code>
-  element:
-</p>
+<p>The <code>quote</code> attribute wraps the text into a <code>&lt;blockquote&gt;</code> element:</p>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - Text is wrapped into a 
-  <code>&lt;blockquote&gt;</code>
-   element
- </li>
- <li>
-  <strong>false</strong>
-   - Text is printed as-is
- </li>
+ <li><strong>true (default)</strong> - Text is wrapped into a <code>&lt;blockquote&gt;</code> element</li>
+ <li><strong>false</strong> - Text is printed as-is</li>
 </ul>
-<p>
- The 
- <strong>description</strong>
-  can be plain text or a 
- <code>CDATA</code>
-  element and thus wrap the text with HTML formatting.
-</p>
-<p>
- Alternatively, 
- <code>&lt;bottomDescription&gt;</code>
-  can contain HTML elements directly, which will be embedded in the bottom description area.
-</p>
+<p>The <strong>description</strong> can be plain text or a <code>CDATA</code> element and thus wrap the text with HTML formatting.</p>
+<p>Alternatively, <code>&lt;bottomDescription&gt;</code> can contain HTML elements directly, which will be embedded in the bottom description area.</p>
 <div class="bd-callout bd-callout-info">
  <h5 class="no-anchor" id="doc-components-footer_toc_note">Note</h5>
- <p>
-  The bottom description must be enabled if Maven site date or version are set to position 
-  <strong>navigation-bottom</strong>
-   .
- </p>
-</div>
-        </div>
+ <p>The bottom description must be enabled if Maven site date or version are set to position <strong>navigation-bottom</strong>.</p>
+</div>    </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">

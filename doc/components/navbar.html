@@ -1,44 +1,12 @@
- 
-
-
-  <div class="row no-gutters">
+<div class="row no-gutters">
     <div class="col-lg-12 col-xl-9">
-            <h1 id="doc-components-navbar_toc_navbar-component">
- <a id="navbar_component"></a>
-  Navbar Component
-</h1>
-<p>
- Navbar is Bootstrap responsive navigation header component fixed to the top of page. It contains all 
- <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links" class="externalLink">
-  <code>&lt;body&gt;&lt;links&gt;</code>
-   element 
- </a>
-  and filtered 
- <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content" class="externalLink">
-  <code>&lt;body&gt;&lt;menu&gt;</code> 
- </a>
-  declared in site.xml.
-</p>
-<p>
- <img src="../images/doc/navbar-scheme.png" alt="navbar scheme" class="img-fluid">
-</p>
-<h2 id="doc-components-navbar_toc_usage1">
- <a id="usage"></a>
-  Usage
-</h2>
-<p>
- support 
- <span class="badge badge-primary">v2.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
- <span class="badge badge-info">component</span>
-</p>
+<h1 id="doc-components-navbar_toc_navbar-component"><a id="navbar_component"></a>Navbar Component</h1>
+<p>Navbar is Bootstrap responsive navigation header component fixed to the top of page. It contains all <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links" class="externalLink"><code>&lt;body&gt;&lt;links&gt;</code> element</a> and filtered <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content" class="externalLink"><code>&lt;body&gt;&lt;menu&gt;</code></a> declared in site.xml.</p>
+<p><img src="../images/doc/navbar-scheme.png" alt="navbar scheme" class="img-fluid"></p>
+<h2 id="doc-components-navbar_toc_usage1"><a id="usage"></a>Usage</h2>
+<p>support <span class="badge badge-primary">v2.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p>
 <div class="source">
- <pre>  
-  
-  
-  <code class="language-xml">&lt;navbar filterMenu="Regex filter"
+ <pre><code class="language-xml">&lt;navbar filterMenu="Regex filter"
         cssClass="css classes"
         theme="light|dark"
         background="bootstrap colour theme"
@@ -51,108 +19,27 @@
           ]]&gt;
     &lt;/additionalMenu&gt;
 &lt;/navbar&gt;
-</code>
- 
- 
- 
- </pre>
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>filterMenu</strong>
-  <span class="badge badge-light">v2.0</span>
-   - applies the regular expression to menu names and 
-  <code>ref</code>
-   attributes. If the regular expression matches, adds the menu to the top navigation. expression matches, adds the menu to the top navigation.
- </li>
- <li>
-  <strong>cssClass</strong>
-  <span class="badge badge-light">v2.0</span>
-   - Sets the css class with built-in Bootstrap support. The default value is 
-  <code>null</code>
-   .
- </li>
- <li>
-  <strong>theme</strong>
-  <span class="badge badge-light">v2.0</span>
-   - Sets the css class with built-in Bootstrap theme . 
-  <code>light</code>
-   is the default value if value is empty or 
-  <code>null</code>
-   .
- </li>
- <li>
-  <strong>background</strong>
-  <span class="badge badge-light">v2.0</span>
-   - Sets the css class with built-in Bootstrap colour theme. 
-  <code>light</code>
-   is the default value if value is empty or 
-  <code>null</code>
-   .
- </li>
- <li>
-  <strong>center</strong>
-  <span class="badge badge-light">v2.1</span>
-   - Sets the centering of the component with values 
-  <code>true</code>
-   ( 
-  <strong>default</strong>
-   ) or 
-  <code>false</code>
-   . 
-  <code>center</code>
-   use bootstrap containers otherwise use default bootstrap alignment.
- </li>
- <li>
-  <strong>alignMenu</strong>
-  <span class="badge badge-light">v2.1</span>
-   - Sets the alignment of menu to the 
-  <code>left</code>
-   or pushing to the 
-  <code>right</code>
-   ( 
-  <strong>default</strong>
-   ).
- </li>
+ <li><strong>filterMenu</strong> <span class="badge badge-light">v2.0</span> - applies the regular expression to menu names and <code>ref</code> attributes. If the regular expression matches, adds the menu to the top navigation. expression matches, adds the menu to the top navigation.</li>
+ <li><strong>cssClass</strong> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap support. The default value is <code>null</code>.</li>
+ <li><strong>theme</strong> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap theme . <code>light</code> is the default value if value is empty or <code>null</code>.</li>
+ <li><strong>background</strong> <span class="badge badge-light">v2.0</span> - Sets the css class with built-in Bootstrap colour theme. <code>light</code> is the default value if value is empty or <code>null</code>.</li>
+ <li><strong>center</strong> <span class="badge badge-light">v2.1</span> - Sets the centering of the component with values <code>true</code> (<strong>default</strong>) or <code>false</code>. <code>center</code> use bootstrap containers otherwise use default bootstrap alignment.</li>
+ <li><strong>alignMenu</strong> <span class="badge badge-light">v2.1</span> - Sets the alignment of menu to the <code>left</code> or pushing to the <code>right</code> (<strong>default</strong>).</li>
 </ul>
-<h3 id="doc-components-navbar_toc_image-element">
- <a id="image_element"></a>
-  Image element
-</h3>
+<h3 id="doc-components-navbar_toc_image-element"><a id="image_element"></a>Image element</h3>
 <p>Add image to the brand part of navbar.</p>
 <ul>
- <li>
-  <strong>src</strong>
-  <span class="badge badge-light">v2.0</span>
-   - the path location of image to use.
- </li>
- <li>
-  <strong>width</strong>
-  <span class="badge badge-light">v2.0</span>
-   - the width of image, 30 is the default if value is empty or 
-  <code>null</code>
-   .
- </li>
- <li>
-  <strong>height</strong>
-  <span class="badge badge-light">v2.0</span>
-   - the height of image, 30 is the default if value is empty or 
-  <code>null</code>
-   .
- </li>
+ <li><strong>src</strong> <span class="badge badge-light">v2.0</span> - the path location of image to use.</li>
+ <li><strong>width</strong> <span class="badge badge-light">v2.0</span> - the width of image, 30 is the default if value is empty or <code>null</code>.</li>
+ <li><strong>height</strong> <span class="badge badge-light">v2.0</span> - the height of image, 30 is the default if value is empty or <code>null</code>.</li>
 </ul>
-<p>###&nbsp;Additional Menu</p>
-<span class="badge badge-primary">New in v2.4</span>
-<p>
- It is placed on the right of the navbar component. The additional menu is set using 
- <code>&lt;additionalMenu&gt;</code>
-  element:
-</p>
+<p>###&nbsp;Additional Menu</p> <span class="badge badge-primary">New in v2.4</span>
+<p>It is placed on the right of the navbar component. The additional menu is set using <code>&lt;additionalMenu&gt;</code> element:</p>
 <div class="source">
- <pre>  
-  
-  
-  <code class="language-xml">&lt;navbar&gt;
+ <pre><code class="language-xml">&lt;navbar&gt;
     &lt;additionalMenu&gt;
         &lt;![CDATA[
           &lt;ul class="navbar-nav navbar-additional ml-md-auto"&gt;
@@ -181,22 +68,10 @@
           ]]&gt;
     &lt;/additionalMenu&gt;
 &lt;/navbar&gt;
-</code>
- 
- 
- 
- </pre>
+</code></pre>
 </div>
-<p>
- <code>&lt;additionalMenu&gt;</code>
-  contains HTML elements, which will be embedded in the collapse part of navbar (See above 
- <a href="test/navbar-additional-menu.html">sample</a>
-  ).
-</p>
-<h3 id="doc-components-navbar_toc_centering-and-alignement-sample-pages">
- <a id="centering_and_alignement_sample_pages"></a>
-  Centering and Alignement Sample Pages
-</h3>
+<p><code>&lt;additionalMenu&gt;</code> contains HTML elements, which will be embedded in the collapse part of navbar (See above <a href="test/navbar-additional-menu.html">sample</a>).</p>
+<h3 id="doc-components-navbar_toc_centering-and-alignement-sample-pages"><a id="centering_and_alignement_sample_pages"></a>Centering and Alignement Sample Pages</h3>
 <p>Here is a table containing different configuration of Navbar.</p>
 <table class="bodyTable table table-striped table-hover">
  <thead>
@@ -208,91 +83,44 @@
  </thead>
  <tbody>
   <tr class="b">
-   <td>
-    <a href="test/navbar-centered-right.html">centered-right</a>
-   </td>
+   <td><a href="test/navbar-centered-right.html">centered-right</a></td>
    <td>true</td>
    <td>right</td>
   </tr>
   <tr class="a">
-   <td>
-    <a href="test/navbar-centered-left.html">centered-left</a>
-   </td>
+   <td><a href="test/navbar-centered-left.html">centered-left</a></td>
    <td>true</td>
    <td>left</td>
   </tr>
   <tr class="b">
-   <td>
-    <a href="test/navbar-uncentered-right.html">uncentered-right</a>
-   </td>
+   <td><a href="test/navbar-uncentered-right.html">uncentered-right</a></td>
    <td>false</td>
    <td>right</td>
   </tr>
   <tr class="a">
-   <td>
-    <a href="test/navbar-uncentered-left.html">uncentered-left</a>
-   </td>
+   <td><a href="test/navbar-uncentered-left.html">uncentered-left</a></td>
    <td>false</td>
    <td>left</td>
   </tr>
  </tbody>
 </table>
-<h2 id="doc-components-navbar_toc_brand1">
- <a id="brand"></a>
-  Brand
-</h2>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- The brand text (or image) appearing in the left of the top navigation bar can be customised using 
- <code>&lt;brand&gt;</code>
-  element. You can set both the contents and the link.
-</p>
+<h2 id="doc-components-navbar_toc_brand1"><a id="brand"></a>Brand</h2>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>The brand text (or image) appearing in the left of the top navigation bar can be customised using <code>&lt;brand&gt;</code> element. You can set both the contents and the link.</p>
 <div class="source">
- <pre>  
-  
-  
-  <code class="language-xml">&lt;brand&gt;
+ <pre><code class="language-xml">&lt;brand&gt;
   &lt;name&gt;text&lt;/name&gt;
   &lt;href&gt;link&lt;/href&gt;
 &lt;/brand&gt;
-</code>
- 
- 
- 
- </pre>
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>name</strong>
-   element sets the text of the top-left brand
- </li>
- <li>
-  <strong>href</strong>
-   element sets the link to open when the brand text is clicked
- </li>
+ <li><strong>name</strong> element sets the text of the top-left brand</li>
+ <li><strong>href</strong> element sets the link to open when the brand text is clicked</li>
 </ul>
-<p>
- Note that the 
- <code>&lt;name&gt;</code>
-  element can be used to embed custom HTML content. To do that, use 
- <code>CDATA</code>
-  element as the contents of 
- <code>&lt;name&gt;</code>
-  (writing HTML without 
- <code>CDATA</code>
-  will not work):
-</p>
+<p>Note that the <code>&lt;name&gt;</code> element can be used to embed custom HTML content. To do that, use <code>CDATA</code> element as the contents of <code>&lt;name&gt;</code> (writing HTML without <code>CDATA</code> will not work):</p>
 <div class="source">
- <pre>  
-  
-  
-  <code class="language-xml">&lt;brand&gt;
+ <pre><code class="language-xml">&lt;brand&gt;
   &lt;name&gt;
     &lt;![CDATA[
     &lt;span class="color-highlight"&gt;Reflow&lt;/span&gt; Maven Skin
@@ -300,18 +128,9 @@
   &lt;/name&gt;
   ..
 &lt;/brand&gt;
-</code>
- 
- 
- 
- </pre>
+</code></pre>
 </div>
-<p>
- The above example is taken from this website, in order to have the 
- <em>Reflow</em>
-  part in different colour. Images could also be added there in a similar manner.
-</p>
-        </div>
+<p>The above example is taken from this website, in order to have the <em>Reflow</em> part in different colour. Images could also be added there in a similar manner.</p>    </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">

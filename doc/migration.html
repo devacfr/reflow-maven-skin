@@ -1,125 +1,50 @@
- 
-
-
-  <div class="row no-gutters">
+<div class="row no-gutters">
     <div class="col-lg-12 col-xl-9">
-            <section>
- <h1 id="doc-migration_toc_migration-to-v2">
-  <a id="migration_to_v2"></a>
-   Migration to v2
- </h1>
+<section>
+ <h1 id="doc-migration_toc_migration-to-v2"><a id="migration_to_v2"></a>Migration to v2</h1>
  <p>Reflow is a major rewrite of the entire project. The most notable changes are summarized below, followed by more specific changes to relevant components.</p>
  <section>
-  <h2 id="doc-migration_toc_stable-changes">
-   <a id="stable_changes"></a>
-    Stable changes
-  </h2>
+  <h2 id="doc-migration_toc_stable-changes"><a id="stable_changes"></a>Stable changes</h2>
   <p>Moving from v1 to stable v2 release, there are no breaking changes, but there are some notable changes.</p>
  </section>
  <section>
-  <h2 id="doc-migration_toc_upgrade-to-bootstrap-v4">
-   <a id="upgrade_to_bootstrap_v4"></a>
-    Upgrade to Bootstrap v4
-  </h2>
-  <p>
-   See 
-   <a href="https://getbootstrap.com/docs/4.1/migration" class="externalLink">Bootstrap Migration to v4</a>
-    for a complete informatin on changes.
-  </p>
+  <h2 id="doc-migration_toc_upgrade-to-bootstrap-v4"><a id="upgrade_to_bootstrap_v4"></a>Upgrade to Bootstrap v4</h2>
+  <p>See <a href="https://getbootstrap.com/docs/4.1/migration" class="externalLink">Bootstrap Migration to v4</a> for a complete informatin on changes.</p>
   <ul>
    <li>Dropped the Glyphicons icon font, use Font Awesome free 5.2.</li>
-   <li>
-    Remove 
-    <code>&lt;bootstrapCSS&gt;</code>
-     element
-   </li>
-   <li>
-    Remove 
-    <code>&lt;navbarInverse&gt;</code>
-     element, replace by 
-    <code>cssClass</code>
-     attribute (see 
-    <a href="#migration_toc_navbar-component">Navbar component</a>
-   </li>
-   <li>
-    Dropped the Affix jQuery plugin, replaced by position 
-    <code>sticky</code>
-     (can remove all affix reference in your css).
-   </li>
-   <li>
-    Remove support of customized Bootsrap theme: 
+   <li>Remove <code>&lt;bootstrapCSS&gt;</code> element</li>
+   <li>Remove <code>&lt;navbarInverse&gt;</code> element, replace by <code>cssClass</code> attribute (see <a href="#migration_toc_navbar-component">Navbar component</a></li>
+   <li>Dropped the Affix jQuery plugin, replaced by position <code>sticky</code> (can remove all affix reference in your css).</li>
+   <li>Remove support of customized Bootsrap theme: 
     <ul>
-     <li>
-      Remove 
-      <code>css/bootstrap-responsive.min.css</code>
-       link
-     </li>
-     <li>
-      Remove 
-      <code>js/html5.js</code>
-       link
-     </li>
-    </ul>
-   </li>
-   <li>
-    Add 
-    <code>popper.js</code>
-     library required by Bootstrap
-   </li>
+     <li>Remove <code>css/bootstrap-responsive.min.css</code> link</li>
+     <li>Remove <code>js/html5.js</code> link</li>
+    </ul></li>
+   <li>Add <code>popper.js</code> library required by Bootstrap</li>
   </ul>
   <section>
-   <h3 id="doc-migration_toc_bootswatch-themes">
-    <a id="bootswatch_themes"></a>
-     Bootswatch Themes
-   </h3>
+   <h3 id="doc-migration_toc_bootswatch-themes"><a id="bootswatch_themes"></a>Bootswatch Themes</h3>
    <ul>
     <li>Add new bootswatch supported themes.</li>
-    <li>
-     Remove 
-     <code>reflow-maven-skin/src/main/resources/css/bootswatch.css</code>
-    </li>
+    <li>Remove <code>reflow-maven-skin/src/main/resources/css/bootswatch.css</code></li>
    </ul>
   </section>
  </section>
  <section>
-  <h2 id="doc-migration_toc_css-changes">
-   <a id="css_changes"></a>
-    Css Changes
-  </h2>
+  <h2 id="doc-migration_toc_css-changes"><a id="css_changes"></a>Css Changes</h2>
   <ul>
-   <li>
-    Replace 
-    <code>#bannerRight</code>
-    <code>#bannerLeft</code>
-     by 
-    <code>.bannerRight</code>
-     and 
-    <code>.bannerLeft</code>
-     .
-   </li>
+   <li>Replace <code>#bannerRight</code> <code>#bannerLeft</code> by <code>.bannerRight</code> and <code>.bannerLeft</code>.</li>
   </ul>
  </section>
  <section>
-  <h2 id="doc-migration_toc_local-resources">
-   <a id="local_resources"></a>
-    Local resources
-  </h2>
+  <h2 id="doc-migration_toc_local-resources"><a id="local_resources"></a>Local resources</h2>
   <ul>
-   <li>
-    Add new 
-    <code>reflow-default-webdeps</code>
-     module containing all required web dependencies to work locally.
-   </li>
+   <li>Add new <code>reflow-default-webdeps</code> module containing all required web dependencies to work locally.</li>
   </ul>
   <section>
-   <h3 id="doc-migration_toc_using-default-bootstrap-theme">
-    <a id="using_default_bootstrap_theme"></a>
-     Using default Bootstrap theme
-   </h3>
+   <h3 id="doc-migration_toc_using-default-bootstrap-theme"><a id="using_default_bootstrap_theme"></a>Using default Bootstrap theme</h3>
    <div class="source">
-    <pre>     
-     
-     <code class="language-xml">&lt;plugin&gt;
+    <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
     &lt;executions&gt;
@@ -152,31 +77,14 @@
         &lt;/execution&gt;
     &lt;/executions&gt;
 &lt;/plugin&gt;
-</code>
-    
-    
-    </pre>
+</code></pre>
    </div>
-   <p>
-    <strong>Note</strong>
-     : 
-    <code>${main.basedir}</code>
-     equals to 
-    <code>${session.executionRootDirectory}</code>
-     for relativize url (see 
-    <a href="reflow-documentation.html#multi-module.html">Multi-module site</a>
-     )
-   </p>
+   <p><strong>Note</strong>: <code>${main.basedir}</code> equals to <code>${session.executionRootDirectory}</code> for relativize url (see <a href="reflow-documentation.html#multi-module.html">Multi-module site</a> )</p>
   </section>
   <section>
-   <h3 id="doc-migration_toc_using-bootswatch-theme">
-    <a id="using_bootswatch_theme"></a>
-     Using Bootswatch theme
-   </h3>
+   <h3 id="doc-migration_toc_using-bootswatch-theme"><a id="using_bootswatch_theme"></a>Using Bootswatch theme</h3>
    <div class="source">
-    <pre>     
-     
-     <code class="language-xml">&lt;plugin&gt;
+    <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
     &lt;executions&gt;
@@ -208,271 +116,97 @@
         &lt;/execution&gt;
     &lt;/executions&gt;
 &lt;/plugin&gt;
-</code>
-    
-    
-    </pre>
+</code></pre>
    </div>
   </section>
  </section>
  <section>
-  <h2 id="doc-migration_toc_documentation-layout">
-   <a id="documentation_layout"></a>
-    Documentation layout
-  </h2>
-  <p>
-   <a href="#documentation-layout">Documentation layout</a>
-    is new feature to organize your documentation in single page to facilitate the navigation and reduce the size of dropdown list in navbar.
-  </p>
+  <h2 id="doc-migration_toc_documentation-layout"><a id="documentation_layout"></a>Documentation layout</h2>
+  <p><a href="#documentation-layout">Documentation layout</a> is new feature to organize your documentation in single page to facilitate the navigation and reduce the size of dropdown list in navbar.</p>
   <section>
-   <h3 id="doc-migration_toc_improve-documentation">
-    <a id="improve_documentation"></a>
-     Improve documentation
-   </h3>
-   <p>
-    Doxia Sitetools has introduce the edit source feature in 
-    <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html" class="externalLink">decoration model 1.8</a>
-     adding 
-    <code>&lt;edit&gt;</code>
-     element allowing to add link on each document page that points to source file in scm ( 
-    <a href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183" class="externalLink">DOXIASITETOOLS-183</a>
-     ).
-   </p>
-   <p>
-    <img src="../images/doc/improve-this-page.png" alt="Improve this page" class="img-fluid">
-   </p>
+   <h3 id="doc-migration_toc_improve-documentation"><a id="improve_documentation"></a>Improve documentation</h3>
+   <p>Doxia Sitetools has introduce the edit source feature in <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html" class="externalLink">decoration model 1.8</a> adding <code>&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183" class="externalLink">DOXIASITETOOLS-183</a>).</p>
+   <p><img src="../images/doc/improve-this-page.png" alt="Improve this page" class="img-fluid"></p>
   </section>
  </section>
  <section>
-  <h2 id="doc-migration_toc_by-component">
-   <a id="by_component"></a>
-    By component
-  </h2>
+  <h2 id="doc-migration_toc_by-component"><a id="by_component"></a>By component</h2>
   <p>This list highlights key changes by component between v1.4 and v2.0.0.</p>
   <section>
-   <h3 id="doc-migration_toc_banner1">
-    <a id="banner"></a>
-     Banner
-   </h3>
+   <h3 id="doc-migration_toc_banner1"><a id="banner"></a>Banner</h3>
    <p>Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title.</p>
    <ul>
-    <li>
-     <code>name</code>
-      is used to display title heading in elements 
-     <strong>bannerLeft</strong>
-      and 
-     <strong>bannerRight</strong>
-      , use 
-     <code>alt</code>
-      element instead 
-     <code>name</code>
-      .
-    </li>
-    <li>
-     <code>.bannerRight</code>
-      and 
-     <code>.bannerLeft</code>
-      class has been move to div container parent.
-    </li>
+    <li><code>name</code> is used to display title heading in elements <strong>bannerLeft</strong> and <strong>bannerRight</strong>, use <code>alt</code> element instead <code>name</code>.</li>
+    <li><code>.bannerRight</code> and <code>.bannerLeft</code> class has been move to div container parent.</li>
    </ul>
   </section>
   <section>
-   <h3 id="doc-migration_toc_navside-menu">
-    <a id="navside_menu"></a>
-     Navside menu
-   </h3>
-   <p>
-    It is a new component used in documentation page support (see 
-    <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a>
-     documentation for more information).
-   </p>
+   <h3 id="doc-migration_toc_navside-menu"><a id="navside_menu"></a>Navside menu</h3>
+   <p>It is a new component used in documentation page support (see <a href="reflow-documentation.html#components-navside-menu">Navside Menu Component</a> documentation for more information).</p>
    <div class="source">
-    <pre>     
-     
-     <code class="language-xml">&lt;navside-menu cssClass="bootstrap classes"
+    <pre><code class="language-xml">&lt;navside-menu cssClass="bootstrap classes"
               theme="light|dark"
               background="bootstrap colour theme" /&gt;
-</code>
-    
-    
-    </pre>
+</code></pre>
    </div>
   </section>
   <section>
-   <h3 id="doc-migration_toc_toc-topbar-component">
-    <a id="toc_topbar_component"></a>
-     Toc topbar component
-   </h3>
+   <h3 id="doc-migration_toc_toc-topbar-component"><a id="toc_topbar_component"></a>Toc topbar component</h3>
    <div class="source">
-    <pre>     
-     
-     <code class="language-xml">&lt;toc cssClass="bootstrap classes"
+    <pre><code class="language-xml">&lt;toc cssClass="bootstrap classes"
      theme="light|dark"
      background="bootstrap colour theme"
      numberItems="number|-1"
      flatten="false|true"&gt;top&lt;/toc&gt;
-</code>
-    
-    
-    </pre>
+</code></pre>
    </div>
    <ul>
-    <li>
-     Add ccsClass attribute (default value 
-     <code>null</code>
-      ).
-    </li>
-    <li>
-     Add 
-     <code>theme</code>
-      attribute (default value 
-     <code>light</code>
-      ).
-    </li>
-    <li>
-     Add 
-     <code>background</code>
-      attribute (default value 
-     <code>light</code>
-      ).
-    </li>
-    <li>
-     Replace 
-     <code>tocTopMax</code>
-      element by 
-     <code>numberItems</code>
-      attribute.
-    </li>
-    <li>
-     Replace 
-     <code>tocTopFlatten</code>
-      element by 
-     <code>flatten</code>
-      attribute.
-    </li>
+    <li>Add ccsClass attribute (default value <code>null</code>).</li>
+    <li>Add <code>theme</code> attribute (default value <code>light</code>).</li>
+    <li>Add <code>background</code> attribute (default value <code>light</code>).</li>
+    <li>Replace <code>tocTopMax</code> element by <code>numberItems</code> attribute.</li>
+    <li>Replace <code>tocTopFlatten</code> element by <code>flatten</code> attribute.</li>
    </ul>
   </section>
   <section>
-   <h3 id="doc-migration_toc_toc-sidebar-component">
-    <a id="toc_sidebar_component"></a>
-     Toc sidebar component
-   </h3>
-   <p>
-    Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content (see 
-    <a href="reflow-documentation.html#components-toc">Table of Contents Component</a>
-     documentation for more information).
-   </p>
+   <h3 id="doc-migration_toc_toc-sidebar-component"><a id="toc_sidebar_component"></a>Toc sidebar component</h3>
+   <p>Toc sidebar has been refactored to support the 1st level heading and positionned to right of body page. Reading is easier and not reduce the place of body content (see <a href="reflow-documentation.html#components-toc">Table of Contents Component</a> documentation for more information).</p>
    <div class="source">
-    <pre>     
-     
-     <code class="language-xml">&lt;toc position="fixed|relative" autoExpandable="true|false" expanded="true|false"&gt;sidebar&lt;/toc&gt;
-</code>
-    
-    
-    </pre>
+    <pre><code class="language-xml">&lt;toc position="fixed|relative" autoExpandable="true|false" expanded="true|false"&gt;sidebar&lt;/toc&gt;
+</code></pre>
    </div>
    <ul>
-    <li>
-     Change 
-     <code>type</code>
-      attribure by 
-     <code>position</code>
-      attribute.
-    </li>
-    <li>
-     Replace 
-     <code>static</code>
-      option of 
-     <code>position</code>
-      attribute by 
-     <code>relative</code>
-      .
-    </li>
-    <li>
-     Now, the new Toc sidebar supports page with 1st level heading 
-     <code>&lt;h1&gt;</code>
-      .
-    </li>
+    <li>Change <code>type</code> attribure by <code>position</code> attribute.</li>
+    <li>Replace <code>static</code> option of <code>position</code> attribute by <code>relative</code>.</li>
+    <li>Now, the new Toc sidebar supports page with 1st level heading <code>&lt;h1&gt;</code>.</li>
    </ul>
   </section>
   <section>
-   <h3 id="doc-migration_toc_navbar-component">
-    <a id="navbar_component"></a>
-     Navbar component
-   </h3>
-   <p>
-    (see 
-    <a href="reflow-documentation.html#components-navbar">Top Navbar Component</a>
-     documentation for more information).
-   </p>
+   <h3 id="doc-migration_toc_navbar-component"><a id="navbar_component"></a>Navbar component</h3>
+   <p>(see <a href="reflow-documentation.html#components-navbar">Top Navbar Component</a> documentation for more information).</p>
    <div class="source">
-    <pre>     
-     
-     <code class="language-xml">&lt;navbar filterMenu="Regex filter"
+    <pre><code class="language-xml">&lt;navbar filterMenu="Regex filter"
         cssClass="bootstrap classes"
         theme="light|dark"
         background="bootstrap colour theme"&gt;
-</code>
-    
-    
-    </pre>
+</code></pre>
    </div>
    <ul>
-    <li>
-     Replace 
-     <code>&lt;topNav&gt;</code>
-      element by 
-     <code>filterMenu</code>
-      attribute.
-    </li>
-    <li>
-     Remove 
-     <code>&lt;navbarInverse&gt;</code>
-      element. use 
-     <code>cssClass</code>
-      instead.
-    </li>
-    <li>
-     Add 
-     <code>cssClass</code>
-      attribute (default value 
-     <code>null</code>
-      )
-    </li>
-    <li>
-     Add 
-     <code>theme</code>
-      attribute (default value 
-     <code>light</code>
-      )
-    </li>
-    <li>
-     Add 
-     <code>background</code>
-      attribute (default value 
-     <code>light</code>
-      )
-    </li>
+    <li>Replace <code>&lt;topNav&gt;</code> element by <code>filterMenu</code> attribute.</li>
+    <li>Remove <code>&lt;navbarInverse&gt;</code> element. use <code>cssClass</code> instead.</li>
+    <li>Add <code>cssClass</code> attribute (default value <code>null</code>)</li>
+    <li>Add <code>theme</code> attribute (default value <code>light</code>)</li>
+    <li>Add <code>background</code> attribute (default value <code>light</code>)</li>
    </ul>
   </section>
   <section>
-   <h3 id="doc-migration_toc_bottom-navigation">
-    <a id="bottom_navigation"></a>
-     Bottom navigation
-   </h3>
+   <h3 id="doc-migration_toc_bottom-navigation"><a id="bottom_navigation"></a>Bottom navigation</h3>
    <ul>
-    <li>
-     Remove 
-     <code>maxSpan</code>
-      attribute from element 
-     <code>bottomNav</code>
-      element, use auto-layout Bootstrap columns.
-    </li>
+    <li>Remove <code>maxSpan</code> attribute from element <code>bottomNav</code> element, use auto-layout Bootstrap columns.</li>
    </ul>
   </section>
  </section>
-</section>
-        </div>
+</section>    </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">

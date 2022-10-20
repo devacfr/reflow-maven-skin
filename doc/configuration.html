@@ -1,656 +1,162 @@
- 
-
-
-  <div class="row no-gutters">
+<div class="row no-gutters">
     <div class="col-lg-12 col-xl-9">
-            <h1 id="doc-configuration_toc_other-configuration">
- <a id="other_configuration"></a>
-  Other configuration
-</h1>
+<h1 id="doc-configuration_toc_other-configuration"><a id="other_configuration"></a>Other configuration</h1>
 <p>This page lists various general configuration options for Reflow Maven skin.</p>
-<h2 id="doc-configuration_toc_page-title">
- <a id="page_title"></a>
-  Page title
-</h2>
-<h3 id="doc-configuration_toc_generate-or-set-short-title">
- <a id="generate_or_set_short_title"></a>
-  Generate or set short title
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
- <span class="badge badge-info">component</span>
-</p>
+<h2 id="doc-configuration_toc_page-title"><a id="page_title"></a>Page title</h2>
+<h3 id="doc-configuration_toc_generate-or-set-short-title"><a id="generate_or_set_short_title"></a>Generate or set short title</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p>
 <p>Short title is used in site breadcrumbs and other places. In some cases it is created by Maven site (e.g. when set in APT), etc. In other cases, however, it is missing - a glaring omission from Markdown pages.</p>
-<p>
- Reflow skin provides a couple options to circumvent this, either generate or set the short title explicitly using 
- <code>&lt;shortTitle&gt;</code>
-  element:
-</p>
+<p>Reflow skin provides a couple options to circumvent this, either generate or set the short title explicitly using <code>&lt;shortTitle&gt;</code> element:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;shortTitle&gt;generate|*&lt;/shortTitle&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;shortTitle&gt;generate|*&lt;/shortTitle&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>generate</strong>
-   - a short title will always be generated from the headings in the page. If 
-  <code>&lt;h1&gt;</code>
-   heading is available, it is used. Otherwise first 
-  <code>&lt;h2&gt;</code>
-   heading is used.
- </li>
- <li>
-  <strong>Some short title</strong>
-   - use this explicitly indicated short title
- </li>
- <li>
-  <strong>false</strong>
-   - disable any short title generation altogether
- </li>
- <li>
-  <strong>
-    no 
-   <code>&lt;shortTitle&gt;</code>
-    element (default) 
-  </strong>
-   - short title will be generated (as above) if one is not available
- </li>
+ <li><strong>generate</strong> - a short title will always be generated from the headings in the page. If <code>&lt;h1&gt;</code> heading is available, it is used. Otherwise first <code>&lt;h2&gt;</code> heading is used.</li>
+ <li><strong>Some short title</strong> - use this explicitly indicated short title</li>
+ <li><strong>false</strong> - disable any short title generation altogether</li>
+ <li><strong>no <code>&lt;shortTitle&gt;</code> element (default)</strong> - short title will be generated (as above) if one is not available</li>
 </ul>
-<h3 id="doc-configuration_toc_custom-page-title">
- <a id="custom_page_title"></a>
-  Custom page title
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
- <span class="badge badge-info">component</span>
-</p>
-<p>
- By default, the page title is generated from the project name and its short title. The skin allows setting own page title, e.g. to allow for titles such as “ 
- <em>My Page | My Super Website</em>
-  ”, etc.
-</p>
+<h3 id="doc-configuration_toc_custom-page-title"><a id="custom_page_title"></a>Custom page title</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p>
+<p>By default, the page title is generated from the project name and its short title. The skin allows setting own page title, e.g. to allow for titles such as “<em>My Page | My Super Website</em>”, etc.</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;titleTemplate&gt;template&lt;/titleTemplate&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;titleTemplate&gt;template&lt;/titleTemplate&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>Some template</strong>
-   - use 
-  <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html" class="externalLink">Java format String</a>
-   here, where 
-  <code>%1$s</code>
-   is the project name and 
-  <code>%2$s</code>
-   is the short title of the page. This allows omitting any of these names, or just specifying custom uniform title for pages without any of the variables.
- </li>
- <li>
-  <strong>
-    no 
-   <code>&lt;titleTemplate&gt;</code>
-    element (default) 
-  </strong>
-   - default title template 
-  <code>%1$s - %2$s</code>
-   is used
- </li>
+ <li><strong>Some template</strong> - use <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html" class="externalLink">Java format String</a> here, where <code>%1$s</code> is the project name and <code>%2$s</code> is the short title of the page. This allows omitting any of these names, or just specifying custom uniform title for pages without any of the variables.</li>
+ <li><strong>no <code>&lt;titleTemplate&gt;</code> element (default)</strong> - default title template <code>%1$s - %2$s</code> is used</li>
 </ul>
-<h2 id="doc-configuration_toc_date-and-version">
- <a id="date_and_version"></a>
-  Date and version
-</h2>
-<p>
- element 
- <span class="badge badge-secondary">site.xml</span>
-</p>
-<p>
- Reflow skin supports displaying Maven site publish date and version. They are defined using standard Maven site elements 
- <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Publish_Date" class="externalLink">
-  <code>&lt;publishDate&gt;</code> 
- </a>
-  and 
- <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Version" class="externalLink">
-  <code>&lt;version&gt;</code> 
- </a>
-  .
-</p>
-<p>
- Reflow skin supports the following values for 
- <code>position</code>
-  of these components:
-</p>
+<h2 id="doc-configuration_toc_date-and-version"><a id="date_and_version"></a>Date and version</h2>
+<p>element <span class="badge badge-secondary">site.xml</span></p>
+<p>Reflow skin supports displaying Maven site publish date and version. They are defined using standard Maven site elements <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Publish_Date" class="externalLink"><code>&lt;publishDate&gt;</code></a> and <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Version" class="externalLink"><code>&lt;version&gt;</code></a>.</p>
+<p>Reflow skin supports the following values for <code>position</code> of these components:</p>
 <ul>
- <li>
-  <strong>left</strong>
-   - Left in breadcrumbs bar (requires 
-  <a href="#Breadcrumbs">
-   <code>&lt;breadcrumbs&gt;</code>
-    flag 
-  </a>
-   to be enabled)
- </li>
- <li>
-  <strong>right</strong>
-   - Right in breadcrumbs bar (requires 
-  <a href="#Breadcrumbs">
-   <code>&lt;breadcrumbs&gt;</code>
-    flag 
-  </a>
-   to be enabled)
- </li>
- <li>
-  <strong>navigation-bottom</strong>
-   - Bottom right in the bottom navigation (requires 
-  <a href="#components-footer_toc_bottom-navigation">
-   <code>&lt;bottomDescription&gt;</code> 
-  </a>
-   to be enabled)
- </li>
- <li>
-  <strong>bottom (default)</strong>
-   - Subfooter (the last part of the page, as in this website)
- </li>
- <li>
-  <strong>none</strong>
-   - Date or version are disabled
- </li>
+ <li><strong>left</strong> - Left in breadcrumbs bar (requires <a href="#Breadcrumbs"><code>&lt;breadcrumbs&gt;</code> flag</a> to be enabled)</li>
+ <li><strong>right</strong> - Right in breadcrumbs bar (requires <a href="#Breadcrumbs"><code>&lt;breadcrumbs&gt;</code> flag</a> to be enabled)</li>
+ <li><strong>navigation-bottom</strong> - Bottom right in the bottom navigation (requires <a href="#components-footer_toc_bottom-navigation"><code>&lt;bottomDescription&gt;</code></a> to be enabled)</li>
+ <li><strong>bottom (default)</strong> - Subfooter (the last part of the page, as in this website)</li>
+ <li><strong>none</strong> - Date or version are disabled</li>
 </ul>
-<p>
- Note that 
- <strong>navigation-top</strong>
-  position is not supported by Reflow skin.
-</p>
-<h3 id="doc-configuration_toc_override-publish-date">
- <a id="override_publish_date"></a>
-  Override publish date
-</h3>
-<p>
- element 
- <span class="badge badge-secondary">site.xml</span>
-</p>
-<p>
- The website publish date can be indicated explicitly in the configuration by using 
- <code>&lt;publishDate&gt;</code>
-  element:
-</p>
+<p>Note that <strong>navigation-top</strong> position is not supported by Reflow skin.</p>
+<h3 id="doc-configuration_toc_override-publish-date"><a id="override_publish_date"></a>Override publish date</h3>
+<p>element <span class="badge badge-secondary">site.xml</span></p>
+<p>The website publish date can be indicated explicitly in the configuration by using <code>&lt;publishDate&gt;</code> element:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;publishDate&gt;2013-01-08&lt;/publishDate&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;publishDate&gt;2013-01-08&lt;/publishDate&gt;
+</code></pre>
 </div>
-<h2 id="doc-configuration_toc_menus1">
- <a id="menus"></a>
-  Menus
-</h2>
-<p>
- Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation columns. The menus themselves are defined as normally in Maven site, 
- <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content" class="externalLink">
-   using 
-  <code>&lt;project&gt;&lt;body&gt;&lt;menu&gt;</code>
-   XML items 
- </a>
-  . The skin allows customizing where which menu items are placed in the website.
-</p>
-<p>
- Both top and bottom navigation allows specifying regular expressions that filter the menus to be displayed in the particular place. The regular expressions can match both the name of the menu item and its 
- <code>ref</code>
-  value, e.g. to match 
- <code>&lt;menu ref="modules" inherit="bottom" /&gt;</code>
-  .
-</p>
-<h3 id="doc-configuration_toc_links1">
- <a id="links"></a>
-  Links
-</h3>
-<p>
- element 
- <span class="badge badge-secondary">site.xml</span>
-</p>
-<p>
- All links from defined in 
- <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links" class="externalLink">
-  <code>&lt;body&gt;&lt;links&gt;</code>
-   element 
- </a>
-  of 
- <code>site.xml</code>
-  site descriptor are placed in the top navigation bar. This allows having top-level links in navigation (menus are always drop-down).
-</p>
-<h2 id="doc-configuration_toc_javascript-goodies">
- <a id="javascript_goodies"></a>
-  JavaScript goodies
-</h2>
-<h3 id="doc-configuration_toc_code-highlight">
- <a id="code_highlight"></a>
-  Code highlight
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- Code highlighting can be provided for source code sections in pages using 
- <a href="http://softwaremaniacs.org/soft/highlight/en/" class="externalLink">highlight.js</a>
-  . It detects the language automatically and provides code highlighting functionality. To enable it, use 
- <code>&lt;highlightJs&gt;</code>
-  flag:
-</p>
+<h2 id="doc-configuration_toc_menus1"><a id="menus"></a>Menus</h2>
+<p>Menus in Reflow skin can be placed both at the top navigation bar and at the bottom navigation columns. The menus themselves are defined as normally in Maven site, <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Including_Generated_Content" class="externalLink">using <code>&lt;project&gt;&lt;body&gt;&lt;menu&gt;</code> XML items</a>. The skin allows customizing where which menu items are placed in the website.</p>
+<p>Both top and bottom navigation allows specifying regular expressions that filter the menus to be displayed in the particular place. The regular expressions can match both the name of the menu item and its <code>ref</code> value, e.g. to match <code>&lt;menu ref="modules" inherit="bottom" /&gt;</code>.</p>
+<h3 id="doc-configuration_toc_links1"><a id="links"></a>Links</h3>
+<p>element <span class="badge badge-secondary">site.xml</span></p>
+<p>All links from defined in <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Links" class="externalLink"><code>&lt;body&gt;&lt;links&gt;</code> element</a> of <code>site.xml</code> site descriptor are placed in the top navigation bar. This allows having top-level links in navigation (menus are always drop-down).</p>
+<h2 id="doc-configuration_toc_javascript-goodies"><a id="javascript_goodies"></a>JavaScript goodies</h2>
+<h3 id="doc-configuration_toc_code-highlight"><a id="code_highlight"></a>Code highlight</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>Code highlighting can be provided for source code sections in pages using <a href="http://softwaremaniacs.org/soft/highlight/en/" class="externalLink">highlight.js</a>. It detects the language automatically and provides code highlighting functionality. To enable it, use <code>&lt;highlightJs&gt;</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;highlightJs&gt;true|false&lt;/highlightJs&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;highlightJs&gt;true|false&lt;/highlightJs&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true</strong>
-   - Source code is highlighted (syntax colouring) - requires JavaScript
- </li>
- <li>
-  <strong>false (default)</strong>
-   - Source code is displayed in fixed font without syntax colouring
- </li>
+ <li><strong>true</strong> - Source code is highlighted (syntax colouring) - requires JavaScript</li>
+ <li><strong>false (default)</strong> - Source code is displayed in fixed font without syntax colouring</li>
 </ul>
-<p>
- Code highlighting theme can be changed to match your website theme. Available themes are listed in 
- <a href="http://softwaremaniacs.org/media/soft/highlight/test.html#styleswitcher" class="externalLink">highlight.js website</a>
-  . The theme can be selected using 
- <code>&lt;highlightJsTheme&gt;</code>
-  element:
-</p>
+<p>Code highlighting theme can be changed to match your website theme. Available themes are listed in <a href="http://softwaremaniacs.org/media/soft/highlight/test.html#styleswitcher" class="externalLink">highlight.js website</a>. The theme can be selected using <code>&lt;highlightJsTheme&gt;</code> element:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;highlightJsTheme&gt;default|*&lt;/highlightJsTheme&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;highlightJsTheme&gt;default|*&lt;/highlightJsTheme&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>default (default)</strong>
-   - Default code highlighting theme is used
- </li>
- <li>
-  <strong>theme name</strong>
-   - Entered theme is used
- </li>
+ <li><strong>default (default)</strong> - Default code highlighting theme is used</li>
+ <li><strong>theme name</strong> - Entered theme is used</li>
 </ul>
-<h3 id="doc-configuration_toc_image-previews-lightbox">
- <a id="image_previews_28lightbox29"></a>
-  Image previews (lightbox)
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- Reflow skin enables CSS pop-ups for image links on the website using 
- <a href="http://lokeshdhakar.com/projects/lightbox2/" class="externalLink">Lightbox 2</a>
-  . See one in action by opening 
- <a href="images/doc/snowdon.jpg" title="Lightbox example - climbing Snowdon in Wales, UK" data-lightbox="page">this link to an image</a>
-  . The previews are enabled by default but can be disabled using 
- <code>&lt;imgLightbox&gt;</code>
-  flag:
-</p>
+<h3 id="doc-configuration_toc_image-previews-lightbox"><a id="image_previews_28lightbox29"></a>Image previews (lightbox)</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>Reflow skin enables CSS pop-ups for image links on the website using <a href="http://lokeshdhakar.com/projects/lightbox2/" class="externalLink">Lightbox 2</a>. See one in action by opening <a href="images/doc/snowdon.jpg" title="Lightbox example - climbing Snowdon in Wales, UK" data-lightbox="page">this link to an image</a>. The previews are enabled by default but can be disabled using <code>&lt;imgLightbox&gt;</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;imgLightbox&gt;true|false&lt;/imgLightbox&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;imgLightbox&gt;true|false&lt;/imgLightbox&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - when image link is opened in the website, opens a lightweight CSS pop-up with the image over the page
- </li>
- <li>
-  <strong>false</strong>
-   - disable lightbox, image link will open the image itself
- </li>
+ <li><strong>true (default)</strong> - when image link is opened in the website, opens a lightweight CSS pop-up with the image over the page</li>
+ <li><strong>false</strong> - disable lightbox, image link will open the image itself</li>
 </ul>
-<h3 id="doc-configuration_toc_smooth-scroll">
- <a id="smooth_scroll"></a>
-  Smooth scroll
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of contents links). Smooth scrolling can be disabled using 
- <code>&lt;smoothScroll&gt;</code>
-  flag:
-</p>
+<h3 id="doc-configuration_toc_smooth-scroll"><a id="smooth_scroll"></a>Smooth scroll</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of contents links). Smooth scrolling can be disabled using <code>&lt;smoothScroll&gt;</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;smoothScroll&gt;true|false&lt;/smoothScroll&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;smoothScroll&gt;true|false&lt;/smoothScroll&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - smooth scrolling for in-page navigation (requires JavaScript)
- </li>
- <li>
-  <strong>false</strong>
-   - default in-page jumps
- </li>
+ <li><strong>true (default)</strong> - smooth scrolling for in-page navigation (requires JavaScript)</li>
+ <li><strong>false</strong> - default in-page jumps</li>
 </ul>
-<h3 id="doc-configuration_toc_anchor-link-anchorjs">
- <a id="anchor_link_28anchorjs29"></a>
-  Anchor Link (AnchorJS)
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v2.3</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- Reflow skin enables deep anchor links heading elements in body section. AnchorJS can be disabled using 
- <code>&lt;anchorJS&gt;</code>
-  flag:
-</p>
+<h3 id="doc-configuration_toc_anchor-link-anchorjs"><a id="anchor_link_28anchorjs29"></a>Anchor Link (AnchorJS)</h3>
+<p>support <span class="badge badge-primary">v2.3</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>Reflow skin enables deep anchor links heading elements in body section. AnchorJS can be disabled using <code>&lt;anchorJS&gt;</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;anchorJS&gt;true|false&lt;/anchorJS&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;anchorJS&gt;true|false&lt;/anchorJS&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - drop deep anchor links heading elements.
- </li>
- <li>
-  <strong>false</strong>
-   - disable AnchorJS.
- </li>
+ <li><strong>true (default)</strong> - drop deep anchor links heading elements.</li>
+ <li><strong>false</strong> - disable AnchorJS.</li>
 </ul>
-<h2 id="doc-configuration_toc_bootstrap1">
- <a id="bootstrap"></a>
-  Bootstrap
-</h2>
+<h2 id="doc-configuration_toc_bootstrap1"><a id="bootstrap"></a>Bootstrap</h2>
 <p>The generated Maven site code is updated by default, e.g. update CSS of generated tables, use Bootstrap icons and other goodies. The flags to disable these updates are described below.</p>
-<h3 id="doc-configuration_toc_bootstrap-css">
- <a id="bootstrap_css"></a>
-  Bootstrap CSS
-</h3>
-<p>
- <a href="http://twitter.github.com/bootstrap/" class="externalLink">Bootstrap</a>
-  provides nice CSS effects for certain elements, such as tables, etc. Reflow skin rewrites some Maven site generated elements to add Bootstrap classes and configurations.
-</p>
-<h3 id="doc-configuration_toc_bootstrap-icons">
- <a id="bootstrap_icons"></a>
-  Bootstrap icons
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- To match 
- <a href="http://twitter.github.com/bootstrap/" class="externalLink">Bootstrap</a>
-  themes, Reflow skin replaces some icons used by Maven site with corresponding Bootstrap icons, e.g. in change log page and others:
-</p>
-<p>
- <i class="fas fa-plus"></i>
- <i class="fas fa-wrench"></i>
- <i class="fas fa-exclamation-circle"></i>
- <i class="fas fa-check-circle"></i>
-</p>
-<p>
- This can be disabled using 
- <code>bootstrapIcons</code>
-  flag:
-</p>
+<h3 id="doc-configuration_toc_bootstrap-css"><a id="bootstrap_css"></a>Bootstrap CSS</h3>
+<p><a href="http://twitter.github.com/bootstrap/" class="externalLink">Bootstrap</a> provides nice CSS effects for certain elements, such as tables, etc. Reflow skin rewrites some Maven site generated elements to add Bootstrap classes and configurations.</p>
+<h3 id="doc-configuration_toc_bootstrap-icons"><a id="bootstrap_icons"></a>Bootstrap icons</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>To match <a href="http://twitter.github.com/bootstrap/" class="externalLink">Bootstrap</a> themes, Reflow skin replaces some icons used by Maven site with corresponding Bootstrap icons, e.g. in change log page and others:</p>
+<p><i class="fas fa-plus"></i> <i class="fas fa-wrench"></i> <i class="fas fa-exclamation-circle"></i> <i class="fas fa-check-circle"></i></p>
+<p>This can be disabled using <code>bootstrapIcons</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;bootstrapIcons&gt;true|false&lt;/bootstrapIcons&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;bootstrapIcons&gt;true|false&lt;/bootstrapIcons&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - replaces images (add, remove, warning, info etc) with corresponding Bootstrap icons
- </li>
- <li>
-  <strong>false</strong>
-   - keep original images
- </li>
+ <li><strong>true (default)</strong> - replaces images (add, remove, warning, info etc) with corresponding Bootstrap icons</li>
+ <li><strong>false</strong> - keep original images</li>
 </ul>
-<h3 id="doc-configuration_toc_html5-style-anchors">
- <a id="html5-style_anchors"></a>
-  HTML5-style anchors
-</h3>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- Anchors (links to page elements) in HTML5 are defined using 
- <code>id</code>
-  attribute on any element. Previously anchors used the 
- <code>&lt;a name="..."&gt;</code>
-  element. Reflow transforms these 
- <code>&lt;a&gt;</code>
-  anchors to HTML5 equivalents where applicable by default. Disable with 
- <code>html5Anchor</code>
-  flag.
-</p>
+<h3 id="doc-configuration_toc_html5-style-anchors"><a id="html5-style_anchors"></a>HTML5-style anchors</h3>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>Anchors (links to page elements) in HTML5 are defined using <code>id</code> attribute on any element. Previously anchors used the <code>&lt;a name="..."&gt;</code> element. Reflow transforms these <code>&lt;a&gt;</code> anchors to HTML5 equivalents where applicable by default. Disable with <code>html5Anchor</code> flag.</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;html5Anchor&gt;true|false&lt;/html5Anchor&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;html5Anchor&gt;true|false&lt;/html5Anchor&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - HTML4-style anchors 
-  <code>&lt;a name="..."&gt;</code>
-   are replaced with 
-  <code>id</code>
-   attributes where applicable
- </li>
- <li>
-  <strong>false</strong>
-   - keep the original anchors
- </li>
+ <li><strong>true (default)</strong> - HTML4-style anchors <code>&lt;a name="..."&gt;</code> are replaced with <code>id</code> attributes where applicable</li>
+ <li><strong>false</strong> - keep the original anchors</li>
 </ul>
-<h2 id="doc-configuration_toc_mark-page-header">
- <a id="mark_page_header"></a>
-  Mark page header
-</h2>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- By default, the first 
- <code>&lt;h1&gt;</code>
-  or 
- <code>&lt;h2&gt;</code>
-  heading in the page body is marked as 
- <em>page header</em>
-  . It allows Bootstrap CSS to give it an emphasised presentation. To disable page header being marked, use the 
- <code>&lt;markPageHeader&gt;</code>
-  flag:
-</p>
+<h2 id="doc-configuration_toc_mark-page-header"><a id="mark_page_header"></a>Mark page header</h2>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>By default, the first <code>&lt;h1&gt;</code> or <code>&lt;h2&gt;</code> heading in the page body is marked as <em>page header</em>. It allows Bootstrap CSS to give it an emphasised presentation. To disable page header being marked, use the <code>&lt;markPageHeader&gt;</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;markPageHeader&gt;true|false&lt;/markPageHeader&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;markPageHeader&gt;true|false&lt;/markPageHeader&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - The first heading ( 
-  <code>&lt;h1&gt;</code>
-   or else 
-  <code>&lt;h2&gt;</code>
-   ) in page is marked
- </li>
- <li>
-  <strong>false</strong>
-   - Page content is unchanged
- </li>
+ <li><strong>true (default)</strong> - The first heading (<code>&lt;h1&gt;</code> or else <code>&lt;h2&gt;</code>) in page is marked</li>
+ <li><strong>false</strong> - Page content is unchanged</li>
 </ul>
-<h2 id="doc-configuration_toc_skin-attribution">
- <a id="skin_attribution"></a>
-  Skin attribution
-</h2>
-<p>
- support 
- <span class="badge badge-primary">v1.0</span>
- <br>
-  element 
- <span class="badge badge-secondary">reflow</span>
-</p>
-<p>
- The Reflow skin is released under the 
- <a href="http://www.apache.org/licenses/LICENSE-2.0" class="externalLink">Apache license</a>
-  and thus can be used freely. By default, a link to the skin website and the author homepage is added at the bottom of the skin: 
- <em>Reflow Maven skin by devacfr</em>
-  . I would appreciate if you kept the link - it will help with the popularity of the skin. If you want, it can be disabled using 
- <code>&lt;skinAttribution&gt;</code>
-  flag:
-</p>
+<h2 id="doc-configuration_toc_skin-attribution"><a id="skin_attribution"></a>Skin attribution</h2>
+<p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
+<p>The Reflow skin is released under the <a href="http://www.apache.org/licenses/LICENSE-2.0" class="externalLink">Apache license</a> and thus can be used freely. By default, a link to the skin website and the author homepage is added at the bottom of the skin: <em>Reflow Maven skin by devacfr</em>. I would appreciate if you kept the link - it will help with the popularity of the skin. If you want, it can be disabled using <code>&lt;skinAttribution&gt;</code> flag:</p>
 <div class="source">
- <pre>  
-  
-  
-  
-  <code class="language-xml">&lt;skinAttribution&gt;true|false&lt;/skinAttribution&gt;
-</code>
- 
- 
- 
- 
- </pre>
+ <pre><code class="language-xml">&lt;skinAttribution&gt;true|false&lt;/skinAttribution&gt;
+</code></pre>
 </div>
 <ul>
- <li>
-  <strong>true (default)</strong>
-   - Include links to Reflow skin homepage and author's website
- </li>
- <li>
-  <strong>false</strong>
-   - Remove skin attribution text and links
- </li>
-</ul>
-        </div>
+ <li><strong>true (default)</strong> - Include links to Reflow skin homepage and author's website</li>
+ <li><strong>false</strong> - Remove skin attribution text and links</li>
+</ul>    </div>
     <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">
