@@ -29,76 +29,89 @@ import org.mockito.Mock;
 
 public class ContextTest extends MockitoTestCase {
 
-    @Mock
-    private ISkinConfig config;
+  @Mock
+  private ISkinConfig config;
 
-    @SuppressWarnings("unchecked")
-    @BeforeEach
-    public void setup() {
-        final MavenProject project = new MavenProject();
-        project.setName("reflow");
-        project.setArtifactId("reflow-artifact");
-        when(config.getProject()).thenReturn(project);
+  @SuppressWarnings("unchecked")
+  @BeforeEach
+  public void setup() {
+    final MavenProject project = new MavenProject();
+    project.setName("reflow");
+    project.setArtifactId("reflow-artifact");
+    when(config.getProject()).thenReturn(project);
 
-        final DecorationModel decoration = new DecorationModel();
-        when(config.getDecoration()).thenReturn(decoration);
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
+    final DecorationModel decoration = new DecorationModel();
+    when(config.getDecoration()).thenReturn(decoration);
+    when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
+        .then(invocation -> invocation.getArguments()[3]);
+    when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
+        .then(invocation -> invocation.getArguments()[2]);
 
-        when(config.getToolbox("htmlTool", HtmlTool.class)).thenReturn(new HtmlTool());
-    }
+    when(config.getToolbox("htmlTool", HtmlTool.class)).thenReturn(new HtmlTool());
+  }
 
-    @Test
-    public void shouldReplaceTTTag() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+  @Test
+  public void shouldReplaceTTTag() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final PageContext pageContext = (PageContext) context;
+    final PageContext pageContext = (PageContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, "html");
-    }
+    verify(content -> {
+      when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
+      return pageContext.preRender(config);
+    }, "html");
+  }
 
-    @Test
-    public void shouldAddLighboxAttribute() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+  @Test
+  public void shouldAddLighboxAttribute() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final PageContext pageContext = (PageContext) context;
+    final PageContext pageContext = (PageContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, "html");
-    }
+    verify(content -> {
+      when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
+      return pageContext.preRender(config);
+    }, "html");
+  }
 
-    @Test
-    public void shouldApplyBootstrapCss() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+  @Test
+  public void shouldApplyBootstrapCss() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final PageContext pageContext = (PageContext) context;
+    final PageContext pageContext = (PageContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, "html");
-    }
+    verify(content -> {
+      when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
+      return pageContext.preRender(config);
+    }, "html");
+  }
 
-    @Test
-    public void shouldReplaceIcons() {
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+  @Test
+  public void shouldReplaceIcons() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final PageContext pageContext = (PageContext) context;
+    final PageContext pageContext = (PageContext) context;
 
-        verify((content) -> {
-            when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
-            return pageContext.preRender(config);
-        }, "html");
-    }
+    verify(content -> {
+      when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
+      return pageContext.preRender(config);
+    }, "html");
+  }
+
+  @Test
+  public void shouldNotChangeCodePart() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
+
+    final PageContext pageContext = (PageContext) context;
+
+    verify(content -> {
+      when(config.getContextValue("bodyContent", String.class)).thenReturn(content);
+      return pageContext.preRender(config);
+    }, "html");
+  }
 }

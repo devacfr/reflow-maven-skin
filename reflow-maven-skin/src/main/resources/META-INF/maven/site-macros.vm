@@ -99,7 +99,7 @@
  * Displays a 'Last published' date message.
  *
  *###
- #macro ( publishDate )##
+#macro ( publishDate )##
 #*  *##if ( $decoration.publishDate.format )##
 #*      *##set ( $format = $decoration.publishDate.format )##
 #*  *##else##
@@ -235,7 +235,7 @@
 #*          *##set ( $shortTitle = $hTexts.get(0) )##
 #*      *##end##
 #*  *##end##
-$!{shortTitle}
+#*  *#$!{shortTitle}##
 #end##
 #**
  * Gets title page
@@ -264,11 +264,11 @@ $!{shortTitle}
 #*          *##set ( $titleProjectName = "" )##
 #*      *##end##
 #*      *### use String.format() to create new title
-$titleTemplate.format( $titleTemplate, $titleProjectName, $shortTitle )##
+#*      *#$titleTemplate.format( $titleTemplate, $titleProjectName, $shortTitle )##
 #*  *##end##
 #end##
 ##
-#macro( getDatePosition )
+#macro( getDatePosition )##
 #*  *### resolve date position, or set the default otherwise (bottom)
 #*  *### Note, that currently we do not support "navigation-top" position for either publishDate or version.
 #*  *##set ( $datePosition = "bottom" )##
@@ -287,4 +287,4 @@ $titleTemplate.format( $titleTemplate, $titleProjectName, $shortTitle )##
 #*      *##set ( $datePosition = "bottom" )##
 #*  *##end##
 $!{datePosition}
-#end
+#end##
