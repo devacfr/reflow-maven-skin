@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file 
   distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under 
   the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may 
@@ -142,7 +142,7 @@
     <guava.version>29.0-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
     <logback.version>1.2.9</logback.version>
-    <slf4j.version>1.7.30</slf4j.version>
+    <slf4j.version>1.7.36</slf4j.version>
     <jsoup.version>1.15.3</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
     <velocity-tools.version>3.1</velocity-tools.version>
@@ -632,7 +632,7 @@
         <reportSets>
           <reportSet>
             <!-- Empty report set as default -->
-            <reports />
+            <reports/>
           </reportSet>
           <reportSet>
             <id>release-notes</id>
@@ -931,7 +931,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -944,7 +944,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                   </pluginExecutions>
