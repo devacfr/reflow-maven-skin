@@ -142,7 +142,7 @@
     <guava.version>29.0-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
     <logback.version>1.2.9</logback.version>
-    <slf4j.version>1.7.30</slf4j.version>
+    <slf4j.version>1.7.36</slf4j.version>
     <jsoup.version>1.15.3</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
     <velocity-tools.version>3.1</velocity-tools.version>
