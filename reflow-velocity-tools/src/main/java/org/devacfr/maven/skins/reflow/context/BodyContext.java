@@ -25,24 +25,24 @@ import org.devacfr.maven.skins.reflow.ISkinConfig;
  */
 public class BodyContext extends Context<BodyContext> {
 
-    /**
-     * Default constructor.
-     *
-     * @param config
-     *                   a config (can not be {@code null}).
-     */
-    public BodyContext(final @Nonnull ISkinConfig config) {
-        super(config, ContextType.body);
-    }
+  /**
+   * Default constructor.
+   *
+   * @param config
+   *               a config (can not be {@code null}).
+   */
+  public BodyContext(final @Nonnull ISkinConfig config) {
+    super(config, ContextType.body);
+  }
 
-    @Override
-    protected void initialize(ISkinConfig config) {
-        // not use all default context initializations.
-    }
+  @Override
+  protected void initialize(@Nonnull final ISkinConfig config) {
+    // not use all default context initializations.
+  }
 
-    @Override
-    protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
-        return bodyContent;
-    }
+  @Override
+  protected String onPreRender(final @Nonnull ISkinConfig skinConfig, final @Nonnull String bodyContent) {
+    return bodyContent;
+  }
 
 }

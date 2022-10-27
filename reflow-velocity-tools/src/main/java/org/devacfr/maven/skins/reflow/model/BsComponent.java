@@ -15,6 +15,7 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Strings;
@@ -27,67 +28,68 @@ import com.google.common.base.Strings;
  */
 public abstract class BsComponent extends Component {
 
-    /** */
-    private final String component;
+  /** */
+  private final String component;
 
-    /** */
-    private String theme = "light";
+  /** */
+  private String theme = "light";
 
-    /** */
-    private String background = "light";
+  /** */
+  private String background = "light";
 
-    /**
-     * Default constructor.
-     *
-     * @param component the bootstrap component name.
-     */
-    public BsComponent(final String component) {
-        this.component = component;
+  /**
+   * Default constructor.
+   *
+   * @param component the bootstrap component name.
+   */
+  public BsComponent(final String component) {
+    this.component = component;
+  }
+
+  @Override
+  @Nonnull
+  public String getCssClass() {
+    String css = "";
+    if (!Strings.isNullOrEmpty(getTheme())) {
+      css += component + "-" + getTheme() + " ";
     }
-
-    @Override
-    public String getCssClass() {
-        String css = "";
-        if (!Strings.isNullOrEmpty(getTheme())) {
-            css += component + "-" + getTheme() + " ";
-        }
-        if (!Strings.isNullOrEmpty(getBackground())) {
-            css += "bg-" + getBackground() + " ";
-        }
-        if (!Strings.isNullOrEmpty(super.getCssClass())) {
-            css += super.getCssClass();
-        }
-        return css.trim();
-
+    if (!Strings.isNullOrEmpty(getBackground())) {
+      css += "bg-" + getBackground() + " ";
     }
-
-    /**
-     * @return Returns a {@link String} representing the bootstrap theme to apply.
-     */
-    public String getTheme() {
-        return theme;
+    if (!Strings.isNullOrEmpty(super.getCssClass())) {
+      css += super.getCssClass();
     }
+    return css.trim();
 
-    /**
-     * @param theme a bootstrap theme to use.
-     */
-    protected void setTheme(@Nullable final String theme) {
-        this.theme = theme;
-    }
+  }
 
-    /**
-     * @return Returns a {@link String} representing the bootstrap background color
-     *         to apply.
-     */
-    public String getBackground() {
-        return background;
-    }
+  /**
+   * @return Returns a {@link String} representing the bootstrap theme to apply.
+   */
+  public String getTheme() {
+    return theme;
+  }
 
-    /**
-     * @param background a bootstrap background colour to use.
-     */
-    protected void setBackground(@Nullable final String background) {
-        this.background = background;
-    }
+  /**
+   * @param theme a bootstrap theme to use.
+   */
+  protected void setTheme(@Nullable final String theme) {
+    this.theme = theme;
+  }
+
+  /**
+   * @return Returns a {@link String} representing the bootstrap background color
+   *         to apply.
+   */
+  public String getBackground() {
+    return background;
+  }
+
+  /**
+   * @param background a bootstrap background colour to use.
+   */
+  protected void setBackground(@Nullable final String background) {
+    this.background = background;
+  }
 
 }
