@@ -17,8 +17,7 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-
-local dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 source ${dir}/setenv.sh
 

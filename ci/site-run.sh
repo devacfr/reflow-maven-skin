@@ -28,7 +28,7 @@ maven_profiles=""
 maven_args=""
 
 # store current arguments
-args="$@"
+args=( "$@" )
 
 for i in "$@"
 do
@@ -54,4 +54,4 @@ done
 
 ${dir}/site-generate.sh "$args" -Psite-run
 
-${maven_cmd} site:run $@
+${maven_cmd} site:run "$@"

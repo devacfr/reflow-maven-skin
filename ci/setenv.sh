@@ -24,7 +24,7 @@ set +x -euo pipefail
 cygwin=false;
 darwin=false;
 mingw=false
-case "`uname`" in
+case "$(uname)" in
   CYGWIN*) cygwin=true ;;
   MINGW*) mingw=true;;
 esac
@@ -33,19 +33,19 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if $cygwin ; then
   [ -n "$dir" ] &&
-    dir=`cygpath --unix "$dir"`
+    dir=$(cygpath --unix "$dir")
 fi
 
 export ROOT_PATH="${dir}/.."
 
 
 
-MAVEN_REPO_URL=
-MAVEN_REPO_ID=
+export MAVEN_REPO_URL=
+export MAVEN_REPO_ID=
 
 
-source ${dir}/extensions/docker.sh
-source ${dir}/extensions/maven.sh
+source "${dir}/extensions/docker.sh"
+source "${dir}/extensions/maven.sh"
 
 
 initial_docker_options

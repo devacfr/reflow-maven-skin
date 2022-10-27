@@ -23,28 +23,28 @@ set +x -euo pipefail
 
 function container_exists {
     local name=$1
-    echo "$(docker ps -a -f name=^/${name}$ --format "{{.Names}}" | tr -d '[:space:]')"
+    printf '%s\n' "$(docker ps -a -f name=^/${name}$ --format "{{.Names}}" | tr -d '[:space:]')"
 }
 
 function container_running {
     local name=$1
-    echo "$(docker container ls -f name=^/${name}$ --format "{{.Names}}" | tr -d '[:space:]')"
+    printf '%s\n' "$(docker container ls -f name=^/${name}$ --format "{{.Names}}" | tr -d '[:space:]')"
 }
 
 function image_exists {
     local image_name=$1
-    echo "$(docker image ls --format "{{.Repository}}" | grep ${image_name} | tr -d '[:space:]')"
+    printf '%s\n' "$(docker image ls --format "{{.Repository}}" | grep ${image_name} | tr -d '[:space:]')"
 }
 
 function volume_exists {
     local volume_name=$1
-    echo "$(docker volume ls -q -f name=${volume_name} | tr -d '[:space:]')"
+    printf '%s\n' "$(docker volume ls -q -f name=${volume_name} | tr -d '[:space:]')"
 }
 
 function initial_docker_options {
   local dockerOptions=""
   # use remote access if docker host inquire
-  if [[ ! -z "${DOCKER_HOST:-}" ]]; then
+  if [[ -n "${DOCKER_HOST:-}" ]]; then
       dockerOptions="-h ${DOCKER_HOST}"
   fi
   export DOCKER_OPTIONS=${dockerOptions}
@@ -52,7 +52,7 @@ function initial_docker_options {
 
 function remove_image {
   if [[ -n "$( docker images -q  $1 )" ]]; then
-    docker ${DOCKER_HOST:-} rmi $1
+    docker "${DOCKER_HOST:-}" rmi $1
   fi
 }
 
