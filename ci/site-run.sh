@@ -52,6 +52,6 @@ case $i in
 esac
 done
 
-${dir}/site-generate.sh ${args[@]:-} -Psite-run
+${dir}/site-generate.sh ${args[@]:-}
 
 ${maven_cmd} site:run "$@"
