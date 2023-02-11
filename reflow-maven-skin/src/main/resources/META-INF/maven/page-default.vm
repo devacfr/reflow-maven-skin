@@ -136,7 +136,7 @@ Rendered using Reflow Maven Skin @project.version@ (http://devacfr.github.io/ref
 #*  *##end##
 <!-- head content -->
 ##
-      #googleAnalytics( $decoration.googleAnalyticsAccountId )
+      #googleAnalytics4( $decoration.googleAnalyticsAccountId )
 ##
   </head> <!-- end : head -->
 ##
