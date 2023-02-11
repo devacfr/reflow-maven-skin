@@ -195,7 +195,7 @@
       *#$headContent#*
   *##end#*
   *#
-      #googleAnalytics( $decoration.googleAnalyticsAccountId )
+      #googleAnalytics4( $decoration.googleAnalyticsAccountId )
 ##
   </head> <!-- end : head -->
 ##
