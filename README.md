@@ -41,6 +41,16 @@ To get started and see how the skin looks by default, check out [reflow-maven-sk
 
 ## News
 
+Reflow Maven skin 2.3.2 Maintenance Release:
+
+- Bump maven-site-plugin version to 4.0.0-M4
+- Bump maven-gitflow-plugin version to 1.19.0 from 1.18.0
+- Bump Google Analytics version to 4
+
+Read more in the [Reflow Maven skin 2.3 Release Notes and changeslog](https://devacfr.github.io/reflow-maven-skin/release-notes/release-notes-2.3.html).
+
+---
+
 Reflow Maven skin 2.3.1 Maintenance Release:
 
 This release allow to keep compatibility with latest maven-site-plugin version.
@@ -87,7 +97,7 @@ To use this Maven skin, include it in your `site.xml` file:
   <skin>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>2.3.1</version>
+    <version>2.3.2</version>
   </skin>
   ...
 </project>
@@ -103,13 +113,13 @@ generating Maven site. Add them as a dependency to `maven-site-plugin` in your P
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-site-plugin</artifactId>
-      <version>3.7.1</version>
+      <version>4.0.0-M4</version>
       <dependencies>
         ...
         <dependency>
           <groupId>io.github.devacfr.maven.skins</groupId>
           <artifactId>reflow-velocity-tools</artifactId>
-          <version>2.3.1</version>
+          <version>2.3.2</version>
         </dependency>
         ...
       </dependencies>
@@ -192,7 +202,7 @@ Bootstrap and jQuery files. Reflow skin provides package containing the default 
                 <artifactItem>
                     <groupId>io.github.devacfr.maven.skins</groupId>
                     <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.3.1</version>
+                    <version>2.3.2</version>
                     <type>jar</type>
                     <overWrite>false</overWrite>
                     <includes>

@@ -40,6 +40,16 @@ $h2 Other Enhancements
 
 $h2 Changelog
 
+$h3 Release 2.3.2
+
+**2023-02-11**
+
+$h3 Update Dependencies
+
+* Bump maven-site-plugin version to 4.0.0-M4
+* Bump maven-gitflow-plugin version to 1.19.0 from 1.18.0
+* Bump Google Analytics version to 4
+
 $h3 Release 2.3.1
 
 **2022-09-25**
