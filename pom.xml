@@ -150,7 +150,7 @@
     <hamcrest.version>2.2</hamcrest.version>
 
     <apache-rat-plugin.version>0.13</apache-rat-plugin.version>
-    <maven-gitflow-plugin.version>1.18.0</maven-gitflow-plugin.version>
+    <maven-gitflow-plugin.version>1.19.0</maven-gitflow-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
