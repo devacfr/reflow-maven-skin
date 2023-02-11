@@ -23,7 +23,7 @@
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <!-- Google Analytics not inherited for some reason -->
-  <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
+  <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
 
   <custom>
     <reflowSkin>
