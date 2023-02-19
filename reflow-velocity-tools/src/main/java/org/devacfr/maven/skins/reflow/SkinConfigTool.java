@@ -17,6 +17,9 @@ package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -88,6 +91,9 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     /** */
     private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
 
+    // ISO 8601 BASIC is used by build timestamp
+    public static SimpleDateFormat ISO_8601BASIC_DATE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    
     /** */
     public static final String DEFAULT_KEY = "config";
 
@@ -775,5 +781,18 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         }
         return (String) velocityContext.get("relativePath");
     }
+
+
+  @Nullable
+  public Date getBuildOutputTimestamp() throws ParseException {
+    if (! this.velocityContext.containsKey("project.build.outputTimestamp")) {
+        return null;
+    }
+    Object outputTimestamp = this.velocityContext.get("project.build.outputTimestamp");
+    if (outputTimestamp != null) {
+        return ISO_8601BASIC_DATE.parse(outputTimestamp.toString());
+    }
+    return null;
+  }
 
 }
