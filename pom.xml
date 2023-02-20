@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file
   distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under
   the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
@@ -8,12 +8,6 @@
   the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>9</version>
-  </parent>
 
   <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
@@ -94,6 +88,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 
+    <!-- Enable Reproducible Builds mode for plugins -->
+    <project.build.outputTimestamp>2023-01-01T00:00:00Z</project.build.outputTimestamp>
+
     <!-- Set compiler source and target versions (m-compiler-p) -->
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>${maven.compiler.target}</maven.compiler.source>
@@ -157,8 +154,10 @@
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-download-plugin.version>1.5.0</maven-download-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+    <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+    <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+    <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <maven-site-plugin.version>4.0.0-M4</maven-site-plugin.version>
@@ -303,6 +302,16 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>${maven-plugin-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven-resources-plugin.version}</version>
         </plugin>
@@ -315,6 +324,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>${maven-site-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>${maven-plugin-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
