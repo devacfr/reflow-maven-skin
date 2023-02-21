@@ -99,23 +99,38 @@
  * Displays a 'Last published' date message.
  *
  *###
+#macro ( getPublishDate )##
+#*  *##if ( $decoration.publishDate.position != 'none')
+#*      *##if ( $decoration.publishDate.format )##
+#*          *##set ( $format = $decoration.publishDate.format )##
+#*      *##else##
+#*          *##set ( $format = "yyyy-MM-dd" )##
+#*      *##end##
+##
+#*      *##set ( $outputTimestamp = $config.buildOutputTimestamp)
+#*      *##if ( $outputTimestamp)##
+#*          *##set ( $dateValue = $date.format( $format, $outputTimestamp ) )##
+#*      *##elseif ( $publishDate )##
+#*          *##set ( $dateValue = $date.format( $format, $publishDate ) )##
+#*      *##elseif ( $config.publishDate )##
+#*          *##set ( $dateValue = $config.publishDate.getValue() )##
+#*      *##else##
+#*          *##set ( $dateValue = $date.get( $format ) )##
+#*      *##end##
+#*      *### render with internationalization support
+$dateValue
+#*  *##end##
+#end##
+##
+#**
+ * Displays a 'Last published' date message.
+ *
+ *###
 #macro ( publishDate )##
-#*  *##if ( $decoration.publishDate.format )##
-#*      *##set ( $format = $decoration.publishDate.format )##
-#*  *##else##
-#*      *##set ( $format = "yyyy-MM-dd" )##
+#*  *##if ( $decoration.publishDate.position != 'none')
+#*      *### render with internationalization support
+$text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *##end##
-##
-##
-#*  *##if ( $publishDate )##
-#*      *##set ( $dateValue = $date.format( $format, $publishDate ) )##
-#*  *##elseif ( $config.publishDate )##
-#*      *##set ( $dateValue = $config.publishDate.getValue() )##
-#*  *##else##
-#*      *##set ( $dateValue = $date.get( $format ) )##
-#*  *##end##
-#*  *### render with internationalization support
-    $text.get( "template.lastpublished" ): $dateValue##
 #end##
 ##
 #**

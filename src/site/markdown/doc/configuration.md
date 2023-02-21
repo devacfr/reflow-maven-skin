@@ -63,8 +63,7 @@ Note that **navigation-top** position is not supported by Reflow skin.
 
 element {{< badge color="secondary" text="site.xml" />}}
 
-The website publish date can be indicated explicitly in the configuration by using `<publishDate>`
-element:
+The website publish date can be indicated explicitly in the configuration by using `<publishDate>` element or using the Reproducible/Verifiable Builds maven property `project.build.outputTimestamp`:
 
 ```xml
 <publishDate>2013-01-08</publishDate>
