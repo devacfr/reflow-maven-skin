@@ -15,6 +15,10 @@
  */
 "use strict";
 
+let options = {
+  supportedLanguages: ['xml', 'json']
+};
+
 function getViewPort() {
   var e = window, a = 'inner';
   if (!('innerWidth' in window)) {
@@ -90,16 +94,47 @@ var mReflow = function () {
 
   }
 
-  function initHighlight() {
-    // activate syntax higlighting with highlight.js
-    // Note: only run if `hljs` exists
-    if (typeof hljs !== 'undefined') {
+  let highlightJsInitialized = false;
+
+  function refreshHighlight() {
+    if (!highlightJsInitialized) {
+      initHighlight();
+    } else {
       // classic encoding with <div class="source"><pre></pre></div>
       // and HTML5 version with <pre><code></code></pre>
       // asciidoc with <div class="content"><pre></pre></div>
       $('pre.source, div.source pre, pre code, div.content pre').each(function (i, e) {
-        hljs.highlightBlock(e);
+        hljs.highlightElement(e);
       });
+    }
+  }
+
+  function initHighlight() {
+
+    // activate syntax higlighting with highlight.js
+    // Note: only run if `hljs` exists
+    if (typeof hljs !== 'undefined') {
+      hljs.configure({
+        ignoreUnescapedHTML: true,
+        throwUnescapedHTML: false,
+      });
+      const languages_dir = './languages';
+      const supportedLanguages = options.supportedLanguages;
+      let index = 0;
+      if (!highlightJsInitialized) {
+        options.supportedLanguages.forEach(lang => {
+          import(`${languages_dir}/${lang}.min.js`).then(function() {
+            index++;
+            if (index >=supportedLanguages.length) {
+              highlightJsInitialized = true;
+              refreshHighlight();
+            }
+          })
+        });
+      } else {
+        refreshHighlight();
+      }
+
     }
   }
 
@@ -192,6 +227,7 @@ var mReflow = function () {
       initTocSidebar();
       initHighlight();
       initAnchorJs();
+      initTooltip();
       refreshScrollSpy();
 
       var hash = window.location.hash;
@@ -218,6 +254,7 @@ var mReflow = function () {
     }
   }
 
+
   function initNavSidebar() {
     var navSidebar = $('.navside-menu');
     if (navSidebar.length == 0) {
@@ -231,6 +268,7 @@ var mReflow = function () {
       var href = $('.navside-menu a').first();
       return href.attr('slug-name');
     }
+
 
     /**
      * create a link
@@ -354,6 +392,9 @@ var mReflow = function () {
     });
   }
 
+  function initTooltip() {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
 
   function refreshScrollSpy() {
     $body.scrollspy('refresh');
@@ -369,7 +410,11 @@ var mReflow = function () {
       initTopNavBar();
       initHighlight();
       initAnchorJs();
+      initTooltip();
       refreshScrollSpy();
+    },
+    configure: function(userOptions) {
+      options = inherit(options, userOptions);
     }
   };
 
