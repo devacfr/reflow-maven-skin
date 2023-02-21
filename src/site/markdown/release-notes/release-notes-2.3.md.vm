@@ -40,6 +40,16 @@ $h2 Other Enhancements
 
 $h2 Changelog
 
+$h3 Release 2.3.3
+
+**2023-02-21**
+
+$h3 Update
+
+* Implement Reproducible/Verifiable Builds maven feature ([#88][]) [Maxim Solodovnik](solomax666@gmail.com).
+
+You can override and fixes `publishDate` element of site.xml using the maven property 'project.build.outputTimestamp'.
+
 $h3 Release 2.3.2
 
 **2023-02-11**
@@ -91,3 +101,4 @@ $h5 Bug fix
 [#62]: ${issue_url}/62
 [#64]: ${issue_url}/64
 [#81]: ${issue_url}/81
+[#88]: ${issue_url}/88
