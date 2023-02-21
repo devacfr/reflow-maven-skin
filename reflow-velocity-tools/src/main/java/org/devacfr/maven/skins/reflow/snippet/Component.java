@@ -41,6 +41,7 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Christophe Friederich
  * @version 2.4
+ * @param <T> type of component
  */
 public class Component<T extends Component<T>> {
 

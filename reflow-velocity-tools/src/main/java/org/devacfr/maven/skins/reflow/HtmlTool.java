@@ -74,6 +74,8 @@ import static java.util.Objects.requireNonNull;
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
 
+    private static final int SLUG_SIZE = 50;
+
     /** Default separator using to generate slug heading name. */
     public static final String DEFAULT_SLUG_SEPARATOR = "-";
 
@@ -1198,8 +1200,8 @@ public class HtmlTool extends SafeConfig {
             final String headingText = heading.text();
             String headingSlug = slug(headingText, idSeparator);
             // also limit slug to 50 symbols
-            if (headingSlug.length() > 50) {
-                headingSlug = headingSlug.substring(0, 50);
+            if (headingSlug.length() > SLUG_SIZE) {
+                headingSlug = headingSlug.substring(0, SLUG_SIZE);
             }
             final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
 
@@ -1217,8 +1219,8 @@ public class HtmlTool extends SafeConfig {
                 final String headingText = heading.text();
                 String headingSlug = slug(headingText, idSeparator);
                 // also limit slug to 50 symbols
-                if (headingSlug.length() > 50) {
-                    headingSlug = headingSlug.substring(0, 50);
+                if (headingSlug.length() > SLUG_SIZE) {
+                    headingSlug = headingSlug.substring(0, SLUG_SIZE);
                 }
                 final String headingId = generateUniqueId(pageType, currentPage, ids, headingSlug);
 

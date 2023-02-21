@@ -100,7 +100,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
 
     // ISO 8601 BASIC is used by build timestamp
-    public static SimpleDateFormat ISO_8601BASIC_DATE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private static final SimpleDateFormat ISO_8601BASIC_DATE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private static final String PROJECT_BUILD_OUTPUTTIMESTAMP = "project.build.outputTimestamp";
 
     /** */
     public static final String DEFAULT_KEY = "config";
@@ -242,9 +243,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
                 }
             }
 
-            // Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
+            // Config option <localResources>true</localResources> to force CDN-less
+            // Bootstrap & jQuery
             this.velocityContext.put("localResources", is("localResources"));
-            // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+            // Use config option
+            // <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
             this.velocityContext.put("resourcePath", getResourcePath());
 
             this.context = Context.buildContext(this);
@@ -271,7 +274,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * @return Returns the key under which this tool has been configured. The default is `config`.
+     * @return Returns the key under which this tool has been configured. The
+     *         default is `config`.
      * @since 1.0
      */
     public String getKey() {
@@ -334,11 +338,13 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * Retrieves the text value of the given {@code property}, e.g. as in {@code <myprop>value</myprop>}.
+     * Retrieves the text value of the given {@code property}, e.g. as in
+     * {@code <myprop>value</myprop>}.
      *
      * @param property
-     *            the property of interest
-     * @return the configuration value if found in page or globally, {@code null} otherwise.
+     *                 the property of interest
+     * @return the configuration value if found in page or globally, {@code null}
+     *         otherwise.
      * @see #get(String)
      * @since 1.0
      */
@@ -359,11 +365,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the text value of the given {@code property}.
      *
      * @param property
-     *            the property to use
+     *                     the property to use
      * @param targetType
-     *            the returned target type use to convert value.
+     *                     the returned target type use to convert value.
      * @param defaultValue
-     *            the default value used if property doesn't exist.
+     *                     the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
@@ -395,8 +401,9 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the list of all children name for the {@code parentNode}.
      *
      * @param parentNode
-     *            the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
+     *                   the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all
+     *         children, which may be empty but never
      *         {@code null}.
      * @since 1.3
      */
@@ -408,13 +415,13 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the attribute value of the given {@code attribute} of {@code property}.
      *
      * @param property
-     *            the property to use
+     *                     the property to use
      * @param attribute
-     *            the attribute to use.
+     *                     the attribute to use.
      * @param targetType
-     *            the returned target type use to convert value.
+     *                     the returned target type use to convert value.
      * @param defaultValue
-     *            the default value used if property doesn't exist.
+     *                     the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
@@ -496,11 +503,13 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * A convenience method to check if the value of the {@code property} is {@code "true"}.
+     * A convenience method to check if the value of the {@code property} is
+     * {@code "true"}.
      *
      * @param property
-     *            the property of interest
-     * @return {@code true} if the configuration value is set either in page or globally, and is equal to
+     *                 the property of interest
+     * @return {@code true} if the configuration value is set either in page or
+     *         globally, and is equal to
      *         {@code "true"}.
      * @see #get(String)
      * @since 1.0
@@ -518,13 +527,15 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * A convenience method to check if the {@code property} is set to a specific value.
+     * A convenience method to check if the {@code property} is set to a specific
+     * value.
      *
      * @param property
-     *            the property of interest
+     *                 the property of interest
      * @param value
-     *            the property value to check
-     * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.
+     *                 the property value to check
+     * @return {@code true} if the configuration value is set either in page or
+     *         globally, and is equal to {@code value}.
      * @see #get(String)
      * @since 1.0
      */
@@ -628,10 +639,13 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
     /**
      * <p>
-     * See <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
+     * See <a href=
+     * "https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia
+     * Sitetools - Site
      * Renderer</a> for more information.
      *
-     * @return Returns a {@link String} representing the name of current file of the (HTML) document being rendered,
+     * @return Returns a {@link String} representing the name of current file of the
+     *         (HTML) document being rendered,
      *         relative to the site root.
      */
     @Nonnull
@@ -640,7 +654,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * @return Returns a {@link String} representing the location path of current rendered file.
+     * @return Returns a {@link String} representing the location path of current
+     *         rendered file.
      */
     @Nonnull
     public String getCurrentFileLocation() {
@@ -752,7 +767,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Converts a filename to pageId format.
      *
      * @param fileName
-     *            the filename to convert
+     *                 the filename to convert
      * @return Returns a {@link String} representing the pageId of {@code filename}.
      */
     @Nullable
@@ -781,7 +796,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * @return Returns a {@link String} representing the relative path to root site.
      */
     @Nonnull
-    private String getResourcePath() {
+    public String getResourcePath() {
         final String absoluteResourceURL = this.value("absoluteResourceURL");
         String projectUrl = getProjectLocation();
         final String currentFileName = getCurrentFileName();
@@ -799,15 +814,19 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * Gets the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
-     * @return Returns a instance of {@code Date} representing the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
+     * Gets the reproduce build timestamp whether property
+     * 'project.build.outputTimestamp' is fill in.
+     *
+     * @return Returns a instance of {@code Date} representing the reproduce build
+     *         timestamp whether property 'project.build.outputTimestamp' is fill
+     *         in.
      */
     @Nullable
     public Date getBuildOutputTimestamp() throws ParseException {
-        if (!this.velocityContext.containsKey("project.build.outputTimestamp")) {
+        if (!this.velocityContext.containsKey(PROJECT_BUILD_OUTPUTTIMESTAMP)) {
             return null;
         }
-        Object outputTimestamp = this.velocityContext.get("project.build.outputTimestamp");
+        Object outputTimestamp = this.velocityContext.get(PROJECT_BUILD_OUTPUTTIMESTAMP);
         if (outputTimestamp != null) {
             return ISO_8601BASIC_DATE.parse(outputTimestamp.toString());
         }

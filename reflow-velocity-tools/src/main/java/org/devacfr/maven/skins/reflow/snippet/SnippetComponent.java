@@ -31,6 +31,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * @author Christophe Friederich
  * @version 2.4
+ * @param <T> type of component
  */
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 

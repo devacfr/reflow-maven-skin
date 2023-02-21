@@ -662,7 +662,6 @@
           <includeTestResources>false</includeTestResources>
           <includeTestSourceDirectory>false</includeTestSourceDirectory>
           <suppressionsLocation>${main.basedir}/check/checkstyle-suppression.xml</suppressionsLocation>
-          <suppressionsLocation>${main.basedir}/check/checkstyle-suppression.xml</suppressionsLocation>
           <headerLocation>${main.basedir}/check/checkstyle-header.txt</headerLocation>
         </configuration>
         <reportSets>

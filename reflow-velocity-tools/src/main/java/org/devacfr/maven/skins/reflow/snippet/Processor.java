@@ -51,7 +51,7 @@ public abstract class Processor {
      * Default constructor
      *
      * @param parser
-     *            current parser.
+     *               current parser.
      */
     public Processor(final SnippetParser parser) {
         this.parser = parser;
@@ -61,23 +61,23 @@ public abstract class Processor {
      * Specific parsing for each {@link ComponentToken}.
      *
      * @param token
-     *            the current token.
+     *              the current token.
      */
     public void parse(final ComponentToken token) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Parse Token: {}", token);
         }
         switch (token.tag()) {
-            case empty: {
+            case empty:
                 parser.getSnippetContext().render(createSnippetComponent(token, null));
                 break;
-            }
-            case start: {
+
+            case start:
                 parser.push(token);
                 parser.parse();
                 break;
-            }
-            case end: {
+
+            case end:
                 final ComponentToken startToken = parser.pop();
                 if (!token.isCloseTagOf(startToken)) {
                     throw new RuntimeException(
@@ -85,11 +85,11 @@ public abstract class Processor {
                 }
                 parser.getSnippetContext().render(createSnippetComponent(startToken, token));
                 break;
-            }
-            case html: {
+
+            case html:
                 parser.getSnippetContext().render(createSnippetComponent(token, null));
                 break;
-            }
+
             default:
                 throw new SnippetParseException("unknown token tag " + token.tag());
         }
@@ -99,22 +99,23 @@ public abstract class Processor {
      * Append child {@link Node} in html rendering.
      *
      * @param node
-     *            the node to use.
+     *               the node to use.
      * @param writer
-     *            the html writer
+     *               the html writer
      * @throws IOException
-     *             If an I/O error occurs.
+     *                     If an I/O error occurs.
      */
-    protected abstract void appendChildrenToHtml(final Node node, final Appendable writer) throws IOException;
+    protected abstract void appendChildrenToHtml(Node node, Appendable writer) throws IOException;
 
     /**
      * Convert the snippet to html.
      *
      * @param startToken
-     *            the start token
+     *                   the start token
      * @param endToken
-     *            the end token.
-     * @return Returns a new {@link Element} representing html represention of snippet.
+     *                   the end token.
+     * @return Returns a new {@link Element} representing html represention of
+     *         snippet.
      */
     protected Element convertToHtml(@Nonnull final ComponentToken startToken, @Nullable final ComponentToken endToken) {
         final Element startElement = startToken.getElement();
@@ -172,10 +173,11 @@ public abstract class Processor {
      * Create a {@link SnippetComponent}.
      *
      * @param startToken
-     *            the start token.
+     *                   the start token.
      * @param endToken
-     *            the end token.
-     * @return Returns a new instance of {@link SnippetComponent} representing the information contained between
+     *                   the end token.
+     * @return Returns a new instance of {@link SnippetComponent} representing the
+     *         information contained between
      *         {@code startToken} and {@code endToken}.
      */
     protected SnippetComponent<?> createSnippetComponent(
@@ -194,8 +196,9 @@ public abstract class Processor {
      * Converts the snippet element to html format.
      *
      * @param element
-     *            the html element to use.
-     * @return Returns a {@link String} representing the snippet element in html format.
+     *                the html element to use.
+     * @return Returns a {@link String} representing the snippet element in html
+     *         format.
      */
     protected String convertElementToHtml(final Element element) {
         return element.text()
@@ -220,7 +223,7 @@ public abstract class Processor {
          * Default constructor
          *
          * @param parser
-         *            current parser.
+         *               current parser.
          */
         public WebComponentProcessor(final SnippetParser parser) {
             super(parser);
@@ -265,7 +268,7 @@ public abstract class Processor {
          * Default constructor
          *
          * @param parser
-         *            current parser.
+         *               current parser.
          */
         public ShortcodeProcessor(final SnippetParser parser) {
             super(parser);

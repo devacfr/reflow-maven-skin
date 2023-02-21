@@ -22,9 +22,6 @@
     <module name="SuppressionCommentFilter" />
     <module name="JavadocMethod">
       <property name="severity" value="warning" />
-      <property name="scope" value="protected" />
-      <property name="allowUndeclaredRTE" value="true" />
-      <property name="suppressLoadErrors" value="true" />
     </module>
     <module name="JavadocType" />
     <module name="JavadocVariable" />
@@ -95,10 +92,10 @@
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit" />
     </module>
     <module name="UpperEll" />
-    <module name="LineLength">
-      <property name="max" value="120" />
-      <property name="tabWidth" value="4" />
-    </module>
+  </module>
+  <module name="LineLength">
+    <property name="max" value="120" />
+    <property name="tabWidth" value="4" />
   </module>
   <module name="SuppressWarningsFilter" />
   <module name="Translation" />
