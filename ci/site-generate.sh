@@ -45,6 +45,10 @@ case $i in
     maven_args="${maven_args} -Dmaven.javadoc.skip=true"
     shift
     ;;
+    -X|--debug)
+    maven_args="${maven_args} --debug"
+    shift
+    ;;
     *)
     # unknown option
     ;;
