@@ -1,21 +1,25 @@
 /*
- * Copyright 2012-2020 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import static java.util.Objects.requireNonNull;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import java.io.StringWriter;
 import java.io.Writer;
@@ -24,9 +28,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.google.common.collect.Lists;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -59,7 +61,7 @@ import org.jsoup.nodes.TextNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Lists;
+import static java.util.Objects.requireNonNull;
 
 /**
  * @author Christophe Friederich
@@ -71,8 +73,8 @@ public class SnippetContext {
     private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
 
     /** */
-    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/layouts/snippets",
-        "META-INF/skin/snippets");
+    private static final List<String> DEFAULT_PATHS =
+            Lists.newArrayList("src/site/layouts/snippets", "META-INF/skin/snippets");
 
     /** */
     private final List<SnippetComponent<?>> components = Lists.newArrayList();
@@ -158,9 +160,10 @@ public class SnippetContext {
     }
 
     @Nonnull
-    SnippetComponent<?> create(@Nonnull final Element element,
-        @Nonnull final ComponentToken startToken,
-        @Nullable final ComponentToken endToken) {
+    SnippetComponent<?> create(
+            @Nonnull final Element element,
+            @Nonnull final ComponentToken startToken,
+            @Nullable final ComponentToken endToken) {
         requireNonNull(element);
         requireNonNull(startToken);
         final SnippetComponent<?> component = SnippetComponent.createSnippet(element, null, startToken.type());
@@ -242,22 +245,21 @@ public class SnippetContext {
                 // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
                 context.put("resourcePath", this.config.getResourcePath());
 
-                Velocity.mergeTemplate("META-INF/skin/snippets/_snippet.vm",
-                    RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
-                    context,
-                    writer);
+                Velocity.mergeTemplate(
+                        "META-INF/skin/snippets/_snippet.vm",
+                        RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
+                        context,
+                        writer);
                 break;
             } else {
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.debug("Template for component '{}' not found in path:{} ", component, filePath);
                 }
             }
-
         }
         if (!found) {
             LOGGER.warn("The snippet '{}' template doesn't exist", component.getName());
         }
-
     }
 
     /**
@@ -298,5 +300,4 @@ public class SnippetContext {
         manager.configure(config);
         return manager;
     }
-
 }

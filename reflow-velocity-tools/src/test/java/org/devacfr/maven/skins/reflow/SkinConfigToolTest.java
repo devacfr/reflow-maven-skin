@@ -1,22 +1,26 @@
 /*
- * Copyright 2012-2019 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow;
 
 import java.io.InputStream;
 
+import com.google.common.collect.ImmutableMap;
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.doxia.site.decoration.io.xpp3.DecorationXpp3Reader;
 import org.apache.maven.project.MavenProject;
@@ -26,8 +30,6 @@ import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.ImmutableMap;
 
 public class SkinConfigToolTest extends MockitoTestCase {
 
@@ -47,8 +49,9 @@ public class SkinConfigToolTest extends MockitoTestCase {
         try (final InputStream in = getResource("default.site.xml").openBufferedStream()) {
             decorationModel = reader.read(in);
         }
-        valueParser = new ValueParser(
-                ImmutableMap.<String, Object> builder().put("velocityContext", velocityContext).build());
+        valueParser = new ValueParser(ImmutableMap.<String, Object>builder()
+                .put("velocityContext", velocityContext)
+                .build());
 
         final MavenProject maven = new MavenProject();
         maven.setArtifactId("maven-reflow-plugin");
@@ -105,9 +108,10 @@ public class SkinConfigToolTest extends MockitoTestCase {
 
         assertEquals(false, skinConfig.isExternalLink(null), "should be internal");
         assertEquals(false, skinConfig.isExternalLink("summary.html"), "should be internal");
-        assertEquals(false,
-            skinConfig.isExternalLink("https://devacfr.github.io/reflow-maven-skin/dev/summary.html"),
-            "should be internal");
+        assertEquals(
+                false,
+                skinConfig.isExternalLink("https://devacfr.github.io/reflow-maven-skin/dev/summary.html"),
+                "should be internal");
     }
 
     @Test
@@ -116,5 +120,4 @@ public class SkinConfigToolTest extends MockitoTestCase {
         assertEquals("dev-develop_guide", SkinConfigTool.slugFilename("dev/develop_guide.html"));
         assertEquals("dev-develop_guide", SkinConfigTool.slugFilename("dev/develop_guide"));
     }
-
 }

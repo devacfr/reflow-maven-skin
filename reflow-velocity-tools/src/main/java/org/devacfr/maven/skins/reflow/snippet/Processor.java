@@ -1,26 +1,31 @@
 /*
- * Copyright 2012-2020 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow.snippet;
-
-import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import java.io.IOException;
+import java.util.List;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.Element;
@@ -28,9 +33,6 @@ import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 /**
  * Specific process for each type of snippet component.
@@ -91,7 +93,6 @@ public abstract class Processor {
             default:
                 throw new SnippetParseException("unknown token tag " + token.tag());
         }
-
     }
 
     /**
@@ -177,8 +178,8 @@ public abstract class Processor {
      * @return Returns a new instance of {@link SnippetComponent} representing the information contained between
      *         {@code startToken} and {@code endToken}.
      */
-    protected SnippetComponent<?> createSnippetComponent(final ComponentToken startToken,
-        final ComponentToken endToken) {
+    protected SnippetComponent<?> createSnippetComponent(
+            final ComponentToken startToken, final ComponentToken endToken) {
         final SnippetContext snippetContext = parser.getSnippetContext();
         Element componentElement = null;
         if (Tag.html.equals(startToken.tag())) {
@@ -204,7 +205,6 @@ public abstract class Processor {
                 .replace(" >}}", ">")
                 .replace("{{% ", "<")
                 .replace(" %}}", ">")
-
                 .replaceAll("\\u201c|\\u201d", "\"");
     }
 
@@ -238,7 +238,8 @@ public abstract class Processor {
                     writer.append(el.text());
                 } else {
                     // comment can be enclose in <p> element.
-                    if (Iterables.tryFind(el.childNodes(), n -> n instanceof Comment).isPresent()) {
+                    if (Iterables.tryFind(el.childNodes(), n -> n instanceof Comment)
+                            .isPresent()) {
                         writer.append(el.data());
                     } else {
                         writer.append(el.outerHtml());
@@ -250,7 +251,6 @@ public abstract class Processor {
                 writer.append(((TextNode) node).text());
             }
         }
-
     }
 
     /**
@@ -275,6 +275,5 @@ public abstract class Processor {
         protected void appendChildrenToHtml(final Node node, final Appendable writer) throws IOException {
             writer.append(node.outerHtml());
         }
-
     }
 }

@@ -1,21 +1,22 @@
 /*
- * Copyright 2012-2020 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow.snippet;
-
-import static java.util.Objects.requireNonNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,6 +26,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * @author Christophe Friederich
  * @version 2.4
@@ -32,14 +35,15 @@ import org.jsoup.nodes.Element;
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 
     /** */
-    final private Type type;
+    private final Type type;
 
     @Nullable
-    public static SnippetComponent<?> createSnippet(@Nonnull final Element element,
-        final Component<?> parent,
-        final Type type) {
+    public static SnippetComponent<?> createSnippet(
+            @Nonnull final Element element, final Component<?> parent, final Type type) {
         requireNonNull(element);
-        return new SnippetComponent<>(element, type).addAttributes(element.attributes()).withParent(parent);
+        return new SnippetComponent<>(element, type)
+                .addAttributes(element.attributes())
+                .withParent(parent);
     }
 
     /**
@@ -88,7 +92,8 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
                 // if snippet contains rendered snippet.
                 if (ComponentResolver.hasIncludedSnippetComponent(el)) {
                     final SnippetParser parser = context.createChildParser();
-                    final Document childDoc = parser.parse(context.getConfig(), el.outerHtml()).document();
+                    final Document childDoc =
+                            parser.parse(context.getConfig(), el.outerHtml()).document();
                     element.replaceWith(childDoc.body().children().first());
                 } else {
                     element.replaceWith(el);
@@ -98,5 +103,4 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
             throw new RuntimeException(e.getMessage(), e);
         }
     }
-
 }

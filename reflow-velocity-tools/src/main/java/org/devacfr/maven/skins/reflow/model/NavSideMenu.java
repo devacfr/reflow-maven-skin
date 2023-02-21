@@ -1,37 +1,39 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow.model;
 
-import static java.util.Objects.requireNonNull;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the navside menu component used in document page.
@@ -137,7 +139,7 @@ public class NavSideMenu extends BsComponent {
             this.withName(menu.getAttribute("name"))
                     .withItems(items)
                     .withSelectFirstOnSelect(
-                        config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
+                            config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
             this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
             this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
             this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
@@ -229,7 +231,6 @@ public class NavSideMenu extends BsComponent {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-
     }
 
     /**
@@ -238,14 +239,16 @@ public class NavSideMenu extends BsComponent {
      * @param pageName
      * @param flatten
      */
-    private static void addMenuItemRecursively(@Nonnull final List<SideNavMenuItem> menuItems,
-        @Nonnull final ISkinConfig config,
-        @Nonnull final Xpp3Dom parentNode,
-        @Nonnull final String pageName,
-        final boolean flatten) {
+    private static void addMenuItemRecursively(
+            @Nonnull final List<SideNavMenuItem> menuItems,
+            @Nonnull final ISkinConfig config,
+            @Nonnull final Xpp3Dom parentNode,
+            @Nonnull final String pageName,
+            final boolean flatten) {
         for (final Xpp3Dom item : Xpp3Utils.getChildrenNodes(parentNode, "item")) {
             final String href = item.getAttribute("href");
-            final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
+            final SideNavMenuItem menuItem = new SideNavMenuItem()
+                    .withName(item.getAttribute("name"))
                     .withParent(pageName)
                     .withHref(config.relativeLink(href))
                     .withSlugName(SkinConfigTool.slugFilename(href))

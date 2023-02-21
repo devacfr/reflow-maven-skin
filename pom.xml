@@ -9,6 +9,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-plugins</artifactId>
+    <version>39</version>
+  </parent>
+
   <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
   <version>2.3.3</version>
@@ -34,14 +40,14 @@
     <developer>
       <id>andriusvelykis</id>
       <name>Andrius Velykis</name>
-      <timezone>0</timezone>
       <url>http://andrius.velykis.lt</url>
+      <timezone>0</timezone>
     </developer>
     <developer>
       <id>devacfr</id>
       <name>Friederich Christophe</name>
-      <timezone>0</timezone>
       <url>http://devacfr.github.io</url>
+      <timezone>0</timezone>
     </developer>
   </developers>
 
@@ -54,8 +60,8 @@
   <scm>
     <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
-    <url>${scm_url}/tree/master</url>
     <tag>v2.0.0</tag>
+    <url>${scm_url}/tree/master</url>
   </scm>
   <issueManagement>
     <system>${issue-system}</system>
@@ -144,7 +150,6 @@
     <maven-project.version>2.2.1</maven-project.version>
     <velocity-tools.version>3.1</velocity-tools.version>
 
-
     <!-- ================================================================================ -->
     <!-- Test dependencies version -->
     <!-- ================================================================================ -->
@@ -160,7 +165,6 @@
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     <maven-download-plugin.version>1.5.0</maven-download-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-    <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
     <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
     <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
@@ -284,14 +288,14 @@
 
   <repositories>
     <repository>
-      <id>apache-snapshot</id>
-      <url>https://repository.apache.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
       <releases>
         <enabled>false</enabled>
       </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>apache-snapshot</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
     </repository>
   </repositories>
 
@@ -329,11 +333,6 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-plugin-plugin</artifactId>
-          <version>${maven-plugin-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven-resources-plugin.version}</version>
         </plugin>
@@ -346,11 +345,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>${maven-site-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-plugin-plugin</artifactId>
-          <version>${maven-plugin-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -424,10 +418,10 @@
         <executions>
           <execution>
             <id>attach-sources</id>
-            <phase>package</phase>
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
+            <phase>package</phase>
           </execution>
         </executions>
       </plugin>
@@ -483,6 +477,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <skipDeploy>true</skipDeploy>
+          <relativizeDecorationLinks>true</relativizeDecorationLinks>
+          <generateReports>true</generateReports>
+          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+          <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+          <topSiteURL>${pubScmUrl}</topSiteURL>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>io.github.devacfr.maven.skins</groupId>
@@ -500,14 +502,6 @@
             <version>${doxia.version}</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <skipDeploy>true</skipDeploy>
-          <relativizeDecorationLinks>true</relativizeDecorationLinks>
-          <generateReports>true</generateReports>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-          <topSiteURL>${pubScmUrl}</topSiteURL>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -516,7 +510,7 @@
         <configuration>
           <pubScmUrl>${pubScmUrl}</pubScmUrl>
           <checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory>
-          <checkinComment>Publishing Site Docs for Reflow Maven Skin ${project.version} </checkinComment>
+          <checkinComment>Publishing Site Docs for Reflow Maven Skin ${project.version}</checkinComment>
           <tryUpdate>true</tryUpdate>
           <skipDeletedFiles>false</skipDeletedFiles>
           <scmBranch>gh-pages</scmBranch>
@@ -529,10 +523,10 @@
         <executions>
           <execution>
             <id>unpack</id>
-            <phase>pre-site</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
+            <phase>pre-site</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -541,12 +535,10 @@
                   <version>${project.version}</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
-                  <includes>
-                    **/css/**/*,
+                  <includes>**/css/**/*,
                     **/js/*.js,
                     **/js/languages/*,
-                    **/js/styles/*.min.css
-                  </includes>
+                    **/js/styles/*.min.css</includes>
                 </artifactItem>
               </artifactItems>
               <outputDirectory>${generate.site.path}</outputDirectory>
@@ -645,14 +637,14 @@
         <reportSets>
           <reportSet>
             <!-- Empty report set as default -->
-            <reports/>
+            <reports />
           </reportSet>
           <reportSet>
             <id>release-notes</id>
-            <inherited>false</inherited>
             <reports>
               <report>github-report</report>
             </reports>
+            <inherited>false</inherited>
           </reportSet>
         </reportSets>
       </plugin>
@@ -703,12 +695,12 @@
         <reportSets>
           <reportSet>
             <id>aggregate</id>
-            <configuration>
-              <aggregate>true</aggregate>
-            </configuration>
             <reports>
               <report>report-only</report>
             </reports>
+            <configuration>
+              <aggregate>true</aggregate>
+            </configuration>
           </reportSet>
         </reportSets>
       </plugin>
@@ -773,14 +765,14 @@
         <reportSets>
           <reportSet>
             <id>aggregate</id>
-            <inherited>false</inherited>
-            <configuration>
-              <aggregate>true</aggregate>
-            </configuration>
             <reports>
               <report>cpd</report>
               <report>pmd</report>
             </reports>
+            <inherited>false</inherited>
+            <configuration>
+              <aggregate>true</aggregate>
+            </configuration>
           </reportSet>
         </reportSets>
       </plugin>
@@ -804,13 +796,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-toolchains-plugin</artifactId>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>toolchain</goal>
-                </goals>
-              </execution>
-            </executions>
             <configuration>
               <toolchains>
                 <jdk>
@@ -818,6 +803,13 @@
                 </jdk>
               </toolchains>
             </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>toolchain</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -893,10 +885,10 @@
             <executions>
               <execution>
                 <id>sign</id>
-                <phase>verify</phase>
                 <goals>
                   <goal>sign</goal>
                 </goals>
+                <phase>verify</phase>
                 <configuration>
                   <keyname>${gpg.keyname}</keyname>
                   <passphraseServerId>${gpg.keyname}</passphraseServerId>
@@ -944,7 +936,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -957,7 +949,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                   </pluginExecutions>

@@ -1,22 +1,22 @@
 /*
- * Copyright 2012-2019 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow.context;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isA;
 
 import java.io.StringReader;
 
@@ -34,6 +34,9 @@ import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isA;
 
 public class FrameContextTest extends MockitoTestCase {
 
@@ -59,13 +62,20 @@ public class FrameContextTest extends MockitoTestCase {
     @Test
     public void shouldBuildFrameContext() throws Exception {
         final String xml = "<reflowSkin><pages>" + //
-                "<development-documentation type=\"doc\">" + //
-                "          <menu name=\"Development Documentation\">" + //
-                "            <item name=\"Contribute\" href=\"dev/contribute.html\" />" + //
-                "            <item name=\"Code Conventions\" href=\"dev/code-conventions.html\"/>" + //
-                "            <item name=\"Release Management\" href=\"dev/release-management.html\"/>" + //
-                "          </menu>" + //
-                "        </development-documentation>" + //
+                "<development-documentation type=\"doc\">"
+                + //
+                "          <menu name=\"Development Documentation\">"
+                + //
+                "            <item name=\"Contribute\" href=\"dev/contribute.html\" />"
+                + //
+                "            <item name=\"Code Conventions\" href=\"dev/code-conventions.html\"/>"
+                + //
+                "            <item name=\"Release Management\" href=\"dev/release-management.html\"/>"
+                + //
+                "          </menu>"
+                + //
+                "        </development-documentation>"
+                + //
                 "</pages></reflowSkin>";
         final Xpp3Dom globalProperties = Xpp3DomBuilder.build(new StringReader(xml));
         when(config.getPageProperties()).thenReturn(new Xpp3Dom("dev-contribute"));
@@ -86,8 +96,9 @@ public class FrameContextTest extends MockitoTestCase {
         final TocSidebar tocSidebar = (TocSidebar) toc;
         assertEquals(Integer.MAX_VALUE, tocSidebar.getLevel());
         assertEquals("sidebar-light bg-light", tocSidebar.getCssClass());
-        assertEquals("m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed",
-            tocSidebar.getCssOptions());
+        assertEquals(
+                "m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed",
+                tocSidebar.getCssOptions());
 
         final Footer footer = frameContext.getFooter();
         assertNotNull(footer, "footer should be exist");
@@ -104,7 +115,5 @@ public class FrameContextTest extends MockitoTestCase {
         assertEquals("", scrollTop.getCssClass());
         assertEquals(true, scrollTop.isSmooth());
         assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
-
     }
-
 }

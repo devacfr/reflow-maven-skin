@@ -1,30 +1,32 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow;
 
-import static java.util.Objects.requireNonNull;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.doxia.site.decoration.DecorationModel;
 import org.apache.maven.project.MavenProject;
@@ -39,7 +41,7 @@ import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Strings;
+import static java.util.Objects.requireNonNull;
 
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration
@@ -212,8 +214,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
             if (skinNode.getName().endsWith(namespaceKey)) {
                 // extract the namespace (including the colon)
-        namespace = Strings
-            .emptyToNull(skinNode.getName().substring(0, skinNode.getName().length() - namespaceKey.length() + 1));
+                namespace = Strings.emptyToNull(
+                        skinNode.getName().substring(0, skinNode.getName().length() - namespaceKey.length() + 1));
             }
 
             // for page properties, retrieve the file name and drop the `.html`
@@ -238,7 +240,6 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
                 if (page != null) {
                     pageProperties = page;
                 }
-
             }
 
             // Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
@@ -371,9 +372,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     @Override
     @SuppressWarnings("unchecked")
     @Nullable
-    public <T> T getPropertyValue(@Nonnull final String property,
-        @Nonnull final Class<T> targetType,
-        @Nullable final T defaultValue) {
+    public <T> T getPropertyValue(
+            @Nonnull final String property, @Nonnull final Class<T> targetType, @Nullable final T defaultValue) {
         requireNonNull(property, "property is required");
         requireNonNull(targetType, "targetType is required");
         final String value = value(property);
@@ -423,10 +423,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     @Override
     @SuppressWarnings("unchecked")
     @Nullable
-    public <T> T getAttributeValue(@Nonnull final String property,
-        @Nonnull final String attribute,
-        @Nonnull final Class<T> targetType,
-        @Nullable final T defaultValue) {
+    public <T> T getAttributeValue(
+            @Nonnull final String property,
+            @Nonnull final String attribute,
+            @Nonnull final Class<T> targetType,
+            @Nullable final T defaultValue) {
         requireNonNull(property, "property is required");
         requireNonNull(attribute, "attribute is required");
         requireNonNull(targetType, "targetType is required");
@@ -471,10 +472,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     @Override
     @SuppressWarnings("unchecked")
     @Nullable
-    public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
-        @Nonnull final String attribute,
-        @Nonnull final Class<T> targetType,
-        @Nullable final T defaultValue) {
+    public <T> T getAttributeValue(
+            @Nonnull final Xpp3Dom element,
+            @Nonnull final String attribute,
+            @Nonnull final Class<T> targetType,
+            @Nullable final T defaultValue) {
         if (element == null) {
             return defaultValue;
         }
@@ -689,7 +691,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         // the _same_ page would likely be ../dev/index.html instead of '' or
         // 'index.html'.
         final String currentFileLoc = getCurrentFileLocation();
-        final String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
+        final String absoluteLink =
+                URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
         if (currentFileLoc.equals(absoluteLink)) {
             // for matching link, use empty relative link
             relativeLink = StringUtils.EMPTY;
@@ -723,9 +726,12 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         if (!Strings.isNullOrEmpty(absoluteResourceURL) && url.startsWith(absoluteResourceURL)) {
             return false;
         }
-        return url.toLowerCase().startsWith("http:/") || url.toLowerCase().startsWith("https:/")
-                || url.toLowerCase().startsWith("ftp:/") || url.toLowerCase().startsWith("mailto:")
-                || url.toLowerCase().startsWith("file:/") || url.toLowerCase().indexOf("://") != -1;
+        return url.toLowerCase().startsWith("http:/")
+                || url.toLowerCase().startsWith("https:/")
+                || url.toLowerCase().startsWith("ftp:/")
+                || url.toLowerCase().startsWith("mailto:")
+                || url.toLowerCase().startsWith("file:/")
+                || url.toLowerCase().indexOf("://") != -1;
     }
 
     /**
@@ -783,12 +789,14 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
             if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
                 projectUrl += '/';
             }
-            final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
+            final String currentFileDir = URITool.toURI(projectUrl)
+                    .resolve(currentFileName)
+                    .resolve(".")
+                    .toString();
             return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         }
         return (String) velocityContext.get("relativePath");
     }
-
 
     /**
      * Gets the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
@@ -805,5 +813,4 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         }
         return null;
     }
-
 }

@@ -1,17 +1,20 @@
 /*
- * Copyright 2012-2019 Christophe Friederich
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
@@ -19,6 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
+import com.google.common.io.CharSource;
+import com.google.common.io.Files;
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
 import org.apache.maven.doxia.macro.MacroExecutionException;
@@ -35,11 +42,6 @@ import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Strings;
-import com.google.common.io.CharSource;
-import com.google.common.io.Files;
-
 /**
  * @author Christophe Friederich
  * @since 2.4
@@ -48,7 +50,6 @@ import com.google.common.io.Files;
 public class PartialTemplateMacro extends AbstractMacro implements Contextualizable {
 
     /** */
-
     @SuppressWarnings("unused")
     private static final Logger LOGGER = LoggerFactory.getLogger(PartialTemplateMacro.class);
 
@@ -95,7 +96,6 @@ public class PartialTemplateMacro extends AbstractMacro implements Contextualiza
         } catch (final IOException e) {
             throw new MacroExecutionException("Error reading snippet", e);
         }
-
     }
 
     private String getSnippet(final File file, final String encoding) throws IOException {
@@ -111,7 +111,6 @@ public class PartialTemplateMacro extends AbstractMacro implements Contextualiza
             } else {
                 throw e;
             }
-
         }
     }
 
@@ -120,5 +119,4 @@ public class PartialTemplateMacro extends AbstractMacro implements Contextualiza
         final Document doc = Jsoup.parse(src);
         return new ComponentResolver().normalize(doc).html();
     }
-
 }
