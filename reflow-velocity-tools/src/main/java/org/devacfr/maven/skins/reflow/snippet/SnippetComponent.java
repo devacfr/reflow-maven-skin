@@ -38,7 +38,7 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     /** */
     private final Type type;
 
-    @Nullable
+    @Nonnull
     public static SnippetComponent<?> createSnippet(
             @Nonnull final Element element, final Component<?> parent, final Type type) {
         requireNonNull(element);

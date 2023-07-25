@@ -18,7 +18,10 @@
  */
 package org.apache.maven.doxia.siterenderer;
 
-import javax.inject.Inject;
+import static org.apache.commons.io.IOUtils.closeQuietly;
+import static org.apache.commons.io.IOUtils.copy;
+import static org.codehaus.plexus.testing.PlexusExtension.getBasedir;
+import static org.codehaus.plexus.testing.PlexusExtension.getTestFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -34,11 +37,13 @@ import java.util.Map;
 import java.util.jar.JarOutputStream;
 import java.util.zip.ZipEntry;
 
+import javax.inject.Inject;
+
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.versioning.VersionRange;
-import org.apache.maven.doxia.site.decoration.DecorationModel;
-import org.apache.maven.doxia.site.decoration.io.xpp3.DecorationXpp3Reader;
+import org.apache.maven.doxia.site.SiteModel;
+import org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.testing.PlexusTest;
 import org.codehaus.plexus.util.FileUtils;
@@ -47,11 +52,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.apache.commons.io.IOUtils.copy;
-import static org.codehaus.plexus.testing.PlexusExtension.getBasedir;
-import static org.codehaus.plexus.testing.PlexusExtension.getTestFile;
 
 /**
  * @author <a href="mailto:vincent.siveton@gmail.com">Vincent Siveton</a>
@@ -141,12 +141,12 @@ public class DefaultSiteRendererTest extends TestCase {
         // ----------------------------------------------------------------------
         // Render the site from src/test/resources/site to OUTPUT
         // ----------------------------------------------------------------------
-        final DecorationModel decoration =
-                new DecorationXpp3Reader().read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
+        final SiteModel model =
+                new SiteXpp3Reader().read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
 
         final Path targetSite = getTestFile(OUTPUT).toPath();
         final Path srcSite = getTestFile("src/test/resources/site").toPath();
-        final SiteRenderingContext ctxt = getSiteRenderingContext(decoration, srcSite, false);
+        final SiteRenderingContext ctxt = getSiteRenderingContext(model, srcSite, false);
 
         ctxt.setRootDirectory(getTestFile(""));
         renderer.render(renderer.locateDocumentFiles(ctxt, true).values(), ctxt, targetSite.toFile());
@@ -155,7 +155,7 @@ public class DefaultSiteRendererTest extends TestCase {
     }
 
     private SiteRenderingContext getSiteRenderingContext(
-            final DecorationModel decoration, final Path siteDir, final boolean validate)
+            final SiteModel model, final Path siteDir, final boolean validate)
             throws RendererException, IOException {
         final File skinFile = minimalSkinJar;
 
@@ -166,7 +166,7 @@ public class DefaultSiteRendererTest extends TestCase {
                 "org.group", "artifact", VersionRange.createFromVersion("1.1"), null, "jar", "", null);
         skin.setFile(skinFile);
         final SiteRenderingContext siteRenderingContext =
-                renderer.createContextForSkin(skin, attributes, decoration, "defaultWindowTitle", Locale.ENGLISH);
+                renderer.createContextForSkin(skin, attributes, model, "defaultWindowTitle", Locale.ENGLISH);
         siteRenderingContext.addSiteDirectory(siteDir.toFile());
         siteRenderingContext.setValidate(validate);
 

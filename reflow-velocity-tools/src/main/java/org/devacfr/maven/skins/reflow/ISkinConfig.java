@@ -21,7 +21,7 @@ package org.devacfr.maven.skins.reflow;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.apache.maven.doxia.site.decoration.DecorationModel;
+import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.context.Context;
@@ -130,10 +130,10 @@ public interface ISkinConfig {
     MavenProject getProject();
 
     /**
-     * @return the decoration
+     * @return the site model
      */
     @Nonnull
-    DecorationModel getDecoration();
+    SiteModel getSiteModel();
 
     /**
      * @return Returns a {@link String} representing the relative path to root site.

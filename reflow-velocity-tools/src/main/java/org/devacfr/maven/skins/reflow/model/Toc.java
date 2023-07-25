@@ -175,7 +175,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     }
 
     @Override
-    protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
+    protected String onPreRender(final @Nonnull ISkinConfig skinConfig, final @Nonnull String bodyContent) {
         if (this.enabled) {
             final HtmlTool htmlTool = getHtmlTool(skinConfig);
             return htmlTool.ensureHeadingIds(

@@ -18,7 +18,10 @@
  */
 package org.devacfr.maven.skins.reflow.context;
 
-import org.apache.maven.doxia.site.decoration.DecorationModel;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isA;
+
+import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.model.Footer;
@@ -30,9 +33,6 @@ import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isA;
 
 public class PageContextTest extends MockitoTestCase {
 
@@ -47,8 +47,8 @@ public class PageContextTest extends MockitoTestCase {
         project.setArtifactId("reflow-artifact");
         when(config.getProject()).thenReturn(project);
 
-        final DecorationModel decoration = new DecorationModel();
-        when(config.getDecoration()).thenReturn(decoration);
+        final SiteModel model = new SiteModel();
+        when(config.getSiteModel()).thenReturn(model);
         when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
                 .then(invocation -> invocation.getArguments()[3]);
         when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))

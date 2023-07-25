@@ -100,9 +100,9 @@
  *
  *###
 #macro ( getPublishDate )##
-#*  *##if ( $decoration.publishDate.position != 'none')
-#*      *##if ( $decoration.publishDate.format )##
-#*          *##set ( $format = $decoration.publishDate.format )##
+#*  *##if ( $site.publishDate.position != 'none')
+#*      *##if ( $site.publishDate.format )##
+#*          *##set ( $format = $site.publishDate.format )##
 #*      *##else##
 #*          *##set ( $format = "yyyy-MM-dd" )##
 #*      *##end##
@@ -127,7 +127,7 @@ $dateValue
  *
  *###
 #macro ( publishDate )##
-#*  *##if ( $decoration.publishDate.position != 'none')
+#*  *##if ( $site.publishDate.position != 'none')
 #*      *### render with internationalization support
 $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *##end##
@@ -238,8 +238,8 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">
                 <li class="nav-item">
-#*  *##if( $decoration.edit && $docRenderingContext.editable )##
-                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+#*  *##if( $site.edit && $docRenderingContext.editable )##
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $site.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
 #*  *##end##
                 </li>
             </ul>
@@ -286,10 +286,10 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*          *### default template is "projectName - shortTitle"
 #*          *##set ( $titleTemplate = "%1${esc.d}s - %2${esc.d}s" )##
 #*      *##end##
-#*      *### the company/project name is retrieved from decoration ( <project name="Foo">)
+#*      *### the company/project name is retrieved from site model ( <project name="Foo">)
 #*      *### or from the project itself
-#*      *##if ( $decoration.name )##
-#*          *##set ( $titleProjectName = $decoration.name )##
+#*      *##if ( $site.name )##
+#*          *##set ( $titleProjectName = $site.name )##
 #*      *##elseif ( $project.name )##
 #*          *##set ( $titleProjectName = $project.name )##
 #*      *##else##
@@ -304,17 +304,17 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *### resolve date position, or set the default otherwise (bottom)
 #*  *### Note, that currently we do not support "navigation-top" position for either publishDate or version.
 #*  *##set ( $datePosition = "bottom" )##
-#*  *##if ( $decoration.publishDate.position )##
-#*  *##set ( $datePosition = $decoration.publishDate.position )##
+#*  *##if ( $site.publishDate.position )##
+#*  *##set ( $datePosition = $site.publishDate.position )##
 #*  *##end##
 #*  *### resolve version position, or set the default otherwise (bottom)
 #*  *##set ( $versionPosition = "bottom" )##
-#*  *##if ( $decoration.version.position )##
-#*      *##set ( $versionPosition = $decoration.version.position )##
+#*  *##if ( $site.version.position )##
+#*      *##set ( $versionPosition = $site.version.position )##
 #*  *##end##
 ##
-#*  *##if ( $decoration.publishDate.position )##
-#*      *##set ( $datePosition = $decoration.publishDate.position )##
+#*  *##if ( $site.publishDate.position )##
+#*      *##set ( $datePosition = $site.publishDate.position )##
 #*  *##else##
 #*      *##set ( $datePosition = "bottom" )##
 #*  *##end##

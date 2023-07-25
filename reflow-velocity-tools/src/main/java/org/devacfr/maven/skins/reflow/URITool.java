@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.net.URI;
 
 import com.google.common.base.Strings;
-import org.apache.maven.doxia.site.decoration.inheritance.URIPathDescriptor;
+import org.apache.maven.doxia.site.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
 
 /**

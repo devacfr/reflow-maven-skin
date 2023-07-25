@@ -241,7 +241,7 @@ public class SnippetContext {
                 context.put("snippetPath", filePath);
                 context.put("config", this.config);
                 context.put("velocity", Velocity.class);
-                context.put("decoration", this.config.getDecoration());
+                context.put("site", this.config.getSiteModel());
                 // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
                 context.put("resourcePath", this.config.getResourcePath());
 

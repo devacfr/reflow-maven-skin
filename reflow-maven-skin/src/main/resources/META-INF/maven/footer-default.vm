@@ -63,8 +63,8 @@
     <div class="row">
       <div class="col-md-12">
 ##
-#*  *##if ( $decoration.body.footer )
-#*      *#$render.eval( $decoration.body.footer )
+#*  *##if ( $site.body.footer )
+#*      *#$render.eval( $site.body.footer )
 #*  *##else
         <p class="copyright">Copyright &copy;#copyright (). All Rights Reserved.</p>
 #*      *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )

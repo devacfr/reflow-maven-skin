@@ -22,7 +22,7 @@
 #*  *##set( $shortTitle = "#getShortTitlePage()" )##
 #*  *##set( $datePosition = "#getDatePosition()" )##
 #*  *##if ( !$config.not( "breadcrumbs" )
-      && (( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0)
+      && (( $site.body.breadcrumbs && $site.body.breadcrumbs.size() > 0)
         || $datePosition == "left" || $versionPosition == "left"
         || $datePosition == "right" || $versionPosition == "right") )##
     <nav aria-label="breadcrumb">
@@ -37,8 +37,8 @@
 #*      *##end##
 ##
 ## breadcrumbs
-#*      *##if ( $decoration.body.breadcrumbs && $decoration.body.breadcrumbs.size() > 0 )##
-#*          *##foreach ( $item in  $decoration.body.breadcrumbs )##
+#*      *##if ( $site.body.breadcrumbs && $site.body.breadcrumbs.size() > 0 )##
+#*          *##foreach ( $item in  $site.body.breadcrumbs )##
             <li class="breadcrumb-item">#fullLink ( $config.relativeLink( $item.href) $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height false "")</li>
 #*          *##end##
             <li class="breadcrumb-item active">#if ( $shortTitle )$shortTitle#else$title#end</li>

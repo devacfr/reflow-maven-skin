@@ -28,7 +28,7 @@ import java.util.List;
 
 import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.maven.doxia.site.decoration.DecorationModel;
+import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
@@ -137,7 +137,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     private MavenProject project = null;
 
     /** */
-    private DecorationModel decoration;
+    private SiteModel siteModel;
 
     /** */
     private ToolContext velocityContext;
@@ -160,7 +160,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
             this.skinKey = altSkinKey;
         }
 
-        // retrieve the decoration model from Velocity context
+        // retrieve the site model from Velocity context
         final Object vc = values.get("velocityContext");
 
         if (!(vc instanceof ToolContext)) {
@@ -181,14 +181,14 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         final String currentFileObj = getCurrentFileName();
         fileId = slugFilename(currentFileObj);
 
-        final Object decorationObj = velocityContext.get("decoration");
+        final Object siteModelObj = velocityContext.get("site");
 
-        if (!(decorationObj instanceof DecorationModel)) {
+        if (!(siteModelObj instanceof SiteModel)) {
             return;
         }
 
-        this.decoration = (DecorationModel) decorationObj;
-        final Object customObj = decoration.getCustom();
+        this.siteModel = (SiteModel) siteModelObj;
+        final Object customObj = siteModel.getCustom();
 
         if (!(customObj instanceof Xpp3Dom)) {
             return;
@@ -591,8 +591,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      */
     @Override
     @Nonnull
-    public DecorationModel getDecoration() {
-        return decoration;
+    public SiteModel getSiteModel() {
+        return siteModel;
     }
 
     /**

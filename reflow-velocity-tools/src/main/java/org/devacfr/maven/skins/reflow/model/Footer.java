@@ -18,17 +18,18 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import org.apache.maven.doxia.site.decoration.DecorationModel;
+import javax.annotation.Nonnull;
+
+import org.apache.maven.doxia.site.SiteModel;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
-import static java.util.Objects.requireNonNull;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 
 /**
  * Represents the footer component.
@@ -58,11 +59,11 @@ public class Footer extends BsComponent {
         this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
 
         final Xpp3Dom bottomNav = config.get("bottomNav");
-        final DecorationModel decoration = config.getDecoration();
+        final SiteModel model = config.getSiteModel();
 
-        if (decoration.getBody() != null && decoration.getBody().getMenus() != null) {
-            final List<org.apache.maven.doxia.site.decoration.Menu> menus =
-                    decoration.getBody().getMenus();
+        if (model.getBody() != null && model.getBody().getMenus() != null) {
+            final List<org.apache.maven.doxia.site.Menu> menus =
+                    model.getBody().getMenus();
             if (bottomNav != null && bottomNav.getChildren().length > 0) {
                 // foreach columns
                 for (final Xpp3Dom col : bottomNav.getChildren()) {
@@ -71,7 +72,7 @@ public class Footer extends BsComponent {
                         continue;
                     }
                     final List<Menu> amenus = Lists.newArrayList();
-                    for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
+                    for (final org.apache.maven.doxia.site.Menu menu : menus) {
                         // add in column, if matches with regex
                         if (Menu.matches(regex, menu)) {
                             amenus.add(new Menu(config, menu));
@@ -81,7 +82,7 @@ public class Footer extends BsComponent {
                 }
             } else {
                 final List<Menu> amenus = Lists.newArrayList();
-                for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
+                for (final org.apache.maven.doxia.site.Menu menu : menus) {
                     amenus.add(new Menu(config, menu));
                 }
                 this.columns.add(new Column(config, amenus));
