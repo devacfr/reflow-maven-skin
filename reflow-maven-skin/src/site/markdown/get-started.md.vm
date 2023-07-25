@@ -193,10 +193,6 @@ Sometimes this is undesirable, so one can use `project` attribute to indicate th
 
 If you still encounter inheritance problems, try using [`combine.self="override"` attribute][mvn-merge] on the `site.xml` element to explicitly override it.
 
-[doxia-formats]: http://maven.apache.org/doxia/references/index.html
-[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
-[bootswatch]: http://bootswatch.com
-[mvn-merge]: http://www.sonatype.com/people/2011/01/maven-how-to-merging-plugin-configuration-in-complex-projects/
 
 $h2 Responsive design
 
@@ -213,6 +209,9 @@ The source code is [available on GitHub][reflow-src].
 Look for the site configuration and web page sources in `/src/site` of each module;
 and for plug-in configuration in respective POM files.
 
+[doxia-formats]: http://maven.apache.org/doxia/references/index.html
+[bootswatch]: http://bootswatch.com
+[mvn-merge]: http://www.sonatype.com/people/2011/01/maven-how-to-merging-plugin-configuration-in-complex-projects/
 [reflow-tools]: ../reflow-velocity-tools
-[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
+[site-xml]: https://maven.apache.org/doxia/doxia-sitetools/doxia-site-model/site.html
 [reflow-src]: ${scm_url} "Reflow Maven skin source code"

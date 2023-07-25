@@ -23,7 +23,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import org.apache.maven.doxia.site.decoration.LinkItem;
+import org.apache.maven.doxia.site.LinkItem;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 import com.google.common.collect.Lists;
@@ -98,14 +98,14 @@ public class Menu {
     }
 
     /**
-     * Initialize with {@link org.apache.maven.doxia.site.decoration.Menu}.
+     * Initialize with {@link org.apache.maven.doxia.site.Menu}.
      *
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      * @param menu
      *            menu used to.
      */
-    public Menu(@Nonnull final ISkinConfig config, @Nonnull final org.apache.maven.doxia.site.decoration.Menu menu) {
+    public Menu(@Nonnull final ISkinConfig config, @Nonnull final org.apache.maven.doxia.site.Menu menu) {
         Objects.requireNonNull(menu);
         this.alt = menu.getAlt();
         this.border = menu.getBorder();
@@ -119,8 +119,8 @@ public class Menu {
         this.title = menu.getTitle();
         this.inherit = menu.getInherit();
         this.active = false;
-        final List<org.apache.maven.doxia.site.decoration.MenuItem> items = menu.getItems();
-        for (final org.apache.maven.doxia.site.decoration.MenuItem menuItem : items) {
+        final List<org.apache.maven.doxia.site.MenuItem> items = menu.getItems();
+        for (final org.apache.maven.doxia.site.MenuItem menuItem : items) {
             if (isNullOrEmpty(menu.getName())) {
                 continue;
             }
@@ -240,7 +240,7 @@ public class Menu {
      * @return Returns {@code true} whether menu matches with regex.
      */
     public static boolean matches(@Nonnull final String regex,
-        @Nonnull final org.apache.maven.doxia.site.decoration.Menu menu) {
+        @Nonnull final org.apache.maven.doxia.site.Menu menu) {
         requireNonNull(regex);
         requireNonNull(menu);
         return menu.getRef() != null && menu.getRef().matches(regex)

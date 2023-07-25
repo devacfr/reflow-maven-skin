@@ -4,10 +4,10 @@
             <div id="banner" class="header__banner">
                 <a href="." class="d-inline-block">
                     <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg"
-                        alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width"
-                        height="$$decoration.bannerLeft.height" />
+                        alt="$site.bannerLeft.alt" width="$site.bannerLeft.width"
+                        height="$site.bannerLeft.height" />
                 </a>
-                <h1 class="d-inline-block">$decoration.bannerLeft.name</h1>
+                <h1 class="d-inline-block">$site.bannerLeft.name</h1>
                 <p class="lead">$config.slogan.getValue()</p>
             </div>
             <p>

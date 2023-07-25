@@ -32,8 +32,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
-      <artifactId>doxia-decoration-model</artifactId>
-      <version>${doxia.sitetools.version}</version>
+      <artifactId>doxia-site-model</artifactId>
+      <version>${doxia.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>

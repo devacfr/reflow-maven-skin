@@ -18,10 +18,10 @@
 
  -->
 <project
-  xmlns="http://maven.apache.org/DECORATION/1.8.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+  xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
+  
   <!-- Google Analytics not inherited for some reason -->
   <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
 

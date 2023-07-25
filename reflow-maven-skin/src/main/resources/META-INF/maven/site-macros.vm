@@ -100,9 +100,9 @@
  *
  *###
 #macro ( getPublishDate )##
-#*  *##if ( $decoration.publishDate.position != 'none')
-#*      *##if ( $decoration.publishDate.format )##
-#*          *##set ( $format = $decoration.publishDate.format )##
+#*  *##if ( $site.publishDate.position != 'none')
+#*      *##if ( $site.publishDate.format )##
+#*          *##set ( $format = $site.publishDate.format )##
 #*      *##else##
 #*          *##set ( $format = "yyyy-MM-dd" )##
 #*      *##end##
@@ -127,7 +127,7 @@ $dateValue
  *
  *###
 #macro ( publishDate )##
-#*  *##if ( $decoration.publishDate.position != 'none')
+#*  *##if ( $site.publishDate.position != 'none')
 #*      *### render with internationalization support
 $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *##end##
@@ -238,8 +238,8 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">
                 <li class="nav-item">
-#*  *##if( $decoration.edit && $docRenderingContext.editable )##
-                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+#*  *##if( $site.edit && $docRenderingContext.editable )##
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $site.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
 #*  *##end##
                 </li>
             </ul>

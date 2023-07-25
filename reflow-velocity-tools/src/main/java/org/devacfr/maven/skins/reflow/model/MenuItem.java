@@ -73,14 +73,14 @@ public class MenuItem {
     private final List<MenuItem> menuItems = Lists.newArrayList();
 
     /**
-     * Initialize with {@link org.apache.maven.doxia.site.decoration.MenuItem}.
+     * Initialize with {@link org.apache.maven.doxia.site.MenuItem}.
      *
      * @param config
      *            a config (can <b>not</b> be {@code null}).
      * @param item
      *            item menu used to.
      */
-    public MenuItem(@Nonnull final ISkinConfig config, final org.apache.maven.doxia.site.decoration.MenuItem item) {
+    public MenuItem(@Nonnull final ISkinConfig config, final org.apache.maven.doxia.site.MenuItem item) {
         Objects.requireNonNull(item);
         this.alt = item.getAlt();
         this.description = item.getDescription();
@@ -103,11 +103,11 @@ public class MenuItem {
      */
     private void recurciveAddItem(final ISkinConfig config,
         final List<MenuItem> menuItems,
-        final List<org.apache.maven.doxia.site.decoration.MenuItem> origMenuItems) {
+        final List<org.apache.maven.doxia.site.MenuItem> origMenuItems) {
         if (origMenuItems == null) {
             return;
         }
-        for (final org.apache.maven.doxia.site.decoration.MenuItem menuItem : origMenuItems) {
+        for (final org.apache.maven.doxia.site.MenuItem menuItem : origMenuItems) {
             menuItems.add(new MenuItem(config, menuItem));
         }
 
