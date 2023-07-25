@@ -55,10 +55,9 @@ import static java.util.Objects.requireNonNull;
 public abstract class Context<T extends Context<?>> extends Component {
 
     /**
-     * map containing the equivalence of font awesome characters with image found in
-     * report pages.
+     * map containing the equivalence of font awesome characters with image found in report pages.
      */
-    private static final Map<String, String> ICON_REPLACEMENTS = ImmutableMap.<String, String>builder()
+    private static final Map<String, String> ICON_REPLACEMENTS = ImmutableMap.<String, String> builder()
             .put("img[src$=images/add.gif]", "<i class=\"fas fa-plus\"></i>")
             .put("img[src$=images/remove.gif]", "<i class=\"fas fa-minus\"></i>")
             .put("img[src$=images/fix.gif]", "<i class=\"fas fa-wrench\"></i>")
@@ -89,7 +88,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Build a context depending of current type of page.
      *
      * @param config
-     *               a config (can not be {@code null}).
+     *            a config (can not be {@code null}).
      * @return Returns a new instance of {@link Context} depending of current page.
      */
     @Nonnull
@@ -110,10 +109,7 @@ public abstract class Context<T extends Context<?>> extends Component {
             }
 
             // frame type whether page associates to document page
-            if (allSideNaveMenuItems.stream()
-                            .filter(item -> fileId.equals(item.getSlugName()))
-                            .count()
-                    > 0) {
+            if (allSideNaveMenuItems.stream().filter(item -> fileId.equals(item.getSlugName())).count() > 0) {
                 type = ContextType.frame;
             }
         }
@@ -150,9 +146,9 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Default constructor.
      *
      * @param config
-     *               a config (can not be {@code null}).
+     *            a config (can not be {@code null}).
      * @param type
-     *               the type of context (can not be {@code null}).
+     *            the type of context (can not be {@code null}).
      */
     public Context(@Nonnull final ISkinConfig config, @Nonnull final ContextType type) {
         requireNonNull(config);
@@ -171,7 +167,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Allows to initialize the context.
      *
      * @param config
-     *               a config (can not be {@code null}).
+     *            a config (can not be {@code null}).
      */
     protected void initialize(@Nonnull final ISkinConfig config) {
         // enable AnchorJS
@@ -184,7 +180,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Allows to execute action before rendering of component.
      *
      * @param skinConfig
-     *                   a config (can <b>not</b> be {@code null}).
+     *            a config (can <b>not</b> be {@code null}).
      * @return Returns the {@link String} representing the transformed body content.
      * @since 2.1
      */
@@ -198,12 +194,11 @@ public abstract class Context<T extends Context<?>> extends Component {
         String content = bodyContent;
         if (!skinConfig.not("imgLightbox")) {
             // lightbox is enabled by default, so check for false and negate
-            content = htmlTool.setAttr(
-                    content,
-                    "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], "
-                            + "a[href$=png], a[href$=gif],a[href$=bmp]:has(img)",
-                    "data-lightbox",
-                    "page");
+            content = htmlTool.setAttr(content,
+                "a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=JPEG], "
+                        + "a[href$=png], a[href$=gif],a[href$=bmp]:has(img)",
+                "data-lightbox",
+                "page");
         }
 
         if (!skinConfig.not("html5Anchor")) {
@@ -214,8 +209,8 @@ public abstract class Context<T extends Context<?>> extends Component {
         if (!skinConfig.not("bootstrapCss")) {
             // Bootstrap CSS class conversion is enabled by default, so check for false and
             // negate
-            content = htmlTool.addClass(
-                    content, "table.bodyTable", Lists.newArrayList("table", "table-striped", "table-hover"));
+            content = htmlTool
+                    .addClass(content, "table.bodyTable", Lists.newArrayList("table", "table-striped", "table-hover"));
             // image is responsive by default
             content = htmlTool.addClass(content, "img", Lists.newArrayList("img-fluid"));
             content = htmlTool.fixTableHeads(content);
@@ -262,7 +257,7 @@ public abstract class Context<T extends Context<?>> extends Component {
      * Sets the type of context.
      *
      * @param type
-     *             the of context.
+     *            the of context.
      * @return Returns the fluent instance context.
      */
     protected T withType(final ContextType type) {

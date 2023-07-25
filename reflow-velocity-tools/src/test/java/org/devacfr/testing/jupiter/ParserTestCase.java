@@ -71,8 +71,7 @@ public abstract class ParserTestCase extends AbstractParserTest {
     }
 
     public ByteSource getResource(final String filename) {
-        return Resources.asByteSource(
-                Resources.getResource(getPackagePath().resolve(filename).toString()));
+        return Resources.asByteSource(Resources.getResource(getPackagePath().resolve(filename).toString()));
     }
 
     /**
@@ -104,8 +103,8 @@ public abstract class ParserTestCase extends AbstractParserTest {
     }
 
     public String getExpectedResource(final String extension, final Function<String, String> transformer) {
-        return Approvals.getExpectedResource(
-                getPackagePath(), this.getClass(), getMethodName(), extension, transformer);
+        return Approvals
+                .getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), extension, transformer);
     }
 
     public void verify() {
@@ -117,8 +116,8 @@ public abstract class ParserTestCase extends AbstractParserTest {
      *            the extension file.
      */
     public void verify(final String extension) {
-        Approvals.verify(
-                getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
+        Approvals
+                .verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
     }
 
     public void verify(final Function<String, String> transform) {

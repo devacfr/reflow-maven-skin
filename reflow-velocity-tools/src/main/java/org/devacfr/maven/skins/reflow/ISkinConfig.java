@@ -84,8 +84,7 @@ public interface ISkinConfig {
      *            the type of expected tool.
      * @since 2.1
      */
-    @Nullable
-    <T> T getToolbox(@Nonnull String toolName, @Nonnull Class<T> toolType);
+    @Nullable <T> T getToolbox(@Nonnull String toolName, @Nonnull Class<T> toolType);
 
     /**
      * @return Returns the root level {@link Xpp3Dom}.
@@ -108,8 +107,7 @@ public interface ISkinConfig {
     /**
      * @return Returns the {@link String} representing the fileId.
      */
-    @Nullable
-    String getFileId();
+    @Nullable String getFileId();
 
     /**
      * @return the context
@@ -120,8 +118,7 @@ public interface ISkinConfig {
     /**
      * @return Returns the {@link String} representing the projectId.
      */
-    @Nullable
-    Object getProjectId();
+    @Nullable Object getProjectId();
 
     /**
      * @return the project
@@ -155,8 +152,7 @@ public interface ISkinConfig {
      *         </ol>
      * @since 1.0
      */
-    @Nullable
-    Xpp3Dom get(@Nonnull String property);
+    @Nullable Xpp3Dom get(@Nonnull String property);
 
     /**
      * Gets the text value of the given {@code property}.
@@ -172,8 +168,7 @@ public interface ISkinConfig {
      * @param <T>
      *            the type of returned object.
      */
-    @Nullable
-    <T> T getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType, @Nullable T defaultValue);
+    @Nullable <T> T getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType, @Nullable T defaultValue);
 
     /**
      * Gets the attribute value of the given {@code attribute} of {@code property}.
@@ -191,12 +186,10 @@ public interface ISkinConfig {
      * @param <T>
      *            the type of returned object.
      */
-    @Nullable
-    <T> T getAttributeValue(
-            @Nonnull String property,
-            @Nonnull String attribute,
-            @Nonnull Class<T> targetType,
-            @Nullable T defaultValue);
+    @Nullable <T> T getAttributeValue(@Nonnull String property,
+        @Nonnull String attribute,
+        @Nonnull Class<T> targetType,
+        @Nullable T defaultValue);
 
     /**
      * Get the value contained in specific attribute of {@code element} parameter.
@@ -214,17 +207,17 @@ public interface ISkinConfig {
      * @param <T>
      *            the type of returned value.
      */
-    @Nullable
-    <T> T getAttributeValue(
-            @Nonnull Xpp3Dom element, @Nonnull String attribute, @Nonnull Class<T> targetType, T defaultValue);
+    @Nullable <T> T getAttributeValue(@Nonnull Xpp3Dom element,
+        @Nonnull String attribute,
+        @Nonnull Class<T> targetType,
+        T defaultValue);
 
     /**
      * @param href
      *            link to relative.
      * @return Returns Relativizes the link.
      */
-    @Nullable
-    String relativeLink(String href);
+    @Nullable String relativeLink(String href);
 
     /**
      * Gets the indicating if the link is active.
@@ -246,6 +239,5 @@ public interface ISkinConfig {
      * @param <T>
      *            Tthe type of expected returned value.
      */
-    @Nullable
-    <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);
+    @Nullable <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);
 }

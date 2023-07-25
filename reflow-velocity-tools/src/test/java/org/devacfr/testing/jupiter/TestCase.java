@@ -56,8 +56,7 @@ public class TestCase extends Assertions {
     }
 
     public ByteSource getResource(final String filename) {
-        return Resources.asByteSource(
-                Resources.getResource(getPackagePath().resolve(filename).toString()));
+        return Resources.asByteSource(Resources.getResource(getPackagePath().resolve(filename).toString()));
     }
 
     /**
@@ -89,8 +88,8 @@ public class TestCase extends Assertions {
     }
 
     public String getExpectedResource(final String extension, final Function<String, String> transformer) {
-        return Approvals.getExpectedResource(
-                getPackagePath(), this.getClass(), getMethodName(), extension, transformer);
+        return Approvals
+                .getExpectedResource(getPackagePath(), this.getClass(), getMethodName(), extension, transformer);
     }
 
     public void verify() {
@@ -102,8 +101,8 @@ public class TestCase extends Assertions {
      *            the extension file.
      */
     public void verify(final String extension) {
-        Approvals.verify(
-                getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
+        Approvals
+                .verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
     }
 
     public void verify(final Path actualFile, final Path expectedFile) {

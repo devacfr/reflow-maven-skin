@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.google.common.collect.Lists;
-import org.apache.maven.doxia.site. SiteModel;
+import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.doxia.site.LinkItem;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -72,7 +72,8 @@ public class Navbar extends BsComponent {
     /**
      * Default constructor.
      *
-     * @param config a config (can <b>not</b> be {@code null}).
+     * @param config
+     *            a config (can <b>not</b> be {@code null}).
      */
     public Navbar(@Nonnull final ISkinConfig config) {
         super(COMPONENT);
@@ -119,8 +120,7 @@ public class Navbar extends BsComponent {
         }
         // add menus
         if (model.getBody() != null && model.getBody().getMenus() != null) {
-            final List<org.apache.maven.doxia.site.Menu> menus =
-                    model.getBody().getMenus();
+            final List<org.apache.maven.doxia.site.Menu> menus = model.getBody().getMenus();
             for (final org.apache.maven.doxia.site.Menu menu : menus) {
                 if (isNullOrEmpty(menu.getName())) {
                     continue;
@@ -206,8 +206,10 @@ public class Navbar extends BsComponent {
         private final String height;
 
         /**
-         * @param config  a config (can <b>not</b> be {@code null}).
-         * @param element the element assiciated to image brand.
+         * @param config
+         *            a config (can <b>not</b> be {@code null}).
+         * @param element
+         *            the element assiciated to image brand.
          */
         ImageBrand(@Nonnull final ISkinConfig config, @Nonnull final Xpp3Dom element) {
             Objects.requireNonNull(config);

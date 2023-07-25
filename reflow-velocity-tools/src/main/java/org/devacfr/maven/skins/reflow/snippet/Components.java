@@ -42,7 +42,8 @@ public class Components extends ArrayList<Component<?>> {
     /**
      *
      */
-    public Components() {}
+    public Components() {
+    }
 
     /**
      * @return

@@ -47,7 +47,8 @@ public abstract class MockitoTestCase extends TestCase {
     /**
      *
      */
-    public MockitoTestCase() {}
+    public MockitoTestCase() {
+    }
 
     /**
      * any object or null.

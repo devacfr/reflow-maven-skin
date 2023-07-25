@@ -103,10 +103,9 @@ public class MenuItem {
     /**
      * recurcive
      */
-    private void recurciveAddItem(
-            final ISkinConfig config,
-            final List<MenuItem> menuItems,
-            final List<org.apache.maven.doxia.site.MenuItem> origMenuItems) {
+    private void recurciveAddItem(final ISkinConfig config,
+        final List<MenuItem> menuItems,
+        final List<org.apache.maven.doxia.site.MenuItem> origMenuItems) {
         if (origMenuItems == null) {
             return;
         }

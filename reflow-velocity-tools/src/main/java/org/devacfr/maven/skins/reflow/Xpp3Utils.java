@@ -46,18 +46,17 @@ public final class Xpp3Utils {
      * Retrieves the child node. Tests both default name and with namespace.
      *
      * @param parentNode
-     *                   the parent node
+     *            the parent node
      * @param name
-     *                   the child name of node to get
+     *            the child name of node to get
      * @param namespace
-     *                   the namespace (can be empty or {@code null}).
-     * @return Returns Returns {@link Xpp3Dom} representing the child of
-     *         {@code parentNode} if exists, otherwise returns
+     *            the namespace (can be empty or {@code null}).
+     * @return Returns Returns {@link Xpp3Dom} representing the child of {@code parentNode} if exists, otherwise returns
      *         {@code null}.
      */
-    @Nullable
-    public static Xpp3Dom getFirstChild(
-            @Nullable final Xpp3Dom parentNode, @Nonnull final String name, @Nonnull final String namespace) {
+    @Nullable public static Xpp3Dom getFirstChild(@Nullable final Xpp3Dom parentNode,
+        @Nonnull final String name,
+        @Nonnull final String namespace) {
         if (parentNode == null) {
             return null;
         }
@@ -74,9 +73,8 @@ public final class Xpp3Utils {
      * Gets the list of all children name for the {@code parentNode}.
      *
      * @param parentNode
-     *                   the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all
-     *         children, which may be empty but never
+     *            the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
      *         {@code null}.
      * @since 1.3
      */
@@ -90,11 +88,10 @@ public final class Xpp3Utils {
      * Gets children list filtered by name of {@code parentNode}.
      *
      * @param parentNode
-     *                   the parent node to use.
+     *            the parent node to use.
      * @param name
-     *                   the name of element to filter
-     * @return Returns a list of {@link Xpp3Dom} representing all children element
-     *         filtered by {@code name} of
+     *            the name of element to filter
+     * @return Returns a list of {@link Xpp3Dom} representing all children element filtered by {@code name} of
      *         {@code parentNode}.
      */
     @SuppressWarnings("null")

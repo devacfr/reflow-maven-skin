@@ -54,11 +54,11 @@ public class ComponentResolver {
 
     /** **/
     private static final Pattern RESOLVER_PATTERN = Pattern.compile(
-            "\\{\\{(<|%) (\\/?)([\\w\\-_]*)(\\s?(?:[\\w\\-_]*)(?:=[\\u201c|\"](?:[\\s\\w\\p{Punct}]*)[\\u201d|\"])?)* (\\/?)(>|%)\\}\\}",
-            Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
+        "\\{\\{(<|%) (\\/?)([\\w\\-_]*)(\\s?(?:[\\w\\-_]*)(?:=[\\u201c|\"](?:[\\s\\w\\p{Punct}]*)[\\u201d|\"])?)* (\\/?)(>|%)\\}\\}",
+        Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
-    private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile(
-            "\\s?(\\w*)=(\\\")?(\\w*)\2\\s?", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
+    private static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("\\s?(\\w*)=(\\\")?(\\w*)\2\\s?",
+        Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS);
 
     /**
      * Default constructor
@@ -219,8 +219,7 @@ public class ComponentResolver {
 
         public boolean matches(final Element root, final Element element) {
             // exclude if in <pre> element, allowing highlight component in documentation
-            if ("pre".equals(element.tagName())
-                    || "code".equals(element.tagName())
+            if ("pre".equals(element.tagName()) || "code".equals(element.tagName())
                     || element.hasParent() && "pre".equals(element.parent().tagName())) {
                 return false;
             }

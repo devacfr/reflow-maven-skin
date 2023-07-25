@@ -55,33 +55,29 @@ public class MarkdownParserTest extends ParserTestCase {
     @Test
     public void shouldParseToHtml() {
         assertNotNull(parser);
-        verify(
-                content -> {
-                    try {
-                        final String html = parseFileToHtml(content);
-                        return Jsoup.parse(html).html();
-                    } catch (final Exception e) {
-                        Throwables.throwIfUnchecked(e);
-                        throw new RuntimeException(e);
-                    }
-                },
-                "md");
+        verify(content -> {
+            try {
+                final String html = parseFileToHtml(content);
+                return Jsoup.parse(html).html();
+            } catch (final Exception e) {
+                Throwables.throwIfUnchecked(e);
+                throw new RuntimeException(e);
+            }
+        }, "md");
     }
 
     @Test
     public void shouldParseSnippetToHtml() {
         assertNotNull(parser);
-        verify(
-                content -> {
-                    try {
-                        final String html = parseFileToHtml(content);
-                        return Jsoup.parse(html).html();
-                    } catch (final Exception e) {
-                        Throwables.throwIfUnchecked(e);
-                        throw new RuntimeException(e);
-                    }
-                },
-                "md");
+        verify(content -> {
+            try {
+                final String html = parseFileToHtml(content);
+                return Jsoup.parse(html).html();
+            } catch (final Exception e) {
+                Throwables.throwIfUnchecked(e);
+                throw new RuntimeException(e);
+            }
+        }, "md");
     }
 
     protected String parseFileToHtml(final String content) throws Exception {

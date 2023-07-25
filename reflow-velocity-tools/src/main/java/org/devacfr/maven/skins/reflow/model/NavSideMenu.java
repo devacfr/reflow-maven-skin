@@ -139,7 +139,7 @@ public class NavSideMenu extends BsComponent {
             this.withName(menu.getAttribute("name"))
                     .withItems(items)
                     .withSelectFirstOnSelect(
-                            config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
+                        config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
             this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
             this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
             this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
@@ -155,8 +155,7 @@ public class NavSideMenu extends BsComponent {
      *
      * @return Returns a {@link String} representing the name of menu.
      */
-    @Nullable
-    public String getName() {
+    @Nullable public String getName() {
         return name;
     }
 
@@ -239,16 +238,14 @@ public class NavSideMenu extends BsComponent {
      * @param pageName
      * @param flatten
      */
-    private static void addMenuItemRecursively(
-            @Nonnull final List<SideNavMenuItem> menuItems,
-            @Nonnull final ISkinConfig config,
-            @Nonnull final Xpp3Dom parentNode,
-            @Nonnull final String pageName,
-            final boolean flatten) {
+    private static void addMenuItemRecursively(@Nonnull final List<SideNavMenuItem> menuItems,
+        @Nonnull final ISkinConfig config,
+        @Nonnull final Xpp3Dom parentNode,
+        @Nonnull final String pageName,
+        final boolean flatten) {
         for (final Xpp3Dom item : Xpp3Utils.getChildrenNodes(parentNode, "item")) {
             final String href = item.getAttribute("href");
-            final SideNavMenuItem menuItem = new SideNavMenuItem()
-                    .withName(item.getAttribute("name"))
+            final SideNavMenuItem menuItem = new SideNavMenuItem().withName(item.getAttribute("name"))
                     .withParent(pageName)
                     .withHref(config.relativeLink(href))
                     .withSlugName(SkinConfigTool.slugFilename(href))

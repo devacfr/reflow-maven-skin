@@ -49,9 +49,8 @@ public class SkinConfigToolTest extends MockitoTestCase {
         try (final InputStream in = getResource("default.site.xml").openBufferedStream()) {
             siteModel = reader.read(in);
         }
-        valueParser = new ValueParser(ImmutableMap.<String, Object>builder()
-                .put("velocityContext", velocityContext)
-                .build());
+        valueParser = new ValueParser(
+                ImmutableMap.<String, Object> builder().put("velocityContext", velocityContext).build());
 
         final MavenProject maven = new MavenProject();
         maven.setArtifactId("maven-reflow-plugin");
@@ -108,10 +107,9 @@ public class SkinConfigToolTest extends MockitoTestCase {
 
         assertEquals(false, skinConfig.isExternalLink(null), "should be internal");
         assertEquals(false, skinConfig.isExternalLink("summary.html"), "should be internal");
-        assertEquals(
-                false,
-                skinConfig.isExternalLink("https://devacfr.github.io/reflow-maven-skin/dev/summary.html"),
-                "should be internal");
+        assertEquals(false,
+            skinConfig.isExternalLink("https://devacfr.github.io/reflow-maven-skin/dev/summary.html"),
+            "should be internal");
     }
 
     @Test

@@ -85,7 +85,7 @@ public class DefaultSiteRendererTest extends TestCase {
 
     /**
      * @throws java.lang.Exception
-     *                             if something goes wrong.
+     *             if something goes wrong.
      */
     @BeforeEach
     protected void setUp() throws Exception {
@@ -120,7 +120,7 @@ public class DefaultSiteRendererTest extends TestCase {
 
     /**
      * @throws java.lang.Exception
-     *                             if something goes wrong.
+     *             if something goes wrong.
      */
     @AfterEach
     protected void tearDown() throws Exception {
@@ -131,7 +131,7 @@ public class DefaultSiteRendererTest extends TestCase {
 
     /**
      * @throws Exception
-     *                   if something goes wrong.
+     *             if something goes wrong.
      */
     @Test
     public void shouldAcceptSnippet() throws Exception {
@@ -141,8 +141,8 @@ public class DefaultSiteRendererTest extends TestCase {
         // ----------------------------------------------------------------------
         // Render the site from src/test/resources/site to OUTPUT
         // ----------------------------------------------------------------------
-        final SiteModel model =
-                new SiteXpp3Reader().read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
+        final SiteModel model = new SiteXpp3Reader()
+                .read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
 
         final Path targetSite = getTestFile(OUTPUT).toPath();
         final Path srcSite = getTestFile("src/test/resources/site").toPath();
@@ -154,19 +154,19 @@ public class DefaultSiteRendererTest extends TestCase {
         verify(targetSite.resolve("snippet.html"), getPackagePath().resolve("snippet.approved.html"));
     }
 
-    private SiteRenderingContext getSiteRenderingContext(
-            final SiteModel model, final Path siteDir, final boolean validate)
-            throws RendererException, IOException {
+    private SiteRenderingContext getSiteRenderingContext(final SiteModel model,
+        final Path siteDir,
+        final boolean validate) throws RendererException, IOException {
         final File skinFile = minimalSkinJar;
 
         final Map<String, String> attributes = new HashMap<>();
         attributes.put("outputEncoding", "UTF-8");
 
-        final Artifact skin = new DefaultArtifact(
-                "org.group", "artifact", VersionRange.createFromVersion("1.1"), null, "jar", "", null);
+        final Artifact skin = new DefaultArtifact("org.group", "artifact", VersionRange.createFromVersion("1.1"), null,
+                "jar", "", null);
         skin.setFile(skinFile);
-        final SiteRenderingContext siteRenderingContext =
-                renderer.createContextForSkin(skin, attributes, model, "defaultWindowTitle", Locale.ENGLISH);
+        final SiteRenderingContext siteRenderingContext = renderer
+                .createContextForSkin(skin, attributes, model, "defaultWindowTitle", Locale.ENGLISH);
         siteRenderingContext.addSiteDirectory(siteDir.toFile());
         siteRenderingContext.setValidate(validate);
 

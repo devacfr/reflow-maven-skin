@@ -31,7 +31,8 @@ import static java.util.Objects.requireNonNull;
 /**
  * @author Christophe Friederich
  * @version 2.4
- * @param <T> type of component
+ * @param <T>
+ *            type of component
  */
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 
@@ -39,12 +40,11 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
     private final Type type;
 
     @Nonnull
-    public static SnippetComponent<?> createSnippet(
-            @Nonnull final Element element, final Component<?> parent, final Type type) {
+    public static SnippetComponent<?> createSnippet(@Nonnull final Element element,
+        final Component<?> parent,
+        final Type type) {
         requireNonNull(element);
-        return new SnippetComponent<>(element, type)
-                .addAttributes(element.attributes())
-                .withParent(parent);
+        return new SnippetComponent<>(element, type).addAttributes(element.attributes()).withParent(parent);
     }
 
     /**
@@ -93,8 +93,7 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
                 // if snippet contains rendered snippet.
                 if (ComponentResolver.hasIncludedSnippetComponent(el)) {
                     final SnippetParser parser = context.createChildParser();
-                    final Document childDoc =
-                            parser.parse(context.getConfig(), el.outerHtml()).document();
+                    final Document childDoc = parser.parse(context.getConfig(), el.outerHtml()).document();
                     element.replaceWith(childDoc.body().children().first());
                 } else {
                     element.replaceWith(el);

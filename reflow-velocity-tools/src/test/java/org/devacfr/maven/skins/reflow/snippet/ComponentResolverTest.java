@@ -98,14 +98,12 @@ public class ComponentResolverTest {
 
     @Test
     public void shouldContainSnippetComponent() {
-        assertEquals(
-                true,
-                ComponentResolver.hasIncludedSnippetComponent(
-                        new Element("body").append("<test webcomponent class=\"cl\"></test>")));
-        assertEquals(
-                true,
-                ComponentResolver.hasIncludedSnippetComponent(
-                        new Element("body").append("<test shortcode class=\"cl\"></test>")));
+        assertEquals(true,
+            ComponentResolver.hasIncludedSnippetComponent(
+                new Element("body").append("<test webcomponent class=\"cl\"></test>")));
+        assertEquals(true,
+            ComponentResolver
+                    .hasIncludedSnippetComponent(new Element("body").append("<test shortcode class=\"cl\"></test>")));
         assertEquals(false, ComponentResolver.hasIncludedSnippetComponent(new Element("body").append("<test></test>")));
     }
 

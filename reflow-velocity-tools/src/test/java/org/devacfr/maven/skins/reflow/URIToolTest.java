@@ -45,8 +45,7 @@ public class URIToolTest extends TestCase {
         final String currentFilename = "index.html";
         final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/";
 
-        final String currentFileDir =
-                URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
         final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals(".", actual);
     }
@@ -57,8 +56,7 @@ public class URIToolTest extends TestCase {
         final String currentFilename = "index.html";
         final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
 
-        final String currentFileDir =
-                URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
         final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("..", actual);
     }
@@ -69,8 +67,7 @@ public class URIToolTest extends TestCase {
         final String currentFilename = "themes/index.html";
         final String projectUrl = "https://devacfr.github.io/reflow-maven-skin/skin/";
 
-        final String currentFileDir =
-                URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
+        final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFilename).resolve(".").toString();
         final String actual = URITool.relativizeLink(currentFileDir, absoluteResourceURL);
         assertEquals("../..", actual);
     }
@@ -86,8 +83,7 @@ public class URIToolTest extends TestCase {
             final String childBaseUrl = "https://devacfr.github.io/reflow-maven-skin/";
             final String relativePath = ".";
             final URI parent = URI.create(childBaseUrl);
-            final String parentBaseUrl =
-                    parent.resolve(relativePath).normalize().toString();
+            final String parentBaseUrl = parent.resolve(relativePath).normalize().toString();
             final URLRebaser rebaser = URITool.createURLRebaser(parentBaseUrl, childBaseUrl);
             rebaser.rebaseLink("${project.path}/reflow.png");
         });

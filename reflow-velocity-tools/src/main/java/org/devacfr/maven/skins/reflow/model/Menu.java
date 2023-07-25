@@ -241,8 +241,7 @@ public class Menu {
      *            the menu to check
      * @return Returns {@code true} whether menu matches with regex.
      */
-    public static boolean matches(
-            @Nonnull final String regex, @Nonnull final org.apache.maven.doxia.site.Menu menu) {
+    public static boolean matches(@Nonnull final String regex, @Nonnull final org.apache.maven.doxia.site.Menu menu) {
         requireNonNull(regex);
         requireNonNull(menu);
         return menu.getRef() != null && menu.getRef().matches(regex)

@@ -95,9 +95,7 @@ public class ComponentToken {
     }
 
     public boolean isCloseTagOf(final ComponentToken startElement) {
-        return name.equals(startElement.name)
-                && type.equals(startElement.type)
-                && Tag.start.equals(startElement.tag)
+        return name.equals(startElement.name) && type.equals(startElement.type) && Tag.start.equals(startElement.tag)
                 && Tag.end.equals(tag);
     }
 
@@ -106,10 +104,6 @@ public class ComponentToken {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("name", name)
-                .add("type", type)
-                .add("tag", tag)
-                .toString();
+        return MoreObjects.toStringHelper(this).add("name", name).add("type", type).add("tag", tag).toString();
     }
 }

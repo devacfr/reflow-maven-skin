@@ -34,7 +34,7 @@ import org.apache.velocity.tools.config.DefaultKey;
  * @since 1.0
  */
 // instancied by Velocity
-@SuppressWarnings({"checkstyle:finalclass", "checkstyle:hideutilityclassconstructor"})
+@SuppressWarnings({ "checkstyle:finalclass", "checkstyle:hideutilityclassconstructor" })
 @DefaultKey("uriTool")
 public class URITool {
 
@@ -55,8 +55,7 @@ public class URITool {
      * @return the relative link, if calculated, or the original link if not.
      * @since 1.0
      */
-    @Nullable
-    public static String relativizeLink(@Nullable final String baseDirUri, @Nullable final String link) {
+    @Nullable public static String relativizeLink(@Nullable final String baseDirUri, @Nullable final String link) {
         // taken from
         // org.apache.maven.doxia.site.decoration.inheritance.DecorationModelInheritanceAssembler
 
@@ -95,8 +94,8 @@ public class URITool {
      * @see URIPathDescriptor#rebaseLink(String)
      * @see URLRebaser#rebaseLink(String)
      */
-    public static URLRebaser createURLRebaser(
-            @Nullable final String parentBaseUrl, @Nullable final String childBaseUrl) {
+    public static URLRebaser createURLRebaser(@Nullable final String parentBaseUrl,
+        @Nullable final String childBaseUrl) {
         return new URLRebaser(parentBaseUrl, childBaseUrl);
     }
 
@@ -107,8 +106,7 @@ public class URITool {
      *            a base url
      * @return Returns a <code>String</code> representing base path instance.
      */
-    @Nullable
-    public static String normalisedBaseUrl(@Nullable final String baseUrl) {
+    @Nullable public static String normalisedBaseUrl(@Nullable final String baseUrl) {
         if (Strings.isNullOrEmpty(baseUrl)) {
             return baseUrl;
         }
@@ -151,8 +149,7 @@ public class URITool {
          *
          * @return the new path.
          */
-        @Nullable
-        public String getNewPath() {
+        @Nullable public String getNewPath() {
             return this.newPath;
         }
 
@@ -161,8 +158,7 @@ public class URITool {
          *
          * @return the old path.
          */
-        @Nullable
-        public String getOldPath() {
+        @Nullable public String getOldPath() {
             return this.oldPath;
         }
 

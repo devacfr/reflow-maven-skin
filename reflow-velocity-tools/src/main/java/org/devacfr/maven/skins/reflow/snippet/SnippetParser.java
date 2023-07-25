@@ -104,7 +104,7 @@ public class SnippetParser {
 
         final Elements elements = resolver.collect(doc);
 
-        for (it = elements.iterator(); it.hasNext(); ) {
+        for (it = elements.iterator(); it.hasNext();) {
             try {
                 parse();
             } catch (final Exception ex) {

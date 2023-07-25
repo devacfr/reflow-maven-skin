@@ -62,8 +62,7 @@ public class Footer extends BsComponent {
         final SiteModel model = config.getSiteModel();
 
         if (model.getBody() != null && model.getBody().getMenus() != null) {
-            final List<org.apache.maven.doxia.site.Menu> menus =
-                    model.getBody().getMenus();
+            final List<org.apache.maven.doxia.site.Menu> menus = model.getBody().getMenus();
             if (bottomNav != null && bottomNav.getChildren().length > 0) {
                 // foreach columns
                 for (final Xpp3Dom col : bottomNav.getChildren()) {

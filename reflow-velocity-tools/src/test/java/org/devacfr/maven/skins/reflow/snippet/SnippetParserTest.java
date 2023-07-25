@@ -32,80 +32,68 @@ public class SnippetParserTest extends MockitoTestCase {
 
     @Test
     public void shouldReplaceSnippetByHtml() throws Exception {
-        verify(
-                (htmlSource) -> {
-                    try {
-                        return createParser().parse(config, htmlSource).html();
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     @Test
     public void shouldRenderCard() {
-        verify(
-                (htmlSource) -> {
-                    try {
-                        return createParser().parse(config, htmlSource).html();
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     @Test
     public void shouldRenderCardRecursively() {
-        verify(
-                (htmlSource) -> {
-                    try {
-                        return createParser().parse(config, htmlSource).html();
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     @Test
     public void shouldRenderBadge() {
-        verify(
-                (htmlSource) -> {
-                    try {
-                        return createParser().parse(config, htmlSource).html();
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     @Test
     public void shouldRenderLayout() {
-        verify(
-                (htmlSource) -> {
-                    try {
-                        return createParser().parse(config, htmlSource).html();
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     @Test
     public void shouldRenderNestedComponent() {
-        verify(
-                (htmlSource) -> {
-                    try {
-                        return createParser().parse(config, htmlSource).html();
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify((htmlSource) -> {
+            try {
+                return createParser().parse(config, htmlSource).html();
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     private SnippetParser createParser() {

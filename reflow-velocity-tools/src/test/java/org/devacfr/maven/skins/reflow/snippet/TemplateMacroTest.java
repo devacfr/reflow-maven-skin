@@ -30,28 +30,24 @@ public class TemplateMacroTest extends PlexusTestCase {
     public void shouldConvert() {
         final PartialTemplateMacro macro = new PartialTemplateMacro();
 
-        verify(
-                actual -> {
-                    try {
-                        return macro.convertSnippet(CharSource.wrap(actual));
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify(actual -> {
+            try {
+                return macro.convertSnippet(CharSource.wrap(actual));
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 
     @Test
     public void shouldConvertHtmlSnippet() {
         final PartialTemplateMacro macro = new PartialTemplateMacro();
-        verify(
-                actual -> {
-                    try {
-                        return macro.convertSnippet(CharSource.wrap(actual));
-                    } catch (final IOException e) {
-                        throw new RuntimeException(e.getMessage(), e);
-                    }
-                },
-                "html");
+        verify(actual -> {
+            try {
+                return macro.convertSnippet(CharSource.wrap(actual));
+            } catch (final IOException e) {
+                throw new RuntimeException(e.getMessage(), e);
+            }
+        }, "html");
     }
 }

@@ -64,8 +64,7 @@ public class Header extends BsComponent {
         this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, null));
         this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
 
-        this.type = config.getAttributeValue(COMPONENT, "type", String.class, HEADER_TYPES.get(0))
-                .toLowerCase();
+        this.type = config.getAttributeValue(COMPONENT, "type", String.class, HEADER_TYPES.get(0)).toLowerCase();
         if (!HEADER_TYPES.contains(this.type)) {
             this.type = HEADER_TYPES.get(0);
         }
@@ -91,6 +90,7 @@ public class Header extends BsComponent {
 
     /**
      * Gets the type of header.
+     * 
      * @return Returns a String representing the type of header.
      */
     public String getType() {

@@ -67,11 +67,10 @@ public final class Approvals {
      * @return
      * @throws IOException
      */
-    public static String getActualResource(
-            @Nonnull final Path location,
-            @Nonnull final Class<?> testClass,
-            @Nonnull final String testName,
-            @Nullable final String extension) {
+    public static String getActualResource(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String extension) {
         final String suf = !Strings.isNullOrEmpty(extension) ? "." + extension : "";
         final String fileName = String.format("%s.%s.actual%s", testClass.getSimpleName(), testName, suf);
         return readFile(location.resolve(fileName));
@@ -89,12 +88,11 @@ public final class Approvals {
      * @return
      * @throws IOException
      */
-    public static String getExpectedResource(
-            @Nonnull final Path location,
-            @Nonnull final Class<?> testClass,
-            @Nonnull final String testName,
-            @Nullable final String extension,
-            @Nullable final Function<String, String> transformer) {
+    public static String getExpectedResource(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String extension,
+        @Nullable final Function<String, String> transformer) {
         final String ext = !Strings.isNullOrEmpty(extension) ? "." + extension : "";
         final String fileName = String.format("%s.%s.approved%s", testClass.getSimpleName(), testName, ext);
         final String text = Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(location.resolve(fileName)));
@@ -118,20 +116,18 @@ public final class Approvals {
      * @param extension
      *            the extension file.
      */
-    public static void verify(
-            @Nonnull final Path location,
-            @Nonnull final Class<?> testClass,
-            @Nonnull final String testName,
-            @Nullable final String actual,
-            @Nullable final String extension) {
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nullable final String actual,
+        @Nullable final String extension) {
         final String expected = getExpectedResource(location, testClass, testName, extension, null);
         assertThat(actual, equalToCompressingWhiteSpace(expected));
     }
 
     public static void verify(final Path actualFile, final Path expectedFile) {
         try {
-            final String actual =
-                    Files.asCharSource(actualFile.toFile(), Charsets.UTF_8).read();
+            final String actual = Files.asCharSource(actualFile.toFile(), Charsets.UTF_8).read();
             final String expected = Approvals.REMOVE_CARRIAGE_RETURN_LINEFEED.apply(readFile(expectedFile));
             final Matcher<String> matcher = IsEqualCompressingWhiteSpace.equalToCompressingWhiteSpace(expected);
             if (!matcher.matches(actual)) {
@@ -159,12 +155,11 @@ public final class Approvals {
      * @param extension
      *            the extension file.
      */
-    public static void verify(
-            @Nonnull final Path location,
-            @Nonnull final Class<?> testClass,
-            @Nonnull final String testName,
-            final Function<String, String> transform,
-            @Nullable final String extension) {
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        final Function<String, String> transform,
+        @Nullable final String extension) {
         String actual = getActualResource(location, testClass, testName, extension);
         if (actual != null && transform != null) {
             actual = transform.apply(actual);
@@ -207,12 +202,11 @@ public final class Approvals {
      * @param extension
      *            the extension file
      */
-    public static void verify(
-            @Nonnull final Path location,
-            @Nonnull final Class<?> testClass,
-            @Nonnull final String testName,
-            @Nonnull final Path actualFile,
-            @Nullable final String extension) {
+    public static void verify(@Nonnull final Path location,
+        @Nonnull final Class<?> testClass,
+        @Nonnull final String testName,
+        @Nonnull final Path actualFile,
+        @Nullable final String extension) {
 
         verify(location, testClass, testName, readFile(location.resolve(actualFile)), extension);
     }
@@ -267,8 +261,8 @@ public final class Approvals {
             Diff diffs = null;
             try {
                 diffs = provider.computeDiff(new StringReader(actual), new StringReader(expected));
-                return diffs.toUnifiedDiff(
-                        "actual", "expected", new StringReader(actual), new StringReader(expected), 10);
+                return diffs
+                        .toUnifiedDiff("actual", "expected", new StringReader(actual), new StringReader(expected), 10);
             } catch (final IOException e) {
                 throw new RuntimeException(e.getMessage(), e);
             }

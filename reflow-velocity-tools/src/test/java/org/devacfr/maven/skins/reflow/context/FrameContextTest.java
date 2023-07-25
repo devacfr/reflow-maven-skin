@@ -62,20 +62,13 @@ public class FrameContextTest extends MockitoTestCase {
     @Test
     public void shouldBuildFrameContext() throws Exception {
         final String xml = "<reflowSkin><pages>" + //
-                "<development-documentation type=\"doc\">"
-                + //
-                "          <menu name=\"Development Documentation\">"
-                + //
-                "            <item name=\"Contribute\" href=\"dev/contribute.html\" />"
-                + //
-                "            <item name=\"Code Conventions\" href=\"dev/code-conventions.html\"/>"
-                + //
-                "            <item name=\"Release Management\" href=\"dev/release-management.html\"/>"
-                + //
-                "          </menu>"
-                + //
-                "        </development-documentation>"
-                + //
+                "<development-documentation type=\"doc\">" + //
+                "          <menu name=\"Development Documentation\">" + //
+                "            <item name=\"Contribute\" href=\"dev/contribute.html\" />" + //
+                "            <item name=\"Code Conventions\" href=\"dev/code-conventions.html\"/>" + //
+                "            <item name=\"Release Management\" href=\"dev/release-management.html\"/>" + //
+                "          </menu>" + //
+                "        </development-documentation>" + //
                 "</pages></reflowSkin>";
         final Xpp3Dom globalProperties = Xpp3DomBuilder.build(new StringReader(xml));
         when(config.getPageProperties()).thenReturn(new Xpp3Dom("dev-contribute"));
@@ -96,9 +89,8 @@ public class FrameContextTest extends MockitoTestCase {
         final TocSidebar tocSidebar = (TocSidebar) toc;
         assertEquals(Integer.MAX_VALUE, tocSidebar.getLevel());
         assertEquals("sidebar-light bg-light", tocSidebar.getCssClass());
-        assertEquals(
-                "m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed",
-                tocSidebar.getCssOptions());
+        assertEquals("m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed",
+            tocSidebar.getCssOptions());
 
         final Footer footer = frameContext.getFooter();
         assertNotNull(footer, "footer should be exist");

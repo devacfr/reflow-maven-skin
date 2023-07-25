@@ -73,8 +73,8 @@ public class SnippetContext {
     private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
 
     /** */
-    private static final List<String> DEFAULT_PATHS =
-            Lists.newArrayList("src/site/layouts/snippets", "META-INF/skin/snippets");
+    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/layouts/snippets",
+        "META-INF/skin/snippets");
 
     /** */
     private final List<SnippetComponent<?>> components = Lists.newArrayList();
@@ -160,10 +160,9 @@ public class SnippetContext {
     }
 
     @Nonnull
-    SnippetComponent<?> create(
-            @Nonnull final Element element,
-            @Nonnull final ComponentToken startToken,
-            @Nullable final ComponentToken endToken) {
+    SnippetComponent<?> create(@Nonnull final Element element,
+        @Nonnull final ComponentToken startToken,
+        @Nullable final ComponentToken endToken) {
         requireNonNull(element);
         requireNonNull(startToken);
         final SnippetComponent<?> component = SnippetComponent.createSnippet(element, null, startToken.type());
@@ -245,11 +244,10 @@ public class SnippetContext {
                 // Use config option <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
                 context.put("resourcePath", this.config.getResourcePath());
 
-                Velocity.mergeTemplate(
-                        "META-INF/skin/snippets/_snippet.vm",
-                        RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
-                        context,
-                        writer);
+                Velocity.mergeTemplate("META-INF/skin/snippets/_snippet.vm",
+                    RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
+                    context,
+                    writer);
                 break;
             } else {
                 if (LOGGER.isDebugEnabled()) {

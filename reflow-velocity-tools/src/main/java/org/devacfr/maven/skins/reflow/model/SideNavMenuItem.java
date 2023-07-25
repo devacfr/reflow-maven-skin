@@ -52,7 +52,8 @@ public class SideNavMenuItem {
     /**
      * Default constructor.
      */
-    public SideNavMenuItem() {}
+    public SideNavMenuItem() {
+    }
 
     /**
      * @return Returns the name of item menu.

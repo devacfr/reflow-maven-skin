@@ -43,12 +43,9 @@ public class HtmlToolTest extends TestCase {
     @BeforeEach
     public void setup() {
         htmlTool = new HtmlTool();
-        htmlTool.configure(new ValueParser(ImmutableMap.<String, Object>builder()
-                .put(
-                        "velocityContext",
-                        new ToolContext(ImmutableMap.<String, Object>builder()
-                                .put("outputEncoding", "utf-8")
-                                .build()))
+        htmlTool.configure(new ValueParser(ImmutableMap.<String, Object> builder()
+                .put("velocityContext",
+                    new ToolContext(ImmutableMap.<String, Object> builder().put("outputEncoding", "utf-8").build()))
                 .build()));
     }
 
@@ -143,9 +140,8 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldReorderToTopOneSection() {
-        verify(
-                content -> htmlTool.reorderToTop(content, "a:has(img), img", 1, "<div class=\"caption\"></div>"),
-                "html");
+        verify(content -> htmlTool.reorderToTop(content, "a:has(img), img", 1, "<div class=\"caption\"></div>"),
+            "html");
     }
 
     @Test
@@ -156,12 +152,10 @@ public class HtmlToolTest extends TestCase {
         assertNotNull(results);
         final List<String> actuals = results.getExtracted();
         assertNotNull(actuals);
-        assertThat(
-                actuals,
-                contains(
-                        "<a href=\"themes/bootswatch-cerulean.html\"><img src=\"images/1.png\"></a>",
-                        "<img src=\"images/2.png\">",
-                        "<img src=\"images/3.png\">"));
+        assertThat(actuals,
+            contains("<a href=\"themes/bootswatch-cerulean.html\"><img src=\"images/1.png\"></a>",
+                "<img src=\"images/2.png\">",
+                "<img src=\"images/3.png\">"));
         final String remainder = results.getRemainder();
         assertEquals(getExpectedResource("html"), remainder);
     }
@@ -210,8 +204,8 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldReplaceWith() {
-        final String actual =
-                htmlTool.replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
+        final String actual = htmlTool
+                .replaceWith("<p>text <tt>foo value</tt> end text.</p>", "tt", "<code class=\"literal\">");
         assertEquals("<p>text <code class=\"literal\">foo value</code> end text.</p>", actual);
     }
 
@@ -229,41 +223,33 @@ public class HtmlToolTest extends TestCase {
 
     @Test
     public void shouldEnsureHeadingIds() {
-        verify(
-                content -> htmlTool.ensureHeadingIds("page", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR),
-                "html");
+        verify(content -> htmlTool.ensureHeadingIds("page", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR),
+            "html");
     }
 
     @Test
     public void shouldEnsureHeadingIdsForFrame() {
-        verify(
-                content -> htmlTool.ensureHeadingIds("frame", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR),
-                "html");
+        verify(content -> htmlTool.ensureHeadingIds("frame", "overview", content, HtmlTool.DEFAULT_SLUG_SEPARATOR),
+            "html");
     }
 
     @Test
     public void shouldHeadingTree() {
-        final String content = htmlTool.ensureHeadingIds(
-                "page", "overview", getActualResource("html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
+        final String content = htmlTool
+                .ensureHeadingIds("page", "overview", getActualResource("html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
         final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
         // check root element
-        assertThat(
-                idElements.stream().map(IdElement::getId).collect(Collectors.toList()),
-                contains("apache-maven-site-plugin"));
+        assertThat(idElements.stream().map(IdElement::getId).collect(Collectors.toList()),
+            contains("apache-maven-site-plugin"));
         assertThat(idElements.stream().map(IdElement::getTagName).collect(Collectors.toList()), contains("h2"));
-        assertThat(
-                idElements.stream().map(IdElement::getText).collect(Collectors.toList()),
-                contains("Apache Maven Site Plugin"));
+        assertThat(idElements.stream().map(IdElement::getText).collect(Collectors.toList()),
+            contains("Apache Maven Site Plugin"));
 
         // check children
         assertThat(idElements.stream().map(IdElement::getHeadingLevel).collect(Collectors.toList()), contains(2));
-        assertThat(
-                idElements.get(0).getItems().stream().map(IdElement::getId).collect(Collectors.toList()),
-                contains("goals-overview", "usage"));
-        assertThat(
-                idElements.get(0).getItems().stream()
-                        .map(IdElement::getHeadingLevel)
-                        .collect(Collectors.toList()),
-                contains(3, 3));
+        assertThat(idElements.get(0).getItems().stream().map(IdElement::getId).collect(Collectors.toList()),
+            contains("goals-overview", "usage"));
+        assertThat(idElements.get(0).getItems().stream().map(IdElement::getHeadingLevel).collect(Collectors.toList()),
+            contains(3, 3));
     }
 }

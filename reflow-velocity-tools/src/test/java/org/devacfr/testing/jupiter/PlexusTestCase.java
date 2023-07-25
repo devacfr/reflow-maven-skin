@@ -42,7 +42,8 @@ public abstract class PlexusTestCase extends TestCase {
 
     private static String basedirPath;
 
-    public PlexusTestCase() {}
+    public PlexusTestCase() {
+    }
 
     public void setupContainer() {
 
@@ -66,8 +67,8 @@ public abstract class PlexusTestCase extends TestCase {
 
         final String config = getCustomConfigurationName();
 
-        final ContainerConfiguration containerConfiguration =
-                new DefaultContainerConfiguration().setName("test").setContext(context.getContextData());
+        final ContainerConfiguration containerConfiguration = new DefaultContainerConfiguration().setName("test")
+                .setContext(context.getContextData());
 
         if (config != null) {
             containerConfiguration.setContainerConfiguration(config);
@@ -92,9 +93,11 @@ public abstract class PlexusTestCase extends TestCase {
      *
      * @param containerConfiguration
      */
-    protected void customizeContainerConfiguration(final ContainerConfiguration containerConfiguration) {}
+    protected void customizeContainerConfiguration(final ContainerConfiguration containerConfiguration) {
+    }
 
-    protected void customizeContext(final Context context) {}
+    protected void customizeContext(final Context context) {
+    }
 
     protected PlexusConfiguration customizeComponentConfiguration() {
         return null;
@@ -134,7 +137,7 @@ public abstract class PlexusTestCase extends TestCase {
      * would be used to configure the Plexus container before running your test.
      *
      * @param subname
-     *                    the subname
+     *            the subname
      * @return A configruation name
      */
     protected String getConfigurationName(final String subname) {

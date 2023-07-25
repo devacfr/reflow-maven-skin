@@ -41,7 +41,8 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Christophe Friederich
  * @version 2.4
- * @param <T> type of component
+ * @param <T>
+ *            type of component
  */
 public class Component<T extends Component<T>> {
 
@@ -131,8 +132,7 @@ public class Component<T extends Component<T>> {
         return parent;
     }
 
-    @Nullable
-    protected Element getElement() {
+    @Nullable protected Element getElement() {
         if (this.node instanceof Element) {
             return (Element) this.node;
         }
@@ -251,9 +251,7 @@ public class Component<T extends Component<T>> {
                 .add("name", this.getName())
                 .add("isHtmlTag", this.isHtmlTag())
                 .add("attributes", this.attributes)
-                .add(
-                        "children",
-                        this.children.stream().map((cpt) -> cpt.getName()).collect(Collectors.toList()))
+                .add("children", this.children.stream().map((cpt) -> cpt.getName()).collect(Collectors.toList()))
                 .toString();
     }
 }
