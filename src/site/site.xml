@@ -22,7 +22,7 @@
     <alt>Reflow skin</alt>
     <href>${this.site.url}</href>
   </bannerLeft>
-  <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
+ 
 
   <publishDate position="none" />
   <version position="bottom" />
@@ -34,6 +34,7 @@
   </skin>
   <custom>
     <reflowSkin>
+      <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
       <absoluteResourceURL>${this.site.url}</absoluteResourceURL>
       <localResources>true</localResources>
       <smoothScroll>true</smoothScroll>

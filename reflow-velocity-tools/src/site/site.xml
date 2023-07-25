@@ -22,11 +22,11 @@
   xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
   
-  <!-- Google Analytics not inherited for some reason -->
-  <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
 
   <custom>
     <reflowSkin>
+    <!-- Google Analytics not inherited for some reason -->
+    <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
       <header enabled="false"/>
       <pages>
         <index project="reflow-velocity-tools" combine.self="override">

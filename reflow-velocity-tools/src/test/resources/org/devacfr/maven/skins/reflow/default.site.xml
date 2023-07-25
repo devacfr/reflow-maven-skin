@@ -33,7 +33,6 @@
     <alt>Reflow skin</alt>
     <href>https://devacfr.github.io/reflow-maven-skin/</href>
   </bannerLeft> 
-  <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
 
   <publishDate position="none" />
   <version position="bottom" />
@@ -45,6 +44,7 @@
   </skin>
   <custom>
     <reflowSkin>
+      <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
       <absoluteResourceURL>https://devacfr.github.io/reflow-maven-skin</absoluteResourceURL>
       <localResources>true</localResources>
       <smoothScroll>true</smoothScroll>

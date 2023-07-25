@@ -193,29 +193,6 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
 ##
 #**
  * Adds Google analytics tracker with the given account ID
- * ** deprecated **
- *###
-#macro ( googleAnalytics $accountId )##
-#*  *##if( $accountId && $accountId != "" )##
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', '$accountId']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-        </script>
-#*  *##end##
-#end##
-##
-#**
- * Adds Google analytics tracker with the given account ID
  *
  *###
 #macro ( googleAnalytics4 $accountId )##
@@ -225,7 +202,6 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', '${accountId}');
         </script>
 #*  *##end##
