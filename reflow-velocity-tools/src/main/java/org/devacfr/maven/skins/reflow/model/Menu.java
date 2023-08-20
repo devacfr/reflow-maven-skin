@@ -18,17 +18,18 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
 
-import com.google.common.collect.Lists;
+import javax.annotation.Nonnull;
+
 import org.apache.maven.doxia.site.LinkItem;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
-import static java.util.Objects.requireNonNull;
+import com.google.common.collect.Lists;
 
 /**
  * @author Christophe Friederich

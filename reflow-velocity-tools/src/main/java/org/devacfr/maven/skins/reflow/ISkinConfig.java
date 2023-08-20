@@ -127,16 +127,10 @@ public interface ISkinConfig {
     MavenProject getProject();
 
     /**
-     * @return the site model
+     * @return the SiteModel
      */
     @Nonnull
     SiteModel getSiteModel();
-
-    /**
-     * @return Returns a {@link String} representing the relative path to root site.
-     */
-    @Nonnull
-    String getResourcePath();
 
     /**
      * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise
@@ -240,4 +234,10 @@ public interface ISkinConfig {
      *            Tthe type of expected returned value.
      */
     @Nullable <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);
+
+    /**
+     * @return Returns a {@link String} representing the relative path to root site.
+     */
+    @Nonnull
+    public String getResourcePath();
 }

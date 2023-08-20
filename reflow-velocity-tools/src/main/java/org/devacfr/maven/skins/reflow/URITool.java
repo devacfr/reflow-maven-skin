@@ -18,14 +18,15 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import java.net.URI;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import java.net.URI;
-
-import com.google.common.base.Strings;
 import org.apache.maven.doxia.site.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
+
+import com.google.common.base.Strings;
 
 /**
  * An Apache Velocity tool that provides utility methods to work with URIs/URLs and links.
