@@ -90,7 +90,7 @@ governing permissions and limitations under
   </distributionManagement>
 
   <properties>
-    <reflow-current-version>2.3.3</reflow-current-version>
+    <reflow-current-version>2.3.4</reflow-current-version>
     <main.basedir>${session.executionRootDirectory}</main.basedir>
     <distribution.releaseRepository.id>ossrh</distribution.releaseRepository.id>
     <distribution.releaseRepositoryUrl>
