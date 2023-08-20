@@ -12,7 +12,7 @@
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>2.3.3</version>
+    <version>2.3.4</version>
   </parent>
 
   <artifactId>reflow-velocity-tools</artifactId>
@@ -32,8 +32,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
-      <artifactId>doxia-decoration-model</artifactId>
-      <version>${doxia.sitetools.version}</version>
+      <artifactId>doxia-site-model</artifactId>
+      <version>${doxia.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>

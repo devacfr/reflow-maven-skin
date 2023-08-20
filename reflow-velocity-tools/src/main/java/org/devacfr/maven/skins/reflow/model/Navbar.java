@@ -23,8 +23,8 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import org.apache.maven.doxia.site.decoration.DecorationModel;
-import org.apache.maven.doxia.site.decoration.LinkItem;
+import org.apache.maven.doxia.site.LinkItem;
+import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
@@ -104,17 +104,17 @@ public class Navbar extends BsComponent {
             this.image = null;
         }
         // add links
-        final DecorationModel decoration = config.getDecoration();
-        if (decoration.getBody() != null && decoration.getBody().getLinks() != null) {
-            final List<LinkItem> items = decoration.getBody().getLinks();
+        final SiteModel model = config.getSiteModel();
+        if (model.getBody() != null && model.getBody().getLinks() != null) {
+            final List<LinkItem> items = model.getBody().getLinks();
             for (final LinkItem item : items) {
                 this.menus.add(new Menu(config, item));
             }
         }
         // add menus
-        if (decoration.getBody() != null && decoration.getBody().getMenus() != null) {
-            final List<org.apache.maven.doxia.site.decoration.Menu> menus = decoration.getBody().getMenus();
-            for (final org.apache.maven.doxia.site.decoration.Menu menu : menus) {
+        if (model.getBody() != null && model.getBody().getMenus() != null) {
+            final List<org.apache.maven.doxia.site.Menu> menus = model.getBody().getMenus();
+            for (final org.apache.maven.doxia.site.Menu menu : menus) {
                 if (isNullOrEmpty(menu.getName())) {
                     continue;
                 }

@@ -20,5 +20,5 @@ in the [`site.xml` site descriptor][site-xml] file:
 
 Find other options for Reflow Maven skin [here][reflow-header].
 
-[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
+[site-xml]: https://maven.apache.org/doxia/doxia-sitetools/doxia-site-model/site.html
 [reflow-header]: ../reflow-documentation.html#components-header

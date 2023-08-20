@@ -17,22 +17,23 @@
  limitations under the License.
 
  -->
-<project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+<project xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
-  <!-- Google Analytics not inherited for some reason -->
-  <googleAnalyticsAccountId>UA-55015661-1</googleAnalyticsAccountId>
 
   <custom>
     <reflowSkin>
+      <!-- Google Analytics not inherited for some reason -->
+      <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
       <toc>sidebar</toc>
       <header enabled="true" cssClass="text-center text-light">
         <![CDATA[
         <div id="banner" class="header__banner">
-            <a href="$config.relativeLink( $decoration.bannerLeft.href )" class="d-inline-block">
+            <a href="$config.relativeLink( $site.bannerLeft.href )" class="d-inline-block">
                 <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg"
-                    alt="$decoration.bannerLeft.alt" width="$decoration.bannerLeft.width" height="$$decoration.bannerLeft.height">
+                    alt="$site.bannerLeft.alt" width="$site.bannerLeft.width" height="$site.bannerLeft.height">
             </a>
-            <h1 class="d-inline-block">$decoration.bannerLeft.name</h1>
+            <h1 class="d-inline-block">$site.bannerLeft.name</h1>
             <p class="lead">$config.slogan.getValue()</p>
         </div>
         <p>

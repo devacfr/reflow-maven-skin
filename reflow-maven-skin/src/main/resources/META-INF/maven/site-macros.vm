@@ -100,9 +100,9 @@
  *
  *###
 #macro ( getPublishDate )##
-#*  *##if ( $decoration.publishDate.position != 'none')
-#*      *##if ( $decoration.publishDate.format )##
-#*          *##set ( $format = $decoration.publishDate.format )##
+#*  *##if ( $site.publishDate.position != 'none')
+#*      *##if ( $site.publishDate.format )##
+#*          *##set ( $format = $site.publishDate.format )##
 #*      *##else##
 #*          *##set ( $format = "yyyy-MM-dd" )##
 #*      *##end##
@@ -127,7 +127,7 @@ $dateValue
  *
  *###
 #macro ( publishDate )##
-#*  *##if ( $decoration.publishDate.position != 'none')
+#*  *##if ( $site.publishDate.position != 'none')
 #*      *### render with internationalization support
 $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *##end##
@@ -193,29 +193,6 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
 ##
 #**
  * Adds Google analytics tracker with the given account ID
- * ** deprecated **
- *###
-#macro ( googleAnalytics $accountId )##
-#*  *##if( $accountId && $accountId != "" )##
-        <!-- Google Analytics -->
-        <script type="text/javascript">
-
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', '$accountId']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-        </script>
-#*  *##end##
-#end##
-##
-#**
- * Adds Google analytics tracker with the given account ID
  *
  *###
 #macro ( googleAnalytics4 $accountId )##
@@ -225,7 +202,6 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', '${accountId}');
         </script>
 #*  *##end##
@@ -238,8 +214,8 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
         <div class="feedback-links">
             <ul class="nav flex-column flex-nowrap">
                 <li class="nav-item">
-#*  *##if( $decoration.edit && $docRenderingContext.editable )##
-                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $decoration.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+#*  *##if( $site.edit && $docRenderingContext.editable )##
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $site.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
 #*  *##end##
                 </li>
             </ul>

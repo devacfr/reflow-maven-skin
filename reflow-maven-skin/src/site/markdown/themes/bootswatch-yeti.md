@@ -20,5 +20,5 @@ Find other theme options for Reflow Maven skin [here][reflow-themes].
 
 [bootswatch-theme]: http://bootswatch.com/yeti/
 [bootswatch]: http://bootswatch.com
-[site-xml]: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html
+[site-xml]: https://maven.apache.org/doxia/doxia-sitetools/doxia-site-model/site.html
 [reflow-themes]: ../reflow-documentation.html#themes-index

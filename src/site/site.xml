@@ -6,7 +6,8 @@
   in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
   ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
   the License. -->
-<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
   <bannerLeft>
     <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
@@ -21,7 +22,7 @@
     <alt>Reflow skin</alt>
     <href>${this.site.url}</href>
   </bannerLeft>
-  <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
+ 
 
   <publishDate position="none" />
   <version position="bottom" />
@@ -33,6 +34,7 @@
   </skin>
   <custom>
     <reflowSkin>
+      <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
       <absoluteResourceURL>${this.site.url}</absoluteResourceURL>
       <localResources>true</localResources>
       <smoothScroll>true</smoothScroll>

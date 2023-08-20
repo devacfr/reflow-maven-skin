@@ -17,8 +17,8 @@ package org.devacfr.maven.skins.reflow;
 
 import java.io.InputStream;
 
-import org.apache.maven.doxia.site.decoration.DecorationModel;
-import org.apache.maven.doxia.site.decoration.io.xpp3.DecorationXpp3Reader;
+import org.apache.maven.doxia.site.SiteModel;
+import org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.RenderTool;
@@ -37,15 +37,15 @@ public class SkinConfigToolTest extends MockitoTestCase {
 
     private SkinConfigTool skinConfig;
 
-    private DecorationModel decorationModel;
+    private SiteModel siteModel;
 
     @BeforeEach
     public void setup() throws Exception {
         velocityContext = new ToolContext();
-        final DecorationXpp3Reader reader = new DecorationXpp3Reader();
+        final SiteXpp3Reader reader = new SiteXpp3Reader();
 
         try (final InputStream in = getResource("default.site.xml").openBufferedStream()) {
-            decorationModel = reader.read(in);
+            siteModel = reader.read(in);
         }
         valueParser = new ValueParser(
                 ImmutableMap.<String, Object> builder().put("velocityContext", velocityContext).build());
@@ -55,7 +55,7 @@ public class SkinConfigToolTest extends MockitoTestCase {
         maven.setUrl("https://devacfr.github.io/reflow-maven-skin/");
 
         velocityContext.put("project", maven);
-        velocityContext.put("decoration", decorationModel);
+        velocityContext.put("site", siteModel);
         velocityContext.put("render", new RenderTool());
         velocityContext.put("currentFileName", "summary.html");
         velocityContext.put("alignedFileName", "summary.html");

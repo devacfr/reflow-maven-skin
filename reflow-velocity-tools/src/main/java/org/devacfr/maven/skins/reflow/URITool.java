@@ -20,7 +20,7 @@ import java.net.URI;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.apache.maven.doxia.site.decoration.inheritance.URIPathDescriptor;
+import org.apache.maven.doxia.site.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
 
 import com.google.common.base.Strings;
