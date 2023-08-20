@@ -11,7 +11,7 @@
 <h2 id="doc-documentation-layout_toc_usage">Usage</h2>
 <p>support <span class="badge badge-primary">v2.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">element</span></p>
 <p>To declare a page as documentation layout, create an empty page (<code>documentation.html</code> in example below) and set <code>type</code> attribute with value <code>doc</code> and add a <strong>required</strong> <code>&lt;menu&gt;</code> element as example below.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;pages&gt;
     ...
     &lt;documentation type="doc" project="project-id"&gt;
@@ -39,7 +39,7 @@
 </div>
 <h2 id="doc-documentation-layout_toc_improve-documentation">Improve documentation</h2>
 <p>Doxia Sitetools has introduce the edit source feature in <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html" class="externalLink">decoration model 1.8</a> adding <code>&lt;edit&gt;</code> element allowing to add link on each document page that points to source file in scm (<a href="https://issues.apache.org/jira/browse/DOXIASITETOOLS-183" class="externalLink">DOXIASITETOOLS-183</a>). In general, <code>${project.scm.url}</code> value should do the job.</p>
-<div>
+<div class="verbatim">
  <pre><code class="language-xml">&lt;project&gt;
     &lt;edit&gt;${project.scm.url}&lt;/edit&gt;
 &lt;/project&gt;

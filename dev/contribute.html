@@ -7,23 +7,23 @@
   <h2 id="dev-contribute_toc_compiling">Compiling</h2>
   <p>You can compile Reflow project with your local Maven, with <a href="https://github.com/takari/takari-maven-plugin" class="externalLink">Maven Wrapper</a> or with Maven from Docker. The last one is the easiest solution with you don't want install a jdk8.</p>
   <p><strong>Maven local</strong></p>
-  <div class="source">
+  <div class="verbatim">
    <pre><code class="language-bash">$ mvn clean install -P skipTests -Dtoolchains.disabled=true
 </code></pre>
   </div>
   <p><strong>Maven Wrapper</strong></p>
-  <div class="source">
+  <div class="verbatim">
    <pre><code class="language-bash">$ ./mvnw clean install -Dtoolchains.disabled=true
 </code></pre>
   </div>
   <p><strong>Maven from Docker</strong></p>
-  <div class="source">
+  <div class="verbatim">
    <pre><code class="language-bash">$ ./mvnd clean install
 </code></pre>
   </div>
   <p>The profile <code>skipTests</code> allows to skip all tests execution.</p>
   <p>Use the parameter <code>toolchains.disabled</code> to disable maven toolchains plugin whether you are not configure your <code>${HOME}/.m2/toolchains.xml</code> file. Here is a example of <code>${HOME}/.m2/toolchains.xml</code></p>
-  <div class="source">
+  <div class="verbatim">
    <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF8"?&gt;
 &lt;toolchains&gt;
   &lt;!-- JDK toolchains --&gt;
@@ -51,7 +51,7 @@
   <section>
    <h3 id="dev-contribute_toc_site-generation">Site Generation</h3>
    <p>Use following command to generate site.</p>
-   <div class="source">
+   <div class="verbatim">
     <pre><code class="language-bash">$ ./ci/site-generate.sh
 </code></pre>
    </div>
@@ -59,7 +59,7 @@
   <section>
    <h3 id="dev-contribute_toc_site-run">Site Run</h3>
    <p>Use following command to generate and run site.</p>
-   <div class="source">
+   <div class="verbatim">
     <pre><code class="language-bash">$ ./ci/site-run.sh
 </code></pre>
    </div>
@@ -67,7 +67,7 @@
   <section>
    <h3 id="dev-contribute_toc_site-deployment">Site Deployment</h3>
    <p>Use following command to generate and deploy site.</p>
-   <div class="source">
+   <div class="verbatim">
     <pre><code class="language-bash">$ ./ci/site-deploy.sh
 </code></pre>
    </div>

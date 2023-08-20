@@ -3,14 +3,14 @@
 <h1 id="doc-get-started_toc_get-started">Get Started</h1>
 <p>This section explains how uses reflow maven skin and the basic configurations in your project.</p>
 <h2 id="doc-get-started_toc_usage">Usage</h2>
-<p>To use this Maven skin, include it in your <a href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html" class="externalLink"><code>site.xml</code> site descriptor</a> file:</p>
-<div class="source">
+<p>To use this Maven skin, include it in your <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-model/site.html" class="externalLink"><code>site.xml</code> site descriptor</a> file:</p>
+<div class="verbatim">
  <pre><code class="language-xml">&lt;project&gt;
   ...
   &lt;skin&gt;
     &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
     &lt;artifactId&gt;reflow-maven-skin&lt;/artifactId&gt;
-    &lt;version&gt;2.3.3&lt;/version&gt;
+    &lt;version&gt;2.3.4&lt;/version&gt;
   &lt;/skin&gt;
   ...
 &lt;/project&gt;
@@ -19,20 +19,20 @@
 <p>The skin is provided on the <em>works on my computer</em> basis at the moment. I am using the newest versions of <code>maven-site-plugin</code> and other components and at the moment do not have any feedback on using the skin with Maven 2 site or other configurations.</p>
 <h2 id="doc-get-started_toc_pom-dependencies">POM dependencies</h2>
 <p>Add <a href="../reflow-velocity-tools"><code>reflow-velocity-tools</code></a> dependency to <code>maven-site-plugin</code> in the POM file:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;build&gt;
   &lt;plugins&gt;
     ...
     &lt;plugin&gt;
       &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
       &lt;artifactId&gt;maven-site-plugin&lt;/artifactId&gt;
-      &lt;version&gt;4.0.0-M4&lt;/version&gt;
+      &lt;version&gt;4.0.0-M9&lt;/version&gt;
       &lt;dependencies&gt;
         ...
         &lt;dependency&gt;
           &lt;groupId&gt;io.github.devacfr.maven.skins&lt;/groupId&gt;
           &lt;artifactId&gt;reflow-velocity-tools&lt;/artifactId&gt;
-          &lt;version&gt;2.3.3&lt;/version&gt;
+          &lt;version&gt;2.3.4&lt;/version&gt;
         &lt;/dependency&gt;
         ...
       &lt;/dependencies&gt;
@@ -47,7 +47,7 @@
 <hr>
 <h2 id="doc-get-started_toc_configuration">Configuration</h2>
 <p>Reflow skin supports extensive configuration options, including theme, layout, new/updated page components and a large number of various other flags.</p>
-<p>The configuration is specified in the <a href="http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html" class="externalLink"><code>site.xml</code> site descriptor</a> file, using the <code>&lt;custom&gt;&lt;reflowSkin&gt;</code> element.</p>
+<p>The configuration is specified in the <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-model/site.html" class="externalLink"><code>site.xml</code> site descriptor</a> file, using the <code>&lt;custom&gt;&lt;reflowSkin&gt;</code> element.</p>
 <p>The documentation is split over several pages, describing the various configuration options:</p>
 <div class="row row-cols-1 row-cols-md-2">
  <div class="col mb-4">
@@ -102,7 +102,7 @@
 <hr>
 <p>Note that all configuration options can be set on a per-page basis (<a href="#get-started_toc_per-page-configuration">see below</a>).</p>
 <p>The skin is configurable using the <code>&lt;custom&gt;</code> element in your <code>site.xml</code> file. The available options are described in this documentation. A sample configuration file is below:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;project&gt;
   ...
   &lt;custom&gt;
@@ -172,7 +172,7 @@
 <p>Reflow skin has quite a number of configuration options, which can be applied either globally or limited to a specific page. The <em>per-page configuration</em> allows setting page-specific layouts, disable breadcrumbs or table of contents, or even change the theme for a single page.</p>
 <p>All configuration options can be specified <em>per-page</em>. If the same configuration is specified both <em>globally</em> and <em>per-page</em>, the <em>per-page</em> one overrides the global option.</p>
 <p>The configuration of a page is set using the <code>&lt;pages&gt;</code> element of the skin configuration. Each element within <code>&lt;pages&gt;</code> indicates the name of the page file being customized.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;custom&gt;
   &lt;reflowSkin&gt;
     ...

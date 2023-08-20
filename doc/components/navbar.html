@@ -5,7 +5,7 @@
 <p><img src="../images/doc/navbar-scheme.png" alt="navbar scheme" class="img-fluid"></p>
 <h2 id="doc-components-navbar_toc_usage">Usage</h2>
 <p>support <span class="badge badge-primary">v2.0</span><br> element <span class="badge badge-secondary">reflow</span> <span class="badge badge-info">component</span></p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;navbar filterMenu="Regex filter"
         cssClass="css classes"
         theme="light|dark"
@@ -38,7 +38,7 @@
 </ul>
 <p>###&nbsp;Additional Menu</p> <span class="badge badge-primary">New in v2.4</span>
 <p>It is placed on the right of the navbar component. The additional menu is set using <code>&lt;additionalMenu&gt;</code> element:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;navbar&gt;
     &lt;additionalMenu&gt;
         &lt;![CDATA[
@@ -107,7 +107,7 @@
 <h2 id="doc-components-navbar_toc_brand">Brand</h2>
 <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
 <p>The brand text (or image) appearing in the left of the top navigation bar can be customised using <code>&lt;brand&gt;</code> element. You can set both the contents and the link.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;brand&gt;
   &lt;name&gt;text&lt;/name&gt;
   &lt;href&gt;link&lt;/href&gt;
@@ -119,7 +119,7 @@
  <li><strong>href</strong> element sets the link to open when the brand text is clicked</li>
 </ul>
 <p>Note that the <code>&lt;name&gt;</code> element can be used to embed custom HTML content. To do that, use <code>CDATA</code> element as the contents of <code>&lt;name&gt;</code> (writing HTML without <code>CDATA</code> will not work):</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;brand&gt;
   &lt;name&gt;
     &lt;![CDATA[

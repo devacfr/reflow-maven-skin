@@ -26,40 +26,40 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">package</strong> org.apache.maven.doxia.siterenderer;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> javax.inject.Inject;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> java.io.ByteArrayInputStream;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> java.io.FileInputStream;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> java.io.FileOutputStream;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> java.io.InputStream;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> java.nio.charset.StandardCharsets;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.util.Locale;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.jar.JarOutputStream;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.zip.ZipEntry;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.artifact.Artifact;
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.artifact.DefaultArtifact;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.artifact.versioning.VersionRange;
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.doxia.site.decoration.DecorationModel;
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.doxia.site.decoration.io.xpp3.DecorationXpp3Reader;
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.PlexusContainer;
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.testing.PlexusTest;
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.FileUtils;
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">import</strong> org.devacfr.testing.jupiter.TestCase;
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.AfterEach;
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.BeforeEach;
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Disabled;
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.io.IOUtils.closeQuietly;
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.io.IOUtils.copy;
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.codehaus.plexus.testing.PlexusExtension.getBasedir;
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.codehaus.plexus.testing.PlexusExtension.getTestFile;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.io.IOUtils.closeQuietly;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.commons.io.IOUtils.copy;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.codehaus.plexus.testing.PlexusExtension.getBasedir;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.codehaus.plexus.testing.PlexusExtension.getTestFile;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> java.io.ByteArrayInputStream;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> java.io.File;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> java.io.FileInputStream;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> java.io.FileOutputStream;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> java.io.InputStream;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.nio.charset.StandardCharsets;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.Locale;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.jar.JarOutputStream;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> java.util.zip.ZipEntry;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> javax.inject.Inject;
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.artifact.Artifact;
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.artifact.DefaultArtifact;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.artifact.versioning.VersionRange;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.doxia.site.SiteModel;
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.PlexusContainer;
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.testing.PlexusTest;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.FileUtils;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">import</strong> org.devacfr.testing.jupiter.TestCase;
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.AfterEach;
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.BeforeEach;
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Disabled;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment"> * @author &lt;a href="<a href="mailto:vincent.siveton@gmail.com" target="alexandria_uri">mailto:vincent.siveton@gmail.com</a>"&gt;Vincent Siveton&lt;/a&gt;</em>
@@ -93,7 +93,7 @@
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     * @throws java.lang.Exception</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     *                             if something goes wrong.</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     *             if something goes wrong.</em>
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>      @BeforeEach
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> setUp() <strong class="jxr_keyword">throws</strong> Exception {
@@ -128,7 +128,7 @@
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> 
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * @throws java.lang.Exception</em>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     *                             if something goes wrong.</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     *             if something goes wrong.</em>
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>     @AfterEach
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> tearDown() <strong class="jxr_keyword">throws</strong> Exception {
@@ -139,7 +139,7 @@
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> 
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     * @throws Exception</em>
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     *                   if something goes wrong.</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     *             if something goes wrong.</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>     @Test
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> shouldAcceptSnippet() <strong class="jxr_keyword">throws</strong> Exception {
@@ -149,12 +149,12 @@
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>         <em class="jxr_comment">// ----------------------------------------------------------------------</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>         <em class="jxr_comment">// Render the site from src/test/resources/site to OUTPUT</em>
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>         <em class="jxr_comment">// ----------------------------------------------------------------------</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">final</strong> DecorationModel decoration =
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>                 <strong class="jxr_keyword">new</strong> DecorationXpp3Reader().read(<strong class="jxr_keyword">new</strong> FileInputStream(getTestFile(<span class="jxr_string">"src/test/resources/site/site.xml"</span>)));
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">final</strong> SiteModel model = <strong class="jxr_keyword">new</strong> SiteXpp3Reader()
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>                 .read(<strong class="jxr_keyword">new</strong> FileInputStream(getTestFile(<span class="jxr_string">"src/test/resources/site/site.xml"</span>)));
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>         <strong class="jxr_keyword">final</strong> Path targetSite = getTestFile(OUTPUT).toPath();
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">final</strong> Path srcSite = getTestFile(<span class="jxr_string">"src/test/resources/site"</span>).toPath();
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> SiteRenderingContext ctxt = getSiteRenderingContext(decoration, srcSite, false);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> SiteRenderingContext ctxt = getSiteRenderingContext(model, srcSite, false);
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>         ctxt.setRootDirectory(getTestFile(<span class="jxr_string">""</span>));
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>         renderer.render(renderer.locateDocumentFiles(ctxt, <strong class="jxr_keyword">true</strong>).values(), ctxt, targetSite.toFile());
@@ -162,19 +162,19 @@
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         verify(targetSite.resolve(<span class="jxr_string">"snippet.html"</span>), getPackagePath().resolve(<span class="jxr_string">"snippet.approved.html"</span>));
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>     }
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>     <strong class="jxr_keyword">private</strong> SiteRenderingContext getSiteRenderingContext(
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>             <strong class="jxr_keyword">final</strong> DecorationModel decoration, <strong class="jxr_keyword">final</strong> Path siteDir, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> validate)
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>             <strong class="jxr_keyword">throws</strong> RendererException, IOException {
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>     <strong class="jxr_keyword">private</strong> SiteRenderingContext getSiteRenderingContext(<strong class="jxr_keyword">final</strong> SiteModel model,
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>         <strong class="jxr_keyword">final</strong> Path siteDir,
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> validate) <strong class="jxr_keyword">throws</strong> RendererException, IOException {
 <a class="jxr_linenumber" name="L160" href="#L160">160</a>         <strong class="jxr_keyword">final</strong> File skinFile = minimalSkinJar;
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> 
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>         <strong class="jxr_keyword">final</strong> Map&lt;String, String&gt; attributes = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>         attributes.put(<span class="jxr_string">"outputEncoding"</span>, <span class="jxr_string">"UTF-8"</span>);
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>         <strong class="jxr_keyword">final</strong> Artifact skin = <strong class="jxr_keyword">new</strong> DefaultArtifact(
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>                 <span class="jxr_string">"org.group"</span>, <span class="jxr_string">"artifact"</span>, VersionRange.createFromVersion(<span class="jxr_string">"1.1"</span>), <strong class="jxr_keyword">null</strong>, <span class="jxr_string">"jar"</span>, <span class="jxr_string">""</span>, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>         <strong class="jxr_keyword">final</strong> Artifact skin = <strong class="jxr_keyword">new</strong> DefaultArtifact(<span class="jxr_string">"org.group"</span>, <span class="jxr_string">"artifact"</span>, VersionRange.createFromVersion(<span class="jxr_string">"1.1"</span>), <strong class="jxr_keyword">null</strong>,
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>                 <span class="jxr_string">"jar"</span>, <span class="jxr_string">""</span>, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>         skin.setFile(skinFile);
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>         <strong class="jxr_keyword">final</strong> SiteRenderingContext siteRenderingContext =
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>                 renderer.createContextForSkin(skin, attributes, decoration, <span class="jxr_string">"defaultWindowTitle"</span>, Locale.ENGLISH);
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>         <strong class="jxr_keyword">final</strong> SiteRenderingContext siteRenderingContext = renderer
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>                 .createContextForSkin(skin, attributes, model, <span class="jxr_string">"defaultWindowTitle"</span>, Locale.ENGLISH);
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>         siteRenderingContext.addSiteDirectory(siteDir.toFile());
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>         siteRenderingContext.setValidate(validate);
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 

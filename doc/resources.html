@@ -6,7 +6,7 @@
 <h2 id="doc-resources_toc_local-bootstrap--jquery">Local Bootstrap &amp; jQuery</h2>
 <p>support <span class="badge badge-primary">v1.1</span><br> element <span class="badge badge-secondary">reflow</span></p>
 <p>To force the generated site use only local CSS/JavaScript resources, use the <code>&lt;localResources&gt;</code> flag:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;localResources&gt;true|false&lt;/localResources&gt;
 </code></pre>
 </div>
@@ -15,7 +15,7 @@
  <li><p><strong>false (default)</strong> - CDN delivered resources are used, where available.</p></li>
 </ul>
 <p>Note that when using <code>&lt;localResources&gt;</code>, you need to provide the necessary local versions of Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module <code>reflow-default-webdeps</code>. this package should be unpack as following example:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
@@ -70,7 +70,7 @@
 <p>element <span class="badge badge-secondary">site.xml</span></p>
 <p>Additional CSS files (or other resources) can be added to the page head using <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Inject_xhtml_into_head" class="externalLink"><code>&lt;body&gt;&lt;head&gt;</code> configuration</a> in the <code>site.xml</code> site descriptor. This configuration is available to all Maven site skins and is part of the standard site descriptor configuration.</p>
 <p>The <code>&lt;head&gt;</code> element allows arbitrary XHTML, which will be injected in the generated page. Also, it can be used for custom (local or remote) versions of hard-coded Reflow skin resources. For example, to use a custom version of <a href="reflow-documentation.html#configuration_toc_code-highlight">highlight.js syntax highlighting</a>, you can disable the default configuration (<code>&lt;highlightJs&gt;false&lt;/highlightJs&gt;</code>) and add the relevant CSS and JavaScript manually:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;project&gt;
   ...
   &lt;body&gt;
@@ -90,7 +90,7 @@
 </div>
 <p>Note: the <code>&lt;head&gt;</code> element is within <code>&lt;body&gt;</code>, not <code>&lt;custom&gt;</code> element of <code>site.xml</code> site descriptor.</p>
 <p>Furthermore, the injected XHTML allows using Velocity variables. Therefore you can <a href="reflow-documentation.html#multi-module_toc_reuse-resources">reuse a local version of the library</a> by indicating its path with a <code>$resourcePath</code> variable, e.g.:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;head&gt;
   &lt;![CDATA[
   &lt;link rel="stylesheet" href="$resourcePath/css/default.min.css"&gt;
@@ -101,7 +101,7 @@
 <h2 id="doc-resources_toc_additional-javascript-files">Additional JavaScript files</h2>
 <p>support <span class="badge badge-primary">v1.1</span><br> element <span class="badge badge-secondary">reflow</span></p>
 <p>JavaScript files can be added to the page head together with CSS files. However, for performance reasons, it can be better to reference JavaScript files at the end of the document. To place custom XHTML at the end of the page (before the <code>&lt;/body&gt;</code> tag), use the <code>&lt;endContent&gt;</code> element, which also supports Velocity variables, e.g.:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;custom&gt;
   &lt;reflowSkin&gt;
     ...

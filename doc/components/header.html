@@ -5,7 +5,7 @@
 <h2 id="doc-components-header_toc_header">Header</h2>
 <p>support <span class="badge badge-primary">v2.2</span><br> element <span class="badge badge-secondary">reflow</span></p>
 <p>The Header is the component displayed to top of page. If header element contains a specific html, the contained will be used instead of the generated banner text.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;header enabled="true|false"
     type="jumbotron|banner|custom"
     cssClass="css classes"
@@ -23,12 +23,12 @@
 <h3 id="doc-components-header_toc_jumbotron-header">Jumbotron Header</h3>
 <p>The Jumbotron Header is the container of the bootstrap Jumbotron. the Jumbotron contains your slogan, logo and banner to top of the page. The following <a href="test/header-jumbotron.html">sample page</a> displays the configuration below:</p>
 <p><img src="../images/doc/header-jumbotron-scheme.png" alt="header scheme" class="img-fluid"></p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;header type="jumbotron" background="dark" cssClass="text-light"&gt;&lt;/header&gt;
 </code></pre>
 </div>
 <p>Reflow renders following html:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">&lt;div class="header " role="main"&gt;
     &lt;div class="container container-fluid"&gt;
         &lt;div class="jumbotron header--jumbotron bg-dark text-light"&gt;
@@ -55,12 +55,12 @@
 <h3 id="doc-components-header_toc_banner-header">Banner Header</h3>
 <p>The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following <a href="test/header-banner.html">sample page</a> displays the configuration below:</p>
 <p><img src="../images/doc/header-banner-scheme.png" alt="header scheme" class="img-fluid"></p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;header type="banner" cssClass="text-light"&gt;&lt;/header&gt;
 </code></pre>
 </div>
 <p>Reflow renders following html:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">&lt;div class="header text-light" role="main"&gt;
     &lt;div class="container container-fluid"&gt;
         &lt;div id="banner" class="header--banner"&gt;
@@ -83,7 +83,7 @@
 </code></pre>
 </div>
 <h3 id="doc-components-header_toc_custom-header">Custom Header</h3>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;header enabled="true" cssClass="text-center text-light"&gt;
     &lt;![CDATA[
     &lt;!-- header content --&gt;
@@ -91,7 +91,7 @@
 &lt;/header&gt;
 </code></pre>
 </div>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">&lt;div class="header text-light" role="main"&gt;
     &lt;div class="container container-fluid"&gt;
         &lt;div class="header--subhead"&gt;
@@ -104,7 +104,7 @@
 <h2 id="doc-components-header_toc_banner">Banner</h2>
 <p>element <span class="badge badge-secondary">site.xml</span></p>
 <p>The banner (big <em>Reflow Maven Skin</em> text on this website) is defined using <a href="http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner" class="externalLink">standard <code>&lt;bannerLeft&gt;</code> or <code>&lt;bannerRight&gt;</code> elements</a> in <code>site.xml</code> site descriptor instead of using <code>&lt;custom&gt;&lt;reflowSkin&gt;</code>:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;project ...&gt;
 ...
   &lt;bannerLeft&gt;
@@ -128,7 +128,7 @@
 <p>support <span class="badge badge-primary">v1.0</span><br> element <span class="badge badge-secondary">reflow</span></p>
 <p>The skin allows setting a website slogan in the banner. It would appear underneath the website title, either on the left or the right side.</p>
 <p>This website features a slogan “<em>Responsive Apache Maven skin to reflow the standard Maven site with a modern feel</em>”.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">&lt;slogan position="bannerRight|bannerLeft"&gt;The best website in the world&lt;/slogan&gt;
 </code></pre>
 </div>

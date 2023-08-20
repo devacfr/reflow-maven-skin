@@ -28,12 +28,12 @@
    <section>
     <h4 id="dev-release-management_toc_using-feature-branch">Using Feature Branch</h4>
     <p>In general, one issue in GitHub corresponds to one feature branch in <code>Git</code>. Instead to create new branch directly from <code>Git</code>, do the following steps:</p>
-    <ol style="list-style-type: decimal">
+    <ol style="list-style-type: decimal;">
      <li>Open a terminal, by changing directory to the root of project.</li>
      <li>Create feature branch using <code>maven-jgitflow-plugin</code>.</li>
      <li>Give name to the branch with prefix of a specific issue ID as <code>REFLOW-1234-add-new-feature</code> to create as many two-way links between <code>Git</code> changeset, <code>GitHub</code> issue and <strong>CI</strong> build.</li>
     </ol>
-    <div class="source">
+    <div class="verbatim">
      <pre><code class="language-bash">$ mvn jgitflow:feature-start
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
@@ -69,7 +69,7 @@ What is the feature branch name? feature/: REFLOW-78-new-feature
     <p>Tips, click on <strong>Terminal</strong> button in SourceTree to open a <code>Bash</code> command prompt directly on the root directory of project.</p>
     <p>This command creates a new feature branch; prompts for the branch name which will take the format <code>feature/{branch name}</code>. Add <code>-DpushFeatures=true</code> to push the branch to origin automatically.</p>
     <p>When the feature is complete, execute the following command to merge the feature branch to <code>develop</code> branch:</p>
-    <div class="source">
+    <div class="verbatim">
      <pre><code class="language-bash">$ mvn jgitflow:feature-finish
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
@@ -138,7 +138,7 @@ Choose a number (1/2) [1]: 1
    <section>
     <h4 id="dev-release-management_toc_using-release-branch">Using Release Branch</h4>
     <p>Once <code>develop</code> has acquired enough features for a release (or a predetermined release date is approaching), you fork a release branch off of <code>develop</code>. Creating this branch starts the next release cycle, so no new features can be added after this point—only bug fixes, documentation generation, and other release-oriented tasks should go in this branch.</p>
-    <div class="source">
+    <div class="verbatim">
      <pre><code class="language-bash">
 $ mvn clean install -PskipTests
    -&gt; install the last version in your local repository
@@ -200,7 +200,7 @@ What is the development version for "Foo project"? (org.devacfr.foo:foo) [1.1.1-
 </code></pre>
     </div>
     <p>Once it's ready to ship, the release gets merged into <code>master</code> and tagged with a version number. In addition, it should be merged back into <code>develop</code>, which may have progressed since the release was initiated.</p>
-    <div class="source">
+    <div class="verbatim">
      <pre><code class="language-bash">$ mvn jgitflow:release-finish -Prelease-offline
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
@@ -278,11 +278,11 @@ What is the development version for "Foo project"? (org.devacfr.foo:foo) [1.1.1-
    <section>
     <h4 id="dev-release-management_toc_using-maintenance-branch">Using Maintenance Branch</h4>
     <p>In general, one BUGFIX issue in GitHub corresponds to one maintenance branch in <code>Git</code>, but you can include more than one BUGFIX issues to a same maintenance branch. The main Gitflow restriction is you couldn't create a second maintenance branch in same time whether one already exists. Instead to create new branch directly from <code>Git</code>, do the following steps:</p>
-    <ol style="list-style-type: decimal">
+    <ol style="list-style-type: decimal;">
      <li>Open a terminal, by changing directory to the root of project.</li>
      <li>Create maintenance branch using <code>maven-jgitflow-plugin</code>.</li>
     </ol>
-    <div class="source">
+    <div class="verbatim">
      <pre><code class="language-bash">$ mvn jgitflow:hotfix-start
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
@@ -317,7 +317,7 @@ What is the hotfix version for "Foo project"? (org.devacfr.foo:foo) [1.0.3]: 1.0
     </div>
     <p>This command creates a new maintenance branch; prompts for the hotfix version (i.e. branch name) which will take the format <code>hotfix/{version}</code>.</p>
     <p>When the hotfix is complete, execute the following command to merge the maintenance branch to <code>develop</code> and <code>master</code> branches:</p>
-    <div class="source">
+    <div class="verbatim">
      <pre><code class="language-bash">$ mvn jgitflow:hotfix-finish
 </code></pre>
     </div>

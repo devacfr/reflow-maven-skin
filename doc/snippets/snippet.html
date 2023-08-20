@@ -28,21 +28,21 @@
 <h2 id="doc-snippets-snippet_toc_shortcodes">Shortcodes</h2>
 <p>The shortcode can be construct as a empty element tag <code>{{&lt; shortcode attribute="value" /&gt;}}</code> or with a start tag <code>{{&lt; shortcode attribute="value" &gt;}}</code> with attributes and a end tag <code>{{&lt; /shortcode &gt;}}</code>. One of these peculiarities is that it can mutate to web component. This particularity allows to resolve certain conflict with the Doxia renderer.</p>
 <p>One good shortcode sample is the Bootstrap badge. You want include a badge inline the text.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code>Lorem ipsum dolor sit amet {{&lt; badge color="info" text="NEW" /&gt;}}, consectetur
 adipiscing elit. Quare ad ea primum, si videtur; Hunc vos beatum; Nam ista vestra:
 Si gravis, brevis; Sed haec in pueris
 </code></pre>
 </div>
 <p>Now, you are just to create a template file with the same name of shortcode <code>badge.vm</code> in folder <code>src/site/layouts/snippets</code> and add following lines:</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">&lt;!-- src/site/layouts/snippets/badge.vm --&gt;
 &lt;span class="badge ${snippet.color}"&gt;${snippet.text}&lt;/span&gt;
 </code></pre>
 </div>
 <p>That's it! It's short, quick and stylishness.</p>
 <p>Here is another example always so easy, I want generalise the component callout that use everywhere in content page.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">{{&lt; callout color="warning" level="5" title="Warning" &gt;}}
 
 Why does the cry assume the dapper sugar?
@@ -51,7 +51,7 @@ Why does the cry assume the dapper sugar?
 </code></pre>
 </div>
 <p>The associated template,</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">&lt;!-- src/site/layouts/snippets/callout.vm --&gt;
 &lt;div class="bd-callout bd-callout-${snippet.color} $snippet.attr['class']"&gt;
  #if( ${snippet.title} )##
@@ -89,7 +89,7 @@ Why does the cry assume the dapper sugar?
  <li>hyphen (“-”)</li>
  <li>underscore (“_”)</li>
 </ul>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">{{% component attribute="value" %}}
 
 &lt;!--
@@ -120,7 +120,7 @@ Why does the cry assume the dapper sugar?
   </div>
  </div>
 </div>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">{{% card style="width: 18rem;" %}}
 
 &lt;!--
@@ -137,7 +137,7 @@ Why does the cry assume the dapper sugar?
 </div>
 <h3 id="doc-snippets-snippet_toc_web-component-template">Web Component Template</h3>
 <p>The template use <code>$snippet</code> variable to render the web component.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">#if( $snippet.attribute == 'value' )
   &lt;div class="component"&gt;
     &lt;h2&gt;$snippet.data-item.html&lt;/h2&gt;
@@ -254,7 +254,7 @@ children:
   </div>
  </div>
 </div>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-xml">{{% card debug="true" style="width: 18rem;" %}}
 
 &lt;!--
@@ -335,13 +335,13 @@ children:
 <p>The template uses <a href="https://velocity.apache.org/engine/1.7/developer-guide.html" class="externalLink">Velocity Template</a> to generate html content. the file have to be located in path <code>src/site/layouts/snippets</code>.</p>
 <h3 id="doc-snippets-snippet_toc_partial-template">Partial Template</h3>
 <p>The partial template can be include in content page using <code>partial</code> <a href="https://maven.apache.org/doxia/macros/index.html" class="externalLink">Doxia macro</a>.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code>&lt;!-- MACRO{partial|file=src/site/layouts/partials/template.html} --&gt;
 </code></pre>
 </div>
 <p>The path is relative to base directory of project.</p>
 <p>One of the peculiarities of a partial template is that this content is not modified by Doxia renderer. This means that the tags used in a page can be written directly in html. you just need to set them as a snippet by adding the <code>shortcode</code> or <code>webcomponent</code> attribute.</p>
-<div class="source">
+<div class="verbatim">
  <pre><code class="language-html">&lt;!-- src/site/layouts/partials/template.html --&gt;
 &lt;layout shortcode class="text-center text-light" role="main"&gt;
     &lt;layout shortcode class="container container-fluid"&gt;
