@@ -130,7 +130,7 @@ governing permissions and limitations under
 
     <spotbugs.excludefilterfile.path>
       ${main.basedir}/check/spotbugs-exclude-filter.xml</spotbugs.excludefilterfile.path>
-    <spotbugs.only.analyze>com.pmi.tpd.-</spotbugs.only.analyze>
+    <spotbugs.only.analyze>org.devacfr.maven.skins.reflow.-</spotbugs.only.analyze>
     <generate.site.path>${main.basedir}/target/site</generate.site.path>
 
     <!--
