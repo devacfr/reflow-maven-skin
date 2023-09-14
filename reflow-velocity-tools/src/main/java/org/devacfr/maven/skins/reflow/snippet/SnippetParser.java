@@ -19,6 +19,7 @@
 package org.devacfr.maven.skins.reflow.snippet;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,10 +87,12 @@ public class SnippetParser {
         return this;
     }
 
-    public SnippetContext parse(@Nonnull final ISkinConfig config, @Nonnull final String htmlSource)
+    public SnippetContext parse(@Nonnull final ISkinConfig config, @Nullable String htmlSource)
             throws IOException {
         requireNonNull(config);
-        requireNonNull(htmlSource);
+        if (htmlSource == null) {
+            htmlSource = "";
+        }
 
         snippetContext.reset();
         snippetContext.setConfig(config);
