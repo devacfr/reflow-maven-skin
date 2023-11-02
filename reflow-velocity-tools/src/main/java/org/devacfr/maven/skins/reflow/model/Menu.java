@@ -26,6 +26,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import org.apache.maven.doxia.site.Image;
 import org.apache.maven.doxia.site.LinkItem;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
@@ -40,32 +41,19 @@ public class Menu {
     /** */
     private final String name;
 
-    /** */
-    private final String alt;
 
-    /** */
-    private final String border;
-
-    /** */
-    private final String height;
-
-    /** */
-    private final String width;
 
     /** */
     private final String href;
 
     /** */
-    private final String image;
+    private final Image image;
 
-    /** */
-    private final String position;
+
 
     /** */
     private final String target;
 
-    /** */
-    private final String title;
 
     /** **/
     private final String inherit;
@@ -86,16 +74,10 @@ public class Menu {
      */
     public Menu(@Nonnull final ISkinConfig config, @Nonnull final LinkItem item) {
         Objects.requireNonNull(item);
-        this.alt = item.getAlt();
-        this.border = item.getBorder();
-        this.height = item.getHeight();
-        this.width = item.getWidth();
         this.href = config.relativeLink(item.getHref());
-        this.image = item.getImg();
+        this.image = item.getImage();
         this.name = item.getName();
-        this.position = item.getPosition();
         this.target = item.getTarget();
-        this.title = item.getTitle();
         this.active = config.isActiveLink(this.href);
         this.inherit = null;
     }
@@ -110,16 +92,10 @@ public class Menu {
      */
     public Menu(@Nonnull final ISkinConfig config, @Nonnull final org.apache.maven.doxia.site.Menu menu) {
         Objects.requireNonNull(menu);
-        this.alt = menu.getAlt();
-        this.border = menu.getBorder();
-        this.height = menu.getHeight();
-        this.width = menu.getWidth();
         this.href = null;
-        this.image = menu.getImg();
+        this.image = menu.getImage();
         this.name = menu.getName();
-        this.position = menu.getPosition();
         this.target = null;
-        this.title = menu.getTitle();
         this.inherit = menu.getInherit();
         this.active = false;
         final List<org.apache.maven.doxia.site.MenuItem> items = menu.getItems();
@@ -169,26 +145,8 @@ public class Menu {
         return active;
     }
 
-    /**
-     * @return the alt
-     */
-    public String getAlt() {
-        return alt;
-    }
 
-    /**
-     * @return the border
-     */
-    public String getBorder() {
-        return border;
-    }
 
-    /**
-     * @return the height
-     */
-    public String getHeight() {
-        return height;
-    }
 
     /**
      * @return the href
@@ -200,16 +158,10 @@ public class Menu {
     /**
      * @return the image
      */
-    public String getImage() {
+    public Image getImage() {
         return image;
     }
 
-    /**
-     * @return the position
-     */
-    public String getPosition() {
-        return position;
-    }
 
     /**
      * @return the target
@@ -218,19 +170,7 @@ public class Menu {
         return target;
     }
 
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
 
-    /**
-     * @return the width
-     */
-    public String getWidth() {
-        return width;
-    }
 
     /**
      * Gets indicating whether menu by their ref or name, and returns the matching results. The regex is used to check

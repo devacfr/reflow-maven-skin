@@ -17,21 +17,12 @@
  limitations under the License.
 
  -->
-<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<site name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
-  <bannerLeft>
+  <bannerLeft name="Reflow" href="https://devacfr.github.io/reflow-maven-skin/">
     <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
-    <name>
-      <![CDATA[
-      <span class="color-highlight">Reflow</span> Maven Skin
-      ]]>
-    </name>
-    <src>images/reflow.png</src>
-    <width>144</width>
-    <height>144</height>
-    <alt>Reflow skin</alt>
-    <href>https://devacfr.github.io/reflow-maven-skin/</href>
+    <image src="images/reflow.png" width="144" height="144" alt="Reflow skin"></image>
   </bannerLeft> 
 
   <publishDate position="none" />
@@ -159,4 +150,4 @@
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>
-</project>
+</site>

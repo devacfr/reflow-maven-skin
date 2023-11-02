@@ -50,7 +50,7 @@ governing permissions and limitations under
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-site-model</artifactId>
-      <version>${doxia.version}</version>
+      <version>${doxia.model.version}</version>
     </dependency>
 
     <dependency>

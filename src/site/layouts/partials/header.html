@@ -1,11 +1,13 @@
 <layout shortcode class="header text-center text-light" role="main">
     <layout shortcode class="container container-fluid">
         <div class="header--subhead">
-            <div id="banner" class="header__banner">
+            <div id="banner" class="header--banner">
                 <img style="vertical-align: middle;" class="m-2" src="$resourcePath/images/logo.svg"
-                    alt="$site.bannerLeft.alt" width="$decoration.bannerLeft.width"
-                    height="$site.bannerLeft.height" />
-                <h1 class="d-inline-block">$site.bannerLeft.name</h1>
+                    alt="$site.bannerLeft.image.alt" width="$site.bannerLeft.image.width"
+                    height="$site.bannerLeft.image.height" />
+                <h1 class="d-inline-block">
+                    <span class="color-highlight">$site.bannerLeft.name</span> Maven Skin
+                </h1>
                 <p class="lead">$config.slogan.getValue()</p>
             </div>
             <p>
