@@ -4,7 +4,7 @@
 
 {{< badge color="info" text="SHORTCODE" />}}
 
-## Example
+## Example
 
 {{< example >}}
 
@@ -16,7 +16,7 @@
 {{< twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" />}}
 ```
 
-## Custom chrome
+## Custom chrome
 
 Control the frame around the linear timeline by setting a data-chrome attribute with space-separated tokens for each chrome component.
 
@@ -38,7 +38,7 @@ Control the frame around the linear timeline by setting a data-chrome attribute 
 {{< twitter-feed feed="getbootstrap" text="Tweets By Bootstrap" nofooter noborders theme="dark" />}}
 ```
 
-## Dimensions
+## Dimensions
 
 {{< example >}}
 

@@ -41,7 +41,7 @@ Add image to the brand part of navbar.
 - **width** {{< badge color="light" text="v2.0" />}} - the width of image, 30 is the default if value is empty or `null`.
 - **height** {{< badge color="light" text="v2.0" />}} - the height of image, 30 is the default if value is empty or `null`.
 
-### Additional Menu
+### Additional Menu
 
 {{< badge color="primary" text="New in v2.4" />}}
 
