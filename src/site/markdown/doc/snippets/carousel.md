@@ -24,7 +24,7 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
 
 {{% carousel id="carousel1" withControls="false" withIndicators="false" %}}
 
-```
+<!--
     <slide>
         <slide-image>
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
@@ -55,7 +55,7 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
             </svg>
         </slide-image>
     </slide>
-```
+-->
 
 {{% /carousel %}}
 
@@ -87,7 +87,7 @@ Adding in the previous and next controls:
 
 {{% carousel id="carousel2" withControls="true" withIndicators="false" %}}
 
-```
+<!--
     <slide>
         <slide-image>
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
@@ -118,7 +118,7 @@ Adding in the previous and next controls:
             </svg>
         </slide-image>
     </slide>
-```
+-->
 
 {{% /carousel %}}
 
@@ -150,7 +150,7 @@ You can also add the indicators to the carousel, alongside the controls, too.
 
 {{% carousel id="carousel3" withControls="true" withIndicators="true" %}}
 
-```
+<!--
     <slide>
         <slide-image>
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
@@ -181,7 +181,7 @@ You can also add the indicators to the carousel, alongside the controls, too.
             </svg>
         </slide-image>
     </slide>
-```
+-->
 
 {{% /carousel %}}
 
@@ -213,7 +213,7 @@ Add captions to your slides easily with the `<slide-caption>` element within any
 
 {{% carousel id="carousel4" withControls="true" withIndicators="true" %}}
 
-```
+<!--
     <slide>
         <slide-image>
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
@@ -256,7 +256,7 @@ Add captions to your slides easily with the `<slide-caption>` element within any
           <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
         </slide-caption>
     </slide>
-```
+-->
 
 {{% /carousel %}}
 
@@ -300,7 +300,7 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
 
 {{% carousel id="carousel5" withControls="true" withIndicators="false" crossfade="true" %}}
 
-```
+<!--
     <slide>
         <slide-image>
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
@@ -331,7 +331,7 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
             </svg>
         </slide-image>
     </slide>
-```
+-->
 
 {{% /carousel %}}
 
@@ -363,7 +363,7 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
 
 {{% carousel id="carousel5" withControls="true" withIndicators="false" %}}
 
-```
+<!--
     <slide interval="10000">
         <slide-image>
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
@@ -394,7 +394,7 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
             </svg>
         </slide-image>
     </slide>
-```
+-->
 
 {{% /carousel %}}
 
