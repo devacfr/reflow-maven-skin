@@ -12,7 +12,9 @@ BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
   ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -176,7 +178,7 @@ governing permissions and limitations under
 
     <apache-rat-plugin.version>0.15</apache-rat-plugin.version>
     <maven-gitflow-plugin.version>1.19.0</maven-gitflow-plugin.version>
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
     <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
@@ -189,7 +191,7 @@ governing permissions and limitations under
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <maven-site-plugin.version>4.0.0-M13</maven-site-plugin.version>
     <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
-    <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
+    <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <maven-clover-plugin.version>4.5.1</maven-clover-plugin.version>

@@ -141,7 +141,7 @@ But let's throw in a &lt;b&gt;tag&lt;/b&gt;.
   <p>Asterisks</p>
   <hr>
   <p>Underscores</p>
-  <p>##&nbsp;Line Breaks</p>
+  <h2>Line Breaks</h2>
   <p>Here's a line for us to start with.</p>
   <p>This line is separated from the one above by two newlines, so it will be a <em>separate paragraph</em>.</p>
   <p>This line is also a separate paragraph, but… This line is only separated by a single newline, so it's a separate line in the <em>same paragraph</em>.</p>

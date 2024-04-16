@@ -168,7 +168,7 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
 {{% /card %}}
 ```
 
-### Header and footer
+### Header and footer
 
 Add an optional header and/or footer within a card.
 
@@ -338,7 +338,7 @@ Using the grid, wrap cards in columns and rows as needed.
 {{< /row >}}
 ```
 
-### Using utilities
+### Using utilities
 
 Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.4/utilities/sizing/) to quickly set a card’s width.
 
@@ -598,7 +598,7 @@ Turn an image into a card background and overlay your card’s text. Depending o
 {{% /card %}}
 ```
 
-## Horizontal
+## Horizontal
 
 Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-friendly and responsive way.
 

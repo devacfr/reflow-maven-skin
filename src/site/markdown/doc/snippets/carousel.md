@@ -292,7 +292,7 @@ Add captions to your slides easily with the `<slide-caption>` element within any
 {{% /carousel %}}
 ```
 
-### Crossfade
+### Crossfade
 
 set `crossfade="true"` attribute to your carousel to animate slides with a fade transition instead of a slide.
 
