@@ -390,6 +390,12 @@ var mReflow = function () {
     navSidebar.find("a[href=\\#]").click(function (event) {
       event.preventDefault();
     });
+    navSidebar.find('li.navside-item:not(.collapsable)').click(function (event) {
+      var target = event.target;
+      var e = target.firstElementChild;
+      if (e && $(e).hasClass('navside-link'))
+        e.click();
+    });
   }
 
   function initTooltip() {

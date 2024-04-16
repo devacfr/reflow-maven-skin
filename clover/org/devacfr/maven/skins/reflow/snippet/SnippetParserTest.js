@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":102,"id":2870,"methods":[{"el":42,"sc":5,"sl":33},{"el":53,"sc":5,"sl":44},{"el":64,"sc":5,"sl":55},{"el":75,"sc":5,"sl":66},{"el":86,"sc":5,"sl":77},{"el":97,"sc":5,"sl":88},{"el":101,"sc":5,"sl":99}],"name":"SnippetParserTest","sl":28}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_13":{"methods":[{"sl":66},{"sl":99}],"name":"shouldRenderBadge","pass":true,"statements":[{"sl":68},{"sl":69},{"sl":70},{"sl":100}]},"test_32":{"methods":[{"sl":88},{"sl":99}],"name":"shouldRenderNestedComponent","pass":true,"statements":[{"sl":90},{"sl":91},{"sl":92},{"sl":100}]},"test_33":{"methods":[{"sl":44},{"sl":99}],"name":"shouldRenderCard","pass":true,"statements":[{"sl":46},{"sl":47},{"sl":48},{"sl":100}]},"test_66":{"methods":[{"sl":77},{"sl":99}],"name":"shouldRenderLayout","pass":true,"statements":[{"sl":79},{"sl":80},{"sl":81},{"sl":100}]},"test_69":{"methods":[{"sl":55},{"sl":99}],"name":"shouldRenderCardRecursively","pass":true,"statements":[{"sl":57},{"sl":58},{"sl":59},{"sl":100}]},"test_9":{"methods":[{"sl":33},{"sl":99}],"name":"shouldReplaceSnippetByHtml","pass":true,"statements":[{"sl":35},{"sl":36},{"sl":37},{"sl":100}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [9], [], [9], [9], [9], [], [], [], [], [], [], [33], [], [33], [33], [33], [], [], [], [], [], [], [69], [], [69], [69], [69], [], [], [], [], [], [], [13], [], [13], [13], [13], [], [], [], [], [], [], [66], [], [66], [66], [66], [], [], [], [], [], [], [32], [], [32], [32], [32], [], [], [], [], [], [], [32, 13, 69, 66, 33, 9], [32, 13, 69, 66, 33, 9], [], []]

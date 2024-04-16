@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":69,"id":1041,"methods":[{"el":52,"sc":5,"sl":47},{"el":61,"sc":5,"sl":59},{"el":68,"sc":5,"sl":66}],"name":"PageContext","sl":33}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_12":{"methods":[{"sl":47},{"sl":66}],"name":"shouldBuildPageContextWithTocDisabled","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51},{"sl":67}]},"test_17":{"methods":[{"sl":47}],"name":"shouldApplyBootstrapCss","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51}]},"test_5":{"methods":[{"sl":47}],"name":"shouldNotChangeCodePart","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51}]},"test_60":{"methods":[{"sl":47},{"sl":66}],"name":"shouldBuildPageContext","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51},{"sl":67}]},"test_62":{"methods":[{"sl":47}],"name":"shouldReplaceIcons","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51}]},"test_65":{"methods":[{"sl":47}],"name":"shouldAddLighboxAttribute","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51}]},"test_68":{"methods":[{"sl":47}],"name":"shouldReplaceTTTag","pass":true,"statements":[{"sl":48},{"sl":49},{"sl":50},{"sl":51}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [60, 68, 65, 12, 62, 5, 17], [60, 68, 65, 12, 62, 5, 17], [60, 68, 65, 12, 62, 5, 17], [60, 68, 65, 12, 62, 5, 17], [60, 68, 65, 12, 62, 5, 17], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [60, 12], [60, 12], [], []]

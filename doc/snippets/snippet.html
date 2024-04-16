@@ -11,7 +11,7 @@
  <div class="col mb-4">
   <div class="card h-100">
    <div class="card-body">
-    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_shortcode"><a href="#doc-snippets-snippet_toc_shortcodes1">Shortcode</a></h5>
+    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_shortcode"><a class="stretched-link" href="#doc-snippets-snippet_toc_shortcodes1">Shortcode</a></h5>
     <p class="card-text text-secondary">as indicated by his name, for short stuff to create an unified layout, include a specific information, etc.</p>
    </div>
   </div>
@@ -19,7 +19,7 @@
  <div class="col mb-4">
   <div class="card h-100">
    <div class="card-body">
-    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_web-component"><a href="#doc-snippets-snippet_toc_web-components">Web Component</a></h5>
+    <h5 class="card-title no-anchor" id="doc-snippets-snippet_toc_web-component"><a class="stretched-link" href="#doc-snippets-snippet_toc_web-components">Web Component</a></h5>
     <p class="card-text text-secondary">It is a autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.</p>
    </div>
   </div>
@@ -73,7 +73,7 @@ Why does the cry assume the dapper sugar?
 <h3 id="doc-snippets-snippet_toc_nested-shortcodes">Nested Shortcodes</h3>
 <p>You can include shortcodes within other shortcodes by creating your own templates that leverage the <code>$snippet.parent</code> property. <code>$snippet.parent</code> allows you to check the context in which the shortcode is being called.</p>
 <h2 id="doc-snippets-snippet_toc_web-components">Web Components</h2>
-<p>It is composed by start tag <code>{{% component attribute="value" %}}</code> with attributes and tag <code>{{% /component %}}</code>, an associated xhtml data structure and a velocity template file. The xhtml data part is enclosed in comment html element ( <code>&lt;!-- --&gt;</code>) or in markdown code block. This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, <code>&lt;svg&gt;</code> tag too :-1: ). The template file name should have the same name as web compenent and located in <code>src/site/snippets/component.vm</code>. In future, the web component will be managed directly by javascript using <a href="https://www.webcomponents.org/" class="externalLink">web component APIs</a>.</p>
+<p>It is composed by start tag <code>{{% component attribute="value" %}}</code> with attributes and tag <code>{{% /component %}}</code>, an associated xhtml data structure and a velocity template file. The xhtml data part is enclosed in comment html element ( <code>&lt;!-- --&gt;</code>). This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, <code>&lt;svg&gt;</code> tag too :-1: ). The template file name should have the same name as web compenent and located in <code>src/site/snippets/component.vm</code>. In future, the web component will be managed directly by javascript using <a href="https://www.webcomponents.org/" class="externalLink">web component APIs</a>.</p>
 <h3 id="doc-snippets-snippet_toc_tag-syntax">Tag Syntax</h3>
 <p>The <code>web component</code> must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.</p>
 <ul>
