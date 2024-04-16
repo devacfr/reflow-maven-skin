@@ -16,7 +16,7 @@
 <column shortcode class="mb-4">
     <card webcomponent class="h-100">
         <card-body>
-            <h5 class="card-title no-anchor"><a href="$snippet.href">$snippet.title</a></h5>
+            <h5 class="card-title no-anchor"><a class="stretched-link" href="$snippet.href">$snippet.title</a></h5>
             <p class="card-text text-secondary">#render_html( ${snippet} )</p>
         </card-body>
     </card>

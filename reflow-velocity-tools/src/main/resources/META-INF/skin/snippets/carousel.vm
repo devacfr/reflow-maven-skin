@@ -35,8 +35,8 @@
 #*          *##if( ${slide["slide-image"].html})
         #render_html( ${slide["slide-image"]} )
 #*          *##else
-        <img src="${slide["slide-image"].src}"
-#*          *# #if( ${slide["slide-image"].attrs['class']} )class="${slide["slide-image"].attrs['class']}"#end
+        <img src="${slide['slide-image'].src}"
+#*          *# #if( ${slide["slide-image"].attrs['class']} )class="${slide['slide-image'].attrs['class']}"#end
 #*          *# #if( ${slide["slide-image"].alt} )alt="${slide['slide-image'].alt}"#end>
 #*          *##end
 #*      *##end
