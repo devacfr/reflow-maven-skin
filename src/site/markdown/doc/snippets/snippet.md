@@ -79,7 +79,7 @@ The associated template,
 
 The facility macro `#render_html` renders the content html of snippet and execute included Velocity Template Language (VTL) macro.
 
-### Tag Syntax
+### Tag Syntax
 
 The shortcode must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.
 
