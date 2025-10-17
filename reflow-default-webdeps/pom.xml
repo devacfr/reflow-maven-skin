@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file
-  distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under
-  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
-  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to
-  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-  ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license
+agreements. See the NOTICE file
+  distributed with this work for additional information regarding copyright ownership. The ASF
+licenses this file to You under
+  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
+with the License. You may
+  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
+applicable law or agreed to
+  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF
+  ANY KIND, either express or implied. See the License for the specific language governing
+permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -20,18 +28,6 @@
   <name>Reflow Default Web Dependencies</name>
   <description>Reflow Default Web Dependencies contains all default web dependencies</description>
   <url>${site.url}${project.artifactId}</url>
-
-  <dependencies>
-    <dependency>
-      <groupId>io.github.devacfr</groupId>
-      <artifactId>highlightjs</artifactId>
-      <version>${highlightJsVersion}</version>
-      <type>jar</type>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/src/main/resources/highlight.js-${highlightJsVersion}.jar</systemPath>
-      <optional>true</optional>
-    </dependency>
-  </dependencies>
 
   <build>
     <plugins>
@@ -47,6 +43,11 @@
             <phase>generate-resources</phase>
             <configuration>
               <artifactItems>
+                <artifactItem>
+                  <groupId>org.webjars</groupId>
+                  <artifactId>highlightjs</artifactId>
+                  <version>${highlightJsVersion}</version>
+                </artifactItem>
                 <artifactItem>
                   <groupId>org.webjars</groupId>
                   <artifactId>bootstrap</artifactId>
@@ -101,35 +102,40 @@
               <outputDirectory>${project.build.outputDirectory}</outputDirectory>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/dependency/META-INF/resources/webjars/anchorjs/${anchorJsVesrion}</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/META-INF/resources/webjars/anchorjs/${anchorJsVesrion}</directory>
                   <targetPath>${project.build.outputDirectory}/js</targetPath>
                   <includes>
                     <include>anchor.min.js</include>
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/META-INF/resources/webjars/bootstrap/${bootstrapVersion}</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/META-INF/resources/webjars/bootstrap/${bootstrapVersion}</directory>
                   <includes>
                     <include>css/bootstrap.min.css</include>
                     <include>js/bootstrap.min.js</include>
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/META-INF/resources/webjars/popper.js/${popperVersion}/umd</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/META-INF/resources/webjars/popper.js/${popperVersion}/umd</directory>
                   <targetPath>${project.build.outputDirectory}/js</targetPath>
                   <includes>
                     <include>popper.min.js</include>
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/META-INF/resources/webjars/jquery/${jqueryVersion}</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/META-INF/resources/webjars/jquery/${jqueryVersion}</directory>
                   <targetPath>${project.build.outputDirectory}/js</targetPath>
                   <includes>
                     <include>jquery.min.js</include>
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/META-INF/resources/highlightjs/${highlightJsVersion}</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/META-INF/resources/webjars/highlightjs/${highlightJsVersion}</directory>
                   <targetPath>${project.build.outputDirectory}/js</targetPath>
                   <includes>
                     <include>languages/*.js</include>
@@ -138,14 +144,16 @@
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web/css</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web/css</directory>
                   <targetPath>${project.build.outputDirectory}/css/fontawesome</targetPath>
                   <includes>
                     <include>all.min.css</include>
                   </includes>
                 </resource>
                 <resource>
-                  <directory>${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web</directory>
+                  <directory>
+                    ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web</directory>
                   <targetPath>${project.build.outputDirectory}/css/fontawesome</targetPath>
                   <includes>
                     <include>webfonts/*</include>
@@ -168,7 +176,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://use.fontawesome.com/releases/v${fontawesomeVersion}/fontawesome-free-${fontawesomeVersion}-web.zip</url>
+              <url>
+                https://use.fontawesome.com/releases/v${fontawesomeVersion}/fontawesome-free-${fontawesomeVersion}-web.zip</url>
               <unpack>true</unpack>
               <outputDirectory>${project.build.directory}/dependency/fontawesome</outputDirectory>
             </configuration>
@@ -180,7 +189,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/cerulean/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/cerulean/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/cerulean</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -192,7 +202,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/cosmo/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/cosmo/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/cosmo</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -204,7 +215,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/cyborg/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/cyborg/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/cyborg</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -216,7 +228,8 @@
             </goals>
             <phase>process-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/darkly/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/darkly/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/darkly</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -228,7 +241,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/flatly/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/flatly/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/flatly</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -240,7 +254,8 @@
             </goals>
             <phase>process-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/journal/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/journal/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/journal</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -252,7 +267,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/litera/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/litera/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/litera</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -264,7 +280,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/lumen/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/lumen/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/lumen</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -276,7 +293,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/lux/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/lux/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/lux</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -288,7 +306,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/materia/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/materia/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/materia</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -300,7 +319,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/minty/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/minty/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/minty</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -312,7 +332,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/pulse/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/pulse/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/pulse</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -324,7 +345,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/sandstone/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/sandstone/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/sandstone</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -336,7 +358,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/simplex/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/simplex/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/simplex</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -348,7 +371,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/sketchy/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/sketchy/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/sketchy</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -360,7 +384,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/slate/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/slate/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/slate</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -372,7 +397,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/solar/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/solar/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/solar</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -384,7 +410,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/spacelab/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/spacelab/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/spacelab</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -396,7 +423,8 @@
             </goals>
             <phase>process-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/superhero/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/superhero/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/superhero</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -408,7 +436,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/united/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/united/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/united</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -420,7 +449,8 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <url>https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/yeti/bootstrap.min.css</url>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/yeti/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/yeti</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
@@ -467,7 +497,9 @@
       <build>
         <pluginManagement>
           <plugins>
-            <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build
+            <!--This
+            plugin's configuration is used to store Eclipse m2e settings only. It has no influence
+            on the Maven build
           itself. -->
             <plugin>
               <groupId>org.eclipse.m2e</groupId>
