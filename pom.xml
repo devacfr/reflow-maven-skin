@@ -116,7 +116,7 @@ governing permissions and limitations under
     <repositoryOwner>devacfr</repositoryOwner>
 
     <scm_url>https://github.com/devacfr/reflow-maven-skin</scm_url>
-    <issue-system>github</issue-system>
+    <issue-system>GitHub</issue-system>
     <issue_url>${scm_url}/issues</issue_url>
     <ci.url>${scm_url}</ci.url>
     <ci.system>Travis</ci.system>
@@ -192,7 +192,7 @@ governing permissions and limitations under
     <maven-site-plugin.version>4.0.0-M13</maven-site-plugin.version>
     <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
     <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
-    <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
+    <maven-changes-plugin.version>3.0.0-M3</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <maven-clover-plugin.version>4.5.1</maven-clover-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
@@ -679,7 +679,7 @@ governing permissions and limitations under
           <reportSet>
             <id>release-notes</id>
             <reports>
-              <report>github-report</report>
+              <report>github-changes</report>
             </reports>
             <inherited>false</inherited>
           </reportSet>
