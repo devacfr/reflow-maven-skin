@@ -198,7 +198,7 @@ governing permissions and limitations under
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
     <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
-    <maven-spotbugs-plugin.version>3.1.12.2</maven-spotbugs-plugin.version>
+    <maven-spotbugs-plugin.version>4.9.7.0</maven-spotbugs-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <spotless.version>2.38.0</spotless.version>
     <maven-surefire-report-plugin.version>${maven-surefire-plugin.version}</maven-surefire-report-plugin.version>
