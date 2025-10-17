@@ -127,7 +127,7 @@ governing permissions and limitations under
     <!--
     ================================================================================ -->
     <anchorJsVesrion>3.2.2</anchorJsVesrion>
-    <highlightJsVersion>11.6.0</highlightJsVersion>
+    <highlightJsVersion>11.11.1</highlightJsVersion>
     <bootstrapVersion>4.6.2</bootstrapVersion>
     <bootswatchVersion>4.6.2</bootswatchVersion>
     <highlightJsTheme>github</highlightJsTheme>
