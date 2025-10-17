@@ -76,14 +76,6 @@ governing permissions and limitations under
     <url>${issue_url}</url>
   </issueManagement>
   <distributionManagement>
-    <repository>
-      <id>${distribution.releaseRepository.id}</id>
-      <url>${distribution.releaseRepositoryUrl}</url>
-    </repository>
-    <snapshotRepository>
-      <id>${distribution.snapshotRepositoryId}</id>
-      <url>${distribution.snapshotRepositoryUrl}</url>
-    </snapshotRepository>
     <site>
       <id>${site.deploy.id}</id>
       <name>${site.deploy.name}</name>
@@ -94,13 +86,7 @@ governing permissions and limitations under
   <properties>
     <reflow-current-version>2.3.4</reflow-current-version>
     <main.basedir>${session.executionRootDirectory}</main.basedir>
-    <distribution.releaseRepository.id>ossrh</distribution.releaseRepository.id>
-    <distribution.releaseRepositoryUrl>
-      https://oss.sonatype.org/service/local/staging/deploy/maven2</distribution.releaseRepositoryUrl>
-    <distribution.snapshotRepositoryId>ossrh</distribution.snapshotRepositoryId>
-    <distribution.snapshotRepositoryUrl>
-      https://oss.sonatype.org/content/repositories/snapshots</distribution.snapshotRepositoryUrl>
-
+    <publishingServerId>ossrh</publishingServerId>
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
@@ -181,7 +167,7 @@ governing permissions and limitations under
     <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-    <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+    <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
     <maven-download-plugin.version>1.5.0</maven-download-plugin.version>
     <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
@@ -462,9 +448,13 @@ governing permissions and limitations under
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>${maven-deploy-plugin.version}</version>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>${central-publishing-maven-plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>${publishingServerId}</publishingServerId>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>com.amashchenko.maven.plugin</groupId>
