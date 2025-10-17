@@ -141,9 +141,9 @@ governing permissions and limitations under
     <!--
     ================================================================================ -->
     <commons-lang.version>3.18.0</commons-lang.version>
-    <doxia.sitetools.version>2.0.0-M16</doxia.sitetools.version>
-    <doxia.version>2.0.0-M8</doxia.version>
-    <doxia.model.version>2.0.0-M16</doxia.model.version>
+    <doxia.sitetools.version>2.0.0-M19</doxia.sitetools.version>
+    <doxia.version>2.0.0-M12</doxia.version>
+    <doxia.model.version>2.0.0-M19</doxia.model.version>
 
     <guava.version>32.1.2-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
