@@ -18,21 +18,25 @@
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import java.io.IOException;
 import java.util.List;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.devacfr.maven.skins.reflow.HtmlTool;
+import org.devacfr.maven.skins.reflow.JsoupUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.jsoup.nodes.Comment;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Specific process for each type of snippet component.
@@ -123,7 +127,8 @@ public abstract class Processor {
         if (endToken != null) {
             endElement = endToken.getElement();
         }
-        final Element tmp = new Element("component");
+        Document doc = JsoupUtils.createHtmlDocument("");
+        final Element tmp = doc.body();
         final Node parent = startElement.parentNode();
 
         final StringBuilder html = new StringBuilder(convertElementToHtml(startElement));
@@ -151,7 +156,7 @@ public abstract class Processor {
             }
             html.append(convertElementToHtml(endElement));
         }
-        tmp.append(html.toString());
+        tmp.html(html.toString());
         final Element component = tmp.children().first();
         final Element parentElement = startElement.parent();
 

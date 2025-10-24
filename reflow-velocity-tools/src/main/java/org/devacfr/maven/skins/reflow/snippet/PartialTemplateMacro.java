@@ -22,10 +22,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Strings;
-import com.google.common.io.CharSource;
-import com.google.common.io.Files;
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
 import org.apache.maven.doxia.macro.MacroExecutionException;
@@ -37,10 +33,15 @@ import org.codehaus.plexus.component.annotations.Component;
 import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.context.ContextException;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import org.devacfr.maven.skins.reflow.JsoupUtils;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
+import com.google.common.io.CharSource;
+import com.google.common.io.Files;
 
 /**
  * @author Christophe Friederich
@@ -50,7 +51,6 @@ import org.slf4j.LoggerFactory;
 public class PartialTemplateMacro extends AbstractMacro implements Contextualizable {
 
     /** */
-    @SuppressWarnings("unused")
     private static final Logger LOGGER = LoggerFactory.getLogger(PartialTemplateMacro.class);
 
     /** */
@@ -116,7 +116,7 @@ public class PartialTemplateMacro extends AbstractMacro implements Contextualiza
 
     String convertSnippet(final CharSource source) throws IOException {
         final String src = source.read();
-        final Document doc = Jsoup.parse(src);
+        final Element doc = JsoupUtils.createHtmlDocument(src);
         return new ComponentResolver().normalize(doc).html();
     }
 }

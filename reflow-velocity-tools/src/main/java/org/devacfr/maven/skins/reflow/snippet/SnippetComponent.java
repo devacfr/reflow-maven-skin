@@ -18,15 +18,15 @@
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static java.util.Objects.requireNonNull;
 
+import javax.annotation.Nonnull;
+
+import org.devacfr.maven.skins.reflow.JsoupUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
-import static java.util.Objects.requireNonNull;
+import org.jsoup.select.Elements;
 
 /**
  * @author Christophe Friederich
@@ -36,71 +36,74 @@ import static java.util.Objects.requireNonNull;
  */
 public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T> {
 
-    /** */
-    private final Type type;
+  /** */
+  private final Type type;
 
-    @Nonnull
-    public static SnippetComponent<?> createSnippet(@Nonnull final Element element,
-        final Component<?> parent,
-        final Type type) {
-        requireNonNull(element);
-        return new SnippetComponent<>(element, type).addAttributes(element.attributes()).withParent(parent);
-    }
+  @Nonnull
+  public static SnippetComponent<?> createSnippet(@Nonnull final Element element,
+      final Component<?> parent,
+      final Type type) {
+    requireNonNull(element);
+    return new SnippetComponent<>(element, type).addAttributes(element.attributes()).withParent(parent);
+  }
 
-    /**
-     * @param element
-     * @param type
-     */
-    public SnippetComponent(@Nonnull final Element element, @Nonnull final Type type) {
-        super(element);
-        this.type = requireNonNull(type);
-    }
+  /**
+   * @param element
+   * @param type
+   */
+  public SnippetComponent(@Nonnull final Element element, @Nonnull final Type type) {
+    super(element);
+    this.type = requireNonNull(type);
+  }
 
-    /**
-     * @return
-     */
-    @Nonnull
-    public Type getType() {
-        return type;
-    }
+  /**
+   * @return
+   */
+  @Nonnull
+  public Type getType() {
+    return type;
+  }
 
-    @Override
-    protected SnippetComponent<?> getRootParent() {
-        return this;
-    }
+  @Override
+  protected @Nonnull SnippetComponent<?> getRootParent() {
+    return this;
+  }
 
-    /**
-     * Render the {@link SnippetComponent} between the {@code startElement} and {@code endElement} include.
-     *
-     * @param context
-     *            the snippet context to use
-     */
-    public void render(final SnippetContext context) {
-        try {
-            final Element element = getElement();
-            final String html = context.renderComponent(this);
-            final Document doc = Jsoup.parse(html);
-            if (doc.body().children().isEmpty()) {
-                return;
-            }
-            // normally, when debug trace is activated
-            if (doc.body().children().size() > 1) {
-                final Element div = new Element("div");
-                doc.body().children().forEach((e) -> div.appendChild(e));
-                element.replaceWith(div);
-            } else {
-                final Element el = doc.body().children().first();
-                // if snippet contains rendered snippet.
-                if (ComponentResolver.hasIncludedSnippetComponent(el)) {
-                    final SnippetParser parser = context.createChildParser();
-                    final Document childDoc = parser.parse(context.getConfig(), el.outerHtml()).document();
-                    element.replaceWith(childDoc.body().children().first());
-                } else {
-                    element.replaceWith(el);
-                }
-            }
-        } catch (final Exception e) {
-            throw new RuntimeException(e.getMessage(), e);
+  /**
+   * Render the {@link SnippetComponent} between the {@code startElement} and
+   * {@code endElement} include.
+   *
+   * @param context
+   *                the snippet context to use
+   */
+  public void render(final SnippetContext context) {
+    try {
+      final Element element = getElement();
+      final String html = context.renderComponent(this);
+
+      final Document doc = JsoupUtils.createHtmlDocument(html);
+      Elements root = doc.body().children();
+      if (root.isEmpty()) {
+        return;
+      }
+      // normally, when debug trace is activated
+      if (root.size() > 1) {
+        final Element div = new Element("div");
+        root.forEach((e) -> div.appendChild(e));
+        element.replaceWith(div);
+      } else {
+        final Element el = root.first();
+        // if snippet contains rendered snippet.
+        if (ComponentResolver.hasIncludedSnippetComponent(el)) {
+          final SnippetParser parser = context.createChildParser();
+          final Element childDoc = parser.parse(context.getConfig(), el.outerHtml()).document();
+          element.replaceWith(childDoc.children().first());
+        } else {
+          element.replaceWith(el);
         }
+      }
+    } catch (final Exception e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
+  }
 }

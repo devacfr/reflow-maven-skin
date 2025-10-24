@@ -65,7 +65,7 @@ public class MarkdownParserTest extends ParserTestCase {
                 Throwables.throwIfUnchecked(e);
                 throw new RuntimeException(e);
             }
-        }, "md");
+        }, "md", "html");
     }
 
     @Test
@@ -79,14 +79,11 @@ public class MarkdownParserTest extends ParserTestCase {
                 Throwables.throwIfUnchecked(e);
                 throw new RuntimeException(e);
             }
-        }, "md");
+        }, "md", "html");
     }
 
     protected String parseFileToHtml(final String content) throws Exception {
         try (Reader reader = new StringReader(content)) {
-            // final Method toHtml = parser.getClass().getDeclaredMethod("toHtml", Reader.class);
-            // toHtml.setAccessible(true);
-            // return (String) toHtml.invoke(parser, reader);
             return parser.toHtml(reader).toString();
         }
     }
