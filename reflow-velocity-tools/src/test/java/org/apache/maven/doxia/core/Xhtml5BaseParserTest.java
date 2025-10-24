@@ -20,8 +20,8 @@ package org.apache.maven.doxia.core;
 
 import java.util.Iterator;
 
+import org.apache.maven.doxia.parser.AbstractParser;
 import org.apache.maven.doxia.parser.AbstractParserTest;
-import org.apache.maven.doxia.parser.Parser;
 import org.apache.maven.doxia.parser.Xhtml5BaseParser;
 import org.apache.maven.doxia.sink.impl.SinkEventElement;
 import org.apache.maven.doxia.sink.impl.SinkEventTestingSink;
@@ -41,7 +41,7 @@ public class Xhtml5BaseParserTest extends AbstractParserTest {
     private final SinkEventTestingSink sink = new SinkEventTestingSink();
 
     @Override
-    protected Parser createParser() {
+    protected AbstractParser createParser() {
         parser = new Xhtml5BaseParser();
         return parser;
     }
@@ -85,5 +85,15 @@ public class Xhtml5BaseParserTest extends AbstractParserTest {
         element = it.next();
         assertEquals("paragraph_", element.getName());
         assertFalse(it.hasNext());
+    }
+
+    @Override
+    protected String getVerbatimSource() {
+        return "<pre>&lt;&gt;{}=#*</pre>";
+    }
+
+    @Override
+    protected String getVerbatimCodeSource() {
+        return "<pre><code>&lt;&gt;{}=#*</code></pre>";
     }
 }

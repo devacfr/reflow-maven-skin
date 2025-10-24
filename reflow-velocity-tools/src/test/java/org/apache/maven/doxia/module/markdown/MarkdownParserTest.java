@@ -24,6 +24,8 @@ import java.io.Reader;
 import java.io.StringReader;
 
 import com.google.common.base.Throwables;
+
+import org.apache.maven.doxia.parser.AbstractParser;
 import org.apache.maven.doxia.parser.Parser;
 import org.devacfr.testing.jupiter.ParserTestCase;
 import org.jsoup.Jsoup;
@@ -40,7 +42,7 @@ public class MarkdownParserTest extends ParserTestCase {
      * {@inheritDoc}
      */
     @Override
-    protected Parser createParser() {
+    protected AbstractParser createParser() {
         return parser;
     }
 
@@ -87,5 +89,19 @@ public class MarkdownParserTest extends ParserTestCase {
             // return (String) toHtml.invoke(parser, reader);
             return parser.toHtml(reader).toString();
         }
+    }
+
+    @Override
+    protected String getVerbatimSource() {
+        /**
+         * Markdown doesn't support verbatim text which is not code:
+         * https://spec.commonmark.org/0.31.2/#fenced-code-blocks and https://spec.commonmark.org/0.31.2/#indented-code-blocks
+         */
+        return null;
+    }
+
+    @Override
+    protected String getVerbatimCodeSource() {
+        return null;
     }
 }

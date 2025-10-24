@@ -24,7 +24,7 @@
 #*      *##else##
     <img src="${snippet['card-image'].src}"##
 #*          *# class="card-img-${caps}#if( ${snippet['card-image'].attrs['class']} ) ${snippet['card-image'].attrs['class']}#end"
-#*          *# #if( ${snippet['card-image'].alt} )alt="${snippet['card-image'].alt}"#end>
+#*          *# #if( ${snippet['card-image'].alt} )alt="${snippet['card-image'].alt}"#end />
 #*      *##end##
 #*  *##end##
 #end##
@@ -40,7 +40,7 @@
     </h${snippet["card-header"].level}>
 #*      *##else##
     <div class="card-header#if( ${snippet['card-header'].attrs['class']} ) ${snippet['card-header'].attrs['class']}#end">
-        #render_html( ${snippet[".card-header"]} )
+        #render_html( ${snippet["card-header"]} )
     </div>
 #*      *##end##
 #*  *##end##
