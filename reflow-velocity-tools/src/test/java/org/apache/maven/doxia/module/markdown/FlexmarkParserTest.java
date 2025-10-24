@@ -97,7 +97,7 @@ public class FlexmarkParserTest extends TestCase {
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-    }, "md");
+    }, "md", "html");
   }
 
   private String render(String content, Appendable html) throws IOException {

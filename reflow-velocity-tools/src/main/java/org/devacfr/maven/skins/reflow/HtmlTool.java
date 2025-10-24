@@ -53,10 +53,13 @@ import static java.util.Collections.emptyList;
 import static java.util.Objects.requireNonNull;
 
 /**
- * An Apache Velocity tool that provides utility methods to manipulate HTML code using
+ * An Apache Velocity tool that provides utility methods to manipulate HTML code
+ * using
  * <a href="http://jsoup.org/">jsoup</a> HTML5 parser.
  * <p>
- * The methods utilise <a href="http://jsoup.org/cookbook/extracting-data/selector-syntax">CSS selectors</a> to refer to
+ * The methods utilise
+ * <a href="http://jsoup.org/cookbook/extracting-data/selector-syntax">CSS
+ * selectors</a> to refer to
  * specific elements for manipulation.
  * </p>
  *
@@ -64,7 +67,9 @@ import static java.util.Objects.requireNonNull;
  * @author Christophe Friederich
  * @since 1.0
  * @see <a href="http://jsoup.org/">jsoup HTML parser</a>
- * @see <a href= "http://jsoup.org/cookbook/extracting-data/selector-syntax">jsoup CSS selectors</a>
+ * @see <a href=
+ *      "http://jsoup.org/cookbook/extracting-data/selector-syntax">jsoup CSS
+ *      selectors</a>
  */
 @DefaultKey("htmlTool")
 public class HtmlTool extends SafeConfig {
@@ -84,11 +89,13 @@ public class HtmlTool extends SafeConfig {
   /** Enum indicating separator handling strategy for document partitioning. */
   public enum JoinSeparator {
     /**
-         * Keep separators at the start of partitions. The first partition will not have a separator.
+     * Keep separators at the start of partitions. The first partition will not have
+     * a separator.
      */
     AFTER,
     /**
-         * Keep separators at the end of partitions. The last partition will not have a separator.
+     * Keep separators at the end of partitions. The last partition will not have a
+     * separator.
      */
     BEFORE,
     /** Drop separators altogether. */
@@ -130,7 +137,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Normalise the whitespace within this string; multiple spaces collapse to a single, and all whitespace characters
+   * Normalise the whitespace within this string; multiple spaces collapse to a
+   * single, and all whitespace characters
    * (e.g. newline, tab) convert to a simple space
    *
    * @param html
@@ -146,14 +154,18 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Splits the given HTML content into partitions based on the given separator selector. The separators themselves
+   * Splits the given HTML content into partitions based on the given separator
+   * selector. The separators themselves
    * are dropped from the results.
    *
    * @param content
-     *            body HTML content to split (can not be empty or {@code null}).
+   *                             body HTML content to split (can not be empty or
+   *                             {@code null}).
    * @param separatorCssSelector
-     *            CSS selector for separators (can not be empty or {@code null}).
-     * @return a list of HTML partitions split on separator locations, but without the separators.
+   *                             CSS selector for separators (can not be empty or
+   *                             {@code null}).
+   * @return a list of HTML partitions split on separator locations, but without
+   *         the separators.
    * @since 1.0
    * @see #split(String, String, JoinSeparator)
    */
@@ -162,10 +174,12 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Splits the given HTML content into partitions based on the given separator selector. The separators are kept as
+   * Splits the given HTML content into partitions based on the given separator
+   * selector. The separators are kept as
    * first elements of the partitions.
    * <p>
-     * Note that the first part is removed if the split was successful. This is because the first part does not include
+   * Note that the first part is removed if the split was successful. This is
+   * because the first part does not include
    * the separator.
    * </p>
    *
@@ -173,7 +187,8 @@ public class HtmlTool extends SafeConfig {
    *                             HTML content to split
    * @param separatorCssSelector
    *                             CSS selector for separators
-     * @return a list of HTML partitions split on separator locations (except the first one), with separators at the
+   * @return a list of HTML partitions split on separator locations (except the
+   *         first one), with separators at the
    *         beginning of each partition
    * @since 1.0
    * @see #split(String, String, JoinSeparator)
@@ -194,15 +209,18 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Splits the given HTML content into partitions based on the given separator selector. The separators are either
-     * dropped or joined with before/after depending on the indicated separator strategy.
+   * Splits the given HTML content into partitions based on the given separator
+   * selector. The separators are either
+   * dropped or joined with before/after depending on the indicated separator
+   * strategy.
    *
    * @param content
    *                             HTML content to split
    * @param separatorCssSelector
    *                             CSS selector for separators
    * @param separatorStrategy
-     *            strategy to drop or keep separators, one of "after", "before" or "no"
+   *                             strategy to drop or keep separators, one of
+   *                             "after", "before" or "no"
    * @return a list of HTML partitions split on separator locations.
    * @since 1.0
    * @see #split(String, String, JoinSeparator)
@@ -224,11 +242,15 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Splits the given HTML content into partitions based on the given separator selector.The separators are either
-     * dropped or joined with before/after depending on the indicated separator strategy.
+   * Splits the given HTML content into partitions based on the given separator
+   * selector.The separators are either
+   * dropped or joined with before/after depending on the indicated separator
+   * strategy.
    * <p>
-     * Note that splitting algorithm tries to resolve nested elements so that returned partitions are self-contained
-     * HTML elements. The nesting is normally contained within the first applicable partition.
+   * Note that splitting algorithm tries to resolve nested elements so that
+   * returned partitions are self-contained
+   * HTML elements. The nesting is normally contained within the first applicable
+   * partition.
    * </p>
    *
    * @param content
@@ -237,7 +259,8 @@ public class HtmlTool extends SafeConfig {
    *                             CSS selector for separators
    * @param separatorStrategy
    *                             strategy to drop or keep separators
-     * @return a list of HTML partitions split on separator locations. If no splitting occurs, returns the original
+   * @return a list of HTML partitions split on separator locations. If no
+   *         splitting occurs, returns the original
    *         content as the single element of the list
    * @since 1.0
    */
@@ -269,14 +292,17 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Recursively splits the {@code parent} element based on the given {@code separators}. If a separator is
-     * encountered in the parent, it is split on that position. The outstanding nested elements go with the first of the
+   * Recursively splits the {@code parent} element based on the given
+   * {@code separators}. If a separator is
+   * encountered in the parent, it is split on that position. The outstanding
+   * nested elements go with the first of the
    * partitions in each case.
    *
    * @param separators
    * @param separatorStrategy
    * @param parent
-     * @return list of partitions (as lists of root elements for each partition). Partition can be an empty list, e.g.
+   * @return list of partitions (as lists of root elements for each partition).
+   *         Partition can be an empty list, e.g.
    *         if the separator is at the start of the content.
    */
   private static List<List<Element>> split(final Collection<Element> separators,
@@ -340,7 +366,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Retrieves the last partition (as list of elements) or creates a new one if there was none before.
+   * Retrieves the last partition (as list of elements) or creates a new one if
+   * there was none before.
    *
    * @param partitions
    * @return
@@ -383,8 +410,10 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Reorders elements in HTML content so that selected elements are found at the top of the content. Can be limited
-     * to a certain amount, e.g. to bring just the first of selected elements to the top.
+   * Reorders elements in HTML content so that selected elements are found at the
+   * top of the content. Can be limited
+   * to a certain amount, e.g. to bring just the first of selected elements to the
+   * top.
    *
    * @param content
    *                 HTML content to reorder
@@ -392,7 +421,8 @@ public class HtmlTool extends SafeConfig {
    *                 CSS selector for elements to bring to top of the content
    * @param amount
    *                 Maximum number of elements to reorder
-     * @return HTML content with reordered elements, or the original content if no such elements found.
+   * @return HTML content with reordered elements, or the original content if no
+   *         such elements found.
    * @since 1.0
    */
   public String reorderToTop(final String content, final String selector, final int amount) {
@@ -400,8 +430,10 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Reorders elements in HTML content so that selected elements are found at the top of the content. Can be limited
-     * to a certain amount, e.g. to bring just the first of selected elements to the top.
+   * Reorders elements in HTML content so that selected elements are found at the
+   * top of the content. Can be limited
+   * to a certain amount, e.g. to bring just the first of selected elements to the
+   * top.
    *
    * @param content
    *                      HTML content to reorder
@@ -411,7 +443,8 @@ public class HtmlTool extends SafeConfig {
    *                      Maximum number of elements to reorder
    * @param wrapRemaining
    *                      HTML to wrap the remaining (non-reordered) part
-     * @return HTML content with reordered elements, or the original content if no such elements found.
+   * @return HTML content with reordered elements, or the original content if no
+   *         such elements found.
    * @since 1.0
    */
   public String reorderToTop(final String content,
@@ -473,7 +506,8 @@ public class HtmlTool extends SafeConfig {
    * @param content
    * @param selector
    * @param amount
-     * @return the remainder and a list of extracted elements. The main body (remainder after extraction) is always
+   * @return the remainder and a list of extracted elements. The main body
+   *         (remainder after extraction) is always
    *         returned as the first element of the list.
    */
   private List<Element> extractElements(final String content, final String selector, final int amount) {
@@ -504,7 +538,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Filters the list of elements to only contain parent elements. This is to avoid both parent and child being in the
+   * Filters the list of elements to only contain parent elements. This is to
+   * avoid both parent and child being in the
    * list of elements.
    *
    * @param elements
@@ -514,7 +549,7 @@ public class HtmlTool extends SafeConfig {
     final List<Element> filtered = new ArrayList<>();
     for (final Element element : elements) {
       // get the intersection of parents and selected elements
-            final List<Element> parentsInter = element.parents();
+      final List<Element> parentsInter = element.parents().asList();
       parentsInter.retainAll(elements);
       if (parentsInter.isEmpty()) {
         // no intersection - element's parents are not in the selected list
@@ -526,8 +561,10 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Extracts HTML elements from the main HTML content. The result consists of the extracted HTML elements and the
-     * remainder of HTML content, with these elements removed. Can be limited to a certain amount, e.g. to extract just
+   * Extracts HTML elements from the main HTML content. The result consists of the
+   * extracted HTML elements and the
+   * remainder of HTML content, with these elements removed. Can be limited to a
+   * certain amount, e.g. to extract just
    * the first of selected elements.
    *
    * @param content
@@ -536,7 +573,8 @@ public class HtmlTool extends SafeConfig {
    *                 CSS selector for elements to extract
    * @param amount
    *                 Maximum number of elements to extract
-     * @return HTML content of the extracted elements together with the remainder of the original content. If no
+   * @return HTML content of the extracted elements together with the remainder of
+   *         the original content. If no
    *         elements are found, the remainder contains the original content.
    * @since 1.0
    */
@@ -565,7 +603,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * A container to carry element extraction results. Contains the extracted element HTML code and the remainder of
+   * A container to carry element extraction results. Contains the extracted
+   * element HTML code and the remainder of
    * the body content with elements removed.
    *
    * @author Andrius Velykis
@@ -576,7 +615,8 @@ public class HtmlTool extends SafeConfig {
     /**
      * Retrieves the extracted HTML elements.
      *
-         * @return List of HTML of extracted elements. Can be empty if no elements found.
+     * @return List of HTML of extracted elements. Can be empty if no elements
+     *         found.
      */
     List<String> getExtracted();
 
@@ -626,7 +666,8 @@ public class HtmlTool extends SafeConfig {
    *                     Attribute name
    * @param value
    *                     Attribute value
-     * @return HTML content with modified elements. If no elements are found, the original content is returned.
+   * @return HTML content with modified elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String setAttr(final String content, final String selector, final String attributeKey, final String value) {
@@ -661,7 +702,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Retrieves attribute value on elements in HTML. Will return all attribute values for the selector, since there can
+   * Retrieves attribute value on elements in HTML. Will return all attribute
+   * values for the selector, since there can
    * be more than one element.
    *
    * @param content
@@ -670,7 +712,8 @@ public class HtmlTool extends SafeConfig {
    *                     CSS selector for elements to find
    * @param attributeKey
    *                     Attribute name
-     * @return Attribute values for all matching elements. If no elements are found, empty list is returned.
+   * @return Attribute values for all matching elements. If no elements are found,
+   *         empty list is returned.
    * @since 1.0
    */
   public List<String> getAttr(final String content, final String selector, final String attributeKey) {
@@ -699,7 +742,8 @@ public class HtmlTool extends SafeConfig {
    *                   Names of classes to add to the selected elements
    * @param amount
    *                   Maximum number of elements to modify
-     * @return HTML content with modified elements. If no elements are found, the original content is returned.
+   * @return HTML content with modified elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String addClass(final String content,
@@ -739,7 +783,8 @@ public class HtmlTool extends SafeConfig {
    *                   CSS selector for elements to add classes to
    * @param classNames
    *                   Names of classes to add to the selected elements
-     * @return HTML content with modified elements. If no elements are found, the original content is returned.
+   * @return HTML content with modified elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String addClass(final String content, final String selector, final List<String> classNames) {
@@ -755,7 +800,8 @@ public class HtmlTool extends SafeConfig {
    *                  CSS selector for elements to add the class to
    * @param className
    *                  Name of class to add to the selected elements
-     * @return HTML content with modified elements. If no elements are found, the original content is returned.
+   * @return HTML content with modified elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String addClass(final String content, final String selector, final String className) {
@@ -773,7 +819,8 @@ public class HtmlTool extends SafeConfig {
    *                 HTML to use for wrapping the selected elements
    * @param amount
    *                 Maximum number of elements to modify
-     * @return HTML content with modified elements. If no elements are found, the original content is returned.
+   * @return HTML content with modified elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String wrap(final String content, final String selector, final String wrapHtml, final int amount) {
@@ -806,7 +853,8 @@ public class HtmlTool extends SafeConfig {
    *                 HTML content to modify
    * @param selector
    *                 CSS selector for elements to remove
-     * @return HTML content with removed elements. If no elements are found, the original content is returned.
+   * @return HTML content with removed elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String remove(final String content, final String selector) {
@@ -835,7 +883,8 @@ public class HtmlTool extends SafeConfig {
    *                    CSS selector for elements to replace
    * @param replacement
    *                    HTML replacement (must parse to a single element)
-     * @return HTML content with replaced elements. If no elements are found, the original content is returned.
+   * @return HTML content with replaced elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String replace(final String content, final String selector, final String replacement) {
@@ -848,9 +897,12 @@ public class HtmlTool extends SafeConfig {
    * @param content
    *                     HTML content to modify
    * @param replacements
-     *            Map of CSS selectors to their replacement HTML texts. CSS selectors find elements to be replaced with
-     *            the HTML in the mapping. The HTML must parse to a single element.
-     * @return HTML content with replaced elements. If no elements are found, the original content is returned.
+   *                     Map of CSS selectors to their replacement HTML texts. CSS
+   *                     selectors find elements to be replaced with
+   *                     the HTML in the mapping. The HTML must parse to a single
+   *                     element.
+   * @return HTML content with replaced elements. If no elements are found, the
+   *         original content is returned.
    * @since 1.0
    */
   public String replaceAll(final String content, final Map<String, String> replacements) {
@@ -887,7 +939,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Replaces All elements in HTML corresponding to <code>selector</code> while preserving the content of this
+   * Replaces All elements in HTML corresponding to <code>selector</code> while
+   * preserving the content of this
    * element.
    *
    * @param content
@@ -896,7 +949,8 @@ public class HtmlTool extends SafeConfig {
    *                   CSS selector for elements to replace
    * @param newElement
    *                   HTML replacement (must parse to a single element)
-     * @return HTML content with replaced elements. If no elements are found, the original content is returned.
+   * @return HTML content with replaced elements. If no elements are found, the
+   *         original content is returned.
    * @since 2.0
    */
   public String replaceWith(final String content, final String selector, final String newElement) {
@@ -933,14 +987,16 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Retrieves text content of the selected elements in HTML. Renders the element's text as it would be displayed on
+   * Retrieves text content of the selected elements in HTML. Renders the
+   * element's text as it would be displayed on
    * the web page (including its children).
    *
    * @param content
    *                 HTML content with the elements
    * @param selector
    *                 CSS selector for elements to extract contents
-     * @return A list of element texts as rendered to display. Empty list if no elements are found.
+   * @return A list of element texts as rendered to display. Empty list if no
+   *         elements are found.
    * @since 1.0
    */
   public List<String> text(@Nullable final String content, @Nonnull final String selector) {
@@ -960,24 +1016,29 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Transforms the given HTML content by moving anchor ({@code <a name="myheading">}) names to IDs for heading
+   * Transforms the given HTML content by moving anchor
+   * ({@code <a name="myheading">}) names to IDs for heading
    * elements.
    * <p>
-     * The anchors are used to indicate positions within a HTML page. In HTML5, however, the {@code name} attribute is
-     * no longer supported on {@code <a>}) tag. The positions within pages are indicated using {@code id} attribute
+   * The anchors are used to indicate positions within a HTML page. In HTML5,
+   * however, the {@code name} attribute is
+   * no longer supported on {@code <a>}) tag. The positions within pages are
+   * indicated using {@code id} attribute
    * instead, e.g. {@code
    *
    * 
   <h1 id="myheading">}.
    * </p>
    * <p>
-     * The method finds anchors inside, immediately before or after the heading tags and uses their name as heading
+   * The method finds anchors inside, immediately before or after the heading tags
+   * and uses their name as heading
    * {@code id} instead. The anchors themselves are removed.
    * </p>
    *
    * @param content
    *                HTML content to modify
-     * @return HTML content with modified elements. Anchor names are used for adjacent headings, and anchor tags are
+   * @return HTML content with modified elements. Anchor names are used for
+   *         adjacent headings, and anchor tags are
    *         removed. If no elements are found, the original content is returned.
    * @since 1.0
    */
@@ -1058,14 +1119,16 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Utility method to concatenate a String to a list of Strings. The text can be either appended or prepended.
+   * Utility method to concatenate a String to a list of Strings. The text can be
+   * either appended or prepended.
    *
    * @param elements
    *                 list of elements to append/prepend the text to
    * @param text
    *                 the given text to append/prepend
    * @param append
-     *            if {@code true}, text will be appended to the elements. If {@code false}, it will be prepended
+   *                 if {@code true}, text will be appended to the elements. If
+   *                 {@code false}, it will be prepended
    * @return list of elements with the text appended/prepended
    * @since 1.0
    */
@@ -1080,13 +1143,17 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Transforms the given HTML content by adding IDs to all heading elements ({@code h1-6}) that do not have one.
+   * Transforms the given HTML content by adding IDs to all heading elements
+   * ({@code h1-6}) that do not have one.
    * <p>
-     * IDs on heading elements are used to indicate positions within a HTML page in HTML5. If a heading tag without an
-     * {@code id} is found, its "slug" is generated automatically based on the heading contents and used as the ID.
+   * IDs on heading elements are used to indicate positions within a HTML page in
+   * HTML5. If a heading tag without an
+   * {@code id} is found, its "slug" is generated automatically based on the
+   * heading contents and used as the ID.
    * </p>
    * <p>
-     * Note that the algorithm also modifies existing IDs that have symbols not allowed in CSS selectors, e.g. ":", ".",
+   * Note that the algorithm also modifies existing IDs that have symbols not
+   * allowed in CSS selectors, e.g. ":", ".",
    * etc. The symbols are removed.
    * </p>
    *
@@ -1098,8 +1165,10 @@ public class HtmlTool extends SafeConfig {
    *                    HTML content to modify.
    * @param idSeparator
    *                    the seperator used to slug ID.
-     * @return Returns a {@link String} representing HTML content with all heading elements having {@code id}
-     *         attributes. If all headings were with IDs already, the original content is returned.
+   * @return Returns a {@link String} representing HTML content with all heading
+   *         elements having {@code id}
+   *         attributes. If all headings were with IDs already, the original
+   *         content is returned.
    * @since 1.0
    */
   public String ensureHeadingIds(final String pageType,
@@ -1171,7 +1240,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Generated a unique ID within the given set of IDs. Appends an incrementing number for duplicates.
+   * Generated a unique ID within the given set of IDs. Appends an incrementing
+   * number for duplicates.
    *
    * @param pageType
    *                    The type of page.
@@ -1205,11 +1275,14 @@ public class HtmlTool extends SafeConfig {
    * Fixes table heads: wraps rows with {@code
    *
    * 
-    <th>} (table heading) elements into {@code <thead>} element if they are currently in {@code <tbody>}.
+    
+  <th>} (table heading) elements into {@code <thead>} element if they are
+   * currently in {@code <tbody>}.
    *
    * @param content
    *                HTML content to modify
-     * @return HTML content with all table heads fixed. If all heads were correct, the original content is returned.
+   * @return HTML content with all table heads fixed. If all heads were correct,
+   *         the original content is returned.
    * @since 1.0
    */
   public String fixTableHeads(final String content) {
@@ -1247,12 +1320,14 @@ public class HtmlTool extends SafeConfig {
   private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
   /**
-     * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs). Uses "-"
+   * Creates a slug (latin text with no whitespace or other symbols) for a longer
+   * text (i.e. to use in URLs). Uses "-"
    * as a whitespace separator.
    *
    * @param input
    *              text to generate the slug from
-     * @return the slug of the given text that contains alphanumeric symbols and "-" only
+   * @return the slug of the given text that contains alphanumeric symbols and "-"
+   *         only
    * @since 1.0
    */
   public static String slug(final String input) {
@@ -1260,13 +1335,15 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Creates a slug (latin text with no whitespace or other symbols) for a longer text (i.e. to use in URLs).
+   * Creates a slug (latin text with no whitespace or other symbols) for a longer
+   * text (i.e. to use in URLs).
    *
    * @param input
    *                  text to generate the slug from
    * @param separator
    *                  separator for whitespace replacement
-     * @return the slug of the given text that contains alphanumeric symbols and separator only
+   * @return the slug of the given text that contains alphanumeric symbols and
+   *         separator only
    * @since 1.0
    * @see <a href=
    *      "http://www.codecodex.com/wiki/Generate_a_url_slug">http://www.codecodex.com/wiki/Generate_a_url_slug</a>
@@ -1278,10 +1355,13 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Reads all headings in the given HTML content as a hierarchy. Subsequent smaller headings are nested within bigger
-     * ones, e.g. <code>&lt;h2&gt;</code> is nested under preceding <code>&lt;h1&gt;</code>.
+   * Reads all headings in the given HTML content as a hierarchy. Subsequent
+   * smaller headings are nested within bigger
+   * ones, e.g. <code>&lt;h2&gt;</code> is nested under preceding
+   * <code>&lt;h1&gt;</code>.
    * <p>
-     * Only headings with IDs are included in the hierarchy. The result elements contain ID and heading text for each
+   * Only headings with IDs are included in the hierarchy. The result elements
+   * contain ID and heading text for each
    * heading. The hierarchy is useful to generate a Table of Contents for a page.
    * </p>
    *
@@ -1289,7 +1369,8 @@ public class HtmlTool extends SafeConfig {
    *                 HTML content to extract heading hierarchy from
    * @param sections
    *                 list of all sections
-     * @return a list of top-level heading items (with id and text). The remaining headings are nested within these
+   * @return a list of top-level heading items (with id and text). The remaining
+   *         headings are nested within these
    *         top-level items. Empty list if no headings are in the content.
    * @since 1.0
    */
@@ -1413,7 +1494,8 @@ public class HtmlTool extends SafeConfig {
   }
 
   /**
-     * Representation of a HTML element with ID and a text content. Other such elements can be nested within.
+   * Representation of a HTML element with ID and a text content. Other such
+   * elements can be nested within.
    *
    * @author Andrius Velykis
    * @since 1.0

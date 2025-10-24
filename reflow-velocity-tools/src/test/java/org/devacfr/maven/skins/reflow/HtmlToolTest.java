@@ -79,8 +79,8 @@ public class HtmlToolTest extends TestCase {
         final String body = getActualResource();
         final List<String> fragments = htmlTool.split(body, ".section");
         assertEquals(2, fragments.size());
-        assertEquals("<h2>section1</h2>\n<div>\n</div>", fragments.get(0));
-        assertEquals("<div>\n</div>", fragments.get(1));
+        assertEquals("<h2>section1</h2>\n<div></div>", fragments.get(0));
+        assertEquals("<div></div>", fragments.get(1));
     }
 
     @Test

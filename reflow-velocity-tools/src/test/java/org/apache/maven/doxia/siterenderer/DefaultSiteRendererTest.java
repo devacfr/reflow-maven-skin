@@ -44,6 +44,7 @@ import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
+import org.apache.maven.doxia.siterenderer.SiteRenderingContext.SiteDirectory;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.testing.PlexusTest;
 import org.codehaus.plexus.util.FileUtils;
@@ -69,7 +70,7 @@ public class DefaultSiteRendererTest extends TestCase {
     /**
      * The renderer used to produce output.
      */
-    private Renderer renderer;
+    private SiteRenderer renderer;
 
     /**
      * The locale before executing tests.
@@ -89,7 +90,7 @@ public class DefaultSiteRendererTest extends TestCase {
      */
     @BeforeEach
     protected void setUp() throws Exception {
-        renderer = container.lookup(Renderer.class);
+        renderer = container.lookup(SiteRenderer.class);
 
         InputStream skinIS = getResource("velocity-toolmanager.vm").openStream();
         JarOutputStream jarOS = new JarOutputStream(new FileOutputStream(skinJar));
@@ -149,7 +150,7 @@ public class DefaultSiteRendererTest extends TestCase {
         final SiteRenderingContext ctxt = getSiteRenderingContext(model, srcSite, false);
 
         ctxt.setRootDirectory(getTestFile(""));
-        renderer.render(renderer.locateDocumentFiles(ctxt, true).values(), ctxt, targetSite.toFile());
+        renderer.render(renderer.locateDocumentFiles(ctxt).values(), ctxt, targetSite.toFile());
 
         verify(targetSite.resolve("snippet.html"), getPackagePath().resolve("snippet.approved.html"));
     }
@@ -167,7 +168,7 @@ public class DefaultSiteRendererTest extends TestCase {
         skin.setFile(skinFile);
         final SiteRenderingContext siteRenderingContext = renderer
                 .createContextForSkin(skin, attributes, model, "defaultWindowTitle", Locale.ENGLISH);
-        siteRenderingContext.addSiteDirectory(siteDir.toFile());
+        siteRenderingContext.addSiteDirectory(new SiteDirectory(siteDir.toFile(), true));
         siteRenderingContext.setValidate(validate);
 
         return siteRenderingContext;

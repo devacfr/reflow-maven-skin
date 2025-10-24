@@ -1,0 +1,70 @@
+<html>
+ <head></head>
+ <body>
+  <div class="bd-example">
+   <div>
+    <pre><code class="placeholder-debug text-left language-yaml">
+name: card
+type: webComponent
+attributes: {debug=true, style=width: 18rem;}
+isHtmlTag: false
+ownHtml: ''
+parent: 
+children:
+    - name: card-image
+      attributes: {src=..., alt=...}
+      isHtmlTag: false
+      ownHtml: ''
+      parent: card
+    - name: card-body
+      attributes: 
+      isHtmlTag: false
+      ownHtml: ''
+      parent: card
+      children:
+        - name: h5
+          attributes: {class=card-title}
+          isHtmlTag: true
+          ownHtml: '&lt;h5 class="card-title"&gt;Card title&lt;/h5&gt;'
+          parent: card-body
+          children:
+            - name: #text
+              attributes: {#text=Card title}
+              isHtmlTag: true
+              ownHtml: 'Card title'
+              parent: h5
+        - name: p
+          attributes: {class=card-text}
+          isHtmlTag: true
+          ownHtml: '&lt;p class="card-text"&gt;Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;'
+          parent: card-body
+          children:
+            - name: #text
+              attributes: {#text=Some quick example text to build on the card title and make up the bulk of the card's content.}
+              isHtmlTag: true
+              ownHtml: 'Some quick example text to build on the card title and make up the bulk of the card's content.'
+              parent: p
+        - name: a
+          attributes: {href=#, class=btn btn-primary}
+          isHtmlTag: true
+          ownHtml: '&lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;'
+          parent: card-body
+          children:
+            - name: #text
+              attributes: {#text=Go somewhere}
+              isHtmlTag: true
+              ownHtml: 'Go somewhere'
+              parent: a
+</code></pre>
+    <div class="card" style="width: 18rem;">
+     <img src="..." class="card-img-top" alt="...">
+     <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
