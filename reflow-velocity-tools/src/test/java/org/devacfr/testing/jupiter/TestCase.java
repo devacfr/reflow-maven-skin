@@ -93,7 +93,7 @@ public class TestCase extends Assertions {
     }
 
     public void verify() {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, null);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, null, null);
     }
 
     /**
@@ -102,7 +102,7 @@ public class TestCase extends Assertions {
      */
     public void verify(final String extension) {
         Approvals
-                .verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension);
+                .verify(getPackagePath(), this.getClass(), getMethodName(), (Function<String, String>) null, extension, null);
     }
 
     public void verify(final Path actualFile, final Path expectedFile) {
@@ -110,7 +110,7 @@ public class TestCase extends Assertions {
     }
 
     public void verify(final Function<String, String> transform) {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, null);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, null, null);
     }
 
     /**
@@ -119,8 +119,12 @@ public class TestCase extends Assertions {
      *            the extension file.
      */
     public void verify(final Function<String, String> transform, @Nullable final String extension) {
-        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, extension);
+        Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, extension, extension);
     }
+    
+    public void verify(final Function<String, String> transform, @Nullable final String extension, String outExtension) {
+      Approvals.verify(getPackagePath(), this.getClass(), getMethodName(), transform, extension, outExtension);
+  }
 
     /**
      * @param actual

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<site xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd"
   name="Plexus">
-  <bannerLeft>
-    <name>Plexus</name>
-    <src>http://plexus.codehaus.org/images/plexus-logo.png</src>
-    <href>http://plexus.codehaus.org</href>
+  <bannerLeft name="Plexus" href="http://plexus.codehaus.org">
+    <image src="http://plexus.codehaus.org/images/plexus-logo.png" />
   </bannerLeft>
-  <bannerRight>
-    <src>http://media.codehaus.org/images/unity-codehaus-logo.png</src>
-    <href>http://www.codehaus.org</href>
+  <bannerRight href="http://www.codehaus.org">
+    <image src="http://media.codehaus.org/images/unity-codehaus-logo.png" />
   </bannerRight>
   <body>
     <links>
@@ -30,4 +27,4 @@
       </item>
     </menu>
   </body>
-</project>
+</site>
