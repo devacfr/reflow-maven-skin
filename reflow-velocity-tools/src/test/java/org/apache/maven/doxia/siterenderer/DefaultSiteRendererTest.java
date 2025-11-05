@@ -58,7 +58,7 @@ import org.junit.jupiter.api.Test;
  * @author <a href="mailto:evenisse@codehaus.org">Emmanuel Venisse</a>
  */
 @PlexusTest
-@Disabled("not work when clover report is enabled")
+//@Disabled("not work when clover report is enabled")
 public class DefaultSiteRendererTest extends TestCase {
 
     /**
