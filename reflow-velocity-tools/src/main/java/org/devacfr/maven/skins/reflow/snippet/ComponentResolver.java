@@ -24,10 +24,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Document;
@@ -41,6 +38,10 @@ import org.jsoup.select.NodeVisitor;
 import org.jsoup.select.QueryParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * Resolve the type and tag type of component.
@@ -98,7 +99,7 @@ public class ComponentResolver {
      *            the document to use
      * @return Returns the same normalised {@link Document}.
      */
-    public Document normalize(final Document document) {
+    public Element normalize(final Element document) {
 
         final Elements elements = collect(document);
         if (LOGGER.isDebugEnabled()) {

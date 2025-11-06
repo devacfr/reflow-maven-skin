@@ -25,8 +25,7 @@
 #* *##end##
 #*  *##if( $isRoot )##
 #*      *##set( $indent = 0 )##
-<pre class="placeholder-debug text-left">
-    <code>
+<pre><code class="placeholder-debug text-left language-yaml">
 #*  *##end##
 #*  *##set( $sp = $display.space( $indent ) )##
 ##
@@ -42,15 +41,15 @@ ${sp}type: ${snippet.type}
 ##
 #*  *##set( $html = "" )##
 #*  *##if( $snippet.ownHtml )##
-#*      *##set( $html = $esc.html( $htmlTool.normaliseWhitespace($snippet.ownHtml ) ) )##
+#*      *##set( $html = $esc.html( $htmlTool.normaliseWhitespace( $snippet.ownHtml ) ) )##
 #*  *##end##
 #*  *##set( $attrs = "" )##
 #*  *##if( $snippet.attrs )##
 #*      *##set( $attrs = $esc.html( $htmlTool.normaliseWhitespace( $snippet.attrs.toString() ) ) )##
 #*  *##end##
-${sp}attributes: $attrs
+${sp}attributes: ${attrs}
 ${sp}isHtmlTag: ${snippet.isHtmlTag()}
-${sp}ownHtml: '$html'
+${sp}ownHtml: '${html}'
 ${sp}parent: $!snippet.parent.name
 ##
 #*  *##if( !${snippet.children.isEmpty()} )##
@@ -65,8 +64,7 @@ ${sp}children:
 #*      *##set( $sp = $display.space($indent) )##
 #*  *##end##
 #*  *##if( $isRoot )##
-    </code>
-</pre>
+</code></pre>
 #*  *##end##
 #end##
 #**
@@ -74,7 +72,7 @@ ${sp}children:
  *#
 #macro( render_html $snippet )##
 #*  *##if( ${snippet} && ${snippet.html} )##
-#*      *##evaluate( ${snippet.html} )##
+        #evaluate( ${snippet.html} )
 #*  *##end##
 #end
 ##
@@ -82,7 +80,7 @@ ${sp}children:
 ##
 ##
 #if( $snippet.attrs["debug"])##
-#*  *##debug( $snippet true 0)##
+    #debug( $snippet true 0)
 #end
 #**
  * execute snippet

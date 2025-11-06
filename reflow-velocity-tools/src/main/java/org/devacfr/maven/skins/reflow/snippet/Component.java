@@ -22,10 +22,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
@@ -33,8 +36,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Tag;
+import org.jsoup.parser.TagSet;
 
 import static java.util.Objects.requireNonNull;
+import static org.jsoup.parser.Parser.NamespaceHtml;
 
 /**
  * Base of Snippet component.
@@ -46,212 +51,215 @@ import static java.util.Objects.requireNonNull;
  */
 public class Component<T extends Component<T>> {
 
-    /** */
-    private final Map<String, String> attributes = Maps.newHashMap();
+  private final static Set<String> knownTags = Sets.newHashSet("svg");
 
-    /** */
-    private Component<?> parent;
+  /** */
+  private final Map<String, String> attributes = Maps.newHashMap();
 
-    /** */
-    private final Components children = new Components();
+  /** */
+  private Component<?> parent;
 
-    /** */
-    private final Map<String, Components> childrenMap = Maps.newHashMap();
+  /** */
+  private final Components children = new Components();
 
-    /** */
-    private final Node node;
+  /** */
+  private final Map<String, Components> childrenMap = Maps.newHashMap();
 
-    /**
-     * @param node
-     * @param parent
-     * @return
-     */
-    public static Component<?> createComponent(@Nonnull final Node node, final Component<?> parent) {
-        return new Component<>(node).withParent(parent).addAttributes(node.attributes());
-    }
+  /** */
+  private final Node node;
 
-    /**
-     * @param node
-     */
-    protected Component(@Nonnull final Node node) {
-        this.node = requireNonNull(node);
-    }
+  /**
+   * @param node
+   * @param parent
+   * @return
+   */
+  public static Component<?> createComponent(@Nonnull final Node node, final Component<?> parent) {
+    return new Component<>(node).withParent(parent).addAttributes(node.attributes());
+  }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return node.nodeName();
-    }
+  /**
+   * @param node
+   */
+  protected Component(@Nonnull final Node node) {
+    this.node = requireNonNull(node);
+  }
 
-    /**
-     * @return
-     */
-    @Nonnull
-    Type getInternalType() {
-        return getRootParent().getType();
-    }
+  /**
+   * @return the name
+   */
+  public String getName() {
+    return node.nodeName();
+  }
 
-    /**
-     * @return
-     */
-    public boolean isHtmlTag() {
-        return node instanceof TextNode || Tag.isKnownTag(node.nodeName());
-    }
+  /**
+   * @return
+   */
+  @Nonnull
+  Type getInternalType() {
+    return getRootParent().getType();
+  }
 
-    /**
-     * @return
-     */
-    public String getHtml() {
-        if (!isHtmlTag()) {
-            if (children.isEmpty()) {
-                return null;
-            } else {
-                return children.html();
-            }
-        } else {
-            return this.node.outerHtml();
-        }
-    }
+  /**
+   * @return
+   */
+  public boolean isHtmlTag() {
+    return node instanceof TextNode || Tag.isKnownTag(node.nodeName()) || knownTags.contains(node.nodeName());
+  }
 
-    /**
-     * @return
-     */
-    public String getOwnHtml() {
-        if (!isHtmlTag()) {
-            return null;
-        } else {
-            return this.node.outerHtml();
-        }
-    }
-
-    /**
-     * @return the parent
-     */
-    public Component<?> getParent() {
-        return parent;
-    }
-
-    @Nullable protected Element getElement() {
-        if (this.node instanceof Element) {
-            return (Element) this.node;
-        }
+  /**
+   * @return
+   */
+  public String getHtml() {
+    if (!isHtmlTag()) {
+      if (children.isEmpty()) {
         return null;
+      } else {
+        return children.html();
+      }
+    } else {
+      return this.node.outerHtml();
     }
+  }
 
-    /**
-     * @param name
-     * @return
-     */
-    public Object get(@Nonnull final String name) {
-        requireNonNull(name);
-        String key = name.toLowerCase();
-        // if attribute
-        if (this.attributes.containsKey(key)) {
-            return this.attributes.get(key);
-        } else {
-            // is children component?
-            // check if 's' suffix allowing to retrieve children component as list
-            if (key.endsWith("s") && !this.childrenMap.containsKey(key)) {
-                key = key.substring(0, key.length() - 1);
-                if (this.childrenMap.containsKey(key)) {
-                    return this.childrenMap.get(key);
-                }
-            } else if (this.childrenMap.containsKey(key)) {
-                final Components value = this.childrenMap.get(key);
-                // TODO i don't know if good idea, but it's works.
-                if (value.size() > 1) {
-                    return value;
-                }
-                return value.first();
-            }
-        }
-        return null;
+  /**
+   * @return
+   */
+  public String getOwnHtml() {
+    if (!isHtmlTag()) {
+      return null;
+    } else {
+      return this.node.outerHtml();
     }
+  }
 
-    public Map<String, String> getAttrs() {
-        return this.attributes;
+  /**
+   * @return the parent
+   */
+  public Component<?> getParent() {
+    return parent;
+  }
+
+  @Nullable
+  protected Element getElement() {
+    if (this.node instanceof Element) {
+      return (Element) this.node;
     }
+    return null;
+  }
 
-    /**
-     * @return the children
-     */
-    public Components getChildren() {
-        return children;
-    }
-
-    public Components getChildren(final String name) {
-        final String key = requireNonNull(name).toLowerCase();
+  /**
+   * @param name
+   * @return
+   */
+  public Object get(@Nonnull final String name) {
+    requireNonNull(name);
+    String key = name.toLowerCase();
+    // if attribute
+    if (this.attributes.containsKey(key)) {
+      return this.attributes.get(key);
+    } else {
+      // is children component?
+      // check if 's' suffix allowing to retrieve children component as list
+      if (key.endsWith("s") && !this.childrenMap.containsKey(key)) {
+        key = key.substring(0, key.length() - 1);
         if (this.childrenMap.containsKey(key)) {
-            return this.childrenMap.get(key);
+          return this.childrenMap.get(key);
         }
-        return Components.empty();
-    }
-
-    public T addChild(final Component<?> component) {
-        final String key = component.getName();
-        Components value = null;
-        if (!this.childrenMap.containsKey(key)) {
-            value = new Components();
-            this.childrenMap.put(key, value);
-        } else {
-            value = this.childrenMap.get(key);
+      } else if (this.childrenMap.containsKey(key)) {
+        final Components value = this.childrenMap.get(key);
+        // TODO i don't know if good idea, but it's works.
+        if (value.size() > 1) {
+          return value;
         }
-        value.add(component);
-        this.children.add(component);
-        return self();
+        return value.first();
+      }
     }
+    return null;
+  }
 
-    protected T withParent(final Component<?> parent) {
-        this.parent = parent;
-        return self();
-    }
+  public Map<String, String> getAttrs() {
+    return this.attributes;
+  }
 
-    @Nonnull
-    protected SnippetComponent<?> getRootParent() {
-        Component<?> parent = this.parent;
-        while (!(parent instanceof SnippetComponent<?>)) {
-            parent = parent.parent;
-        }
-        return (SnippetComponent<?>) parent;
-    }
+  /**
+   * @return the children
+   */
+  public Components getChildren() {
+    return children;
+  }
 
-    /**
-     * @param attrs
-     * @return
-     */
-    protected T addAttributes(@Nonnull final Attributes attrs) {
-        attrs.asList().stream().forEach(this::addAttribute);
-        return self();
+  public Components getChildren(final String name) {
+    final String key = requireNonNull(name).toLowerCase();
+    if (this.childrenMap.containsKey(key)) {
+      return this.childrenMap.get(key);
     }
+    return Components.empty();
+  }
 
-    /**
-     * @param attr
-     * @return
-     */
-    protected T addAttribute(@Nonnull final Attribute attr) {
-        this.attributes.put(requireNonNull(attr.getKey()).toLowerCase(), requireNonNull(attr.getValue()));
-        return self();
+  public T addChild(final Component<?> component) {
+    final String key = component.getName();
+    Components value = null;
+    if (!this.childrenMap.containsKey(key)) {
+      value = new Components();
+      this.childrenMap.put(key, value);
+    } else {
+      value = this.childrenMap.get(key);
     }
+    value.add(component);
+    this.children.add(component);
+    return self();
+  }
 
-    /**
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    protected T self() {
-        return (T) this;
-    }
+  protected T withParent(final Component<?> parent) {
+    this.parent = parent;
+    return self();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("name", this.getName())
-                .add("isHtmlTag", this.isHtmlTag())
-                .add("attributes", this.attributes)
-                .add("children", this.children.stream().map((cpt) -> cpt.getName()).collect(Collectors.toList()))
-                .toString();
+  @Nonnull
+  protected SnippetComponent<?> getRootParent() {
+    Component<?> parent = this.parent;
+    while (!(parent instanceof SnippetComponent<?>)) {
+      parent = parent.parent;
     }
+    return (SnippetComponent<?>) parent;
+  }
+
+  /**
+   * @param attrs
+   * @return
+   */
+  protected T addAttributes(@Nonnull final Attributes attrs) {
+    attrs.asList().stream().forEach(this::addAttribute);
+    return self();
+  }
+
+  /**
+   * @param attr
+   * @return
+   */
+  protected T addAttribute(@Nonnull final Attribute attr) {
+    this.attributes.put(requireNonNull(attr.getKey()).toLowerCase(), requireNonNull(attr.getValue()));
+    return self();
+  }
+
+  /**
+   * @return
+   */
+  @SuppressWarnings("unchecked")
+  protected T self() {
+    return (T) this;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+        .add("name", this.getName())
+        .add("isHtmlTag", this.isHtmlTag())
+        .add("attributes", this.attributes)
+        .add("children", this.children.stream().map((cpt) -> cpt.getName()).collect(Collectors.toList()))
+        .toString();
+  }
 }
