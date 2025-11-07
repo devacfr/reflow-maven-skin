@@ -1,20 +1,17 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Copyright 2012-2025 Christophe Friederich
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
@@ -70,239 +67,238 @@ import com.google.common.collect.Lists;
  */
 public class SnippetContext {
 
-  /** */
-  private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
+    /** */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SnippetContext.class);
 
-  /** */
-  private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/layouts/snippets",
-      "META-INF/skin/snippets");
+    /** */
+    private static final List<String> DEFAULT_PATHS = Lists.newArrayList("src/site/layouts/snippets",
+        "META-INF/skin/snippets");
 
-  /** */
-  private final List<SnippetComponent<?>> components = Lists.newArrayList();
+    /** */
+    private final List<SnippetComponent<?>> components = Lists.newArrayList();
 
-  /** **/
-  private String htmlSource;
+    /** **/
+    private String htmlSource;
 
-  /** */
-  private final List<String> snippetPaths = Lists.newArrayList(DEFAULT_PATHS);
+    /** */
+    private final List<String> snippetPaths = Lists.newArrayList(DEFAULT_PATHS);
 
-  /** */
-  private ISkinConfig config;
+    /** */
+    private ISkinConfig config;
 
-  /** */
-  private final ToolManager toolManager;
+    /** */
+    private final ToolManager toolManager;
 
-  /** */
-  private final WeakReference<SnippetParser> parser;
+    /** */
+    private final WeakReference<SnippetParser> parser;
 
-  public SnippetContext(final SnippetParser parser) {
-    this.toolManager = createToolManaged();
-    this.parser = new WeakReference<>(parser);
-  }
-
-  public void reset() {
-    this.htmlSource = null;
-    this.components.clear();
-    this.config = null;
-  }
-
-  public String generateSnippetIdentifier() {
-    return "snippet-placement-" + UUID.randomUUID().toString();
-  }
-
-  public List<SnippetComponent<?>> getComponents() {
-    return components;
-  }
-
-  public SnippetParser getParser() {
-    return this.parser.get();
-  }
-
-  public ISkinConfig getConfig() {
-    return config;
-  }
-
-  public SnippetParser createChildParser() {
-    final SnippetParser parser = new SnippetParser();
-    getSnippetPaths().forEach(path -> parser.addResourcePath(path));
-    return parser;
-  }
-
-  void setConfig(final ISkinConfig config) {
-    this.config = config;
-  }
-
-  public List<String> getSnippetPaths() {
-    return snippetPaths;
-  }
-
-  void addComponent(final SnippetComponent<?> component) {
-    this.components.add(component);
-  }
-
-  void insertResourcePath(final String path, final int index) {
-    this.snippetPaths.add(index, path);
-  }
-
-  void addResourcePath(final String path) {
-    this.snippetPaths.add(path);
-  }
-
-  void setHtmlSource(final String htmlSource) {
-    this.htmlSource = htmlSource;
-  }
-
-  public String html() {
-    return htmlSource;
-  }
-
-  public Element document() {
-    return JsoupUtils.createHtmlDocument(html());
-  }
-
-  @Nonnull
-  SnippetComponent<?> create(@Nonnull final Element element,
-      @Nonnull final ComponentToken startToken,
-      @Nullable final ComponentToken endToken) {
-    requireNonNull(element);
-    requireNonNull(startToken);
-    final SnippetComponent<?> component = SnippetComponent.createSnippet(element, null, startToken.type());
-    addComponent(component);
-    recurciveCreateComponent(element, component);
-    return component;
-  }
-
-  @Nonnull
-  private SnippetComponent<?> create(@Nonnull final Element element, final Component<?> commponent) {
-    requireNonNull(element);
-    Type type = null;
-    if (element.hasAttr("shortcode")) {
-      type = Type.shortcode;
-    } else if (element.hasAttr("webcomponent")) {
-      type = Type.webComponent;
-    } else {
-      throw new SnippetParseException("Unknown snippet element");
+    public SnippetContext(final SnippetParser parser) {
+        this.toolManager = createToolManaged();
+        this.parser = new WeakReference<>(parser);
     }
-    final SnippetComponent<?> component = SnippetComponent.createSnippet(element, commponent, type);
-    addComponent(component);
-    recurciveCreateComponent(element, component);
-    return component;
-  }
 
-  private void recurciveCreateComponent(@Nonnull final Node element, final Component<?> parent) {
-    element.childNodes().forEach(child -> {
-      Component<?> component = null;
-      // accept textnode not empty as component.
-      if (child instanceof TextNode && ((TextNode) child).text().length() > 1) {
-        component = Component.createComponent(child, parent);
-      } else if (child instanceof Element) {
-        final Element el = (Element) child;
-        if (ComponentResolver.isSnippet(el)) {
-          component = create(el, parent);
+    public void reset() {
+        this.htmlSource = null;
+        this.components.clear();
+        this.config = null;
+    }
+
+    public String generateSnippetIdentifier() {
+        return "snippet-placement-" + UUID.randomUUID().toString();
+    }
+
+    public List<SnippetComponent<?>> getComponents() {
+        return components;
+    }
+
+    public SnippetParser getParser() {
+        return this.parser.get();
+    }
+
+    public ISkinConfig getConfig() {
+        return config;
+    }
+
+    public SnippetParser createChildParser() {
+        final SnippetParser parser = new SnippetParser();
+        getSnippetPaths().forEach(path -> parser.addResourcePath(path));
+        return parser;
+    }
+
+    void setConfig(final ISkinConfig config) {
+        this.config = config;
+    }
+
+    public List<String> getSnippetPaths() {
+        return snippetPaths;
+    }
+
+    void addComponent(final SnippetComponent<?> component) {
+        this.components.add(component);
+    }
+
+    void insertResourcePath(final String path, final int index) {
+        this.snippetPaths.add(index, path);
+    }
+
+    void addResourcePath(final String path) {
+        this.snippetPaths.add(path);
+    }
+
+    void setHtmlSource(final String htmlSource) {
+        this.htmlSource = htmlSource;
+    }
+
+    public String html() {
+        return htmlSource;
+    }
+
+    public Element document() {
+        return JsoupUtils.createHtmlDocument(html());
+    }
+
+    @Nonnull
+    SnippetComponent<?> create(@Nonnull final Element element,
+        @Nonnull final ComponentToken startToken,
+        @Nullable final ComponentToken endToken) {
+        requireNonNull(element);
+        requireNonNull(startToken);
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, null, startToken.type());
+        addComponent(component);
+        recurciveCreateComponent(element, component);
+        return component;
+    }
+
+    @Nonnull
+    private SnippetComponent<?> create(@Nonnull final Element element, final Component<?> commponent) {
+        requireNonNull(element);
+        Type type = null;
+        if (element.hasAttr("shortcode")) {
+            type = Type.shortcode;
+        } else if (element.hasAttr("webcomponent")) {
+            type = Type.webComponent;
         } else {
-          component = Component.createComponent(el, parent);
-          recurciveCreateComponent(el, component);
+            throw new SnippetParseException("Unknown snippet element");
         }
-      }
-      if (component != null) {
-        parent.addChild(component);
-      }
-    });
-  }
-
-  protected void render(final SnippetComponent<?> component) {
-    traverseTee(component, c -> {
-      if (c instanceof SnippetComponent) {
-        ((SnippetComponent<?>) c).render(this);
-      }
-    });
-    component.render(this);
-  }
-
-  private void traverseTee(final Component<?> component, final Consumer<Component<?>> consumer) {
-    final Consumer<Component<?>> traverse = c -> traverseTee(c, consumer);
-    component.getChildren().forEach(consumer.andThen(traverse));
-  }
-
-  protected String renderComponent(final SnippetComponent<?> component) {
-    final StringWriter writer = new StringWriter();
-    try {
-      mergeTemplate(component, writer);
-      return writer.toString();
-    } finally {
-      IOUtils.closeQuietly(writer);
+        final SnippetComponent<?> component = SnippetComponent.createSnippet(element, commponent, type);
+        addComponent(component);
+        recurciveCreateComponent(element, component);
+        return component;
     }
-  }
 
-  protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
-    boolean found = false;
-    for (final String path : this.snippetPaths) {
-      final String filePath = path + '/' + component.getName() + ".vm";
-      if (Velocity.resourceExists(filePath)) {
-        found = true;
-        final Context context = createVelocityContext();
-        context.put("snippet", component);
-        context.put("snippetPath", filePath);
-        context.put("config", this.config);
-        context.put("velocity", Velocity.class);
-        context.put("site", this.config.getSiteModel());
-        // Use config option
-        // <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
-        context.put("resourcePath", this.config.getResourcePath());
+    private void recurciveCreateComponent(@Nonnull final Node element, final Component<?> parent) {
+        element.childNodes().forEach(child -> {
+            Component<?> component = null;
+            // accept textnode not empty as component.
+            if (child instanceof TextNode && ((TextNode) child).text().length() > 1) {
+                component = Component.createComponent(child, parent);
+            } else if (child instanceof Element) {
+                final Element el = (Element) child;
+                if (ComponentResolver.isSnippet(el)) {
+                    component = create(el, parent);
+                } else {
+                    component = Component.createComponent(el, parent);
+                    recurciveCreateComponent(el, component);
+                }
+            }
+            if (component != null) {
+                parent.addChild(component);
+            }
+        });
+    }
 
-        Velocity.mergeTemplate("META-INF/skin/snippets/_snippet.vm",
-            RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
-            context,
-            writer);
-        break;
-      } else {
-        if (LOGGER.isDebugEnabled()) {
-          LOGGER.debug("Template for component '{}' not found in path:{} ", component, filePath);
+    protected void render(final SnippetComponent<?> component) {
+        traverseTee(component, c -> {
+            if (c instanceof SnippetComponent) {
+                ((SnippetComponent<?>) c).render(this);
+            }
+        });
+        component.render(this);
+    }
+
+    private void traverseTee(final Component<?> component, final Consumer<Component<?>> consumer) {
+        final Consumer<Component<?>> traverse = c -> traverseTee(c, consumer);
+        component.getChildren().forEach(consumer.andThen(traverse));
+    }
+
+    protected String renderComponent(final SnippetComponent<?> component) {
+        final StringWriter writer = new StringWriter();
+        try {
+            mergeTemplate(component, writer);
+            return writer.toString();
+        } finally {
+            IOUtils.closeQuietly(writer);
         }
-      }
     }
-    if (!found) {
-      LOGGER.warn("The snippet '{}' template doesn't exist", component.getName());
+
+    protected void mergeTemplate(final SnippetComponent<?> component, final Writer writer) {
+        boolean found = false;
+        for (final String path : this.snippetPaths) {
+            final String filePath = path + '/' + component.getName() + ".vm";
+            if (Velocity.resourceExists(filePath)) {
+                found = true;
+                final Context context = createVelocityContext();
+                context.put("snippet", component);
+                context.put("snippetPath", filePath);
+                context.put("config", this.config);
+                context.put("velocity", Velocity.class);
+                context.put("site", this.config.getSiteModel());
+                // Use config option
+                // <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+                context.put("resourcePath", this.config.getResourcePath());
+
+                Velocity.mergeTemplate("META-INF/skin/snippets/_snippet.vm",
+                    RuntimeSingleton.getString(RuntimeConstants.INPUT_ENCODING, RuntimeConstants.ENCODING_DEFAULT),
+                    context,
+                    writer);
+                break;
+            } else {
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Template for component '{}' not found in path:{} ", component, filePath);
+                }
+            }
+        }
+        if (!found) {
+            LOGGER.warn("The snippet '{}' template doesn't exist", component.getName());
+        }
     }
-  }
 
-  /**
-   * Creates a Velocity Context with all generic tools configured wit the site
-   * rendering context.
-   *
-   * @return a Velocity tools managed context
-   */
-  protected Context createVelocityContext() {
-    return toolManager.createContext();
-  }
+    /**
+     * Creates a Velocity Context with all generic tools configured wit the site rendering context.
+     *
+     * @return a Velocity tools managed context
+     */
+    protected Context createVelocityContext() {
+        return toolManager.createContext();
+    }
 
-  /**
-   * @return
-   */
-  protected ToolManager createToolManaged() {
+    /**
+     * @return
+     */
+    protected ToolManager createToolManaged() {
 
-    final EasyFactoryConfiguration config = new EasyFactoryConfiguration(false);
-    config.property("safeMode", Boolean.FALSE);
-    config.toolbox(Scope.REQUEST)
-        .tool(ContextTool.class)
-        .tool(LinkTool.class)
-        .tool(LoopTool.class)
-        .tool(RenderTool.class);
-    config.toolbox(Scope.APPLICATION)
-        .tool(ClassTool.class)
-        .tool(ComparisonDateTool.class)
-        .tool(DisplayTool.class)
-        .tool(EscapeTool.class)
-        .tool(FieldTool.class)
-        .tool(MathTool.class)
-        .tool(NumberTool.class)
-        .tool(ResourceTool.class)
-        .tool(XmlTool.class)
-        .tool(URITool.class)
-        .tool(HtmlTool.class);
+        final EasyFactoryConfiguration config = new EasyFactoryConfiguration(false);
+        config.property("safeMode", Boolean.FALSE);
+        config.toolbox(Scope.REQUEST)
+                .tool(ContextTool.class)
+                .tool(LinkTool.class)
+                .tool(LoopTool.class)
+                .tool(RenderTool.class);
+        config.toolbox(Scope.APPLICATION)
+                .tool(ClassTool.class)
+                .tool(ComparisonDateTool.class)
+                .tool(DisplayTool.class)
+                .tool(EscapeTool.class)
+                .tool(FieldTool.class)
+                .tool(MathTool.class)
+                .tool(NumberTool.class)
+                .tool(ResourceTool.class)
+                .tool(XmlTool.class)
+                .tool(URITool.class)
+                .tool(HtmlTool.class);
 
-    final ToolManager manager = new ToolManager(false, false);
-    manager.configure(config);
-    return manager;
-  }
+        final ToolManager manager = new ToolManager(false, false);
+        manager.configure(config);
+        return manager;
+    }
 }

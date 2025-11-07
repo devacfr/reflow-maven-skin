@@ -1,20 +1,17 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Copyright 2012-2025 Christophe Friederich
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.devacfr.maven.skins.reflow;
 
@@ -45,15 +42,11 @@ import org.slf4j.LoggerFactory;
 import static java.util.Objects.requireNonNull;
 
 /**
- * An Apache Velocity tool that simplifies retrieval of custom configuration
- * values for a Maven Site.
+ * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
  * <p>
- * The tool is configured to access Maven site configuration of a skin inside
- * {@code <custom>} element of site
- * descriptor. It supports global properties (defined at skin level) and
- * per-page properties (defined in
- * {@code <page><mypage>} element). The per-page properties override the global
- * ones.
+ * The tool is configured to access Maven site configuration of a skin inside {@code <custom>} element of site
+ * descriptor. It supports global properties (defined at skin level) and per-page properties (defined in
+ * {@code <page><mypage>} element). The per-page properties override the global ones.
  * </p>
  * <p>
  * A sample configuration would be like that:
@@ -77,13 +70,11 @@ import static java.util.Objects.requireNonNull;
  * }
  * </pre>
  * <p>
- * To get the value of {@code prop1}, one would simply use
- * {@code $config.prop1}. This would return "override value1".
+ * To get the value of {@code prop1}, one would simply use {@code $config.prop1}. This would return "override value1".
  * Then {@code $config.prop2} would return "value2" - the global value.
  * </p>
  * <p>
- * The tool allows querying the value easily, falling back from page to global
- * configuration to {@code null}, if none is
+ * The tool allows querying the value easily, falling back from page to global configuration to {@code null}, if none is
  * available. It also provides convenience accessors for common values.
  * </p>
  * <p>
@@ -218,7 +209,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
             if (skinNode.getName().endsWith(namespaceKey)) {
                 // extract the namespace (including the colon)
                 namespace = Strings.emptyToNull(
-                        skinNode.getName().substring(0, skinNode.getName().length() - namespaceKey.length() + 1));
+                    skinNode.getName().substring(0, skinNode.getName().length() - namespaceKey.length() + 1));
             }
 
             // for page properties, retrieve the file name and drop the `.html`
@@ -276,8 +267,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * @return Returns the key under which this tool has been configured. The
-     *         default is `config`.
+     * @return Returns the key under which this tool has been configured. The default is `config`.
      * @since 1.0
      */
     public String getKey() {
@@ -288,8 +278,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * {@inheritDoc}
      */
     @Override
-    @Nullable
-    public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
+    @Nullable public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
         requireNonNull(type);
         if (String.class.isAssignableFrom(type)) {
             return this.eval("$" + key, type);
@@ -315,8 +304,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * {@inheritDoc}
      */
     @Override
-    @Nullable
-    @SuppressWarnings("unchecked")
+    @Nullable @SuppressWarnings("unchecked")
     public <T> T getToolbox(@Nonnull final String toolName, @Nonnull final Class<T> toolType) {
         requireNonNull(toolType);
         return (T) this.velocityContext.getToolbox().get(requireNonNull(toolName));
@@ -326,8 +314,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * {@inheritDoc}
      */
     @Override
-    @Nullable
-    public Xpp3Dom get(@Nonnull final String property) {
+    @Nullable public Xpp3Dom get(@Nonnull final String property) {
         requireNonNull(property);
         // first try page properties
         Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
@@ -340,18 +327,15 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * Retrieves the text value of the given {@code property}, e.g. as in
-     * {@code <myprop>value</myprop>}.
+     * Retrieves the text value of the given {@code property}, e.g. as in {@code <myprop>value</myprop>}.
      *
      * @param property
-     *                 the property of interest
-     * @return the configuration value if found in page or globally, {@code null}
-     *         otherwise.
+     *            the property of interest
+     * @return the configuration value if found in page or globally, {@code null} otherwise.
      * @see #get(String)
      * @since 1.0
      */
-    @Nullable
-    public String value(@Nonnull final String property) {
+    @Nullable public String value(@Nonnull final String property) {
         requireNonNull(property);
         final Xpp3Dom propNode = get(property);
 
@@ -367,21 +351,20 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the text value of the given {@code property}.
      *
      * @param property
-     *                     the property to use
+     *            the property to use
      * @param targetType
-     *                     the returned target type use to convert value.
+     *            the returned target type use to convert value.
      * @param defaultValue
-     *                     the default value used if property doesn't exist.
+     *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
      *            the type of returned object.
      */
     @Override
-    @Nullable
-    public <T> T getPropertyValue(@Nonnull final String property,
-            @Nonnull final Class<T> targetType,
-            @Nullable final T defaultValue) {
+    @Nullable public <T> T getPropertyValue(@Nonnull final String property,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
         return getPropertyValue(property, targetType).orElse(defaultValue);
     }
 
@@ -391,8 +374,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     @Override
     @SuppressWarnings("unchecked")
     @Nonnull
-    public <T> Optional<T> getPropertyValue(@Nonnull final String property,
-            @Nonnull final Class<T> targetType) {
+    public <T> Optional<T> getPropertyValue(@Nonnull final String property, @Nonnull final Class<T> targetType) {
         requireNonNull(property, "property is required");
         requireNonNull(targetType, "targetType is required");
         final String value = value(property);
@@ -414,9 +396,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the list of all children name for the {@code parentNode}.
      *
      * @param parentNode
-     *                   the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all
-     *         children, which may be empty but never
+     *            the parent node to use (can be {@code null}.
+     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
      *         {@code null}.
      * @since 1.3
      */
@@ -428,24 +409,23 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Gets the attribute value of the given {@code attribute} of {@code property}.
      *
      * @param property
-     *                     the property to use
+     *            the property to use
      * @param attribute
-     *                     the attribute to use.
+     *            the attribute to use.
      * @param targetType
-     *                     the returned target type use to convert value.
+     *            the returned target type use to convert value.
      * @param defaultValue
-     *                     the default value used if property doesn't exist.
+     *            the default value used if property doesn't exist.
      * @return Returns a converted value of the given {@code property}.
      * @since 2.0
      * @param <T>
      *            the type of returned object.
      */
     @Override
-    @Nullable
-    public <T> T getAttributeValue(@Nonnull final String property,
-            @Nonnull final String attribute,
-            @Nonnull final Class<T> targetType,
-            @Nullable final T defaultValue) {
+    @Nullable public <T> T getAttributeValue(@Nonnull final String property,
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
         return getAttributeValue(property, attribute, targetType).orElse(defaultValue);
     }
 
@@ -456,8 +436,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     @SuppressWarnings("unchecked")
     @Nonnull
     public <T> Optional<T> getAttributeValue(@Nonnull final String property,
-            @Nonnull final String attribute,
-            @Nonnull final Class<T> targetType) {
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType) {
         requireNonNull(property, "property is required");
         requireNonNull(attribute, "attribute is required");
         requireNonNull(targetType, "targetType is required");
@@ -500,11 +480,10 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * {@inheritDoc}
      */
     @Override
-    @Nullable
-    public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
-            @Nonnull final String attribute,
-            @Nonnull final Class<T> targetType,
-            @Nullable final T defaultValue) {
+    @Nullable public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType,
+        @Nullable final T defaultValue) {
         return getAttributeValue(element, attribute, targetType).orElse(defaultValue);
     }
 
@@ -515,8 +494,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     @SuppressWarnings("unchecked")
     @Nonnull
     public <T> Optional<T> getAttributeValue(@Nonnull final Xpp3Dom element,
-            @Nonnull final String attribute,
-            @Nonnull final Class<T> targetType) {
+        @Nonnull final String attribute,
+        @Nonnull final Class<T> targetType) {
         final String value = element.getAttribute(attribute);
         if (value == null) {
             return Optional.empty();
@@ -533,13 +512,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * A convenience method to check if the value of the {@code property} is
-     * {@code "true"}.
+     * A convenience method to check if the value of the {@code property} is {@code "true"}.
      *
      * @param property
-     *                 the property of interest
-     * @return {@code true} if the configuration value is set either in page or
-     *         globally, and is equal to
+     *            the property of interest
+     * @return {@code true} if the configuration value is set either in page or globally, and is equal to
      *         {@code "true"}.
      * @see #get(String)
      * @since 1.0
@@ -557,15 +534,13 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * A convenience method to check if the {@code property} is set to a specific
-     * value.
+     * A convenience method to check if the {@code property} is set to a specific value.
      *
      * @param property
-     *                 the property of interest
+     *            the property of interest
      * @param value
-     *                 the property value to check
-     * @return {@code true} if the configuration value is set either in page or
-     *         globally, and is equal to {@code value}.
+     *            the property value to check
+     * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.
      * @see #get(String)
      * @since 1.0
      */
@@ -577,8 +552,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * {@inheritDoc}
      */
     @Override
-    @Nullable
-    public String getProjectId() {
+    @Nullable public String getProjectId() {
         return projectId;
     }
 
@@ -586,8 +560,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * {@inheritDoc}
      */
     @Override
-    @Nullable
-    public String getFileId() {
+    @Nullable public String getFileId() {
         return fileId;
     }
 
@@ -669,13 +642,10 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
     /**
      * <p>
-     * See <a href=
-     * "https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia
-     * Sitetools - Site
+     * See <a href= "https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
      * Renderer</a> for more information.
      *
-     * @return Returns a {@link String} representing the name of current file of the
-     *         (HTML) document being rendered,
+     * @return Returns a {@link String} representing the name of current file of the (HTML) document being rendered,
      *         relative to the site root.
      */
     @Nonnull
@@ -684,8 +654,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * @return Returns a {@link String} representing the location path of current
-     *         rendered file.
+     * @return Returns a {@link String} representing the location path of current rendered file.
      */
     @Nonnull
     public String getCurrentFileLocation() {
@@ -698,8 +667,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      */
     @Override
     @SuppressWarnings("unchecked")
-    @Nullable
-    public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
+    @Nullable public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
         if (vtl == null) {
             return null;
         }
@@ -793,11 +761,10 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
      * Converts a filename to pageId format.
      *
      * @param fileName
-     *                 the filename to convert
+     *            the filename to convert
      * @return Returns a {@link String} representing the pageId of {@code filename}.
      */
-    @Nullable
-    public static String slugFilename(@Nullable final String fileName) {
+    @Nullable public static String slugFilename(@Nullable final String fileName) {
         if (fileName == null) {
             return null;
         }
@@ -837,15 +804,12 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * Gets the reproduce build timestamp whether property
-     * 'project.build.outputTimestamp' is fill in.
+     * Gets the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
      *
-     * @return Returns a instance of {@code Date} representing the reproduce build
-     *         timestamp whether property
+     * @return Returns a instance of {@code Date} representing the reproduce build timestamp whether property
      *         'project.build.outputTimestamp' is fill in.
      */
-    @Nullable
-    public Date getBuildOutputTimestamp() throws ParseException {
+    @Nullable public Date getBuildOutputTimestamp() throws ParseException {
         if (!this.velocityContext.containsKey(PROJECT_BUILD_OUTPUTTIMESTAMP)) {
             return null;
         }

@@ -1,20 +1,17 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Copyright 2012-2025 Christophe Friederich
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.devacfr.maven.skins.reflow.snippet;
 
@@ -45,134 +42,133 @@ import org.slf4j.LoggerFactory;
  */
 public class SnippetParser {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SnippetParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SnippetParser.class);
 
-  /** */
-  private final ComponentResolver resolver;
+    /** */
+    private final ComponentResolver resolver;
 
-  /** */
-  private final ArrayList<ComponentToken> stack;
+    /** */
+    private final ArrayList<ComponentToken> stack;
 
-  /** */
-  private Iterator<Element> it;
+    /** */
+    private Iterator<Element> it;
 
-  /** */
-  private Processor state = null;
+    /** */
+    private Processor state = null;
 
-  /** */
-  private final WebComponentProcessor webComponentProcessor;
+    /** */
+    private final WebComponentProcessor webComponentProcessor;
 
-  /** */
-  private final ShortcodeProcessor shortcodeProcessor;
+    /** */
+    private final ShortcodeProcessor shortcodeProcessor;
 
-  /** */
-  private final SnippetContext snippetContext;
+    /** */
+    private final SnippetContext snippetContext;
 
-  /** */
-  private ComponentToken currentToken;
+    /** */
+    private ComponentToken currentToken;
 
-  public SnippetParser() {
-    resolver = new ComponentResolver();
-    stack = new ArrayList<>(32);
-    snippetContext = new SnippetContext(this);
-    webComponentProcessor = new WebComponentProcessor(this);
-    shortcodeProcessor = new ShortcodeProcessor(this);
-  }
-
-  public SnippetParser insertResourcePath(final String path, final int index) {
-    snippetContext.insertResourcePath(path, index);
-    return this;
-  }
-
-  public SnippetParser addResourcePath(final String path) {
-    snippetContext.addResourcePath(path);
-    return this;
-  }
-
-  public SnippetContext parse(@Nonnull final ISkinConfig config, @Nullable String htmlSource)
-      throws IOException {
-    requireNonNull(config);
-    if (htmlSource == null) {
-      htmlSource = "";
+    public SnippetParser() {
+        resolver = new ComponentResolver();
+        stack = new ArrayList<>(32);
+        snippetContext = new SnippetContext(this);
+        webComponentProcessor = new WebComponentProcessor(this);
+        shortcodeProcessor = new ShortcodeProcessor(this);
     }
 
-    snippetContext.reset();
-    snippetContext.setConfig(config);
-
-    if (LOGGER.isDebugEnabled()) {
-      LOGGER.debug("Parse Snippet");
-      LOGGER.debug(htmlSource);
+    public SnippetParser insertResourcePath(final String path, final int index) {
+        snippetContext.insertResourcePath(path, index);
+        return this;
     }
 
-    // find all snippets
-    final Element doc = resolver.normalize(JsoupUtils.createHtmlDocument(htmlSource));
-
-    final Elements elements = resolver.collect(doc);
-
-    for (it = elements.iterator(); it.hasNext();) {
-      try {
-        parse();
-      } catch (final Exception ex) {
-        throw new SnippetParseException(
-            "error on parse token " + currentToken + " when generate file " + config.getFileId(), ex);
-      }
+    public SnippetParser addResourcePath(final String path) {
+        snippetContext.addResourcePath(path);
+        return this;
     }
-    snippetContext.setHtmlSource(doc.html());
-    return snippetContext;
-  }
 
-  protected void parse() {
-    if (!it.hasNext()) {
-      throw new SnippetParseException("EOF");
-    }
-    final Element element = it.next();
-    currentToken = resolver.create(element);
-    if (currentToken == null) {
-      throw new SnippetParseException("unknown component: " + element);
-    }
-    switch (currentToken.type()) {
-      case webComponent:
-        state = webComponentProcessor;
-        break;
-      case shortcode:
-        state = shortcodeProcessor;
-        break;
-      default:
-        throw new SnippetParseException("unknown token type " + currentToken.type());
-    }
-    parse(currentToken);
-    currentToken = null;
-  }
+    public SnippetContext parse(@Nonnull final ISkinConfig config, @Nullable String htmlSource) throws IOException {
+        requireNonNull(config);
+        if (htmlSource == null) {
+            htmlSource = "";
+        }
 
-  protected void parse(final ComponentToken token) {
-    state.parse(token);
-  }
+        snippetContext.reset();
+        snippetContext.setConfig(config);
 
-  protected ComponentToken currentToken() {
-    final int size = stack.size();
-    return size > 0 ? stack.get(size - 1) : null;
-  }
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Parse Snippet");
+            LOGGER.debug(htmlSource);
+        }
 
-  protected ComponentToken pop() {
-    final int size = stack.size();
-    if (LOGGER.isDebugEnabled()) {
-      LOGGER.debug("Stack size befor pop: {}", size);
+        // find all snippets
+        final Element doc = resolver.normalize(JsoupUtils.createHtmlDocument(htmlSource));
+
+        final Elements elements = resolver.collect(doc);
+
+        for (it = elements.iterator(); it.hasNext();) {
+            try {
+                parse();
+            } catch (final Exception ex) {
+                throw new SnippetParseException(
+                        "error on parse token " + currentToken + " when generate file " + config.getFileId(), ex);
+            }
+        }
+        snippetContext.setHtmlSource(doc.html());
+        return snippetContext;
     }
-    final ComponentToken element = stack.remove(size - 1);
-    if (LOGGER.isDebugEnabled()) {
-      LOGGER.debug("Remove component from stack: {}", element);
-    }
-    return element;
-  }
 
-  protected void push(final ComponentToken element) {
-    stack.add(element);
-    if (LOGGER.isDebugEnabled()) {
-      LOGGER.debug("Add component to stack: {}", element);
+    protected void parse() {
+        if (!it.hasNext()) {
+            throw new SnippetParseException("EOF");
+        }
+        final Element element = it.next();
+        currentToken = resolver.create(element);
+        if (currentToken == null) {
+            throw new SnippetParseException("unknown component: " + element);
+        }
+        switch (currentToken.type()) {
+            case webComponent:
+                state = webComponentProcessor;
+                break;
+            case shortcode:
+                state = shortcodeProcessor;
+                break;
+            default:
+                throw new SnippetParseException("unknown token type " + currentToken.type());
+        }
+        parse(currentToken);
+        currentToken = null;
     }
-  }
 
-  protected SnippetContext getSnippetContext() {
-    return snippetContext;
-  }
+    protected void parse(final ComponentToken token) {
+        state.parse(token);
+    }
+
+    protected ComponentToken currentToken() {
+        final int size = stack.size();
+        return size > 0 ? stack.get(size - 1) : null;
+    }
+
+    protected ComponentToken pop() {
+        final int size = stack.size();
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Stack size befor pop: {}", size);
+        }
+        final ComponentToken element = stack.remove(size - 1);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Remove component from stack: {}", element);
+        }
+        return element;
+    }
+
+    protected void push(final ComponentToken element) {
+        stack.add(element);
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Add component to stack: {}", element);
+        }
+    }
+
+    protected SnippetContext getSnippetContext() {
+        return snippetContext;
+    }
 }
