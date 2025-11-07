@@ -15,14 +15,11 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
+import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Objects;
-
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author Christophe Friederich
@@ -63,7 +60,7 @@ public class MenuItem {
     /** */
     private final String title;
 
-    /** **/
+    /** * */
     private final String inherit;
 
     /** */
@@ -98,9 +95,7 @@ public class MenuItem {
         recurciveAddItem(config, this.menuItems, item.getItems());
     }
 
-    /**
-     * recurcive
-     */
+    /** recurcive */
     private void recurciveAddItem(final ISkinConfig config,
         final List<MenuItem> menuItems,
         final List<org.apache.maven.doxia.site.MenuItem> origMenuItems) {
@@ -110,7 +105,6 @@ public class MenuItem {
         for (final org.apache.maven.doxia.site.MenuItem menuItem : origMenuItems) {
             menuItems.add(new MenuItem(config, menuItem));
         }
-
     }
 
     /**
@@ -220,5 +214,4 @@ public class MenuItem {
     public String getWidth() {
         return width;
     }
-
 }

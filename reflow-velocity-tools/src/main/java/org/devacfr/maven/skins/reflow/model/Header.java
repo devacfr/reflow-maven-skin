@@ -17,13 +17,10 @@ package org.devacfr.maven.skins.reflow.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-
+import java.util.List;
+import javax.annotation.Nonnull;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
@@ -88,6 +85,7 @@ public class Header extends BsComponent {
 
     /**
      * Gets the type of header.
+     *
      * @return Returns a String representing the type of header.
      */
     public String getType() {
@@ -100,5 +98,4 @@ public class Header extends BsComponent {
     public String getContent() {
         return content;
     }
-
 }

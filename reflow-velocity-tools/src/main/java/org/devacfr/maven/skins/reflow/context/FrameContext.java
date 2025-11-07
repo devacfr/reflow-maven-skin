@@ -18,7 +18,6 @@ package org.devacfr.maven.skins.reflow.context;
 import static java.util.Objects.requireNonNull;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.Toc;
@@ -71,5 +70,4 @@ public class FrameContext extends Context<FrameContext> {
     public Toc<?> getToc() {
         return toc;
     }
-
 }

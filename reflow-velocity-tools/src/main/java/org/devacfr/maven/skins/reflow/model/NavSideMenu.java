@@ -17,30 +17,25 @@ package org.devacfr.maven.skins.reflow.model;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-
 /**
  * Represents the navside menu component used in document page.
  * <p>
  * A sample configuration would be like that:
- * </p>
  *
- * <pre>
- * {@code
+ * <pre>{@code
  * <custom>
  *   <reflowSkin>
  *     <pages>
@@ -180,7 +175,8 @@ public class NavSideMenu extends BsComponent {
     }
 
     /**
-     * @return Returns the {@link List} of {@link SideNavMenuItem} containing in {@code <menu> element}.
+     * @return Returns the {@link List} of {@link SideNavMenuItem} containing in {@code <menu>
+     *     element}.
      */
     @Nonnull
     public List<SideNavMenuItem> getItems() {
@@ -223,13 +219,10 @@ public class NavSideMenu extends BsComponent {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-
     }
 
     /**

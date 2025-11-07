@@ -17,12 +17,12 @@ package org.devacfr.maven.skins.reflow.context;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import javax.annotation.Nonnull;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.HtmlTool;
@@ -35,9 +35,6 @@ import org.devacfr.maven.skins.reflow.model.ScrollTop;
 import org.devacfr.maven.skins.reflow.model.SideNavMenuItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 
 /**
  * The base class of all contexts depending type of page.
@@ -158,12 +155,13 @@ public abstract class Context<T extends Context<?>> extends Component {
 
     /**
      * Allows to initialize the context.
+     *
      * @param config
      *            a config (can not be {@code null}).
      */
     protected void initialize(@Nonnull final ISkinConfig config) {
         // enable AnchorJS
-        if(!config.not("anchorJS")) {
+        if (!config.not("anchorJS")) {
             this.addCssOptions("anchorjs-enabled");
         }
     }
@@ -272,9 +270,7 @@ public abstract class Context<T extends Context<?>> extends Component {
         return (T) this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

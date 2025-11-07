@@ -19,10 +19,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
@@ -82,9 +80,8 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
                 break;
             default:
                 // create a disabled empty toc
-                toc = new Toc<Toc<?>>("", "") {
+                toc = new Toc<Toc<?>>("", "") {};
 
-                };
                 toc.withEnabled(false);
                 break;
         }
@@ -156,7 +153,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
         final String bodyContent = getBodyContent(skinConfig);
 
         final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent,
-                Xpp3Utils.getChildren(skinConfig.get("sections")));
+            Xpp3Utils.getChildren(skinConfig.get("sections")));
         return tocItems;
     }
 
@@ -182,12 +179,9 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
                 HtmlTool.DEFAULT_SLUG_SEPARATOR);
         }
         return bodyContent;
-
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

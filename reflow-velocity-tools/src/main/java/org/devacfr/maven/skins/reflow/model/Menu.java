@@ -18,15 +18,12 @@ package org.devacfr.maven.skins.reflow.model;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Objects;
-
 import javax.annotation.Nonnull;
-
 import org.apache.maven.doxia.site.LinkItem;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author Christophe Friederich
@@ -64,7 +61,7 @@ public class Menu {
     /** */
     private final String title;
 
-    /** **/
+    /** * */
     private final String inherit;
 
     /** */
@@ -239,12 +236,10 @@ public class Menu {
      *            the menu to check
      * @return Returns {@code true} whether menu matches with regex.
      */
-    public static boolean matches(@Nonnull final String regex,
-        @Nonnull final org.apache.maven.doxia.site.Menu menu) {
+    public static boolean matches(@Nonnull final String regex, @Nonnull final org.apache.maven.doxia.site.Menu menu) {
         requireNonNull(regex);
         requireNonNull(menu);
         return menu.getRef() != null && menu.getRef().matches(regex)
                 || menu.getName() != null && menu.getName().matches(regex);
     }
-
 }

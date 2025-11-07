@@ -15,21 +15,18 @@
  */
 package org.devacfr.testing;
 
+import com.google.common.io.ByteSource;
+import com.google.common.io.Resources;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Function;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.devacfr.testing.util.Approvals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-
-import com.google.common.io.ByteSource;
-import com.google.common.io.Resources;
 
 public class TestCase extends Assertions {
 
@@ -136,5 +133,4 @@ public class TestCase extends Assertions {
         }
         return this.testInfo.getTestMethod().get().getName();
     }
-
 }

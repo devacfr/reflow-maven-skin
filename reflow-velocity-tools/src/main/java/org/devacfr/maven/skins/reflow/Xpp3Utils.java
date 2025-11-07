@@ -17,15 +17,12 @@ package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Lists;
-
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
@@ -89,8 +86,8 @@ public final class Xpp3Utils {
      *            the parent node to use.
      * @param name
      *            the name of element to filter
-     * @return Returns a list of {@link Xpp3Dom} representing all children element filtered by {@code name} of
-     *         {@code parentNode}.
+     * @return Returns a list of {@link Xpp3Dom} representing all children element filtered by {@code
+     *     name} of {@code parentNode}.
      */
     @Nonnull
     public static List<Xpp3Dom> getChildrenNodes(@Nullable final Xpp3Dom parentNode, final String name) {

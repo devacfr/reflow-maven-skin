@@ -17,7 +17,6 @@ package org.devacfr.testing;
 
 import java.io.IOException;
 import java.io.StringWriter;
-
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;

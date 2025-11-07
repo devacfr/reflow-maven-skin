@@ -15,8 +15,8 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import com.google.common.collect.ImmutableMap;
 import java.io.InputStream;
-
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
 import org.apache.maven.project.MavenProject;
@@ -26,8 +26,6 @@ import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.testing.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.ImmutableMap;
 
 public class SkinConfigToolTest extends MockitoTestCase {
 
@@ -116,5 +114,4 @@ public class SkinConfigToolTest extends MockitoTestCase {
         assertEquals("dev-develop_guide", SkinConfigTool.slugFilename("dev/develop_guide.html"));
         assertEquals("dev-develop_guide", SkinConfigTool.slugFilename("dev/develop_guide"));
     }
-
 }

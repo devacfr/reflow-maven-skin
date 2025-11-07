@@ -17,7 +17,6 @@ package org.devacfr.maven.skins.reflow;
 
 import java.io.IOException;
 import java.net.URI;
-
 import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.testing.TestCase;
 import org.junit.jupiter.api.Test;
@@ -114,5 +113,4 @@ public class URIToolTest extends TestCase {
         final URLRebaser rebaser = new URLRebaser(parentBaseUrl, childBaseUrl);
         assertEquals("images/reflow.png", rebaser.rebaseLink("images/reflow.png"));
     }
-
 }

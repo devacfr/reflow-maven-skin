@@ -18,7 +18,6 @@ package org.devacfr.maven.skins.reflow.context;
 import static org.devacfr.maven.skins.reflow.model.Toc.createToc;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.model.Header;
 import org.devacfr.maven.skins.reflow.model.Toc;
@@ -50,7 +49,7 @@ public class PageContext extends Context<PageContext> {
 
     /**
      * Gets the header of page.
-     * 
+     *
      * @return Returns a {@code Header} representing the configuration of header.
      */
     public Header getHeader() {
@@ -63,5 +62,4 @@ public class PageContext extends Context<PageContext> {
     public Toc<?> getToc() {
         return toc;
     }
-
 }

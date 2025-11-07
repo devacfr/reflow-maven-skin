@@ -18,11 +18,11 @@ package org.devacfr.maven.skins.reflow;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
+import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.maven.skins.reflow.HtmlTool.ExtractResult;
@@ -31,8 +31,6 @@ import org.devacfr.maven.skins.reflow.HtmlTool.JoinSeparator;
 import org.devacfr.testing.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.ImmutableMap;
 
 public class HtmlToolTest extends TestCase {
 
@@ -47,9 +45,7 @@ public class HtmlToolTest extends TestCase {
                 .build()));
     }
 
-    /**
-     * Simple split Test
-     */
+    /** Simple split Test */
     @Test
     public void shouldSplitBodyFragment() {
         final String body = getActualResource();
@@ -59,9 +55,7 @@ public class HtmlToolTest extends TestCase {
         assertEquals("<h2>section2</h2>", fragments.get(1));
     }
 
-    /**
-     * Test split html with unexiting element.
-     */
+    /** Test split html with unexiting element. */
     @Test
     public void shouldNotSplit() {
         final String body = getActualResource();
@@ -69,9 +63,7 @@ public class HtmlToolTest extends TestCase {
         assertEquals(1, fragments.size());
     }
 
-    /**
-     * Test split not include nested separator.
-     */
+    /** Test split not include nested separator. */
     @Test
     public void shouldSplitRecursively() {
         final String body = getActualResource();
@@ -249,6 +241,5 @@ public class HtmlToolTest extends TestCase {
             contains("goals-overview", "usage"));
         assertThat(idElements.get(0).getItems().stream().map(IdElement::getHeadingLevel).collect(Collectors.toList()),
             contains(3, 3));
-
     }
 }

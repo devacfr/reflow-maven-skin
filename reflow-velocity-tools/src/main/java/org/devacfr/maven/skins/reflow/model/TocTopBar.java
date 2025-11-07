@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow.model;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
@@ -89,5 +88,4 @@ public class TocTopBar extends Toc<TocTopBar> {
         this.numberItems = numberItems;
         return self();
     }
-
 }

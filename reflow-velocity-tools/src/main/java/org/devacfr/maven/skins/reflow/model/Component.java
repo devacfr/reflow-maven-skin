@@ -18,17 +18,14 @@ package org.devacfr.maven.skins.reflow.model;
 import static com.google.common.collect.FluentIterable.concat;
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import org.devacfr.maven.skins.reflow.HtmlTool;
-import org.devacfr.maven.skins.reflow.ISkinConfig;
-
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
+import java.util.List;
+import javax.annotation.Nonnull;
+import org.devacfr.maven.skins.reflow.HtmlTool;
+import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
  * The abstract class of all component used in Reflow rendering.
@@ -71,7 +68,6 @@ public abstract class Component {
      * or on {@code <body>} element as global state.
      * <p>
      * Used generally in association with javascript to adapt specific javascript action to current state of component.
-     * </p>
      *
      * @return Returns a {@link String} representing the css options associated to component.
      */
@@ -103,7 +99,7 @@ public abstract class Component {
 
     /**
      * generic pre-rendering method executed on all components of context.
-     * 
+     *
      * @param skinConfig
      *            the current skin config.
      * @param bodyContent
@@ -141,5 +137,4 @@ public abstract class Component {
     protected String getBodyContent(@Nonnull final ISkinConfig skinConfig) {
         return requireNonNull(skinConfig).getContextValue("bodyContent", String.class);
     }
-
 }

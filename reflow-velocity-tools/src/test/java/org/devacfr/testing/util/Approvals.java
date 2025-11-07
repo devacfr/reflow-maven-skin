@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Christophe Friederich
+ * Copyright 2012-2018 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +18,15 @@ package org.devacfr.testing.util;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.function.Function;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import org.hamcrest.Matchers;
-
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import com.google.common.io.Resources;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.function.Function;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.hamcrest.Matchers;
 
 /**
  * @author Christophe Friederich
@@ -145,7 +142,6 @@ public final class Approvals {
         @Nullable final String suffix) {
 
         verify(location, testClass, testName, readFile(location.resolve(actualFile)), suffix);
-
     }
 
     private static String readFile(final Path path) {
@@ -155,5 +151,4 @@ public final class Approvals {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
-
 }

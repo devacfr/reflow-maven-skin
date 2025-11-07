@@ -30,5 +30,4 @@ public enum ContextType {
     frame,
     /** context manage body page. */
     body
-
 }

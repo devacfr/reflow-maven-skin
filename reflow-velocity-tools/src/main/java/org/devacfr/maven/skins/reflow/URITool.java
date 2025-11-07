@@ -15,15 +15,12 @@
  */
 package org.devacfr.maven.skins.reflow;
 
+import com.google.common.base.Strings;
 import java.net.URI;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.apache.maven.doxia.site.inheritance.URIPathDescriptor;
 import org.apache.velocity.tools.config.DefaultKey;
-
-import com.google.common.base.Strings;
 
 /**
  * An Apache Velocity tool that provides utility methods to work with URIs/URLs and links.
@@ -41,10 +38,8 @@ public class URITool {
      * <p>
      * Relativizes only absolute links, if the link has the same scheme, host and port as the base, it is made into a
      * relative link as viewed from the base.
-     * </p>
      * <p>
      * This is the same method that's used to relativize project links in Maven site.
-     * </p>
      *
      * @param baseDirUri
      *            URI that will serve as the base to calculate the relative one

@@ -19,7 +19,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isA;
 
 import java.io.StringReader;
-
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -53,9 +52,7 @@ public class ContextTest extends MockitoTestCase {
         when(config.getSiteModel()).thenReturn(siteModel);
     }
 
-    /**
-     * test the page context is the default context when any type is defined.
-     */
+    /** test the page context is the default context when any type is defined. */
     @SuppressWarnings("unchecked")
     @Test
     public void shouldBuildPageContext() {
@@ -116,7 +113,6 @@ public class ContextTest extends MockitoTestCase {
         final Toc<?> toc = pageContext.getToc();
         assertNotNull(toc, "toc should be exist");
         assertEquals(false, toc.isEnabled());
-
     }
 
     @SuppressWarnings("unchecked")
@@ -197,6 +193,5 @@ public class ContextTest extends MockitoTestCase {
         assertEquals("", scrollTop.getCssClass());
         assertEquals(true, scrollTop.isSmooth());
         assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
-
     }
 }

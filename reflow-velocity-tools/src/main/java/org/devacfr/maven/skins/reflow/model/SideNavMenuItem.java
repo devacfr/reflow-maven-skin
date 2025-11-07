@@ -17,9 +17,7 @@ package org.devacfr.maven.skins.reflow.model;
 
 import java.util.Collections;
 import java.util.List;
-
 import javax.annotation.Nonnull;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -46,9 +44,7 @@ public class SideNavMenuItem {
     /** */
     private String parent;
 
-    /**
-     * Default constructor.
-     */
+    /** Default constructor. */
     public SideNavMenuItem() {
     }
 
@@ -173,13 +169,9 @@ public class SideNavMenuItem {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-
     }
-
 }

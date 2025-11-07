@@ -31,21 +31,15 @@ import org.mockito.verification.VerificationMode;
 import org.mockito.verification.VerificationWithTimeout;
 
 /**
- * <p>
- * This class allow to migrate form JUnit 3.x syntax to JUnit 4.
- * </p>
- * it is also Mock facility.
+ * This class allow to migrate form JUnit 3.x syntax to JUnit 4. it is also Mock facility.
  *
  * @author Christophe Friederich
  */
 @ExtendWith(MockitoExtension.class)
 public abstract class MockitoTestCase extends TestCase {
 
-    /**
-     *
-     */
+    /** */
     public MockitoTestCase() {
-
     }
 
     /**
@@ -136,7 +130,6 @@ public abstract class MockitoTestCase extends TestCase {
      * </pre>
      * <p>
      * See examples in javadoc for {@link Mockito} class
-     * </p>
      *
      * @param classToMock
      *            class or interface to mock
@@ -892,5 +885,4 @@ public abstract class MockitoTestCase extends TestCase {
     protected static MockSettings withSettings() {
         return Mockito.withSettings();
     }
-
 }

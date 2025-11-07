@@ -17,14 +17,13 @@ package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.base.Strings;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
@@ -39,21 +38,16 @@ import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Strings;
-
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.
  * <p>
  * The tool is configured to access Maven site configuration of a skin inside {@code <custom>} element of site
  * descriptor. It supports global properties (defined at skin level) and per-page properties (defined in
  * {@code <page><mypage>} element). The per-page properties override the global ones.
- * </p>
  * <p>
  * A sample configuration would be like that:
- * </p>
  *
- * <pre>
- * {@code
+ * <pre>{@code
  * <custom>
  *   <reflowSkin>
  *     <prop1>value1</prop1>
@@ -67,19 +61,15 @@ import com.google.common.base.Strings;
  *     </pages>
  *   </reflowSkin>
  * </custom>
- * }
- * </pre>
+ * }</pre>
  * <p>
  * To get the value of {@code prop1}, one would simply use {@code $config.prop1}. This would return "override value1".
  * Then {@code $config.prop2} would return "value2" - the global value.
- * </p>
  * <p>
  * The tool allows querying the value easily, falling back from page to global configuration to {@code null}, if none is
  * available. It also provides convenience accessors for common values.
- * </p>
  * <p>
  * Note
- * </p>
  *
  * @author Andrius Velykis
  * @author Christophe Friederich
@@ -231,7 +221,6 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
                 if (page != null) {
                     pageProperties = page;
                 }
-
             }
 
             // Config option <localResources>true</localResources> to force CDN-less Bootstrap & jQuery
@@ -270,9 +259,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return this.key;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nullable
     public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
@@ -284,9 +271,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setContextValue(@Nonnull final String key, @Nullable final Object value) {
         requireNonNull(key);
@@ -297,9 +282,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nullable
     @SuppressWarnings("unchecked")
@@ -308,9 +291,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return (T) this.velocityContext.getToolbox().get(requireNonNull(toolName));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nullable
     public Xpp3Dom get(@Nonnull final String property) {
@@ -326,7 +307,8 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * Retrieves the text value of the given {@code property}, e.g. as in {@code <myprop>value</myprop>}.
+     * Retrieves the text value of the given {@code property}, e.g. as in {@code
+     * <myprop>value</myprop>}.
      *
      * @param property
      *            the property of interest
@@ -458,9 +440,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return (T) returnedValue;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     @Nullable
@@ -500,9 +480,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return "true".equals(value(property));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean not(final String property) {
         return "false".equals(value(property));
@@ -523,18 +501,14 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return value != null && value.equals(value(property));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nullable
     public String getProjectId() {
         return projectId;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nullable
     public String getFileId() {
@@ -557,45 +531,35 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return velocityContext;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nonnull
     public MavenProject getProject() {
         return project;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nonnull
     public SiteModel getSiteModel() {
         return siteModel;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nonnull
     public Xpp3Dom getPageProperties() {
         return pageProperties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nonnull
     public Xpp3Dom getGlobalProperties() {
         return globalProperties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @Nonnull
     public String getNamespace() {
@@ -618,7 +582,6 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     }
 
     /**
-     * <p>
      * See <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
      * Renderer</a> for more information.
      *
@@ -639,9 +602,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     @Nullable
@@ -657,9 +618,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String relativeLink(final String href) {
         if (href == null) {
@@ -721,9 +680,7 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
                 || url.toLowerCase().startsWith("file:/") || url.toLowerCase().indexOf("://") != -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isActiveLink(@Nullable final String href) {
         final String alignedFileName = (String) velocityContext.get("alignedFileName");
@@ -782,10 +739,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         return (String) velocityContext.get("relativePath");
     }
 
-
     /**
      * Gets the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
-     * @return Returns a instance of {@code Date} representing the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
+     *
+     * @return Returns a instance of {@code Date} representing the reproduce build timestamp whether property
+     *         'project.build.outputTimestamp' is fill in.
      */
     @Nullable
     public Date getBuildOutputTimestamp() throws ParseException {
@@ -798,5 +756,4 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         }
         return null;
     }
-
 }

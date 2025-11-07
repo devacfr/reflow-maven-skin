@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow.context;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.model.NavSideMenu;
 
@@ -50,5 +49,4 @@ public class DocumentContext extends Context<DocumentContext> {
     public NavSideMenu getNavSideMenu() {
         return navSideMenu;
     }
-
 }

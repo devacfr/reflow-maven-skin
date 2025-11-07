@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow.context;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
@@ -44,5 +43,4 @@ public class BodyContext extends Context<BodyContext> {
     protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
         return bodyContent;
     }
-
 }
