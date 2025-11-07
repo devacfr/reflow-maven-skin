@@ -171,7 +171,7 @@
     <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
     <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
-    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <maven-clover-plugin.version>4.4.1</maven-clover-plugin.version>
     <maven-surefire-report-plugin.version>${maven-surefire-plugin.version}</maven-surefire-report-plugin.version>
   </properties>
