@@ -173,7 +173,7 @@
     <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
     <!-- used in site generation -->
     <maven_site_plugin_version>${maven-site-plugin.version}</maven_site_plugin_version>
-    <maven-spotbugs-plugin.version>3.1.12.2</maven-spotbugs-plugin.version>
+    <maven-spotbugs-plugin.version>4.9.7.0</maven-spotbugs-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
     <maven-changes-plugin.version>3.0.0-M3</maven-changes-plugin.version>
