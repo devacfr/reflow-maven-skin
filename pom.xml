@@ -105,7 +105,7 @@
     <repositoryOwner>devacfr</repositoryOwner>
 
     <scm_url>https://github.com/devacfr/reflow-maven-skin</scm_url>
-    <issue-system>github</issue-system>
+    <issue-system>GitHub</issue-system>
     <issue_url>${scm_url}/issues</issue_url>
     <ci.url>${scm_url}</ci.url>
     <ci.system>Travis</ci.system>
@@ -176,7 +176,7 @@
     <maven-spotbugs-plugin.version>3.1.12.2</maven-spotbugs-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
-    <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
+    <maven-changes-plugin.version>3.0.0-M3</maven-changes-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <maven-clover-plugin.version>4.5.1</maven-clover-plugin.version>
@@ -667,7 +667,7 @@
             <id>release-notes</id>
             <inherited>false</inherited>
             <reports>
-              <report>github-report</report>
+              <report>github-changes</report>
             </reports>
           </reportSet>
         </reportSets>
