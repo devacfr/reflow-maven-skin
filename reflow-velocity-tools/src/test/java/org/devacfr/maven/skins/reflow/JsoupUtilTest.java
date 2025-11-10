@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow;
 
 import org.devacfr.testing.jupiter.TestCase;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +32,7 @@ public class JsoupUtilTest extends TestCase {
     }
 
     @Test
-    public void shouldnotModifyVerbatimCode() {
+    public void shouldNotModifyVerbatimCode() {
         verify((html) -> {
             Element doc = JsoupUtils.createHtmlDocument(html);
             String expected = doc.outerHtml();
