@@ -115,8 +115,8 @@
     <bootstrapVersion>4.6.2</bootstrapVersion>
     <bootswatchVersion>4.6.2</bootswatchVersion>
     <highlightJsTheme>github</highlightJsTheme>
-    <fontawesomeVersion>5.12.1</fontawesomeVersion>
     <jqueryVersion>3.5.1</jqueryVersion>
+    <fontawesomeVersion>5.15.1</fontawesomeVersion>
     <popperVersion>1.16.0</popperVersion>
 
     <!-- ================================================================================ -->
