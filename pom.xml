@@ -111,9 +111,9 @@
     <!-- Web dependencies version -->
     <!-- ================================================================================ -->
     <anchorJsVesrion>3.2.2</anchorJsVesrion>
-    <bootstrapVersion>4.4.1</bootstrapVersion>
-    <bootswatchVersion>4.4.1</bootswatchVersion>
     <highlightJsVersion>11.11.1</highlightJsVersion>
+    <bootstrapVersion>4.6.2</bootstrapVersion>
+    <bootswatchVersion>4.6.2</bootswatchVersion>
     <highlightJsTheme>github</highlightJsTheme>
     <jqueryVersion>3.4.1</jqueryVersion>
     <fontawesomeVersion>5.12.1</fontawesomeVersion>
