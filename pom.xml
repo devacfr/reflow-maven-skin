@@ -149,6 +149,7 @@ governing permissions and limitations under
     <findbugs.version>3.0.2</findbugs.version>
     <logback.version>1.5.19</logback.version>
     <jsoup.version>1.21.2</jsoup.version>
+    <lombok.version>1.18.42</lombok.version>
     <slf4j.version>2.0.17</slf4j.version>
     <jsoup.version>1.21.2</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
@@ -213,6 +214,12 @@ governing permissions and limitations under
         <groupId>org.jsoup</groupId>
         <artifactId>jsoup</artifactId>
         <version>${jsoup.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.maven</groupId>
@@ -452,6 +459,13 @@ governing permissions and limitations under
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
           <encoding>${project.build.sourceEncoding}</encoding>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
       <plugin>

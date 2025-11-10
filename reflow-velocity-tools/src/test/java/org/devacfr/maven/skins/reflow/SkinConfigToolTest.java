@@ -17,7 +17,6 @@ package org.devacfr.maven.skins.reflow;
 
 import java.io.InputStream;
 
-import com.google.common.collect.ImmutableMap;
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
 import org.apache.maven.project.MavenProject;
@@ -25,77 +24,57 @@ import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.testing.jupiter.MockitoTestCase;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.google.common.collect.ImmutableMap;
+
+import lombok.Builder;
+import lombok.Data;
 
 public class SkinConfigToolTest extends MockitoTestCase {
 
-    private ToolContext velocityContext;
-
-    private ValueParser valueParser;
-
-    private SkinConfigTool skinConfig;
-
-    private SiteModel siteModel;
-
-    @BeforeEach
-    public void setup() throws Exception {
-        velocityContext = new ToolContext();
-        final SiteXpp3Reader reader = new SiteXpp3Reader();
-
-        try (final InputStream in = getResource("default.site.xml").openBufferedStream()) {
-            siteModel = reader.read(in);
-        }
-        valueParser = new ValueParser(
-                ImmutableMap.<String, Object> builder().put("velocityContext", velocityContext).build());
-
-        final MavenProject maven = new MavenProject();
-        maven.setArtifactId("maven-reflow-plugin");
-        maven.setUrl("https://devacfr.github.io/reflow-maven-skin/");
-
-        velocityContext.put("project", maven);
-        velocityContext.put("site", siteModel);
-        velocityContext.put("render", new RenderTool());
-        velocityContext.put("currentFileName", "summary.html");
-        velocityContext.put("alignedFileName", "summary.html");
-        skinConfig = new SkinConfigTool();
-        skinConfig.configure(valueParser);
+    @Test
+    public void testIs() throws Exception {
+        ReflowContext context = createSkinConfig();
+        assertEquals(true, context.getSkinConfig().is("localResources"));
+        assertEquals(false, context.getSkinConfig().is("markPageHeader"));
     }
 
     @Test
-    public void testIs() {
-        assertEquals(true, skinConfig.is("localResources"));
-        assertEquals(false, skinConfig.is("markPageHeader"));
-    }
-
-    @Test
-    public void testNot() {
+    public void testNot() throws Exception {
+        ReflowContext context = createSkinConfig();
+        SkinConfigTool skinConfig = context.getSkinConfig();
         assertEquals(true, skinConfig.not("markPageHeader"));
         assertEquals(false, skinConfig.not("localResources"));
     }
 
     @Test
-    public void testIsValue() {
+    public void testIsValue() throws Exception {
+        ReflowContext context = createSkinConfig();
+        SkinConfigTool skinConfig = context.getSkinConfig();
         assertEquals(true, skinConfig.isValue("localResources", "true"));
         assertEquals(false, skinConfig.isValue("localResources", "value"));
     }
 
     @Test
-    public void testIsActiveLink() {
-
+    public void testIsActiveLink() throws Exception {
+        ReflowContext context = createSkinConfig();
+        SkinConfigTool skinConfig = context.getSkinConfig();
+        ToolContext velocityContext = context.getVelocityContext();
         velocityContext.put("alignedFileName", "index.html");
         assertEquals(true, skinConfig.isActiveLink("."), "should be active");
         assertEquals(true, skinConfig.isActiveLink(""), "should be active");
 
         velocityContext.put("alignedFileName", "summary.html");
-        assertEquals(false, skinConfig.isActiveLink(null), "should be note active");
-        assertEquals(false, skinConfig.isActiveLink("."), "should be note active");
-        assertEquals(false, skinConfig.isActiveLink("index.html"), "should be note active");
+        assertEquals(false, skinConfig.isActiveLink(null), "should be not active");
+        assertEquals(false, skinConfig.isActiveLink("."), "should be not active");
+        assertEquals(false, skinConfig.isActiveLink("index.html"), "should be not active");
     }
 
     @Test
-    public void testIsExternalLink() {
-
+    public void testIsExternalLink() throws Exception {
+        ReflowContext context = createSkinConfig();
+        SkinConfigTool skinConfig = context.getSkinConfig();
         assertEquals(true, skinConfig.isExternalLink("http://foo.com"), "should be external");
         assertEquals(true, skinConfig.isExternalLink("https://foo.com"), "should be external");
         assertEquals(true, skinConfig.isExternalLink("ftp://foo.com"), "should be external");
@@ -110,9 +89,54 @@ public class SkinConfigToolTest extends MockitoTestCase {
     }
 
     @Test
-    public void testSlugFilename() {
+    public void testSlugFilename() throws Exception {
         assertEquals("dev-release-management", SkinConfigTool.slugFilename("dev/release-management.html"));
         assertEquals("dev-develop_guide", SkinConfigTool.slugFilename("dev/develop_guide.html"));
         assertEquals("dev-develop_guide", SkinConfigTool.slugFilename("dev/develop_guide"));
+    }
+
+    @Test
+    public void shouldReturnProjectLocationNotNull() throws Exception {
+        ReflowContext context = createSkinConfig();
+        SkinConfigTool skinConfig = context.getSkinConfig();
+        context.getMaven().setUrl(null);
+        assertEquals("https://localhost/", skinConfig.getProjectLocation());
+    }
+
+    private ReflowContext createSkinConfig() throws Exception {
+        SkinConfigTool skinConfig;
+        ToolContext velocityContext = new ToolContext();
+        final SiteXpp3Reader reader = new SiteXpp3Reader();
+        SiteModel siteModel = null;
+        try (final InputStream in = getResource("default.site.xml").openBufferedStream()) {
+            siteModel = reader.read(in);
+        }
+        ValueParser valueParser = new ValueParser(
+                ImmutableMap.<String, Object> builder().put("velocityContext", velocityContext).build());
+
+        final MavenProject maven = new MavenProject();
+        maven.setArtifactId("maven-reflow-plugin");
+        maven.setUrl("https://devacfr.github.io/reflow-maven-skin/");
+
+        velocityContext.put("project", maven);
+        velocityContext.put("site", siteModel);
+        velocityContext.put("render", new RenderTool());
+        velocityContext.put("currentFileName", "summary.html");
+        velocityContext.put("alignedFileName", "summary.html");
+        skinConfig = new SkinConfigTool();
+        skinConfig.configure(valueParser);
+        return ReflowContext.builder().maven(maven).velocityContext(velocityContext).skinConfig(skinConfig).build();
+    }
+
+    @Data
+    @Builder
+    private static class ReflowContext {
+
+        private ToolContext velocityContext;
+
+        private SkinConfigTool skinConfig;
+
+        private MavenProject maven;
+
     }
 }

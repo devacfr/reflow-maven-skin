@@ -636,6 +636,9 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
             if (!projectSiteLoc.endsWith("/")) {
                 projectSiteLoc += "/";
             }
+        } else {
+            LOGGER.warn("the property project.url is required");
+            projectSiteLoc = "https://localhost/";
         }
         return projectSiteLoc;
     }
