@@ -355,6 +355,14 @@
             <removeUnusedImports />
             <formatAnnotations />
           </configuration>
+          <executions>
+            <execution>
+                <goals>
+                    <goal>check</goal>
+                </goals>
+                <phase>package</phase>
+            </execution>
+        </executions>
       </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
