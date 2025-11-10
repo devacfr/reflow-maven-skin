@@ -482,7 +482,7 @@ public class HtmlTool extends SafeConfig {
         final List<Element> filtered = new ArrayList<>();
         for (final Element element : elements) {
             // get the intersection of parents and selected elements
-            final List<Element> parentsInter = element.parents();
+            final List<Element> parentsInter = element.parents().asList();
             parentsInter.retainAll(elements);
             if (parentsInter.isEmpty()) {
                 // no intersection - element's parents are not in the selected list

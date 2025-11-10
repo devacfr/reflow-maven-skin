@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
+ * Copyright 2012-2025 Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,14 @@
  */
 package org.devacfr.maven.skins.reflow.model;
 
-import com.google.common.collect.Lists;
+import javax.annotation.Nonnull;
+
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.Nonnull;
+
+import com.google.common.collect.Lists;
+
+import org.apache.maven.doxia.site.Image;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**
@@ -31,36 +35,15 @@ public class MenuItem {
     private final String name;
 
     /** */
-    private final String description;
-
-    /** */
-    private final String alt;
-
-    /** */
-    private final String border;
-
-    /** */
-    private final String height;
-
-    /** */
-    private final String width;
-
-    /** */
     private final String href;
 
     /** */
-    private final String image;
-
-    /** */
-    private final String position;
+    private final Image image;
 
     /** */
     private final String target;
 
-    /** */
-    private final String title;
-
-    /** * */
+    /** **/
     private final String inherit;
 
     /** */
@@ -78,24 +61,19 @@ public class MenuItem {
      *            item menu used to.
      */
     public MenuItem(@Nonnull final ISkinConfig config, final org.apache.maven.doxia.site.MenuItem item) {
-        Objects.requireNonNull(item);
-        this.alt = item.getAlt();
-        this.description = item.getDescription();
-        this.border = item.getBorder();
-        this.height = item.getHeight();
-        this.width = item.getWidth();
+        Objects.requireNonNull(item);;
         this.href = config.relativeLink(item.getHref());
-        this.image = item.getImg();
+        this.image = item.getImage();
         this.name = item.getName();
-        this.position = item.getPosition();
         this.target = item.getTarget();
-        this.title = item.getTitle();
         this.active = config.isActiveLink(this.href);
         this.inherit = null;
         recurciveAddItem(config, this.menuItems, item.getItems());
     }
 
-    /** recurcive */
+    /**
+     * recurcive
+     */
     private void recurciveAddItem(final ISkinConfig config,
         final List<MenuItem> menuItems,
         final List<org.apache.maven.doxia.site.MenuItem> origMenuItems) {
@@ -119,13 +97,6 @@ public class MenuItem {
      */
     public List<MenuItem> getMenuItems() {
         return menuItems;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
     }
 
     /**
@@ -153,27 +124,6 @@ public class MenuItem {
     }
 
     /**
-     * @return the alt
-     */
-    public String getAlt() {
-        return alt;
-    }
-
-    /**
-     * @return the border
-     */
-    public String getBorder() {
-        return border;
-    }
-
-    /**
-     * @return the height
-     */
-    public String getHeight() {
-        return height;
-    }
-
-    /**
      * @return the href
      */
     public String getHref() {
@@ -183,15 +133,8 @@ public class MenuItem {
     /**
      * @return the image
      */
-    public String getImage() {
+    public Image getImage() {
         return image;
-    }
-
-    /**
-     * @return the position
-     */
-    public String getPosition() {
-        return position;
     }
 
     /**
@@ -201,17 +144,4 @@ public class MenuItem {
         return target;
     }
 
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @return the width
-     */
-    public String getWidth() {
-        return width;
-    }
 }

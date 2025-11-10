@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file
-  distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under
-  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
-  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to
-  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-  ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file 
+  distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under 
+  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may 
+  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to 
+  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+  ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under 
   the License. -->
-<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<site name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
-  <bannerLeft>
-    <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
-    <name>
-      <![CDATA[
-      <span class="color-highlight">Reflow</span> Maven Skin
-      ]]>
-    </name>
-    <src>images/logo.svg</src>
-    <width>144</width>
-    <height>144</height>
-    <alt>Reflow skin</alt>
-    <href>${this.site.url}</href>
+  <bannerLeft name="Reflow" href="${this.site.url}">
+    <image src="images/logo.svg" width="144" height="144" alt="Reflow skin" />
   </bannerLeft>
- 
+
 
   <publishDate position="none" />
   <version position="bottom" />
@@ -59,7 +50,8 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" theme="dark" background="dark" cssClass="border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
+      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light"
+        cssClass="border-bottom" center="false" alignMenu="right">
         <image src="$resourcePath/images/logo.svg" />
       </navbar>
       <navside-menu theme="light" background="light" />
@@ -186,4 +178,4 @@
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>
-</project>
+</site>

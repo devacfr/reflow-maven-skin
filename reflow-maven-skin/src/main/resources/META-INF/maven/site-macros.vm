@@ -46,7 +46,7 @@
  *
  *###
 #macro ( link $href $name $target $className)##
-#*  *##fullLink ( $href $name $target false false false false false false false $className)##
+#*  *##fullLink ( $href $name $target false false $className)##
 #end##
 ##
 #**
@@ -54,7 +54,7 @@
  * Outputs a hyperlink with image and other attributes
  *
  *###
-#macro ( fullLink $href $name $target $img $position $alt $border $width $height $icon $className)##
+#macro ( fullLink $href $name $target $img $icon $className)##
 ##
 ## The opening <a> tag
 <a ##
@@ -65,12 +65,12 @@
 #*  *##set($css = $className)##
 #*  *##if ( $config.isExternalLink( $href ) ) #set($css = "externalLink " + $className) #end##
  class="$css" >##
-#*  *##if ( $img && $position == "left" )##
+#*  *##if ( $img && $img.src && $img.position == "left" )##
 #*      *### Image on the left side of the name
-#*      *##image ($img $alt $border $width $height)$name##
-#*  *##elseif ( $img )##
+#*      *##image ($img.src $img.alt $img.border $img.width $img.height)$name##
+#*  *##elseif ( $img && $img.src)##
 #*      *### Image on the right side of the name
-#*      *#${name}#if ($img) #image ($img $alt $border $width $height)#end##
+#*      *#${name} #image ($img.src $img.alt $img.border $img.width $img.height)##
 #*  *##else##
 #*      *### No image - optional icon though on the right of the name
 #*      *#${name}#if ($icon) <i class="$icon"></i>#end##

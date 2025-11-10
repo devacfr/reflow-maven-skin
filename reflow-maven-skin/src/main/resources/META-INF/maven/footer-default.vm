@@ -136,10 +136,10 @@
 #*      *##if ( $menu.name )
                     <li class="nav-header">
 #*          *##if ( $menu.image )
-#*              *##if ( !$menu.position || $menu.position == "left" )
-#*                  *##image ($menu.image $menu.alt $menu.border $menu.width $menu.height) $menu.name
+#*              *##if ( !$menu.image.position || $menu.image.position == "left" )
+#*                  *##image ($menu.image.src $menu.image.alt $menu.image.border $menu.image.width $menu.image.height) $menu.name
 #*              *##else
-#*                  *#$menu.name #image ($menu.image $menu.alt $menu.border $menu.width $menu.height)
+#*                  *#$menu.name #image ($menu.image.src $menu.image.alt $menu.image.border $menu.image.width $menu.image.height)
 #*              *##end
 #*          *##else
 #*              *#$menu.name
@@ -175,7 +175,7 @@
 ##
 #*  *##end
                     <li class="nav-item #if( $item.active )active#end">#*
-#*  *##fullLink ( $currentLink $item.name $item.target $item.inage $item.position $item.alt $item.border $item.width $item.height $collapseClass "nav-link")
+#*  *##fullLink ( $currentLink $item.name $item.target $item.image $collapseClass "nav-link")
 #*  *##if ( $item.menuItems.size() > 0 && $collapseClass == "fas fa-angle-down" )
         <ul class="nav flex-column nav-list">
 ##

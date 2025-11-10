@@ -36,7 +36,7 @@
 ## breadcrumbs
 #*      *##if ( $site.body.breadcrumbs && $site.body.breadcrumbs.size() > 0 )##
 #*          *##foreach ( $item in  $site.body.breadcrumbs )##
-            <li class="breadcrumb-item">#fullLink ( $config.relativeLink( $item.href) $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height false "")</li>
+            <li class="breadcrumb-item">#fullLink ( $config.relativeLink( $item.href) $item.name $item.target $item.image false "")</li>
 #*          *##end##
             <li class="breadcrumb-item active">#if ( $shortTitle )$shortTitle#else$title#end</li>
 #*      *##end##

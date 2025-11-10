@@ -89,11 +89,11 @@
                     <div class="$id">
 #*      *##end##
 ##
-#*      *##if ( $banner.src )##
-            <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.src )" #if ( $banner.alt )alt="$banner.alt"#end##
-#*          *##if ( $banner.border ) border="$banner.border"#end##
-#*          *##if ( $banner.width ) width="$banner.width"#end##
-#*          *##if ( $banner.height ) height="$banner.height"#end##
+#*      *##if ( $banner.image && $banner.image.src )##
+            <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.image.src )" #if ( $banner.image.alt )alt="$banner.image.alt"#end##
+#*          *##if ( $banner.image.border ) border="$banne.imager.border"#end##
+#*          *##if ( $banner.image.width ) width="$banner.image.width"#end##
+#*          *##if ( $banner.image.height ) height="$banner.image.height"#end##
 #*          *# />
 #*      *##end##
 #*      *##if ( $banner.name )##
