@@ -377,7 +377,7 @@ governing permissions and limitations under
             <licenseHeader>
               <content>
 /*
- * Copyright ${inceptionYear}-$YEAR Christophe Friederich
+ * Copyright ${project.inceptionYear}-$YEAR Christophe Friederich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -392,7 +392,7 @@ governing permissions and limitations under
  * limitations under the License.
  */</content>
             </licenseHeader>
-        
+
             <importOrder/>
             <removeUnusedImports />
             <formatAnnotations />
