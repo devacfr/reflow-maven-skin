@@ -55,18 +55,28 @@
  * Render Banner
  *###
 #macro( renderBanner )##
+#if( $site.bannerLeft || $site.bannerRight )##
     <div id="banner" class="header--banner">
+        <!-- banner-row:begin -->
         <div class="row m-1">
-          <div class="col-md-12">
-            <div class="float-left header--banner--left bannerLeft">
-#*      *##banner ( $site.bannerLeft "bannerLeft")##
+#*          *##if( $site.bannerLeft )
+            <!-- banner-left:begin -->
+            <div class="col header--banner--left bannerLeft">
+#*          *##banner ( $site.bannerLeft "bannerLeft")##
             </div>
-            <div class="float-right header--banner--right bannerRight">
-#*      *##banner ( $site.bannerRight "bannerRight")##
+            <!-- banner-left:end -->
+#*          *##end
+#*          *##if( $site.bannerRight )
+            <!-- right-banner: begin -->
+            <div class="col header--banner--right bannerRight">
+#*          *##banner ( $site.bannerRight "bannerRight")##
             </div>
-          </div>
+            <!-- right-banner: end -->
+#*          *##end
         </div>
+        <!-- banner-row:end -->
     </div>
+#end##
 #end##
 #**
  * Render Banner
@@ -83,8 +93,8 @@
  *###
 #macro ( banner $banner $id)##
 #*  *##if ( $banner )##
-        <div class="$id">
-##
+        <!-- banner-content: begin -->
+        <div class="header--banner--content" id="$id">
 #*      *##if ( $banner.image && $banner.image.src )##
             <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.image.src )" #if ( $banner.image.alt )alt="$banner.image.alt"#end##
 #*          *##if ( $banner.image.border ) border="$banne.imager.border"#end##
@@ -97,6 +107,7 @@
 #*      *##end##
 ##
         </div>
+        <!-- banner-content: end -->
 ##
 #*      *### add slogan to correct position
 #*      *##if ( $config.slogan && $config.slogan != '' )##
