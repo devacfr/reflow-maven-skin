@@ -154,6 +154,9 @@
         <rat-report>
           <toc>false</toc>
         </rat-report>
+        <checkstyle-aggregate>
+          <toc>false</toc>
+        </checkstyle-aggregate>
 
 
         <doc-themes-index>
