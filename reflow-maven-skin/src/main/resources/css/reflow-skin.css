@@ -558,11 +558,16 @@ h3 code {
     color: var(--dark);
 }
 
+
 @media (min-width: 992px) {
     .navside-expand-lg {
         position: -webkit-sticky;
         position: sticky;
-        top: 0;
+        top: 50px;
+        bottom: 0;
+        overflow-y: auto;
+        height: 100vh;
+        padding-bottom: 50px;
         display: block;
         background-color: transparent;
     }
