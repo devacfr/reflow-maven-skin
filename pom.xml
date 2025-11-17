@@ -79,6 +79,11 @@ governing permissions and limitations under
       <name>${site.deploy.name}</name>
       <url>${pubScmUrl}</url>
     </site>
+    <snapshotRepository>
+      <id>central-portal-snapshots</id>
+      <name>Central Portal Snapshots</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <properties>
