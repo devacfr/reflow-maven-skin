@@ -509,6 +509,7 @@ governing permissions and limitations under
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>${publishingServerId}</publishingServerId>
+          <autoPublish>true</autoPublish>
         </configuration>
       </plugin>
       <plugin>
