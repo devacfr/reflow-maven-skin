@@ -651,17 +651,6 @@ governing permissions and limitations under
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <version>${spotless.version}</version>
-        <configuration>
-          <!-- define a language-specific format -->
-          <java>
-            <eclipse>
-              <file>${main.basedir}/eclipse/java-code-style-formatter.xml</file> <!--
-              optional -->
-            </eclipse>
-            <formatAnnotations />
-          </java>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.rat</groupId>
@@ -1038,6 +1027,19 @@ governing permissions and limitations under
                         <versionRange>[3.0.0,)</versionRange>
                         <goals>
                           <goal>toolchain</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>com.diffplug.spotless</groupId>
+                        <artifactId>spotless-maven-plugin</artifactId>
+                        <versionRange>[3.0.0,)</versionRange>
+                        <goals>
+                          <goal>check</goal>
                         </goals>
                       </pluginExecutionFilter>
                       <action>
