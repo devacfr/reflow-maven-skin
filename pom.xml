@@ -98,7 +98,7 @@ governing permissions and limitations under
     <project.build.outputTimestamp>2025-11-11T07:20:03Z</project.build.outputTimestamp>
 
     <!-- Set compiler source and target versions (m-compiler-p) -->
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.target>9</maven.compiler.target>
     <maven.compiler.source>${maven.compiler.target}</maven.compiler.source>
 
     <repositoryName>reflow-maven-skin</repositoryName>
