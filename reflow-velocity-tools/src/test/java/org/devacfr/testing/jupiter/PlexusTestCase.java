@@ -17,7 +17,6 @@ package org.devacfr.testing.jupiter;
 
 import java.io.File;
 import java.io.InputStream;
-
 import org.codehaus.plexus.ContainerConfiguration;
 import org.codehaus.plexus.DefaultContainerConfiguration;
 import org.codehaus.plexus.DefaultPlexusContainer;

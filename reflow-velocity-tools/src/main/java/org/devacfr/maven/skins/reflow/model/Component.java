@@ -15,19 +15,17 @@
                 */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
-
-import java.util.List;
+import static com.google.common.collect.FluentIterable.concat;
+import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
+import java.util.List;
+import javax.annotation.Nonnull;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-
-import static com.google.common.collect.FluentIterable.concat;
-import static java.util.Objects.requireNonNull;
 
 /**
  * The abstract class of all component used in Reflow rendering.

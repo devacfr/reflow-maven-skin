@@ -19,7 +19,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.charset.StandardCharsets;
 import javax.annotation.Nonnull;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;

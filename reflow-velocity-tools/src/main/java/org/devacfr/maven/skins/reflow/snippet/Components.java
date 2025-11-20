@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow.snippet;
 
 import java.util.ArrayList;
-
 import org.jsoup.internal.StringUtil;
 
 /**

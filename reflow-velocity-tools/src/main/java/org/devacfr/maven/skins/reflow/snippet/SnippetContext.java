@@ -17,16 +17,15 @@ package org.devacfr.maven.skins.reflow.snippet;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.Lists;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.context.Context;
@@ -58,8 +57,6 @@ import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author Christophe Friederich

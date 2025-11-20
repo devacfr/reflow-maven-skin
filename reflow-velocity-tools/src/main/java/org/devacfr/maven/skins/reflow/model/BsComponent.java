@@ -15,10 +15,9 @@
                 */
 package org.devacfr.maven.skins.reflow.model;
 
+import com.google.common.base.Strings;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import com.google.common.base.Strings;
 
 /**
  * Describe a Bootstrap component.

@@ -15,10 +15,13 @@
                 */
 package org.devacfr.maven.skins.reflow.snippet;
 
+import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
+import com.google.common.io.CharSource;
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
 import org.apache.maven.doxia.macro.MacroExecutionException;
@@ -34,11 +37,6 @@ import org.devacfr.maven.skins.reflow.JsoupUtils;
 import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Charsets;
-import com.google.common.base.Strings;
-import com.google.common.io.CharSource;
-import com.google.common.io.Files;
 
 /**
  * @author Christophe Friederich

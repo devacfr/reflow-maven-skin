@@ -15,12 +15,14 @@
                 */
 package org.devacfr.maven.skins.reflow;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+
+import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.google.common.collect.ImmutableMap;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.maven.skins.reflow.HtmlTool.ExtractResult;
@@ -29,9 +31,6 @@ import org.devacfr.maven.skins.reflow.HtmlTool.JoinSeparator;
 import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 
 public class HtmlToolTest extends TestCase {
 

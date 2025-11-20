@@ -15,16 +15,16 @@
                 */
 package org.devacfr.maven.skins.reflow;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static java.util.Objects.requireNonNull;
 
+import com.google.common.base.Strings;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import com.google.common.base.Strings;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
@@ -38,8 +38,6 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * An Apache Velocity tool that simplifies retrieval of custom configuration values for a Maven Site.

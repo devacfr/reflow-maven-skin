@@ -15,13 +15,11 @@
                 */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;

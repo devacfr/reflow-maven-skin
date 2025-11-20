@@ -15,11 +15,9 @@
                 */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
-
 import java.util.Collections;
 import java.util.List;
-
+import javax.annotation.Nonnull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**

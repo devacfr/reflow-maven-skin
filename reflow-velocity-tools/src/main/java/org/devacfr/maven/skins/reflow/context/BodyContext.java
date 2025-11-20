@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow.context;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 
 /**

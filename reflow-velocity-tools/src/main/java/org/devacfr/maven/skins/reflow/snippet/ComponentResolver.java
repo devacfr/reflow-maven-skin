@@ -15,12 +15,14 @@
                 */
 package org.devacfr.maven.skins.reflow.snippet;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.commons.text.StringEscapeUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
@@ -35,10 +37,6 @@ import org.jsoup.select.NodeVisitor;
 import org.jsoup.select.QueryParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 /**
  * Resolve the type and tag type of component.

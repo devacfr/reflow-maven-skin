@@ -15,8 +15,10 @@
                 */
 package org.devacfr.maven.skins.reflow;
 
+import com.google.common.collect.ImmutableMap;
 import java.io.InputStream;
-
+import lombok.Builder;
+import lombok.Data;
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.doxia.site.io.xpp3.SiteXpp3Reader;
 import org.apache.maven.project.MavenProject;
@@ -25,11 +27,6 @@ import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.ImmutableMap;
-
-import lombok.Builder;
-import lombok.Data;
 
 public class SkinConfigToolTest extends MockitoTestCase {
 

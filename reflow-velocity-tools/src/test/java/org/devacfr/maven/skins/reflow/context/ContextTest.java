@@ -15,6 +15,9 @@
                 */
 package org.devacfr.maven.skins.reflow.context;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.isA;
+
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.devacfr.maven.skins.reflow.HtmlTool;
@@ -23,9 +26,6 @@ import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isA;
 
 public class ContextTest extends MockitoTestCase {
 

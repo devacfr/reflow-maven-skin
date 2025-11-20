@@ -33,9 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.jar.JarOutputStream;
 import java.util.zip.ZipEntry;
-
 import javax.inject.Inject;
-
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.versioning.VersionRange;
@@ -48,7 +46,6 @@ import org.codehaus.plexus.util.FileUtils;
 import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**

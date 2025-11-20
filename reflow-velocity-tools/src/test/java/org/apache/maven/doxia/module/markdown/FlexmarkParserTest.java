@@ -15,12 +15,6 @@
                 */
 package org.apache.maven.doxia.module.markdown;
 
-import java.io.IOException;
-import java.util.Arrays;
-
-import org.devacfr.testing.jupiter.TestCase;
-import org.junit.jupiter.api.Test;
-
 import com.vladsch.flexmark.ext.abbreviation.AbbreviationExtension;
 import com.vladsch.flexmark.ext.autolink.AutolinkExtension;
 import com.vladsch.flexmark.ext.definition.DefinitionExtension;
@@ -33,6 +27,10 @@ import com.vladsch.flexmark.ext.yaml.front.matter.YamlFrontMatterExtension;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.util.ast.Node;
 import com.vladsch.flexmark.util.data.MutableDataSet;
+import java.io.IOException;
+import java.util.Arrays;
+import org.devacfr.testing.jupiter.TestCase;
+import org.junit.jupiter.api.Test;
 
 public class FlexmarkParserTest extends TestCase {
 
