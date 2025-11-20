@@ -1,8 +1,13 @@
 # H1
+
 ## H2
+
 ### H3
+
 #### H4
+
 ##### H5
+
 ###### H6
 
 Alternatively, for H1 and H2, an underline-ish style:
@@ -128,7 +133,7 @@ Quote break.
 
 > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
 
-## Inline Html
+## Inline Html
 
 <dl>
   <dt>Definition list</dt>
@@ -163,3 +168,6 @@ This line is separated from the one above by two newlines, so it will be a *sepa
 This line is also a separate paragraph, but...
 This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
 
+#### Increase More Heading Level
+
+Should be accepted.

@@ -17,8 +17,8 @@
  * Render twitter snippet
  *
  *#
-#set($width = "400")##
-#set($height = "500")##
+#set($width = "400px")##
+#set($height = "500px")##
 #set($theme = "light")##
 #set($chrome = "")##
 #set($notrack = "true")
@@ -50,11 +50,25 @@
      #set($notrack = ${snippet.attrs['not-track']})##
 #end
 <a class="twitter-timeline"
-#if(${chrome} && ${chrome} != "") data-chrome="${chrome}"#end
-    data-width="${width}"
-    data-height="${height}"
-    data-dnt="${notrack}"
-    data-theme="${theme}"
-#if(${snippet.attrs['tweet-limit']}) data-tweet-limit="${snippet.attrs['tweet-limit']}"#end
+    #if(${chrome} && ${chrome} != "")data-chrome="${chrome}"#end
+    #addAttr( 'data-link-color' ${snippet.attrs['link-color']} )
+    #addAttr( 'data-border-color' ${snippet.attrs['border-color']} )
+    #addAttr( 'data-lang' ${snippet.attrs['lang']} )
+    #addAttr( 'data-aria-polite' ${snippet.attrs['aria-polite']} )
+    #addAttr( 'data-aria-relevant' ${snippet.attrs['aria-relevant']} )
+    #addAttr( 'data-aria-live' ${snippet.attrs['aria-live']} )
+    #addAttr( 'data-aria-atomic' ${snippet.attrs['aria-atomic']} )
+    #addAttr( 'data-aria-busy' ${snippet.attrs['aria-busy']} )
+    #addAttr( 'data-aria-controls' ${snippet.attrs['aria-controls']} )
+    #addAttr( 'data-aria-describedby' ${snippet.attrs['aria-describedby']} )
+    #addAttr( 'data-aria-disabled' ${snippet.attrs['aria-disabled']} )
+    #addAttr( 'data-aria-hidden' ${snippet.attrs['aria-hidden']} )
+    #addAttr( 'data-aria-labelledby' ${snippet.attrs['aria-labelledby']} )
+    #addAttr( 'data-aria-live' ${snippet.attrs['aria-live']} )
+    #addAttr( 'data-width' ${width} )
+    #addAttr( 'data-height' ${height} )
+    #addAttr( 'data-dnt' ${notrack} )
+    #addAttr( 'data-theme' ${theme} )
+    #addAttr( 'data-tweet-limit' ${snippet.attrs['tweet-limit']} )
     href="https://twitter.com/${snippet.attrs['feed']}?ref_src=twsrc%5Etfw">$!{snippet.text}</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

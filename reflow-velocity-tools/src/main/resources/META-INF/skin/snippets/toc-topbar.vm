@@ -18,21 +18,21 @@
  *###
 #macro( renderTopToc )##
 #*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "top")##
-#*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
+#*      *##set ( $tocItems = $pageContext.toc.tocItems )##
     <hr class="toc-separator" />
-    <div id="m-toc-topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}" role="navigation">
-      <div id="toc-scroll-target">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#m-toc-topnav-collapse" aria-controls="m-toc-topnav-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <div id="m_toc_topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}" role="navigation">
+      <div id="toc_scroll_target">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#m_toc_topnav_collapse" aria-controls="m_toc_topnav_collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div id="m-toc-topnav-collapse" class="collapse navbar-collapse">
-            <ul id="m-toc-topnav" class="navbar-nav">
+        <div id="m_toc_topnav_collapse" class="collapse navbar-collapse">
+            <ul id="m_toc_topnav" class="navbar-nav">
 #*      *### display Table of Contents in a top bar
 #*      *##renderTopTocItems ( $tocItems )##
             </ul>
         </div>
       </div> <!-- .container -->
-    </div> <!-- end: m-toc-topbar -->
+    </div> <!-- end: m_toc_topbar -->
 #*  *##end##
 #end##
 #**
@@ -148,3 +148,4 @@
 #*      *##end##
 #*  *##end##
 #end##
+#renderTopToc()

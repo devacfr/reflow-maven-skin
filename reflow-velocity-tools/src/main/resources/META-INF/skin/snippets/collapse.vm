@@ -1,5 +1,5 @@
 ##
-## Copyright 2012-2018 Christophe Friederich
+## Copyright 2012-2020 Christophe Friederich
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -14,16 +14,13 @@
 ## limitations under the License.
 ##
 #**
- * Outputs subsections into a sidebar one after another
- *
- *###
-#macro ( sidebar $subsections )#*
-    *##foreach ( $subsection in $subsections )##
-        <div class="card bg-light">
-            <div class="card-body">
-                ## Print the subsections into sidebar
-                $subsection##
-            </div>
-        </div>
-    #end##
-#end##
+ * Render collapse snippet
+ * Usage:
+ * {{< collapse id="myCollapse" >}}
+  Collapse content
+ {{< /collapse >}}
+ *#
+#set( $class = "collapse")
+<div #addHtmlAttributes( ${snippet} ${class} ) >
+  #render_html( ${snippet} )
+</div>

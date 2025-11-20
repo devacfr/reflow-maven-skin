@@ -20,8 +20,6 @@
  * ...
  * {{< /layout >}}
  *#
- #*  *##if( ${snippet.html})
-<div #if( ${snippet.attrs['class']} )class="${snippet.attrs['class']}"#end>
+<div #addHtmlAttributes( ${snippet} '' ) #addAttributes( ${snippet.dataAttributes} ) #addAttributes( ${snippet.ariaAttributes} ) >
     #render_html( ${snippet} )
 </div>
-#*  *##end

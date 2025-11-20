@@ -20,10 +20,10 @@
  *###
 #macro ( renderTocSidebar )##
 #*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
-#*      *##set ( $tocItems = $pageContext.toc.getTocItems( $config ) )##
+#*      *##set ( $tocItems = $pageContext.toc.tocItems )##
 #*      *##if ( !$tocSidebarAdded )##
-            <div id="m-toc-sidebar" class="d-print-none ${pageContext.toc.cssOptions}">
-                <nav id="m-toc-sidebar-nav flex-column">
+            <div id="m_toc_sidebar" class="d-print-none ${pageContext.toc.cssOptions}">
+                <nav id="m_toc_sidebar_nav" class="flex-column">
 #*          *##renderAsideTocMenu ( $tocItems )
                 </nav>
            </div>
@@ -38,7 +38,7 @@
  *###
 #macro ( renderAsideTocMenu $menus )##
 ##
-                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
+                <ul class="nav--sidebar nav flex-column flex-nowrap">
 #*  *##foreach ( $item in $menus )
 #*      *##renderAsideTocItem ( $item 1 )
     #end##
@@ -67,3 +67,20 @@
 #*      *##end##
 #*  *##end
 #end##
+##
+#**
+ * Add Edit button if content is editable
+*###
+#macro ( renderFeedbackLink )##
+        <div class="feedback-links">
+            <ul class="nav flex-column flex-nowrap">
+                <li class="nav-item">
+#*  *##if( $site.edit && $docRenderingContext.editable )##
+                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $site.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
+#*  *##end##
+                </li>
+            </ul>
+        </div>
+#end##
+#renderFeedbackLink()
+#renderTocSidebar()

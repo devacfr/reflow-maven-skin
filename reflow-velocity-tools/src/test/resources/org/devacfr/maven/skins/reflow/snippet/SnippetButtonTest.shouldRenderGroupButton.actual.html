@@ -1,0 +1,16 @@
+<html>
+ <head>
+  <title>Test</title>
+ </head>
+ <body>
+  <h1>Test</h1>
+  <h2>Nested button group with dropdown</h2>
+  <p>{{&lt; layout class=“btn-group” role=“group” aria-label=“Button group with nested dropdown” &gt;}} {{&lt; bs-button color=“secondary” &gt;}}1{{&lt; /bs-button &gt;}} {{&lt; bs-button color=“secondary” &gt;}}2{{&lt; /bs-button &gt;}} {{&lt; layout class=“btn-group” role=“group” &gt;}} {{&lt; bs-button color=“secondary” class=“dropdown-toggle” data-toggle=“dropdown” aria-expanded=“false” &gt;}} Dropdown {{&lt; /bs-button &gt;}} {{% dropdown %}}</p>
+  <!--
+<item title="Dropdown link" href="#"></item>
+<item title="Dropdown link" href="#"></item>
+-->
+  <p>{{% /dropdown %}}</p>
+  <p>{{&lt; /layout &gt;}} {{&lt; /layout &gt;}}</p>
+ </body>
+</html>

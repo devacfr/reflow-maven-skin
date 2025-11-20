@@ -1,18 +1,18 @@
 /*
-                * Copyright 2012-2025 Christophe Friederich
-                *
-                * Licensed under the Apache License, Version 2.0 (the "License");
-                * you may not use this file except in compliance with the License.
-                * You may obtain a copy of the License at
-                *
-                * http://www.apache.org/licenses/LICENSE-2.0
-                *
-                * Unless required by applicable law or agreed to in writing, software
-                * distributed under the License is distributed on an "AS IS" BASIS,
-                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                * See the License for the specific language governing permissions and
-                * limitations under the License.
-                */
+* Copyright 2012-2025 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.apache.maven.doxia.siterenderer;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -56,115 +56,114 @@ import org.junit.jupiter.api.Test;
 // @Disabled("not work when clover report is enabled")
 public class DefaultSiteRendererTest extends TestCase {
 
-    /**
-     * All output produced by this test will go here.
-     */
-    private static final String OUTPUT = "target/output";
+  /**
+   * All output produced by this test will go here.
+   */
+  private static final String OUTPUT = "target/output";
 
-    /**
-     * The renderer used to produce output.
-     */
-    private SiteRenderer renderer;
+  /**
+   * The renderer used to produce output.
+   */
+  private SiteRenderer renderer;
 
-    /**
-     * The locale before executing tests.
-     */
-    private Locale oldLocale;
+  /**
+   * The locale before executing tests.
+   */
+  private Locale oldLocale;
 
-    @Inject
-    private PlexusContainer container;
+  @Inject
+  private PlexusContainer container;
 
-    private final File skinJar = new File(getBasedir(), "target/test-classes/skin.jar");
+  private final File skinJar = new File(getBasedir(), "target/test-classes/skin.jar");
 
-    private final File minimalSkinJar = new File(getBasedir(), "target/test-classes/minimal-skin.jar");
+  private final File minimalSkinJar = new File(getBasedir(), "target/test-classes/minimal-skin.jar");
 
-    /**
-     * @throws java.lang.Exception
-     *             if something goes wrong.
-     */
-    @BeforeEach
-    protected void setUp() throws Exception {
-        renderer = container.lookup(SiteRenderer.class);
+  /**
+   * @throws java.lang.Exception
+   *           if something goes wrong.
+   */
+  @BeforeEach
+  protected void setUp() throws Exception {
+    renderer = container.lookup(SiteRenderer.class);
 
-        InputStream skinIS = getResource("velocity-toolmanager.vm").openStream();
-        JarOutputStream jarOS = new JarOutputStream(new FileOutputStream(skinJar));
-        try {
-            jarOS.putNextEntry(new ZipEntry("META-INF/maven/site.vm"));
-            copy(skinIS, jarOS);
-            jarOS.closeEntry();
-        } finally {
-            closeQuietly(skinIS);
-            closeQuietly(jarOS);
-        }
-
-        skinIS = new ByteArrayInputStream(
-                "<main id=\"contentBox\">$bodyContent</main>".getBytes(StandardCharsets.UTF_8));
-        jarOS = new JarOutputStream(new FileOutputStream(minimalSkinJar));
-        try {
-            jarOS.putNextEntry(new ZipEntry("META-INF/maven/site.vm"));
-            copy(skinIS, jarOS);
-            jarOS.closeEntry();
-        } finally {
-            closeQuietly(skinIS);
-            closeQuietly(jarOS);
-        }
-
-        oldLocale = Locale.getDefault();
-        Locale.setDefault(Locale.ENGLISH);
+    InputStream skinIS = getResource("velocity-toolmanager.vm").openStream();
+    JarOutputStream jarOS = new JarOutputStream(new FileOutputStream(skinJar));
+    try {
+      jarOS.putNextEntry(new ZipEntry("META-INF/maven/site.vm"));
+      copy(skinIS, jarOS);
+      jarOS.closeEntry();
+    } finally {
+      closeQuietly(skinIS);
+      closeQuietly(jarOS);
     }
 
-    /**
-     * @throws java.lang.Exception
-     *             if something goes wrong.
-     */
-    @AfterEach
-    protected void tearDown() throws Exception {
-        container.release(renderer);
-
-        Locale.setDefault(oldLocale);
+    skinIS = new ByteArrayInputStream("<main id=\"contentBox\">$bodyContent</main>".getBytes(StandardCharsets.UTF_8));
+    jarOS = new JarOutputStream(new FileOutputStream(minimalSkinJar));
+    try {
+      jarOS.putNextEntry(new ZipEntry("META-INF/maven/site.vm"));
+      copy(skinIS, jarOS);
+      jarOS.closeEntry();
+    } finally {
+      closeQuietly(skinIS);
+      closeQuietly(jarOS);
     }
 
-    /**
-     * @throws Exception
-     *             if something goes wrong.
-     */
-    @Test
-    public void shouldAcceptSnippet() throws Exception {
-        // Safety
-        FileUtils.deleteDirectory(getTestFile(OUTPUT));
+    oldLocale = Locale.getDefault();
+    Locale.setDefault(Locale.ENGLISH);
+  }
 
-        // ----------------------------------------------------------------------
-        // Render the site from src/test/resources/site to OUTPUT
-        // ----------------------------------------------------------------------
-        final SiteModel model = new SiteXpp3Reader()
-                .read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
+  /**
+   * @throws java.lang.Exception
+   *           if something goes wrong.
+   */
+  @AfterEach
+  protected void tearDown() throws Exception {
+    container.release(renderer);
 
-        final Path targetSite = getTestFile(OUTPUT).toPath();
-        final Path srcSite = getTestFile("src/test/resources/site").toPath();
-        final SiteRenderingContext ctxt = getSiteRenderingContext(model, srcSite, false);
+    Locale.setDefault(oldLocale);
+  }
 
-        ctxt.setRootDirectory(getTestFile(""));
-        renderer.render(renderer.locateDocumentFiles(ctxt).values(), ctxt, targetSite.toFile());
+  /**
+   * @throws Exception
+   *           if something goes wrong.
+   */
+  @Test
+  public void shouldAcceptSnippet() throws Exception {
+    // Safety
+    FileUtils.deleteDirectory(getTestFile(OUTPUT));
 
-        verify(targetSite.resolve("snippet.html"), getPackagePath().resolve("snippet.approved.html"));
-    }
+    // ----------------------------------------------------------------------
+    // Render the site from src/test/resources/site to OUTPUT
+    // ----------------------------------------------------------------------
+    final SiteModel model = new SiteXpp3Reader()
+        .read(new FileInputStream(getTestFile("src/test/resources/site/site.xml")));
 
-    private SiteRenderingContext getSiteRenderingContext(final SiteModel model,
-        final Path siteDir,
-        final boolean validate) throws RendererException, IOException {
-        final File skinFile = minimalSkinJar;
+    final Path targetSite = getTestFile(OUTPUT).toPath();
+    final Path srcSite = getTestFile("src/test/resources/site").toPath();
+    final SiteRenderingContext ctxt = getSiteRenderingContext(model, srcSite, false);
 
-        final Map<String, String> attributes = new HashMap<>();
-        attributes.put("outputEncoding", "UTF-8");
+    ctxt.setRootDirectory(getTestFile(""));
+    renderer.render(renderer.locateDocumentFiles(ctxt).values(), ctxt, targetSite.toFile());
 
-        final Artifact skin = new DefaultArtifact("org.group", "artifact", VersionRange.createFromVersion("1.1"), null,
-                "jar", "", null);
-        skin.setFile(skinFile);
-        final SiteRenderingContext siteRenderingContext = renderer
-                .createContextForSkin(skin, attributes, model, "defaultWindowTitle", Locale.ENGLISH);
-        siteRenderingContext.addSiteDirectory(new SiteDirectory(siteDir.toFile(), true));
-        siteRenderingContext.setValidate(validate);
+    verify(targetSite.resolve("snippet.html"), getPackagePath().resolve("snippet.approved.html"));
+  }
 
-        return siteRenderingContext;
-    }
+  private SiteRenderingContext getSiteRenderingContext(final SiteModel model,
+    final Path siteDir,
+    final boolean validate) throws RendererException, IOException {
+    final File skinFile = minimalSkinJar;
+
+    final Map<String, String> attributes = new HashMap<>();
+    attributes.put("outputEncoding", "UTF-8");
+
+    final Artifact skin = new DefaultArtifact("org.group", "artifact", VersionRange.createFromVersion("1.1"), null,
+        "jar", "", null);
+    skin.setFile(skinFile);
+    final SiteRenderingContext siteRenderingContext = renderer
+        .createContextForSkin(skin, attributes, model, "defaultWindowTitle", Locale.ENGLISH);
+    siteRenderingContext.addSiteDirectory(new SiteDirectory(siteDir.toFile(), true));
+    siteRenderingContext.setValidate(validate);
+
+    return siteRenderingContext;
+  }
 }

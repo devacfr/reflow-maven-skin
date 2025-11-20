@@ -15,8 +15,7 @@
 ##
 ##
 #macro ( renderFooter )##
-#*  *##set( $pageContext = $config.context)##
-#*  *##set( $datePosition = "#getDatePosition()" )##
+#*  *##set( $datePosition = ${pageContext.datePosition} )##
   <!-- Footer -->
 <footer class="footer $pageContext.footer.cssClass">
     <div class="container">
@@ -40,7 +39,7 @@
 #*      *##if ( $datePosition == "navigation-bottom" || $versionPosition == "navigation-bottom" )
                 <blockquote class="version-date">
 #*          *##if ( $versionPosition == "navigation-bottom" )
-                    <span class="projectVersion">#version ()</span>
+                    <span class="project-version">$config.versionMessage</span>
                 ## add a line break if date is also displayed here
 #*              *##if ( $datePosition == "navigation-bottom" )
                     <br/>
@@ -49,7 +48,7 @@
 ##
             ## now add the date
 #*          *##if ( $datePosition == "navigation-bottom" )
-                    <span class="publishDate">#publishDate ()</span>
+                    <span class="publish-date">$config.publishDateMessage</span>
 #*          *##end#*
                 *#</blockquote>
 #*      *##end
@@ -69,8 +68,8 @@
         <p class="copyright">Copyright &copy;#copyright (). All Rights Reserved.</p>
 #*      *##if ( $datePosition == "bottom" || $versionPosition == "bottom" )
         <p class="version-date">
-#*          *##if ( $versionPosition == "bottom" )<span class="projectVersion">#version (). </span>#end
-#*          *##if ( $datePosition == "bottom" )<span class="publishDate">#publishDate (). </span>#end
+#*          *##if ( $versionPosition == "bottom" )<span class="project-persion">$config.versionMessage. </span>#end
+#*          *##if ( $datePosition == "bottom" )<span class="publish-date">$config.publishDateMessage. </span>#end
         </p>
 #*  *##end
 #*      *##if ( !$config.not("skinAttribution") )
@@ -137,9 +136,9 @@
                     <li class="nav-header">
 #*          *##if ( $menu.image )
 #*              *##if ( !$menu.image.position || $menu.image.position == "left" )
-#*                  *##image ($menu.image.src $menu.image.alt $menu.image.border $menu.image.width $menu.image.height) $menu.name
+#*                  *#$htmlTool.image( $config, $menu.image.src, $menu.image.alt, $menu.image.border, $menu.image.width, $menu.image.height ) $menu.name
 #*              *##else
-#*                  *#$menu.name #image ($menu.image.src $menu.image.alt $menu.image.border $menu.image.width $menu.image.height)
+#*                  *#$menu.name $htmlTool.image( $config,$menu.image.src, $menu.image.alt, $menu.image.border, $menu.image.width, $menu.image.height )
 #*              *##end
 #*          *##else
 #*              *#$menu.name
@@ -175,7 +174,7 @@
 ##
 #*  *##end
                     <li class="nav-item #if( $item.active )active#end">#*
-#*  *##fullLink ( $currentLink $item.name $item.target $item.image $collapseClass "nav-link")
+#*                      *#$htmlTool.link($config, $currentLink, $item.name, $item.target, $item.image, $collapseClass, "nav-link")
 #*  *##if ( $item.menuItems.size() > 0 && $collapseClass == "fas fa-angle-down" )
         <ul class="nav flex-column nav-list">
 ##
@@ -187,3 +186,4 @@
 #*  *##end
 #*  *#</li>
 #end##
+#renderFooter()

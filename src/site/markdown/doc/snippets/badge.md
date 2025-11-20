@@ -1,29 +1,27 @@
 # Badge
 
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ml-1" />}}
+
+[Based on Bootstrap Badge page](https://getbootstrap.com/docs/4.6/components/badge/)
+
 Documentation and examples for badges, our small count and labeling component.
-
-{{< badge color="primary" text="New in v2.4" />}}
-
-{{< badge color="info" text="SHORTCODE" />}}
-
-[Based on Bootstrap Badge page](https://getbootstrap.com/docs/4.4/components/badge/)
 
 ## Example
 
 Badges scale to match the size of the immediate parent element by using relative font sizing and `em` units.
 
-{{% example %}}
+{{< example >}}
 
 <!--
-<h1 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h1>
-<h2 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h2>
-<h3 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h3>
-<h4 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h4>
-<h5 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h5>
-<h6 class="no-anchor">Example heading <badge shortcode color="secondary" text="NEW" /></h6>
+<h1 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h1>
+<h2 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h2>
+<h3 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h3>
+<h4 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h4>
+<h5 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h5>
+<h6 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h6>
 -->
 
-{{% /example %}}
+{{< /example >}}
 
 ```markdown
 # Example heading {{< badge color="secondary" text="NEW" />}}
@@ -33,6 +31,20 @@ Badges scale to match the size of the immediate parent element by using relative
 ##### Example heading {{< badge color="secondary" text="NEW" />}}
 ###### Example heading {{< badge color="secondary" text="NEW" />}}
 ```
+
+Badges can be used as part of links or buttons to provide a counter.
+
+{{% example %}}
+
+{{< bs-button color="primary" >}}Notifications {{< badge color="light" text="1" />}}{{< /bs-button >}}
+
+```html
+{{< bs-button color="primary" >}}Notifications {{< badge color="light" text="1" />}}{{< /bs-button >}}
+```
+
+{{% /example %}}
+
+Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button.
 
 ## Contextual variations
 
@@ -49,8 +61,6 @@ Add any of the below mentioned modifier classes to change the appearance of a ba
 {{< badge color="light" text="Light" />}}
 {{< badge color="dark" text="Dark" />}}
 
-{{< /example >}}
-
 ```html
 {{< badge color="primary" text="Primary" />}}
 {{< badge color="secondary" text="Secondary" />}}
@@ -61,6 +71,8 @@ Add any of the below mentioned modifier classes to change the appearance of a ba
 {{< badge color="light" text="Light" />}}
 {{< badge color="dark" text="Dark" />}}
 ```
+
+{{< /example >}}
 
 {{< callout color="warning" level="5" title="Conveying meaning to assistive technologies" >}}
 
@@ -74,24 +86,52 @@ Use the `pill` attribute to make badges more rounded.
 
 {{< example >}}
 
-{{< badge color="primary" pill text="Primary" />}}
-{{< badge color="secondary" pill text="Secondary" />}}
-{{< badge color="success" pill text="Success" />}}
-{{< badge color="danger" pill text="Danger" />}}
-{{< badge color="warning" pill text="warning" />}}
-{{< badge color="info" pill text="Info" />}}
-{{< badge color="light" pill text="Light" />}}
-{{< badge color="dark" pill text="Dark" />}}
+{{< badge color="primary" pill="true" text="Primary" />}}
+{{< badge color="secondary" pill="true" text="Secondary" />}}
+{{< badge color="success" pill="true" text="Success" />}}
+{{< badge color="danger" pill="true" text="Danger" />}}
+{{< badge color="warning" pill="true" text="warning" />}}
+{{< badge color="info" pill="true" text="Info" />}}
+{{< badge color="light" pill="true" text="Light" />}}
+{{< badge color="dark" pill="true" text="Dark" />}}
+
+```html
+{{< badge color="primary" pill="true" text="Primary" />}}
+{{< badge color="secondary" pill="true"  text="Secondary" />}}
+{{< badge color="success" pill="true" text="Success" />}}
+{{< badge color="danger" pill="true" text="Danger" />}}
+{{< badge color="warning" pill="true" text="warning" />}}
+{{< badge color="info" pill="true" text="Info" />}}
+{{< badge color="light" pill="true" text="Light" />}}
+{{< badge color="dark" pill="true" text="Dark" />}}
+```
 
 {{< /example >}}
 
+## Links
+
+Using the contextual `.badge-*` classes on an `<a>` element quickly provide actionable badges with hover and focus states.
+
+{{< example >}}
+
+{{< badge href="#" color="primary" text="Primary" />}}
+{{< badge href="#" color="secondary" text="Secondary" />}}
+{{< badge href="#" color="success" text="Success" />}}
+{{< badge href="#" color="danger" text="Danger" />}}
+{{< badge href="#" color="warning" text="warning" />}}
+{{< badge href="#" color="info" text="Info" />}}
+{{< badge href="#" color="light" text="Light" />}}
+{{< badge href="#" color="dark" text="Dark" />}}
+
 ```html
-{{< badge color="primary" pill text="Primary" />}}
-{{< badge color="secondary" pill  text="Secondary" />}}
-{{< badge color="success" pill text="Success" />}}
-{{< badge color="danger" pill text="Danger" />}}
-{{< badge color="warning" pill text="warning" />}}
-{{< badge color="info" pill text="Info" />}}
-{{< badge color="light" pill text="Light" />}}
-{{< badge color="dark" pill text="Dark" />}}
+{{< badge href="#" color="primary" text="Primary" />}}
+{{< badge href="#" color="secondary" text="Secondary" />}}
+{{< badge href="#" color="success" text="Success" />}}
+{{< badge href="#" color="danger" text="Danger" />}}
+{{< badge href="#" color="warning" text="warning" />}}
+{{< badge href="#" color="info" text="Info" />}}
+{{< badge href="#" color="light" text="Light" />}}
+{{< badge href="#" color="dark" text="Dark" />}}
 ```
+
+{{< /example >}}

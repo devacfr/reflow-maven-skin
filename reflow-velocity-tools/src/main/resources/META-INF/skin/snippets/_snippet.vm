@@ -16,6 +16,10 @@
 #if( $velocity.resourceExists("META-INF/maven/site-macros.vm") )##
 #*  *##parse("META-INF/maven/site-macros.vm")##
 #end##
+##
+## Define list of html attributes to be processed
+##
+#set( $htmlAttributes = ["id", "class", "style", "role"] )
 #**
  * display information of snippet
  *#
@@ -76,8 +80,39 @@ ${sp}children:
 #*  *##end##
 #end
 ##
+#** add html attributes to html element
+ *#
+#macro( addHtmlAttributes $snippet $class)##
+#*  *##if( !$snippet.hasAttribute( 'class' ) )##
+#*      *##addAttr( 'class' , $class )##
+#*  *##end##
+#*  *##if( ${snippet.attrs} )##
+#*      *##foreach( $key in $snippet.attrs.keySet() )##
+#*          *##if( $htmlAttributes.contains( $key ) )##
+#*              *##set($value = ${snippet.attrs[$key]})
+#*              *##if( $key == 'class' )##
+#*                  *##set( $value = $htmlTool.addClasses( $class, $value ) )##
+#*              *##end##
+#*              *##addAttr( $key , $value )##
+#*          *##end##
+#*      *##end##
+#*  *##end##
+#end##
 ##
+#**
+* add attributes to html element
+*#
+#macro( addAttributes $attrs )##
+#*  *##foreach( $key in $attrs.keySet() )##
+#*  *#$key="$attrs[$key]" ##
+#*  *##end##
+#end##
 ##
+#** add attribute to html element
+ *#
+#macro( addAttr $attr $value )##
+#*  *##if( $value )$attr="$value"#end##
+#end##
 ##
 #if( $snippet.attrs["debug"])##
     #debug( $snippet true 0)

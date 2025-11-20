@@ -14,7 +14,7 @@
 ## limitations under the License.
 ##
 #**
- * Render example snippet
+ * Render badge snippet
  * Usage:
  * {{< badge color="" text="" />}}
  *#
@@ -25,4 +25,8 @@
 #*  *##if( ${snippet.attrs['color']})
 #*      *##set( $class = "$class badge-${snippet.attrs['color']}")
 #*  *##end##
-<span class="$class">${snippet.text}</span>
+#if ( ${snippet.attrs['href']} )##
+<a href="${snippet.attrs['href']}" #addHtmlAttributes( ${snippet} ${class} ) >${snippet.text}</a>
+#else##
+<span #addHtmlAttributes( ${snippet} ${class} ) >${snippet.text}</span>
+#end##

@@ -1,114 +1,103 @@
 /*
-                * Copyright 2012-2025 Christophe Friederich
-                *
-                * Licensed under the Apache License, Version 2.0 (the "License");
-                * you may not use this file except in compliance with the License.
-                * You may obtain a copy of the License at
-                *
-                * http://www.apache.org/licenses/LICENSE-2.0
-                *
-                * Unless required by applicable law or agreed to in writing, software
-                * distributed under the License is distributed on an "AS IS" BASIS,
-                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                * See the License for the specific language governing permissions and
-                * limitations under the License.
-                */
+* Copyright 2012-2025 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.devacfr.maven.skins.reflow.snippet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
-import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
+import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
-public class ComponentResolverTest {
+public class ComponentResolverTest extends MockitoTestCase {
 
-    @Test
-    public void shouldBeStartWebComponent() {
-        check("{{% component %}}", "component", Type.webComponent, Tag.start);
-    }
+  @Mock
+  private SnippetContext context;
 
-    @Test
-    public void shouldBeStartWebComponentWithAttributes() {
-        check("{{% component style=\"width: 18rem;\" attr2=\"val\" %}}", "component", Type.webComponent, Tag.start);
-    }
+  @Test
+  public void shouldBeStartWebComponent() {
+    check("{{% component %}}", "component", Tag.start);
+  }
 
-    @Test
-    public void shouldBeStartWebComponentWithAttributesLeftAndRightDoubleQuote() {
-        check("{{% component style=“width: 18rem;” attr2=“val” %}}", "component", Type.webComponent, Tag.start);
-    }
+  @Test
+  public void shouldBeStartWebComponentWithAttributes() {
+    check("{{% component style=\"width: 18rem;\" attr2=\"val\" %}}", "component", Tag.start);
+  }
 
-    @Test
-    public void shouldBeStartWebComponentWithAttributeWithoutValue() {
-        check("{{% component pill %}}", "component", Type.webComponent, Tag.start);
-    }
+  @Test
+  public void shouldBeStartWebComponentWithAttributesLeftAndRightDoubleQuote() {
+    check("{{% component style=“width: 18rem;” attr2=“val” %}}", "component", Tag.start);
+  }
 
-    @Test
-    public void shouldBeStartWebComponentWithNumberAttributes() {
-        check("{{% component length=\"120\" %}}", "component", Type.webComponent, Tag.start);
-    }
+  @Test
+  public void shouldBeStartWebComponentWithAttributeWithoutValue() {
+    check("{{% component pill %}}", "component", Tag.start);
+  }
 
-    @Test
-    public void shouldBeEndWebComponent() {
-        check("{{% /component %}}", "component", Type.webComponent, Tag.end);
-    }
+  @Test
+  public void shouldBeStartWebComponentWithNumberAttributes() {
+    check("{{% component length=\"120\" %}}", "component", Tag.start);
+  }
 
-    @Test
-    public void shouldBeEmptyWebComponent() {
-        check("{{% component /%}}", "component", Type.webComponent, Tag.empty);
-    }
+  @Test
+  public void shouldBeEndWebComponent() {
+    check("{{% /component %}}", "component", Tag.end);
+  }
 
-    @Test
-    public void shouldBeStartShortcode() {
-        check("{{< component >}}", "component", Type.shortcode, Tag.start);
-    }
+  @Test
+  public void shouldBeEmptyWebComponent() {
+    check("{{% component /%}}", "component", Tag.empty);
+  }
 
-    @Test
-    public void shouldBeEndShortcode() {
-        check("{{< /component >}}", "component", Type.shortcode, Tag.end);
-    }
+  @Test
+  public void shouldBeStartShortcode() {
+    check("{{< component >}}", "component", Tag.start);
+  }
 
-    @Test
-    public void shouldBeEmptyShortcode() {
-        check("{{< component />}}", "component", Type.shortcode, Tag.empty);
-    }
+  @Test
+  public void shouldBeEndShortcode() {
+    check("{{< /component >}}", "component", Tag.end);
+  }
 
-    @Test
-    public void shouldFailedOnMalformed() {
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            new ComponentResolver().create(new Element("p").text("{{% /component /%}}"));
-        });
-    }
+  @Test
+  public void shouldBeEmptyShortcode() {
+    check("{{< component />}}", "component", Tag.empty);
+  }
 
-    @Test
-    public void shouldFailedUnknownComponent() {
-        assertNull(new ComponentResolver().create(new Element("p").text("{{- /component -}}")));
-    }
+  @Test
+  public void shouldFailedOnMalformed() {
+    Assertions.assertThrows(RuntimeException.class, () -> {
+      new ComponentResolver().create(new Element("p").text("{{% /component /%}}"));
+    });
+  }
 
-    @Test
-    public void shouldElementStartWebComponentContainingAttributes() {
-        check("{{% component attr=\"value\" attr1=\"value1\" %}}", "component", Type.webComponent, Tag.start);
-    }
+  @Test
+  public void shouldFailedUnknownComponent() {
+    assertNull(new ComponentResolver().create(new Element("p").text("{{- /component -}}")));
+  }
 
-    @Test
-    public void shouldContainSnippetComponent() {
-        assertEquals(true,
-            ComponentResolver.hasIncludedSnippetComponent(
-                new Element("body").append("<test webcomponent class=\"cl\"></test>")));
-        assertEquals(true,
-            ComponentResolver
-                    .hasIncludedSnippetComponent(new Element("body").append("<test shortcode class=\"cl\"></test>")));
-        assertEquals(false, ComponentResolver.hasIncludedSnippetComponent(new Element("body").append("<test></test>")));
-    }
+  @Test
+  public void shouldElementStartWebComponentContainingAttributes() {
+    check("{{% component attr=\"value\" attr1=\"value1\" %}}", "component", Tag.start);
+  }
 
-    private ComponentToken check(final String text, final String name, final Type type, final Tag state) {
-        final ComponentToken element = new ComponentResolver().create(new Element("p").text(text));
-        assertEquals(name, element.name());
-        assertEquals(type, element.type());
-        assertEquals(state, element.tag());
-        return element;
-    }
+  private ComponentToken check(final String text, final String name, final Tag state) {
+    final ComponentToken element = new ComponentResolver().create(new Element("p").text(text));
+    assertEquals(name, element.name());
+    assertEquals(state, element.tag());
+    return element;
+  }
 }

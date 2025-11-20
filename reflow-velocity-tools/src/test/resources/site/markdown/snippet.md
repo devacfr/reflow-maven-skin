@@ -35,4 +35,4 @@ element {{< badget color="primary" text="new" />}}.
 </data>
 ```
 
-{{% /component%}}
+{{% /component %}}

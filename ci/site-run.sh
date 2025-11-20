@@ -24,7 +24,7 @@ source "${dir}/setenv.sh"
 
 # default maven command
 maven_cmd="mvn"
-maven_profiles=""
+maven_profiles="-P site-run"
 maven_args=""
 
 # store current arguments
@@ -52,6 +52,6 @@ case $i in
 esac
 done
 
-${dir}/site-generate.sh ${args[@]:-}
+# ${dir}/site-generate.sh ${args[@]:-}
 
-${maven_cmd} site:run "$@"
+${maven_cmd} clean site site:run "$@" ${maven_profiles}
