@@ -15,9 +15,11 @@
                 */
 package org.devacfr.maven.skins.reflow;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static java.util.Collections.emptyList;
+import static java.util.Objects.requireNonNull;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
@@ -32,9 +34,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Pattern;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
 import org.apache.velocity.tools.generic.SafeConfig;
@@ -45,9 +46,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
-
-import static java.util.Collections.emptyList;
-import static java.util.Objects.requireNonNull;
 
 /**
  * An Apache Velocity tool that provides utility methods to manipulate HTML code using

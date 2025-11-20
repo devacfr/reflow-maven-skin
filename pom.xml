@@ -378,6 +378,9 @@ governing permissions and limitations under
               <eclipse>
                 <file>${main.basedir}/eclipse/java-code-style-formatter.xml</file>
               </eclipse>
+              <importOrder />
+              <removeUnusedImports />
+              <formatAnnotations />
             </java>
             <licenseHeader>
               <content>
@@ -397,10 +400,6 @@ governing permissions and limitations under
                 * limitations under the License.
                 */</content>
             </licenseHeader>
-
-            <importOrder />
-            <removeUnusedImports />
-            <formatAnnotations />
           </configuration>
           <executions>
             <execution>

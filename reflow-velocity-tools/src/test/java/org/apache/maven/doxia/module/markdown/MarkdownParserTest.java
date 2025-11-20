@@ -15,20 +15,16 @@
                 */
 package org.apache.maven.doxia.module.markdown;
 
-import javax.inject.Inject;
-
-import java.io.Reader;
-import java.io.StringReader;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.google.common.base.Throwables;
-
+import java.io.Reader;
+import java.io.StringReader;
+import javax.inject.Inject;
 import org.apache.maven.doxia.parser.AbstractParser;
-import org.apache.maven.doxia.parser.Parser;
 import org.devacfr.testing.jupiter.ParserTestCase;
 import org.jsoup.Jsoup;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MarkdownParserTest extends ParserTestCase {
 

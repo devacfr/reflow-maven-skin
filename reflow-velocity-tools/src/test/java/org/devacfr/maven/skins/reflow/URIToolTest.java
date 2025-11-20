@@ -17,7 +17,6 @@ package org.devacfr.maven.skins.reflow;
 
 import java.io.IOException;
 import java.net.URI;
-
 import org.devacfr.maven.skins.reflow.URITool.URLRebaser;
 import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.Test;

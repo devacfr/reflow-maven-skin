@@ -15,15 +15,13 @@
                 */
 package org.devacfr.testing.jupiter;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.google.common.io.ByteSource;
+import com.google.common.io.Resources;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Function;
-
-import com.google.common.io.ByteSource;
-import com.google.common.io.Resources;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.maven.doxia.parser.AbstractParserTest;
 import org.devacfr.testing.util.Approvals;
 import org.junit.jupiter.api.BeforeEach;

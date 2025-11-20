@@ -15,14 +15,9 @@
                 */
 package org.devacfr.testing.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.nio.file.Path;
-import java.util.function.Function;
+import static com.google.common.base.Throwables.throwIfUnchecked;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
 import com.cloudbees.diff.Diff;
 import com.cloudbees.diff.provider.BuiltInDiffProvider;
@@ -31,14 +26,17 @@ import com.google.common.base.Strings;
 import com.google.common.io.CharSink;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.nio.file.Path;
+import java.util.function.Function;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.hamcrest.TypeSafeMatcher;
-
-import static com.google.common.base.Throwables.throwIfUnchecked;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
 /**
  * @author Christophe Friederich

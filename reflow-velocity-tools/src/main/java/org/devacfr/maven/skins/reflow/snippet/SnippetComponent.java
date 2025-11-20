@@ -18,7 +18,6 @@ package org.devacfr.maven.skins.reflow.snippet;
 import static java.util.Objects.requireNonNull;
 
 import javax.annotation.Nonnull;
-
 import org.devacfr.maven.skins.reflow.JsoupUtils;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Document;

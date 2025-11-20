@@ -15,15 +15,15 @@
                 */
 package org.devacfr.maven.skins.reflow.context;
 
-import javax.annotation.Nonnull;
+import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
+import javax.annotation.Nonnull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.HtmlTool;
@@ -38,8 +38,6 @@ import org.devacfr.maven.skins.reflow.snippet.SnippetContext;
 import org.devacfr.maven.skins.reflow.snippet.SnippetParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * The base class of all contexts depending type of page.

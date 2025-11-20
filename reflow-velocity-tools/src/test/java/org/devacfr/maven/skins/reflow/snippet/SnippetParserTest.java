@@ -16,7 +16,6 @@
 package org.devacfr.maven.skins.reflow.snippet;
 
 import java.io.IOException;
-
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.Test;

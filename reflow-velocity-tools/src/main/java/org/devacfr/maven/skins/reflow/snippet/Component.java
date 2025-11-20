@@ -15,17 +15,16 @@
                 */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Type;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
@@ -33,10 +32,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Tag;
-import org.jsoup.parser.TagSet;
-
-import static java.util.Objects.requireNonNull;
-import static org.jsoup.parser.Parser.NamespaceHtml;
 
 /**
  * Base of Snippet component.

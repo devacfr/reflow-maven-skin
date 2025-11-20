@@ -20,17 +20,12 @@ import static java.util.Objects.requireNonNull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.JsoupUtils;
 import org.devacfr.maven.skins.reflow.snippet.Processor.ShortcodeProcessor;
 import org.devacfr.maven.skins.reflow.snippet.Processor.WebComponentProcessor;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;

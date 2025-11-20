@@ -15,21 +15,19 @@
                 */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
-
-import java.util.List;
-import java.util.Objects;
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.Objects.requireNonNull;
 
 import com.google.common.collect.Lists;
-import org.apache.maven.doxia.site.SiteModel;
+import java.util.List;
+import java.util.Objects;
+import javax.annotation.Nonnull;
 import org.apache.maven.doxia.site.LinkItem;
+import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.Xpp3Utils;
-
-import static com.google.common.base.Strings.isNullOrEmpty;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the navbar component.

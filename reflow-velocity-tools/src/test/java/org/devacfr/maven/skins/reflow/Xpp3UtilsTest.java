@@ -15,14 +15,13 @@
                 */
 package org.devacfr.maven.skins.reflow;
 
-import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.List;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.testing.jupiter.TestCase;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Xpp3UtilsTest extends TestCase {
 

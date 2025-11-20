@@ -15,13 +15,12 @@
                 */
 package org.devacfr.maven.skins.reflow.context;
 
-import javax.annotation.Nonnull;
+import static org.devacfr.maven.skins.reflow.model.Toc.createToc;
 
+import javax.annotation.Nonnull;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.model.Header;
 import org.devacfr.maven.skins.reflow.model.Toc;
-
-import static org.devacfr.maven.skins.reflow.model.Toc.createToc;
 
 /**
  * @author Christophe Friederich

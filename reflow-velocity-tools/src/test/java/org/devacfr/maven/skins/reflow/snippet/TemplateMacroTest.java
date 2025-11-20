@@ -15,9 +15,8 @@
                 */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import java.io.IOException;
-
 import com.google.common.io.CharSource;
+import java.io.IOException;
 import org.devacfr.testing.jupiter.PlexusTestCase;
 import org.junit.jupiter.api.Test;
 

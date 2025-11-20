@@ -15,17 +15,15 @@
                 */
 package org.devacfr.maven.skins.reflow;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.google.common.collect.Lists;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Utility class to manipulate {@link Xpp3Dom} model.

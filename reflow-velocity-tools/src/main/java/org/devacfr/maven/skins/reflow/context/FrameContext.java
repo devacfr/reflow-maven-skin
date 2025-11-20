@@ -15,14 +15,13 @@
                 */
 package org.devacfr.maven.skins.reflow.context;
 
-import javax.annotation.Nonnull;
+import static java.util.Objects.requireNonNull;
 
+import javax.annotation.Nonnull;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.SkinConfigTool;
 import org.devacfr.maven.skins.reflow.model.Toc;
 import org.devacfr.maven.skins.reflow.model.TocSidebar;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * The context associate to page of frame page.

@@ -17,16 +17,13 @@ package org.devacfr.maven.skins.reflow.model;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import java.util.List;
-
 import javax.annotation.Nonnull;
-
 import org.apache.maven.doxia.site.SiteModel;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 
 /**
  * Represents the footer component.

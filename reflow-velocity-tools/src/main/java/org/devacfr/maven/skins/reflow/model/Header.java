@@ -15,16 +15,14 @@
                 */
 package org.devacfr.maven.skins.reflow.model;
 
-import javax.annotation.Nonnull;
-
-import java.util.List;
+import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import java.util.List;
+import javax.annotation.Nonnull;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the header component.
