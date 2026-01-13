@@ -46,24 +46,14 @@ body {
 
 
 /** add external character for external link in body */
-.main-body .external-link:after,
-footer .external-link:after {
+.main-body .external-link:after, .main-body .externalLink:after,
+footer .external-link:after, footer .externalLink:after {
     font-family: 'Font Awesome 5 Free';
     display: inline-block;
     content: "\f35d";
     font-size: .6rem;
     font-weight: 900;
     margin-left: 3px;
-}
-
-/** add external character for external link in footer */
-footer .external-link:after {
-    font-family: 'Font Awesome 5 Free';
-    display: inline-block;
-    content: "\f35d";
-    font-size: .7rem;
-    font-weight: 900;
-    margin-left: 5px;
 }
 
 
