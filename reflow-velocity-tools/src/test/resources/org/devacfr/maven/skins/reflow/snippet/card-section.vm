@@ -13,8 +13,8 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-<column shortcode class="mb-4">
-    <card webcomponent class="h-100">
+<column class="mb-4">
+    <card class="h-100">
         <card-body>
             <h5 class="card-title no-anchor"><a href="${snippet.href}">$snippet.title</a></h5>
             <p class="card-text">#render_html( $snippet )</p>

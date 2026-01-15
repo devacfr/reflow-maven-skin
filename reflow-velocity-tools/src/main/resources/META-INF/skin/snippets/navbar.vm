@@ -18,7 +18,7 @@
  *
  *###
 #macro ( renderNavbar )##
-    <nav id="m-top-navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}" role="navigation">
+    <nav id="m_top_navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}" role="navigation">
 #*  *##if ( $pageContext.navbar.center )<div class="container">#end##
 ##
 ## Insert brand if it is available
@@ -50,7 +50,7 @@
 ##
 #*  *##foreach ( $menu in $pageContext.navbar.menus)##
 #*      *##if( $menu.menuItems.isEmpty())##
-                    <li class="nav-item #if( $menu.active)active#end" >#link ( $menu.href $menu.name $menu.target "nav-link")</li>
+                    <li class="nav-item #if( $menu.active)active#end" >$htmlTool.link( $config, $menu.href, $menu.name, $menu.target, "nav-link" )</li>
 #*      *##else##
                     <li class="nav-item dropdown#if ( $menu.active ) active#end">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$menu.name <b class="caret"></b></a>
@@ -64,7 +64,7 @@
 #*                  *##if( $item.active )##
 #*                      *##set( $cssClass = "$cssClass active")##
 #*                  *##end##
-                                #link ( $item.href $item.name $item.target "$cssClass")
+                                $htmlTool.link( $config, $item.href, $item.name, $item.target, "$cssClass" )
                                 <div class="dropdown-menu">
 #*                  *##foreach ($subitem in $item.menuItems)##
                                     <a href="$subitem.href" title="$subitem.name" #if( $subitem.target )target="$subitem.target"#end class="dropdown-item #if( $subitem.active )active#end">$subitem.name</a>
@@ -90,3 +90,4 @@
 #*  *##if ( $pageContext.navbar.center )</div> <!--/.container -->#end##
     </nav> <!--/.navbar -->
 #end##
+#renderNavbar()

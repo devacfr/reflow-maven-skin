@@ -17,8 +17,48 @@
  * Render a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
  *
  *###
-#if( $velocity.resourceExists("META-INF/maven/components/breadcrumb.vm") )##
-#*  *##parse("META-INF/maven/components/breadcrumb.vm")##
-#*  *##renderBreadcrumbs()
+#macro( renderBreadcrumbs )##
+#*  *##set( $atitle = ${config.title} )##
+#*  *##set( $ashortTitle = ${config.shortTitle} )##
+#*  *##set( $datePosition = ${config.datePosition} )##
+#*  *##set( $versionPosition = ${config.versionPosition} )##
+#*  *##if ( !$config.not( "breadcrumbs" )
+      && (( $site.body.breadcrumbs && $site.body.breadcrumbs.size() > 0)
+        || $datePosition == "left" || $versionPosition == "left"
+        || $datePosition == "right" || $versionPosition == "right") )##
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+##
+#*      *### left side version/date
+#*      *##if ( ${config.version} && $versionPosition == "left" )##
+            <li class="project-version">$!{config.versionMessage}</li>
+#*      *##end##
+#*      *##if ( $datePosition == "left" )##
+            <li class="publish-date">$!{config.publishDateMessage}</li>
+#*      *##end##
+##
+## breadcrumbs
+#*      *##if ( $site.body.breadcrumbs && $site.body.breadcrumbs.size() > 0 )##
+#*          *##foreach ( $item in  $site.body.breadcrumbs )##
+#*          *##set ( $link = $htmlTool.link( $config, $config.relativeLink( $item.href ), $item.name, $item.target, $item.image, null, "" ) )
+            <li class="breadcrumb-item">$!{link}</li>
+#*          *##end##
+            <li class="breadcrumb-item active" aria-current="page">#if ( $ashortTitle )$!ashortTitle#else$!atitle#end</li>
+#*      *##end##
+## right side version/date
+#*      *##if ( $datePosition == "right" )##
+            <li class="publish-date pull-right">$!{config.publishDateMessage}</li>
+#*      *##end##
+#*      *##if ( ${config.version} && $versionPosition == "right" )##
+            <li class="project-version pull-right">$!{config.versionMessage}</li>
+#*      *##end##
+        </ol>
+    </nav>
+#*  *##end##
 #end##
+#**
+ * Render a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
+ *
+ *###
+#renderBreadcrumbs()
 

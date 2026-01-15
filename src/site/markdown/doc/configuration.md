@@ -57,17 +57,7 @@ Reflow skin supports the following values for `position` of these components:
 Note that **navigation-top** position is not supported by Reflow skin.
 
 [mvn-site-date]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Publish_Date
-[mvn-site-version]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Version
-
-### Override publish date
-
-element {{< badge color="secondary" text="site.xml" />}}
-
-The website publish date can be indicated explicitly in the configuration by using `<publishDate>` element or using the Reproducible/Verifiable Builds maven property `project.build.outputTimestamp`:
-
-```xml
-<publishDate>2013-01-08</publishDate>
-```
+[mvn-site-version]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.htmlion
 
 ## Menus
 

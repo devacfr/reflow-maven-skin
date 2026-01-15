@@ -1,20 +1,22 @@
 /*
-                * Copyright 2012-2025 Christophe Friederich
-                *
-                * Licensed under the Apache License, Version 2.0 (the "License");
-                * you may not use this file except in compliance with the License.
-                * You may obtain a copy of the License at
-                *
-                * http://www.apache.org/licenses/LICENSE-2.0
-                *
-                * Unless required by applicable law or agreed to in writing, software
-                * distributed under the License is distributed on an "AS IS" BASIS,
-                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                * See the License for the specific language governing permissions and
-                * limitations under the License.
-                */
+* Copyright 2012-2025 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.devacfr.maven.skins.reflow;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -31,263 +33,375 @@ import org.devacfr.maven.skins.reflow.context.Context;
  */
 public interface ISkinConfig {
 
-    /**
-     * A convenience method to check if the value of the {@code property} is {@code "false"}. Useful for properties that
-     * are enabled by default - checks if the property is set to {@code "false"} explicitly.
-     *
-     * @param property
-     *            the property of interest
-     * @return {@code true} if the configuration value is set either in page or globally, and is equal to
-     *         {@code "false"}. Note that this will return {@code false} if property is not set at all.
-     * @see #get(String)
-     * @since 1.0
-     */
-    boolean not(String property);
+  /**
+   * Renders the snippets found in the body content.
+   *
+   * @param bodyContent
+   *          the body content.
+   * @return Returns the {@link String} representing the transformed body content.
+   * @throws Exception
+   *           if any.
+   */
+  @Nonnull
+  String renderSnippets(final String bodyContent) throws Exception;
 
-    /**
-     * Gets the associated value to {@code key} stored in Velocity context.
-     *
-     * @param key
-     *            the key name of associated value in Velocity context.
-     * @param type
-     *            the the type of expected value.
-     * @return Returns the associated value to {@code key} stored in Velocity context.
-     * @param <T>
-     *            the type of expected value.
-     * @since 2.1
-     */
-    <T> T getContextValue(@Nonnull String key, @Nonnull Class<T> type);
+  String renderSnippet(final String snippet) throws Exception;
 
-    /**
-     * Sets the value in Velocity context associated to {@code key}.
-     *
-     * @param key
-     *            the key name of associated value in Velocity context.
-     * @param value
-     *            the new value
-     * @since 2.1
-     */
-    void setContextValue(@Nonnull String key, Object value);
+  /**
+   * A convenience method to check if the value of the {@code property} is {@code "false"}. Useful for properties that
+   * are enabled by default - checks if the property is set to {@code "false"} explicitly.
+   *
+   * @param property
+   *          the property of interest
+   * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code "false"}.
+   *         Note that this will return {@code false} if property is not set at all.
+   * @see #get(String)
+   * @since 1.0
+   */
+  boolean not(String property);
 
-    /**
-     * Gets the associated tool to {@code name} stored in toolbox of Velocity context.
-     *
-     * @param toolName
-     *            the name of tool associated in Velocity context.
-     * @param toolType
-     *            the expected class of tool.
-     * @return Returns the associated tool to {@code name} stored in toolbox of Velocity context.
-     * @param <T>
-     *            the type of expected tool.
-     * @since 2.1
-     */
-    @Nullable <T> T getToolbox(@Nonnull String toolName, @Nonnull Class<T> toolType);
+  /**
+   * Gets the associated value to {@code key} stored in Velocity context.
+   *
+   * @param key
+   *          the key name of associated value in Velocity context.
+   * @param type
+   *          the the type of expected value.
+   * @return Returns the associated value to {@code key} stored in Velocity context.
+   * @param <T>
+   *          the type of expected value.
+   * @since 2.1
+   */
+  <T> T getContextValue(@Nonnull String key, @Nonnull Class<T> type);
 
-    /**
-     * @return Returns the root level {@link Xpp3Dom}.
-     */
-    @Nonnull
-    Xpp3Dom getGlobalProperties();
+  /**
+   * Sets the value in Velocity context associated to {@code key}.
+   *
+   * @param key
+   *          the key name of associated value in Velocity context.
+   * @param value
+   *          the new value
+   * @since 2.1
+   */
+  void setContextValue(@Nonnull String key, Object value);
 
-    /**
-     * @return Returns the page level {@link Xpp3Dom}.
-     */
-    @Nonnull
-    Xpp3Dom getPageProperties();
+  /**
+   * @return the velocity Context
+   */
+  org.apache.velocity.context.Context getVelocityContext();
 
-    /**
-     * @return Returns a {@link String} representing the namespace.
-     */
-    @Nonnull
-    String getNamespace();
+  /**
+   * Gets the associated tool to {@code name} stored in toolbox of Velocity context.
+   *
+   * @param toolName
+   *          the name of tool associated in Velocity context.
+   * @param toolType
+   *          the expected class of tool.
+   * @return Returns the associated tool to {@code name} stored in toolbox of Velocity context.
+   * @param <T>
+   *          the type of expected tool.
+   * @since 2.1
+   */
+  @Nullable <T> T getToolbox(@Nonnull String toolName, @Nonnull Class<T> toolType);
 
-    /**
-     * @return Returns the {@link String} representing the fileId.
-     */
-    @Nullable String getFileId();
+  /**
+   * Gets the short title of the site.
+   * 
+   * @return Returns the short title of the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getShortTitle();
 
-    /**
-     * @return the context
-     */
-    @Nonnull
-    Context<?> getContext();
+  /**
+   * Gets the title of the site.
+   * 
+   * @return Returns the title of the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getTitle();
 
-    /**
-     * @return Returns the {@link String} representing the projectId.
-     */
-    @Nullable Object getProjectId();
+  /**
+   * Gets the version of the site.
+   * 
+   * @return Returns the version of the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getVersion();
 
-    /**
-     * @return the project
-     */
-    @Nonnull
-    MavenProject getProject();
+  /**
+   * Gets the position of the version in the site.
+   * 
+   * @return Returns the position of the version in the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getVersionPosition();
 
-    /**
-     * @return the SiteModel
-     */
-    @Nonnull
-    SiteModel getSiteModel();
+  /**
+   * Gets the version message of the site.
+   * 
+   * @return Returns the version message of the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getVersionMessage();
 
-    /**
-     * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise
-     * Velocity fallback onto the default getter and use {@code $config.myproperty}.
-     *
-     * @param property
-     *            the property of interest
-     * @return configuration node if found in the following sequence:
-     *         <ol>
-     *         <li>In page configuration</li>
-     *         <li>In global configuration</li>
-     *         <li>{@code null} otherwise</li>
-     *         </ol>
-     * @since 1.0
-     */
-    @Nullable Xpp3Dom get(@Nonnull String property);
+  /**
+   * Gets the publish date of the site.
+   * 
+   * @return Returns the publish date of the site.
+   * @since 2.4
+   */
+  @Nullable String getPublishDate();
 
-    /**
-     * Gets the text value of the given {@code property}.
-     *
-     * @param property
-     *            the property to use
-     * @param targetType
-     *            the returned target type use to convert value.
-     * @param defaultValue
-     *            the default value used if property doesn't exist.
-     * @return Returns a converted value of the given {@code property}.
-     * @since 2.0
-     * @param <T>
-     *            the type of returned object.
-     */
-    @Nullable <T> T getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType, @Nullable T defaultValue);
+  /**
+   * Gets the publish date message of the site.
+   * 
+   * @return Returns the publish date message of the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getPublishDateMessage();
 
-    /**
-     * Gets the text value of the given {@code property}.
-     *
-     * @param property
-     *            the property to use
-     * @param targetType
-     *            the returned target type use to convert value.
-     * @return Returns a converted value of the given {@code property}.
-     * @since 2.0
-     * @param <T>
-     *            the type of returned object.
-     */
-    @Nonnull
-    <T> Optional<T> getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType);
+  /**
+   * Gets the date position of the site.
+   * 
+   * @return Returns the date position of the site.
+   * @since 2.4
+   */
+  @Nonnull
+  String getDatePosition();
 
-    /**
-     * Gets the attribute value of the given {@code attribute} of {@code property}.
-     *
-     * @param property
-     *            the property to use
-     * @param attribute
-     *            the attribute to use.
-     * @param targetType
-     *            the returned target type use to convert value.
-     * @param defaultValue
-     *            the default value used if property doesn't exist.
-     * @return Returns a converted value of the given {@code property}.
-     * @since 2.0
-     * @param <T>
-     *            the type of returned object.
-     */
-    @Nullable <T> T getAttributeValue(@Nonnull String property,
-        @Nonnull String attribute,
-        @Nonnull Class<T> targetType,
-        @Nullable T defaultValue);
+  /**
+   * @return Returns the {@link HtmlTool}.
+   * @since 2.0
+   */
+  @Nonnull
+  HtmlTool getHtmlTool();
 
-    /**
-     * Gets the attribute value of the given {@code attribute} of {@code property}.
-     *
-     * @param property
-     *            the property to use
-     * @param attribute
-     *            the attribute to use.
-     * @param targetType
-     *            the returned target type use to convert value.
-     * @return Returns a converted value of the given {@code property}.
-     * @since 2.0
-     * @param <T>
-     *            the type of returned object.
-     */
-    @Nonnull
-    <T> Optional<T> getAttributeValue(@Nonnull String property,
-        @Nonnull String attribute,
-        @Nonnull Class<T> targetType);
+  /**
+   * @return Returns the body content.
+   * @since 2.0
+   */
+  @Nonnull
+  String getBodyContent();
 
-    /**
-     * Get the value contained in specific attribute of {@code element} parameter.
-     *
-     * @param element
-     *            the xml element.
-     * @param attribute
-     *            the attribute name.
-     * @param targetType
-     *            the class of converted returned value.
-     * @param defaultValue
-     *            the value to return if attribute is empty or {@code null}.
-     * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise
-     *         returns the default value.
-     * @param <T>
-     *            the type of returned value.
-     */
-    @Nullable <T> T getAttributeValue(@Nonnull Xpp3Dom element,
-        @Nonnull String attribute,
-        @Nonnull Class<T> targetType,
-        T defaultValue);
+  /**
+   * @return Returns the root level {@link Xpp3Dom}.
+   */
+  @Nonnull
+  Xpp3Dom getGlobalProperties();
 
-    /**
-     * Get the value contained in specific attribute of {@code element} parameter.
-     *
-     * @param element
-     *            the xml element.
-     * @param attribute
-     *            the attribute name.
-     * @param targetType
-     *            the class of converted returned value.
-     * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise
-     *         returns an empty {@link Optional}.
-     * @param <T>
-     *            the type of returned value.
-     */
-    @Nonnull
-    <T> Optional<T> getAttributeValue(@Nonnull Xpp3Dom element,
-        @Nonnull String attribute,
-        @Nonnull Class<T> targetType);
+  /**
+   * @return Returns the page level {@link Xpp3Dom}.
+   */
+  @Nonnull
+  Xpp3Dom getPageProperties();
 
-    /**
-     * @param href
-     *            link to relative.
-     * @return Returns Relativizes the link.
-     */
-    @Nullable String relativeLink(String href);
+  /**
+   * @return Returns a {@link String} representing the namespace.
+   */
+  @Nonnull
+  String getNamespace();
 
-    /**
-     * Gets the indicating if the link is active.
-     *
-     * @param href
-     *            the link to check.
-     * @return Returns {@code true} the link is active, otherwise {@code false}.
-     */
-    boolean isActiveLink(@Nullable String href);
+  /**
+   * @return Returns the {@link String} representing the fileId.
+   */
+  @Nullable String getFileId();
 
-    /**
-     * Evaluate a velocity expression in the current context.
-     *
-     * @param vtl
-     *            The velocity expression to evaluate
-     * @param requiredClass
-     *            the class of returned value.
-     * @return Returns the value returned by the evaluated velocity expression.
-     * @param <T>
-     *            Tthe type of expected returned value.
-     */
-    @Nullable <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);
+  /**
+   * @return the context
+   */
+  @Nonnull
+  <T extends Context<Context<?>>> T getContext();
 
-    /**
-     * @return Returns a {@link String} representing the relative path to root site.
-     */
-    @Nonnull
-    public String getResourcePath();
+  /**
+   * @return Returns the {@link String} representing the projectId.
+   */
+  @Nullable Object getProjectId();
+
+  /**
+   * @return the project
+   */
+  @Nullable MavenProject getProject();
+
+  /**
+   * @return the SiteModel
+   */
+  @Nullable SiteModel getSiteModel();
+
+  /**
+   * Default accessor for config properties. Instead of using {@code $config.get("myproperty")}, one can utilise
+   * Velocity fallback onto the default getter and use {@code $config.myproperty}.
+   *
+   * @param property
+   *          the property of interest
+   * @return configuration node if found in the following sequence:
+   *         <ol>
+   *         <li>In page configuration</li>
+   *         <li>In global configuration</li>
+   *         <li>{@code null} otherwise</li>
+   *         </ol>
+   * @since 1.0
+   */
+  @Nullable Xpp3Dom get(@Nonnull String property);
+
+  /**
+   * Gets the text value of the given {@code property}.
+   *
+   * @param property
+   *          the property to use
+   * @param targetType
+   *          the returned target type use to convert value.
+   * @param defaultValue
+   *          the default value used if property doesn't exist.
+   * @return Returns a converted value of the given {@code property}.
+   * @since 2.0
+   * @param <T>
+   *          the type of returned object.
+   */
+  @Nullable <T> T getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType, @Nullable T defaultValue);
+
+  /**
+   * Gets the text value of the given {@code property}.
+   *
+   * @param property
+   *          the property to use
+   * @param targetType
+   *          the returned target type use to convert value.
+   * @return Returns a converted value of the given {@code property}.
+   * @since 2.0
+   * @param <T>
+   *          the type of returned object.
+   */
+  @Nonnull
+  <T> Optional<T> getPropertyValue(@Nonnull String property, @Nonnull Class<T> targetType);
+
+  /**
+   * Gets the attribute value of the given {@code attribute} of {@code property}.
+   *
+   * @param property
+   *          the property to use
+   * @param attribute
+   *          the attribute to use.
+   * @param targetType
+   *          the returned target type use to convert value.
+   * @param defaultValue
+   *          the default value used if property doesn't exist.
+   * @return Returns a converted value of the given {@code property}.
+   * @since 2.0
+   * @param <T>
+   *          the type of returned object.
+   */
+  @Nullable <T> T getAttributeValue(@Nonnull String property,
+    @Nonnull String attribute,
+    @Nonnull Class<T> targetType,
+    @Nullable T defaultValue);
+
+  /**
+   * Gets the attribute value of the given {@code attribute} of {@code property}.
+   *
+   * @param property
+   *          the property to use
+   * @param attribute
+   *          the attribute to use.
+   * @param targetType
+   *          the returned target type use to convert value.
+   * @return Returns a converted value of the given {@code property}.
+   * @since 2.0
+   * @param <T>
+   *          the type of returned object.
+   */
+  @Nonnull
+  <T> Optional<T> getAttributeValue(@Nonnull String property, @Nonnull String attribute, @Nonnull Class<T> targetType);
+
+  /**
+   * Get the value contained in specific attribute of {@code element} parameter.
+   *
+   * @param element
+   *          the xml element.
+   * @param attribute
+   *          the attribute name.
+   * @param targetType
+   *          the class of converted returned value.
+   * @param defaultValue
+   *          the value to return if attribute is empty or {@code null}.
+   * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise returns
+   *         the default value.
+   * @param <T>
+   *          the type of returned value.
+   */
+  @Nullable <T> T getAttributeValue(@Nonnull Xpp3Dom element,
+    @Nonnull String attribute,
+    @Nonnull Class<T> targetType,
+    T defaultValue);
+
+  /**
+   * Get the value contained in specific attribute of {@code element} parameter.
+   *
+   * @param element
+   *          the xml element.
+   * @param attribute
+   *          the attribute name.
+   * @param targetType
+   *          the class of converted returned value.
+   * @return Returns the converted value of specific attribute of {@code element} parameter if exists, otherwise returns
+   *         an empty {@link Optional}.
+   * @param <T>
+   *          the type of returned value.
+   */
+  @Nonnull
+  <T> Optional<T> getAttributeValue(@Nonnull Xpp3Dom element, @Nonnull String attribute, @Nonnull Class<T> targetType);
+
+  /**
+   * @param href
+   *          link to relative.
+   * @return Returns Relativizes the link.
+   */
+  @Nullable String relativeLink(String href);
+
+  /**
+   * Gets the indicating if the link is active.
+   *
+   * @param href
+   *          the link to check.
+   * @return Returns {@code true} the link is active, otherwise {@code false}.
+   */
+  boolean isActiveLink(@Nullable String href);
+
+  /**
+   * @param url
+   *          a url.
+   * @return Returns {@code true} whether the link is a external link to the site.
+   */
+  boolean isExternalLink(final String url);
+
+  /**
+   * Evaluate a velocity expression in the current context.
+   *
+   * @param vtl
+   *          The velocity expression to evaluate
+   * @param requiredClass
+   *          the class of returned value.
+   * @return Returns the value returned by the evaluated velocity expression.
+   * @param <T>
+   *          Tthe type of expected returned value.
+   */
+  @Nullable <T> T eval(@Nullable String vtl, @Nonnull Class<T> requiredClass);
+
+  /**
+   * @return Returns a {@link String} representing the relative path to root site.
+   */
+  @Nonnull
+  public String getResourcePath();
+
+  /**
+   * @return Returns the build output timestamp.
+   * @throws ParseException
+   *           if the build timestamp can not be parsed.
+   */
+  @Nullable Date getBuildOutputTimestamp() throws ParseException;
 }

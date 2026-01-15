@@ -40,10 +40,10 @@
       <div class="jumbotron header--jumbotron ${pageContext.header.cssClass}">
         <div id="banner" class="row header--banner">
           <div class="col-md-12">
-            <div class="float-left header--banner--left bannerLeft">
+            <div class="float-left header--banner-left banner-left">
 #*      *##banner ( $site.bannerLeft "bannerLeft")##
             </div>
-            <div class="float-right header--banner--right bannerRight">
+            <div class="float-right header--banner-right banner-right">
 #*      *##banner ( $site.bannerRight "bannerRight")##
             </div>
           </div>
@@ -61,14 +61,14 @@
         <div class="row m-1">
 #*          *##if( $site.bannerLeft )
             <!-- banner-left:begin -->
-            <div class="col header--banner--left bannerLeft">
+            <div class="col header--banner-left banner-left">
 #*          *##banner ( $site.bannerLeft "bannerLeft")##
             </div>
             <!-- banner-left:end -->
 #*          *##end
 #*          *##if( $site.bannerRight )
             <!-- right-banner: begin -->
-            <div class="col header--banner--right bannerRight">
+            <div class="col header--banner-right banner-right">
 #*          *##banner ( $site.bannerRight "bannerRight")##
             </div>
             <!-- right-banner: end -->
@@ -94,7 +94,12 @@
 #macro ( banner $banner $id)##
 #*  *##if ( $banner )##
         <!-- banner-content: begin -->
-        <div class="header--banner--content" id="$id">
+        <div class="header--banner-content" id="$id">
+#*      *### add link around image and title if href is set
+#*      *##if ( $banner.href && $banner.href != '' )##
+            <a href="$banner.href" class="stretched-link"></a>
+#*      *##end##
+##*      *### add image if set
 #*      *##if ( $banner.image && $banner.image.src )##
             <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.image.src )" #if ( $banner.image.alt )alt="$banner.image.alt"#end##
 #*          *##if ( $banner.image.border ) border="$banne.imager.border"#end##
@@ -124,3 +129,4 @@
 #*      *##end##
 #*  *##end##
 #end##
+#renderHeader()

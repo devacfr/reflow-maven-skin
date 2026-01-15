@@ -15,7 +15,10 @@
 ##
 #**
  * Render carousel snippet
- *
+ * Usage:
+ * {{< carousel id="myCarousel" withIndicators="true" withControls="true" crossfade="false" >}}
+  ... slides ...
+ {{< /carousel >}}
  *#
 <div id="${snippet.id}" class="carousel slide#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end #if( ${snippet.crossfade} == 'true' )carousel-fade#end" data-ride="carousel">
 #*  *##if( ${snippet.withIndicators} == "true" )##

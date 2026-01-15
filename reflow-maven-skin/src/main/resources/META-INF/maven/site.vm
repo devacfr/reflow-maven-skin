@@ -13,23 +13,15 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-#*  *##parse( "site-macros.vm" )##
-#*  *##parse( "components/breadcrumb.vm" )##
-#*  *##parse( "components/header.vm" )##
-#*  *##parse( "components/nav-side-menu.vm" )##
-#*  *##parse( "components/navbar.vm" )##
-#*  *##parse( "components/scroll-top.vm" )##
-#*  *##parse( "components/toc-topbar.vm" )##
-#*  *##parse( "components/toc-sidebar.vm" )##
-#*  *##parse( "components/layout.vm" )##
-##
-#*  *##parse( "footer-default.vm")##
-##
-##
 #*  *##set( $pageContext = $config.context)##
 #*  *##set( $pageType = $pageContext.type)##
+#*  *##parse( "site-macros.vm" )##
+##
+##
 #*  *##if( $pageType == "frame" )##
-#*      *##parse( "frame-default.vm")##
+#*  *##set( $bodyContent = $config.renderSnippets( $bodyContent ) )##
+#*  *##set( $bodyContent = $pageContext.preRender() )##
+#*      *#$config.renderSnippet( "<bs-doc-content></bs-doc-content>" )##
 #*  *##else##
 #*      *##parse( "page-default.vm")##
 #*  *##end##

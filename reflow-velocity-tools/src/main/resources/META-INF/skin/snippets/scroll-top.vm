@@ -13,26 +13,10 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-#**
- * Outputs subsections into a column grid
- *
- *###
-#macro ( columns $colCount $subsections )##
-#*  *##set ( $colCount = $convert.toNumber($colCount) )##
-    <div class="row">
-#*  *##set ( $colSpan = 12 / $colCount )##
-#*  *##set ( $i = 1 )##
-#*  *##foreach ( $subsection in $subsections )##
-        <div class="col-md-$colSpan">
-#*          *#$subsection
-        </div>
-#*      *##set ( $mod = $i % $colCount )##
-#*      *##if ( $mod == 0 )##
-#*          *###new row
-    </div>
-    <div class="row">
-#*      *##end##
-#*      *##set ( $i = $i + 1 )##
-#*  *##end##
+## scroll top
+#macro ( renderScrollTop )##
+    <div id="m_scrolltop" class="scrolltop">
+		<i class="fa fa-arrow-up"></i>
     </div>
 #end##
+#renderScrollTop()

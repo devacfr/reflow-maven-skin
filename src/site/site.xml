@@ -83,16 +83,12 @@
         <ul class="nav flex-column nav-list footer--news">
           <li class="nav-header">NEWS</li>
           <li class="nav-item ">
+            <time datetime="2025-11-10" class="xsmall d-block">10 Novwmber 2025</time>
+            <a href="$resourcePath/release-notes/release-notes-2.3.html" class="nav-link">Reflow Maven Skin 2.3.5 Release</a>
+          </li>
+          <li class="nav-item ">
             <time datetime="2023-08-20" class="xsmall d-block">20 August 2023</time>
             <a href="$resourcePath/release-notes/release-notes-2.3.html" class="nav-link">Reflow Maven Skin 2.3.4 Release</a>
-          </li>
-          <li class="nav-item ">
-            <time datetime="2023-02-21" class="xsmall d-block">21 February 2023</time>
-            <a href="$resourcePath/release-notes/release-notes-2.3.html" class="nav-link">Reflow Maven Skin 2.3.3 Release</a>
-          </li>
-          <li class="nav-item ">
-            <time datetime="2023-02-11" class="xsmall d-block">11 February 2023</time>
-            <a href="$resourcePath/release-notes/release-notes-2.3.html" class="nav-link">Reflow Maven Skin 2.3.2 Release</a>
           </li>
           <li class="nav-item">
             <div>
@@ -142,22 +138,30 @@
         <plugins>
           <toc>false</toc>
         </plugins>
-        <github-report>
+        <github-changes>
           <toc>false</toc>
-        </github-report>
+        </github-changes>
         <dependencies>
           <toc numberItems="4">top</toc>
         </dependencies>
         <release-notes-release-notes>
           <toc>false</toc>
         </release-notes-release-notes>
+        <surefire-report>
+          <toc>false</toc>
+        </surefire-report>
         <rat-report>
           <toc>false</toc>
         </rat-report>
         <checkstyle-aggregate>
           <toc>false</toc>
         </checkstyle-aggregate>
-
+        <cpd>
+          <toc>false</toc>
+        </cpd>
+        <pmd>
+          <toc>false</toc>
+        </pmd>
 
         <doc-themes-index>
           <toc>false</toc>
@@ -297,12 +301,16 @@
             </item>
             <item name="Snippets">
               <item name="Working with Snippet" href="doc/snippets/snippet.html" />
+              <item name="Alerts" href="doc/snippets/alerts.html" />
               <item name="Badge" href="doc/snippets/badge.html" />
               <item name="Breadcrumb" href="doc/snippets/breadcrumb.html" />
+              <item name="Buttons" href="doc/snippets/buttons.html" />
+              <item name="Button Group" href="doc/snippets/button-group.html" />
               <item name="Carousel" href="doc/snippets/carousel.html" />
+              <item name="Collapse" href="doc/snippets/collapse.html" />
               <item name="Card" href="doc/snippets/card.html" />
               <item name="Layout Grid" href="doc/snippets/layout-grid.html" />
-              <item name="Twitter" href="doc/snippets/twitter.html" />
+              <item name="X (Twitter)" href="doc/snippets/twitter.html" />
             </item>
             <item name="Components">
               <item name="Components Overview" href="doc/components/components.html" />
@@ -331,7 +339,7 @@
           <toc>false</toc>
         </doc-components-components>
         <doc-snippets-breadcrumb>
-          <shortTitle>Snippet Breadcrumb</shortTitle>
+          <shortTitle>Snippet Breadcrumbs</shortTitle>
         </doc-snippets-breadcrumb>
         <doc-test-toc-sidebar>
           <toc>sidebar</toc>
@@ -369,7 +377,7 @@
               <![CDATA[
                 <ul class="navbar-nav navbar-additional ml-md-auto">
                   <li class="nav-item dropdown">
-                  <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       v2.3
                   </a>
                   <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">

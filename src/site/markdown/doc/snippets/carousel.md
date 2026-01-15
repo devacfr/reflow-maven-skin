@@ -1,10 +1,8 @@
 # Carousel
 
-{{< badge color="primary" text="New in v2.4" />}}
+{{< badge color="primary" text="New in v2.4" />}}{{< badge color="info" text="WEB COMPONENT" class="ml-1" />}}
 
-{{< badge color="info" text="WEB COMPONENT" />}}
-
-[Based on Bootstrap Carousel page](https://getbootstrap.com/docs/4.4/components/carousel/)
+[Based on Bootstrap Carousel page](https://getbootstrap.com/docs/4.6/components/carousel/)
 
 A slideshow component for cycling through elements—images or slides of text—like a carousel.
 
@@ -23,7 +21,6 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
 {{< example >}}
 
 {{% carousel id="carousel1" withControls="false" withIndicators="false" %}}
-
 <!--
     <slide>
         <slide-image>
@@ -56,14 +53,10 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
         </slide-image>
     </slide>
 -->
-
 {{% /carousel %}}
-
-{{< /example >}}
 
 ```xml
 {{% carousel id="carousel" withControls="false" withIndicators="false" %}}
-
 <!--
   <slide>
     <slide-image src="..." class="d-block w-100" />
@@ -75,9 +68,10 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
     <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
-
 {{% /carousel %}}
 ```
+
+{{< /example >}}
 
 ### With controls
 
@@ -86,7 +80,6 @@ Adding in the previous and next controls:
 {{< example >}}
 
 {{% carousel id="carousel2" withControls="true" withIndicators="false" %}}
-
 <!--
     <slide>
         <slide-image>
@@ -119,14 +112,10 @@ Adding in the previous and next controls:
         </slide-image>
     </slide>
 -->
-
 {{% /carousel %}}
-
-{{< /example >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="false" %}}
-
 <!--
   <slide>
     <slide-image src="..." class="d-block w-100" />
@@ -138,9 +127,10 @@ Adding in the previous and next controls:
     <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
-
 {{% /carousel %}}
 ```
+
+{{< /example >}}
 
 ### With indicators
 
@@ -149,7 +139,6 @@ You can also add the indicators to the carousel, alongside the controls, too.
 {{< example >}}
 
 {{% carousel id="carousel3" withControls="true" withIndicators="true" %}}
-
 <!--
     <slide>
         <slide-image>
@@ -182,14 +171,10 @@ You can also add the indicators to the carousel, alongside the controls, too.
         </slide-image>
     </slide>
 -->
-
 {{% /carousel %}}
-
-{{< /example >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="true" %}}
-
 <!--
   <slide>
     <slide-image src="..." class="d-block w-100" />
@@ -201,9 +186,10 @@ You can also add the indicators to the carousel, alongside the controls, too.
     <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
-
 {{% /carousel %}}
 ```
+
+{{< /example >}}
 
 ### With captions
 
@@ -212,7 +198,6 @@ Add captions to your slides easily with the `<slide-caption>` element within any
 {{< example >}}
 
 {{% carousel id="carousel4" withControls="true" withIndicators="true" %}}
-
 <!--
     <slide>
         <slide-image>
@@ -257,14 +242,10 @@ Add captions to your slides easily with the `<slide-caption>` element within any
         </slide-caption>
     </slide>
 -->
-
 {{% /carousel %}}
-
-{{< /example >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="true" %}}
-
 <!--
   <slide>
     <slide-image src="..." class="d-block w-100" />
@@ -288,9 +269,10 @@ Add captions to your slides easily with the `<slide-caption>` element within any
     </slide-caption>
   </slide>
 -->
-
 {{% /carousel %}}
 ```
+
+{{< /example >}}
 
 ### Crossfade
 
@@ -299,7 +281,6 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
 {{< example >}}
 
 {{% carousel id="carousel5" withControls="true" withIndicators="false" crossfade="true" %}}
-
 <!--
     <slide>
         <slide-image>
@@ -332,14 +313,10 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
         </slide-image>
     </slide>
 -->
-
 {{% /carousel %}}
-
-{{< /example >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="false" crossfade="true" %}}
-
 <!--
   <slide>
     <slide-image src="..." class="d-block w-100" />
@@ -351,9 +328,10 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
     <slide-image src="..." class="d-block w-100" />
   </slide>
 -->
-
 {{% /carousel %}}
 ```
+
+{{< /example >}}
 
 ### Individual interval
 
@@ -362,7 +340,6 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
 {{< example >}}
 
 {{% carousel id="carousel5" withControls="true" withIndicators="false" %}}
-
 <!--
     <slide interval="10000">
         <slide-image>
@@ -395,14 +372,10 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
         </slide-image>
     </slide>
 -->
-
 {{% /carousel %}}
-
-{{< /example >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="false" crossfade="true" %}}
-
 <!--
   <slide interval="10000">
     <slide-image src="..." />
@@ -414,6 +387,7 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
     <slide-image src="..." />
   </slide>
 -->
-
 {{% /carousel %}}
 ```
+
+{{< /example >}}

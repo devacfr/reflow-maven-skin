@@ -1,8 +1,6 @@
 # Twitter Feed
 
-{{< badge color="primary" text="New in v2.4" />}}
-
-{{< badge color="info" text="SHORTCODE" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ml-1" />}}
 
 ## Example
 

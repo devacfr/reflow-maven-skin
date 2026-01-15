@@ -20,8 +20,6 @@
  * ...
  * {{< /row >}}
  *#
- #*  *##if( ${snippet.html})
-<div class="row#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
+<div #addHtmlAttributes( ${snippet} 'row' )>
     #render_html( ${snippet} )
 </div>
-#*  *##end

@@ -1,18 +1,18 @@
 /*
-                * Copyright 2012-2025 Christophe Friederich
-                *
-                * Licensed under the Apache License, Version 2.0 (the "License");
-                * you may not use this file except in compliance with the License.
-                * You may obtain a copy of the License at
-                *
-                * http://www.apache.org/licenses/LICENSE-2.0
-                *
-                * Unless required by applicable law or agreed to in writing, software
-                * distributed under the License is distributed on an "AS IS" BASIS,
-                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                * See the License for the specific language governing permissions and
-                * limitations under the License.
-                */
+* Copyright 2012-2025 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.devacfr.maven.skins.reflow;
 
 import static java.util.Objects.requireNonNull;
@@ -26,16 +26,24 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.maven.doxia.site.PublishDate;
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.config.DefaultKey;
+import org.apache.velocity.tools.generic.DateTool;
 import org.apache.velocity.tools.generic.RenderTool;
+import org.apache.velocity.tools.generic.ResourceTool;
 import org.apache.velocity.tools.generic.SafeConfig;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.codehaus.plexus.util.PathTool;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.context.Context;
+import org.devacfr.maven.skins.reflow.context.PositionType;
+import org.devacfr.maven.skins.reflow.snippet.SnippetComponent;
+import org.devacfr.maven.skins.reflow.snippet.SnippetContext;
+import org.devacfr.maven.skins.reflow.snippet.SnippetParser;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,738 +94,966 @@ import org.slf4j.LoggerFactory;
 @DefaultKey("config")
 public class SkinConfigTool extends SafeConfig implements ISkinConfig {
 
-    /** */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
+  /** */
+  private static final Logger LOGGER = LoggerFactory.getLogger(SkinConfigTool.class);
 
-    // ISO 8601 BASIC is used by build timestamp
-    private static final SimpleDateFormat ISO_8601BASIC_DATE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+  // ISO 8601 BASIC is used by build timestamp
+  private static final SimpleDateFormat ISO_8601BASIC_DATE = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-    private static final String PROJECT_BUILD_OUTPUTTIMESTAMP = "project.build.outputTimestamp";
+  private static final String PROJECT_BUILD_OUTPUTTIMESTAMP = "project.build.outputTimestamp";
 
-    /** */
-    public static final String DEFAULT_KEY = "config";
+  /** */
+  public static final String DEFAULT_KEY = "config";
 
-    /** By default use Reflow skin configuration tag. */
-    public static final String SKIN_KEY = "reflowSkin";
+  /** By default use Reflow skin configuration tag. */
+  public static final String SKIN_KEY = "reflowSkin";
 
-    /** */
-    private String key = DEFAULT_KEY;
+  /** */
+  private String key = DEFAULT_KEY;
 
-    /** */
-    private String skinKey = SKIN_KEY;
+  /** */
+  private String skinKey = SKIN_KEY;
 
-    /** Create dummy nodes to avoid null checks. */
-    private Xpp3Dom globalProperties = new Xpp3Dom("");
+  /** Create dummy nodes to avoid null checks. */
+  private Xpp3Dom globalProperties = new Xpp3Dom("");
 
-    /** */
-    private Xpp3Dom pageProperties = new Xpp3Dom("");
+  /** */
+  private Xpp3Dom pageProperties = new Xpp3Dom("");
 
-    /** */
-    private String namespace = "";
+  /** */
+  private String namespace = "";
 
-    /** */
-    private String projectId = null;
+  /** */
+  private String projectId = null;
 
-    /** */
-    private String fileId = null;
+  /** */
+  private String fileId = null;
 
-    /** */
-    private Context<?> context = null;
+  /** */
+  private Context<?> context = null;
 
-    /** */
-    private MavenProject project = null;
+  /** */
+  private MavenProject project = null;
 
-    /** */
-    private SiteModel siteModel;
+  /** */
+  private SiteModel siteModel;
 
-    /** */
-    private ToolContext velocityContext;
+  /** */
+  private ToolContext velocityContext;
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see SafeConfig#configure(ValueParser)
-     */
-    @Override
-    protected void configure(final ValueParser values) {
-        final String altkey = values.getString("key");
-        if (altkey != null) {
-            setKey(altkey);
-        }
-
-        // allow changing skin key in the configuration
-        final String altSkinKey = values.getString("skinKey");
-        if (altSkinKey != null) {
-            this.skinKey = altSkinKey;
-        }
-
-        // retrieve the site model from Velocity context
-        final Object vc = values.get("velocityContext");
-
-        if (!(vc instanceof ToolContext)) {
-            return;
-        }
-
-        this.velocityContext = (ToolContext) vc;
-
-        final Object projectObj = velocityContext.get("project");
-        if (projectObj instanceof MavenProject) {
-            this.project = (MavenProject) projectObj;
-            final String artifactId = project.getArtifactId();
-            // use artifactId "sluggified" as the projectId
-            projectId = HtmlTool.slug(artifactId);
-        }
-
-        // calculate the page ID from the current file name
-        final String currentFileObj = getCurrentFileName();
-        fileId = slugFilename(currentFileObj);
-
-        final Object siteModelObj = velocityContext.get("site");
-
-        if (!(siteModelObj instanceof SiteModel)) {
-            return;
-        }
-
-        this.siteModel = (SiteModel) siteModelObj;
-        final Object customObj = siteModel.getCustom();
-
-        if (!(customObj instanceof Xpp3Dom)) {
-            return;
-        }
-
-        // Now that we have the custom node, get the global properties
-        // under the skin tag
-        final Xpp3Dom customNode = (Xpp3Dom) customObj;
-        Xpp3Dom skinNode = customNode.getChild(skinKey);
-        final String namespaceKey = ":" + skinKey;
-
-        if (skinNode == null) {
-            // try searching with any namespace
-            for (final Xpp3Dom child : customNode.getChildren()) {
-                if (child.getName().endsWith(namespaceKey)) {
-                    skinNode = child;
-                    break;
-                }
-            }
-        }
-
-        if (skinNode != null) {
-            globalProperties = skinNode;
-
-            if (skinNode.getName().endsWith(namespaceKey)) {
-                // extract the namespace (including the colon)
-                namespace = Strings.emptyToNull(
-                    skinNode.getName().substring(0, skinNode.getName().length() - namespaceKey.length() + 1));
-            }
-
-            // for page properties, retrieve the file name and drop the `.html`
-            // extension - this will be used, i.e. `index` instead of `index.html`
-            final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(skinNode, "pages", namespace);
-            if (pagesNode != null) {
-
-                // Get the page for the file
-                Xpp3Dom page = Xpp3Utils.getFirstChild(pagesNode, fileId, namespace);
-
-                // Now check if the project artifact ID is set, and if so, if it matches the
-                // current project. This allows preventing accidental reuse of parent page
-                // configs in children modules
-                if (page != null && projectId != null) {
-                    final String pageProject = page.getAttribute("project");
-                    if (pageProject != null && !projectId.equals(pageProject)) {
-                        // project ID indicated, and is different - do not use the config
-                        page = null;
-                    }
-                }
-
-                if (page != null) {
-                    pageProperties = page;
-                }
-            }
-
-            // Config option <localResources>true</localResources> to force CDN-less
-            // Bootstrap & jQuery
-            this.velocityContext.put("localResources", is("localResources"));
-            // Use config option
-            // <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
-            this.velocityContext.put("resourcePath", getResourcePath());
-
-            this.context = Context.buildContext(this);
-        }
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Current Filename: {}", currentFileObj);
-            LOGGER.debug("Project id: {}", projectId);
-            LOGGER.debug("File id: {}", fileId);
-            LOGGER.debug("Context: {}", this.context);
-            LOGGER.debug("Namespace: {}", this.namespace);
-            LOGGER.debug("---------------------------------------------------");
-        }
+  /**
+   * {@inheritDoc}
+   *
+   * @see SafeConfig#configure(ValueParser)
+   */
+  @Override
+  protected void configure(final ValueParser values) {
+    final String altkey = values.getString("key");
+    if (altkey != null) {
+      setKey(altkey);
     }
 
-    /**
-     * Sets the key under which this tool has been configured.
-     *
-     * @param key
-     *            the key of config
-     * @since 1.0
-     */
-    protected void setKey(final String key) {
-        this.key = requireNonNull(key, "SkinConfigTool key cannot be null");
+    // allow changing skin key in the configuration
+    final String altSkinKey = values.getString("skinKey");
+    if (altSkinKey != null) {
+      this.skinKey = altSkinKey;
     }
 
-    /**
-     * @return Returns the key under which this tool has been configured. The default is `config`.
-     * @since 1.0
-     */
-    public String getKey() {
-        return this.key;
+    // retrieve the site model from Velocity context
+    final Object vc = values.get("velocityContext");
+
+    if (!(vc instanceof ToolContext)) {
+      return;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nullable public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
-        requireNonNull(type);
-        if (String.class.isAssignableFrom(type)) {
-            return this.eval("$" + key, type);
-        } else {
-            throw new UnsupportedOperationException();
+    this.velocityContext = (ToolContext) vc;
+
+    final Object projectObj = velocityContext.get("project");
+    if (projectObj instanceof MavenProject) {
+      this.project = (MavenProject) projectObj;
+      final String artifactId = project.getArtifactId();
+      // use artifactId "sluggified" as the projectId
+      projectId = HtmlTool.slug(artifactId);
+    }
+
+    // calculate the page ID from the current file name
+    final String currentFileObj = getCurrentFileName();
+    fileId = slugFilename(currentFileObj);
+
+    final Object siteModelObj = velocityContext.get("site");
+
+    if (!(siteModelObj instanceof SiteModel)) {
+      return;
+    }
+
+    this.siteModel = (SiteModel) siteModelObj;
+    final Object customObj = siteModel.getCustom();
+
+    if (!(customObj instanceof Xpp3Dom)) {
+      return;
+    }
+
+    // Now that we have the custom node, get the global properties
+    // under the skin tag
+    final Xpp3Dom customNode = (Xpp3Dom) customObj;
+    Xpp3Dom skinNode = customNode.getChild(skinKey);
+    final String namespaceKey = ":" + skinKey;
+
+    if (skinNode == null) {
+      // try searching with any namespace
+      for (final Xpp3Dom child : customNode.getChildren()) {
+        if (child.getName().endsWith(namespaceKey)) {
+          skinNode = child;
+          break;
         }
+      }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setContextValue(@Nonnull final String key, @Nullable final Object value) {
-        requireNonNull(key);
-        if (value instanceof String) {
-            this.eval("#set( $" + key + "= \"" + value.toString() + "\")", Void.class);
-        } else {
-            throw new UnsupportedOperationException();
-        }
-    }
+    if (skinNode != null) {
+      globalProperties = skinNode;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nullable @SuppressWarnings("unchecked")
-    public <T> T getToolbox(@Nonnull final String toolName, @Nonnull final Class<T> toolType) {
-        requireNonNull(toolType);
-        return (T) this.velocityContext.getToolbox().get(requireNonNull(toolName));
-    }
+      if (skinNode.getName().endsWith(namespaceKey)) {
+        // extract the namespace (including the colon)
+        namespace = Strings
+            .emptyToNull(skinNode.getName().substring(0, skinNode.getName().length() - namespaceKey.length() + 1));
+      }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nullable public Xpp3Dom get(@Nonnull final String property) {
-        requireNonNull(property);
-        // first try page properties
-        Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
-        if (propNode == null) {
-            // try global
-            propNode = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
-        }
+      // for page properties, retrieve the file name and drop the `.html`
+      // extension - this will be used, i.e. `index` instead of `index.html`
+      final Xpp3Dom pagesNode = Xpp3Utils.getFirstChild(skinNode, "pages", namespace);
+      if (pagesNode != null) {
 
-        return propNode;
-    }
+        // Get the page for the file
+        Xpp3Dom page = Xpp3Utils.getFirstChild(pagesNode, fileId, namespace);
 
-    /**
-     * Retrieves the text value of the given {@code property}, e.g. as in {@code <myprop>value</myprop>}.
-     *
-     * @param property
-     *            the property of interest
-     * @return the configuration value if found in page or globally, {@code null} otherwise.
-     * @see #get(String)
-     * @since 1.0
-     */
-    @Nullable public String value(@Nonnull final String property) {
-        requireNonNull(property);
-        final Xpp3Dom propNode = get(property);
-
-        if (propNode == null) {
-            // not found
-            return null;
+        // Now check if the project artifact ID is set, and if so, if it matches the
+        // current project. This allows preventing accidental reuse of parent page
+        // configs in children modules
+        if (page != null && projectId != null) {
+          final String pageProject = page.getAttribute("project");
+          if (pageProject != null && !projectId.equals(pageProject)) {
+            // project ID indicated, and is different - do not use the config
+            page = null;
+          }
         }
 
-        return propNode.getValue();
-    }
-
-    /**
-     * Gets the text value of the given {@code property}.
-     *
-     * @param property
-     *            the property to use
-     * @param targetType
-     *            the returned target type use to convert value.
-     * @param defaultValue
-     *            the default value used if property doesn't exist.
-     * @return Returns a converted value of the given {@code property}.
-     * @since 2.0
-     * @param <T>
-     *            the type of returned object.
-     */
-    @Override
-    @Nullable public <T> T getPropertyValue(@Nonnull final String property,
-        @Nonnull final Class<T> targetType,
-        @Nullable final T defaultValue) {
-        return getPropertyValue(property, targetType).orElse(defaultValue);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    @Nonnull
-    public <T> Optional<T> getPropertyValue(@Nonnull final String property, @Nonnull final Class<T> targetType) {
-        requireNonNull(property, "property is required");
-        requireNonNull(targetType, "targetType is required");
-        final String value = value(property);
-        if (value == null) {
-            return Optional.empty();
+        if (page != null) {
+          pageProperties = page;
         }
-        Object returnedValue = value;
-        if (targetType.isAssignableFrom(Boolean.class)) {
-            returnedValue = Boolean.valueOf(value);
-        } else if (targetType.isAssignableFrom(Integer.class)) {
-            returnedValue = Integer.valueOf(value);
-        } else if (targetType.isAssignableFrom(Long.class)) {
-            returnedValue = Long.valueOf(value);
+      }
+
+      // Config option <localResources>true</localResources> to force CDN-less
+      // Bootstrap & jQuery
+      this.velocityContext.put("localResources", is("localResources"));
+      // Use config option
+      // <absoluteResourceURL>http://mysite.com/</absoluteResourceURL>
+      this.velocityContext.put("resourcePath", getResourcePath());
+
+      this.context = Context.buildContext(this);
+    }
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("Current Filename: {}", currentFileObj);
+      LOGGER.debug("title: {}", velocityContext.get("title"));
+      LOGGER.debug("shortTitle: {}", velocityContext.get("shortTitle"));
+      LOGGER.debug("Project id: {}", projectId);
+      LOGGER.debug("File id: {}", fileId);
+      LOGGER.debug("Context: {}", this.context);
+      LOGGER.debug("Namespace: {}", this.namespace);
+      LOGGER.debug("---------------------------------------------------");
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Nonnull
+  @Override
+  public String renderSnippets(final String bodyContent) throws Exception {
+    final SnippetContext snippetContext = new SnippetParser().parse(this, bodyContent);
+    return snippetContext.html();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Nonnull
+  @Override
+  public String renderSnippet(final String snippet) throws Exception {
+    final SnippetParser parser = new SnippetParser();
+    final Document doc = getHtmlTool().parse(snippet);
+    final SnippetContext context = parser.getSnippetContext();
+    final SnippetComponent<?> component = context.create(doc.body().firstElementChild(), null);
+    context.setConfig(this);
+    component.render(context);
+    return doc.body().html();
+  }
+
+  /**
+   * Sets the key under which this tool has been configured.
+   *
+   * @param key
+   *          the key of config
+   * @since 1.0
+   */
+  protected void setKey(final String key) {
+    this.key = requireNonNull(key, "SkinConfigTool key cannot be null");
+  }
+
+  /**
+   * @return Returns the key under which this tool has been configured. The default is `config`.
+   * @since 1.0
+   */
+  public String getKey() {
+    return this.key;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public <T> T getContextValue(@Nonnull final String key, @Nonnull final Class<T> type) {
+    requireNonNull(type);
+    if (String.class.isAssignableFrom(type)) {
+      return this.eval("$" + key, type);
+    } else {
+      throw new UnsupportedOperationException();
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void setContextValue(@Nonnull final String key, @Nullable final Object value) {
+    requireNonNull(key);
+    if (value instanceof String) {
+      this.eval("#set( $" + key + "= \"" + value.toString() + "\")", Void.class);
+    } else {
+      throw new UnsupportedOperationException();
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable @SuppressWarnings("unchecked")
+  public <T> T getToolbox(@Nonnull final String toolName, @Nonnull final Class<T> toolType) {
+    requireNonNull(toolType);
+    return (T) this.velocityContext.getToolbox().get(requireNonNull(toolName));
+  }
+
+  /**
+   * Gets the tool {@link HtmlTool}.
+   *
+   * @return Returns the tool {@link HtmlTool}.
+   * @since 2.1
+   */
+  @Override
+  @Nonnull
+  public HtmlTool getHtmlTool() {
+    return requireNonNull(getToolbox("htmlTool", HtmlTool.class), "htmlTool is required");
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public Xpp3Dom get(@Nonnull final String property) {
+    requireNonNull(property);
+    // first try page properties
+    Xpp3Dom propNode = Xpp3Utils.getFirstChild(pageProperties, property, namespace);
+    if (propNode == null) {
+      // try global
+      propNode = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
+    }
+
+    return propNode;
+  }
+
+  /**
+   * Retrieves the text value of the given {@code property}, e.g. as in {@code <myprop>value</myprop>}.
+   *
+   * @param property
+   *          the property of interest
+   * @return the configuration value if found in page or globally, {@code null} otherwise.
+   * @see #get(String)
+   * @since 1.0
+   */
+  @Nullable public String value(@Nonnull final String property) {
+    requireNonNull(property);
+    final Xpp3Dom propNode = get(property);
+
+    if (propNode == null) {
+      // not found
+      return null;
+    }
+
+    return propNode.getValue();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public <T> T getPropertyValue(@Nonnull final String property,
+    @Nonnull final Class<T> targetType,
+    @Nullable final T defaultValue) {
+    return getPropertyValue(property, targetType).orElse(defaultValue);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  @Nonnull
+  public <T> Optional<T> getPropertyValue(@Nonnull final String property, @Nonnull final Class<T> targetType) {
+    requireNonNull(property, "property is required");
+    requireNonNull(targetType, "targetType is required");
+    final String value = value(property);
+    if (value == null) {
+      return Optional.empty();
+    }
+    Object returnedValue = value;
+    if (targetType.isAssignableFrom(Boolean.class)) {
+      returnedValue = Boolean.valueOf(value);
+    } else if (targetType.isAssignableFrom(Integer.class)) {
+      returnedValue = Integer.valueOf(value);
+    } else if (targetType.isAssignableFrom(Long.class)) {
+      returnedValue = Long.valueOf(value);
+    }
+    return Optional.ofNullable((T) returnedValue);
+  }
+
+  /**
+   * Gets the list of all children name for the {@code parentNode}.
+   *
+   * @param parentNode
+   *          the parent node to use (can be {@code null}.
+   * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
+   *         {@code null}.
+   * @since 1.3
+   */
+  public List<String> getChildren(final Xpp3Dom parentNode) {
+    return Xpp3Utils.getChildren(parentNode);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public <T> T getAttributeValue(@Nonnull final String property,
+    @Nonnull final String attribute,
+    @Nonnull final Class<T> targetType,
+    @Nullable final T defaultValue) {
+    return getAttributeValue(property, attribute, targetType).orElse(defaultValue);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  @Nonnull
+  public <T> Optional<T> getAttributeValue(@Nonnull final String property,
+    @Nonnull final String attribute,
+    @Nonnull final Class<T> targetType) {
+    requireNonNull(property, "property is required");
+    requireNonNull(attribute, "attribute is required");
+    requireNonNull(targetType, "targetType is required");
+
+    Xpp3Dom element = get(property);
+    if (element == null) {
+      return Optional.empty();
+    }
+    String value = element.getAttribute(attribute);
+    if (value == null) {
+      return Optional.empty();
+    }
+
+    if ("inherit".equals(value) || Strings.isNullOrEmpty(value)) {
+      element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug("Inherit value property '{}': {}", property, element);
+      }
+    }
+    if (element == null) {
+      return Optional.empty();
+    }
+    value = element.getAttribute(attribute);
+    if (value == null) {
+      return Optional.empty();
+    }
+
+    Object returnedValue = value;
+    if (targetType.isAssignableFrom(Boolean.class)) {
+      returnedValue = Boolean.valueOf(value);
+    } else if (targetType.isAssignableFrom(Integer.class)) {
+      returnedValue = Integer.valueOf(value);
+    } else if (targetType.isAssignableFrom(Long.class)) {
+      returnedValue = Long.valueOf(value);
+    }
+    return Optional.ofNullable((T) returnedValue);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
+    @Nonnull final String attribute,
+    @Nonnull final Class<T> targetType,
+    @Nullable final T defaultValue) {
+    return getAttributeValue(element, attribute, targetType).orElse(defaultValue);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  @Nonnull
+  public <T> Optional<T> getAttributeValue(@Nonnull final Xpp3Dom element,
+    @Nonnull final String attribute,
+    @Nonnull final Class<T> targetType) {
+    final String value = element.getAttribute(attribute);
+    if (value == null) {
+      return Optional.empty();
+    }
+    Object returnedValue = value;
+    if (targetType.isAssignableFrom(Boolean.class)) {
+      returnedValue = Boolean.valueOf(value);
+    } else if (targetType.isAssignableFrom(Integer.class)) {
+      returnedValue = Integer.valueOf(value);
+    } else if (targetType.isAssignableFrom(Long.class)) {
+      returnedValue = Long.valueOf(value);
+    }
+    return Optional.ofNullable((T) returnedValue);
+  }
+
+  /**
+   * A convenience method to check if the value of the {@code property} is {@code "true"}.
+   *
+   * @param property
+   *          the property of interest
+   * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code "true"}.
+   * @see #get(String)
+   * @since 1.0
+   */
+  public boolean is(final String property) {
+    return "true".equals(value(property));
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean not(final String property) {
+    return "false".equals(value(property));
+  }
+
+  /**
+   * A convenience method to check if the {@code property} is set to a specific value.
+   *
+   * @param property
+   *          the property of interest
+   * @param value
+   *          the property value to check
+   * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.
+   * @see #get(String)
+   * @since 1.0
+   */
+  public boolean isValue(final String property, final String value) {
+    return value != null && value.equals(value(property));
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public String getProjectId() {
+    return projectId;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nullable public String getFileId() {
+    return fileId;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  @Nonnull
+  public <T extends Context<Context<?>>> T getContext() {
+    return (T) context;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public org.apache.velocity.context.Context getVelocityContext() {
+    return velocityContext;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public MavenProject getProject() {
+    return project;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public SiteModel getSiteModel() {
+    return siteModel;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public Xpp3Dom getPageProperties() {
+    return pageProperties;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public Xpp3Dom getGlobalProperties() {
+    return globalProperties;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("null")
+  @Override
+  @Nonnull
+  public String getShortTitle() {
+    String shortTitle = getPropertyValue("shortTitle", String.class).orElse((String) velocityContext.get("shortTitle"));
+    // Page title generation is enabled by default, so check for false and negate
+    if (shortTitle == null || shortTitle.isEmpty() || "generate".equalsIgnoreCase(shortTitle)
+        || "true".equalsIgnoreCase(shortTitle)) {
+      // Generate the title.
+      // To generate the title, we take the contents of the first h1 tag in the
+      // document.
+      // If it does not exist, we take the contents of the first h2 tag.
+      final HtmlTool htmlTool = getHtmlTool();
+      final String body = getBodyContent();
+      List<String> hTexts = htmlTool.text(body, "h1");
+      if (hTexts.isEmpty()) {
+        hTexts = htmlTool.text(body, "h2");
+      }
+      if (!hTexts.isEmpty()) {
+        shortTitle = hTexts.get(0);
+      }
+    }
+    return shortTitle;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public String getTitle() {
+    final String shortTitle = this.getShortTitle();
+    String title = getPropertyValue("title", String.class).orElse((String) velocityContext.get("title"));;
+    // If title template is provided, use it to generate title.
+    // Also regenerate title if a new short title was generated.
+    String titleTemplate = getPropertyValue("titleTemplate", String.class).orElse("%1$s - %2$s");
+    if (shortTitle != null) {
+      final SiteModel model = this.getSiteModel();
+      // the company/project name is retrieved from site model ( <project name="Foo">)
+      // or from the project itself
+      String titleProjectName = title;
+      if (titleProjectName == null || titleProjectName.isEmpty()) {
+        titleProjectName = null;
+        if (model.getName() != null) {
+          titleProjectName = model.getName();
+        } else if (getProject() != null && getProject().getName() != null) {
+          titleProjectName = getProject().getName();
         }
-        return Optional.ofNullable((T) returnedValue);
+      }
+
+      if (titleProjectName == null) {
+        return shortTitle;
+      }
+      // use String.format() to create new title
+      try {
+        // try to format the title according to the template
+        title = String.format(titleTemplate, titleProjectName, shortTitle);
+      } catch (final Exception e) {
+        LOGGER.warn(
+          "Cannot format title with template '{}' and tiltle '{}' and short title '{}', falling back to default format.",
+          titleTemplate,
+          titleProjectName,
+          title,
+          e);
+      }
     }
+    return title;
+  }
 
-    /**
-     * Gets the list of all children name for the {@code parentNode}.
-     *
-     * @param parentNode
-     *            the parent node to use (can be {@code null}.
-     * @return Returns a list of {@link String} representing the name of all children, which may be empty but never
-     *         {@code null}.
-     * @since 1.3
-     */
-    public List<String> getChildren(final Xpp3Dom parentNode) {
-        return Xpp3Utils.getChildren(parentNode);
-    }
-
-    /**
-     * Gets the attribute value of the given {@code attribute} of {@code property}.
-     *
-     * @param property
-     *            the property to use
-     * @param attribute
-     *            the attribute to use.
-     * @param targetType
-     *            the returned target type use to convert value.
-     * @param defaultValue
-     *            the default value used if property doesn't exist.
-     * @return Returns a converted value of the given {@code property}.
-     * @since 2.0
-     * @param <T>
-     *            the type of returned object.
-     */
-    @Override
-    @Nullable public <T> T getAttributeValue(@Nonnull final String property,
-        @Nonnull final String attribute,
-        @Nonnull final Class<T> targetType,
-        @Nullable final T defaultValue) {
-        return getAttributeValue(property, attribute, targetType).orElse(defaultValue);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    @Nonnull
-    public <T> Optional<T> getAttributeValue(@Nonnull final String property,
-        @Nonnull final String attribute,
-        @Nonnull final Class<T> targetType) {
-        requireNonNull(property, "property is required");
-        requireNonNull(attribute, "attribute is required");
-        requireNonNull(targetType, "targetType is required");
-
-        Xpp3Dom element = get(property);
-        if (element == null) {
-            return Optional.empty();
-        }
-        String value = element.getAttribute(attribute);
-        if (value == null) {
-            return Optional.empty();
-        }
-
-        if ("inherit".equals(value) || Strings.isNullOrEmpty(value)) {
-            element = Xpp3Utils.getFirstChild(globalProperties, property, namespace);
-            if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Inherit value property '{}': {}", property, element);
-            }
-        }
-        if (element == null) {
-            return Optional.empty();
-        }
-        value = element.getAttribute(attribute);
-        if (value == null) {
-            return Optional.empty();
-        }
-
-        Object returnedValue = value;
-        if (targetType.isAssignableFrom(Boolean.class)) {
-            returnedValue = Boolean.valueOf(value);
-        } else if (targetType.isAssignableFrom(Integer.class)) {
-            returnedValue = Integer.valueOf(value);
-        } else if (targetType.isAssignableFrom(Long.class)) {
-            returnedValue = Long.valueOf(value);
-        }
-        return Optional.ofNullable((T) returnedValue);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nullable public <T> T getAttributeValue(@Nonnull final Xpp3Dom element,
-        @Nonnull final String attribute,
-        @Nonnull final Class<T> targetType,
-        @Nullable final T defaultValue) {
-        return getAttributeValue(element, attribute, targetType).orElse(defaultValue);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    @Nonnull
-    public <T> Optional<T> getAttributeValue(@Nonnull final Xpp3Dom element,
-        @Nonnull final String attribute,
-        @Nonnull final Class<T> targetType) {
-        final String value = element.getAttribute(attribute);
-        if (value == null) {
-            return Optional.empty();
-        }
-        Object returnedValue = value;
-        if (targetType.isAssignableFrom(Boolean.class)) {
-            returnedValue = Boolean.valueOf(value);
-        } else if (targetType.isAssignableFrom(Integer.class)) {
-            returnedValue = Integer.valueOf(value);
-        } else if (targetType.isAssignableFrom(Long.class)) {
-            returnedValue = Long.valueOf(value);
-        }
-        return Optional.ofNullable((T) returnedValue);
-    }
-
-    /**
-     * A convenience method to check if the value of the {@code property} is {@code "true"}.
-     *
-     * @param property
-     *            the property of interest
-     * @return {@code true} if the configuration value is set either in page or globally, and is equal to
-     *         {@code "true"}.
-     * @see #get(String)
-     * @since 1.0
-     */
-    public boolean is(final String property) {
-        return "true".equals(value(property));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean not(final String property) {
-        return "false".equals(value(property));
-    }
-
-    /**
-     * A convenience method to check if the {@code property} is set to a specific value.
-     *
-     * @param property
-     *            the property of interest
-     * @param value
-     *            the property value to check
-     * @return {@code true} if the configuration value is set either in page or globally, and is equal to {@code value}.
-     * @see #get(String)
-     * @since 1.0
-     */
-    public boolean isValue(final String property, final String value) {
-        return value != null && value.equals(value(property));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nullable public String getProjectId() {
-        return projectId;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nullable public String getFileId() {
-        return fileId;
-    }
-
-    /**
-     * @return the context
-     */
-    @Override
-    @Nonnull
-    public Context<?> getContext() {
-        return context;
-    }
-
-    /**
-     * @return the velocity Context
-     */
-    public ToolContext getVelocityContext() {
-        return velocityContext;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nonnull
-    public MavenProject getProject() {
-        return project;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nonnull
-    public SiteModel getSiteModel() {
-        return siteModel;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nonnull
-    public Xpp3Dom getPageProperties() {
-        return pageProperties;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nonnull
-    public Xpp3Dom getGlobalProperties() {
-        return globalProperties;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Nonnull
-    public String getNamespace() {
-        return namespace;
-    }
-
-    /**
-     * @return Returns the location of project.
-     */
-    @Nonnull
-    public String getProjectLocation() {
-        String projectSiteLoc = getProject().getUrl();
-        if (!Strings.isNullOrEmpty(projectSiteLoc)) {
-
-            if (!projectSiteLoc.endsWith("/")) {
-                projectSiteLoc += "/";
-            }
-        } else {
-            LOGGER.warn("the property project.url is required");
-            projectSiteLoc = "https://localhost/";
-        }
-        return projectSiteLoc;
-    }
-
-    /**
-     * <p>
-     * See <a href= "https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
-     * Renderer</a> for more information.
-     *
-     * @return Returns a {@link String} representing the name of current file of the (HTML) document being rendered,
-     *         relative to the site root.
-     */
-    @Nonnull
-    public String getCurrentFileName() {
-        return (String) velocityContext.get("currentFileName");
-    }
-
-    /**
-     * @return Returns a {@link String} representing the location path of current rendered file.
-     */
-    @Nonnull
-    public String getCurrentFileLocation() {
-        final String projectSiteLoc = getProjectLocation();
-        return URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    @Nullable public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
-        if (vtl == null) {
-            return null;
-        }
-        final RenderTool renderTool = (RenderTool) getVelocityContext().get("render");
-        try {
-            return (T) renderTool.eval(getVelocityContext(), vtl);
-        } catch (final Exception ex) {
-            throw new RuntimeException("error when try evaluate '" + vtl + "'", ex);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String relativeLink(final String href) {
-        if (href == null) {
-            return null;
-        }
-        if (isExternalLink(href)) {
-            return href;
-        }
-        final String relativePath = (String) velocityContext.get("relativePath");
-        String relativeLink = PathTool.calculateLink(href, relativePath);
-        relativeLink = relativeLink.replaceAll("\\\\", "/");
-        if (Strings.isNullOrEmpty(relativeLink)) {
-            relativeLink = "./";
-        }
-        // Attempt to normalise the relative link - this is useful for active link
-        // calculations and better relative links for subdirectories.
-        //
-        // The issue is particularly visible with pages in subdirectories,
-        // so that if you are in <root>/dev/index.html, the relative menu link to
-        // the _same_ page would likely be ../dev/index.html instead of '' or
-        // 'index.html'.
-        final String currentFileLoc = getCurrentFileLocation();
-        final String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
-        if (currentFileLoc.equals(absoluteLink)) {
-            // for matching link, use empty relative link
-            relativeLink = StringUtils.EMPTY;
-        } else {
-            // relativize the absolute link based on current directory
-            // (uses Maven project link relativization)
-            final String currentFileDir = PathTool.getDirectoryComponent(currentFileLoc);
-            relativeLink = URITool.relativizeLink(currentFileDir, absoluteLink);
-        }
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("-- Relative Link ----------------------------------");
-            LOGGER.debug("link: {}", href);
-            LOGGER.debug("currentFileLoc: {}", currentFileLoc);
-            LOGGER.debug("absoluteLink: {}", absoluteLink);
-            LOGGER.debug("relativeLink: {}", relativeLink);
-            LOGGER.debug("---------------------------------------------------");
-        }
-        return relativeLink;
-    }
-
-    /**
-     * @param url
-     *            a url.
-     * @return Returns {@code true} whether the link is a external link to the site.
-     */
-    public boolean isExternalLink(final String url) {
-        if (url == null) {
-            return false;
-        }
-        final String absoluteResourceURL = this.value("absoluteResourceURL");
-        if (!Strings.isNullOrEmpty(absoluteResourceURL) && url.startsWith(absoluteResourceURL)) {
-            return false;
-        }
-        return url.toLowerCase().startsWith("http:/") || url.toLowerCase().startsWith("https:/")
-                || url.toLowerCase().startsWith("ftp:/") || url.toLowerCase().startsWith("mailto:")
-                || url.toLowerCase().startsWith("file:/") || url.toLowerCase().indexOf("://") != -1;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isActiveLink(@Nullable final String href) {
-        final String alignedFileName = (String) velocityContext.get("alignedFileName");
-        if (href == null) {
-            return false;
-        }
-        // either empty link (pointing to a page), or if the current file is index.html,
-        // the link may point to the whole directory
-        return Strings.isNullOrEmpty(href) || alignedFileName.endsWith("index.html") && ".".equals(href);
-    }
-
-    /**
-     * Converts a filename to pageId format.
-     *
-     * @param fileName
-     *            the filename to convert
-     * @return Returns a {@link String} representing the pageId of {@code filename}.
-     */
-    @Nullable public static String slugFilename(@Nullable final String fileName) {
-        if (fileName == null) {
-            return null;
-        }
-        String currentFile = fileName;
-
-        // drop the extension
-        final int lastDot = currentFile.lastIndexOf(".");
-        if (lastDot >= 0) {
-            currentFile = currentFile.substring(0, lastDot);
-        }
-
-        // get the short ID (in case of nested files)
-        // String fileName = new File(currentFile).getName();
-        // fileShortId = HtmlTool.slug(fileName);
-
-        // full file ID includes the nested dirs
-        // replace nesting "/" with "-"
-        return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
-    }
-
-    /**
-     * @return Returns a {@link String} representing the relative path to root site.
-     */
-    @Nonnull
-    public String getResourcePath() {
-        final String absoluteResourceURL = this.value("absoluteResourceURL");
-        String projectUrl = getProjectLocation();
-        final String currentFileName = getCurrentFileName();
-        if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
-            if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
-                projectUrl += '/';
-            }
-            final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
-            return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
-        }
-        return (String) velocityContext.get("relativePath");
-    }
-
-    /**
-     * Gets the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
-     *
-     * @return Returns a instance of {@code Date} representing the reproduce build timestamp whether property
-     *         'project.build.outputTimestamp' is fill in.
-     */
-    @Nullable public Date getBuildOutputTimestamp() throws ParseException {
-        if (!this.velocityContext.containsKey(PROJECT_BUILD_OUTPUTTIMESTAMP)) {
-            return null;
-        }
-        Object outputTimestamp = this.velocityContext.get(PROJECT_BUILD_OUTPUTTIMESTAMP);
-        if (outputTimestamp != null) {
-            return ISO_8601BASIC_DATE.parse(outputTimestamp.toString());
-        }
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("null")
+  @Override
+  @Nonnull
+  public String getPublishDate() {
+    final SiteModel model = this.getSiteModel();
+    final PublishDate publishDate = model.getPublishDate();
+    String publishDateValue = null;
+    String format = "yyyy-MM-dd";
+    if (!"none".equals(publishDate.getPosition())) {
+      if (publishDate.getFormat() != null && !publishDate.getFormat().isEmpty()) {
+        format = publishDate.getFormat();
+      }
+      Date outputTimestamp = null;
+      try {
+        outputTimestamp = getBuildOutputTimestamp();
+      } catch (final ParseException e) {
+        LOGGER.warn("Cannot parse the build output timestamp!", e);
         return null;
+      }
+
+      final DateTool dateTool = getToolbox("date", DateTool.class);
+      if (dateTool != null) {
+        if (outputTimestamp != null) {
+          publishDateValue = dateTool.format(format, outputTimestamp);
+        } else {
+          publishDateValue = dateTool.get(format);
+        }
+      }
     }
+    return publishDateValue;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("null")
+  @Override
+  @Nonnull
+  public String getPublishDateMessage() {
+    final String publishDate = getPublishDate();
+    if (Strings.isNullOrEmpty(publishDate)) {
+      return null;
+    }
+    final ResourceTool text = this.getToolbox("text", ResourceTool.class);
+    if (text == null) {
+      return null;
+    }
+    return text.get("template.lastpublished") + ": " + publishDate;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public String getDatePosition() {
+    // resolve date position, or set the default otherwise (bottom)
+    // Note, that currently we do not support "navigation-top" position for
+    // either publishDate or version.
+    PositionType datePosition = PositionType.none;
+    final SiteModel model = this.getSiteModel();
+    if (model != null) {
+      final PublishDate publishDate = model.getPublishDate();
+      if (publishDate != null) {
+        final String position = publishDate.getPosition();
+        if (position != null && !position.isEmpty()) {
+          datePosition = PositionType.valueOfHyphen(position);
+        }
+      }
+    }
+    if (datePosition == null) {
+      datePosition = PositionType.none;
+    }
+    return datePosition.toString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public String getVersion() {
+    final MavenProject project = this.getProject();
+    return project.getVersion();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public String getVersionPosition() {
+    final SiteModel model = this.getSiteModel();
+    if (model == null || model.getVersion() == null) {
+      return PositionType.none.toString();
+    }
+    PositionType position = PositionType.valueOfHyphen(model.getVersion().getPosition());
+    if (position == null) {
+      position = PositionType.none;
+    }
+    return position.toString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @SuppressWarnings("null")
+  @Override
+  @Nonnull
+  public String getVersionMessage() {
+    final String version = getVersion();
+    if (Strings.isNullOrEmpty(version)) {
+      return null;
+    }
+    final ResourceTool text = this.getToolbox("text", ResourceTool.class);
+    if (text == null) {
+      return null;
+    }
+    return text.get("template.version") + ": " + version;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @Nonnull
+  public String getNamespace() {
+    return namespace;
+  }
+
+  /**
+   * @return Returns the html body content stored in velocity context.
+   * @since 2.1
+   */
+  @Override
+  @Nonnull
+  public String getBodyContent() {
+    return requireNonNull(getContextValue("bodyContent", String.class));
+  }
+
+  /**
+   * @return Returns the location of project.
+   */
+  @Nonnull
+  public String getProjectLocation() {
+    String projectSiteLoc = getProject().getUrl();
+    if (!Strings.isNullOrEmpty(projectSiteLoc)) {
+
+      if (!projectSiteLoc.endsWith("/")) {
+        projectSiteLoc += "/";
+      }
+    } else {
+      LOGGER.warn("the property project.url is required");
+      projectSiteLoc = "https://localhost/";
+    }
+    return projectSiteLoc;
+  }
+
+  /**
+   * <p>
+   * See <a href= "https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">Doxia Sitetools - Site
+   * Renderer</a> for more information.
+   *
+   * @return Returns a {@link String} representing the name of current file of the (HTML) document being rendered,
+   *         relative to the site root.
+   */
+  @Nonnull
+  public String getCurrentFileName() {
+    return (String) velocityContext.get("currentFileName");
+  }
+
+  /**
+   * @return Returns a {@link String} representing the location path of current rendered file.
+   */
+  @Nonnull
+  public String getCurrentFileLocation() {
+    final String projectSiteLoc = getProjectLocation();
+    return URITool.toURI(projectSiteLoc).resolve(getCurrentFileName()).toString();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  @Nullable public <T> T eval(@Nullable final String vtl, @Nonnull final Class<T> requiredClass) {
+    if (vtl == null) {
+      return null;
+    }
+    final RenderTool renderTool = (RenderTool) getVelocityContext().get("render");
+    try {
+      return (T) renderTool.eval(getVelocityContext(), vtl);
+    } catch (final Exception ex) {
+      throw new RuntimeException("error when try evaluate '" + vtl + "'", ex);
+    }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String relativeLink(final String href) {
+    if (href == null) {
+      return null;
+    }
+    if (isExternalLink(href)) {
+      return href;
+    }
+    final String relativePath = (String) velocityContext.get("relativePath");
+    String relativeLink = PathTool.calculateLink(href, relativePath);
+    relativeLink = relativeLink.replaceAll("\\\\", "/");
+    if (Strings.isNullOrEmpty(relativeLink)) {
+      relativeLink = "./";
+    }
+    // Attempt to normalise the relative link - this is useful for active link
+    // calculations and better relative links for subdirectories.
+    //
+    // The issue is particularly visible with pages in subdirectories,
+    // so that if you are in <root>/dev/index.html, the relative menu link to
+    // the _same_ page would likely be ../dev/index.html instead of '' or
+    // 'index.html'.
+    final String currentFileLoc = getCurrentFileLocation();
+    final String absoluteLink = URITool.toURI(currentFileLoc).resolve(relativeLink).normalize().toString();
+    if (currentFileLoc.equals(absoluteLink)) {
+      // for matching link, use empty relative link
+      relativeLink = StringUtils.EMPTY;
+    } else {
+      // relativize the absolute link based on current directory
+      // (uses Maven project link relativization)
+      final String currentFileDir = PathTool.getDirectoryComponent(currentFileLoc);
+      relativeLink = URITool.relativizeLink(currentFileDir, absoluteLink);
+    }
+    if (LOGGER.isTraceEnabled()) {
+      LOGGER.trace("-- Relative Link ----------------------------------");
+      LOGGER.trace("link: {}", href);
+      LOGGER.trace("currentFileLoc: {}", currentFileLoc);
+      LOGGER.trace("absoluteLink: {}", absoluteLink);
+      LOGGER.trace("relativeLink: {}", relativeLink);
+      LOGGER.trace("---------------------------------------------------");
+    }
+    return relativeLink;
+  }
+
+  /**
+   * @param url
+   *          a url.
+   * @return Returns {@code true} whether the link is a external link to the site.
+   */
+  @SuppressWarnings("null")
+  @Override
+  public boolean isExternalLink(final String url) {
+    if (url == null) {
+      return false;
+    }
+    final String absoluteResourceURL = this.value("absoluteResourceURL");
+    if (!Strings.isNullOrEmpty(absoluteResourceURL) && url.startsWith(absoluteResourceURL)) {
+      return false;
+    }
+    return url.toLowerCase().startsWith("http:/") || url.toLowerCase().startsWith("https:/")
+        || url.toLowerCase().startsWith("ftp:/") || url.toLowerCase().startsWith("mailto:")
+        || url.toLowerCase().startsWith("file:/") || url.toLowerCase().indexOf("://") != -1;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public boolean isActiveLink(@Nullable final String href) {
+    final String alignedFileName = (String) velocityContext.get("alignedFileName");
+    if (href == null) {
+      return false;
+    }
+    // either empty link (pointing to a page), or if the current file is index.html,
+    // the link may point to the whole directory
+    return Strings.isNullOrEmpty(href) || alignedFileName.endsWith("index.html") && ".".equals(href);
+  }
+
+  /**
+   * Converts a filename to pageId format.
+   *
+   * @param fileName
+   *          the filename to convert
+   * @return Returns a {@link String} representing the pageId of {@code filename}.
+   */
+  @Nullable public static String slugFilename(@Nullable final String fileName) {
+    if (fileName == null) {
+      return null;
+    }
+    String currentFile = fileName;
+
+    // drop the extension
+    final int lastDot = currentFile.lastIndexOf(".");
+    if (lastDot >= 0) {
+      currentFile = currentFile.substring(0, lastDot);
+    }
+
+    // get the short ID (in case of nested files)
+    // String fileName = new File(currentFile).getName();
+    // fileShortId = HtmlTool.slug(fileName);
+
+    // full file ID includes the nested dirs
+    // replace nesting "/" with "-"
+    return HtmlTool.slug(currentFile.replace("/", "-").replace("\\", "-"));
+  }
+
+  /**
+   * @return Returns a {@link String} representing the relative path to root site.
+   */
+  @SuppressWarnings("null")
+  @Override
+  @Nonnull
+  public String getResourcePath() {
+    final String absoluteResourceURL = this.value("absoluteResourceURL");
+    String projectUrl = getProjectLocation();
+    final String currentFileName = getCurrentFileName();
+    if (!Strings.isNullOrEmpty(projectUrl) && currentFileName != null) {
+      if (projectUrl.charAt(projectUrl.length() - 1) != '/') {
+        projectUrl += '/';
+      }
+      final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
+      return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+    }
+    return (String) velocityContext.get("relativePath");
+  }
+
+  /**
+   * Gets the reproduce build timestamp whether property 'project.build.outputTimestamp' is fill in.
+   *
+   * @return Returns a instance of {@code Date} representing the reproduce build timestamp whether property
+   *         'project.build.outputTimestamp' is fill in.
+   */
+  @Override
+  @Nullable public Date getBuildOutputTimestamp() throws ParseException {
+    if (!this.velocityContext.containsKey(PROJECT_BUILD_OUTPUTTIMESTAMP)) {
+      return null;
+    }
+    final Object outputTimestamp = this.velocityContext.get(PROJECT_BUILD_OUTPUTTIMESTAMP);
+    if (outputTimestamp != null) {
+      return ISO_8601BASIC_DATE.parse(outputTimestamp.toString());
+    }
+    return null;
+  }
+
 }

@@ -1,10 +1,8 @@
 # Card
 
-{{< badge color="primary" text="New in v2.4" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="WEB COMPONENT" class="ml-1" />}}
 
-{{< badge color="info" text="WEB COMPONENT" />}}
-
-[Based on Bootstrap Card page](https://getbootstrap.com/docs/4.4/components/card/)
+[Based on Bootstrap Card page](https://getbootstrap.com/docs/4.6/components/card/)
 
 Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
 
@@ -14,14 +12,13 @@ A card is a flexible and extensible content container. It includes options for h
 
 ## Example
 
-Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no `margin` by default, so use [spacing utilities](https://getbootstrap.com/docs/4.4/utilities/spacing/) as needed.
+Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no `margin` by default, so use [spacing utilities](https://getbootstrap.com/docs/4.6/utilities/spacing/) as needed.
 
-Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various [sizing options](https://getbootstrap.com/docs/4.4/components/card/#sizing).
+Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various [sizing options](https://getbootstrap.com/docs/4.6/components/card/#sizing).
 
 {{< example >}}
 
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -36,14 +33,10 @@ Below is an example of a basic card with mixed content and a fixed width. Cards 
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -52,9 +45,10 @@ Below is an example of a basic card with mixed content and a fixed width. Cards 
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ## Content types
 
@@ -67,28 +61,24 @@ The building block of a card is the `<card-body>` element. Use it whenever you n
 {{< example >}}
 
 {{% card %}}
-
 <!--
   <card-body>
     This is some text within a card body.
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card %}}
-
 <!--
   <card-body>
     This is some text within a card body.
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ### Titles, text, and links
 
@@ -99,7 +89,6 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
 {{< example >}}
 
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -109,14 +98,10 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
     <a href="#" class="card-link">Another link</a>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -126,9 +111,10 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
     <a href="#" class="card-link">Another link</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ### Images
 
@@ -137,7 +123,6 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
 {{< example >}}
 
 {{% card caps="top" style="width: 18rem;" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -150,23 +135,20 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
     This is some text within a card body.
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card caps="top" style="width: 18rem;" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ### Header and footer
 
@@ -175,7 +157,6 @@ Add an optional header and/or footer within a card.
 {{< example >}}
 
 {{% card %}}
-
 <!--
   <card-header>Featured</card-header>
   <card-body>
@@ -184,14 +165,10 @@ Add an optional header and/or footer within a card.
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card %}}
-
 <!--
   <card-header>Featured</card-header>
   <card-body>
@@ -200,16 +177,16 @@ Add an optional header and/or footer within a card.
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 Card headers can be use `<h*>` elements by adding `level="[1-6]"` attribute to `<card-header>` elements.
 
 {{< example >}}
 
 {{% card %}}
-
 <!--
   <card-header level="5" class="no-anchor">Featured</card-header>
   <card-body>
@@ -218,14 +195,10 @@ Card headers can be use `<h*>` elements by adding `level="[1-6]"` attribute to `
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card %}}
-
 <!--
   <card-header level="5">Featured</card-header>
   <card-body>
@@ -234,9 +207,10 @@ Card headers can be use `<h*>` elements by adding `level="[1-6]"` attribute to `
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ## Sizing
 
@@ -249,11 +223,8 @@ Using the grid, wrap cards in columns and rows as needed.
 {{< example >}}
 
 {{< row >}}
-
 {{< column >}}
-
 {{% card %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Special title treatment</h5>
@@ -264,15 +235,10 @@ Using the grid, wrap cards in columns and rows as needed.
     2 days ago
   </card-footer>
 -->
-
 {{% /card %}}
-
 {{< /column >}}
-
 {{< column >}}
-
 {{% card %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Special title treatment</h5>
@@ -283,22 +249,14 @@ Using the grid, wrap cards in columns and rows as needed.
     2 days ago
   </card-footer>
 -->
-
 {{% /card %}}
-
 {{< /column >}}
-
 {{< /row >}}
-
-{{< /example >}}
 
 ```xml
 {{< row >}}
-
 {{< column >}}
-
 {{% card %}}
-
 <!--
   <card-header class="text-center">Featured</card-header>
   <card-body>
@@ -310,15 +268,10 @@ Using the grid, wrap cards in columns and rows as needed.
     2 days ago
   </card-footer>
 -->
-
 {{% /card %}}
-
 {{< /column >}}
-
 {{< column >}}
-
 {{% card %}}
-
 <!--
   <card-header class="text-center">Featured</card-header>
   <card-body>
@@ -330,22 +283,20 @@ Using the grid, wrap cards in columns and rows as needed.
     2 days ago
   </card-footer>
 -->
-
 {{% /card %}}
-
 {{< /column >}}
-
 {{< /row >}}
 ```
 
+{{< /example >}}
+
 ### Using utilities
 
-Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.4/utilities/sizing/) to quickly set a card’s width.
+Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.6/utilities/sizing/) to quickly set a card’s width.
 
 {{< example >}}
 
 {{% card class="w-75" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -353,11 +304,8 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
     <a href="#" class="btn btn-primary">Button</a>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="w-50" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -365,14 +313,10 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
     <a href="#" class="btn btn-primary">Button</a>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card class="w-75" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -380,11 +324,8 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
     <a href="#" class="btn btn-primary">Button</a>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="w-50" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -392,18 +333,18 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
     <a href="#" class="btn btn-primary">Button</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ## Text alignment
 
-You can quickly change the text alignment of any card—in its entirety or specific parts—with our [text align classes](https://getbootstrap.com/docs/4.4/utilities/text/#text-alignment).
+You can quickly change the text alignment of any card—in its entirety or specific parts—with our [text align classes](https://getbootstrap.com/docs/4.6/utilities/text/#text-alignment).
 
 {{< example >}}
 
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -411,11 +352,9 @@ You can quickly change the text alignment of any card—in its entirety or speci
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card class="text-center" style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -423,11 +362,9 @@ You can quickly change the text alignment of any card—in its entirety or speci
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card class="text-right" style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -435,14 +372,10 @@ You can quickly change the text alignment of any card—in its entirety or speci
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -450,11 +383,9 @@ You can quickly change the text alignment of any card—in its entirety or speci
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card class="text-center" style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -462,11 +393,9 @@ You can quickly change the text alignment of any card—in its entirety or speci
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card class="text-right" style="width: 18rem;" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -474,9 +403,10 @@ You can quickly change the text alignment of any card—in its entirety or speci
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ## Images
 
@@ -489,7 +419,6 @@ Similar to headers and footers, cards can include top and bottom “image caps�
 {{< example >}}
 
 {{% card caps="top" class="mb-3" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -504,11 +433,9 @@ Similar to headers and footers, cards can include top and bottom “image caps�
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card caps="bottom" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-bottom" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -523,14 +450,10 @@ Similar to headers and footers, cards can include top and bottom “image caps�
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card caps="top" class="mb-3" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -539,11 +462,9 @@ Similar to headers and footers, cards can include top and bottom “image caps�
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card caps="bottom" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -552,9 +473,10 @@ Similar to headers and footers, cards can include top and bottom “image caps�
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ### Image overlays
 
@@ -563,7 +485,6 @@ Turn an image into a card background and overlay your card’s text. Depending o
 {{< example >}}
 
 {{% card img-overlay="true" class="bg-dark text-white" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Card image">
@@ -578,14 +499,10 @@ Turn an image into a card background and overlay your card’s text. Depending o
     <p class="card-text">Last updated 3 mins ago</p>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card img-overlay="true" class="bg-dark text-white" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -594,9 +511,10 @@ Turn an image into a card background and overlay your card’s text. Depending o
     <p class="card-text">Last updated 3 mins ago</p>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ## Horizontal
 
@@ -605,7 +523,6 @@ Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-fr
 {{< example >}}
 
 {{% card horizontal="true" class="mb-3" style="max-width: 540px;" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
@@ -620,14 +537,10 @@ Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-fr
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
-{{< /example >}}
 
 ```xml
 {{% card horizontal="true" class="mb-3" style="max-width: 540px;" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -636,9 +549,10 @@ Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-fr
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
 ```
+
+{{< /example >}}
 
 ## Card layout
 
@@ -655,9 +569,7 @@ Use card groups to render cards as a single, attached element with equal width a
 {{< example >}}
 
 {{< card-group >}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -672,11 +584,8 @@ Use card groups to render cards as a single, attached element with equal width a
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -691,11 +600,8 @@ Use card groups to render cards as a single, attached element with equal width a
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -710,18 +616,12 @@ Use card groups to render cards as a single, attached element with equal width a
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{< /card-group >}}
-
-{{< /example >}}
 
 ```xml
 {{< card-group >}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -730,11 +630,8 @@ Use card groups to render cards as a single, attached element with equal width a
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -743,11 +640,8 @@ Use card groups to render cards as a single, attached element with equal width a
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -756,11 +650,11 @@ Use card groups to render cards as a single, attached element with equal width a
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{< /card-group >}}
 ```
+
+{{< /example >}}
 
 ### Card decks
 
@@ -769,9 +663,7 @@ Need a set of equal width and height cards that aren’t attached to one another
 {{< example >}}
 
 {{< card-group type="deck" >}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -786,11 +678,8 @@ Need a set of equal width and height cards that aren’t attached to one another
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -805,11 +694,8 @@ Need a set of equal width and height cards that aren’t attached to one another
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -824,18 +710,12 @@ Need a set of equal width and height cards that aren’t attached to one another
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{< /card-group >}}
-
-{{< /example >}}
 
 ```xml
 {{< card-group type="deck" >}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -844,11 +724,8 @@ Need a set of equal width and height cards that aren’t attached to one another
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -857,11 +734,8 @@ Need a set of equal width and height cards that aren’t attached to one another
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -870,11 +744,11 @@ Need a set of equal width and height cards that aren’t attached to one another
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{< /card-group >}}
 ```
+
+{{< /example >}}
 
 ### Card columns
 
@@ -883,9 +757,7 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
 {{< example >}}
 
 {{< card-group type="columns" >}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -899,11 +771,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="p-3" %}}
-
 <!--
   <card-body>
     <blockquote class="blockquote mb-0">
@@ -915,11 +784,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </blockquote>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -934,11 +800,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="bg-primary text-white text-center p-3" %}}
-
 <!--
   <card-body>
     <blockquote class="blockquote mb-0">
@@ -951,11 +814,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </blockquote>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="text-center" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -963,11 +823,9 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{% card %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -977,11 +835,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </svg>
   </card-image>
 -->
-
 {{% /card %}}
-
 {{% card class="p-3 text-right" %}}
-
 <!--
   <card-body>
     <blockquote class="blockquote mb-0">
@@ -994,11 +849,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </blockquote>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -1006,18 +858,12 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{< /card-group >}}
-
-{{< /example >}}
 
 ```xml
 {{< card-group type="columns" >}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -1025,11 +871,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="p-3" %}}
-
 <!--
   <card-body>
     <blockquote class="blockquote mb-0">
@@ -1041,11 +884,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </blockquote>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -1054,11 +894,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="bg-primary text-white text-center p-3" %}}
-
 <!--
   <card-body>
     <blockquote class="blockquote mb-0">
@@ -1071,11 +908,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </blockquote>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card class="text-center" %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -1083,19 +917,13 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-image src="..." alt="..." />
 -->
-
 {{% /card %}}
-
 {{% card class="p-3 text-right" %}}
-
 <!--
   <card-body>
     <blockquote class="blockquote mb-0">
@@ -1108,11 +936,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     </blockquote>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{% card %}}
-
 <!--
   <card-body>
     <h5 class="card-title no-anchor">Card title</h5>
@@ -1120,8 +945,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </card-body>
 -->
-
 {{% /card %}}
-
 {{< /card-group >}}
 ```
+
+{{< /example >}}

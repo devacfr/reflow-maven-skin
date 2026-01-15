@@ -21,6 +21,9 @@
 #*  *##if( ${snippet.attrs['type']} == "row")
 #*      *##set( $class = "bd-example-row")
 #*  *##end##
+#*  *##if( ${snippet.attrs['type']} == "row-flex-cols")
+#*      *##set( $class = "bd-example-row bd-example-row-flex-cols")
+#*  *##end##
 <div class="${class}#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
     #render_html( ${snippet} )
 </div>

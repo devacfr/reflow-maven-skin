@@ -1,5 +1,5 @@
 ##
-## Copyright 2012-2018 Christophe Friederich
+## Copyright 2012-2020 Christophe Friederich
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -13,9 +13,18 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 ##
-## scroll top
-#macro ( renderScrollTop )##
-    <div id="m_scrolltop" class="m-scrolltop">
-		<i class="fa fa-arrow-up"></i>
-    </div>
-#end##
+#**
+* Render dropdown snippet * Usage: *
+{{% dropdown %}}
+<!--
+<item href="#" title="Action 1"/>
+<item href="#" title="Action 2"/>
+<item href="#" title="Action 3"/>
+-->
+{{% /dropdown %}}
+*#
+<div class="dropdown-menu">
+#*  *##foreach($item in ${snippet.items})##
+  <a class="dropdown-item" href="${item.href}">${item.title}</a>
+#*  *##end
+</div>

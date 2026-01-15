@@ -1,36 +1,22 @@
-# Working with Snippets {{< badge color="warning" text="DRAFT" />}}
+# Working with Snippets
 
-{{< badge color="primary" text="New in v2.4-beta1" />}}
-
-{{< callout color="warning" title="Warning" >}}
-
-Snippet feature is in preview version. The specification can change in the future.
-
-All recommendation and improvement are appreciated.
-
-{{< /callout >}}
+{{< badge color="primary" text="New in v2.4" />}}
 
 Markdown is simple content format, but there are times when Markdown falls short. Often, authors are forced to add raw HTML to Markdown content. Reflow created snippets to get around these limitations.
 A `shortcode` and `web component` are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format for the moment).
 
 {{< grid-layout number-columns="2" >}}
-
 {{% card-section title="Shortcode" href="#doc-snippets-snippet_toc_shortcodes1" %}}
-
 <!--
 as indicated by his name, for short stuff to create an unified layout, include a specific information, etc.
 -->
-
 {{% /card-section  %}}
 
 {{% card-section title="Web Component" href="#doc-snippets-snippet_toc_web-components" %}}
-
 <!--
 It is a autonomous block. it can't include other snippets (web component or shortcode). The web component is perfect to create a generic component.
 -->
-
 {{% /card-section  %}}
-
 {{< /grid-layout >}}
 
 ## Shortcodes
@@ -40,7 +26,7 @@ One of these peculiarities is that it can mutate to web component. This particul
 
 One good shortcode sample is the Bootstrap badge. You want include a badge inline the text.
 
-```
+```markdown
 Lorem ipsum dolor sit amet {{< badge color="info" text="NEW" />}}, consectetur
 adipiscing elit. Quare ad ea primum, si videtur; Hunc vos beatum; Nam ista vestra:
 Si gravis, brevis; Sed haec in pueris
@@ -59,9 +45,7 @@ Here is another example always so easy, I want generalise the component callout 
 
 ```html
 {{< callout color="warning" level="5" title="Warning" >}}
-
 Why does the cry assume the dapper sugar?
-
 {{< /callout >}}
 ```
 
@@ -84,8 +68,6 @@ The facility macro `#render_html` renders the content html of snippet and execut
 The shortcode must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.
 
 - whitespaces are required after `{{<` and before `>}}`
-- the empty line is required before and after each start and end tag.
-- start and end tags must be placed at the start of a line.
 - the empty tag `{{< shortcode />}}` or start and end tags can be used inline in same paragraph.
 
 ### Nested Shortcodes
@@ -96,7 +78,7 @@ You can include shortcodes within other shortcodes by creating your own template
 
 It is composed by start tag `{{% component attribute="value" %}}` with attributes and tag `{{% /component %}}`, an associated xhtml data structure and a velocity template file.
 The xhtml data part is enclosed in comment html element ( `<!-- -->`). This notation reduces the risk that Doxia Tools modify or delete certain xhtml elements (doxia deletes all non-standard elements, `<svg>` tag too :-1: ).
-The template file name should have the same name as web compenent and located in `src/site/snippets/component.vm`.
+The template file name should have the same name as web compenent and located in `src/site/layouts/snippets/component.vm`.
 In future, the web component will be managed directly by javascript using [web component APIs](https://www.webcomponents.org/).
 
 ### Tag Syntax
@@ -104,7 +86,6 @@ In future, the web component will be managed directly by javascript using [web c
 The `web component` must respect a strict shorthand notation so as not to be in conflict with the Doxia renderer.
 
 - whitespaces are required after `{{%` and before `%}}` tags.
-- the empty line is required before after each start and end tag.
 - start and end tags must be placed at the start of a line.
 
 ### Data Element
@@ -119,7 +100,6 @@ the tag name must start with an alphabetic character (a .. z or A .. Z). The res
 
 ```html
 {{% component attribute="value" %}}
-
 <!--
 <data>
   <data-item class="text-muted" >Header Section</data-item>
@@ -129,18 +109,16 @@ the tag name must start with an alphabetic character (a .. z or A .. Z). The res
   </data-content>
 </data>
 -->
-
 {{% /component%}}
 ```
 
 ### Nested Snippets
 
-Yes, it is possible to add snippets in a web component. The snippet is written in html format `<component shortcode|webcomponent attribute="value">` by indicating the type of snippet. This example includes the shortcode `badge`.
+Yes, it is possible to add snippets in a web component.
 
 {{< example >}}
 
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -150,28 +128,25 @@ Yes, it is possible to add snippets in a web component. The snippet is written i
     </svg>
   </card-image>
   <card-body>
-    <h5 class="card-title no-anchor">Card title <badge shortcode color="success" text="NEW" /></h5>
+    <h5 class="card-title no-anchor">Card title <badge color="success" text="NEW" /></h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{< /example >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
-
 <!--
   <card-image src="..." alt="..." />
   <card-body>
-    <h5 class="card-title no-anchor">Card title <badge shortcode color="success" text="NEW" /></h5>
+    <h5 class="card-title no-anchor">Card title <badge color="success" text="NEW" /></h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
 
@@ -194,12 +169,11 @@ This example above uses the Velocity macro `#render_html( $snippet )` allowing e
 
 ### Debug Mode
 
-Reflow provides the possibility to help the developement your new snippet displaying its structure in adding the attribute `debug=true`. In this example, card web component will be used.
+Reflow provides the possibility to help the developement your new snippet displaying its structure in adding the attribute `debug`. In this example, card web component will be used.
 
 {{< example >}}
 
-{{% card debug="true" style="width: 18rem;" %}}
-
+{{% card debug style="width: 18rem;" %}}
 <!--
   <card-image>
     <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -214,14 +188,12 @@ Reflow provides the possibility to help the developement your new snippet displa
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 
 {{< /example >}}
 
 ```xml
-{{% card debug="true" style="width: 18rem;" %}}
-
+{{% card debug style="width: 18rem;" %}}
 <!--
   <card-image src="..." alt="..." />
   <card-body>
@@ -230,7 +202,6 @@ Reflow provides the possibility to help the developement your new snippet displa
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </card-body>
 -->
-
 {{% /card %}}
 ```
 
@@ -263,25 +234,25 @@ You shouldn't use the `class` attribute directly like this `$snippet.data-conten
 
 ## Template
 
-The template uses [Velocity Template](https://velocity.apache.org/engine/1.7/developer-guide.html) to generate html content. the file have to be located in path `src/site/layouts/snippets`.
+The template uses [Velocity Template](https://velocity.apache.org/engine/1.7/developer-guide.html) to generate html content. the file have to be located in path `src/site/layouts/partials`.
 
 ### Partial Template
 
 The partial template can be include in content page using `partial` [Doxia macro](https://maven.apache.org/doxia/macros/index.html).
 
-```
+```html
 <!-- MACRO{partial|file=src/site/layouts/partials/template.html} -->
 ```
 
 The path is relative to base directory of project.
 
-One of the peculiarities of a partial template is that this content is not modified by Doxia renderer. This means that the tags used in a page can be written directly in html. you just need to set them as a snippet by adding the `shortcode` or `webcomponent` attribute.
+One of the peculiarities of a partial template is that this content is not modified by Doxia renderer. This means that the tags used in a page can be written directly in html.
 
 ```html
 <!-- src/site/layouts/partials/template.html -->
-<layout shortcode class="text-center text-light" role="main">
-    <layout shortcode class="container container-fluid">
-      <card webcomponent>
+<layout class="text-center text-light" role="main">
+    <layout class="container container-fluid">
+      <card>
         <card-image src="..." alt="..." />
         <card-body>
           <h5 class="card-title no-anchor">Card title</h5>
@@ -292,7 +263,3 @@ One of the peculiarities of a partial template is that this content is not modif
     </layout>
 </layout>
 ```
-
-### Override Template
-
-Template can override existing template.

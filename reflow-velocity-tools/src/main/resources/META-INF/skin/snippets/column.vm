@@ -28,8 +28,7 @@
 #*          *##set( $class = "col ${snippet.attrs['class']}")
 #*      *##end
 #*  *##end##
-#*  *##if( ${snippet.html})
-<div class="${class}">
+<div #addHtmlAttributes( ${snippet} ${class} )>
     #render_html( ${snippet} )
 </div>
-#*  *##end
+
