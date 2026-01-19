@@ -29,6 +29,9 @@ maven_cmd="mvn"
 maven_profiles=""
 maven_args=""
 
+# enable clover report
+maven_profiles="$( add_mvn_profile "${maven_profiles}" "clover.report" )"
+
 for i in "$@"
 do
 case $i in
@@ -55,4 +58,4 @@ case $i in
 esac
 done
 
-${maven_cmd} clean clover:instrument install clover:aggregate site site:stage "$@" ${maven_profiles} ${maven_args}
+${maven_cmd} clean verify site site:stage "$@" ${maven_profiles} ${maven_args}

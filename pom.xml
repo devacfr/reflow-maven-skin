@@ -12,7 +12,9 @@ BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
   ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -185,7 +187,7 @@ governing permissions and limitations under
     <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
     <maven-changes-plugin.version>3.0.0-M3</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
-    <maven-clover-plugin.version>4.5.1</maven-clover-plugin.version>
+    <maven-clover-plugin.version>4.5.2</maven-clover-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
     <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
@@ -340,7 +342,7 @@ governing permissions and limitations under
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven-javadoc-plugin.version}</version>
           <configuration>
-            <additionalparam>${javadoc.opts}</additionalparam>
+            <doclint>none</doclint>
             <detectLinks>false</detectLinks>
           </configuration>
         </plugin>
@@ -648,19 +650,6 @@ governing permissions and limitations under
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.openclover</groupId>
-        <artifactId>clover-maven-plugin</artifactId>
-        <version>${maven-clover-plugin.version}</version>
-        <configuration>
-          <generateHtml>true</generateHtml>
-          <title>Reflow Maven Skin</title>
-          <!-- <targetPercentage>75%</targetPercentage> -->
-          <!-- Use custom report descriptor -->
-          <jdk>${maven.compiler.source}</jdk>
-          <singleCloverDatabase>true</singleCloverDatabase>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
@@ -773,18 +762,6 @@ governing permissions and limitations under
           <reportSet>
             <reports>
               <report>rat</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-      <plugin>
-        <groupId>org.openclover</groupId>
-        <artifactId>clover-maven-plugin</artifactId>
-        <version>${maven-clover-plugin.version}</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>clover</report>
             </reports>
           </reportSet>
         </reportSets>
@@ -966,15 +943,72 @@ governing permissions and limitations under
       </build>
     </profile>
     <profile>
-      <id>disable-java8-doclint</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
+      <id>clover.report</id>
       <properties>
-        <javadoc.opts>-Xdoclint:none</javadoc.opts>
+        <!-- Disable spotless check -->
+        <spotless.check.skip>true</spotless.check.skip>
       </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.openclover</groupId>
+              <artifactId>clover-maven-plugin</artifactId>
+              <version>${maven-clover-plugin.version}</version>
+              <configuration>
+                <generateHtml>true</generateHtml>
+                <generateHistorical>true</generateHistorical>
+                <title>Reflow Maven Skin</title>
+                <targetPercentage>70%</targetPercentage>
+                <jdk>${maven.compiler.source}</jdk>
+                <historyDir>${user.home}/.clover/clover/history</historyDir>
+                <excludes>
+                  <exclude>**/org/devacfr/testing/**/*.java</exclude>
+                </excludes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.openclover</groupId>
+            <artifactId>clover-maven-plugin</artifactId>
+            <version>${maven-clover-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>clover</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>instrument</goal>
+                  <goal>check</goal>
+                  <goal>log</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>site</id>
+                <phase>pre-site</phase>
+                <goals>
+                  <goal>instrument</goal>
+                  <goal>aggregate</goal>
+                  <!-- We save a history point in order to have data to generate a historical
+                    report -->
+                  <goal>save-history</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.openclover</groupId>
+            <artifactId>clover-maven-plugin</artifactId>
+            <version>${maven-clover-plugin.version}</version>
+          </plugin>
+        </plugins>
+      </reporting>
     </profile>
-
     <profile>
       <id>only-eclipse</id>
       <activation>
