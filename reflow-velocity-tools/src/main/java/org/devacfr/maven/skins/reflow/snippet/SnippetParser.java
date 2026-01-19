@@ -144,6 +144,9 @@ public class SnippetParser {
    */
   public boolean hasIncludedSnippetComponent(final Element document) {
     final String tags = getSnippets().stream().collect(Collectors.joining(","));
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("Check document for snippet components: {}", tags);
+    }
     return Collector.findFirst(QueryParser.parse(tags), document) != null;
   }
 
@@ -252,6 +255,13 @@ public class SnippetParser {
         for (final String file : files) {
           final SnippetResource resource = new SnippetResource(file, path + '/' + file);
           final String name = FilenameUtils.getBaseName(file);
+          final String ext = FilenameUtils.getExtension(file);
+          if (!ext.equalsIgnoreCase("vm")) {
+            if (LOGGER.isDebugEnabled()) {
+              LOGGER.debug("Ignore snippet resource with unsupported extension: {} (allowed: vm)", file);
+            }
+            continue;
+          }
           if (!name.startsWith("_")) {
             resources.put(name, resource);
           }
