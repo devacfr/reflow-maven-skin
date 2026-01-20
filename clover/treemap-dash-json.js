@@ -1,22 +1,22 @@
-var treeMapJson = {"id":"Clover database mar. avr. 16 2024 08:19:06 CEST0","name":"","data":{
-    "$area":2265.0,"$color":74.21634,"title":
-    " 2265 Elements, 74,2% Coverage"},"children":[{"id":
+var treeMapJson = {"id":"Clover database mar. janv. 20 2026 12:32:22 CET0","name":"","data":{
+    "$area":2695.0,"$color":72.282005,"title":
+    " 2695 Elements, 72,3% Coverage"},"children":[{"id":
       "org.devacfr.maven.skins.reflow0","name":
-      "org.devacfr.maven.skins.reflow","data":{"$area":918.0,"$color":
-        77.99564,"title":
-        "org.devacfr.maven.skins.reflow 918 Elements, 78% Coverage"},
-      "children":[]},{"id":"org.devacfr.maven.skins.reflow.model1050","name":
-      "org.devacfr.maven.skins.reflow.model","data":{"$area":552.0,"$color":
-        63.224636,"title":
-        "org.devacfr.maven.skins.reflow.model 552 Elements, 63,2% Coverage"},
-      "children":[]},{"id":"org.devacfr.maven.skins.reflow.context918",
+      "org.devacfr.maven.skins.reflow","data":{"$area":1202.0,"$color":
+        70.79867,"title":
+        "org.devacfr.maven.skins.reflow 1202 Elements, 70,8% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.model1525","name":
+      "org.devacfr.maven.skins.reflow.model","data":{"$area":560.0,"$color":
+        63.39286,"title":
+        "org.devacfr.maven.skins.reflow.model 560 Elements, 63,4% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.context2085",
       "name":"org.devacfr.maven.skins.reflow.context","data":{"$area":
-        132.0,"$color":85.606064,"title":
-        "org.devacfr.maven.skins.reflow.context 132 Elements, 85,6% Coverage"},
-      "children":[]},{"id":"org.devacfr.maven.skins.reflow.snippet1602",
+        134.0,"$color":87.31343,"title":
+        "org.devacfr.maven.skins.reflow.context 134 Elements, 87,3% Coverage"},
+      "children":[]},{"id":"org.devacfr.maven.skins.reflow.snippet2413",
       "name":"org.devacfr.maven.skins.reflow.snippet","data":{"$area":
-        663.0,"$color":75.86727,"title":
-        "org.devacfr.maven.skins.reflow.snippet 663 Elements, 75,9% Coverage"},
+        799.0,"$color":78.22278,"title":
+        "org.devacfr.maven.skins.reflow.snippet 799 Elements, 78,2% Coverage"},
       "children":[]}]}
 ;
 processTreeMapDashJson (treeMapJson);

@@ -1,0 +1,223 @@
+
+<html>
+ <head></head>
+ <body>
+  <div class="row no-gutters">
+   <div class="col-lg-12 col-xl-9">
+    <a id="Buttons"></a>
+    <h1 id="doc-snippets-buttons_toc_buttons">Buttons</h1>
+    <span class="badge badge-primary">New in v2.4</span><span class="ml-1 badge badge-info">SHORTCODE</span>
+    <p><a href="https://getbootstrap.com/docs/4.6/components/buttons/" class="externalLink">Based on Bootstrap Buttons page</a></p>
+    <p>Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p>
+    <a id="Examples"></a>
+    <h2 id="doc-snippets-buttons_toc_examples">Examples</h2>
+    <p>Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.</p>
+    <div class="bd-example">
+     <button class="btn-primary btn" type="button">Primary</button>
+     <button class="btn-secondary btn" type="button">Secondary</button>
+     <button class="btn-success btn" type="button">Success</button>
+     <button class="btn-danger btn" type="button">Danger</button>
+     <button class="btn btn-warning" type="button">Warning</button>
+     <button class="btn-info btn" type="button">Info</button>
+     <button class="btn-light btn" type="button">Light</button>
+     <button class="btn-dark btn" type="button">Dark</button>
+     <button class="btn-link btn" type="button">Link</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" &gt;}}Primary{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}Secondary{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="success" &gt;}}Success{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="danger" &gt;}}Danger{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="warning" &gt;}}Warning{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="info" &gt;}}Info{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="light" &gt;}}Light{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="dark" &gt;}}Dark{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="link" &gt;}}Link{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-callout bd-callout-warning">
+     <h5 class="no-anchor">Conveying meaning to assistive technologies</h5>
+     Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the <code>.sr-only</code> class.
+    </div>
+    <a id="Disable_text_wrapping"></a>
+    <h2 id="doc-snippets-buttons_toc_disable-text-wrapping">Disable text wrapping</h2>
+    <p>If you don’t want the button text to wrap, you can add the <code>.text-nowrap</code> class to the button. In Sass, you can set <code>$btn-white-space: nowrap</code> to disable text wrapping for each button.</p>
+    <a id="Button_tags"></a>
+    <h2 id="doc-snippets-buttons_toc_button-tags">Button tags</h2>
+    <p>The .btn classes are designed to be used with the <code>&lt;button&gt;</code> element. However, you can also use these classes on <code>&lt;a&gt;</code> elements (though some browsers may apply a slightly different rendering).</p>
+    <p>When using button classes on <code>&lt;a&gt;</code> elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a <code>role="button"</code> to appropriately convey their purpose to assistive technologies such as screen readers.</p>
+    <div class="bd-example">
+     <a class="btn-primary btn" href="#" role="button"> Link </a>
+     <button class="btn-primary btn" type="submit">Link</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" href="#" &gt;}}Link{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="primary" type="submit" &gt;}}Link{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <a id="Outline_buttons"></a>
+    <h2 id="doc-snippets-buttons_toc_outline-buttons">Outline buttons</h2>
+    <p>In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the <code>.btn-outline-*</code> ones to remove all background images and colors on any button.</p>
+    <div class="bd-example">
+     <button class="btn-outline-primary btn" type="button">Primary</button>
+     <button class="btn btn-outline-secondary" type="button">Secondary</button>
+     <button class="btn-outline-success btn" type="button">Success</button>
+     <button class="btn-outline-danger btn" type="button">Danger</button>
+     <button class="btn-outline-warning btn" type="button">Warning</button>
+     <button class="btn-outline-info btn" type="button">Info</button>
+     <button class="btn-outline-light btn" type="button">Light</button>
+     <button class="btn-outline-dark btn" type="button">Dark</button>
+     <button class="btn btn-outline-link" type="button">Link</button>
+     <pre><code class="language-html">{{&lt; bs-button color="outline-primary" &gt;}}Primary{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-secondary" &gt;}}Secondary{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-success" &gt;}}Success{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-danger" &gt;}}Danger{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-warning" &gt;}}Warning{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-info" &gt;}}Info{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-light" &gt;}}Light{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-dark" &gt;}}Dark{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="outline-link" &gt;}}Link{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-callout bd-callout-info">Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast.</div>
+    <a id="Sizes"></a>
+    <h2 id="doc-snippets-buttons_toc_sizes">Sizes</h2>
+    <p>Fancy larger or smaller buttons? Add <code>.btn-lg</code> or <code>.btn-sm</code> for additional sizes.</p>
+    <div class="bd-example">
+     <button class="btn-primary btn-lg btn" type="button">Large button</button>
+     <button class="btn-secondary btn-lg btn" type="button">Large button</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" class="btn-lg" &gt;}}Large button{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" class="btn-lg" &gt;}}Large button{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-example">
+     <button class="btn-sm btn-primary btn" type="button">Small button</button>
+     <button class="btn-secondary btn-sm btn" type="button">Small button</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" class="btn-sm" &gt;}}Small button{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" class="btn-sm" &gt;}}Small button{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <p>Create block level buttons—those that span the full width of a parent—by adding <code>.btn-block</code>.</p>
+    <div class="bd-example">
+     <button class="btn-block btn-primary btn-lg btn" type="button">Block level button</button>
+     <button class="btn-block btn-secondary btn-lg btn" type="button">Block level button</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" class="btn-lg btn-block" &gt;}}Block level button{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" class="btn-lg btn-block" &gt;}}Block level button{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <a id="Active_state"></a>
+    <h2 id="doc-snippets-buttons_toc_active-state">Active state</h2>
+    <p>Buttons will appear pressed when active with a darker background, darker border, and, when shadows are enabled, an inset shadow. <strong>There’s no need to add a class to <code>&lt;button&gt;</code>s as they use a pseudo-class</strong>. However, you can still force the same active appearance with <code>.active</code> (and include the <code>aria-pressed=“true”</code> attribute) should you need to replicate the state programmatically.</p>
+    <div class="bd-example">
+     <a class="active btn-primary btn-lg btn" href="#" role="button" aria-pressed="true"> Primary link </a> <a class="active btn-secondary btn-lg btn" href="#" role="button" aria-pressed="true"> Link </a>
+     <pre><code class="language-html">{{&lt; bs-button href="#" color="primary" class="btn-lg active" aria-pressed="true" &gt;}}Primary link{{&lt; /bs-button &gt;}}
+{{&lt; bs-button href="#" color="secondary" class="btn-lg active" aria-pressed="true" &gt;}}Link{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <a id="Disabled_state"></a>
+    <h2 id="doc-snippets-buttons_toc_disabled-state">Disabled state</h2>
+    <p>Make buttons look inactive by adding the <code>disabled</code> boolean attribute to any <code>&lt;button&gt;</code> element.</p>
+    <div class="bd-example">
+     <button class="btn-primary btn-lg btn" type="button" disabled="true">Primary button</button>
+     <button class="btn-secondary btn-lg btn" type="button" disabled="true">Button</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" class="btn-lg" disabled &gt;}}Primary button{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" class="btn-lg" disabled &gt;}}Button{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <p>Disabled buttons using the <code>&lt;a&gt;</code> element behave a bit different:</p>
+    <ul>
+     <li><code>&lt;a&gt;</code>s don’t support the <code>disabled</code> attribute, so you must add the <code>.disabled</code> class to make it visually appear disabled.</li>
+     <li>Some future-friendly styles are included to disable all <code>pointer-events</code> on anchor buttons. In browsers which support that property, you won’t see the disabled cursor at all.</li>
+     <li>Disabled buttons using <code>&lt;a&gt;</code> should include the <code>aria-disabled="true"</code> attribute to indicate the state of the element to assistive technologies.</li>
+     <li>Disabled buttons using <code>&lt;a&gt;</code> should not include the <code>href</code> attribute.</li>
+    </ul>
+    <div class="bd-example">
+     <a class="disabled btn-primary btn-lg btn" href="#" role="button"> Primary Link </a> <a class="btn-secondary disabled btn-lg btn" href="#" role="button"> Link </a>
+     <pre><code class="language-html">{{&lt; bs-button href="#" color="primary" class="btn-lg disabled" &gt;}}Primary Link{{&lt; /bs-button &gt;}}
+{{&lt; bs-button href="#" color="secondary" class="btn-lg disabled" &gt;}}Link{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <a id="Link_functionality_caveat"></a>
+    <h2 id="doc-snippets-buttons_toc_link-functionality-caveat">Link functionality caveat</h2>
+    <p>To cover cases where you have to keep the <code>href</code> attribute on a disabled link, the <code>.disabled</code> class uses <code>pointer-events: none</code> to try to disable the link functionality of <code>&lt;a&gt;</code>s. Note that this CSS property is not yet standardized for HTML, but all modern browsers support it. In addition, even in browsers that do support <code>pointer-events: none</code>, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, in addition to <code>aria-disabled="true"</code>, also include a <code>tabindex="-1</code>" attribute on these links to prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether.</p>
+    <div class="bd-example">
+     <a class="disabled btn-primary btn-lg btn" href="#" role="button"> Primary Link </a> <a class="btn-secondary disabled btn-lg btn" href="#" role="button"> Link </a>
+     <pre><code class="language-html">{{&lt; bs-button href="#" color="primary" class="btn-lg disabled" &gt;}}Primary Link{{&lt; /bs-button &gt;}}
+{{&lt; bs-button href="#" color="secondary" class="btn-lg disabled" &gt;}}Link{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <a id="Button_plugin"></a>
+    <h2 id="doc-snippets-buttons_toc_button-plugin">Button plugin</h2>
+    <p>Do more with buttons. Control button states or create groups of buttons for more components like toolbars.</p>
+    <a id="Toggle_states"></a>
+    <h3 id="doc-snippets-buttons_toc_toggle-states">Toggle states</h3>
+    <p>Add <code>data-toggle="button"</code> to toggle a button’s <code>active</code> state. If you’re pre-toggling a button, you must manually add the <code>.active</code> class and <code>aria-pressed="true"</code> to the <code>&lt;button&gt;</code>.</p>
+    <div class="bd-example">
+     <button class="btn-primary btn" type="button" data-toggle="button" aria-pressed="false">Single toggle</button>
+     <pre><code class="language-html">{{&lt; bs-button color="primary" data-toggle="button" aria-pressed="false" &gt;}}Single toggle{{&lt; /bs-button &gt;}}
+</code></pre>
+    </div>
+    <a id="Checkbox_and_radio_buttons"></a>
+    <h2 id="doc-snippets-buttons_toc_checkbox-and-radio-buttons">Checkbox and radio buttons</h2>
+    <p>Bootstrap’s <code>.button</code> styles can be applied to other elements, such as <code>&lt;label&gt;</code>s, to provide checkbox or radio style button toggling. Add <code>data-toggle="buttons"</code> to a <code>.btn-group</code> containing those modified buttons to enable their toggling behavior via JavaScript and add <code>.btn-group-toggle</code> to style the <code>&lt;input&gt;</code>s within your buttons. <strong>Note that you can create single input-powered buttons or groups of them</strong>.</p>
+    <p>The checked state for these buttons is <strong>only updated via <code>click</code> event</strong> on the button. If you use another method to update the input—e.g., with <code>&lt;input type="reset"&gt;</code> or by manually applying the input’s <code>checked</code> property—you’ll need to toggle <code>.active</code> on the <code>&lt;label&gt;</code> manually.</p>
+    <p>Note that pre-checked buttons require you to manually add the <code>.active</code> class to the input’s <code>&lt;label&gt;</code>.</p>
+    <div class="bd-example">
+     <div class="btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active"> <input type="checkbox" checked> Checked </label>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="btn-group-toggle" data-toggle="buttons" &gt;}}
+&lt;!--
+&lt;label class="btn btn-secondary active"&gt;
+  &lt;input type="checkbox" checked&gt; Checked
+&lt;/label&gt;
+--&gt;
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-example">
+     <div class="btn-group-toggle btn-group" data-toggle="buttons">
+      <label class="btn btn-secondary active"> <input type="radio" name="options" id="option1" checked> Active </label> <label class="btn btn-secondary"> <input type="radio" name="options" id="option2"> Radio </label> <label class="btn btn-secondary"> <input type="radio" name="options" id="option3"> Radio </label>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="btn-group btn-group-toggle" data-toggle="buttons" &gt;}}
+&lt;!--
+&lt;label class="btn btn-secondary active"&gt;
+  &lt;input type="radio" name="options" id="option1" checked&gt; Active
+&lt;/label&gt;
+&lt;label class="btn btn-secondary"&gt;
+  &lt;input type="radio" name="options" id="option2"&gt; Radio
+&lt;/label&gt;
+&lt;label class="btn btn-secondary"&gt;
+  &lt;input type="radio" name="options" id="option3"&gt; Radio
+&lt;/label&gt;
+--&gt;
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+   </div>
+   <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+    <div class="feedback-links">
+     <ul class="nav flex-column flex-nowrap">
+      <li class="nav-item"><a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/buttons.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a></li>
+     </ul>
+    </div>
+    <div id="m_toc_sidebar" class="d-print-none toc-sidebar-enabled toc-sidebar-expanded toc-sidebar-autoexpandable toc-sidebar-fixed">
+     <nav id="m_toc_sidebar_nav" class="flex-column">
+      <ul class="nav--sidebar nav flex-column flex-nowrap">
+       <li class="h1"><a class="nav-link" href="#doc-snippets-buttons_toc_buttons" title="Buttons">Buttons</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_examples" title="Examples">Examples</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_disable-text-wrapping" title="Disable text wrapping">Disable text wrapping</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_button-tags" title="Button tags">Button tags</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_outline-buttons" title="Outline buttons">Outline buttons</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_sizes" title="Sizes">Sizes</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_active-state" title="Active state">Active state</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_disabled-state" title="Disabled state">Disabled state</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_link-functionality-caveat" title="Link functionality caveat">Link functionality caveat</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_button-plugin" title="Button plugin">Button plugin</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-buttons_toc_toggle-states" title="Toggle states">Toggle states</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-buttons_toc_checkbox-and-radio-buttons" title="Checkbox and radio buttons">Checkbox and radio buttons</a></li>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

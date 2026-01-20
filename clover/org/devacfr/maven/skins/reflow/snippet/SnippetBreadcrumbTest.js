@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":96,"id":3284,"methods":[{"el":34,"sc":3,"sl":24},{"el":46,"sc":3,"sl":36},{"el":58,"sc":3,"sl":48},{"el":70,"sc":3,"sl":60},{"el":82,"sc":3,"sl":72},{"el":94,"sc":3,"sl":84}],"name":"SnippetBreadcrumbTest","sl":22}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_32":{"methods":[{"sl":60}],"name":"shouldDisplayVersionPositionToRight","pass":true,"statements":[{"sl":62},{"sl":63},{"sl":64},{"sl":65}]},"test_36":{"methods":[{"sl":36}],"name":"shouldDisplayDatePositionToRight","pass":true,"statements":[{"sl":38},{"sl":39},{"sl":40},{"sl":41}]},"test_73":{"methods":[{"sl":24}],"name":"shouldDisplayDatePositionToLeft","pass":true,"statements":[{"sl":26},{"sl":27},{"sl":28},{"sl":29}]},"test_79":{"methods":[{"sl":84}],"name":"shouldNotDisplayDateForUnrecognizedPosition","pass":true,"statements":[{"sl":86},{"sl":87},{"sl":88},{"sl":89}]},"test_83":{"methods":[{"sl":48}],"name":"shouldDisplayVersionPositionToLeft","pass":true,"statements":[{"sl":50},{"sl":51},{"sl":52},{"sl":53}]},"test_94":{"methods":[{"sl":72}],"name":"shouldNotDisplayDate","pass":true,"statements":[{"sl":74},{"sl":75},{"sl":76},{"sl":77}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [73], [], [73], [73], [73], [73], [], [], [], [], [], [], [36], [], [36], [36], [36], [36], [], [], [], [], [], [], [83], [], [83], [83], [83], [83], [], [], [], [], [], [], [32], [], [32], [32], [32], [32], [], [], [], [], [], [], [94], [], [94], [94], [94], [94], [], [], [], [], [], [], [79], [], [79], [79], [79], [79], [], [], [], [], [], [], []]

@@ -1,84 +1,710 @@
-<div class="row no-gutters">
-    <div class="col-lg-12 col-xl-9">
-<h1 id="doc-snippets-layout-grid_toc_layout-grid-system">Layout Grid system</h1> <span class="badge badge-primary">New in v2.4</span>
-<p>Bootstrap’s grid system uses a series of containers, rows, and columns to layout and align content. Below is an example and an in-depth look at how the grid comes together.</p>
-<div class="bd-example-row">
- <div class="container">
-  <div class="row">
-   <div class="col-sm">
-    <p>One of three columns</p>
-   </div>
-   <div class="col-sm">
-    <p>One of three columns</p>
-   </div>
-   <div class="col-sm">
-    <p>One of three columns</p>
-   </div>
-  </div>
- </div>
-</div>
-<div class="verbatim">
- <pre><code class="language-xml">{{&lt; layout class="container" &gt;}}
+
+<html>
+ <head></head>
+ <body>
+  <div class="row no-gutters">
+   <div class="col-lg-12 col-xl-9">
+    <a id="Layout_Grid_system"></a>
+    <h1 id="doc-snippets-layout-grid_toc_layout-grid-system">Layout Grid system</h1>
+    <span class="badge badge-primary">New in v2.4</span>
+    <p>Bootstrap’s grid system uses a series of containers, rows, and columns to layout and align content. Below is an example and an in-depth look at how the grid comes together.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col-sm">One of three columns</div>
+       <div class="col-sm">One of three columns</div>
+       <div class="col-sm">One of three columns</div>
+       <div class="col-sm"></div>
+      </div>
+     </div>
+     <pre><code class="language-xml">{{&lt; layout class="container" &gt;}}
 
 {{&lt; row &gt;}}
-
 {{&lt; column class="col-sm" &gt;}}
-
 One of three columns
-
 {{&lt; /column &gt;}}
-
 {{&lt; column class="col-sm" &gt;}}
-
 One of three columns
-
 {{&lt; /column &gt;}}
-
 {{&lt; column class="col-sm" &gt;}}
-
 One of three columns
-
 {{&lt; /column &gt;}}
-
+{{&lt; column class="col-sm" &gt;}}
+&lt;!-- Accept empty column --&gt;
+{{&lt; /column &gt;}}
 {{&lt; /row &gt;}}
 
 {{&lt; /layout &gt;}}
 </code></pre>
-</div>
-<h2 id="doc-snippets-layout-grid_toc_usage">Usage</h2>
-<h3 id="doc-snippets-layout-grid_toc_layout-shortcode">Layout Shortcode</h3> <span class="badge badge-info">SHORTCODE</span>
-<h3 id="doc-snippets-layout-grid_toc_row-shortcode">Row Shortcode</h3> <span class="badge badge-info">SHORTCODE</span>
-<h3 id="doc-snippets-layout-grid_toc_column-shortcode">Column Shortcode</h3> <span class="badge badge-info">SHORTCODE</span>    </div>
-    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
-        <div class="feedback-links">
-            <ul class="nav flex-column flex-nowrap">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/layout-grid.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
-                </li>
-            </ul>
-        </div>
-            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
-                <nav id="m-toc-sidebar-nav flex-column">
-                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
-    <li class="h1">
-        <a class="nav-link" href="#doc-snippets-layout-grid_toc_layout-grid-system" title="Layout Grid system">Layout Grid system</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#doc-snippets-layout-grid_toc_usage" title="Usage">Usage</a>
-    </li>
-    <ul class="nav flex-column flex-nowrap nav-collapsible">
-            <li class="h3">
-        <a class="nav-link" href="#doc-snippets-layout-grid_toc_layout-shortcode" title="Layout Shortcode">Layout Shortcode</a>
-    </li>
-    <li class="h3">
-        <a class="nav-link" href="#doc-snippets-layout-grid_toc_row-shortcode" title="Row Shortcode">Row Shortcode</a>
-    </li>
-    <li class="h3">
-        <a class="nav-link" href="#doc-snippets-layout-grid_toc_column-shortcode" title="Column Shortcode">Column Shortcode</a>
-    </li>
-    </ul>
-                    </ul>
-                </nav>
-           </div>
     </div>
-</div>
+    <p>The above example creates three equal-width columns on small, medium, large, and extra large devices using our predefined grid classes. Those columns are centered in the page with the parent <code>.container</code>.</p>
+    <p>Breaking it down, here’s how it works:</p>
+    <ul>
+     <li>Containers provide a means to center and horizontally pad your site’s contents. Use <code>.container</code> for a responsive pixel width or <code>.container-fluid</code> for <code>width: 100%</code> across all viewport and device sizes.</li>
+     <li>Rows are wrappers for columns. Each column has horizontal <code>padding</code> (called a gutter) for controlling the space between them. This <code>padding</code> is then counteracted on the rows with negative margins. This way, all the content in your columns is visually aligned down the left side.</li>
+     <li>In a grid layout, content must be placed within columns and only columns may be immediate children of rows.</li>
+     <li>Thanks to flexbox, grid columns without a specified <code>width</code> will automatically layout as equal width columns. For example, four instances of <code>.col-sm</code> will each automatically be 25% wide from the small breakpoint and up. See the <a href="https://getbootstrap.com/docs/4.6/layout/grid/#auto-layout-columns" class="externalLink">auto-layout columns</a> section for more examples.</li>
+     <li>Column classes indicate the number of columns you’d like to use out of the possible 12 per row. So, if you want three equal-width columns across, you can use <code>.col-4</code>.</li>
+     <li>Column <code>width</code>s are set in percentages, so they’re always fluid and sized relative to their parent element.</li>
+     <li>Columns have horizontal <code>padding</code> to create the gutters between individual columns, however, you can remove the <code>margin</code> from rows and <code>padding</code> from columns with <code>.no-gutters</code> on the <code>.row</code>.</li>
+     <li>To make the grid responsive, there are five grid breakpoints, one for each <a href="https://getbootstrap.com/docs/4.6/layout/overview/#responsive-breakpoints" class="externalLink">responsive breakpoint</a>: all breakpoints (extra small), small, medium, large, and extra large.</li>
+     <li>Grid breakpoints are based on minimum width media queries, meaning <strong>they apply to that one breakpoint and all those above it</strong> (e.g., <code>.col-sm-4</code> applies to small, medium, large, and extra large devices, but not the first <code>xs</code> breakpoint).</li>
+     <li>You can use predefined grid classes (like <code>.col-4</code>) or <a href="https://getbootstrap.com/docs/4.6/layout/grid/#sass-mixins" class="externalLink">Sass mixins</a> for more semantic markup.</li>
+    </ul>
+    <p>Be aware of the limitations and <a href="https://github.com/philipwalton/flexbugs" class="externalLink">bugs around flexbox</a>, like the <a href="https://github.com/philipwalton/flexbugs#flexbug-9" class="externalLink">inability to use some HTML elements as flex containers</a>.</p>
+    <a id="Auto-layout_columns"></a>
+    <h2 id="doc-snippets-layout-grid_toc_auto-layout-columns">Auto-layout columns</h2>
+    <p>Utilize breakpoint-specific column classes for easy column sizing without an explicit numbered class like <code>.col-sm-6</code>.</p>
+    <a id="Equal-width"></a>
+    <h3 id="doc-snippets-layout-grid_toc_equal-width">Equal-width</h3>
+    <p>For example, here are two grid layouts that apply to every device and viewport, from <code>xs</code> to <code>xl</code>. Add any number of unit-less classes for each breakpoint you need and every column will be the same width.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col">1 of 2</div>
+       <div class="col">2 of 2</div>
+      </div>
+      <div class="row">
+       <div class="col">1 of 3</div>
+       <div class="col">2 of 3</div>
+       <div class="col">3 of 3</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}
+      1 of 2
+    {{&lt; /column &gt;}}
+    {{&lt; column &gt;}}
+      2 of 2
+    {{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}
+      1 of 3
+    {{&lt; /column &gt;}}
+    {{&lt; column &gt;}}
+      2 of 3
+    {{&lt; /column &gt;}}
+    {{&lt; column &gt;}}
+      3 of 3
+    {{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Equal-width_multi-line"></a>
+    <h3 id="doc-snippets-layout-grid_toc_equal-width-multi-line">Equal-width multi-line</h3>
+    <p>Create equal-width columns that span multiple lines by inserting a <code>.w-100</code> where you want the columns to break to a new line. Make the breaks responsive by mixing <code>.w-100</code> with some <a href="https://getbootstrap.com/docs/4.6/utilities/display/" class="externalLink">responsive display utilities</a>.</p>
+    <p>There was a <a href="https://github.com/philipwalton/flexbugs#flexbug-11" class="externalLink">Safari flexbox bug</a> that prevented this from working without an explicit <code>flex-basis</code> or <code>border</code>. There are workarounds for older browser versions, but they shouldn’t be necessary if your target browsers don’t fall into the buggy versions.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="w-100"></div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; layout class="w-100" &gt;}}{{&lt; /layout &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Setting_one_column_width"></a>
+    <h3 id="doc-snippets-layout-grid_toc_setting-one-column-width">Setting one column width</h3>
+    <p>Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note that the other columns will resize no matter the width of the center column.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col">1 of 3</div>
+       <div class="col-6">2 of 3 (wider)</div>
+       <div class="col">3 of 3</div>
+      </div>
+      <div class="row">
+       <div class="col">1 of 3</div>
+       <div class="col-5">2 of 3 (wider)</div>
+       <div class="col">3 of 3</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}1 of 3{{&lt; /column &gt;}}
+    {{&lt; column class="col-6" &gt;}}2 of 3 (wider){{&lt; /column &gt;}}
+    {{&lt; column &gt;}}3 of 3{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}1 of 3{{&lt; /column &gt;}}
+    {{&lt; column class="col-5" &gt;}}2 of 3 (wider){{&lt; /column &gt;}}
+    {{&lt; column &gt;}}3 of 3{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Variable_width_content"></a>
+    <h3 id="doc-snippets-layout-grid_toc_variable-width-content">Variable width content</h3>
+    <p>Use <code>col-{breakpoint}-auto</code> classes to size columns based on the natural width of their content.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row justify-content-md-center">
+       <div class="col-lg-2">1 of 3</div>
+       <div class="col-md-auto">2 of 3 (wider)</div>
+       <div class="col-lg-2">3 of 3</div>
+      </div>
+      <div class="row">
+       <div class="col">1 of 3</div>
+       <div class="col-md-auto">Variable width content</div>
+       <div class="col-lg-2">3 of 3</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="justify-content-md-center" &gt;}}
+    {{&lt; column class="col-lg-2" &gt;}}1 of 3{{&lt; /column &gt;}}
+    {{&lt; column class="col-md-auto" &gt;}}2 of 3 (wider){{&lt; /column &gt;}}
+    {{&lt; column class="col-lg-2" &gt;}}3 of 3{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}1 of 3{{&lt; /column &gt;}}
+    {{&lt; column class="col-md-auto" &gt;}}Variable width content{{&lt; /column &gt;}}
+    {{&lt; column class="col-lg-2" &gt;}}3 of 3{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Responsive_classes"></a>
+    <h2 id="doc-snippets-layout-grid_toc_responsive-classes">Responsive classes</h2>
+    <p>Bootstrap’s grid includes five tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.</p>
+    <a id="All_breakpoints"></a>
+    <h3 id="doc-snippets-layout-grid_toc_all-breakpoints">All breakpoints</h3>
+    <p>For grids that are the same from the smallest of devices to the largest, use the <code>.col</code> and <code>.col-*</code> classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to <code>.col</code>.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+      </div>
+      <div class="row">
+       <div class="col-8">.col-8</div>
+       <div class="col-4">.col-4</div>
+       <br>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-8" &gt;}}.col-8{{&lt; /column &gt;}}
+    {{&lt; column class="col-4" &gt;}}.col-4{{&lt; /column &gt;}}  
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Stacked_to_horizontal"></a>
+    <h3 id="doc-snippets-layout-grid_toc_stacked-to-horizontal">Stacked to horizontal</h3>
+    <p>Using a single set of <code>.col-sm-*</code> classes, you can create a basic grid system that starts out stacked and becomes horizontal at the small breakpoint (<code>sm</code>).</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col-sm-8">.col-sm-8</div>
+       <div class="col-sm-4">.col-sm-4</div>
+      </div>
+      <div class="row">
+       <div class="col-sm">.col-sm</div>
+       <div class="col-sm">.col-sm</div>
+       <div class="col-sm">.col-sm</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-sm-8" &gt;}}.col-sm-8{{&lt; /column &gt;}}
+    {{&lt; column class="col-sm-4" &gt;}}.col-sm-4{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-sm" &gt;}}.col-sm{{&lt; /column &gt;}}
+    {{&lt; column class="col-sm" &gt;}}.col-sm{{&lt; /column &gt;}}
+    {{&lt; column class="col-sm" &gt;}}.col-sm{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Mix_and_match"></a>
+    <h3 id="doc-snippets-layout-grid_toc_mix-and-match">Mix and match</h3>
+    <p>Don’t want your columns to simply stack in some grid tiers? Use a combination of different classes for each tier as needed. See the example below for a better idea of how it all works.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col-md-8">.col-md-8</div>
+       <div class="col-md-4 col-6">.col-6 .col-md-4</div>
+      </div>
+      <div class="row">
+       <div class="col-md-4 col-6">.col-6 .col-md-4</div>
+       <div class="col-md-4 col-6">.col-6 .col-md-4</div>
+       <div class="col-md-4 col-6">.col-6 .col-md-4</div>
+      </div>
+      <div class="row">
+       <div class="col-6">.col-6</div>
+       <div class="col-6">.col-6</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  &lt;!-- Stack the columns on mobile by making one full-width and the other half-width --&gt;
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-md-8" &gt;}}.col-md-8{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-md-4" &gt;}}.col-6 .col-md-4{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  &lt;!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop --&gt;
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-6 col-md-4" &gt;}}.col-6 .col-md-4{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-md-4" &gt;}}.col-6 .col-md-4{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-md-4" &gt;}}.col-6 .col-md-4{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  &lt;!-- Columns are always 50% wide, on mobile and desktop --&gt;
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-6" &gt;}}.col-6{{&lt; /column &gt;}}
+    {{&lt; column class="col-6" &gt;}}.col-6{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Gutters"></a>
+    <h3 id="doc-snippets-layout-grid_toc_gutters">Gutters</h3>
+    <p>Gutters can be responsively adjusted by breakpoint-specific padding and negative margin utility classes. To change the gutters in a given row, pair a negative margin utility on the <code>.row</code> and matching padding utilities on the <code>.col</code>s. The <code>.container</code> or <code>.container-fluid</code> parent may need to be adjusted too to avoid unwanted overflow, using again matching padding utility.</p>
+    <p>Here’s an example of customizing the Bootstrap grid at the large (<code>lg</code>) breakpoint and above. We’ve increased the <code>.col</code> padding with <code>.px-lg-5</code>, counteracted that with <code>.mx-lg-n5</code> on the parent <code>.row</code> and then adjusted the <code>.container</code> wrapper with <code>.px-lg-5</code>.</p>
+    <div class="bd-example-row">
+     <div class="container px-lg-5">
+      <div class="mx-lg-n5 row">
+       <div class="border col px-lg-5 py-3 bg-light">Custom column padding</div>
+       <div class="border col px-lg-5 py-3 bg-light">Custom column padding</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container px-lg-5" &gt;}}
+  {{&lt; row class="mx-lg-n5" &gt;}}
+    {{&lt; column class="py-3 px-lg-5 border bg-light" &gt;}}Custom column padding{{&lt; /column &gt;}}
+    {{&lt; column class="py-3 px-lg-5 border bg-light" &gt;}}Custom column padding{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Row_columns"></a>
+    <h3 id="doc-snippets-layout-grid_toc_row-columns">Row columns</h3>
+    <p>Use the responsive <code>.row-cols-*</code> classes to quickly set the number of columns that best render your content and layout. Whereas normal <code>.col-*</code> classes apply to the individual columns (e.g., <code>.col-md-4</code>), the row columns classes are set on the parent <code>.row</code> as a shortcut.</p>
+    <p>Use these row columns classes to quickly create basic grid layouts or to control your card layouts.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row-cols-2 row">
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="row-cols-2" &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row row-cols-3">
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="row-cols-3" &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row row-cols-4">
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col-6">.col-6</div>
+       <div class="col">col</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="row-cols-4" &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column class="col-6" &gt;}}.col-6{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row-cols-1 row-cols-sm-2 row-cols-md-4 row">
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+       <div class="col">col</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="row-cols-1 row-cols-sm-2 row-cols-md-4" &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}col{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <p>You can also use the accompanying Sass mixin, <code>row-cols()</code>:</p>
+    <pre><code class="language-scss">.element {
+  // Three columns to start
+  @include row-cols(3);
+
+  // Five columns from medium breakpoint up
+  @include media-breakpoint-up(md) {
+    @include row-cols(5);
+  }
+}
+</code></pre>
+    <a id="Alignment"></a>
+    <h2 id="doc-snippets-layout-grid_toc_alignment">Alignment</h2>
+    <p>Use flexbox alignment utilities to vertically and horizontally align columns. <strong>Internet Explorer 10-11 do not support vertical alignment of flex items when the flex container has a <code>min-height</code> as shown below</strong>. See <a href="https://github.com/philipwalton/flexbugs#flexbug-3" class="externalLink">Flexbugs #3 for more details</a>.</p>
+    <a id="Vertical_alignment"></a>
+    <h3 id="doc-snippets-layout-grid_toc_vertical-alignment">Vertical alignment</h3>
+    <div class="bd-example-row bd-example-row-flex-cols">
+     <div class="container">
+      <div class="align-items-start row">
+       <div class="col">One of three columns</div>
+       <div class="col">One of three columns</div>
+       <div class="col">One of three columns</div>
+      </div>
+      <div class="align-items-center row">
+       <div class="col">One of three columns</div>
+       <div class="col">One of three columns</div>
+       <div class="col">One of three columns</div>
+      </div>
+      <div class="align-items-end row">
+       <div class="col">One of three columns</div>
+       <div class="col">One of three columns</div>
+       <div class="col">One of three columns</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="align-items-start" &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+
+  {{&lt; row class="align-items-center" &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+
+  {{&lt; row class="align-items-end" &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}One of three columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <div class="bd-example-row bd-example-row-flex-cols">
+     <div class="container">
+      <div class="row">
+       <div class="col align-self-start">One of three columns</div>
+       <div class="col align-self-center">One of three columns</div>
+       <div class="align-self-end col">One of three columns</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="align-self-start" &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column class="align-self-center" &gt;}}One of three columns{{&lt; /column &gt;}}
+    {{&lt; column class="align-self-end" &gt;}}One of three columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Horizontal_alignment"></a>
+    <h3 id="doc-snippets-layout-grid_toc_horizontal-alignment">Horizontal alignment</h3>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="justify-content-start row">
+       <div class="col-4">One of two columns</div>
+       <div class="col-4">One of two columns</div>
+      </div>
+      <div class="justify-content-center row">
+       <div class="col-4">One of two columns</div>
+       <div class="col-4">One of two columns</div>
+      </div>
+      <div class="row justify-content-end">
+       <div class="col-4">One of two columns</div>
+       <div class="col-4">One of two columns</div>
+      </div>
+      <div class="justify-content-around row">
+       <div class="col-4">One of two columns</div>
+       <div class="col-4">One of two columns</div>
+      </div>
+      <div class="row justify-content-between">
+       <div class="col-4">One of two columns</div>
+       <div class="col-4">One of two columns</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="justify-content-start" &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row class="justify-content-center" &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row class="justify-content-end" &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row class="justify-content-around" &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+  {{&lt; row class="justify-content-between" &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+    {{&lt; column class="col-4" &gt;}}One of two columns{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="No_gutters"></a>
+    <h3 id="doc-snippets-layout-grid_toc_no-gutters">No gutters</h3>
+    <p>The gutters between columns in our predefined grid classes can be removed with <code>.no-gutters</code>. This removes the negative <code>margins</code> from <code>.row</code> and the horizontal <code>padding</code> from all immediate children columns.</p>
+    <p>Here’s the source code for creating these styles. Note that column overrides are scoped to only the first children columns and are targeted via <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors" class="externalLink">attribute selector</a>. While this generates a more specific selector, column padding can still be further customized with <a href="https://getbootstrap.com/docs/4.6/utilities/spacing/" class="externalLink">spacing utilities</a>.</p>
+    <p><strong>Need an edge-to-edge design?</strong> Drop the parent <code>.container</code> or <code>.container-fluid</code>.</p>
+    <pre><code class="language-css">.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  &gt; .col,
+  &gt; [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+</code></pre>
+    <p>In practice, here’s how it looks. Note you can continue to use this with all other predefined grid classes (including column widths, responsive tiers, reorders, and more).</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row no-gutters">
+       <div class="col-sm-6 col-md-8">.col-sm-6 .col-md-8</div>
+       <div class="col-md-4 col-6">.col-6 .col-md-4</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row class="no-gutters" &gt;}}
+    {{&lt; column class="col-sm-6 col-md-8" &gt;}}.col-sm-6 .col-md-8{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-md-4" &gt;}}.col-6 .col-md-4{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Column_wrapping"></a>
+    <h3 id="doc-snippets-layout-grid_toc_column-wrapping">Column wrapping</h3>
+    <p>If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col-4">
+        .col-4
+        <br>
+        Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.
+       </div>
+       <div class="col-6">
+        .col-6
+        <br>
+        Subsequent columns continue along the new line.
+       </div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-4" &gt;}}
+    &lt;!--
+    .col-4&lt;br&gt;Since 9 + 4 = 13 &amp;gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.
+    --&gt;
+    {{&lt; /column &gt;}}
+    {{&lt; column class="col-6" &gt;}}
+    &lt;!--
+    .col-6&lt;br&gt;Subsequent columns continue along the new line.
+    --&gt;
+    {{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Column_breaks"></a>
+    <h3 id="doc-snippets-layout-grid_toc_column-breaks">Column breaks</h3>
+    <p>Breaking columns to a new line in flexbox requires a small hack: add an element with <code>width: 100%</code> wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple <code>.row</code>s, but not every implementation method can account for this.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+       <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+       <div class="w-100"></div>
+       <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+       <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-6 col-sm-3" &gt;}}.col-6 .col-sm-3{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-sm-3" &gt;}}.col-6 .col-sm-3{{&lt; /column &gt;}}
+    &lt;!-- Force next columns to break to new line --&gt;
+    {{&lt; layout class="w-100" /&gt;}}
+    {{&lt; column class="col-6 col-sm-3" &gt;}}.col-6 .col-sm-3{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-sm-3" &gt;}}.col-6 .col-sm-3{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <p>You may also apply this break at specific breakpoints with our <a href="https://getbootstrap.com/docs/4.6/utilities/display/" class="externalLink">responsive display utilities</a>.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col-sm-4 col-6">.col-6 .col-sm-4</div>
+       <div class="col-sm-4 col-6">.col-6 .col-sm-4</div>
+       <div class="d-none d-md-block w-100"></div>
+       <div class="col-sm-4 col-6">.col-6 .col-sm-4</div>
+       <div class="col-sm-4 col-6">.col-6 .col-sm-4</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="col-6 col-sm-4" &gt;}}.col-6 .col-sm-4{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-sm-4" &gt;}}.col-6 .col-sm-4{{&lt; /column &gt;}}
+    &lt;!-- Force next columns to break to new line at md breakpoint and up --&gt;
+    {{&lt; layout class="w-100 d-none d-md-block" /&gt;}}
+    {{&lt; column class="col-6 col-sm-4" &gt;}}.col-6 .col-sm-4{{&lt; /column &gt;}}
+    {{&lt; column class="col-6 col-sm-4" &gt;}}.col-6 .col-sm-4{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Reordering"></a>
+    <h2 id="doc-snippets-layout-grid_toc_reordering">Reordering</h2>
+    <a id="Order_classes"></a>
+    <h3 id="doc-snippets-layout-grid_toc_order-classes">Order classes</h3>
+    <p>Use <code>.order-</code> classes for controlling the <strong>visual order</strong> of your content. These classes are responsive, so you can set the <code>order</code> by breakpoint (e.g., <code>.order-1.order-md-2</code>). Includes support for <code>1</code> through <code>12</code> across all five grid tiers.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col">First in DOM, no order applied</div>
+       <div class="col order-12">Second in DOM, with a larger order</div>
+       <div class="col order-1">Third in DOM, with an order of 1</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column &gt;}}First in DOM, no order applied{{&lt; /column &gt;}}
+    {{&lt; column class="order-12" &gt;}}Second in DOM, with a larger order{{&lt; /column &gt;}}
+    {{&lt; column class="order-1" &gt;}}Third in DOM, with an order of 1{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <p>There are also responsive <code>.order-first</code> and <code>.order-last</code> classes that change the <code>order</code> of an element by applying <code>order: -1</code> and <code>order: 13</code> (<code>order: $columns + 1</code>), respectively. These classes can also be intermixed with the numbered <code>.order-*</code> classes as needed.</p>
+    <div class="bd-example-row">
+     <div class="container">
+      <div class="row">
+       <div class="col order-last">First in DOM, ordered last</div>
+       <div class="col">Second in DOM, with a larger order</div>
+       <div class="col order-first">Third in DOM, ordered first</div>
+      </div>
+     </div>
+     <pre><code class="language-html">{{&lt; layout class="container" &gt;}}
+  {{&lt; row &gt;}}
+    {{&lt; column class="order-last" &gt;}}First in DOM, ordered last{{&lt; /column &gt;}}
+    {{&lt; column &gt;}}Second in DOM, with a larger order{{&lt; /column &gt;}}
+    {{&lt; column class="order-first" &gt;}}Third in DOM, ordered first{{&lt; /column &gt;}}
+  {{&lt; /row &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+    </div>
+    <a id="Offsetting_columns"></a>
+    <h3 id="doc-snippets-layout-grid_toc_offsetting-columns">Offsetting columns</h3>
+    <p>You can offset grid columns in two ways: our responsive <code>.offset-</code> grid classes and our <a href="https://getbootstrap.com/docs/4.6/utilities/spacing/" class="externalLink">margin utilities</a>. Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.</p>
+    <a id="Offset_classes"></a>
+    <h4 id="doc-snippets-layout-grid_toc_offset-classes">Offset classes</h4>
+    <p>Move columns to the right using <code>.offset-md-*</code> classes. These classes increase the left margin of a column by <code>*</code> columns. For example, ? moves <code>.col-md-4</code> over four columns.</p>
+   </div>
+   <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+    <div class="feedback-links">
+     <ul class="nav flex-column flex-nowrap">
+      <li class="nav-item"><a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/layout-grid.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a></li>
+     </ul>
+    </div>
+    <div id="m_toc_sidebar" class="d-print-none toc-sidebar-enabled toc-sidebar-expanded toc-sidebar-autoexpandable toc-sidebar-fixed">
+     <nav id="m_toc_sidebar_nav" class="flex-column">
+      <ul class="nav--sidebar nav flex-column flex-nowrap">
+       <li class="h1"><a class="nav-link" href="#doc-snippets-layout-grid_toc_layout-grid-system" title="Layout Grid system">Layout Grid system</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-layout-grid_toc_auto-layout-columns" title="Auto-layout columns">Auto-layout columns</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_equal-width" title="Equal-width">Equal-width</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_equal-width-multi-line" title="Equal-width multi-line">Equal-width multi-line</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_setting-one-column-width" title="Setting one column width">Setting one column width</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_variable-width-content" title="Variable width content">Variable width content</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-layout-grid_toc_responsive-classes" title="Responsive classes">Responsive classes</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_all-breakpoints" title="All breakpoints">All breakpoints</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_stacked-to-horizontal" title="Stacked to horizontal">Stacked to horizontal</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_mix-and-match" title="Mix and match">Mix and match</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_gutters" title="Gutters">Gutters</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_row-columns" title="Row columns">Row columns</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-layout-grid_toc_alignment" title="Alignment">Alignment</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_vertical-alignment" title="Vertical alignment">Vertical alignment</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_horizontal-alignment" title="Horizontal alignment">Horizontal alignment</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_no-gutters" title="No gutters">No gutters</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_column-wrapping" title="Column wrapping">Column wrapping</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_column-breaks" title="Column breaks">Column breaks</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-layout-grid_toc_reordering" title="Reordering">Reordering</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_order-classes" title="Order classes">Order classes</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-layout-grid_toc_offsetting-columns" title="Offsetting columns">Offsetting columns</a></li>
+        <ul class="nav flex-column flex-nowrap nav-collapsible">
+         <li class="h4"><a class="nav-link" href="#doc-snippets-layout-grid_toc_offset-classes" title="Offset classes">Offset classes</a></li>
+        </ul>
+       </ul>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

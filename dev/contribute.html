@@ -1,30 +1,29 @@
-<div class="row no-gutters">
-    <div class="col-lg-12 col-xl-9">
-<section>
- <h1 id="dev-contribute_toc_contribute">Contribute</h1>
- <p>Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests, please state that the contribution is your original work and that you license the work to the project under the project's open source license. Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email, or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.</p>
- <section>
-  <h2 id="dev-contribute_toc_compiling">Compiling</h2>
-  <p>You can compile Reflow project with your local Maven, with <a href="https://github.com/takari/takari-maven-plugin" class="externalLink">Maven Wrapper</a> or with Maven from Docker. The last one is the easiest solution with you don't want install a jdk8.</p>
-  <p><strong>Maven local</strong></p>
-  <div class="verbatim">
-   <pre><code class="language-bash">$ mvn clean install -P skipTests -Dtoolchains.disabled=true
+
+<html>
+ <head></head>
+ <body>
+  <div class="row no-gutters">
+   <div class="col-lg-12 col-xl-9">
+    <section>
+     <a id="Contribute"></a>
+     <h1 id="dev-contribute_toc_contribute">Contribute</h1>
+     <p>Contributions via GitHub pull requests are gladly accepted from their original author. Along with any pull requests, please state that the contribution is your original work and that you license the work to the project under the project's open source license. Whether or not you state this explicitly, by submitting any copyrighted material via pull request, email, or other means you agree to license the material under the project's open source license and warrant that you have the legal authority to do so.</p>
+     <section>
+      <a id="Compiling"></a>
+      <h2 id="dev-contribute_toc_compiling">Compiling</h2>
+      <p>You can compile Reflow project with your local Maven, with <a href="https://github.com/takari/takari-maven-plugin" class="externalLink">Maven Wrapper</a> or with Maven from Docker. The last one is the easiest solution with you don't want install a jdk8.</p>
+      <p><strong>Maven local</strong></p>
+      <pre><code class="language-bash">$ mvn clean install -P skipTests -Dtoolchains.disabled=true
 </code></pre>
-  </div>
-  <p><strong>Maven Wrapper</strong></p>
-  <div class="verbatim">
-   <pre><code class="language-bash">$ ./mvnw clean install -Dtoolchains.disabled=true
+      <p><strong>Maven Wrapper</strong></p>
+      <pre><code class="language-bash">$ ./mvnw clean install -Dtoolchains.disabled=true
 </code></pre>
-  </div>
-  <p><strong>Maven from Docker</strong></p>
-  <div class="verbatim">
-   <pre><code class="language-bash">$ ./mvnd clean install
+      <p><strong>Maven from Docker</strong></p>
+      <pre><code class="language-bash">$ ./mvnd clean install
 </code></pre>
-  </div>
-  <p>The profile <code>skipTests</code> allows to skip all tests execution.</p>
-  <p>Use the parameter <code>toolchains.disabled</code> to disable maven toolchains plugin whether you are not configure your <code>${HOME}/.m2/toolchains.xml</code> file. Here is a example of <code>${HOME}/.m2/toolchains.xml</code></p>
-  <div class="verbatim">
-   <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF8"?&gt;
+      <p>The profile <code>skipTests</code> allows to skip all tests execution.</p>
+      <p>Use the parameter <code>toolchains.disabled</code> to disable maven toolchains plugin whether you are not configure your <code>${HOME}/.m2/toolchains.xml</code> file. Here is a example of <code>${HOME}/.m2/toolchains.xml</code></p>
+      <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF8"?&gt;
 &lt;toolchains&gt;
   &lt;!-- JDK toolchains --&gt;
   &lt;toolchain&gt;
@@ -47,111 +46,93 @@
   &lt;/toolchain&gt;
 &lt;/toolchains&gt;
 </code></pre>
-  </div>
-  <section>
-   <h3 id="dev-contribute_toc_site-generation">Site Generation</h3>
-   <p>Use following command to generate site.</p>
-   <div class="verbatim">
-    <pre><code class="language-bash">$ ./ci/site-generate.sh
+      <section>
+       <a id="Site_Generation"></a>
+       <h3 id="dev-contribute_toc_site-generation">Site Generation</h3>
+       <p>Use following command to generate site.</p>
+       <pre><code class="language-bash">$ ./ci/site-generate.sh
 </code></pre>
-   </div>
-  </section>
-  <section>
-   <h3 id="dev-contribute_toc_site-run">Site Run</h3>
-   <p>Use following command to generate and run site.</p>
-   <div class="verbatim">
-    <pre><code class="language-bash">$ ./ci/site-run.sh
+      </section>
+      <section>
+       <a id="Site_Run"></a>
+       <h3 id="dev-contribute_toc_site-run">Site Run</h3>
+       <p>Use following command to generate and run site.</p>
+       <pre><code class="language-bash">$ ./ci/site-run.sh
 </code></pre>
-   </div>
-  </section>
-  <section>
-   <h3 id="dev-contribute_toc_site-deployment">Site Deployment</h3>
-   <p>Use following command to generate and deploy site.</p>
-   <div class="verbatim">
-    <pre><code class="language-bash">$ ./ci/site-deploy.sh
+      </section>
+      <section>
+       <a id="Site_Deployment"></a>
+       <h3 id="dev-contribute_toc_site-deployment">Site Deployment</h3>
+       <p>Use following command to generate and deploy site.</p>
+       <pre><code class="language-bash">$ ./ci/site-deploy.sh
 </code></pre>
+      </section>
+     </section>
+     <section>
+      <a id="Issues_28bug_and_feature_tracker29"></a>
+      <h2 id="dev-contribute_toc_issues-bug-and-feature-tracker">Issues (bug and feature tracker)</h2>
+      <p>Please report any bugs found, feature requests or other issues on <a href="https://github.com/devacfr/reflow-maven-skin/issues" class="externalLink">Reflow skin GitHub tracker</a>.</p>
+     </section>
+     <section>
+      <a id="Fork2C_patch_and_contribute_code"></a>
+      <h2 id="dev-contribute_toc_fork-patch-and-contribute-code">Fork, patch and contribute code</h2>
+      <p>Feel free to fork Reflow skin's <a href="https://github.com/devacfr/reflow-maven-skin" class="externalLink">Git repository at GitHub</a> for your own use and updates.</p>
+      <p>Contribute your fixes and new features back to the main codebase using <a href="http://help.github.com/articles/using-pull-requests" class="externalLink">GitHub pull requests</a>.</p>
+     </section>
+     <section>
+      <a id="Support"></a>
+      <h2 id="dev-contribute_toc_support">Support</h2>
+      <p>Let me know if you are using Reflow skin in your project. I may get around to creating a showcase page listing skin user sites.</p>
+      <p><a href="https://devacfr.github.io/" class="externalLink">Contact me</a> if you have questions about the skin, or just like to say something about it.</p>
+     </section>
+     <section>
+      <a id="Acknowledgements"></a>
+      <h2 id="dev-contribute_toc_acknowledgements">Acknowledgements</h2>
+      <p>Reflow skin is built on <a href="http://getbootstrap.com/" class="externalLink">Bootstrap</a> and uses themes from <a href="http://bootswatch.com/" class="externalLink">Bootswatch</a>. These include icons from <a href="https://fontawesome.com/" class="externalLink">Font Awesome</a> and web fonts from <a href="http://www.google.com/webfonts/" class="externalLink">Google</a>.</p>
+      <p>JavaScript goodies with <a href="http://jquery.org" class="externalLink">jQuery</a>.</p>
+      <p>Image previews with <a href="http://lokeshdhakar.com/projects/lightbox2" class="externalLink">Lightbox2</a>.</p>
+      <p>Code highlighting with <a href="http://softwaremaniacs.org/soft/highlight/en/" class="externalLink">highlight.js</a>.</p>
+      <p>Anchor Heading with <a href="https://www.bryanbraun.com/anchorjs/" class="externalLink">anchor.js</a>.</p>
+      <p>HTML rewriting with <a href="http://jsoup.org/" class="externalLink">jsoup</a>.</p>
+      <p>Some artwork resources from <a href="http://medialoot.com/" class="externalLink">MediaLoot</a>.</p>
+      <p><code>shahadat-rahman-unsplash.jpg</code> Photo by&nbsp;<a href="https://unsplash.com/@hishahadat?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="externalLink">Shahadat Rahman</a>&nbsp;on&nbsp;<a href="https://unsplash.com/s/photos/bootstrap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="externalLink">Unsplash</a>.</p>
+      <p>Inspired by <a href="http://maven.apache.org/skins/maven-fluido-skin/" class="externalLink">Maven Fluido Skin</a>.</p>
+     </section>
+     <section>
+      <a id="Copyright_and_license"></a>
+      <h2 id="dev-contribute_toc_copyright-and-license">Copyright and license</h2>
+      <p>Copyright 2012-2019 Christophe Friederich</p>
+      <p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:</p>
+      <p><a href="http://www.apache.org/licenses/LICENSE-2.0" class="externalLink">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+      <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+     </section>
+    </section>
    </div>
-  </section>
- </section>
- <section>
-  <h2 id="dev-contribute_toc_issues-bug-and-feature-tracker">Issues (bug and feature tracker)</h2>
-  <p>Please report any bugs found, feature requests or other issues on <a href="https://github.com/devacfr/reflow-maven-skin/issues" class="externalLink">Reflow skin GitHub tracker</a>.</p>
- </section>
- <section>
-  <h2 id="dev-contribute_toc_fork-patch-and-contribute-code">Fork, patch and contribute code</h2>
-  <p>Feel free to fork Reflow skin's <a href="https://github.com/devacfr/reflow-maven-skin" class="externalLink">Git repository at GitHub</a> for your own use and updates.</p>
-  <p>Contribute your fixes and new features back to the main codebase using <a href="http://help.github.com/articles/using-pull-requests" class="externalLink">GitHub pull requests</a>.</p>
- </section>
- <section>
-  <h2 id="dev-contribute_toc_support">Support</h2>
-  <p>Let me know if you are using Reflow skin in your project. I may get around to creating a showcase page listing skin user sites.</p>
-  <p><a href="https://devacfr.github.io/" class="externalLink">Contact me</a> if you have questions about the skin, or just like to say something about it.</p>
- </section>
- <section>
-  <h2 id="dev-contribute_toc_acknowledgements">Acknowledgements</h2>
-  <p>Reflow skin is built on <a href="http://getbootstrap.com/" class="externalLink">Bootstrap</a> and uses themes from <a href="http://bootswatch.com/" class="externalLink">Bootswatch</a>. These include icons from <a href="https://fontawesome.com/" class="externalLink">Font Awesome</a> and web fonts from <a href="http://www.google.com/webfonts/" class="externalLink">Google</a>.</p>
-  <p>JavaScript goodies with <a href="http://jquery.org" class="externalLink">jQuery</a>.</p>
-  <p>Image previews with <a href="http://lokeshdhakar.com/projects/lightbox2" class="externalLink">Lightbox2</a>.</p>
-  <p>Code highlighting with <a href="http://softwaremaniacs.org/soft/highlight/en/" class="externalLink">highlight.js</a>.</p>
-  <p>Anchor Heading with <a href="https://www.bryanbraun.com/anchorjs/" class="externalLink">anchor.js</a>.</p>
-  <p>HTML rewriting with <a href="http://jsoup.org/" class="externalLink">jsoup</a>.</p>
-  <p>Some artwork resources from <a href="http://medialoot.com/" class="externalLink">MediaLoot</a>.</p>
-  <p><code>shahadat-rahman-unsplash.jpg</code> Photo by&nbsp;<a href="https://unsplash.com/@hishahadat?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="externalLink">Shahadat Rahman</a>&nbsp;on&nbsp;<a href="https://unsplash.com/s/photos/bootstrap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" class="externalLink">Unsplash</a>.</p>
-  <p>Inspired by <a href="http://maven.apache.org/skins/maven-fluido-skin/" class="externalLink">Maven Fluido Skin</a>.</p>
- </section>
- <section>
-  <h2 id="dev-contribute_toc_copyright-and-license">Copyright and license</h2>
-  <p>Copyright 2012-2019 Christophe Friederich</p>
-  <p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:</p>
-  <p><a href="http://www.apache.org/licenses/LICENSE-2.0" class="externalLink">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-  <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
- </section>
-</section>    </div>
-    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
-        <div class="feedback-links">
-            <ul class="nav flex-column flex-nowrap">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/dev/contribute.md.vm"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
-                </li>
-            </ul>
-        </div>
-            <div id="m-toc-sidebar" class="d-print-none m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed">
-                <nav id="m-toc-sidebar-nav flex-column">
-                <ul class="m-nav--sidebar nav flex-column flex-nowrap">
-    <li class="h1">
-        <a class="nav-link" href="#dev-contribute_toc_contribute" title="Contribute">Contribute</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#dev-contribute_toc_compiling" title="Compiling">Compiling</a>
-    </li>
-    <ul class="nav flex-column flex-nowrap nav-collapsible">
-            <li class="h3">
-        <a class="nav-link" href="#dev-contribute_toc_site-generation" title="Site Generation">Site Generation</a>
-    </li>
-    <li class="h3">
-        <a class="nav-link" href="#dev-contribute_toc_site-run" title="Site Run">Site Run</a>
-    </li>
-    <li class="h3">
-        <a class="nav-link" href="#dev-contribute_toc_site-deployment" title="Site Deployment">Site Deployment</a>
-    </li>
-    </ul>
-    <li class="h2">
-        <a class="nav-link" href="#dev-contribute_toc_issues-bug-and-feature-tracker" title="Issues (bug and feature tracker)">Issues (bug and feature tracker)</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#dev-contribute_toc_fork-patch-and-contribute-code" title="Fork, patch and contribute code">Fork, patch and contribute code</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#dev-contribute_toc_support" title="Support">Support</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#dev-contribute_toc_acknowledgements" title="Acknowledgements">Acknowledgements</a>
-    </li>
-    <li class="h2">
-        <a class="nav-link" href="#dev-contribute_toc_copyright-and-license" title="Copyright and license">Copyright and license</a>
-    </li>
-                    </ul>
-                </nav>
-           </div>
+   <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+    <div class="feedback-links">
+     <ul class="nav flex-column flex-nowrap">
+      <li class="nav-item"><a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/dev/contribute.md.vm"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a></li>
+     </ul>
     </div>
-</div>
+    <div id="m_toc_sidebar" class="d-print-none toc-sidebar-enabled toc-sidebar-expanded toc-sidebar-autoexpandable toc-sidebar-fixed">
+     <nav id="m_toc_sidebar_nav" class="flex-column">
+      <ul class="nav--sidebar nav flex-column flex-nowrap">
+       <li class="h1"><a class="nav-link" href="#dev-contribute_toc_contribute" title="Contribute">Contribute</a></li>
+       <li class="h2"><a class="nav-link" href="#dev-contribute_toc_compiling" title="Compiling">Compiling</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#dev-contribute_toc_site-generation" title="Site Generation">Site Generation</a></li>
+        <li class="h3"><a class="nav-link" href="#dev-contribute_toc_site-run" title="Site Run">Site Run</a></li>
+        <li class="h3"><a class="nav-link" href="#dev-contribute_toc_site-deployment" title="Site Deployment">Site Deployment</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#dev-contribute_toc_issues-bug-and-feature-tracker" title="Issues (bug and feature tracker)">Issues (bug and feature tracker)</a></li>
+       <li class="h2"><a class="nav-link" href="#dev-contribute_toc_fork-patch-and-contribute-code" title="Fork, patch and contribute code">Fork, patch and contribute code</a></li>
+       <li class="h2"><a class="nav-link" href="#dev-contribute_toc_support" title="Support">Support</a></li>
+       <li class="h2"><a class="nav-link" href="#dev-contribute_toc_acknowledgements" title="Acknowledgements">Acknowledgements</a></li>
+       <li class="h2"><a class="nav-link" href="#dev-contribute_toc_copyright-and-license" title="Copyright and license">Copyright and license</a></li>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

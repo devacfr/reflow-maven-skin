@@ -1,10 +1,10 @@
 var clover = new Object();
 
 // JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
-clover.pageData = {"classes":[{"el":75,"id":2729,"methods":[{"el":56,"sc":5,"sl":42},{"el":74,"sc":5,"sl":58}],"name":"DocumentContextTest","sl":37}]}
+clover.pageData = {"classes":[{"el":72,"id":2307,"methods":[{"el":53,"sc":3,"sl":38},{"el":71,"sc":3,"sl":55}],"name":"DocumentContextTest","sl":33}]}
 
 // JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
-clover.testTargets = {"test_54":{"methods":[{"sl":58}],"name":"shouldBuildDocumentContext","pass":true,"statements":[{"sl":60},{"sl":61},{"sl":63},{"sl":64},{"sl":66},{"sl":68},{"sl":69},{"sl":70},{"sl":72},{"sl":73}]}}
+clover.testTargets = {"test_92":{"methods":[{"sl":55}],"name":"shouldBuildDocumentContext","pass":true,"statements":[{"sl":57},{"sl":58},{"sl":60},{"sl":61},{"sl":63},{"sl":65},{"sl":66},{"sl":67},{"sl":69},{"sl":70}]}}
 
 // JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
-clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [54], [], [54], [54], [], [54], [54], [], [54], [], [54], [54], [54], [], [54], [54], [], []]
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [92], [], [92], [92], [], [92], [92], [], [92], [], [92], [92], [92], [], [92], [92], [], []]

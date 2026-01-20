@@ -336,6 +336,14 @@ h3 {
     border-width: .2rem 0 0;
 }
 
+.bd-example-row .row+.row {
+  margin-top: 1rem
+}
+
+.bd-example .highlight {
+  background-color: #f8f9fa;
+}
+
 .bd-example::after,
 .bd-example-row::after {
     display: block;
@@ -365,4 +373,9 @@ h3 {
 .bd-example-row .row>.col p,
 .bd-example-row .row>[class^=col-] p {
     margin-bottom: 0;
+}
+
+.bd-example-row-flex-cols .row {
+  min-height: 10rem;
+  background-color: rgba(255, 0, 0, 0.1);
 }

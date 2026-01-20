@@ -45,38 +45,38 @@ var mReflow = function () {
   }
 
   function initTocTop() {
-    if ($('#m-toc-topbar').length) {
+    if ($('#m_toc_topbar').length) {
       $body.scrollspy({
-        target: '#m-toc-topbar',
-        offset: $('#m-top-navbar').outerHeight() + $('#m-toc-topbar').outerHeight()
+        target: '#m_toc_topbar',
+        offset: $('#m_top_navbar').outerHeight() + $('#m_toc_topbar').outerHeight()
       });
     }
   }
 
   function initTocSidebar() {
-    var tocSidebar = $('#m-toc-sidebar');
+    var tocSidebar = $('#m_toc_sidebar');
     if (!tocSidebar.length) {
       return;
     }
 
 
     // collapse all
-    if (!tocSidebar.hasClass('m-toc-sidebar-expanded')) {
+    if (!tocSidebar.hasClass('toc-sidebar-expanded')) {
       tocSidebar.find('.nav-collapsible').addClass('collapse').attr('aria-expanded', 'false');
     }
 
-    // apply scrollspy to #m-toc-sidebar
+    // apply scrollspy to #m_toc_sidebar
     $body.scrollspy({
-      target: '#m-toc-sidebar',
+      target: '#m_toc_sidebar',
       offset: 0
     });
 
 
     // add auto collapse on scrollspy
-    if (tocSidebar.hasClass('m-toc-sidebar-autoexpandable')) {
+    if (tocSidebar.hasClass('toc-sidebar-autoexpandable')) {
 
       $window.on('activate.bs.scrollspy', function () {
-        var active = $('#m-toc-sidebar a.active');
+        var active = $('#m_toc_sidebar a.active');
         var collapsePanel = active.parent().next('ul.nav.nav-collapsible');
         tocSidebar.find('ul.nav.nav-collapsible').each(function (index, element) {
           var el = $(element);
@@ -140,14 +140,14 @@ var mReflow = function () {
 
   function initTopNavBar() {
     function resizeTopNavBar() {
-      var navbar = $('#m-top-navbar');
+      var navbar = $('#m_top_navbar');
       var size = 0;
       if (navbar.length) {
         size = navbar.outerHeight();
       }
       $('body').css('padding-top', size);
-      $('#m-toc-sidebar.toc-sidebar-fixed').css('top', size);
-      $('#m-toc-topbar').css('top', size);
+      $('#m_toc_sidebar.toc-sidebar-fixed').css('top', size);
+      $('#m_toc_topbar').css('top', size);
     }
     $window.resize(resizeTopNavBar);
     // initialize size on start up
@@ -186,9 +186,9 @@ var mReflow = function () {
 
     function handle() {
       if ($(window).scrollTop() > 100) {
-        $body.addClass('m-scrolltop--on');
+        $body.addClass('scrolltop--on');
       } else {
-        $body.removeClass('m-scrolltop--on');
+        $body.removeClass('scrolltop--on');
       }
     }
 
@@ -212,7 +212,7 @@ var mReflow = function () {
       return;
     }
     currentMenu = href;
-    $('#m-doc-frame').load(href, function (evt) {
+    $('#m_doc_frame').load(href, function (evt) {
       // find li parent of 'href'
       href = href.replace(/\./g, "\\.");
       var item = $('.navside-menu a[slug-name="' + slugName + '"]').parent();
@@ -242,8 +242,8 @@ var mReflow = function () {
     if (!$body.hasClass('anchorjs-enabled')) {
       return;
     }
-    if (anchors && $body.hasClass('m-toc-sidebar-enabled') || $body.hasClass('m-toc-top-enabled')
-      || $body.hasClass('m-sidenav-enabled')) {
+    if (anchors && $body.hasClass('toc-sidebar-enabled') || $body.hasClass('toc-top-enabled')
+      || $body.hasClass('sidenav-enabled')) {
       anchors.options = {
         placement: 'right',
         class: 'fas fa-link',
@@ -373,7 +373,7 @@ var mReflow = function () {
     }
 
     // select first menu item on expand
-    if ($body.hasClass('m-sidenav-select-first-on-select')) {
+    if ($body.hasClass('sidenav-select-first-on-select')) {
       navSidebar.on('shown.bs.collapse', function (ev) {
         var el = $(ev.target);
         // break if have already active item
