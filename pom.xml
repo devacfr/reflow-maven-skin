@@ -121,6 +121,7 @@ governing permissions and limitations under
     <site.deploy.id>github</site.deploy.id>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
+    <skipCoverage>true</skipCoverage>
     <spotbugs.excludefilterfile.path>
       ${main.basedir}/check/spotbugs-exclude-filter.xml</spotbugs.excludefilterfile.path>
     <spotbugs.only.analyze>org.devacfr.maven.skins.reflow.-</spotbugs.only.analyze>
@@ -865,6 +866,7 @@ governing permissions and limitations under
       <properties>
         <skipTests>true</skipTests>
         <skipITs>true</skipITs>
+        <skipCoverage>true</skipCoverage>
       </properties>
     </profile>
     <profile>
@@ -947,7 +949,14 @@ governing permissions and limitations under
       <properties>
         <!-- Disable spotless check -->
         <spotless.check.skip>true</spotless.check.skip>
+        <skipCoverage>false</skipCoverage>
       </properties>
+      <activation>
+        <property>
+          <name>skipCoverage</name>
+          <value>false</value>
+        </property>
+      </activation>
       <build>
         <pluginManagement>
           <plugins>

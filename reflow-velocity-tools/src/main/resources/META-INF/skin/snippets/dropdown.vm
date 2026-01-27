@@ -17,14 +17,94 @@
 * Render dropdown snippet * Usage: *
 {{% dropdown %}}
 <!--
-<item href="#" title="Action 1"/>
-<item href="#" title="Action 2"/>
-<item href="#" title="Action 3"/>
+<dropdown-item href="#" title="Action 1"/>
+<dropdown-item href="#" title="Action 2"/>
+<dropdown-item href="#" title="Action 3"/>
 -->
 {{% /dropdown %}}
 *#
-<div class="dropdown-menu">
-#*  *##foreach($item in ${snippet.items})##
-  <a class="dropdown-item" href="${item.href}">${item.title}</a>
+#*  *##set( $class = "btn")
+#*  *##set( $type = "single")
+#*  *##set( $size = "")
+#*  *##set( $direction = "")
+#*  *##if (${snippet.attrs['type']})
+#*      *##set( $type = "${snippet.attrs['type']}" )
+    </button>
 #*  *##end
-</div>
+#*  *##if( ${snippet.attrs['color']})
+#*      *##set( $class = "$class btn-${snippet.color}")
+#*  *##else##
+#*      *##set( $class = "$class btn-primary")
+#*  *##end##
+#*  *##if( ${snippet.attrs['size']})
+#*      *##set( $class = "$class btn-${snippet.size}")
+#*  *##end##
+#*  *##if( ${snippet.attrs['direction']})
+#*      *##set( $direction = "drop${snippet.direction}" )
+#*  *##end##
+#*  *##set($menuClass = "dropdown-menu")
+#*  *##if( ${snippet.attrs['align']})##
+#*      *##set( $menuClass = "$menuClass dropdown-menu-${snippet.attrs['align']}" )##
+#*  *##end##
+#if(${snippet.title})
+    #if ($type == "single")
+    <div class="dropdown ${direction}">
+      <button type="button" class="${class} dropdown-toggle" #addAttributes( ${snippet.dataAttributes} ) data-toggle="dropdown" aria-expanded="false">
+        ${snippet.title}
+      </button>
+    #elseif ($type == "split")
+#*  *##if (${snippet.direction} != "left")##
+    <div class="btn-group ${direction}">
+      <button type="button" class="${class}">
+        ${snippet.title}
+      </button>
+      <button type="button" class="${class} dropdown-toggle dropdown-toggle-split" #addAttributes( ${snippet.dataAttributes} ) data-toggle="dropdown" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+#*  *##else##
+    <div class="btn-group">
+      <div class="btn-group ${direction}">
+      <button type="button" class="${class} dropdown-toggle dropdown-toggle-split" #addAttributes( ${snippet.dataAttributes} ) data-toggle="dropdown" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+#*  *##end##
+    #end
+#end
+    <div class="$menuClass">
+#*  *##foreach($item in ${snippet["dropdown-item"]})##
+#*    *##set( $class = "dropdown-item" )##
+#*    *##if( ${item.active} || ${item.active} == "true")##
+#*      *##set( $class = "$class active" )##
+#*    *##end##
+#*    *##if( ${item.disabled} || ${item.disabled} == "true")##
+#*      *##set( $class = "$class disabled" )##
+#*    *##end##
+#*    *##set( $text = $item.title )##
+#*    *##if( !${item.title} )##
+#*        *##set( $text = $item.html() )##
+#*    *##end##
+#*    *##set( $href = "#" )##
+#*    *##if( ${item.href} )##
+#*        *##set( $href = "${item.href}" )##
+#*    *##end##
+#*    *##if ($item["type"] == "divider")##
+        <div class="dropdown-divider"></div>
+#*    *##elseif( ${item["type"]} == "header")##
+        <h6 class="dropdown-header no-anchor">$text</h6>
+#*    *##elseif( ${item["type"]} == "text")
+##
+        <span class="dropdown-item-text">$text</span>
+#*    *##else##
+        <a class="$class" href="$href">$text</a>
+#*    *##end##
+#*  *##end##
+    </div>
+#if(${snippet.title})
+#*  *##if ($type == "split" && ${snippet.direction} == "left")##
+    </div>
+    <button type="button" class="${class}">
+      ${snippet.title}
+    </button>
+#* *##end##
+  </div>
+#end

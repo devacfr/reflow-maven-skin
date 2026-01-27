@@ -91,6 +91,6 @@ public abstract class BaseSnippetTest extends MockitoTestCase {
   }
 
   protected SnippetParser createParser() {
-    return new SnippetParser().insertResourcePath(getPackagePath().toString(), 0);
+    return new SnippetParser().insertResourcePath(0, getPackagePath().toString());
   }
 }

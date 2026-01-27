@@ -10,8 +10,8 @@ Documentation and examples for badges, our small count and labeling component.
 
 Badges scale to match the size of the immediate parent element by using relative font sizing and `em` units.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 <!--
 <h1 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h1>
 <h2 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h2>
@@ -20,8 +20,8 @@ Badges scale to match the size of the immediate parent element by using relative
 <h5 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h5>
 <h6 class="no-anchor">Example heading <badge color="secondary" text="NEW" /></h6>
 -->
-
-{{< /example >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```markdown
 # Example heading {{< badge color="secondary" text="NEW" />}}
@@ -32,16 +32,24 @@ Badges scale to match the size of the immediate parent element by using relative
 ###### Example heading {{< badge color="secondary" text="NEW" />}}
 ```
 
+{{< /code-section >}}
+{{% /example %}}
+
 Badges can be used as part of links or buttons to provide a counter.
 
 {{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" >}}Notifications {{< badge color="light" text="1" />}}{{< /bs-button >}}
+
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" >}}Notifications {{< badge color="light" text="1" />}}{{< /bs-button >}}
 ```
 
+{{< /code-section >}}
 {{% /example %}}
 
 Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button.
@@ -50,8 +58,8 @@ Note that depending on how they are used, badges may be confusing for users of s
 
 Add any of the below mentioned modifier classes to change the appearance of a badge.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< badge color="primary" text="Primary" />}}
 {{< badge color="secondary" text="Secondary" />}}
 {{< badge color="success" text="Success" />}}
@@ -60,6 +68,8 @@ Add any of the below mentioned modifier classes to change the appearance of a ba
 {{< badge color="info" text="Info" />}}
 {{< badge color="light" text="Light" />}}
 {{< badge color="dark" text="Dark" />}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< badge color="primary" text="Primary" />}}
@@ -72,20 +82,19 @@ Add any of the below mentioned modifier classes to change the appearance of a ba
 {{< badge color="dark" text="Dark" />}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 {{< callout color="warning" level="5" title="Conveying meaning to assistive technologies" >}}
-
 Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.sr-only` class.
-
 {{< /callout >}}
 
 ## Pill badges
 
 Use the `pill` attribute to make badges more rounded.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< badge color="primary" pill="true" text="Primary" />}}
 {{< badge color="secondary" pill="true" text="Secondary" />}}
 {{< badge color="success" pill="true" text="Success" />}}
@@ -94,6 +103,8 @@ Use the `pill` attribute to make badges more rounded.
 {{< badge color="info" pill="true" text="Info" />}}
 {{< badge color="light" pill="true" text="Light" />}}
 {{< badge color="dark" pill="true" text="Dark" />}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< badge color="primary" pill="true" text="Primary" />}}
@@ -106,14 +117,15 @@ Use the `pill` attribute to make badges more rounded.
 {{< badge color="dark" pill="true" text="Dark" />}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Links
 
 Using the contextual `.badge-*` classes on an `<a>` element quickly provide actionable badges with hover and focus states.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< badge href="#" color="primary" text="Primary" />}}
 {{< badge href="#" color="secondary" text="Secondary" />}}
 {{< badge href="#" color="success" text="Success" />}}
@@ -122,6 +134,8 @@ Using the contextual `.badge-*` classes on an `<a>` element quickly provide acti
 {{< badge href="#" color="info" text="Info" />}}
 {{< badge href="#" color="light" text="Light" />}}
 {{< badge href="#" color="dark" text="Dark" />}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< badge href="#" color="primary" text="Primary" />}}
@@ -134,4 +148,5 @@ Using the contextual `.badge-*` classes on an `<a>` element quickly provide acti
 {{< badge href="#" color="dark" text="Dark" />}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}

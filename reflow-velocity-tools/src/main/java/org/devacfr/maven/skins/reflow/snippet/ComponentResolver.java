@@ -27,7 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.text.StringEscapeUtils;
 import org.devacfr.maven.skins.reflow.JsoupUtils;
-import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.TagType;
 import org.devacfr.maven.skins.reflow.snippet.SnippetComponent.Type;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -122,25 +122,31 @@ public class ComponentResolver {
       // process from end to start
       if (!results.isEmpty()) {
         for (final MatchResult matchResult : results) {
+          // escape snippet tag
           final String snippet = text.substring(matchResult.start(), matchResult.end());
+          // wrap snippet in span for display
           text = text.substring(0, matchResult.start()) + "<span>" + StringEscapeUtils.escapeHtml4(snippet) + "</span>"
               + text.substring(matchResult.end());
           // convert snippet to html
-          final String convertedSnippet = convertElementToHtml(
+          final String convertedSnippet = convertSnippetTagsToHtml(
             convertedText.substring(matchResult.start(), matchResult.end()));
+          // replace in text
           convertedText = convertedText.substring(0, matchResult.start()) + convertedSnippet
               + convertedText.substring(matchResult.end());
         }
-        element.html(text);
         // convert to html
-        // remove all snippet tags to defirentiate inline snippet in paragraph to sequence of snippets.
-        Element converted = JsoupUtils.createHtmlDocument(convertElementToHtml(convertedText)).body();
-        converted.children().forEach(e -> {
+        // remove all snippet tags to defirentiate inline snippet in paragraph to
+        // sequence of snippets.
+        Element body = JsoupUtils.createHtmlDocument(convertSnippetTagsToHtml(convertedText)).body();
+        body.children().forEach(e -> {
           if (parser.isSnippet(e))
             e.remove();
         });
-        // remove empty <p> tags if no text content.
-        if (element.tagName().equals("p") && !JsoupUtils.hasTextNode(converted)) {
+        boolean containsOnlySnippets = !JsoupUtils.hasTextNode(body);
+        element.html(text);
+
+        // remove <p> tag if not necessary, i.e. contains only snippet components
+        if (element.tagName().equals("p") && containsOnlySnippets) {
           element.unwrap();
         }
       }
@@ -158,7 +164,7 @@ public class ComponentResolver {
   public ComponentToken create(final Element element) {
     if (isSnippet(element)) {
       Type type = Type.webComponent;
-      return new ComponentToken(element, element.tagName(), Tag.html, type);
+      return new ComponentToken(element, element.tagName(), TagType.html, type);
     } else {
       final Matcher matcher = RESOLVER_PATTERN.matcher(element.ownText());
 
@@ -174,11 +180,11 @@ public class ComponentResolver {
       // can not have same time empty and end identifier.
       throw new RuntimeException("malformed component");
     }
-    Tag tag = Tag.start;
+    TagType tag = TagType.start;
     if ("/".equals(matcher.group(2))) {
-      tag = Tag.end;
+      tag = TagType.end;
     } else if ("/".equals(matcher.group(5))) {
-      tag = Tag.empty;
+      tag = TagType.empty;
     }
     final Type type = "<".equals(matcher.group(1)) ? Type.shortcode : Type.webComponent;
 
@@ -201,25 +207,26 @@ public class ComponentResolver {
   }
 
   /**
-   * Converts the snippet element to html format.
+   * Converts the text of element to html format.
    *
    * @param element
    *          the html element to use.
    * @return Returns a {@link String} representing the snippet element in html format.
    */
-  public static String convertElementToHtml(final Element element) {
-    return convertElementToHtml(element.text());
+  public static String convertElementTextToHtml(final Element element) {
+    return convertSnippetTagsToHtml(element.text());
   }
 
   /**
-   * Converts the snippet html to html format.
+   * Converts the snippet tags to html format.
    *
    * @param html
    *          the html to use.
    * @return Returns a {@link String} representing the snippet html in html format.
    */
-  public static String convertElementToHtml(final String html) {
-    return html.replace("{{< ", "<")
+  public static String convertSnippetTagsToHtml(final String html) {
+    String text = StringEscapeUtils.unescapeHtml4(html);
+    return text.replace("{{< ", "<")
         .replace(" />}}", "/>")
         .replace(" /%}}", "/>")
         .replace(" >}}", ">")

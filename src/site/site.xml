@@ -83,7 +83,11 @@
         <ul class="nav flex-column nav-list footer--news">
           <li class="nav-header">NEWS</li>
           <li class="nav-item ">
-            <time datetime="2025-11-10" class="xsmall d-block">10 Novwmber 2025</time>
+            <time datetime="2026-02-03" class="xsmall d-block">3 February 2026</time>
+            <a href="$resourcePath/release-notes/release-notes-2.4.html" class="nav-link">Reflow Maven Skin 2.4.0 Release</a>
+          </li>
+          <li class="nav-item ">
+            <time datetime="2025-11-10" class="xsmall d-block">10 November 2025</time>
             <a href="$resourcePath/release-notes/release-notes-2.3.html" class="nav-link">Reflow Maven Skin 2.3.5 Release</a>
           </li>
           <li class="nav-item ">
@@ -306,11 +310,11 @@
               <item name="Breadcrumb" href="doc/snippets/breadcrumb.html" />
               <item name="Buttons" href="doc/snippets/buttons.html" />
               <item name="Button Group" href="doc/snippets/button-group.html" />
+              <item name="Card" href="doc/snippets/card.html" />
               <item name="Carousel" href="doc/snippets/carousel.html" />
               <item name="Collapse" href="doc/snippets/collapse.html" />
-              <item name="Card" href="doc/snippets/card.html" />
+              <item name="Dropdowns" href="doc/snippets/dropdowns.html" />
               <item name="Layout Grid" href="doc/snippets/layout-grid.html" />
-              <item name="X (Twitter)" href="doc/snippets/twitter.html" />
             </item>
             <item name="Components">
               <item name="Components Overview" href="doc/components/components.html" />

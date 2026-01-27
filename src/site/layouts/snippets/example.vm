@@ -24,6 +24,24 @@
 #*  *##if( ${snippet.attrs['type']} == "row-flex-cols")
 #*      *##set( $class = "bd-example-row bd-example-row-flex-cols")
 #*  *##end##
-<div class="${class}#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end">
-    #render_html( ${snippet} )
-</div>
+#*  *##if($snippet['preview-section'] && $snippet['code-section'] )##
+    <div>
+      <div class="preview-section py-2">
+        <div #addClasses( ${class} )>
+#*        *##render_html( $snippet['preview-section'] )
+        </div>
+      </div>
+      <div class="code-section py-2">
+        <div class="highlight border px-3 rounded">
+          <div class="highlight-code">
+#*          *##render_html( $snippet['code-section'] )
+          </div>
+        </div>
+      </div>
+    </div>
+#*  *##else##
+      <div #addClasses( ${class} ) >
+#*      *##render_html( ${snippet} )
+      </div>
+#*  *##end##
+

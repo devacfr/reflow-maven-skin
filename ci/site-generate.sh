@@ -28,9 +28,8 @@ source "${dir}/setenv.sh"
 maven_cmd="mvn"
 maven_profiles=""
 maven_args=""
+skipTests=false
 
-# enable clover report
-maven_profiles="$( add_mvn_profile "${maven_profiles}" "clover.report" )"
 
 for i in "$@"
 do
@@ -46,6 +45,7 @@ case $i in
     -s|--skip-tests)
     maven_profiles="$( add_mvn_profile "${maven_profiles}" "skipTests" )"
     maven_args="${maven_args} -Dmaven.javadoc.skip=true"
+    skipTests=true
     shift
     ;;
     -X|--debug)
@@ -58,4 +58,14 @@ case $i in
 esac
 done
 
-${maven_cmd} clean verify site site:stage "$@" ${maven_profiles} ${maven_args}
+if [ "${skipTests}" = true ] ; then
+    echo "Skipping tests during site generation."
+else
+    # enable clover report
+    maven_profiles="$( add_mvn_profile "${maven_profiles}" "clover.report" )"
+    echo "Tests will be executed during site generation."
+fi
+
+echo "Generating site with command: ${maven_cmd} site site:stage ${maven_profiles} ${maven_args} $@"
+${maven_cmd} clean install ${maven_profiles} ${maven_args}
+${maven_cmd} site site:stage "$@" ${maven_profiles} ${maven_args}

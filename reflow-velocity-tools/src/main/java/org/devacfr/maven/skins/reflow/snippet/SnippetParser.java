@@ -22,8 +22,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -36,6 +38,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.velocity.context.Context;
+import org.codehaus.plexus.util.FileUtils;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
 import org.devacfr.maven.skins.reflow.JsoupUtils;
 import org.devacfr.maven.skins.reflow.snippet.Processor.WebComponentProcessor;
@@ -88,6 +91,9 @@ public class SnippetParser {
   /** */
   private final Map<String, SnippetResource> snippetResources = Maps.newHashMap();
 
+  /**
+   * Constructor.
+   */
   public SnippetParser() {
     stack = Lists.newArrayListWithCapacity(32);
     snippetContext = new SnippetContext(this);
@@ -95,35 +101,68 @@ public class SnippetParser {
     processor = new WebComponentProcessor(this);
     snippetResources.putAll(loadSnippetResources(getSnippetPaths()));
     if (LOGGER.isTraceEnabled()) {
+      LOGGER.trace("Snippet Paths: {}", getSnippetPaths());
       LOGGER.trace("Loaded {} snippet resources: {}", snippetResources.size(), getSnippets());
     }
   }
 
+  /**
+   * @return Returns the snippet resources.
+   */
   @Nonnull
   protected Map<String, SnippetResource> getSnippetResources() {
     return Collections.unmodifiableMap(snippetResources);
   }
 
+  /**
+   * @return Returns the snippet names.
+   */
   @Nonnull
   protected List<String> getSnippets() {
     return snippetResources.keySet().stream().collect(Collectors.toList());
   }
 
+  /**
+   * @return Returns the snippet resource paths.
+   */
   @Nonnull
   public List<String> getSnippetPaths() {
     return Collections.unmodifiableList(snippetPaths);
   }
 
-  public SnippetParser insertResourcePath(final @Nonnull String path, final int index) {
+  /**
+   * Insert a resource path at the given index.
+   *
+   * @param path
+   *          the resource path to add
+   * @param index
+   *          the index where to insert the path
+   * @return Returns this parser.
+   */
+  public SnippetParser insertResourcePath(final int index, final @Nonnull String path) {
     this.snippetPaths.add(index, path);
+    this.refreshParser();
     return this;
   }
 
-  public SnippetParser addResourcePath(final @Nonnull String path) {
-    this.snippetPaths.add(path);
+  /**
+   * Add a resource path.
+   *
+   * @param path
+   *          the resource path to add
+   * @return Returns this parser.
+   */
+  public SnippetParser addResourcePath(final @Nonnull String... path) {
+    this.snippetPaths.addAll(Arrays.asList(path));
+    this.refreshParser();
     return this;
   }
 
+  /**
+   * Refresh the parser by reloading snippet resources.
+   *
+   * @return Returns this parser.
+   */
   public SnippetParser refreshParser() {
     snippetResources.clear();
     snippetResources.putAll(loadSnippetResources(getSnippetPaths()));
@@ -133,11 +172,27 @@ public class SnippetParser {
     return this;
   }
 
+  /**
+   * @param node
+   *          the Jsoup node to use
+   * @return Returns {@code true} if the node is a snippet component.
+   */
   public boolean isSnippet(final Node node) {
     return getSnippets().stream().anyMatch(snippet -> snippet.equalsIgnoreCase(JsoupUtils.getNodeName(node)));
   }
 
   /**
+   * @param nodeName
+   *          the Jsoup node name to use
+   * @return Returns {@code true} if the node name is a snippet component.
+   */
+  public boolean isSnippet(final String nodeName) {
+    return getSnippets().stream().anyMatch(snippet -> snippet.equalsIgnoreCase(nodeName));
+  }
+
+  /**
+   * Check if the document contains at least one snippet component.
+   *
    * @param document
    *          the Jsoup element to use
    * @return Returns {@code true} if the document contains at least one snippet component.
@@ -150,6 +205,17 @@ public class SnippetParser {
     return Collector.findFirst(QueryParser.parse(tags), document) != null;
   }
 
+  /**
+   * Parse the given HTML source.
+   *
+   * @param config
+   *          the skin config
+   * @param htmlSource
+   *          the HTML source to parse
+   * @return Returns the snippet context.
+   * @throws IOException
+   *           if an I/O error occurs.
+   */
   public SnippetContext parse(final ISkinConfig config, @Nullable String htmlSource) throws IOException {
     if (htmlSource == null) {
       htmlSource = "";
@@ -186,6 +252,9 @@ public class SnippetParser {
     return snippetContext;
   }
 
+  /**
+   * Parse the current element.
+   */
   protected void parse() {
     if (!it.hasNext()) {
       throw new SnippetParseException("EOF");
@@ -230,13 +299,22 @@ public class SnippetParser {
     }
   }
 
-  protected void push(final ComponentToken element) {
-    stack.add(element);
+  /**
+   * Push a component token onto the stack.
+   *
+   * @param token
+   *          the component token to push
+   */
+  protected void push(final ComponentToken token) {
+    stack.add(token);
     if (LOGGER.isDebugEnabled()) {
-      LOGGER.debug("Add component to stack: {}", element);
+      LOGGER.debug("Add component to stack: {}", token);
     }
   }
 
+  /**
+   * @return Returns the snippet context.
+   */
   public SnippetContext getSnippetContext() {
     return snippetContext;
   }
@@ -251,15 +329,22 @@ public class SnippetParser {
     Collections.reverse(paths);
     for (final String path : paths) {
       try {
-        final List<String> files = getResources(path);
+        List<String> files = getResources(path);
+        if (files.isEmpty()) {
+          files = FileUtils.getFiles(Path.of(path).toFile(), "*", null)
+              .stream()
+              .map(File::getAbsolutePath)
+              .collect(Collectors.toList());
+        }
         for (final String file : files) {
           final SnippetResource resource = new SnippetResource(file, path + '/' + file);
           final String name = FilenameUtils.getBaseName(file);
           final String ext = FilenameUtils.getExtension(file);
           if (!ext.equalsIgnoreCase("vm")) {
-            if (LOGGER.isDebugEnabled()) {
-              LOGGER.debug("Ignore snippet resource with unsupported extension: {} (allowed: vm)", file);
-            }
+            // if (LOGGER.isDebugEnabled()) {
+            // LOGGER.debug("Ignore snippet resource with unsupported extension: {}
+            // (allowed: vm)", file);
+            // }
             continue;
           }
           if (!name.startsWith("_")) {
@@ -280,7 +365,7 @@ public class SnippetParser {
    *          the resource
    * @return the resource as stream
    */
-  private static List<String> getResources(final String path) throws Exception {
+  private List<String> getResources(final String path) throws Exception {
     final List<String> filenames = Lists.newArrayList();
 
     final URL url = getResource(path);
@@ -321,9 +406,16 @@ public class SnippetParser {
     return filenames;
   }
 
-  private static URL getResource(final String resource) {
+  /**
+   * Get resource.
+   *
+   * @param resource
+   *          the resource
+   * @return the resource
+   */
+  private URL getResource(final String resource) {
     final URL url = getContextClassLoader().getResource(resource);
-    return url == null ? SnippetContext.class.getClassLoader().getResource(resource) : url;
+    return url == null ? this.getClass().getClassLoader().getResource(resource) : url;
   }
 
   /**

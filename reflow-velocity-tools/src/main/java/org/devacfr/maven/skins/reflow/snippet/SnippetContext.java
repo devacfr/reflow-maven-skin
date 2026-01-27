@@ -91,58 +91,141 @@ public class SnippetContext {
     this.config = null;
   }
 
+  /**
+   * Generate a unique snippet identifier.
+   *
+   * @return a unique snippet identifier
+   */
   public String generateSnippetIdentifier() {
     return "snippet-placement-" + UUID.randomUUID().toString();
   }
 
+  /**
+   * Returns the current parser.
+   *
+   * @return the current parser
+   */
   public SnippetParser getParser() {
     return this.parser;
   }
 
+  /**
+   * Returns the skin configuration.
+   *
+   * @return the skin configuration
+   */
   public ISkinConfig getConfig() {
     return config;
   }
 
+  /**
+   * Create a child parser.
+   *
+   * @return a new SnippetParser
+   */
   public SnippetParser createChildParser() {
     final SnippetParser parser = new SnippetParser();
     return parser;
   }
 
+  /**
+   * Sets the skin configuration.
+   *
+   * @param config
+   *          the skin configuration
+   */
   public void setConfig(final ISkinConfig config) {
     this.config = config;
   }
 
+  /**
+   * Sets the html source.
+   *
+   * @param htmlSource
+   *          the html source
+   */
   void setHtmlSource(final String htmlSource) {
     this.htmlSource = htmlSource;
   }
 
+  /**
+   * Returns the html source.
+   *
+   * @return the html source
+   */
   public String html() {
     return htmlSource;
   }
 
+  /**
+   * Returns the html document.
+   *
+   * @return the html document
+   */
   public Element document() {
     return JsoupUtils.createHtmlDocument(html());
   }
 
+  /**
+   * Create a component from element and tokens.
+   *
+   * @param element
+   *          the html element to use.
+   * @param startToken
+   *          the start token
+   * @param endToken
+   *          the end token.
+   * @return Returns a new {@link Component} representing the snippet.
+   */
   @Nonnull
-  public SnippetComponent<?> create(@Nonnull final Element element,
+  public Component<?> create(@Nonnull final Element element,
     @Nonnull final ComponentToken startToken,
     @Nullable final ComponentToken endToken) {
     requireNonNull(element);
     requireNonNull(startToken);
-    final SnippetComponent<?> component = SnippetComponent.createSnippet(element, null, startToken.type());
-    recurciveCreateComponent(element, component);
+    Component<?> component = null;
+    if (parser.isSnippet(startToken.name())) {
+      // create snippet component
+      component = SnippetComponent.createSnippet(element, null, startToken.type());
+      recurciveCreateComponent(element, component);
+    } else {
+      // create generic component
+      component = Component.createComponent(element, null);
+      recurciveCreateComponent(element, component);
+    }
     return component;
   }
 
+  /**
+   * Create a component from element and component.
+   *
+   * @param element
+   *          the html element to use.
+   * @param parent
+   *          the parent component.
+   * @return Returns a new {@link SnippetComponent} representing the snippet.
+   */
   @Nonnull
-  public SnippetComponent<?> create(@Nonnull final Element element, final Component<?> commponent) {
+  public Component<?> create(@Nonnull final Element element, final Component<?> parent) {
     requireNonNull(element);
-    final SnippetComponent<?> component = SnippetComponent.createSnippet(element, commponent, Type.webComponent);
+    Component<?> component = null;
+    if (parser.isSnippet(element.tagName())) {
+      component = SnippetComponent.createSnippet(element, parent, Type.webComponent);
+    } else {
+      component = Component.createComponent(element, parent);
+    }
     recurciveCreateComponent(element, component);
     return component;
   }
 
+  /**
+   * Recursively create components from element.
+   *
+   * @param element
+   *          the html element to use.
+   * @param parent
+   *          the parent component.
+   */
   private void recurciveCreateComponent(@Nonnull final Node element, final Component<?> parent) {
     element.childNodes().forEach(child -> {
       Component<?> component = null;
@@ -153,12 +236,7 @@ public class SnippetContext {
         // skip empty <p> tags
       } else if (child instanceof Element) {
         final Element el = (Element) child;
-        if (parser.isSnippet(el)) {
-          component = create(el, parent);
-        } else {
-          component = Component.createComponent(el, parent);
-          recurciveCreateComponent(el, component);
-        }
+        component = create(el, parent);
       }
       if (component != null) {
         parent.addChild(component);
@@ -166,13 +244,21 @@ public class SnippetContext {
     });
   }
 
-  protected void render(final SnippetComponent<?> component) {
+  /**
+   * Render the component.
+   *
+   * @param component
+   *          the component to render.
+   */
+  protected void render(final Component<?> component) {
     traverseTee(component, c -> {
       if (c instanceof SnippetComponent) {
         ((SnippetComponent<?>) c).render(this);
       }
     });
-    component.render(this);
+    if (component instanceof SnippetComponent) {
+      ((SnippetComponent<?>) component).render(this);
+    }
   }
 
   private void traverseTee(final Component<?> component, final Consumer<Component<?>> consumer) {
@@ -190,6 +276,16 @@ public class SnippetContext {
     }
   }
 
+  /**
+   * Merges the template for the given component.
+   *
+   * @param component
+   *          the snippet component
+   * @param contextParent
+   *          the velocity context parent
+   * @param writer
+   *          the writer to use.
+   */
   protected void mergeTemplate(final SnippetComponent<?> component, final Context contextParent, final Writer writer) {
     boolean found = false;
     for (final String path : this.parser.getSnippetPaths()) {
@@ -235,6 +331,11 @@ public class SnippetContext {
     return context;
   }
 
+  /**
+   * Creates a ToolManager with all generic tools configured.
+   *
+   * @return a Velocity tools managed
+   */
   protected static ToolManager createToolManaged() {
 
     final EasyFactoryConfiguration config = new EasyFactoryConfiguration(false);
@@ -262,25 +363,43 @@ public class SnippetContext {
     return manager;
   }
 
+  /**
+   * Represents a snippet resource.
+   */
   public static class SnippetResource {
 
+    /** */
     private final String name;
 
+    /** */
     private final String path;
 
+    /**
+     * Constructor.
+     *
+     * @param name
+     *          the resource name
+     * @param path
+     *          the resource path
+     */
     public SnippetResource(final String name, final String path) {
       this.name = name;
       this.path = path;
     }
 
+    /** */
     public String getName() {
       return name;
     }
 
+    /** */
     public String getPath() {
       return path;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
       return "SnippetResource [name=" + name + ", path=" + path + "]";
