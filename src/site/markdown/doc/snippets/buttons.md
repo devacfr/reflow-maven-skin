@@ -10,8 +10,8 @@ Use Bootstrap’s custom button styles for actions in forms, dialogs, and more w
 
 Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< bs-button color="primary" >}}Primary{{< /bs-button >}}
 {{< bs-button color="secondary" >}}Secondary{{< /bs-button >}}
 {{< bs-button color="success" >}}Success{{< /bs-button >}}
@@ -21,6 +21,8 @@ Bootstrap includes several predefined button styles, each serving its own semant
 {{< bs-button color="light" >}}Light{{< /bs-button >}}
 {{< bs-button color="dark" >}}Dark{{< /bs-button >}}
 {{< bs-button color="link" >}}Link{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" >}}Primary{{< /bs-button >}}
@@ -34,7 +36,8 @@ Bootstrap includes several predefined button styles, each serving its own semant
 {{< bs-button color="link" >}}Link{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 {{< callout color="warning" level="5" title="Conveying meaning to assistive technologies" >}}
 Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.sr-only` class.
@@ -50,23 +53,27 @@ The .btn classes are designed to be used with the `<button>` element. However, y
 
 When using button classes on `<a>` elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a `role="button"` to appropriately convey their purpose to assistive technologies such as screen readers.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< bs-button color="primary" href="#" >}}Link{{< /bs-button >}}
 {{< bs-button color="primary" type="submit" >}}Link{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" href="#" >}}Link{{< /bs-button >}}
 {{< bs-button color="primary" type="submit" >}}Link{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Outline buttons
 
 In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the `.btn-outline-*` ones to remove all background images and colors on any button.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="outline-primary" >}}Primary{{< /bs-button >}}
 {{< bs-button color="outline-secondary" >}}Secondary{{< /bs-button >}}
@@ -77,6 +84,8 @@ In need of a button, but not the hefty background colors they bring? Replace the
 {{< bs-button color="outline-light" >}}Light{{< /bs-button >}}
 {{< bs-button color="outline-dark" >}}Dark{{< /bs-button >}}
 {{< bs-button color="outline-link" >}}Link{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="outline-primary" >}}Primary{{< /bs-button >}}
@@ -90,7 +99,8 @@ In need of a button, but not the hefty background colors they bring? Replace the
 {{< bs-button color="outline-link" >}}Link{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 {{< callout color="info" >}}
 Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast.
@@ -100,75 +110,95 @@ Some of the button styles use a relatively light foreground color, and should on
 
 Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" class="btn-lg" >}}Large button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-lg" >}}Large button{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" class="btn-lg" >}}Large button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-lg" >}}Large button{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" class="btn-sm" >}}Small button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-sm" >}}Small button{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" class="btn-sm" >}}Small button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-sm" >}}Small button{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 Create block level buttons—those that span the full width of a parent—by adding `.btn-block`.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" class="btn-lg btn-block" >}}Block level button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-lg btn-block" >}}Block level button{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" class="btn-lg btn-block" >}}Block level button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-lg btn-block" >}}Block level button{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Active state
 
 Buttons will appear pressed when active with a darker background, darker border, and, when shadows are enabled, an inset shadow. **There’s no need to add a class to `<button>`s as they use a pseudo-class**. However, you can still force the same active appearance with `.active` (and include the `aria-pressed=“true”` attribute) should you need to replicate the state programmatically.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button href="#" color="primary" class="btn-lg active" aria-pressed="true" >}}Primary link{{< /bs-button >}}
 {{< bs-button href="#" color="secondary" class="btn-lg active" aria-pressed="true" >}}Link{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button href="#" color="primary" class="btn-lg active" aria-pressed="true" >}}Primary link{{< /bs-button >}}
 {{< bs-button href="#" color="secondary" class="btn-lg active" aria-pressed="true" >}}Link{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Disabled state
 
 Make buttons look inactive by adding the `disabled` boolean attribute to any `<button>` element.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" class="btn-lg" disabled >}}Primary button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-lg" disabled >}}Button{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" class="btn-lg" disabled >}}Primary button{{< /bs-button >}}
 {{< bs-button color="secondary" class="btn-lg" disabled >}}Button{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 Disabled buttons using the `<a>` element behave a bit different:
 
@@ -177,33 +207,41 @@ Disabled buttons using the `<a>` element behave a bit different:
 * Disabled buttons using `<a>` should include the `aria-disabled="true"` attribute to indicate the state of the element to assistive technologies.
 * Disabled buttons using `<a>` should not include the `href` attribute.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button href="#" color="primary" class="btn-lg disabled" >}}Primary Link{{< /bs-button >}}
 {{< bs-button href="#" color="secondary" class="btn-lg disabled" >}}Link{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button href="#" color="primary" class="btn-lg disabled" >}}Primary Link{{< /bs-button >}}
 {{< bs-button href="#" color="secondary" class="btn-lg disabled" >}}Link{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Link functionality caveat
 
 To cover cases where you have to keep the `href` attribute on a disabled link, the `.disabled` class uses `pointer-events: none` to try to disable the link functionality of `<a>`s. Note that this CSS property is not yet standardized for HTML, but all modern browsers support it. In addition, even in browsers that do support `pointer-events: none`, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, in addition to `aria-disabled="true"`, also include a `tabindex="-1`" attribute on these links to prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button href="#" color="primary" class="btn-lg disabled" >}}Primary Link{{< /bs-button >}}
 {{< bs-button href="#" color="secondary" class="btn-lg disabled" >}}Link{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button href="#" color="primary" class="btn-lg disabled" >}}Primary Link{{< /bs-button >}}
 {{< bs-button href="#" color="secondary" class="btn-lg disabled" >}}Link{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Button plugin
 
@@ -213,15 +251,19 @@ Do more with buttons. Control button states or create groups of buttons for more
 
 Add `data-toggle="button"` to toggle a button’s `active` state. If you’re pre-toggling a button, you must manually add the `.active` class and `aria-pressed="true"` to the `<button>`.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" data-toggle="button" aria-pressed="false" >}}Single toggle{{< /bs-button >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" data-toggle="button" aria-pressed="false" >}}Single toggle{{< /bs-button >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Checkbox and radio buttons
 
@@ -231,7 +273,8 @@ The checked state for these buttons is **only updated via `click` event** on the
 
 Note that pre-checked buttons require you to manually add the `.active` class to the input’s `<label>`.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< layout class="btn-group-toggle" data-toggle="buttons" >}}
 <!--
@@ -240,6 +283,8 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 </label>
 -->
 {{< /layout >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< layout class="btn-group-toggle" data-toggle="buttons" >}}
@@ -251,9 +296,11 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {{< /layout >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< layout class="btn-group btn-group-toggle" data-toggle="buttons" >}}
 <!--
@@ -268,6 +315,8 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 </label>
 -->
 {{< /layout >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< layout class="btn-group btn-group-toggle" data-toggle="buttons" >}}
@@ -285,4 +334,5 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {{< /layout >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}

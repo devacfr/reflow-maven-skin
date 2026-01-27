@@ -403,7 +403,9 @@ var mReflow = function () {
   }
 
   function refreshScrollSpy() {
-    $body.scrollspy('refresh');
+    $('[data-spy="scroll"]').each(function () {
+      var $spy = $(this).scrollspy('refresh')
+    });
   }
 
   return {

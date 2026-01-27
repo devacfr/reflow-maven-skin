@@ -67,7 +67,7 @@ public class SnippetComponent<T extends SnippetComponent<T>> extends Component<T
    * @param element
    *          the element
    */
-  public SnippetComponent(@Nonnull final Element element, final Type type) {
+  protected SnippetComponent(@Nonnull final Element element, @Nonnull final Type type) {
     super(element);
     this.type = requireNonNull(type);
     this.addAttributes(element.attributes());

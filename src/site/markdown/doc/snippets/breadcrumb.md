@@ -8,15 +8,18 @@ Indicate the current page’s location within a navigational hierarchy that auto
 
 ## Example
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< breadcrumb />}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< breadcrumb />}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Changing the separator
 

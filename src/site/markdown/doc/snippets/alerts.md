@@ -10,7 +10,8 @@ Provide contextual feedback messages for typical user actions with the handful o
 
 Alerts are available for any length of text, as well as an optional dismiss button. For proper styling, use one of the eight required contextual color (e.g., success).
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< alert color="primary" >}}
 A simple primary alert—check it out!
@@ -43,6 +44,8 @@ A simple light alert—check it out!
 {{< alert color="dark" >}}
 A simple dark alert—check it out!
 {{< /alert >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{< alert color="primary" >}}
@@ -78,7 +81,8 @@ A simple dark alert—check it out!
 {{< /alert >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 {{< callout color="warning" level="5" title="Conveying meaning to assistive technologies" >}}
 
@@ -90,7 +94,8 @@ Using color to add meaning only provides a visual indication, which will not be 
 
 Use the `.alert-link` utility class to quickly provide matching colored links within any alert.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< alert color="primary" >}}
 A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
@@ -123,6 +128,8 @@ A simple light alert with <a href="#" class="alert-link">an example link</a>. Gi
 {{< alert color="dark" >}}
 A simple dark alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
 {{< /alert >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{< alert color="primary" >}}
@@ -158,13 +165,15 @@ A simple dark alert with <a href="#" class="alert-link">an example link</a>. Giv
 {{< /alert >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Additional content
 
 Alerts can also contain additional HTML elements like headings, paragraphs and dividers.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< alert color="success" title="Well done!" level="4" >}}
 <!--
@@ -173,6 +182,8 @@ Alerts can also contain additional HTML elements like headings, paragraphs and d
 <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
 -->
 {{< /alert >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< alert color="success" title="Well done!" level="4" >}}
@@ -184,7 +195,8 @@ Alerts can also contain additional HTML elements like headings, paragraphs and d
 {{< /alert >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Dismissing
 
@@ -197,11 +209,14 @@ Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. 
 * To animate alerts when dismissing them, be sure to add the .fade and .show classes.
 You can see this in action with a live demo:
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< alert color="warning" dismissable >}}
 **Holy guacamole!** You should check in on some of those fields below.
 {{< /alert >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< alert color="warning" dismissable >}}
@@ -209,4 +224,5 @@ You can see this in action with a live demo:
 {{< /alert >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}

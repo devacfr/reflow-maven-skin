@@ -22,7 +22,6 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.devacfr.maven.skins.reflow.JsoupUtils;
-import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
 import org.jsoup.nodes.Comment;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -64,29 +63,25 @@ public abstract class Processor {
     if (LOGGER.isDebugEnabled()) {
       LOGGER.debug("Parse Token: {}", token);
     }
-    SnippetContext snippetContext = parser.getSnippetContext();
     switch (token.tag()) {
       case empty:
-        snippetContext.render(createSnippetComponent(snippetContext, token, null));
+        this.handleEmptyTag(token);
         break;
 
       case start:
+        this.handleStartTag(token);
         parser.push(token);
         parser.parse();
         break;
 
       case end:
         final ComponentToken startToken = parser.pop();
-        if (!token.isCloseTagOf(startToken)) {
-          throw new RuntimeException("start token " + startToken + " should be closed, but next token is " + token);
-        }
-        snippetContext.render(createSnippetComponent(snippetContext, startToken, token));
+        final ComponentToken endToken = token;
+        this.handleCloseTag(startToken, endToken);
         break;
-
       case html:
-        snippetContext.render(createSnippetComponent(snippetContext, token, null));
+        this.handleHtmlTag(token);
         break;
-
       default:
         throw new SnippetParseException("unknown token tag " + token.tag());
     }
@@ -103,6 +98,48 @@ public abstract class Processor {
    *           If an I/O error occurs.
    */
   protected abstract void appendChildrenToHtml(Node node, Appendable writer) throws IOException;
+
+  /**
+   * Handle start tag mismatch.
+   *
+   * @param token
+   *          the token
+   */
+  protected void handleStartTag(final ComponentToken token) {
+    // do nothing
+  }
+
+  /**
+   * Handle close tag mismatch.
+   *
+   * @param startToken
+   *          the start token
+   * @param endToken
+   *          the end token.
+   */
+  protected void handleCloseTag(final ComponentToken startToken, final ComponentToken endToken) {
+    // do nothing
+  }
+
+  /**
+   * Handle empty tag.
+   *
+   * @param token
+   *          the token
+   */
+  protected void handleEmptyTag(final ComponentToken token) {
+    // do nothing
+  }
+
+  /**
+   * Handle html tag.
+   *
+   * @param token
+   *          the token
+   */
+  protected void handleHtmlTag(final ComponentToken token) {
+    // do nothing
+  }
 
   /**
    * Convert the snippet to html.
@@ -124,7 +161,7 @@ public abstract class Processor {
     final Element tmp = doc.body();
     final Node parent = startElement.parentNode();
 
-    final StringBuilder html = new StringBuilder(ComponentResolver.convertElementToHtml(startElement));
+    final StringBuilder html = new StringBuilder(ComponentResolver.convertElementTextToHtml(startElement));
     final List<Node> nodesToRemove = Lists.newArrayList();
     nodesToRemove.add(startElement);
     if (endElement != null) {
@@ -147,7 +184,7 @@ public abstract class Processor {
           startCopy = true;
         }
       }
-      html.append(ComponentResolver.convertElementToHtml(endElement));
+      html.append(ComponentResolver.convertElementTextToHtml(endElement));
     }
     tmp.html(html.toString());
     final Element component = tmp.children().first();
@@ -164,30 +201,6 @@ public abstract class Processor {
     }
     nodesToRemove.forEach(Node::remove);
     return component;
-  }
-
-  /**
-   * Create a {@link SnippetComponent}.
-   *
-   * @param snippetContext
-   *          the snippet context to use.
-   * @param startToken
-   *          the start token.
-   * @param endToken
-   *          the end token.
-   * @return Returns a new instance of {@link SnippetComponent} representing the information contained between
-   *         {@code startToken} and {@code endToken}.
-   */
-  protected SnippetComponent<?> createSnippetComponent(final SnippetContext snippetContext,
-    final ComponentToken startToken,
-    final ComponentToken endToken) {
-    Element componentElement = null;
-    if (Tag.html.equals(startToken.tag())) {
-      componentElement = startToken.getElement();
-    } else {
-      componentElement = convertToHtml(startToken, endToken);
-    }
-    return snippetContext.create(componentElement, startToken, endToken);
   }
 
   /**
@@ -232,6 +245,53 @@ public abstract class Processor {
         writer.append(((TextNode) node).text());
       }
     }
+
+    @Override
+    protected void handleStartTag(ComponentToken token) {
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void handleEmptyTag(final ComponentToken token) {
+      SnippetContext snippetContext = parser.getSnippetContext();
+      Element componentElement = convertToHtml(token, null);
+      Component<?> component = snippetContext.create(componentElement, token, null);
+      snippetContext.render(component);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void handleCloseTag(final ComponentToken startToken, final ComponentToken endToken) {
+      SnippetContext snippetContext = parser.getSnippetContext();
+      // if (snippetContext.getCurrentWebComponentToken() != null) {
+      // return;
+      // }
+      if (!endToken.isCloseTagOf(startToken)) {
+        throw new RuntimeException("start token " + startToken + " should be closed by " + startToken.getCloseTag()
+            + ", but found " + endToken);
+      }
+
+      Element componentElement = convertToHtml(startToken, endToken);
+      Component<?> component = snippetContext.create(componentElement, startToken, endToken);
+      snippetContext.render(component);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void handleHtmlTag(final ComponentToken token) {
+      SnippetContext snippetContext = parser.getSnippetContext();
+      Element componentElement = token.getElement();
+      Component<?> component = snippetContext.create(componentElement, token, null);
+      snippetContext.render(component);
+    }
+
   }
 
 }

@@ -24,7 +24,8 @@ Click the buttons below to show and hide another element via class changes:
 
 Generally, we recommend using a button with the `data-target` attribute. While not recommended from a semantic point of view, you can also use a link with the href attribute (and a `role="button"`). In both cases, the `data-toggle="collapse"` is required.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >}}Link with href{{< /bs-button >}}
 {{< bs-button color="primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >}}Button with data-target{{< /bs-button >}}
@@ -36,6 +37,8 @@ Generally, we recommend using a button with the `data-target` attribute. While n
 </div>
 -->
 {{< /collapse >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" data-toggle="collapse" href="#collapseExample"
@@ -56,7 +59,8 @@ Link with href
 {{< /collapse >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Horizontal
 
@@ -66,7 +70,8 @@ The collapse plugin also supports horizontal collapsing. Add the `.width` modifi
 Please note that while the example below has a `min-height` set to avoid excessive repaints in our docs, this is not explicitly required. **Only the `width` on the child element is required.**
 {{< /callout >}}
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" data-toggle="collapse" data-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" >}}
     Toggle width collapse
@@ -81,6 +86,8 @@ Please note that while the example below has a `min-height` set to avoid excessi
 -->
 {{< /collapse >}}
 {{< /layout >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" data-toggle="collapse" data-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" >}}
@@ -98,13 +105,15 @@ Please note that while the example below has a `min-height` set to avoid excessi
 {{< /layout >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Multiple targets
 
 A `<button>` or `<a>` can show and hide multiple elements by referencing them with a JQuery selector in its `href` or `data-target` attribute. Multiple `<button>` or `<a>` can show and hide an element if they each reference it with their `href` or `data-target` attribute.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< bs-button color="primary" data-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1" >}}
   Toggle first element
@@ -136,6 +145,8 @@ A `<button>` or `<a>` can show and hide multiple elements by referencing them wi
 {{< /collapse >}}
 {{< /column >}}
 {{< /row >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{< bs-button color="primary" data-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1" >}}
@@ -171,13 +182,15 @@ A `<button>` or `<a>` can show and hide multiple elements by referencing them wi
 {{< /row >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Accordion example
 
 Using the [card](https://getbootstrap.com/docs/4.6/components/card/) component, you can extend the default collapse behavior to create an accordion. To properly achieve the accordion style, be sure to use `.accordion` as a wrapper.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% accordion id="accordionExample" %}}
 <!--
@@ -192,6 +205,8 @@ And lastly, the placeholder content for the third and final accordion panel. Thi
 </item>
 -->
 {{% /accordion %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```html
 {{% accordion id="accordionExample" %}}
@@ -209,4 +224,5 @@ And lastly, the placeholder content for the third and final accordion panel. Thi
 {{% /accordion %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}

@@ -31,14 +31,14 @@ public class ComponentToken {
    * @author Christophe Friederich
    * @version 2.4
    */
-  public enum Tag {
+  public enum TagType {
     /** empty-tag */
     empty,
     /** start-tag */
     start,
     /** end-tag */
     end,
-    /** end-tag */
+    /** snippet written in html format */
     html
   }
 
@@ -46,7 +46,7 @@ public class ComponentToken {
   private final Element element;
 
   /** */
-  private final Tag tag;
+  private final TagType tag;
 
   /** */
   private final Type type;
@@ -64,7 +64,7 @@ public class ComponentToken {
    * @param tag
    *          the tag
    */
-  public ComponentToken(final Element element, final String name, final Tag tag, final Type type) {
+  public ComponentToken(final Element element, final String name, final TagType tag, final Type type) {
     this.element = element;
     this.name = name;
     this.tag = tag;
@@ -88,7 +88,7 @@ public class ComponentToken {
   /**
    * @return the tag
    */
-  public Tag tag() {
+  public TagType tag() {
     return tag;
   }
 
@@ -105,8 +105,8 @@ public class ComponentToken {
    * @return true if this element is the close tag of the given start element
    */
   public boolean isCloseTagOf(final ComponentToken startElement) {
-    return name.equals(startElement.name) && type.equals(startElement.type) && Tag.start.equals(startElement.tag)
-        && Tag.end.equals(tag);
+    return name.equals(startElement.name) && type.equals(startElement.type) && TagType.start.equals(startElement.tag)
+        && TagType.end.equals(tag);
   }
 
   /**
@@ -116,5 +116,14 @@ public class ComponentToken {
   public String toString() {
     return MoreObjects.toStringHelper(this).add("name", name).add("type", type).add("tag", tag).toString();
 
+  }
+
+  /**
+   * Get the close tag representation.
+   *
+   * @return the close tag representation.
+   */
+  public String getCloseTag() {
+    return "< /" + name + " >";
   }
 }

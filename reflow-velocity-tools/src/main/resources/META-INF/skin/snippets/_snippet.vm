@@ -99,6 +99,15 @@ ${sp}children:
 #*  *##end##
 #end##
 ##
+#macro( addClasses $baseClass )##
+#*  *##if( $snippet.hasAttribute( 'class' ) )##
+#*      *##set( $value = $htmlTool.addClasses( $baseClass, ${snippet.attrs['class']} ) )##
+#*      *##addAttr( 'class' , $value )##
+#*  *##else##
+#*      *##addAttr( 'class' , $baseClass )##
+#*  *##end##
+#end##
+##
 #**
 * add attributes to html element
 *#

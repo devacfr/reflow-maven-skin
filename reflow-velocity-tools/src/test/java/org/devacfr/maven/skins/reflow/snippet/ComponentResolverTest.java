@@ -15,7 +15,7 @@
 */
 package org.devacfr.maven.skins.reflow.snippet;
 
-import org.devacfr.maven.skins.reflow.snippet.ComponentToken.Tag;
+import org.devacfr.maven.skins.reflow.snippet.ComponentToken.TagType;
 import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Assertions;
@@ -29,52 +29,52 @@ public class ComponentResolverTest extends MockitoTestCase {
 
   @Test
   public void shouldBeStartWebComponent() {
-    check("{{% component %}}", "component", Tag.start);
+    check("{{% component %}}", "component", TagType.start);
   }
 
   @Test
   public void shouldBeStartWebComponentWithAttributes() {
-    check("{{% component style=\"width: 18rem;\" attr2=\"val\" %}}", "component", Tag.start);
+    check("{{% component style=\"width: 18rem;\" attr2=\"val\" %}}", "component", TagType.start);
   }
 
   @Test
   public void shouldBeStartWebComponentWithAttributesLeftAndRightDoubleQuote() {
-    check("{{% component style=“width: 18rem;” attr2=“val” %}}", "component", Tag.start);
+    check("{{% component style=“width: 18rem;” attr2=“val” %}}", "component", TagType.start);
   }
 
   @Test
   public void shouldBeStartWebComponentWithAttributeWithoutValue() {
-    check("{{% component pill %}}", "component", Tag.start);
+    check("{{% component pill %}}", "component", TagType.start);
   }
 
   @Test
   public void shouldBeStartWebComponentWithNumberAttributes() {
-    check("{{% component length=\"120\" %}}", "component", Tag.start);
+    check("{{% component length=\"120\" %}}", "component", TagType.start);
   }
 
   @Test
   public void shouldBeEndWebComponent() {
-    check("{{% /component %}}", "component", Tag.end);
+    check("{{% /component %}}", "component", TagType.end);
   }
 
   @Test
   public void shouldBeEmptyWebComponent() {
-    check("{{% component /%}}", "component", Tag.empty);
+    check("{{% component /%}}", "component", TagType.empty);
   }
 
   @Test
   public void shouldBeStartShortcode() {
-    check("{{< component >}}", "component", Tag.start);
+    check("{{< component >}}", "component", TagType.start);
   }
 
   @Test
   public void shouldBeEndShortcode() {
-    check("{{< /component >}}", "component", Tag.end);
+    check("{{< /component >}}", "component", TagType.end);
   }
 
   @Test
   public void shouldBeEmptyShortcode() {
-    check("{{< component />}}", "component", Tag.empty);
+    check("{{< component />}}", "component", TagType.empty);
   }
 
   @Test
@@ -91,10 +91,10 @@ public class ComponentResolverTest extends MockitoTestCase {
 
   @Test
   public void shouldElementStartWebComponentContainingAttributes() {
-    check("{{% component attr=\"value\" attr1=\"value1\" %}}", "component", Tag.start);
+    check("{{% component attr=\"value\" attr1=\"value1\" %}}", "component", TagType.start);
   }
 
-  private ComponentToken check(final String text, final String name, final Tag state) {
+  private ComponentToken check(final String text, final String name, final TagType state) {
     final ComponentToken element = new ComponentResolver().create(new Element("p").text(text));
     assertEquals(name, element.name());
     assertEquals(state, element.tag());

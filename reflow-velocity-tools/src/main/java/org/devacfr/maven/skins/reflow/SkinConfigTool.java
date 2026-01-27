@@ -40,6 +40,7 @@ import org.codehaus.plexus.util.PathTool;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.devacfr.maven.skins.reflow.context.Context;
 import org.devacfr.maven.skins.reflow.context.PositionType;
+import org.devacfr.maven.skins.reflow.snippet.Component;
 import org.devacfr.maven.skins.reflow.snippet.SnippetComponent;
 import org.devacfr.maven.skins.reflow.snippet.SnippetContext;
 import org.devacfr.maven.skins.reflow.snippet.SnippetParser;
@@ -282,9 +283,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
     final SnippetParser parser = new SnippetParser();
     final Document doc = getHtmlTool().parse(snippet);
     final SnippetContext context = parser.getSnippetContext();
-    final SnippetComponent<?> component = context.create(doc.body().firstElementChild(), null);
+    final Component<?> component = context.create(doc.body().firstElementChild(), null);
     context.setConfig(this);
-    component.render(context);
+    if (component instanceof SnippetComponent<?>) {
+      ((SnippetComponent<?>) component).render(context);
+    }
     return doc.body().html();
   }
 

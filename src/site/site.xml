@@ -306,11 +306,11 @@
               <item name="Breadcrumb" href="doc/snippets/breadcrumb.html" />
               <item name="Buttons" href="doc/snippets/buttons.html" />
               <item name="Button Group" href="doc/snippets/button-group.html" />
+              <item name="Card" href="doc/snippets/card.html" />
               <item name="Carousel" href="doc/snippets/carousel.html" />
               <item name="Collapse" href="doc/snippets/collapse.html" />
-              <item name="Card" href="doc/snippets/card.html" />
+              <item name="Dropdowns" href="doc/snippets/dropdowns.html" />
               <item name="Layout Grid" href="doc/snippets/layout-grid.html" />
-              <item name="X (Twitter)" href="doc/snippets/twitter.html" />
             </item>
             <item name="Components">
               <item name="Components Overview" href="doc/components/components.html" />

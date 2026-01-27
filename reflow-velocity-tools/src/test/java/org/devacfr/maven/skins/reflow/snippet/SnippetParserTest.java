@@ -31,8 +31,7 @@ public class SnippetParserTest extends BaseSnippetTest {
   @Test
   public void shouldContainSnippetComponent() {
     SnippetParser parser = createParser();
-    parser.addResourcePath(getPackagePath().toString()).refreshParser();
-    assertEquals(true, parser.hasIncludedSnippetComponent(new Element("body").append("<test class=\"cl\"></test>")));
+    parser.addResourcePath(getPackagePath().toString());
     assertEquals(true, parser.hasIncludedSnippetComponent(new Element("body").append("<test class=\"cl\"></test>")));
     assertEquals(false, parser.hasIncludedSnippetComponent(new Element("body").append("<test1></test1>")));
   }
@@ -72,6 +71,17 @@ public class SnippetParserTest extends BaseSnippetTest {
 
   @Test
   public void shouldRenderCardRecursively() {
+    verify((htmlSource) -> {
+      try {
+        return createParser().parse(config, htmlSource).html();
+      } catch (final IOException e) {
+        throw new RuntimeException(e.getMessage(), e);
+      }
+    }, "html");
+  }
+
+  @Test
+  public void shouldRenderRecursively() {
     verify((htmlSource) -> {
       try {
         return createParser().parse(config, htmlSource).html();

@@ -18,7 +18,8 @@ Carousels don’t automatically normalize slide dimensions. As such, you may nee
 
 Here’s a carousel with slides only. Note the presence of the `.d-block` and `.w-100` on carousel images to prevent browser default image alignment.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% carousel id="carousel1" withControls="false" withIndicators="false" %}}
 <!--
@@ -54,6 +55,8 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
     </slide>
 -->
 {{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% carousel id="carousel" withControls="false" withIndicators="false" %}}
@@ -71,13 +74,15 @@ Here’s a carousel with slides only. Note the presence of the `.d-block` and `.
 {{% /carousel %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### With controls
 
 Adding in the previous and next controls:
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% carousel id="carousel2" withControls="true" withIndicators="false" %}}
 <!--
@@ -113,6 +118,8 @@ Adding in the previous and next controls:
     </slide>
 -->
 {{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="false" %}}
@@ -130,13 +137,15 @@ Adding in the previous and next controls:
 {{% /carousel %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### With indicators
 
 You can also add the indicators to the carousel, alongside the controls, too.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% carousel id="carousel3" withControls="true" withIndicators="true" %}}
 <!--
@@ -172,6 +181,8 @@ You can also add the indicators to the carousel, alongside the controls, too.
     </slide>
 -->
 {{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="true" %}}
@@ -189,13 +200,15 @@ You can also add the indicators to the carousel, alongside the controls, too.
 {{% /carousel %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### With captions
 
 Add captions to your slides easily with the `<slide-caption>` element within any `<slide>` element. They can be easily hidden on smaller viewports, as shown below, with optional Bootstrap display utilities. We hide them initially with `.d-none` and bring them back on medium-sized devices with `.d-md-block`.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% carousel id="carousel4" withControls="true" withIndicators="true" %}}
 <!--
@@ -243,6 +256,8 @@ Add captions to your slides easily with the `<slide-caption>` element within any
     </slide>
 -->
 {{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="true" %}}
@@ -272,13 +287,15 @@ Add captions to your slides easily with the `<slide-caption>` element within any
 {{% /carousel %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Crossfade
 
 set `crossfade="true"` attribute to your carousel to animate slides with a fade transition instead of a slide.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% carousel id="carousel5" withControls="true" withIndicators="false" crossfade="true" %}}
 <!--
@@ -314,6 +331,8 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
     </slide>
 -->
 {{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="false" crossfade="true" %}}
@@ -331,13 +350,15 @@ set `crossfade="true"` attribute to your carousel to animate slides with a fade 
 {{% /carousel %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Individual interval
 
 Add `interval=""` attribute to a `<slide>` element to change the amount of time to delay between automatically cycling to the next item.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% carousel id="carousel5" withControls="true" withIndicators="false" %}}
 <!--
@@ -373,6 +394,8 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
     </slide>
 -->
 {{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% carousel id="carousel" withControls="true" withIndicators="false" crossfade="true" %}}
@@ -390,4 +413,5 @@ Add `interval=""` attribute to a `<slide>` element to change the amount of time 
 {{% /carousel %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}

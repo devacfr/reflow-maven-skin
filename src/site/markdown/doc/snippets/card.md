@@ -16,8 +16,9 @@ Cards are built with as little markup and styles as possible, but still manage t
 
 Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various [sizing options](https://getbootstrap.com/docs/4.6/components/card/#sizing).
 
-{{< example >}}
+{{% example %}}
 
+{{< preview-section >}}
 {{% card style="width: 18rem;" %}}
 <!--
   <card-image>
@@ -34,6 +35,8 @@ Below is an example of a basic card with mixed content and a fixed width. Cards 
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
@@ -48,7 +51,8 @@ Below is an example of a basic card with mixed content and a fixed width. Cards 
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Content types
 
@@ -58,8 +62,8 @@ Cards support a wide variety of content, including images, text, list groups, li
 
 The building block of a card is the `<card-body>` element. Use it whenever you need a padded section within a card.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card %}}
 <!--
   <card-body>
@@ -67,6 +71,8 @@ The building block of a card is the `<card-body>` element. Use it whenever you n
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card %}}
@@ -78,7 +84,8 @@ The building block of a card is the `<card-body>` element. Use it whenever you n
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Titles, text, and links
 
@@ -86,8 +93,8 @@ Card titles are used by adding `.card-title` to a `<h*>` tag. In the same way, l
 
 Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-title` and the `.card-subtitle` items are placed in a `<card-body>` element, the card title and subtitle are aligned nicely.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card style="width: 18rem;" %}}
 <!--
   <card-body>
@@ -99,6 +106,8 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
@@ -114,14 +123,15 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Images
 
 `caps="top"` (default value, can be omitted) attribute places an image to the top of the card. With `.card-text`, text can be added to the card. Text within `.card-text` can also be styled with the standard HTML tags.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card caps="top" style="width: 18rem;" %}}
 <!--
   <card-image>
@@ -136,6 +146,8 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card caps="top" style="width: 18rem;" %}}
@@ -148,14 +160,15 @@ Subtitles are used by adding a `.card-subtitle` to a `<h*>` tag. If the `.card-t
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Header and footer
 
 Add an optional header and/or footer within a card.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card %}}
 <!--
   <card-header>Featured</card-header>
@@ -166,6 +179,8 @@ Add an optional header and/or footer within a card.
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card %}}
@@ -180,12 +195,13 @@ Add an optional header and/or footer within a card.
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 Card headers can be use `<h*>` elements by adding `level="[1-6]"` attribute to `<card-header>` elements.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card %}}
 <!--
   <card-header level="5" class="no-anchor">Featured</card-header>
@@ -196,6 +212,8 @@ Card headers can be use `<h*>` elements by adding `level="[1-6]"` attribute to `
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card %}}
@@ -210,7 +228,8 @@ Card headers can be use `<h*>` elements by adding `level="[1-6]"` attribute to `
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Sizing
 
@@ -220,7 +239,8 @@ Cards assume no specific `width` to start, so they’ll be 100% wide unless othe
 
 Using the grid, wrap cards in columns and rows as needed.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{< row >}}
 {{< column >}}
@@ -252,6 +272,8 @@ Using the grid, wrap cards in columns and rows as needed.
 {{% /card %}}
 {{< /column >}}
 {{< /row >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{< row >}}
@@ -288,13 +310,15 @@ Using the grid, wrap cards in columns and rows as needed.
 {{< /row >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Using utilities
 
 Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.6/utilities/sizing/) to quickly set a card’s width.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% card class="w-75" %}}
 <!--
@@ -314,6 +338,8 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card class="w-75" %}}
@@ -336,13 +362,15 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Text alignment
 
 You can quickly change the text alignment of any card—in its entirety or specific parts—with our [text align classes](https://getbootstrap.com/docs/4.6/utilities/text/#text-alignment).
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% card style="width: 18rem;" %}}
 <!--
@@ -373,6 +401,8 @@ You can quickly change the text alignment of any card—in its entirety or speci
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card style="width: 18rem;" %}}
@@ -406,7 +436,8 @@ You can quickly change the text alignment of any card—in its entirety or speci
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Images
 
@@ -416,7 +447,8 @@ Cards include a few options for working with images. Choose from appending “im
 
 Similar to headers and footers, cards can include top and bottom “image caps”—images at the top or bottom of a card.
 
-{{< example >}}
+{{% example %}}
+{{< preview-section >}}
 
 {{% card caps="top" class="mb-3" %}}
 <!--
@@ -451,6 +483,8 @@ Similar to headers and footers, cards can include top and bottom “image caps�
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card caps="top" class="mb-3" %}}
@@ -476,14 +510,15 @@ Similar to headers and footers, cards can include top and bottom “image caps�
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Image overlays
 
 Turn an image into a card background and overlay your card’s text. Depending on the image, you may or may not need additional styles or utilities.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card img-overlay="true" class="bg-dark text-white" %}}
 <!--
   <card-image>
@@ -500,6 +535,8 @@ Turn an image into a card background and overlay your card’s text. Depending o
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card img-overlay="true" class="bg-dark text-white" %}}
@@ -514,14 +551,15 @@ Turn an image into a card background and overlay your card’s text. Depending o
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Horizontal
 
 Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-friendly and responsive way.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{% card horizontal="true" class="mb-3" style="max-width: 540px;" %}}
 <!--
   <card-image>
@@ -538,6 +576,8 @@ Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-fr
   </card-body>
 -->
 {{% /card %}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{% card horizontal="true" class="mb-3" style="max-width: 540px;" %}}
@@ -552,7 +592,8 @@ Using `horizontal="true"` attribute, cards can be made horizontal in a mobile-fr
 {{% /card %}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ## Card layout
 
@@ -566,8 +607,8 @@ In addition to styling the content within cards, Bootstrap includes a few option
 
 Use card groups to render cards as a single, attached element with equal width and height columns. Card groups use `{{< card-group >}}` shortcode to achieve their uniform sizing.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< card-group >}}
 {{% card %}}
 <!--
@@ -618,6 +659,8 @@ Use card groups to render cards as a single, attached element with equal width a
 -->
 {{% /card %}}
 {{< /card-group >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{< card-group >}}
@@ -654,14 +697,15 @@ Use card groups to render cards as a single, attached element with equal width a
 {{< /card-group >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Card decks
 
 Need a set of equal width and height cards that aren’t attached to one another? Use card decks.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< card-group type="deck" >}}
 {{% card %}}
 <!--
@@ -712,6 +756,8 @@ Need a set of equal width and height cards that aren’t attached to one another
 -->
 {{% /card %}}
 {{< /card-group >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{< card-group type="deck" >}}
@@ -748,14 +794,15 @@ Need a set of equal width and height cards that aren’t attached to one another
 {{< /card-group >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}
 
 ### Card columns
 
 Cards can be organized into [Masonry](https://masonry.desandro.com/) -like columns. Cards are ordered from top to bottom and left to right.
 
-{{< example >}}
-
+{{% example %}}
+{{< preview-section >}}
 {{< card-group type="columns" >}}
 {{% card %}}
 <!--
@@ -860,6 +907,8 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
 -->
 {{% /card %}}
 {{< /card-group >}}
+{{< /preview-section >}}
+{{< code-section >}}
 
 ```xml
 {{< card-group type="columns" >}}
@@ -949,4 +998,5 @@ Cards can be organized into [Masonry](https://masonry.desandro.com/) -like colum
 {{< /card-group >}}
 ```
 
-{{< /example >}}
+{{< /code-section >}}
+{{% /example %}}

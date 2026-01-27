@@ -198,26 +198,26 @@ h3 {
     color: var(--yellow);
 }
 
-
-
-
-.highlight {
+/*
+ * Header highlight sections
+*/
+.header-highlight {
     padding-top: 45px;
     margin-bottom: 65px;
     font-size: 21.6px
 }
 
-.highlight .svg-icon--highlight {
+.header-highlight .svg-icon--highlight {
     height: 80%;
     width: 80%;
 }
 
 
-.highlight img {
+.header-highlight img {
     max-width: 90%;
 }
 
-.highlight h2 {
+.header-highlight h2 {
     font-size: 46px;
     border-left: 8px solid var(--secondary);
     padding: 10px 15px;
@@ -225,32 +225,32 @@ h3 {
 }
 
 
-.highlight .text-right h2 {
+.header-highlight .text-right h2 {
     border-left: none;
     border-right: 8px solid var(--secondary);
 }
 
 
-.highlight.highlight-about {
+.header-highlight.about {
     margin-bottom: 0;
 }
 
-.highlight.highlight-general {
+.header-highlight.general {
     font-size: 18px
 }
 
-.highlight.highlight-general .svg-icon--highlight {
+.header-highlight.general .svg-icon--highlight {
     height: 100px;
     width: 100px;
 }
 
-.highlight.highlight-general img {
+.header-highlight.general img {
     max-height: 125px;
     padding-top: 6.25px;
     padding-bottom: 16.67px
 }
 
-.highlight.highlight-responsive-layout {
+.header-highlight.responsive-layout {
     margin-bottom: 0;
     background-color: #eee
 }
@@ -330,7 +330,7 @@ h3 {
 .bd-example,
 .bd-example-row {
     position: relative;
-    padding: 1rem;
+    padding: 0.5rem;
     margin: 1rem -15px 0;
     border: solid #f8f9fa;
     border-width: .2rem 0 0;
@@ -340,7 +340,7 @@ h3 {
   margin-top: 1rem
 }
 
-.bd-example .highlight {
+.bd-example .code-section {
   background-color: #f8f9fa;
 }
 
@@ -355,7 +355,7 @@ h3 {
 
     .bd-example,
     .bd-example-row {
-        padding: 1.5rem;
+        padding: 0.5rem;
         margin-right: 0;
         margin-left: 0;
         border-width: .2rem;
@@ -378,4 +378,16 @@ h3 {
 .bd-example-row-flex-cols .row {
   min-height: 10rem;
   background-color: rgba(255, 0, 0, 0.1);
+}
+
+.bd-example>.dropdown-menu:first-child {
+  position: static;
+  display: block
+}
+
+/*
+ * highlight code block
+*/
+.highlight .highlight-code pre{
+    margin-bottom: 0 !important;
 }
