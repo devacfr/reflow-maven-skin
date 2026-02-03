@@ -1,0 +1,97 @@
+#set($h1 = '#')
+#set($h2 = '##')
+#set($h3 = '###')
+#set($h4 = '####')
+#set($h5 = '#####')
+
+$h1 Reflow Maven skin 2.4 Release Notes
+
+$h2 Highlights of this release
+
+We are glade to announce the new version of Reflow Maven skin. This version introduces a new feature calling **Snippet**. [Snippet](../../doc/reflow-documentation.html#doc-snippets-snippet) is a little web component that you add in your page to enhance your documentation as the [Carousel Component](../../doc/reflow-documentation.html#doc-snippets-carousel) or your own snippet.
+
+This is easy to use, You are just include in your page the following lines to display a carousel:
+
+```markdown
+{{% carousel id="carousel" withControls="false" withIndicators="false" %}}
+<!--
+  <slide>
+    <slide-image src="..." class="d-block w-100" />
+  </slide>
+  <slide>
+    <slide-image src="..." class="d-block w-100" />
+  </slide>
+  <slide>
+    <slide-image src="..." class="d-block w-100" />
+  </slide>
+-->
+{{% /carousel %}}
+```
+
+{{< callout color="warning" title="Be careful" >}}
+This version is only compatible with **maven-site-plugin:4.0.0-M16** and behind.
+{{< /callout >}}
+
+$h2 Changelog
+
+$h3 Release 2.4.0
+
+**2026-02-03**
+
+$h3 Fixed
+
+* Fix banner according to update m-site-p 4.0.0-M16
+* Fix sticky position of navside
+* Fix short title using
+* Fix gpg passphrase
+* Fix External links are not highlighted
+* Fix bootswatch url in reflow-default-webdeps module
+* Fix compatibility with maven-site-plugin:4.0.0-M9 by @solomax in [#89](https://github.com/devacfr/reflow-maven-skin/issues/89)
+* Fix bootswatch cdn url to `https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/${bootswatchTheme}`
+
+$h3 Changed
+
+* Automatically publishes after successful validation on maven central
+* Update snippet documentation part.
+* Accept click on navside-item.
+* Implement Reproducible/Verifiable Builds maven feature. publish date can be override and fixed using the maven property 'project.build.outputTimestamp'.
+* Add SpotLess check goal
+
+$h3 Dependencies
+
+* Update JDK version from 1.8 to 9 in workflow
+* Bump maven-compiler-plugin version to 3.13.0 from 3.8.1
+* Bump Guava version to 32.1.2 from 29.0
+* Bump checkstyle-maven-plugin version sion 2.3.1 from 3.1.0
+* Bump maven-toolchains-plugin to 3..1.0 from 3.0.0
+* Bump maven-clover-plugin version to 4.5.1 from 4.4.1
+* Bump logback version to 1.5.19 from 1.2.9
+* Bump org.apache.commons:commons-lang3 version to 3.18.0 from 3.5
+* Bump maven-changes-plugin version to 3.0.0-M3 from 2.12.1
+* Bump maven-spotbugs-plugin version to 4.9.7.0 from 3.1.12.12
+* Bump maven-gpg-plugin version to 3.2.8 from 1.6
+* Replace maven-deploy-plugin by central-publishing-maven-plugin
+* Bump highlightjs version to 11.11.1
+* Bump slf4j version to 2.0.17 from 1.7.30
+* Bump jsoup version to 1.21.2 from 1.15.3
+* Bump BootstrapSwatch version to 4.6.2 from 4.4.1
+* Bump JQuery version to 3.5.1 from 3.4.1
+* Bump FontAwesome version to 5.15.1 from 5.12.1
+* Bump maven-site-plugin version to 4.0.0-M16 from 4.0.0-M9
+* Bump maven-gitflow-plugin version to 1.19.0 from 1.18.0
+* Bump Google Analytics version to 4
+* Bump guava from 28.2-jre to 29.0-jre by @dependabot in [PR #79](https://github.com/devacfr/reflow-maven-skin/pull/79)
+* Bump jsoup from 1.12.1 to 1.14.2 by @dependabot in [PR #80](https://github.com/devacfr/reflow-maven-skin/pull/80)
+* Bump logback-core from 1.2.3 to 1.2.9 by @dependabot in [PR #85](https://github.com/devacfr/reflow-maven-skin/pull/85)
+* [Snyk] Upgrade org.apache.commons:commons-lang3 from 3.5 to 3.12.0 by @devacfr in [PR #86](https://github.com/devacfr/reflow-maven-skin/pull/86)
+* [Snyk] Upgrade org.slf4j:slf4j-api from 1.7.30 to 1.7.36 by @devacfr in [PR #87](https://github.com/devacfr/reflow-maven-skin/pull/87)
+
+$h3 Deprecated
+
+* Section layout is deprecated, use Snippet instead.
+
+$h3 New Contributors
+
+* @dependabot made their first contribution in https://github.com/devacfr/reflow-maven-skin/pull/79
+
+**Full Changelog**: https://github.com/devacfr/reflow-maven-skin/compare/v2.3.0...v2.4.0

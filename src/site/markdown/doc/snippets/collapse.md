@@ -194,15 +194,15 @@ Using the [card](https://getbootstrap.com/docs/4.6/components/card/) component, 
 
 {{% accordion id="accordionExample" %}}
 <!--
-<item title="Collapsible Group Item #1">
+<accordion-item title="Collapsible Group Item #1">
 Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
-</item>
-<item title="Collapsible Group Item #2">
+</accordion-item>
+<accordion-item title="Collapsible Group Item #2">
 Some placeholder content for the second accordion panel. This panel is hidden by default.
-</item>
-<item title="Collapsible Group Item #3">
+</accordion-item>
+<accordion-item title="Collapsible Group Item #3">
 And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
-</item>
+</accordion-item>
 -->
 {{% /accordion %}}
 {{< /preview-section >}}
@@ -211,15 +211,15 @@ And lastly, the placeholder content for the third and final accordion panel. Thi
 ```html
 {{% accordion id="accordionExample" %}}
 <!--
-<item title="Collapsible Group Item #1">
+<accordion-item title="Collapsible Group Item #1">
 Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
-</item>
-<item title="Collapsible Group Item #2">
+</accordion-item>
+<accordion-item title="Collapsible Group Item #2">
 Some placeholder content for the second accordion panel. This panel is hidden by default.
-</item>
-<item title="Collapsible Group Item #3">
+</accordion-item>
+<accordion-item title="Collapsible Group Item #3">
 And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
-</item>
+</accordion-item>
 -->
 {{% /accordion %}}
 ```

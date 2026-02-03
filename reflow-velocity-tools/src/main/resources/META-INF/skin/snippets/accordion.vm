@@ -15,12 +15,12 @@
 ##
 #* Render accordion snippet * Usage: *
   {{% accordion id="myAccordion" %}}
-    <item title="Accordion Item #1">
+    <accordion-item title="Accordion Item #1">
       Accordion item #1 content
-    </item>
-    <item title="Accordion Item #2">
+    </accordion-item>
+    <accordion-item title="Accordion Item #2">
       Accordion item #2 content
-    </item>
+    </accordion-item>
   {{% /accordion %}}
 *#
 #macro( render_accordion_item $index $item )##
@@ -57,7 +57,7 @@
 #*  *##set( $parentId = $snippet.id )##
 <div #addhtmlattributes( ${snippet} ${class} )="#addHtmlAttributes( ${snippet} ${class} )">
 #*  *##set( $index = 1)##
-#*  *##foreach($item in $snippet.items)##
+#*  *##foreach($item in $snippet["accordion-item"])##
 #*    *##render_accordion_item( $index $item )##
 #*    *##set( $index = $index + 1)##
 #*  *##end##

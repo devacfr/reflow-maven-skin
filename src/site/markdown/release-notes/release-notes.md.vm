@@ -15,6 +15,14 @@ The history of Reflow Maven skin releases is documented below. For details of ch
 [reflow-issues]: ${issue_url}?state=closed
 [github-report]: github-report.html
 
+$h2 Reflow Maven skin 2.4 Release Notes
+
+$h3 Highlights of this release
+
+We are glade to announce the new version of Reflow Maven skin. This version introduces a new feature calling **Snippet**. [Snippet](../doc/reflow-documentation.html#doc-snippets-snippet) is a little web component that you add in your page to enhance your documentation as the [Carousel Component](../doc/reflow-documentation.html#doc-snippets-carousel) or your own snippet.
+
+Read more in the [Reflow Maven skin 2.4 Release Notes and changeslog](release-notes-2.4.html).
+
 $h2 Reflow Maven skin 2.3 Release Notes
 
 $h3 Highlights of this release
