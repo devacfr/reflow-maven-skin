@@ -20,7 +20,7 @@
 
 local dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source ${dir}/setenv.sh
+source "${dir}/setenv.sh"
 
 # default maven command
 maven_cmd="mvn"

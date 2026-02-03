@@ -14,6 +14,5 @@
 ## limitations under the License.
 ##
 <div class="main-body">
-#*  *##set( $bodyContent = $pageContext.preRender( $config) )##
 #*  *##evaluate ( $bodyContent ) ##
 </div> <!-- main-body: end -->

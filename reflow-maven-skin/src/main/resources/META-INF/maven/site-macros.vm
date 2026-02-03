@@ -30,117 +30,6 @@
 #*  *##end##
 #end##
 ##
-#**
- *
- * Creates a class="name" attribute if the given name exists
- *
- *###
-#macro ( classAttr $name )##
-#*  *##if ( $name && '' != $name )##
-#*      *# class="$name" ##
-#*  *##end##
-#end##
-#**
- *
- * Shortcut to display a basic hyperlink
- *
- *###
-#macro ( link $href $name $target $className)##
-#*  *##fullLink ( $href $name $target false false false false false false false $className)##
-#end##
-##
-#**
- *
- * Outputs a hyperlink with image and other attributes
- *
- *###
-#macro ( fullLink $href $name $target $img $position $alt $border $width $height $icon $className)##
-##
-## The opening <a> tag
-<a ##
-#*  *### if $href=false, do not create link
-#*  *##if ( $href ) href="$href" #end##
-#*  *##if ( $name ) title="$name" #end##
-#*  *##if ( $target ) target="$target" #end##
-#*  *##set($css = $className)##
-#*  *##if ( $config.isExternalLink( $href ) ) #set($css = "externalLink " + $className) #end##
- class="$css" >##
-#*  *##if ( $img && $position == "left" )##
-#*      *### Image on the left side of the name
-#*      *##image ($img $alt $border $width $height)$name##
-#*  *##elseif ( $img )##
-#*      *### Image on the right side of the name
-#*      *#${name}#if ($img) #image ($img $alt $border $width $height)#end##
-#*  *##else##
-#*      *### No image - optional icon though on the right of the name
-#*      *#${name}#if ($icon) <i class="$icon"></i>#end##
-#*  *##end##
-##
-</a>##
-#end##
-#**
- *
- * Outputs an image with attributes
- *
- *###
-#macro ( image $img $alt $border $width $height )##
-#*  *##if ( $img )##
-#*      *#<img class="imageLink" ##
-#*      *# src="$config.relativeLink( $img )" alt='"' ##
-#*      *##if ( $alt )$alt#end'"' ##
-#*      *##if ( $border ) border="$border" #end##
-#*      *##if ( $width ) width="$width" #end##
-#*      *##if ( $height ) height="$height" #end##
-#*      *# />##
-#*  *##end##
-#end##
-##
-#**
- * Displays a 'Last published' date message.
- *
- *###
-#macro ( getPublishDate )##
-#*  *##if ( $site.publishDate.position != 'none')
-#*      *##if ( $site.publishDate.format )##
-#*          *##set ( $format = $site.publishDate.format )##
-#*      *##else##
-#*          *##set ( $format = "yyyy-MM-dd" )##
-#*      *##end##
-##
-#*      *##set ( $outputTimestamp = $config.buildOutputTimestamp)
-#*      *##if ( $outputTimestamp)##
-#*          *##set ( $dateValue = $date.format( $format, $outputTimestamp ) )##
-#*      *##elseif ( $publishDate )##
-#*          *##set ( $dateValue = $date.format( $format, $publishDate ) )##
-#*      *##elseif ( $config.publishDate )##
-#*          *##set ( $dateValue = $config.publishDate.getValue() )##
-#*      *##else##
-#*          *##set ( $dateValue = $date.get( $format ) )##
-#*      *##end##
-#*      *### render with internationalization support
-$dateValue
-#*  *##end##
-#end##
-##
-#**
- * Displays a 'Last published' date message.
- *
- *###
-#macro ( publishDate )##
-#*  *##if ( $site.publishDate.position != 'none')
-#*      *### render with internationalization support
-$text.get( "template.lastpublished" ): #getPublishDate ()##
-#*  *##end##
-#end##
-##
-#**
- * Displays a site version message.
- *
- *###
-#macro ( version )##
-#*  *### render with internationalization support
-#*  *#$text.get( "template.version" ): ${project.version}##
-#end##
 ##
 #**
  * Outputs XML DOM objects as html elements into the rendered document.
@@ -161,25 +50,6 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *##end##
 #end##
 ##
-#**
- * Marks the first header inside the content as page header, by wrapping it into
- * a div with `page-header` class
- *
- *###
-#macro ( bodyWithHeader $content )##
-#*  *##if ( $config.not( "markPageHeader" ) )##
-        ## do not mark page header, just print the content
-#*      *##set ( $bodyWithHeader = $content )##
-#*  *##else##
-        ## try marking the header
-#*      *##set ( $bodyWithHeader = $htmlTool.wrap($content, "h1", '<div class="page-header"></div>', 1) )##
-#*      *##if ( $bodyWithHeader == $content )##
-            ## nothing's changed - try with h2
-#*          *##set ( $bodyWithHeader = $htmlTool.wrap($content, "h2", '<div class="page-header"></div>', 1) )##
-#*      *##end##
-#*  *##end##
-#*  *#$bodyWithHeader##
-#end##
 ##
 #**
  * Strips empty paragraphs <p></p> from the content and outputs the result
@@ -207,17 +77,4 @@ $text.get( "template.lastpublished" ): #getPublishDate ()##
 #*  *##end##
 #end##
 ##
-#**
- * Add Edit button if content is editable
-*###
-#macro ( renderFeedbackLink )##
-        <div class="feedback-links">
-            <ul class="nav flex-column flex-nowrap">
-                <li class="nav-item">
-#*  *##if( $site.edit && $docRenderingContext.editable )##
-                    <a class="nav-link" href="$docRenderingContext.getDoxiaSourcePath( $site.edit )"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a>
-#*  *##end##
-                </li>
-            </ul>
-        </div>
-#end##
+

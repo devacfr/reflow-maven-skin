@@ -20,12 +20,16 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source ${dir}/setenv.sh
+source "${dir}/setenv.sh"
 
 # default maven command
 maven_cmd="mvn"
+maven_profiles="-P site-run"
+maven_args=""
+skipTests=false
+
 # store current arguments
-args="$@"
+args=( "$@" )
 
 for i in "$@"
 do
@@ -38,12 +42,26 @@ case $i in
     maven_cmd="${ROOT_PATH}/mvnw"
     shift
     ;;
+    -s|--skip-tests)
+    maven_profiles="$( add_mvn_profile "${maven_profiles}" "skipTests" )"
+    maven_args="${maven_args} -Dmaven.javadoc.skip=true"
+    skipTests=true
+    shift
+    ;;
     *)
     # unknown option
     ;;
 esac
 done
 
-${dir}/site-generate.sh "$args"
+# ${dir}/site-generate.sh ${args[@]:-}
 
-${maven_cmd} site:run "$@"
+if [ "${skipTests}" = true ] ; then
+    echo "Skipping tests during site generation."
+else
+    echo "Tests will be executed during site generation."
+fi
+
+echo "Run site with command: ${maven_cmd} site site:run ${maven_profiles} ${maven_args} $@"
+${maven_cmd} clean install ${maven_profiles} ${maven_args}
+${maven_cmd} site site:run "$@" ${maven_profiles} ${maven_args}

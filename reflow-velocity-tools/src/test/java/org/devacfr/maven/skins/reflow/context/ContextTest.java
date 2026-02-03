@@ -1,202 +1,119 @@
 /*
- * Copyright 2012-2019 Christophe Friederich
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright 2012-2025 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.devacfr.maven.skins.reflow.context;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isA;
 
-import java.io.StringReader;
-
 import org.apache.maven.doxia.site.SiteModel;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
+import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-import org.devacfr.maven.skins.reflow.model.Footer;
-import org.devacfr.maven.skins.reflow.model.NavSideMenu;
-import org.devacfr.maven.skins.reflow.model.Navbar;
-import org.devacfr.maven.skins.reflow.model.ScrollTop;
-import org.devacfr.maven.skins.reflow.model.Toc;
-import org.devacfr.maven.skins.reflow.model.TocSidebar;
-import org.devacfr.maven.skins.reflow.model.TocTopBar;
-import org.devacfr.testing.MockitoTestCase;
+import org.devacfr.testing.jupiter.MockitoTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 public class ContextTest extends MockitoTestCase {
 
-    @Mock
-    private ISkinConfig config;
+  @Mock(lenient = true)
+  private ISkinConfig config;
 
-    @BeforeEach
-    public void setup() {
-        final MavenProject project = new MavenProject();
-        project.setName("reflow");
-        project.setArtifactId("reflow-artifact");
-        when(config.getProject()).thenReturn(project);
+  @SuppressWarnings("unchecked")
+  @BeforeEach
+  public void setup() {
+    final MavenProject project = new MavenProject();
+    project.setName("reflow");
+    project.setArtifactId("reflow-artifact");
+    when(config.getProject()).thenReturn(project);
 
-        final SiteModel siteModel = new SiteModel();
-        when(config.getSiteModel()).thenReturn(siteModel);
-    }
+    final SiteModel siteModel = new SiteModel();
+    when(config.getSiteModel()).thenReturn(siteModel);
+    when(config.getFileId()).thenReturn("currentFile");
+    when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
+        .then(invocation -> invocation.getArguments()[3]);
+    when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
+        .then(invocation -> invocation.getArguments()[2]);
 
-    /**
-     * test the page context is the default context when any type is defined.
-     */
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldBuildPageContext() {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
+    when(config.getHtmlTool()).thenReturn(new HtmlTool());
+  }
 
-        when(config.getPropertyValue(Toc.COMPONENT, String.class, null)).thenReturn("top");
+  @Test
+  public void shouldReplaceTTTag() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+    final PageContext pageContext = (PageContext) context;
 
-        final PageContext pageContext = (PageContext) context;
+    verify(content -> {
+      when(config.getBodyContent()).thenReturn(content);
+      return pageContext.preRender();
+    }, "html");
+  }
 
-        final Toc<?> toc = pageContext.getToc();
-        assertNotNull(toc, "toc should be exist");
-        assertEquals(true, toc.isEnabled());
-        assertThat((TocTopBar) pageContext.getToc(), isA(TocTopBar.class));
-        final TocTopBar tocTopBar = (TocTopBar) toc;
-        assertEquals("m-toc-top-enabled", tocTopBar.getCssOptions());
-        assertEquals("navbar-light bg-light", tocTopBar.getCssClass());
+  @Test
+  public void shouldAddLighboxAttribute() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final Footer footer = pageContext.getFooter();
-        assertNotNull(footer, "footer should be exist");
-        assertEquals("footer-light bg-light", footer.getCssClass());
-        assertEquals("", footer.getCssOptions());
+    final PageContext pageContext = (PageContext) context;
 
-        final Navbar navbar = pageContext.getNavbar();
-        assertNotNull(navbar, "Navbar should be exist");
-        assertEquals("navbar-light bg-light", navbar.getCssClass());
-        assertEquals("", navbar.getCssOptions());
+    verify(content -> {
+      when(config.getBodyContent()).thenReturn(content);
+      return pageContext.preRender();
+    }, "html");
+  }
 
-        final ScrollTop scrollTop = pageContext.getScrollTop();
-        assertNotNull(scrollTop, "ScrollTop should be exist");
-        assertEquals("", scrollTop.getCssClass());
-        assertEquals(true, scrollTop.isSmooth());
-        assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
+  @Test
+  public void shouldApplyBootstrapCss() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        assertEquals("anchorjs-enabled scrolltop-smooth-enabled m-toc-top-enabled", pageContext.getCssOptions());
-        assertEquals("", pageContext.getCssClass());
-        assertEquals("page", pageContext.getType());
-    }
+    final PageContext pageContext = (PageContext) context;
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldBuildPageContextWithTocDisabled() {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
+    verify(content -> {
+      when(config.getBodyContent()).thenReturn(content);
+      return pageContext.preRender();
+    }, "html");
+  }
 
-        final Context<?> context = Context.buildContext(config);
-        assertThat((PageContext) context, isA(PageContext.class));
+  @Test
+  public void shouldReplaceIcons() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-        final PageContext pageContext = (PageContext) context;
+    final PageContext pageContext = (PageContext) context;
 
-        final Toc<?> toc = pageContext.getToc();
-        assertNotNull(toc, "toc should be exist");
-        assertEquals(false, toc.isEnabled());
+    verify(content -> {
+      when(config.getBodyContent()).thenReturn(content);
+      return pageContext.preRender();
+    }, "html");
+  }
 
-    }
+  @Test
+  public void shouldNotChangeCodePart() {
+    final Context<?> context = Context.buildContext(config);
+    assertThat((PageContext) context, isA(PageContext.class));
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldBuildDocumentContext() throws Exception {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
+    final PageContext pageContext = (PageContext) context;
 
-        final Xpp3Dom pageProperties = Xpp3DomBuilder.build(new StringReader("<document type=\"doc\"></document>"));
-        when(config.getPageProperties()).thenReturn(pageProperties);
+    verify(content -> {
+      when(config.getBodyContent()).thenReturn(content);
+      return pageContext.preRender();
+    }, "html");
+  }
 
-        final Context<?> context = Context.buildContext(config);
-        assertThat((DocumentContext) context, isA(DocumentContext.class));
-
-        final DocumentContext documentContext = (DocumentContext) context;
-
-        final NavSideMenu navSideMenu = documentContext.getNavSideMenu();
-        assertNotNull(navSideMenu, "NavSideMenu should be exist");
-        assertEquals("m-sidenav-enabled", navSideMenu.getCssOptions());
-
-        assertEquals("anchorjs-enabled scrolltop-smooth-enabled m-sidenav-enabled", documentContext.getCssOptions());
-        assertEquals("", documentContext.getCssClass());
-    }
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void shouldBuildFrameContext() throws Exception {
-        when(config.getAttributeValue(any(String.class), any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[3]);
-        when(config.getPropertyValue(any(String.class), any(Class.class), any(Object.class)))
-                .then(invocation -> invocation.getArguments()[2]);
-
-        final String xml = "<reflowSkin><pages>" + //
-                "<development-documentation type=\"doc\">" + //
-                "          <menu name=\"Development Documentation\">" + //
-                "            <item name=\"Contribute\" href=\"dev/contribute.html\" />" + //
-                "            <item name=\"Code Conventions\" href=\"dev/code-conventions.html\"/>" + //
-                "            <item name=\"Release Management\" href=\"dev/release-management.html\"/>" + //
-                "          </menu>" + //
-                "        </development-documentation>" + //
-                "</pages></reflowSkin>";
-        final Xpp3Dom globalProperties = Xpp3DomBuilder.build(new StringReader(xml));
-        when(config.getPageProperties()).thenReturn(new Xpp3Dom("dev-contribute"));
-        when(config.getGlobalProperties()).thenReturn(globalProperties);
-        when(config.getFileId()).thenReturn("dev-contribute");
-        when(config.getNamespace()).thenReturn("");
-
-        final Context<?> context = Context.buildContext(config);
-        assertThat((FrameContext) context, isA(FrameContext.class));
-        final FrameContext frameContext = (FrameContext) context;
-
-        assertEquals("development-documentation", frameContext.getDocumentParent());
-
-        final Toc<?> toc = frameContext.getToc();
-        assertNotNull(toc, "toc should be exist");
-        assertThat((TocSidebar) frameContext.getToc(), isA(TocSidebar.class));
-
-        final TocSidebar tocSidebar = (TocSidebar) toc;
-        assertEquals(Integer.MAX_VALUE, tocSidebar.getLevel());
-        assertEquals("sidebar-light bg-light", tocSidebar.getCssClass());
-        assertEquals("m-toc-sidebar-enabled m-toc-sidebar-expanded m-toc-sidebar-autoexpandable toc-sidebar-fixed",
-            tocSidebar.getCssOptions());
-
-        final Footer footer = frameContext.getFooter();
-        assertNotNull(footer, "footer should be exist");
-        assertEquals("footer-light bg-light", footer.getCssClass());
-        assertEquals("", footer.getCssOptions());
-
-        final Navbar navbar = frameContext.getNavbar();
-        assertNotNull(navbar, "Navbar should be exist");
-        assertEquals("navbar-light bg-light", navbar.getCssClass());
-        assertEquals("", navbar.getCssOptions());
-
-        final ScrollTop scrollTop = frameContext.getScrollTop();
-        assertNotNull(scrollTop, "ScrollTop should be exist");
-        assertEquals("", scrollTop.getCssClass());
-        assertEquals(true, scrollTop.isSmooth());
-        assertEquals("scrolltop-smooth-enabled", scrollTop.getCssOptions());
-
-    }
 }

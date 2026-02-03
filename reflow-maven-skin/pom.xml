@@ -12,7 +12,7 @@
   <parent>
     <groupId>io.github.devacfr.maven.skins</groupId>
     <artifactId>reflow-parent</artifactId>
-    <version>2.3.4</version>
+    <version>2.4.0</version>
   </parent>
 
   <artifactId>reflow-maven-skin</artifactId>
@@ -21,7 +21,6 @@
   <description>Reflow is an Apache Maven site skin built on Twitter Bootstrap.
     It allows various structural and stylistic customizations to create
     a modern-looking Maven-generated website. Requires Reflow Velocity Tools.</description>
-  <url>${site.url}${project.artifactId}</url>
 
   <build>
     <resources>
@@ -29,12 +28,12 @@
         <directory>src/main/resources/</directory>
       </resource>
       <resource>
+        <filtering>true</filtering>
         <!-- Filter skin template to add generator version -->
         <directory>src/main/resources/</directory>
         <includes>
           <include>META-INF/maven/*</include>
         </includes>
-        <filtering>true</filtering>
       </resource>
     </resources>
     <plugins>
@@ -48,6 +47,13 @@
           <delimiters>
             <delimiter>@</delimiter>
           </delimiters>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
         </configuration>
       </plugin>
     </plugins>

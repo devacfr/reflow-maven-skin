@@ -1,0 +1,132 @@
+##
+## Copyright 2012-2018 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#macro( renderHeader )##
+#*  *##if( $pageContext.header.enabled)
+    <div class="header #if( $pageContext.header.type != 'jumbotron' )${pageContext.header.cssClass}#end" role="main">
+        <div class="container container-fluid">
+#*      *##if( $pageContext.header.type == "jumbotron")
+#*          *### add a Jumbotron
+#*          *##renderJumbotron ()##
+#*      *##elseif( $pageContext.header.type == "banner")
+#*          *### add a simple Banner
+#*          *##renderBanner ()##
+#*      *##elseif( $pageContext.header.type == "custom")
+#*          *### add a simple Banner
+#*          *##renderCustom ()##
+#*      *##end
+        </div>
+    </div> <!-- end : header -->
+#*  *##end
+#end
+##
+#**
+ * Render Jumbotron
+ *###
+#macro( renderJumbotron )##
+#*  *##if ( ($site.bannerLeft.name && $site.bannerLeft.name != $project.name || $site.bannerLeft.src || $site.bannerLeft.href ) || $site.bannerRight )##
+      <div class="jumbotron header--jumbotron ${pageContext.header.cssClass}">
+        <div id="banner" class="row header--banner">
+          <div class="col-md-12">
+            <div class="float-left header--banner-left banner-left">
+#*      *##banner ( $site.bannerLeft "bannerLeft")##
+            </div>
+            <div class="float-right header--banner-right banner-right">
+#*      *##banner ( $site.bannerRight "bannerRight")##
+            </div>
+          </div>
+        </div>
+      </div>
+#*  *##end##
+#end##
+#**
+ * Render Banner
+ *###
+#macro( renderBanner )##
+#if( $site.bannerLeft || $site.bannerRight )##
+    <div id="banner" class="header--banner">
+        <!-- banner-row:begin -->
+        <div class="row m-1">
+#*          *##if( $site.bannerLeft )
+            <!-- banner-left:begin -->
+            <div class="col header--banner-left banner-left">
+#*          *##banner ( $site.bannerLeft "bannerLeft")##
+            </div>
+            <!-- banner-left:end -->
+#*          *##end
+#*          *##if( $site.bannerRight )
+            <!-- right-banner: begin -->
+            <div class="col header--banner-right banner-right">
+#*          *##banner ( $site.bannerRight "bannerRight")##
+            </div>
+            <!-- right-banner: end -->
+#*          *##end
+        </div>
+        <!-- banner-row:end -->
+    </div>
+#end##
+#end##
+#**
+ * Render Banner
+ *###
+#macro( renderCustom )##
+    <div class="header--subhead">
+#*      *##evaluate ( $pageContext.header.content ) ##
+    </div>
+#end##
+##
+#**
+ * Outputs the top banner contents
+ *
+ *###
+#macro ( banner $banner $id)##
+#*  *##if ( $banner )##
+        <!-- banner-content: begin -->
+        <div class="header--banner-content" id="$id">
+#*      *### add link around image and title if href is set
+#*      *##if ( $banner.href && $banner.href != '' )##
+            <a href="$banner.href" class="stretched-link"></a>
+#*      *##end##
+##*      *### add image if set
+#*      *##if ( $banner.image && $banner.image.src )##
+            <img class="float-left m-2 img-fluid" src="$config.relativeLink( $banner.image.src )" #if ( $banner.image.alt )alt="$banner.image.alt"#end##
+#*          *##if ( $banner.image.border ) border="$banne.imager.border"#end##
+#*          *##if ( $banner.image.width ) width="$banner.image.width"#end##
+#*          *##if ( $banner.image.height ) height="$banner.image.height"#end##
+#*          *# />
+#*      *##end##
+#*      *##if ( $banner.name )##
+            <h1 class="d-inline-block">$banner.name</h1>
+#*      *##end##
+##
+        </div>
+        <!-- banner-content: end -->
+##
+#*      *### add slogan to correct position
+#*      *##if ( $config.slogan && $config.slogan != '' )##
+#*          *### read slogan position - if not set, use 'bannerLeft' as default
+#*          *##if ( $config.slogan.getAttribute("position") )##
+#*              *##set ( $sloganPos = $config.slogan.getAttribute("position") )##
+#*          *##else##
+#*              *##set ( $sloganPos = "bannerLeft" )##
+#*          *##end##
+##
+#*          *##if ( $id == $sloganPos )##
+                    <p class="lead">$config.slogan.getValue()</p>
+#*          *##end##
+#*      *##end##
+#*  *##end##
+#end##
+#renderHeader()

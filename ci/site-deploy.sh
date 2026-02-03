@@ -20,12 +20,12 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source ${dir}/setenv.sh
+source "${dir}/setenv.sh"
 
 # default maven command
 maven_cmd="mvn"
 # store current arguments
-args="$@"
+args=( "$@" )
 
 for i in "$@"
 do
@@ -44,6 +44,6 @@ case $i in
 esac
 done
 
-${dir}/site-generate.sh "$args"
+${dir}/site-generate.sh ${args[@]:-}
 
 ${maven_cmd} scm-publish:publish-scm "$@"

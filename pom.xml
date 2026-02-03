@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the NOTICE file
-  distributed with this work for additional information regarding copyright ownership. The ASF licenses this file to You under
-  the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may
-  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to
-  in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-  ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file
+  distributed with this work for additional information regarding copyright
+ownership. The ASF licenses this file to You under
+  the Apache License, Version 2.0 (the "License"); you may not use this file
+except in compliance with the License. You may
+  obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to
+  in writing, software distributed under the License is distributed on an "AS IS"
+BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+  ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
 
   <groupId>io.github.devacfr.maven.skins</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>2.3.4</version>
+  <version>2.4.0</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent</name>
   <description>Reflow Maven skin and supporting libraries parent</description>
-  <url>${site.url}</url>
+  <url>https://devacfr.github.io/reflow-maven-skin/</url>
   <inceptionYear>2012</inceptionYear>
   <organization>
     <name>Friederich Christophe</name>
@@ -34,72 +48,66 @@
     <developer>
       <id>andriusvelykis</id>
       <name>Andrius Velykis</name>
-      <timezone>0</timezone>
       <url>http://andrius.velykis.lt</url>
+      <timezone>0</timezone>
     </developer>
     <developer>
       <id>devacfr</id>
       <name>Friederich Christophe</name>
-      <timezone>0</timezone>
       <url>http://devacfr.github.io</url>
+      <timezone>0</timezone>
     </developer>
   </developers>
 
   <modules>
+    <module>reflow-maven-skin</module>
     <module>reflow-velocity-tools</module>
     <module>reflow-default-webdeps</module>
-    <module>reflow-maven-skin</module>
   </modules>
 
   <scm>
     <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
-    <url>${scm_url}/tree/master</url>
     <tag>v2.0.0</tag>
+    <url>${scm_url}/tree/master</url>
   </scm>
   <issueManagement>
     <system>${issue-system}</system>
     <url>${issue_url}</url>
   </issueManagement>
   <distributionManagement>
-    <repository>
-      <id>${distribution.releaseRepository.id}</id>
-      <url>${distribution.releaseRepositoryUrl}</url>
-    </repository>
-    <snapshotRepository>
-      <id>${distribution.snapshotRepositoryId}</id>
-      <url>${distribution.snapshotRepositoryUrl}</url>
-    </snapshotRepository>
     <site>
       <id>${site.deploy.id}</id>
       <name>${site.deploy.name}</name>
       <url>${pubScmUrl}</url>
     </site>
+    <snapshotRepository>
+      <id>central-portal-snapshots</id>
+      <name>Central Portal Snapshots</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <properties>
+    <reflow-current-version>2.3.5</reflow-current-version>
     <main.basedir>${session.executionRootDirectory}</main.basedir>
-    <distribution.releaseRepository.id>ossrh</distribution.releaseRepository.id>
-    <distribution.releaseRepositoryUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</distribution.releaseRepositoryUrl>
-    <distribution.snapshotRepositoryId>ossrh</distribution.snapshotRepositoryId>
-    <distribution.snapshotRepositoryUrl>https://oss.sonatype.org/content/repositories/snapshots</distribution.snapshotRepositoryUrl>
-
+    <publishingServerId>ossrh</publishingServerId>
     <!-- Set default encoding to UTF-8 (most plugins) -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 
     <!-- Enable Reproducible Builds mode for plugins -->
-    <project.build.outputTimestamp>2023-08-20T09:58:15Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-02-03T10:38:03Z</project.build.outputTimestamp>
 
     <!-- Set compiler source and target versions (m-compiler-p) -->
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.target>9</maven.compiler.target>
     <maven.compiler.source>${maven.compiler.target}</maven.compiler.source>
 
     <repositoryName>reflow-maven-skin</repositoryName>
     <repositoryOwner>devacfr</repositoryOwner>
 
     <scm_url>https://github.com/devacfr/reflow-maven-skin</scm_url>
-    <issue-system>github</issue-system>
+    <issue-system>GitHub</issue-system>
     <issue_url>${scm_url}/issues</issue_url>
     <ci.url>${scm_url}</ci.url>
     <ci.system>Travis</ci.system>
@@ -107,72 +115,86 @@
 
     <siteMainDirectory>${user.home}</siteMainDirectory>
     <pubScmUrl>scm:git:ssh://git@github.com/devacfr/reflow-maven-skin.git</pubScmUrl>
-    <scmPubCheckoutDirectory>\${siteMainDirectory}/Development/maven/reflow-maven-skin-scm</scmPubCheckoutDirectory>
+    <scmPubCheckoutDirectory>
+      \${siteMainDirectory}/Development/maven/reflow-maven-skin-scm</scmPubCheckoutDirectory>
     <site.url>https://devacfr.github.io/reflow-maven-skin/</site.url>
     <site.deploy.id>github</site.deploy.id>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
-    <!-- ================================================================================ -->
+    <skipCoverage>true</skipCoverage>
+    <spotbugs.excludefilterfile.path>
+      ${main.basedir}/check/spotbugs-exclude-filter.xml</spotbugs.excludefilterfile.path>
+    <spotbugs.only.analyze>org.devacfr.maven.skins.reflow.-</spotbugs.only.analyze>
+    <generate.site.path>${main.basedir}/target/site</generate.site.path>
+
+    <!--
+    ================================================================================ -->
     <!-- Web dependencies version -->
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <anchorJsVesrion>3.2.2</anchorJsVesrion>
-    <bootstrapVersion>4.4.1</bootstrapVersion>
-    <bootswatchVersion>4.4.1</bootswatchVersion>
-    <highlightJsVersion>9.15.7</highlightJsVersion>
+    <highlightJsVersion>11.11.1</highlightJsVersion>
+    <bootstrapVersion>4.6.2</bootstrapVersion>
+    <bootswatchVersion>4.6.2</bootswatchVersion>
     <highlightJsTheme>github</highlightJsTheme>
-    <jqueryVersion>3.4.1</jqueryVersion>
-    <fontawesomeVersion>5.12.1</fontawesomeVersion>
+    <jqueryVersion>3.5.1</jqueryVersion>
+    <fontawesomeVersion>5.15.1</fontawesomeVersion>
     <popperVersion>1.16.0</popperVersion>
 
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <!-- Java dependencies version -->
-    <!-- ================================================================================ -->
-    <commons-lang.version>3.5</commons-lang.version>
-    <doxia.sitetools.version>2.0.0-M11</doxia.sitetools.version>
-    <doxia.version>2.0.0-M7</doxia.version>
+    <!--
+    ================================================================================ -->
+    <commons-lang.version>3.18.0</commons-lang.version>
+    <doxia.sitetools.version>2.0.0-M19</doxia.sitetools.version>
+    <doxia.version>2.0.0-M12</doxia.version>
+    <doxia.model.version>2.0.0-M19</doxia.model.version>
 
-    <guava.version>29.0-jre</guava.version>
+    <guava.version>32.1.2-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
-    <logback.version>1.2.9</logback.version>
-    <slf4j.version>1.7.30</slf4j.version>
-    <jsoup.version>1.15.3</jsoup.version>
+    <logback.version>1.5.25</logback.version>
+    <jsoup.version>1.21.2</jsoup.version>
+    <lombok.version>1.18.42</lombok.version>
+    <slf4j.version>2.0.17</slf4j.version>
+    <jsoup.version>1.21.2</jsoup.version>
     <maven-project.version>2.2.1</maven-project.version>
     <velocity-tools.version>3.1</velocity-tools.version>
 
-
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <!-- Test dependencies version -->
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <junit5.version>5.6.0</junit5.version>
     <mockito.version>3.2.4</mockito.version>
     <hamcrest.version>2.2</hamcrest.version>
 
     <apache-rat-plugin.version>0.15</apache-rat-plugin.version>
     <maven-gitflow-plugin.version>1.19.0</maven-gitflow-plugin.version>
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     <maven-copy-rename-maven-plugin.version>1.0.1</maven-copy-rename-maven-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-    <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+    <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
     <maven-download-plugin.version>1.5.0</maven-download-plugin.version>
-    <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-    <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
+    <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
     <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
     <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
     <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-    <maven-site-plugin.version>4.0.0-M9</maven-site-plugin.version>
+    <maven-site-plugin.version>4.0.0-M16</maven-site-plugin.version>
     <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
-    <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
-    <!-- used in site generation -->
-    <maven_site_plugin_version>${maven-site-plugin.version}</maven_site_plugin_version>
-    <maven-spotbugs-plugin.version>3.1.12.2</maven-spotbugs-plugin.version>
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-    <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
-    <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
+    <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
+    <maven-changes-plugin.version>3.0.0-M3</maven-changes-plugin.version>
+    <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
+    <maven-clover-plugin.version>4.5.2</maven-clover-plugin.version>
     <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
-    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-    <maven-clover-plugin.version>4.4.1</maven-clover-plugin.version>
+    <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
+    <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
+    <maven-spotbugs-plugin.version>4.9.7.0</maven-spotbugs-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <spotless-maven-plugin.version>3.1.0</spotless-maven-plugin.version>
     <maven-surefire-report-plugin.version>${maven-surefire-plugin.version}</maven-surefire-report-plugin.version>
   </properties>
 
@@ -200,6 +222,12 @@
         <version>${jsoup.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-project</artifactId>
         <version>${maven-project.version}</version>
@@ -209,9 +237,11 @@
         <artifactId>velocity-tools-generic</artifactId>
         <version>${velocity-tools.version}</version>
       </dependency>
-      <!-- ================================================================================ -->
+      <!--
+      ================================================================================ -->
       <!-- Log Dependencies -->
-      <!-- ================================================================================ -->
+      <!--
+      ================================================================================ -->
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
@@ -247,9 +277,11 @@
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
       </dependency>
-      <!-- ================================================================================ -->
+      <!--
+      ================================================================================ -->
       <!-- Test Dependencies -->
-      <!-- ================================================================================ -->
+      <!--
+      ================================================================================ -->
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
@@ -278,6 +310,21 @@
     </dependencies>
   </dependencyManagement>
 
+  <repositories>
+    <repository>
+      <id>central-portal-snapshots</id>
+      <name>Central Portal Snapshots</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -295,6 +342,10 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven-javadoc-plugin.version}</version>
+          <configuration>
+            <doclint>none</doclint>
+            <detectLinks>false</detectLinks>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -305,11 +356,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>${maven-jar-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-plugin-plugin</artifactId>
-          <version>${maven-plugin-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -327,9 +373,30 @@
           <version>${maven-site-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-plugin-plugin</artifactId>
-          <version>${maven-plugin-plugin.version}</version>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless-maven-plugin.version}</version>
+          <configuration>
+            <java>
+              <eclipse>
+                <file>${main.basedir}/eclipse/java-code-style-formatter.xml</file>
+              </eclipse>
+              <importOrder />
+              <removeUnusedImports />
+              <formatAnnotations />
+            </java>
+            <licenseHeader>
+              <file>${main.basedir}/check/license-header.txt</file>
+            </licenseHeader>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <phase>package</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -340,16 +407,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-plugin.version}</version>
-          <configuration>
-            <argLine>-Xmx512m</argLine>
-            <includes>
-              <include>**/*Test.java</include>
-            </includes>
-            <excludes>
-              <!-- exclude Clover generated inner class -->
-              <exclude>**/*$__CLR*</exclude>
-            </excludes>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.rat</groupId>
@@ -394,6 +451,13 @@
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
           <encoding>${project.build.sourceEncoding}</encoding>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
       <plugin>
@@ -403,10 +467,10 @@
         <executions>
           <execution>
             <id>attach-sources</id>
-            <phase>package</phase>
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
+            <phase>package</phase>
           </execution>
         </executions>
       </plugin>
@@ -429,17 +493,18 @@
             <goals>
               <goal>jar</goal>
             </goals>
-            <configuration>
-              <additionalparam>${javadoc.opts}</additionalparam>
-              <detectLinks>false</detectLinks>
-            </configuration>
           </execution>
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>${maven-deploy-plugin.version}</version>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>${central-publishing-maven-plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>${publishingServerId}</publishingServerId>
+          <autoPublish>true</autoPublish>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>com.amashchenko.maven.plugin</groupId>
@@ -466,13 +531,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>io.github.devacfr.maven.skins</groupId>
-            <artifactId>reflow-velocity-tools</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-        </dependencies>
         <configuration>
           <skipDeploy>true</skipDeploy>
           <relativizeSiteLinks>true</relativizeSiteLinks>
@@ -480,8 +538,24 @@
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
           <topSiteURL>${pubScmUrl}</topSiteURL>
-          <tempWebappDirectory>${main.basedir}/target/staging</tempWebappDirectory>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>io.github.devacfr.maven.skins</groupId>
+            <artifactId>reflow-velocity-tools</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-markdown</artifactId>
+            <version>${doxia.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>${doxia.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -490,7 +564,8 @@
         <configuration>
           <pubScmUrl>${pubScmUrl}</pubScmUrl>
           <checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory>
-          <checkinComment>Publishing Site Docs for Reflow Maven Skin ${project.version} </checkinComment>
+          <checkinComment>Publishing Site Docs for Reflow Maven Skin
+            ${project.version}</checkinComment>
           <tryUpdate>true</tryUpdate>
           <skipDeletedFiles>false</skipDeletedFiles>
           <scmBranch>gh-pages</scmBranch>
@@ -503,10 +578,10 @@
         <executions>
           <execution>
             <id>unpack</id>
-            <phase>pre-site</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
+            <phase>pre-site</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -515,15 +590,13 @@
                   <version>${project.version}</version>
                   <type>jar</type>
                   <overWrite>false</overWrite>
-                  <includes>
-                    **/css/**/*,
+                  <includes>**/css/**/*,
                     **/js/*.js,
                     **/js/languages/*,
-                    **/js/styles/*.min.css
-                  </includes>
+                    **/js/styles/*.min.css</includes>
                 </artifactItem>
               </artifactItems>
-              <outputDirectory>${main.basedir}/target/site</outputDirectory>
+              <outputDirectory>${generate.site.path}</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -532,15 +605,16 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <configuration>
-          <anonymousConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</anonymousConnection>
-          <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
+          <anonymousConnection>
+            scm:git:git@github.com:devacfr/reflow-maven-skin.git</anonymousConnection>
+          <developerConnection>
+            scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
           <showAvatarImages>true</showAvatarImages>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>${maven-release-plugin.version}</version>
         <configuration>
           <tagNameFormat>v@{project.version}</tagNameFormat>
           <useReleaseProfile>false</useReleaseProfile>
@@ -552,10 +626,19 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <argLine>-Xmx512m</argLine>
           <includes>
             <include>**/*Test.java</include>
           </includes>
+          <excludes>
+            <!-- exclude Clover generated inner class -->
+            <exclude>**/*$__CLR*</exclude>
+          </excludes>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.rat</groupId>
@@ -567,19 +650,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.openclover</groupId>
-        <artifactId>clover-maven-plugin</artifactId>
-        <version>${maven-clover-plugin.version}</version>
-        <configuration>
-          <generateHtml>true</generateHtml>
-          <title>Reflow Maven Skin</title>
-          <!-- <targetPercentage>75%</targetPercentage> -->
-          <!-- Use custom report descriptor -->
-          <jdk>${maven.compiler.source}</jdk>
-          <singleCloverDatabase>true</singleCloverDatabase>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -624,10 +694,10 @@
           </reportSet>
           <reportSet>
             <id>release-notes</id>
-            <inherited>false</inherited>
             <reports>
-              <report>github-report</report>
+              <report>github-changes</report>
             </reports>
+            <inherited>false</inherited>
           </reportSet>
         </reportSets>
       </plugin>
@@ -644,7 +714,6 @@
           <includeResources>false</includeResources>
           <includeTestResources>false</includeTestResources>
           <includeTestSourceDirectory>false</includeTestSourceDirectory>
-          <suppressionsLocation>${main.basedir}/check/checkstyle-suppression.xml</suppressionsLocation>
           <suppressionsLocation>${main.basedir}/check/checkstyle-suppression.xml</suppressionsLocation>
           <headerLocation>${main.basedir}/check/checkstyle-header.txt</headerLocation>
         </configuration>
@@ -678,12 +747,12 @@
         <reportSets>
           <reportSet>
             <id>aggregate</id>
-            <configuration>
-              <aggregate>true</aggregate>
-            </configuration>
             <reports>
               <report>report-only</report>
             </reports>
+            <configuration>
+              <aggregate>true</aggregate>
+            </configuration>
           </reportSet>
         </reportSets>
       </plugin>
@@ -699,26 +768,51 @@
         </reportSets>
       </plugin>
       <plugin>
-        <groupId>org.openclover</groupId>
-        <artifactId>clover-maven-plugin</artifactId>
-        <version>${maven-clover-plugin.version}</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>clover</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-      <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>${maven-spotbugs-plugin.version}</version>
+        <configuration>
+          <!-- Corporate specific rules -->
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+          <includeTests>false</includeTests>
+          <excludeFilterFile>${spotbugs.excludefilterfile.path}</excludeFilterFile>
+          <!-- Enable XML output for reporting tools (Bamboo, Hudson) -->
+          <spotbugsXmlOutput>true</spotbugsXmlOutput>
+          <!-- Configures the directory in which the XML report is created -->
+          <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs</spotbugsXmlOutputDirectory>
+          <xmlOutput>true</xmlOutput>
+          <onlyAnalyze>${spotbugs.only.analyze}</onlyAnalyze>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${maven-pmd-plugin.version}</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <aggregate>true</aggregate>
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <targetJdk>${maven.compiler.target}</targetJdk>
+          <verbose>false</verbose>
+          <failOnViolation>false</failOnViolation>
+          <!-- TODO make it 'true' when we will be ready -->
+          <failurePriority>2</failurePriority>
+          <rulesets>
+            <ruleset>${main.basedir}/check/pmd.xml</ruleset>
+          </rulesets>
+        </configuration>
         <reportSets>
           <reportSet>
+            <id>aggregate</id>
             <reports>
-              <report>spotbugs</report>
+              <report>cpd</report>
+              <report>pmd</report>
             </reports>
+            <inherited>false</inherited>
+            <configuration>
+              <aggregate>true</aggregate>
+            </configuration>
           </reportSet>
         </reportSets>
       </plugin>
@@ -726,9 +820,11 @@
   </reporting>
 
   <profiles>
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <!-- disable maven toolchains -->
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <profile>
       <id>toolchains</id>
       <activation>
@@ -742,13 +838,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-toolchains-plugin</artifactId>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>toolchain</goal>
-                </goals>
-              </execution>
-            </executions>
             <configuration>
               <toolchains>
                 <jdk>
@@ -756,18 +845,28 @@
                 </jdk>
               </toolchains>
             </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>toolchain</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
     </profile>
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <!-- skip tests phase, -PskipTests -->
-    <!-- ================================================================================ -->
+    <!--
+    ================================================================================ -->
     <profile>
       <id>skipTests</id>
       <properties>
         <skipTests>true</skipTests>
         <skipITs>true</skipITs>
+        <skipCoverage>true</skipCoverage>
       </properties>
     </profile>
     <profile>
@@ -815,6 +914,12 @@
       </build>
     </profile>
     <profile>
+      <id>site-run</id>
+      <properties>
+        <generate.site.path>${main.basedir}/target/site-webapp</generate.site.path>
+      </properties>
+    </profile>
+    <profile>
       <id>gpg</id>
       <build>
         <plugins>
@@ -825,13 +930,13 @@
             <executions>
               <execution>
                 <id>sign</id>
-                <phase>verify</phase>
                 <goals>
                   <goal>sign</goal>
                 </goals>
+                <phase>verify</phase>
                 <configuration>
                   <keyname>${gpg.keyname}</keyname>
-                  <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                  <passphraseServerId>${gpg.passphraseServerId}</passphraseServerId>
                 </configuration>
               </execution>
             </executions>
@@ -840,15 +945,79 @@
       </build>
     </profile>
     <profile>
-      <id>disable-java8-doclint</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
+      <id>clover.report</id>
       <properties>
-        <javadoc.opts>-Xdoclint:none</javadoc.opts>
+        <!-- Disable spotless check -->
+        <spotless.check.skip>true</spotless.check.skip>
+        <skipCoverage>false</skipCoverage>
       </properties>
+      <activation>
+        <property>
+          <name>skipCoverage</name>
+          <value>false</value>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.openclover</groupId>
+              <artifactId>clover-maven-plugin</artifactId>
+              <version>${maven-clover-plugin.version}</version>
+              <configuration>
+                <generateHtml>true</generateHtml>
+                <generateHistorical>true</generateHistorical>
+                <title>Reflow Maven Skin</title>
+                <targetPercentage>70%</targetPercentage>
+                <jdk>${maven.compiler.source}</jdk>
+                <historyDir>${user.home}/.clover/clover/history</historyDir>
+                <excludes>
+                  <exclude>**/org/devacfr/testing/**/*.java</exclude>
+                </excludes>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.openclover</groupId>
+            <artifactId>clover-maven-plugin</artifactId>
+            <version>${maven-clover-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>clover</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>instrument</goal>
+                  <goal>check</goal>
+                  <goal>log</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>site</id>
+                <phase>pre-site</phase>
+                <goals>
+                  <goal>instrument</goal>
+                  <goal>aggregate</goal>
+                  <!-- We save a history point in order to have data to generate a historical
+                    report -->
+                  <goal>save-history</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.openclover</groupId>
+            <artifactId>clover-maven-plugin</artifactId>
+            <version>${maven-clover-plugin.version}</version>
+          </plugin>
+        </plugins>
+      </reporting>
     </profile>
-
     <profile>
       <id>only-eclipse</id>
       <activation>
@@ -886,6 +1055,19 @@
                         <versionRange>[3.0.0,)</versionRange>
                         <goals>
                           <goal>toolchain</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>com.diffplug.spotless</groupId>
+                        <artifactId>spotless-maven-plugin</artifactId>
+                        <versionRange>[3.0.0,)</versionRange>
+                        <goals>
+                          <goal>check</goal>
                         </goals>
                       </pluginExecutionFilter>
                       <action>

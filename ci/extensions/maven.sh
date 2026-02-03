@@ -46,7 +46,8 @@ function artifact_exists() {
     local extension="${5:-jar}"
 
     local artifactId="$group:$artifact:$version:$extension${classifier:+":$classifier"}"
-    local resource="$(tr . / <<<"$group")/$artifact/$version/$artifact-$version${classifier:+"-$classifier"}.$extension"
+    local resource
+    resource="$(tr . / <<<"$group")/$artifact/$version/$artifact-$version${classifier:+"-$classifier"}.$extension"
     local output
 
     log "--- Checking whether $artifactId already exists..."

@@ -14,23 +14,19 @@
 ## limitations under the License.
 ##
 <div class="main-body">
-#*  *##renderHeader ()##
+#*  *#$config.renderSnippet( "<bs-header></bs-header>" )##
     <div class="row mt-5">
         <div class="d-xs-none d-sm-none d-md-none d-lg-block col-lg-2">
         </div>
         <main class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" role="main">
-#*  *### add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option *#
-#*  *##renderBreadcrumbs ()##
-#*  *### add top toc if enabled
-#*  *##renderTopToc ()##
-#*  *##if ( $config.sections )##
-#*      *##renderBodySections ( $bodyContent $config.sections )##
-#*  *##else
-#*      *##bodyWithHeader ( $bodyContent )##
-#*  *##end
+## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
+#*  *#$config.renderSnippet( "<breadcrumb></breadcrumb>" )
+## add top toc if enabled
+#*  *#$config.renderSnippet( "<toc-topbar></toc-topbar>" )##
+#*  *#$config.renderSnippet( "<bs-section></bs-section>" )##
         </main>
         <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-2">
-#*  *##renderTocSidebar ()##
+#*          *#$config.renderSnippet( "<toc-sidebar></toc-sidebar>" )####
         </div>
     </div> <!-- row: end -->
 </div> <!-- .main-body: end -->

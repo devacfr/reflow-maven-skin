@@ -1,28 +1,25 @@
 /*
- * Copyright 2012-2018 Christophe Friederich
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright 2012-2025 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.devacfr.maven.skins.reflow.model;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
@@ -37,159 +34,160 @@ import org.slf4j.LoggerFactory;
  * @author devacfr
  * @since 2.0
  * @param <T>
- *            the type of inherit of {@link Toc}.
+ *          the type of inherit of {@link Toc}.
  */
 public abstract class Toc<T extends Toc<?>> extends BsComponent {
 
-    /** */
-    public static final String COMPONENT = "toc";
+  private static final Set<String> TOC_TYPES = Sets.newHashSet("sidebar", "top", "false");
 
-    /** */
-    private static final Logger LOGGER = LoggerFactory.getLogger(Toc.class);
+  /** */
+  public static final String COMPONENT = "toc";
 
-    /** enable by default */
-    private boolean enabled = true;
+  /** */
+  private static final Logger LOGGER = LoggerFactory.getLogger(Toc.class);
 
-    /** */
-    private final String type;
+  /** enable by default */
+  private boolean enabled = true;
 
-    /**
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
-     * @param preferredType
-     *            the default type of Toc to use.
-     * @return Returns new instance corresponding {@link Toc} to configuration.
-     */
-    public static Toc<?> createToc(@Nonnull final ISkinConfig config, @Nullable final String preferredType) {
-        Toc<?> toc = null;
-        String type = config.getPropertyValue(COMPONENT, String.class, preferredType);
-        if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("Page '{}' Find Toc: {}", config.getFileId(), type);
-        }
-        final Set<String> types = new HashSet<>(Arrays.asList("sidebar", "top", "false"));
-        if (!types.contains(type)) {
-            type = preferredType;
-        }
-        if (type == null) {
-            type = "";
-        }
-        switch (type) {
-            case "sidebar":
-                toc = createSidebar(config);
-                break;
-            case "top":
-                toc = createTopBar(config);
-                break;
-            default:
-                // create a disabled empty toc
-                toc = new Toc<Toc<?>>("", "") {
+  /** */
+  private final String type;
 
-                };
-                toc.withEnabled(false);
-                break;
-        }
+  /**
+   * @param config
+   *          a config (can <b>not</b> be {@code null}).
+   * @param preferredType
+   *          the default type of Toc to use.
+   * @return Returns new instance corresponding {@link Toc} to configuration.
+   */
+  public static Toc<?> createToc(@Nonnull final ISkinConfig config, @Nullable final String preferredType) {
+    Toc<?> toc = null;
+    String type = config.getPropertyValue(COMPONENT, String.class, preferredType);
+    if (LOGGER.isTraceEnabled()) {
+      LOGGER.trace("Page '{}' Find Toc: {}", config.getFileId(), type);
+    }
+    if (!TOC_TYPES.contains(type)) {
+      type = preferredType;
+    }
+    if (type == null) {
+      type = "";
+    }
+    switch (type) {
+      case "sidebar":
+        toc = createSidebar(config);
+        break;
+      case "top":
+        toc = createTopBar(config);
+        break;
+      default:
+        // create a disabled empty toc
+        toc = new Toc<Toc<?>>(config, "", "") {};
 
-        return toc;
+        toc.withEnabled(false);
+        break;
     }
 
-    /**
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
-     * @return Returns new instance of Toc sidebar.
-     */
-    public static Toc<?> createSidebar(@Nonnull final ISkinConfig config) {
-        return new TocSidebar(config);
+    return toc;
+  }
+
+  /**
+   * @param config
+   *          a config (can <b>not</b> be {@code null}).
+   * @return Returns new instance of Toc sidebar.
+   */
+  public static Toc<?> createSidebar(@Nonnull final ISkinConfig config) {
+    return new TocSidebar(config);
+  }
+
+  /**
+   * @param config
+   *          a config (can <b>not</b> be {@code null}).
+   * @return Returns new instance Toc top bar.
+   */
+  public static Toc<?> createTopBar(@Nonnull final ISkinConfig config) {
+    return new TocTopBar(config);
+  }
+
+  /**
+   * @param config
+   *          a config (can <b>not</b> be {@code null}
+   * @param type
+   *          the {@link String} representation of Toc.
+   * @param component
+   *          the bootstrap component name.
+   */
+  protected Toc(@Nonnull final ISkinConfig config, final String type, final String component) {
+    super(config, component);
+    this.type = type;
+  }
+
+  /**
+   * @return Returns the fluent instance.
+   */
+  @SuppressWarnings("unchecked")
+  protected T self() {
+    return (T) this;
+  }
+
+  /**
+   * @return Returns the {@link String} reprensenting the type of {@link Toc}.
+   */
+  public String getType() {
+    return type;
+  }
+
+  /**
+   * Gets the indicating whether is enable.
+   *
+   * @return Returns {@code true} if is enable, otherwise {@code false}.
+   */
+  public boolean isEnabled() {
+    return enabled;
+  }
+
+  /**
+   * @return Returns a list of {@link IdElement} representing the heading tree containing in current page.
+   * @since 2.1
+   */
+  public List<? extends IdElement> getTocItems() {
+    final HtmlTool htmlTool = config.getHtmlTool();
+    final String bodyContent = config.getBodyContent();
+    if (LOGGER.isTraceEnabled()) {
+      LOGGER.trace("Generating TOC items for page '{}', for content:{}", config.getFileId(), bodyContent);
     }
+    final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent,
+      Xpp3Utils.getChildren(config.get("sections")));
+    return tocItems;
+  }
 
-    /**
-     * @param config
-     *            a config (can <b>not</b> be {@code null}).
-     * @return Returns new instance Toc top bar.
-     */
-    public static Toc<?> createTopBar(@Nonnull final ISkinConfig config) {
-        return new TocTopBar(config);
+  /**
+   * Sets the indicating whether is enable.
+   *
+   * @param enabled
+   *          status to use.
+   * @return Returns the fluent instance.
+   */
+  protected T withEnabled(final boolean enabled) {
+    this.enabled = enabled;
+    return self();
+  }
+
+  @Override
+  protected String onPreRender(final @Nonnull String bodyContent) {
+    if (this.enabled) {
+      final HtmlTool htmlTool = config.getHtmlTool();
+      return htmlTool.ensureHeadingIds(config.getContext().getType(),
+        config.getFileId(),
+        bodyContent,
+        HtmlTool.DEFAULT_SLUG_SEPARATOR);
     }
+    return bodyContent;
+  }
 
-    /**
-     * @param type
-     *            the {@link String} representation of Toc.
-     * @param component
-     *            the bootstrap component name.
-     */
-    protected Toc(final String type, final String component) {
-        super(component);
-        this.type = type;
-    }
-
-    /**
-     * @return Returns the fluent instance.
-     */
-    @SuppressWarnings("unchecked")
-    protected T self() {
-        return (T) this;
-    }
-
-    /**
-     * @return Returns the {@link String} reprensenting the type of {@link Toc}.
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Gets the indicating whether is enable.
-     *
-     * @return Returns {@code true} if is enable, otherwise {@code false}.
-     */
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    /**
-     * @param skinConfig
-     *            a config (can <b>not</b> be {@code null}).
-     * @return Returns a list of {@link IdElement} representing the heading tree containing in current page.
-     * @since 2.1
-     */
-    public List<? extends IdElement> getTocItems(final ISkinConfig skinConfig) {
-        final HtmlTool htmlTool = getHtmlTool(skinConfig);
-        final String bodyContent = getBodyContent(skinConfig);
-
-        final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent,
-                Xpp3Utils.getChildren(skinConfig.get("sections")));
-        return tocItems;
-    }
-
-    /**
-     * Sets the indicating whether is enable.
-     *
-     * @param enabled
-     *            status to use.
-     * @return Returns the fluent instance.
-     */
-    protected T withEnabled(final boolean enabled) {
-        this.enabled = enabled;
-        return self();
-    }
-
-    @Override
-    protected String onPreRender(final ISkinConfig skinConfig, final String bodyContent) {
-        if (this.enabled) {
-            final HtmlTool htmlTool = getHtmlTool(skinConfig);
-            return htmlTool.ensureHeadingIds(skinConfig.getContext().getType(),
-                skinConfig.getFileId(),
-                bodyContent,
-                HtmlTool.DEFAULT_SLUG_SEPARATOR);
-        }
-        return bodyContent;
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
+  }
 }

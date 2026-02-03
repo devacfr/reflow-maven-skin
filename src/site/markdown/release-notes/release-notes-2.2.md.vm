@@ -28,6 +28,7 @@ $h3 Minor enhancements
 * Support header as component ([#37][]).
 
 $h3 Bug fix
+
 * test failed when running on windows ([#55][])
 
 [#37]: ${issue_url}/37

@@ -18,12 +18,10 @@
 [![Apache License, Version 2.0](https://img.shields.io/github/license/apache/maven.svg?label=License&style=for-the-badge&logo=apache)][license]
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.devacfr.maven.skins/reflow-maven-skin.svg?style=for-the-badge&logo=apache-maven)][maven-repo]
 
-[![Build Status](https://travis-ci.org/devacfr/reflow-maven-skin.svg?branch=master)](https://travis-ci.org/devacfr/reflow-maven-skin)
 [![Dev Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Development%20Plan/badge.svg?branch=develop)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Development+Plan%22)
 [![Release Plan](https://github.com/devacfr/reflow-maven-skin/workflows/Release%20Plan/badge.svg?branch=master)](https://github.com/devacfr/reflow-maven-skin/actions?query=workflow%3A%22Release+Plan%22)
 
 [![Gitter](https://badges.gitter.im/Join%20In.svg)][gitter]
-
 [![Stack Exchange monthly questions](https://img.shields.io/stackexchange/stackoverflow/qm/reflow-maven-plugin?style=for-the-badge&logo=stackexchange)](http://stackoverflow.com/questions/tagged/reflow-maven-skin)
 
 [license]: https://www.apache.org/licenses/LICENSE-2.0
@@ -33,192 +31,22 @@
 # Reflow Maven skin
 
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
-and stylistic customizations to create a modern-looking Maven-generated website and documentatin generation.
+and stylistic customizations to create a modern-looking Maven-generated website and documentation generation.
 
 To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow]!
 
 [reflow]: http://devacfr.github.io/reflow-maven-skin/
-[migration]: http://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#migration.html
 [bootstrap]: http://getbootstrap.com
 
-## News
+## Roadmap
 
-Reflow Maven skin 2.3.1 Maintenance Release:
+Here is the roadmap of version 3.x of Reflow Maven skin:
 
-This release allow to keep compatibility with latest maven-site-plugin version.
-
-Bump maven-site-plugin version to 4.0.0-M3
-
-- Bump velocity-tools version to 3.1 with new name velocity-tools-generic
-- Upgrade doxia-sitetool to 1.11.1
-
-Read more in the [Reflow Maven skin 2.3 Release Notes and changeslog](https://devacfr.github.io/reflow-maven-skin/release-notes/release-notes-2.3.html).
-
----
-
-Reflow Maven skin 2.3.0 is officially out :tada:.
-
-The header component can now be displayed in 3 different ways:
-
-* `jumbotron` - the current rendering (default)
-* `banner` - display centering banner.
-* `custom` - use specific html (cdata content of header component) to render the header.
-
-You can also integrate a free content directly (without modification) in body page. The page is composed only header (navbar), body and footer. You can play only with the body content. The content is put as is, Reflow maven skin should not modify this content.
-
-```xml
-<reflowSkin>
-  <pages>
-    <index type="body" />
-  </pages>
-</reflowSkin>
-```
-
-> :warning: **Be careful:**
-> The cssClass attribute of each component do not override anymore `theme` and `background` attribute.
-> you can not write `<navbar cssClass="navbar-dark bg-primary border-bottom">`, but instead `<navbar theme="dark" background="primary" cssClass="border-bottom">`.
-
-Read more in the [Reflow Maven skin 2.3 Release Notes and changeslog](https://devacfr.github.io/reflow-maven-skin/release-notes/release-notes-2.3.html).
-
-## Usage
-
-To use this Maven skin, include it in your `site.xml` file:
-
-```xml
-<project>
-  ...
-  <skin>
-    <groupId>io.github.devacfr.maven.skins</groupId>
-    <artifactId>reflow-maven-skin</artifactId>
-    <version>2.3.1</version>
-  </skin>
-  ...
-</project>
-```
-
-The skin requires accompanying Reflow Velocity tools (`reflow-velocity-tools`) to be available when
-generating Maven site. Add them as a dependency to `maven-site-plugin` in your POM file:
-
-```xml
-<build>
-  <plugins>
-    ...
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-site-plugin</artifactId>
-      <version>3.7.1</version>
-      <dependencies>
-        ...
-        <dependency>
-          <groupId>io.github.devacfr.maven.skins</groupId>
-          <artifactId>reflow-velocity-tools</artifactId>
-          <version>2.3.0</version>
-        </dependency>
-        ...
-      </dependencies>
-      ...
-    </plugin>
-    ...
-  </plugins>
-</build>
-```
-
-### Configuration
-
-The skin is configurable using the `<custom><reflowSkin>` element in your `site.xml` file.
-Refer to [documentation][reflow-config] for all configuration options.
-
-[reflow-config]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#get-started_toc_configuration
-
-A sample configuration file is given below:
-
-```xml
-<project>
-  ...
-  <custom>
-    <reflowSkin>
-      <theme>bootswatch-spacelab</theme>
-      <brand>
-        <name>My Project</name>
-        <href>http://devacfr.github.io/reflow-maven-skin/</href>
-      </brand>
-      <slogan>Super interesting project doing good things.</slogan>
-      <titleTemplate>%2$s | %1$s</titleTemplate>
-      <toc>top</toc>
-      <navbar filterMenu="Download|reports" />
-      <bottomNav>
-        <column>Main|Download</column>
-        <column>Documentation</column>
-        <column>reports|modules</column>
-      </bottomNav>
-      <bottomDescription>This is a very good project doing interesting
-        and valuable things.</bottomDescription>
-      <pages>
-        <index project="project-id">
-          <shortTitle>Welcome</shortTitle>
-          <breadcrumbs>false</breadcrumbs>
-          <toc>false</toc>
-          <sections>
-            <carousel />
-            <body />
-            <sidebar />
-            <thumbs>2</thumbs>
-            <columns>3</columns>
-          </sections>
-        </index>
-        <developer-info>
-          <toc>sidebar</toc>
-        </developer-info>
-      </pages>
-    </reflowSkin>
-  </custom>
-  ...
-</project>
-```
-
-Note that when using `<localResources>`, you need to provide the necessary local versions of
-Bootstrap and jQuery files. Reflow skin provides package containing the default web dependencies files in module `reflow-default-webdeps`. this package should be unpack as following example:
-
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-dependency-plugin</artifactId>
-    <executions>
-        <execution>
-        <id>unpack</id>
-        <phase>pre-site</phase>
-        <goals>
-            <goal>unpack</goal>
-        </goals>
-        <configuration>
-            <artifactItems>
-                <artifactItem>
-                    <groupId>io.github.devacfr.maven.skins</groupId>
-                    <artifactId>reflow-default-webdeps</artifactId>
-                    <version>2.3.0</version>
-                    <type>jar</type>
-                    <overWrite>false</overWrite>
-                    <includes>
-                        **/css/bootstrap.min.css, <!-- can be remove if use bootswatch theme-->
-                        **/css/fontawesome/*,
-                        **/css/fontawesome/webfonts/*,
-                        **/css/themes/flaty/*.css, <!-- use flaty bootswatch theme-->
-                        **/js/*.js,
-                        **/js/languages/*,
-                        **/js/styles/github.min.css <!-- use github highlight theme-->
-                    </includes>
-                </artifactItem>
-            </artifactItems>
-            <outputDirectory>${main.basedir}/target/site</outputDirectory>
-        </configuration>
-        </execution>
-    </executions>
-</plugin>
-```
-
-**Note**: `${main.basedir}` equals to `${session.executionRootDirectory}` for relativize url (see  [Multi-module site][reflow-multi-modules] documentation)
-
-[reflow-multi-modules]: https://devacfr.github.io/reflow-maven-skin/reflow-maven-skin/reflow-documentation.html#multi-module.html
+- [ ] Remove section layout ( use snippets instead).
+- [ ] Upgrade to Bootstrap 5x.
+- [ ] Add theme support.
+- [ ] Use prismjs instead highlightjs. maybe give the choice.
+- [ ] Add versioning to documentation.
 
 ## Bug tracker
 
@@ -337,4 +165,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[release-management]: http://github.com/devacfr/reflow-maven-skin/development-documentation.html#dev-release-management
+[release-management]: http://github.com/devacfr/doc/development-documentation.html#dev-release-management

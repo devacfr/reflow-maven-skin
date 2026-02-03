@@ -1,0 +1,133 @@
+##
+## Copyright 2012-2020 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#if( $velocity.resourceExists("META-INF/maven/site-macros.vm") )##
+#*  *##parse("META-INF/maven/site-macros.vm")##
+#end##
+##
+## Define list of html attributes to be processed
+##
+#set( $htmlAttributes = ["id", "class", "style", "role"] )
+#**
+ * display information of snippet
+ *#
+#macro( debug $snippet $isRoot $indent )##
+#*  *##if ( !$snippet )##
+#*      *##break##
+#* *##end##
+#*  *##if( $isRoot )##
+#*      *##set( $indent = 0 )##
+<pre><code class="placeholder-debug text-left language-yaml">
+#*  *##end##
+#*  *##set( $sp = $display.space( $indent ) )##
+##
+${sp}#if( $indent > 0 )- #{end}name: ${snippet.name}
+##
+#*  *##if( $indent > 0 )##
+#*      *##set( $indent2 = $indent + 2 )##
+#*      *##set( $sp = $display.space( $indent2 ) )##
+#*  *##end##
+#*  *##if( ${snippet.type} )
+${sp}type: ${snippet.type}
+#*  *##end##
+##
+#*  *##set( $html = "" )##
+#*  *##if( $snippet.ownHtml )##
+#*      *##set( $html = $esc.html( $htmlTool.normaliseWhitespace( $snippet.ownHtml ) ) )##
+#*  *##end##
+#*  *##set( $attrs = "" )##
+#*  *##if( $snippet.attrs )##
+#*      *##set( $attrs = $esc.html( $htmlTool.normaliseWhitespace( $snippet.attrs.toString() ) ) )##
+#*  *##end##
+${sp}attributes: ${attrs}
+${sp}isHtmlTag: ${snippet.isHtmlTag()}
+${sp}ownHtml: '${html}'
+${sp}parent: $!snippet.parent.name
+##
+#*  *##if( !${snippet.children.isEmpty()} )##
+##
+${sp}children:
+##
+#*      *##set( $indent = $indent + 4 )##
+#*      *##foreach( $child in ${snippet.children} )##
+#*          *##debug( $child false $indent )##
+#*      *##end##
+#*      *##set( $indent = $indent - 4 )##
+#*      *##set( $sp = $display.space($indent) )##
+#*  *##end##
+#*  *##if( $isRoot )##
+</code></pre>
+#*  *##end##
+#end##
+#**
+ * render html snippet
+ *#
+#macro( render_html $snippet )##
+#*  *##if( ${snippet} && ${snippet.html} )##
+        #evaluate( ${snippet.html} )
+#*  *##end##
+#end
+##
+#** add html attributes to html element
+ *#
+#macro( addHtmlAttributes $snippet $class)##
+#*  *##if( !$snippet.hasAttribute( 'class' ) )##
+#*      *##addAttr( 'class' , $class )##
+#*  *##end##
+#*  *##if( ${snippet.attrs} )##
+#*      *##foreach( $key in $snippet.attrs.keySet() )##
+#*          *##if( $htmlAttributes.contains( $key ) )##
+#*              *##set($value = ${snippet.attrs[$key]})
+#*              *##if( $key == 'class' )##
+#*                  *##set( $value = $htmlTool.addClasses( $class, $value ) )##
+#*              *##end##
+#*              *##addAttr( $key , $value )##
+#*          *##end##
+#*      *##end##
+#*  *##end##
+#end##
+##
+#macro( addClasses $baseClass )##
+#*  *##if( $snippet.hasAttribute( 'class' ) )##
+#*      *##set( $value = $htmlTool.addClasses( $baseClass, ${snippet.attrs['class']} ) )##
+#*      *##addAttr( 'class' , $value )##
+#*  *##else##
+#*      *##addAttr( 'class' , $baseClass )##
+#*  *##end##
+#end##
+##
+#**
+* add attributes to html element
+*#
+#macro( addAttributes $attrs )##
+#*  *##foreach( $key in $attrs.keySet() )##
+#*  *#$key="$attrs[$key]" ##
+#*  *##end##
+#end##
+##
+#** add attribute to html element
+ *#
+#macro( addAttr $attr $value )##
+#*  *##if( $value )$attr="$value"#end##
+#end##
+##
+#if( $snippet.attrs["debug"])##
+    #debug( $snippet true 0)
+#end
+#**
+ * execute snippet
+ *#
+#parse("$snippetPath")##
+

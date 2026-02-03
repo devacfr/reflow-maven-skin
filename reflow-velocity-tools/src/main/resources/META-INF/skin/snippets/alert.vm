@@ -1,0 +1,47 @@
+##
+## Copyright 2012-2020 Christophe Friederich
+##
+## Licensed under the Apache License, Version 2.0 (the "License");
+## you may not use this file except in compliance with the License.
+## You may obtain a copy of the License at
+##
+##   http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS,
+## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#**
+ * Render alert snippet
+ * Usage:
+ * {{< alert color="" title="" level="" dismissable />}}
+ *#
+#*  *##set( $class = "alert")
+#*  *##if( ${snippet.attrs['color']})
+#*      *##set( $class = "$class alert-${snippet.attrs['color']}")
+#*  *##end##
+#*  *##if( ${snippet.attrs['dismissable']})
+#*      *##set( $class = "$class alert-dismissable show fade")
+#*  *##end##
+#*  *##if( ${snippet.attrs['class']})
+#*      *##set( $class = "$class ${snippet.attrs['class']}")
+#*  *##end##
+<div #if( ${snippet.attrs['id']} )id="${snippet.attrs['id']}" #end class="$class" role="alert">
+#*  *##if( ${snippet.attrs['title']})
+#*      *##set( $level = 5)
+#*      *##if( ${snippet.attrs['level']})
+#*          *##set( $level = ${snippet.attrs['level']})
+#*      *##end##
+    <h${level} class="alert-heading no-anchor">
+         ${snippet.attrs['title']}
+    </h${level}>
+#*  *##end##
+    #render_html( ${snippet} )
+#*  *##if( ${snippet.attrs['dismissable']})
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+#*  *##end##
+</div>

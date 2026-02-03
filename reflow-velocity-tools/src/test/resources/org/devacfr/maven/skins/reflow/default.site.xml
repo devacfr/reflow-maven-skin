@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
 
  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,20 +17,12 @@
  limitations under the License.
 
  -->
-<project name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<site name="Reflow Maven Skin" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 http://maven.apache.org/xsd/site-2.0.0.xsd">
 
-  <bannerLeft>
+  <bannerLeft name="Reflow" href="https://devacfr.github.io/reflow-maven-skin/">
     <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
-    <name><![CDATA[
-      <span class="color-highlight">Reflow</span> Maven Skin
-      ]]>
-    </name>
-    <src>images/reflow.png</src>
-    <width>144</width>
-    <height>144</height>
-    <alt>Reflow skin</alt>
-    <href>https://devacfr.github.io/reflow-maven-skin/</href>
+    <image src="images/reflow.png" width="144" height="144" alt="Reflow skin"></image>
   </bannerLeft> 
 
   <publishDate position="none" />
@@ -66,8 +58,8 @@
       <navbar filterMenu="Documentation|Maven documentation" cssClass="navbar-light bg-light border-bottom" center="false" alignMenu="right">
         <image src="$resourcePath/images/reflow.png" />
       </navbar>
-      <navside-menu cssClass="navside-light bg-light"/>
-      <footer theme="dark" background="dark"/>
+      <navside-menu cssClass="navside-light bg-light" />
+      <footer theme="dark" background="dark" />
       <!-- Split menus in the bottom navigation -->
       <bottomNav>
         <column>Main|Tools</column>
@@ -109,8 +101,8 @@
         <development-documentation type="doc">
           <menu name="Development Documentation">
             <item name="Contribute" href="dev/contribute.html" />
-            <item name="Code Conventions" href="dev/code-conventions.html"/>
-            <item name="Release Management" href="dev/release-management.html"/>
+            <item name="Code Conventions" href="dev/code-conventions.html" />
+            <item name="Release Management" href="dev/release-management.html" />
           </menu>
         </development-documentation>
         <summary>
@@ -123,13 +115,13 @@
   <body>
     <!-- Add a rel to Google profile for all pages -->
     <head>
-        <![CDATA[
+      <![CDATA[
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         ]]>
     </head>
 
     <links>
-      <item name="GitHub project" href="https://github.com/devacfr/reflow-maven-skin/tree/master" target="_blank"/>
+      <item name="GitHub project" href="https://github.com/devacfr/reflow-maven-skin/tree/master" target="_blank" />
     </links>
 
     <breadcrumbs>
@@ -152,10 +144,10 @@
       <item name="Fork on GitHub" href="https://github.com/devacfr/reflow-maven-skin/tree/master" />
     </menu>
     <menu name="Documentation" inherit="bottom">
-      <item name="Get Started" href="reflow-maven-skin/reflow-documentation.html#get-started.html" />
-      <item name="Migration" href="reflow-maven-skin/reflow-documentation.html#migration.html" />
+      <item name="Get Started" href="doc/reflow-documentation.html#get-started.html" />
+      <item name="Migration" href="doc/reflow-documentation.html#migration.html" />
       <item name="Developer Documentation" href="development-documentation.html" />
     </menu>
     <menu name="Maven documentation" ref="reports" inherit="bottom" />
   </body>
-</project>
+</site>
