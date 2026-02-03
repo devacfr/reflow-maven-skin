@@ -31,13 +31,22 @@
 # Reflow Maven skin
 
 Reflow is an Apache Maven site skin built on [Bootstrap 4][bootstrap]. It allows various structural
-and stylistic customizations to create a modern-looking Maven-generated website and documentatin generation.
+and stylistic customizations to create a modern-looking Maven-generated website and documentation generation.
 
 To get started and see how the skin looks by default, check out [reflow-maven-skin][reflow]!
 
 [reflow]: http://devacfr.github.io/reflow-maven-skin/
-[migration]: http://devacfr.github.io/reflow-maven-skin/doc/reflow-documentation.html#migration.html
 [bootstrap]: http://getbootstrap.com
+
+## Roadmap
+
+Here is the roadmap of version 3.x of Reflow Maven skin:
+
+- [ ] Remove section layout ( use snippets instead).
+- [ ] Upgrade to Bootstrap 5x.
+- [ ] Add theme support.
+- [ ] Use prismjs instead highlightjs. maybe give the choice.
+- [ ] Add versioning to documentation.
 
 ## Bug tracker
 

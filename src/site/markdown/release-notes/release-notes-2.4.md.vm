@@ -8,7 +8,7 @@ $h1 Reflow Maven skin 2.4 Release Notes
 
 $h2 Highlights of this release
 
-We are glade to announce the new version of Reflow Maven skin. This version introduces a new feature calling **Snippet**. [Snippet](../../doc/reflow-documentation.html#doc-snippets-snippet) is a little web component that you add in your page to enhance your documentation as the [Carousel Component](../../doc/reflow-documentation.html#doc-snippets-carousel) or your own snippet.
+We are glade to announce the version 2.4 of Reflow Maven skin. This version introduces a new feature calling **Snippet**. [Snippet](../../doc/reflow-documentation.html#doc-snippets-snippet) is a little web component that you add in your page to enhance your documentation as the [Carousel Component](../../doc/reflow-documentation.html#doc-snippets-carousel) or your own snippet.
 
 This is easy to use, You are just include in your page the following lines to display a carousel:
 
