@@ -64,7 +64,7 @@ governing permissions and limitations under
   </modules>
 
   <scm>
-    <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
+    <connection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
     <tag>v2.0.0</tag>
     <url>${scm_url}/tree/master</url>
@@ -87,7 +87,8 @@ governing permissions and limitations under
   </distributionManagement>
 
   <properties>
-    <reflow-current-version>2.3.5</reflow-current-version>
+    <!-- current version to use in documentation -->
+    <reflow-current-version>2.4.0</reflow-current-version>
     <main.basedir>${session.executionRootDirectory}</main.basedir>
     <publishingServerId>ossrh</publishingServerId>
     <!-- Set default encoding to UTF-8 (most plugins) -->
@@ -114,9 +115,9 @@ governing permissions and limitations under
     <siteMainDirectory>${user.home}</siteMainDirectory>
     <pubScmUrl>scm:git:ssh://git@github.com/devacfr/reflow-maven-skin.git</pubScmUrl>
     <scmPubCheckoutDirectory>
-      \${siteMainDirectory}/Development/maven/reflow-maven-skin-scm</scmPubCheckoutDirectory>
+      \${siteMainDirectory}/maven/site/reflow-maven-skin-scm</scmPubCheckoutDirectory>
     <site.url>https://devacfr.github.io/reflow-maven-skin/</site.url>
-    <site.deploy.id>github</site.deploy.id>
+    <site.deploy.id>github_site</site.deploy.id>
     <site.deploy.name>Deployment through GitHub's site deployment plugin</site.deploy.name>
 
     <skipCoverage>true</skipCoverage>
@@ -182,7 +183,7 @@ governing permissions and limitations under
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <maven-site-plugin.version>4.0.0-M16</maven-site-plugin.version>
-    <maven-scm-publish-plugin.version>3.0.0</maven-scm-publish-plugin.version>
+    <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
     <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
     <maven-changes-plugin.version>3.0.0-M3</maven-changes-plugin.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
@@ -560,7 +561,6 @@ governing permissions and limitations under
         <artifactId>maven-scm-publish-plugin</artifactId>
         <version>${maven-scm-publish-plugin.version}</version>
         <configuration>
-          <pubScmUrl>${pubScmUrl}</pubScmUrl>
           <checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory>
           <checkinComment>Publishing Site Docs for Reflow Maven Skin
             ${project.version}</checkinComment>
