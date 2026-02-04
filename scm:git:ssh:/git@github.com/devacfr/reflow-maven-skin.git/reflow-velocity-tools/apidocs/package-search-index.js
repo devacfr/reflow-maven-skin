@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.devacfr.maven.skins.reflow"},{"l":"org.devacfr.maven.skins.reflow.context"},{"l":"org.devacfr.maven.skins.reflow.model"},{"l":"org.devacfr.maven.skins.reflow.snippet"}]
