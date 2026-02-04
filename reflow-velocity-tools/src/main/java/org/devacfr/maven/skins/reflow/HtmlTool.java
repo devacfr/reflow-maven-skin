@@ -16,16 +16,13 @@
 package org.devacfr.maven.skins.reflow;
 
 import static java.util.Collections.emptyList;
-import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -144,243 +141,6 @@ public class HtmlTool extends SafeConfig {
       return null;
     }
     return StringUtil.normaliseWhitespace(html);
-  }
-
-  /**
-   * Splits the given HTML content into partitions based on the given separator selector. The separators themselves are
-   * dropped from the results.
-   *
-   * @param content
-   *          body HTML content to split (can not be empty or {@code null}).
-   * @param separatorCssSelector
-   *          CSS selector for separators (can not be empty or {@code null}).
-   * @return a list of HTML partitions split on separator locations, but without the separators.
-   * @since 1.0
-   * @see #split(String, String, JoinSeparator)
-   */
-  public List<String> split(@Nonnull final String content, @Nonnull final String separatorCssSelector) {
-    return split(content, separatorCssSelector, JoinSeparator.NO);
-  }
-
-  /**
-   * Splits the given HTML content into partitions based on the given separator selector. The separators are kept as
-   * first elements of the partitions.
-   * <p>
-   * Note that the first part is removed if the split was successful. This is because the first part does not include
-   * the separator.
-   * </p>
-   *
-   * @param content
-   *          HTML content to split
-   * @param separatorCssSelector
-   *          CSS selector for separators
-   * @return a list of HTML partitions split on separator locations (except the first one), with separators at the
-   *         beginning of each partition
-   * @since 1.0
-   * @see #split(String, String, JoinSeparator)
-   */
-  public List<String> splitOnStarts(final @Nonnull String content, final @Nonnull String separatorCssSelector) {
-
-    final List<String> result = split(content, separatorCssSelector, JoinSeparator.AFTER);
-
-    if (result == null || result.size() <= 1) {
-      // no result or just one part - return what we have
-      return result;
-    }
-
-    // otherwise, drop the first part - the first split will be the first 'start'
-    // e.g. if we split on headings, the first part will contain everything
-    // before the first heading.
-    return result.subList(1, result.size());
-  }
-
-  /**
-   * Splits the given HTML content into partitions based on the given separator selector. The separators are either
-   * dropped or joined with before/after depending on the indicated separator strategy.
-   *
-   * @param content
-   *          HTML content to split
-   * @param separatorCssSelector
-   *          CSS selector for separators
-   * @param separatorStrategy
-   *          strategy to drop or keep separators, one of "after", "before" or "no"
-   * @return a list of HTML partitions split on separator locations.
-   * @since 1.0
-   * @see #split(String, String, JoinSeparator)
-   */
-  public List<String> split(final @Nonnull String content,
-    final @Nonnull String separatorCssSelector,
-    final String separatorStrategy) {
-
-    JoinSeparator sepStrategy;
-    if ("before".equals(separatorStrategy)) {
-      sepStrategy = JoinSeparator.BEFORE;
-    } else if ("after".equals(separatorStrategy)) {
-      sepStrategy = JoinSeparator.AFTER;
-    } else {
-      sepStrategy = JoinSeparator.NO;
-    }
-
-    return split(content, separatorCssSelector, sepStrategy);
-  }
-
-  /**
-   * Splits the given HTML content into partitions based on the given separator selector.The separators are either
-   * dropped or joined with before/after depending on the indicated separator strategy.
-   * <p>
-   * Note that splitting algorithm tries to resolve nested elements so that returned partitions are self-contained HTML
-   * elements. The nesting is normally contained within the first applicable partition.
-   * </p>
-   *
-   * @param content
-   *          Body HTML content to split
-   * @param separatorCssSelector
-   *          CSS selector for separators
-   * @param separatorStrategy
-   *          strategy to drop or keep separators
-   * @return a list of HTML partitions split on separator locations. If no splitting occurs, returns the original
-   *         content as the single element of the list
-   * @since 1.0
-   */
-  public List<String> split(@Nonnull final String content,
-    @Nonnull final String separatorCssSelector,
-    @Nonnull final JoinSeparator separatorStrategy) {
-
-    requireNonNull(separatorStrategy);
-    final Element body = parse(content).body();
-
-    final List<Element> separators = body.select(separatorCssSelector);
-    if (separators.size() > 0) {
-      final List<List<Element>> partitions = split(separators, separatorStrategy, body);
-
-      final List<String> sectionHtml = new ArrayList<>();
-
-      for (final List<Element> partition : partitions) {
-        final String html = outerHtml(partition);
-        if (!Strings.isNullOrEmpty(html)) {
-          sectionHtml.add(outerHtml(partition));
-        }
-      }
-
-      return sectionHtml;
-    } else {
-      // nothing to split
-      return Collections.singletonList(content);
-    }
-  }
-
-  /**
-   * Recursively splits the {@code parent} element based on the given {@code separators}. If a separator is encountered
-   * in the parent, it is split on that position. The outstanding nested elements go with the first of the partitions in
-   * each case.
-   *
-   * @param separators
-   * @param separatorStrategy
-   * @param parent
-   * @return list of partitions (as lists of root elements for each partition). Partition can be an empty list, e.g. if
-   *         the separator is at the start of the content.
-   */
-  private static List<List<Element>> split(final Collection<Element> separators,
-    final JoinSeparator separatorStrategy,
-    final Element parent) {
-
-    final List<List<Element>> partitions = Lists.newLinkedList();
-
-    for (final Element child : parent.children()) {
-
-      if (separators.contains(child)) {
-        // split here and do not go deeper
-
-        // first ensure there was a partition before
-        // otherwise the split is not recognised on an outer level
-        getLastPartition(partitions);
-
-        if (separatorStrategy == JoinSeparator.BEFORE) {
-          // add to the last partition
-          getLastPartition(partitions).add(child);
-        }
-
-        // add an empty new partition
-        final List<Element> newPartition = Lists.newLinkedList();
-        partitions.add(newPartition);
-
-        if (separatorStrategy == JoinSeparator.AFTER) {
-          // add to the new partition
-          newPartition.add(child);
-        }
-
-      } else {
-        // go deeper
-        final List<List<Element>> childPartitions = split(separators, separatorStrategy, child);
-
-        // add the child to the last partition
-        getLastPartition(partitions).add(child);
-
-        if (childPartitions.size() > 1) {
-          // more than one partition:
-          // only keep the first partition elements in the child
-          // so for all other partitions, remove them from their parents
-
-          final List<Element> allChildren = child.children();
-          final List<Element> firstPartition = childPartitions.get(0);
-
-          allChildren.removeAll(firstPartition);
-          for (final Element removeChild : allChildren) {
-            removeChild.remove();
-          }
-
-          // add the remaining partitions
-          for (final List<Element> nextPartition : childPartitions.subList(1, childPartitions.size())) {
-            partitions.add(nextPartition);
-          }
-        }
-      }
-    }
-
-    return partitions;
-  }
-
-  /**
-   * Retrieves the last partition (as list of elements) or creates a new one if there was none before.
-   *
-   * @param partitions
-   * @return
-   */
-  private static List<Element> getLastPartition(final List<List<Element>> partitions) {
-    if (partitions.isEmpty()) {
-      final List<Element> newPartition = Lists.newLinkedList();
-      partitions.add(newPartition);
-      return newPartition;
-    } else {
-      return partitions.get(partitions.size() - 1);
-    }
-  }
-
-  /**
-   * Outputs the list of partition root elements to HTML.
-   *
-   * @param elements
-   * @return
-   */
-  private static String outerHtml(final List<Element> elements) {
-
-    switch (elements.size()) {
-      case 0:
-        return "";
-
-      case 1:
-        return elements.get(0).outerHtml();
-
-      default:
-        // more than one element
-        // wrap into <div> which we will remove afterwards
-        final Element root = new Element(Tag.valueOf("div"), "");
-        for (final Element elem : elements) {
-          root.appendChild(elem);
-        }
-
-        return root.html();
-    }
   }
 
   /**
@@ -1355,35 +1115,22 @@ public class HtmlTool extends SafeConfig {
    *
    * @param content
    *          HTML content to extract heading hierarchy from
-   * @param sections
-   *          list of all sections
    * @return a list of top-level heading items (with id and text). The remaining headings are nested within these
    *         top-level items. Empty list if no headings are in the content.
    * @since 1.0
    */
-  public List<? extends IdElement> headingTree(final String content, final List<String> sections) {
-
-    final List<String> sectionContents = this.split(content, "hr");
+  public List<? extends IdElement> headingTree(final String content) {
     final List<String> headIds = concat(HEADINGS, "[id]:not(.no-anchor)", true);
     final List<HeadingItem> headingItems = new ArrayList<>();
 
-    int index = 0;
-    for (final String sectionContent : sectionContents) {
-      final String sectionType = index < sections.size() ? sections.get(index++) : "";
-
-      // exclude carousel headings
-      if ("carousel".equals(sectionType)) {
-        continue;
+    final Element body = parse(content).body();
+    // select all headings that have an ID
+    final List<Element> headings = body.select(String.join(", ", headIds));
+    for (final Element heading : headings) {
+      if (LOGGER.isTraceEnabled()) {
+        LOGGER.trace("Found heading: {} - {}", heading.id(), heading.text());
       }
-      final Element body = parse(sectionContent).body();
-      // select all headings that have an ID
-      final List<Element> headings = body.select(String.join(", ", headIds));
-      for (final Element heading : headings) {
-        if (LOGGER.isTraceEnabled()) {
-          LOGGER.trace("Found heading: {} - {}", heading.id(), heading.text());
-        }
-        headingItems.add(new HeadingItem(heading.id(), heading.nodeName(), heading.text(), headingIndex(heading)));
-      }
+      headingItems.add(new HeadingItem(heading.id(), heading.nodeName(), heading.text(), headingIndex(heading)));
     }
 
     final List<HeadingItem> topHeadings = new ArrayList<>();

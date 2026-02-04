@@ -20,14 +20,12 @@ import static org.hamcrest.Matchers.contains;
 
 import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.velocity.tools.ToolContext;
 import org.apache.velocity.tools.generic.ValueParser;
 import org.devacfr.maven.skins.reflow.HtmlTool.ExtractResult;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
-import org.devacfr.maven.skins.reflow.HtmlTool.JoinSeparator;
 import org.devacfr.testing.jupiter.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,90 +41,6 @@ public class HtmlToolTest extends TestCase {
         .put("velocityContext",
           new ToolContext(ImmutableMap.<String, Object> builder().put("outputEncoding", "utf-8").build()))
         .build()));
-  }
-
-  /**
-   * Simple split Test
-   */
-  @Test
-  public void shouldSplitBodyFragment() {
-    final String body = getActualResource();
-    final List<String> fragments = htmlTool.split(body, "hr");
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>", fragments.get(0));
-    assertEquals("<h2>section2</h2>", fragments.get(1));
-  }
-
-  /**
-   * Test split html with unexiting element.
-   */
-  @Test
-  public void shouldNotSplit() {
-    final String body = getActualResource();
-    final List<String> fragments = htmlTool.split(body, "p");
-    assertEquals(1, fragments.size());
-  }
-
-  /**
-   * Test split not include nested separator.
-   */
-  @Test
-  public void shouldSplitRecursively() {
-    final String body = getActualResource();
-    final List<String> fragments = htmlTool.split(body, ".section");
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>\n<div></div>", fragments.get(0));
-    assertEquals("<div></div>", fragments.get(1));
-  }
-
-  @Test
-  public void shouldSplitJoinSeparatorBefore() {
-    final String body = getActualResource();
-    List<String> fragments = htmlTool.split(body, "hr", JoinSeparator.BEFORE);
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>\n<hr>", fragments.get(0));
-    assertEquals("<h2>section2</h2>", fragments.get(1));
-
-    fragments = htmlTool.split(body, "hr", "before");
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>\n<hr>", fragments.get(0));
-    assertEquals("<h2>section2</h2>", fragments.get(1));
-  }
-
-  @Test
-  public void shouldSplitJoinSeparatorAfter() {
-    final String body = getActualResource();
-    List<String> fragments = htmlTool.split(body, "hr", JoinSeparator.AFTER);
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>", fragments.get(0));
-    assertEquals("<hr>\n<h2>section2</h2>", fragments.get(1));
-
-    fragments = htmlTool.split(body, "hr", "after");
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>", fragments.get(0));
-    assertEquals("<hr>\n<h2>section2</h2>", fragments.get(1));
-  }
-
-  @Test
-  public void shouldSplitJoinSeparatorNo() {
-    final String body = getActualResource();
-    List<String> fragments = htmlTool.split(body, "hr", JoinSeparator.NO);
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>", fragments.get(0));
-    assertEquals("<h2>section2</h2>", fragments.get(1));
-
-    fragments = htmlTool.split(body, "hr", "");
-    assertEquals(2, fragments.size());
-    assertEquals("<h2>section1</h2>", fragments.get(0));
-    assertEquals("<h2>section2</h2>", fragments.get(1));
-  }
-
-  @Test
-  public void shouldSplitOnStarts() {
-    final String body = getActualResource();
-    final List<String> fragments = htmlTool.splitOnStarts(body, "hr");
-    assertEquals(1, fragments.size());
-    assertEquals("<hr>\n<h2>section2</h2>", fragments.get(0));
   }
 
   @Test
@@ -230,7 +144,7 @@ public class HtmlToolTest extends TestCase {
   public void shouldHeadingTree() {
     final String content = htmlTool
         .ensureHeadingIds("page", "overview", getActualResource("html"), HtmlTool.DEFAULT_SLUG_SEPARATOR);
-    final List<? extends IdElement> idElements = htmlTool.headingTree(content, Collections.emptyList());
+    final List<? extends IdElement> idElements = htmlTool.headingTree(content);
     // check root element
     assertThat(idElements.stream().map(IdElement::getId).collect(Collectors.toList()),
       contains("apache-maven-site-plugin"));

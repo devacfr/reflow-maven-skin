@@ -123,13 +123,6 @@ The skin is configurable using the `<custom>` element in your `site.xml` file. T
           <shortTitle>Welcome</shortTitle>
           <breadcrumbs>false</breadcrumbs>
           <toc>false</toc>
-          <sections>
-            <carousel />
-            <body />
-            <sidebar />
-            <thumbs>2</thumbs>
-            <columns>3</columns>
-          </sections>
         </index>
         <developer-info>
             <!-- inherit of parent value -->
@@ -138,10 +131,6 @@ The skin is configurable using the `<custom>` element in your `site.xml` file. T
         </developer-info>
         <overview>
             <toc>false</toc>
-            <sections>
-                <thumbs>3</thumbs>
-                <body />
-            </sections>
         </overview>
         <documentation type="doc">
           <menu name="Documentation" selectFirstOnExpand="false">

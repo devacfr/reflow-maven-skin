@@ -301,7 +301,6 @@
               <item name="Page Layout" href="doc/page-layout.html" />
               <item name="Documentation Layout" href="doc/documentation-layout.html" />
               <item name="Body Layout" href="doc/body-layout.html" />
-              <item name="Section Layout" href="doc/section-layout.html" />
             </item>
             <item name="Snippets">
               <item name="Working with Snippet" href="doc/snippets/snippet.html" />

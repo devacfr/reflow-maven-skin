@@ -23,7 +23,7 @@
   <bannerLeft name="Reflow" href="https://devacfr.github.io/reflow-maven-skin/">
     <!-- Reflow Maven Skin, but with "Reflow" highlighted -->
     <image src="images/reflow.png" width="144" height="144" alt="Reflow skin"></image>
-  </bannerLeft> 
+  </bannerLeft>
 
   <publishDate position="none" />
   <version position="bottom" />
@@ -91,12 +91,6 @@
           <breadcrumbs>false</breadcrumbs>
           <!-- no ToC on the main index page -->
           <toc>false</toc>
-          <sections>
-            <carousel />
-            <columns>2</columns>
-            <body />
-            <sidebar />
-          </sections>
         </index>
         <development-documentation type="doc">
           <menu name="Development Documentation">
