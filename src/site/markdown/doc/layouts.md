@@ -10,7 +10,4 @@ allows to organize your documentation in single page representation.
 {{% card-section title="Body Layout" href="#body-layout.html" %}}
 allows to be free in your inspiration to create a attractive page.
 {{% /card-section  %}}
-{{% card-section title="Section Layout" href="#section-layout.html" %}}
-allows customizing the page layout and reflowing the page using columns, thumbnails, or with the carousel component.
-{{% /card-section  %}}
 {{< /grid-layout >}}

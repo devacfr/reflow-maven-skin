@@ -24,7 +24,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.devacfr.maven.skins.reflow.HtmlTool;
 import org.devacfr.maven.skins.reflow.HtmlTool.IdElement;
 import org.devacfr.maven.skins.reflow.ISkinConfig;
-import org.devacfr.maven.skins.reflow.Xpp3Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -154,8 +153,7 @@ public abstract class Toc<T extends Toc<?>> extends BsComponent {
     if (LOGGER.isTraceEnabled()) {
       LOGGER.trace("Generating TOC items for page '{}', for content:{}", config.getFileId(), bodyContent);
     }
-    final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent,
-      Xpp3Utils.getChildren(config.get("sections")));
+    final List<? extends IdElement> tocItems = htmlTool.headingTree(bodyContent);
     return tocItems;
   }
 
