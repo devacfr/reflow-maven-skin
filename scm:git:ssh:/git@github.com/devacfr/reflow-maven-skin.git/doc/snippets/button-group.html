@@ -1,0 +1,328 @@
+
+<html>
+ <head></head>
+ <body>
+  <div class="row no-gutters">
+   <div class="col-lg-12 col-xl-9">
+    <a id="Button_Group"></a>
+    <h1 id="doc-snippets-button-group_toc_button-group">Button Group</h1>
+    <span class="badge badge-primary">New in v2.4</span><span class="ml-1 badge badge-info">SHORTCODE</span>
+    <p><a href="https://getbootstrap.com/docs/4.6/components/button-group/" class="externalLink">Based on Bootstrap Button Group page</a></p>
+    <p>Group a series of buttons together on a single line with the button group, and super-power them with JavaScript.</p>
+    <a id="Basic_example"></a>
+    <h2 id="doc-snippets-button-group_toc_basic-example">Basic example</h2>
+    <p>Wrap a series of buttons with <code>.btn</code> in <code>.btn-group</code>. Add on optional JavaScript radio and checkbox style behavior with <a href="https://getbootstrap.com/docs/4.6/components/buttons/#button-plugin" class="externalLink">our buttons plugin</a>.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div role="group" class="btn-group" aria-label="Basic example">
+        <button class="btn-secondary btn" type="button">Left</button>
+        <button class="btn-secondary btn" type="button">Middle</button>
+        <button class="btn-secondary btn" type="button">Right</button>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group" role="group" aria-label="Basic example" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}Left{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}Middle{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}Right{{&lt; /bs-button &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="bd-callout bd-callout-warning">
+     <p><strong>Ensure correct <code>role</code> and provide a label</strong></p>
+     <p>In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate role attribute needs to be provided. For button groups, this would be <code>role="group"</code>, while toolbars should have a <code>role="toolbar"</code>.</p>
+     <p>In addition, groups and toolbars should be given an explicit label, as most assistive technologies will otherwise not announce them, despite the presence of the correct role attribute. In the examples provided here, we use aria-label, but alternatives such as aria-labelledby can also be used.</p>
+    </div>
+    <a id="Button_toolbar"></a>
+    <h2 id="doc-snippets-button-group_toc_button-toolbar">Button toolbar</h2>
+    <p>Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space out groups, buttons, and more.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div role="toolbar" class="btn-toolbar" aria-label="Toolbar with button groups">
+        <div role="group" class="mr-2 btn-group" aria-label="First group">
+         <button class="btn-secondary btn" type="button">1</button>
+         <button class="btn-secondary btn" type="button">2</button>
+         <button class="btn-secondary btn" type="button">3</button>
+         <button class="btn-secondary btn" type="button">4</button>
+        </div>
+        <div role="group" class="mr-2 btn-group" aria-label="Second group">
+         <button class="btn-secondary btn" type="button">5</button>
+         <button class="btn-secondary btn" type="button">6</button>
+         <button class="btn-secondary btn" type="button">7</button>
+        </div>
+        <div role="group" class="mr-2 btn-group" aria-label="Third group">
+         <button class="btn-secondary btn" type="button">8</button>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" &gt;}}
+{{&lt; layout class="btn-group mr-2" role="group" aria-label="First group" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}1{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}2{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}3{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}4{{&lt; /bs-button &gt;}}
+{{&lt; /layout &gt;}}
+{{&lt; layout class="btn-group mr-2" role="group" aria-label="Second group" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}5{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}6{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}7{{&lt; /bs-button &gt;}}
+{{&lt; /layout &gt;}}
+{{&lt; layout class="btn-group mr-2" role="group" aria-label="Third group" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}8{{&lt; /bs-button &gt;}}
+{{&lt; /layout &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <p>Feel free to mix input groups with button groups in your toolbars. Similar to the example above, you’ll likely need some utilities though to space things properly.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div role="toolbar" class="btn-toolbar mb-3" aria-label="Toolbar with button groups">
+        <div role="group" class="mr-2 btn-group" aria-label="First group">
+         <button class="btn-secondary btn" type="button">1</button>
+         <button class="btn-secondary btn" type="button">2</button>
+         <button class="btn-secondary btn" type="button">3</button>
+         <button class="btn-secondary btn" type="button">4</button>
+        </div>
+        <div class="input-group">
+         <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">@</div>
+         </div>
+         <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+        </div>
+       </div>
+       <div role="toolbar" class="btn-toolbar justify-content-between" aria-label="Toolbar with button groups">
+        <div role="group" class="mr-2 btn-group" aria-label="First group">
+         <button class="btn-secondary btn" type="button">1</button>
+         <button class="btn-secondary btn" type="button">2</button>
+         <button class="btn-secondary btn" type="button">3</button>
+         <button class="btn-secondary btn" type="button">4</button>
+        </div>
+        <div class="input-group">
+         <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon2">@</div>
+         </div>
+         <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon2">
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" &gt;}}
+
+{{&lt; layout class="btn-group mr-2" role="group" aria-label="First group" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}1{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}2{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}3{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}4{{&lt; /bs-button &gt;}}
+{{&lt; /layout &gt;}}
+
+{{&lt; layout class="input-group" &gt;}}
+&lt;!--
+&lt;div class="input-group-prepend"&gt;
+  &lt;div class="input-group-text" id="btnGroupAddon"&gt;@&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon"&gt;
+--&gt;
+{{&lt; /layout &gt;}}
+
+{{&lt; /layout &gt;}}
+
+{{&lt; layout class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups" &gt;}}
+
+{{&lt; layout class="btn-group mr-2" role="group" aria-label="First group" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}1{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}2{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}3{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}4{{&lt; /bs-button &gt;}}
+{{&lt; /layout &gt;}}
+
+{{&lt; layout class="input-group" &gt;}}
+&lt;!--
+&lt;div class="input-group-prepend"&gt;
+  &lt;div class="input-group-text" id="btnGroupAddon2"&gt;@&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon2"&gt;
+--&gt;
+{{&lt; /layout &gt;}}
+
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Sizing"></a>
+    <h2 id="doc-snippets-button-group_toc_sizing">Sizing</h2>
+    <p>Instead of applying button sizing classes to every button in a group, just add <code>.btn-group-*</code> to each <code>.btn-group</code>, including each one when nesting multiple groups.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="flex-column d-inline-flex">
+        <div role="group" class="mb-2 btn-group-lg btn-group" aria-label="Basic example">
+         <button class="btn-secondary btn" type="button">Left</button>
+         <button class="btn-secondary btn" type="button">Middle</button>
+         <button class="btn-secondary btn" type="button">Right</button>
+        </div>
+        <div role="group" class="mb-2 btn-group" aria-label="Basic example">
+         <button class="btn-secondary btn" type="button">Left</button>
+         <button class="btn-secondary btn" type="button">Middle</button>
+         <button class="btn-secondary btn" type="button">Right</button>
+        </div>
+        <div role="group" class="btn-group btn-group-sm" aria-label="Basic example">
+         <button class="btn-secondary btn" type="button">Left</button>
+         <button class="btn-secondary btn" type="button">Middle</button>
+         <button class="btn-secondary btn" type="button">Right</button>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group btn-group-lg" role="group" aria-label="Basic example" &gt;}}
+...
+{{&lt; /layout &gt;}}
+
+{{&lt; layout class="btn-group" role="group" aria-label="Basic example" &gt;}}
+...
+{{&lt; /layout &gt;}}
+
+{{&lt; layout class="btn-group-sm" role="group" aria-label="Basic example" &gt;}}
+...
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Nesting"></a>
+    <h2 id="doc-snippets-button-group_toc_nesting">Nesting</h2>
+    <p>Place a <code>.btn-group</code> within another <code>.btn-group</code> when you want dropdown menus mixed with a series of buttons.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div role="group" class="btn-group" aria-label="Button group with nested dropdown">
+        <button class="btn-secondary btn" type="button">1</button>
+        <button class="btn-secondary btn" type="button">2</button>
+        <div role="group" class="btn-group">
+         <button class="dropdown-toggle btn-secondary btn" type="button" data-toggle="dropdown" aria-expanded="false">Dropdown</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Dropdown link</a> <a class="dropdown-item" href="#">Dropdown link</a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group" role="group" aria-label="Button group with nested dropdown" &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}1{{&lt; /bs-button &gt;}}
+{{&lt; bs-button color="secondary" &gt;}}2{{&lt; /bs-button &gt;}}
+{{&lt; layout class="btn-group" role="group" &gt;}}
+{{&lt; bs-button color="secondary" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" &gt;}}
+Dropdown
+{{&lt; /bs-button &gt;}}
+{{% dropdown %}}
+&lt;!--
+&lt;dropdown-item title="Dropdown link" href="#"&gt;&lt;/dropdown-item&gt;
+&lt;dropdown-item title="Dropdown link" href="#"&gt;&lt;/dropdown-item&gt;
+--&gt;
+{{% /dropdown %}}
+
+{{&lt; /layout &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Vertical_variation"></a>
+    <h2 id="doc-snippets-button-group_toc_vertical-variation">Vertical variation</h2>
+    <p>Make a set of buttons appear vertically stacked rather than horizontally. <strong>Split button dropdowns are not supported here</strong>.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div role="group" class="btn-group-vertical" aria-label="Button group with nested dropdown">
+        <button class="btn-secondary btn" type="button">Button</button>
+        <button class="btn-secondary btn" type="button">Button</button>
+        <button class="btn-secondary btn" type="button">Button</button>
+        <button class="btn-secondary btn" type="button">Button</button>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code"></div>
+      </div>
+     </div>
+    </div>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div role="group" class="btn-group-vertical">
+        <button class="btn-secondary btn" type="button">Button</button>
+        <button class="btn-secondary btn" type="button">Button</button>
+        <div role="group" class="btn-group">
+         <button class="dropdown-toggle btn-secondary btn" type="button" data-toggle="dropdown" aria-expanded="false">Dropdown</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Dropdown link</a> <a class="dropdown-item" href="#">Dropdown link</a>
+         </div>
+        </div>
+        <button class="btn-secondary btn" type="button">Button</button>
+        <button class="btn-secondary btn" type="button">Button</button>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group-vertical" &gt;}}
+...
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+    <div class="feedback-links">
+     <ul class="nav flex-column flex-nowrap">
+      <li class="nav-item"><a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/button-group.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a></li>
+     </ul>
+    </div>
+    <div id="m_toc_sidebar" class="d-print-none toc-sidebar-enabled toc-sidebar-expanded toc-sidebar-autoexpandable toc-sidebar-fixed">
+     <nav id="m_toc_sidebar_nav" class="flex-column">
+      <ul class="nav--sidebar nav flex-column flex-nowrap">
+       <li class="h1"><a class="nav-link" href="#doc-snippets-button-group_toc_button-group" title="Button Group">Button Group</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-button-group_toc_basic-example" title="Basic example">Basic example</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-button-group_toc_button-toolbar" title="Button toolbar">Button toolbar</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-button-group_toc_sizing" title="Sizing">Sizing</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-button-group_toc_nesting" title="Nesting">Nesting</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-button-group_toc_vertical-variation" title="Vertical variation">Vertical variation</a></li>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,656 @@
+
+<html>
+ <head></head>
+ <body>
+  <div class="row no-gutters">
+   <div class="col-lg-12 col-xl-9">
+    <a id="Dropdowns"></a>
+    <h1 id="doc-snippets-dropdowns_toc_dropdowns">Dropdowns</h1>
+    <span class="badge badge-primary">New in v2.4</span><span class="ml-1 badge badge-info">SHORTCODE</span>
+    <p><a href="https://getbootstrap.com/docs/4.6/components/dropdowns/" class="externalLink">Based on Bootstrap Dropdowns page</a></p>
+    <p>Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.</p>
+    <a id="Overview"></a>
+    <h2 id="doc-snippets-dropdowns_toc_overview">Overview</h2>
+    <p>Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is <a href="https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/" class="externalLink">an intentional design decision</a>.</p>
+    <p>Dropdowns are built on a third party library, <a href="https://popper.js.org/" class="externalLink">Popper</a>, which provides dynamic positioning and viewport detection. Be sure to include <a href="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" class="externalLink">popper.min.js</a> before Bootstrap’s JavaScript or use <code>bootstrap.bundle.min.js</code> / <code>bootstrap.bundle</code>.js which contains Popper. Popper isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required.</p>
+    <p>If you’re building our JavaScript from source, it <a href="https://getbootstrap.com/docs/4.6/getting-started/javascript/#util" class="externalLink">requires util.js</a>.</p>
+    <a id="Accessibility"></a>
+    <h2 id="doc-snippets-dropdowns_toc_accessibility">Accessibility</h2>
+    <p>The <a href="https://www.w3.org/TR/wai-aria/" class="externalLink">WAI ARIA</a> standard defines an actual <a href="https://www.w3.org/TR/wai-aria/#menu" class="externalLink">role=“menu” widget</a>, but this is specific to application-like menus which trigger actions or functions. ARIA menus can only contain menu items, checkbox menu items, radio button menu items, radio button groups, and sub-menus.</p>
+    <p>Bootstrap’s dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, Bootstrap does not expect (nor automatically add) any of the role and <code>aria-</code> attributes required for true ARIA menus. Authors will have to include these more specific attributes themselves.</p>
+    <p>However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual <code>.dropdown-item</code> elements using the cursor keys and close the menu with the <kbd>ESC</kbd> key.</p>
+    <a id="Examples"></a>
+    <h2 id="doc-snippets-dropdowns_toc_examples">Examples</h2>
+    <p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within <code>.dropdown</code>, or another element that declares <code>position: relative;</code>. Dropdowns can be triggered from <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> elements to better fit your potential needs.</p>
+    <a id="Single_button"></a>
+    <h3 id="doc-snippets-dropdowns_toc_single-button">Single button</h3>
+    <p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes. Here’s how you can put them to work with either <code>&lt;button&gt;</code> elements:</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown ">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown button</button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown title="Dropdown button" color="secondary" %}}
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+
+&lt;!-- or, using commented tag --&gt;
+
+{{% dropdown title="Dropdown button" color="secondary" %}}
+&lt;!--
+&lt;dropdown-item title="Action" href="#" /&gt;
+&lt;dropdown-item title="Another action" href="#" /&gt;
+&lt;dropdown-item title="Something else here" href="#" /&gt;
+--&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <p>The best part is you can do this with any button variant, too:</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Primary</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Secondary</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Success</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Info</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Warning</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Danger</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">&lt;!-- Example single danger button --&gt;
+{{&lt; layout class="btn-group" &gt;}}
+{{% dropdown color="danger" title="Danger" %}}
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}
+{{&lt; dropdown-item type="divider" /&gt;}}
+{{&lt; dropdown-item title="Separated link" href="#" /&gt;}}
+{{% /dropdown %}}
+{{&lt; /layout &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Split_button"></a>
+    <h3 id="doc-snippets-dropdowns_toc_split-button">Split button</h3>
+    <p>Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of <code>.dropdown-toggle-split</code> for proper spacing around the dropdown caret.</p>
+    <p>We use this extra class to reduce the horizontal <code>padding</code> on either side of the caret by 25% and remove the <code>margin-left</code> that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group ">
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">&lt;!-- Example single danger button --&gt;
+{{% dropdown type="split" color="danger" title="Danger" %}}
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}
+{{&lt; dropdown-item type="divider" /&gt;}}
+{{&lt; dropdown-item title="Separated link" href="#" /&gt;}}
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Sizing"></a>
+    <h2 id="doc-snippets-dropdowns_toc_sizing">Sizing</h2>
+    <p>Button dropdowns work with buttons of all sizes, including default and split dropdown buttons.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Large button</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-secondary btn-lg">Large split button</button>
+        <button type="button" class="btn btn-secondary btn-lg dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">&lt;!-- Large button groups (default and split) --&gt;
+{{&lt; layout class="btn-group" &gt;}}
+{{% dropdown title="Large button" color="secondary" size="lg" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+{{&lt; /layout &gt;}}
+
+{{% dropdown title="Large split button" color="secondary" type="split" size="lg" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group">
+        <div class="dropdown ">
+         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Small button</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group ">
+        <button type="button" class="btn btn-secondary btn-sm">Small split button</button>
+        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">&lt;!-- Small button groups (default and split) --&gt;
+{{&lt; layout class="btn-group" &gt;}}
+{{% dropdown title="Small button" color="secondary" size="sm" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+{{&lt; /layout &gt;}}
+
+{{% dropdown title="Small split button" color="secondary" type="split" size="sm" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Directions"></a>
+    <h2 id="doc-snippets-dropdowns_toc_directions">Directions</h2>
+    <a id="Dropup"></a>
+    <h3 id="doc-snippets-dropdowns_toc_dropup">Dropup</h3>
+    <p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the parent element.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group">
+        <div class="dropdown dropup">
+         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropup</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group dropup">
+        <button type="button" class="btn btn-secondary">Split dropup</button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group" &gt;}}
+{{% dropdown title="Dropup" color="secondary" direction="up" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+{{&lt; /layout &gt;}}
+
+{{% dropdown title="Split dropup" color="secondary" type="split" direction="up" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Dropright"></a>
+    <h3 id="doc-snippets-dropdowns_toc_dropright">Dropright</h3>
+    <p>Trigger dropdown menus at the right of the elements by adding <code>.dropright</code> to the parent element.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group">
+        <div class="dropdown dropright">
+         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropright</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group dropright">
+        <button type="button" class="btn btn-secondary">Split Dropright</button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group" &gt;}}
+{{% dropdown title="Dropright" color="secondary" direction="right" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+{{&lt; /layout &gt;}}
+
+{{% dropdown title="Split Dropright" color="secondary" type="split" direction="right" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Dropleft"></a>
+    <h3 id="doc-snippets-dropdowns_toc_dropleft">Dropleft</h3>
+    <p>Trigger dropdown menus at the left of the elements by adding <code>.dropleft</code> to the parent element.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="btn-group">
+        <div class="dropdown dropleft">
+         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropleft</button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         </div>
+        </div>
+       </div>
+       <div class="btn-group">
+        <div class="btn-group dropleft">
+         <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"><span class="sr-only">Toggle Dropdown</span></button>
+         <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+         </div>
+        </div>
+        <button type="button" class="dropdown-item">Split Dropleft</button>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; layout class="btn-group" &gt;}}
+{{% dropdown title="Dropleft" color="secondary" direction="left" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+{{&lt; /layout &gt;}}
+
+{{% dropdown title="Split Dropleft" color="secondary" type="split" direction="left" %}}
+&lt;!-- Dropdown menu links --&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Menu_items"></a>
+    <h2 id="doc-snippets-dropdowns_toc_menu-items">Menu items</h2>
+    <p>Historically dropdown menu contents had to be links, but that’s no longer the case with v4. Now you can optionally use <code>&lt;button&gt;</code> elements in your dropdowns instead of just <code>&lt;a&gt;</code>s.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown ">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown</button>
+        <div class="dropdown-menu">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown title="Dropdown" color="secondary" %}}
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <p>You can also create non-interactive dropdown items with <code>.dropdown-item-text</code>. Feel free to style further with custom CSS or text utilities.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown ">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown</button>
+        <div class="dropdown-menu">
+         <span class="dropdown-item-text">Dropdown item text</span> <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown title="Dropdown" color="secondary" %}}
+{{&lt; dropdown-item title="Dropdown item text" type="text" /&gt;}}&gt;
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Active"></a>
+    <h3 id="doc-snippets-dropdowns_toc_active">Active</h3>
+    <p>Add <code>.active</code> to items in the dropdown to <strong>style them as active</strong>.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Regular link</a> <a class="dropdown-item active" href="#">Active link</a> <a class="dropdown-item" href="#">Another link</a>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown %}}
+{{&lt; dropdown-item title="Regular link" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Active link" active href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another link" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Disabled"></a>
+    <h3 id="doc-snippets-dropdowns_toc_disabled">Disabled</h3>
+    <p>Add <code>.disabled</code> to items in the dropdown to style them as disabled.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Regular link</a> <a class="dropdown-item disabled" href="#">Disabled link</a> <a class="dropdown-item" href="#">Another link</a>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown %}}
+{{&lt; dropdown-item title="Regular link" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Disabled link" disabled href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another link" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Menu_alignment"></a>
+    <h2 id="doc-snippets-dropdowns_toc_menu-alignment">Menu alignment</h2>
+    <p>By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. Add <code>.dropdown-menu-right</code> to a <code>.dropdown-menu</code> to right align the dropdown menu.</p>
+    <div class="bd-callout bd-callout-info">
+     <strong>Heads up!</strong> Dropdowns are positioned thanks to Popper (except when they are contained in a navbar).
+    </div>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown ">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Right-aligned menu</button>
+        <div class="dropdown-menu dropdown-menu-right">
+         <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown title="Right-aligned menu" color="secondary" align="right" %}}
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Menu_content"></a>
+    <h2 id="doc-snippets-dropdowns_toc_menu-content">Menu content</h2>
+    <a id="Headers"></a>
+    <h3 id="doc-snippets-dropdowns_toc_headers">Headers</h3>
+    <p>Add a header to label sections of actions in any dropdown menu.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown-menu">
+        <h6 class="dropdown-header no-anchor">Dropdown header</h6>
+        <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown %}}
+{{&lt; dropdown-item title="Dropdown header" type="header" /&gt;}}&gt;
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Dividers"></a>
+    <h3 id="doc-snippets-dropdowns_toc_dividers">Dividers</h3>
+    <p>Separate groups of related menu items with a divider.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{% dropdown %}}
+{{&lt; dropdown-item title="Action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item title="Another action" href="#" /&gt;}}&gt;
+{{&lt; dropdown-item type="divider" /&gt;}}&gt;
+{{&lt; dropdown-item title="Something else here" href="#" /&gt;}}&gt;
+{{% /dropdown %}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+    <div class="feedback-links">
+     <ul class="nav flex-column flex-nowrap">
+      <li class="nav-item"><a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/dropdowns.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a></li>
+     </ul>
+    </div>
+    <div id="m_toc_sidebar" class="d-print-none toc-sidebar-enabled toc-sidebar-expanded toc-sidebar-autoexpandable toc-sidebar-fixed">
+     <nav id="m_toc_sidebar_nav" class="flex-column">
+      <ul class="nav--sidebar nav flex-column flex-nowrap">
+       <li class="h1"><a class="nav-link" href="#doc-snippets-dropdowns_toc_dropdowns" title="Dropdowns">Dropdowns</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_overview" title="Overview">Overview</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_accessibility" title="Accessibility">Accessibility</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_examples" title="Examples">Examples</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_single-button" title="Single button">Single button</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_split-button" title="Split button">Split button</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_sizing" title="Sizing">Sizing</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_directions" title="Directions">Directions</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_dropup" title="Dropup">Dropup</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_dropright" title="Dropright">Dropright</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_dropleft" title="Dropleft">Dropleft</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_menu-items" title="Menu items">Menu items</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_active" title="Active">Active</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_disabled" title="Disabled">Disabled</a></li>
+       </ul>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_menu-alignment" title="Menu alignment">Menu alignment</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-dropdowns_toc_menu-content" title="Menu content">Menu content</a></li>
+       <ul class="nav flex-column flex-nowrap nav-collapsible">
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_headers" title="Headers">Headers</a></li>
+        <li class="h3"><a class="nav-link" href="#doc-snippets-dropdowns_toc_dividers" title="Dividers">Dividers</a></li>
+       </ul>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

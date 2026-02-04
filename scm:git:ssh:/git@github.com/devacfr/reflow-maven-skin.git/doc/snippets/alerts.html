@@ -1,0 +1,222 @@
+
+<html>
+ <head></head>
+ <body>
+  <div class="row no-gutters">
+   <div class="col-lg-12 col-xl-9">
+    <a id="Alerts"></a>
+    <h1 id="doc-snippets-alerts_toc_alerts">Alerts</h1>
+    <span class="badge badge-primary">New in v2.4</span><span class="ml-1 badge badge-info">SHORTCODE</span>
+    <p><a href="https://getbootstrap.com/docs/4.6/components/alerts/" class="externalLink">Based on Bootstrap Alerts page</a></p>
+    <p>Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.</p>
+    <a id="Examples"></a>
+    <h2 id="doc-snippets-alerts_toc_examples">Examples</h2>
+    <p>Alerts are available for any length of text, as well as an optional dismiss button. For proper styling, use one of the eight required contextual color (e.g., success).</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="alert alert-primary" role="alert">A simple primary alert—check it out!</div>
+       <div class="alert alert-secondary" role="alert">A simple secondary alert—check it out!</div>
+       <div class="alert alert-success" role="alert">A simple success alert—check it out!</div>
+       <div class="alert alert-danger" role="alert">A simple danger alert—check it out!</div>
+       <div class="alert alert-warning" role="alert">A simple warning alert—check it out!</div>
+       <div class="alert alert-info" role="alert">A simple info alert—check it out!</div>
+       <div class="alert alert-light" role="alert">A simple light alert—check it out!</div>
+       <div class="alert alert-dark" role="alert">A simple dark alert—check it out!</div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-xml">{{&lt; alert color="primary" &gt;}}
+A simple primary alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="secondary" &gt;}}
+A simple secondary alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="success" &gt;}}
+A simple success alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="danger" &gt;}}
+A simple danger alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="warning" &gt;}}
+A simple warning alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="info" &gt;}}
+A simple info alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="light" &gt;}}
+A simple light alert—check it out!
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="dark" &gt;}}
+A simple dark alert—check it out!
+{{&lt; /alert &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="bd-callout bd-callout-warning">
+     <h5 class="no-anchor">Conveying meaning to assistive technologies</h5>
+     <p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the <code>.sr-only</code> class.</p>
+    </div>
+    <a id="Link_color"></a>
+    <h2 id="doc-snippets-alerts_toc_link-color">Link color</h2>
+    <p>Use the <code>.alert-link</code> utility class to quickly provide matching colored links within any alert.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="alert alert-primary" role="alert">
+        A simple primary alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-secondary" role="alert">
+        A simple primary alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-success" role="alert">
+        A simple success alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-danger" role="alert">
+        A simple danger alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-warning" role="alert">
+        A simple warning alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-info" role="alert">
+        A simple info alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-light" role="alert">
+        A simple light alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+       <div class="alert alert-dark" role="alert">
+        A simple dark alert with <a href="#null" class="alert-link">an example link</a> . Give it a click if you like.
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-xml">{{&lt; alert color="primary" &gt;}}
+A simple primary alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="secondary" &gt;}}
+A simple primary alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="success" &gt;}}
+A simple success alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="danger" &gt;}}
+A simple danger alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="warning" &gt;}}
+A simple warning alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="info" &gt;}}
+A simple info alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="light" &gt;}}
+A simple light alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+
+{{&lt; alert color="dark" &gt;}}
+A simple dark alert with &lt;a href="#" class="alert-link"&gt;an example link&lt;/a&gt;. Give it a click if you like.
+{{&lt; /alert &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Additional_content"></a>
+    <h2 id="doc-snippets-alerts_toc_additional-content">Additional content</h2>
+    <p>Alerts can also contain additional HTML elements like headings, paragraphs and dividers.</p>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading no-anchor">Well done!</h4>
+        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+        <hr>
+        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; alert color="success" title="Well done!" level="4" &gt;}}
+&lt;!--
+&lt;p&gt;Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p class="mb-0"&gt;Whenever you need to, be sure to use margin utilities to keep things nice and tidy.&lt;/p&gt;
+--&gt;
+{{&lt; /alert &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+    <a id="Dismissing"></a>
+    <h2 id="doc-snippets-alerts_toc_dismissing">Dismissing</h2>
+    <p>Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:</p>
+    <ul>
+     <li>Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.</li>
+     <li>If you’re building our JavaScript from source, it <a href="https://getbootstrap.com/docs/4.6/getting-started/javascript/#util" class="externalLink">requires util.js</a>. The compiled version includes this.</li>
+     <li>Add a dismiss button and the <code>.alert-dismissible</code> class, which adds extra padding to the right of the alert and positions the <code>.close</code> button.</li>
+     <li>On the dismiss button, add the <code>data-dismiss="alert"</code> attribute, which triggers the JavaScript functionality. Be sure to use the <code>&lt;button&gt;</code> element with it for proper behavior across all devices.</li>
+     <li>To animate alerts when dismissing them, be sure to add the .fade and .show classes. You can see this in action with a live demo:</li>
+    </ul>
+    <div>
+     <div class="preview-section py-2">
+      <div class="bd-example">
+       <div class="alert alert-warning alert-dismissable show fade" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+       </div>
+      </div>
+     </div>
+     <div class="code-section py-2">
+      <div class="highlight border px-3 rounded">
+       <div class="highlight-code">
+        <pre><code class="language-html">{{&lt; alert color="warning" dismissable &gt;}}
+**Holy guacamole!** You should check in on some of those fields below.
+{{&lt; /alert &gt;}}
+</code></pre>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-3">
+    <div class="feedback-links">
+     <ul class="nav flex-column flex-nowrap">
+      <li class="nav-item"><a class="nav-link" href="https://github.com/devacfr/reflow-maven-skin/tree/master/src/site/markdown/doc/snippets/alerts.md"><i class="far fa-edit" target="_blank" rel="noopener noreferrer"></i> Improve this page</a></li>
+     </ul>
+    </div>
+    <div id="m_toc_sidebar" class="d-print-none toc-sidebar-enabled toc-sidebar-expanded toc-sidebar-autoexpandable toc-sidebar-fixed">
+     <nav id="m_toc_sidebar_nav" class="flex-column">
+      <ul class="nav--sidebar nav flex-column flex-nowrap">
+       <li class="h1"><a class="nav-link" href="#doc-snippets-alerts_toc_alerts" title="Alerts">Alerts</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-alerts_toc_examples" title="Examples">Examples</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-alerts_toc_link-color" title="Link color">Link color</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-alerts_toc_additional-content" title="Additional content">Additional content</a></li>
+       <li class="h2"><a class="nav-link" href="#doc-snippets-alerts_toc_dismissing" title="Dismissing">Dismissing</a></li>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
