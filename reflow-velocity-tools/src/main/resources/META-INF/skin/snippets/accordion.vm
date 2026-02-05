@@ -26,36 +26,43 @@
 #macro( render_accordion_item $index $item )##
 #*  *##set( $headingId = ${parentId} + "_heading_" + ${index} )##
 #*  *##set( $collapseId = ${parentId} + "_collapse_" + ${index} )##
-#*  *##set( $showClass = "collapse" )##
+#*  *##set( $showClass = "accordion-collapse collapse" )##
 #*  *##set( $show = $index == 1 )##
 #*  *##if( $show )##
-#*    *##set( $showClass = "collapse show" )##
+#*    *##set( $showClass = "$showClass show" )##
 #*  *##end##
-<div class="card">
-    <div class="card-header" id="$headingId">
-        <h2 class="no-anchor mt-0 mb-0">
-            <button
-                class="btn btn-link btn-block text-left"
-                type="button"
-                data-toggle="collapse"
-                data-target="#${collapseId}"
-                aria-expanded="$show"
-                aria-controls="${collapseId}">
-                ${item.title}
-            </button>
-        </h2>
+<div class="accordion-item">
+    <h2 class="accordion-header no-anchor">
+#*    *##set($btnClass = "accordion-button")##
+#*    *##if( !$show )##
+#*      *##set($btnClass = "$btnClass collapsed")##
+#*    *##end##
+      <button class="${btnClass}" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="$show" aria-controls="${collapseId}">
+        ${item.title}
+      </button>
+    </h2>
+#*  *##if( $snippet.alwaysOpen || $snippet.alwaysOpen == "true" )##
+    <div id="${collapseId}" class="${showClass}">
+      <div class="accordion-body">
+        #evaluate( ${item.html} )
+      </div>
     </div>
-    <div id="${collapseId}" class="${showClass}" aria-labelledby="${headingId}" data-parent="#${parentId}">
-        <div class="card-body">
-          #evaluate( ${item.html} )
-        </div>
+#*  *##else##
+    <div id="${collapseId}" class="${showClass}" data-bs-parent="#${parentId}">
+      <div class="accordion-body">
+        #evaluate( ${item.html} )
+      </div>
     </div>
+#*  *##end##
 </div>
 #end##
 ## Main accordion rendering
 #*  *##set( $class = "accordion")##
 #*  *##set( $parentId = $snippet.id )##
-<div #addhtmlattributes( ${snippet} ${class} )="#addHtmlAttributes( ${snippet} ${class} )">
+#*  *##if( $snippet.flush || $snippet.flush == "true" )##
+#*    *##set( $class = "$class accordion-flush")##
+#*  *##end##
+<div #addHtmlAttributes( ${snippet} ${class} )>
 #*  *##set( $index = 1)##
 #*  *##foreach($item in $snippet["accordion-item"])##
 #*    *##render_accordion_item( $index $item )##

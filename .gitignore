@@ -19,3 +19,12 @@ target/
 velocity.log
 velocity.log.*
 .checkstyle
+
+# Node modules
+node_modules/
+node/
+package-lock.json
+
+.nx/installation
+.nx/cache
+.nx/workspace-data

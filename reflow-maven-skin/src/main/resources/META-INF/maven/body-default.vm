@@ -18,12 +18,14 @@
     <div class="row mt-5">
         <div class="d-xs-none d-sm-none d-md-none d-lg-block col-lg-2">
         </div>
-        <main class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8" role="main">
+        <main class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 pb-3" role="main">
 ## add a 'breadcrumbs' bar for breadcrumbs, version and publish date (left/right) option
 #*  *#$config.renderSnippet( "<breadcrumb></breadcrumb>" )
 ## add top toc if enabled
 #*  *#$config.renderSnippet( "<toc-topbar></toc-topbar>" )##
+          <div id="m_body_content" class="body-content">
 #*  *#$config.renderSnippet( "<bs-body></bs-body>" )##
+          </div>
         </main>
         <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block col-xl-2">
 #*          *#$config.renderSnippet( "<toc-sidebar></toc-sidebar>" )####

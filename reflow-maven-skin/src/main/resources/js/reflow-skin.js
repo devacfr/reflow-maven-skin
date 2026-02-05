@@ -33,6 +33,7 @@ function getViewPort() {
 }
 
 var timestampSideBar = 0;
+var scrollspyInitialized = false;
 
 var mReflow = function () {
   var $window = $(window);
@@ -46,10 +47,12 @@ var mReflow = function () {
 
   function initTocTop() {
     if ($('#m_toc_topbar').length) {
-      $body.scrollspy({
+      $('#m_body_content').scrollspy({
         target: '#m_toc_topbar',
-        offset: $('#m_top_navbar').outerHeight() + $('#m_toc_topbar').outerHeight()
+        offset: $('#m_top_navbar').outerHeight() + $('#m_toc_topbar').outerHeight(),
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       });
+      scrollspyInitialized = true;
     }
   }
 
@@ -65,18 +68,19 @@ var mReflow = function () {
       tocSidebar.find('.nav-collapsible').addClass('collapse').attr('aria-expanded', 'false');
     }
 
-    // apply scrollspy to #m_toc_sidebar
-    $body.scrollspy({
-      target: '#m_toc_sidebar',
-      offset: 0
+    // apply scrollspy to #m_toc_sidebar_nav
+    $('#m_body_content').scrollspy({
+      target:tocSidebar,
+      offset:0,
+      rootMargin:'0px',
+      threshold: [0, 0.25, 0.5, 0.75, 1]
     });
-
+    scrollspyInitialized = true;
 
     // add auto collapse on scrollspy
     if (tocSidebar.hasClass('toc-sidebar-autoexpandable')) {
-
-      $window.on('activate.bs.scrollspy', function () {
-        var active = $('#m_toc_sidebar a.active');
+        $('#m_body_content').on('activate.bs.scrollspy', function (e) {
+        var active = $(e.relatedTarget);
         var collapsePanel = active.parent().next('ul.nav.nav-collapsible');
         tocSidebar.find('ul.nav.nav-collapsible').each(function (index, element) {
           var el = $(element);
@@ -220,6 +224,10 @@ var mReflow = function () {
       $('.navside-menu li').removeClass('active');
       // activate current item
       item.addClass('active');
+      if (bootstrap.ScrollSpy.getInstance($('#m_body_content'))) {
+        $('#m_body_content').scrollspy('dispose');
+      }
+      scrollspyInitialized = false;
 
       scrollTo();
       initCarousel();
@@ -399,13 +407,14 @@ var mReflow = function () {
   }
 
   function initTooltip() {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-bs-toggle="tooltip"]').tooltip();
   }
 
   function refreshScrollSpy() {
-    $('[data-spy="scroll"]').each(function () {
-      var $spy = $(this).scrollspy('refresh')
-    });
+    if (!scrollspyInitialized) {
+      return;
+    }
+    $('#m_body_content').scrollspy('refresh');
   }
 
   return {
@@ -470,3 +479,79 @@ $(document).ready(function () {
     return this;
   };
 })(jQuery, window, document);
+
+
+(() => {
+  'use strict'
+
+  const getStoredTheme = () => localStorage.getItem('theme')
+  const setStoredTheme = theme => localStorage.setItem('theme', theme)
+
+  const getPreferredTheme = () => {
+    const storedTheme = getStoredTheme()
+    if (storedTheme) {
+      return storedTheme
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+
+  const setTheme = theme => {
+    if (theme === 'auto') {
+      document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+    } else {
+      document.documentElement.setAttribute('data-bs-theme', theme)
+    }
+  }
+
+  setTheme(getPreferredTheme())
+
+  const showActiveTheme = (theme, focus = false) => {
+    const themeSwitcher = document.querySelector('#m_button_theme_switcher')
+
+    if (!themeSwitcher) {
+      return
+    }
+
+    const themeSwitcherText = document.querySelector('#m_theme_text')
+    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+
+
+    // remove active class from all buttons and set aria-pressed to false
+    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+      element.classList.remove('active')
+      element.setAttribute('aria-pressed', 'false')
+    })
+
+    // set active class to the button corresponding to active theme and set aria-pressed to true
+    btnToActive.classList.add('active')
+    btnToActive.setAttribute('aria-pressed', 'true')
+    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`
+    themeSwitcher.setAttribute('aria-label', themeSwitcherLabel)
+
+    if (focus) {
+      themeSwitcher.focus()
+    }
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const storedTheme = getStoredTheme()
+    if (storedTheme !== 'light' && storedTheme !== 'dark') {
+      setTheme(getPreferredTheme())
+    }
+  })
+
+  window.addEventListener('DOMContentLoaded', () => {
+    showActiveTheme(getPreferredTheme())
+
+    document.querySelectorAll('[data-bs-theme-value]')
+      .forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const theme = toggle.getAttribute('data-bs-theme-value')
+          setStoredTheme(theme)
+          setTheme(theme)
+          showActiveTheme(theme, true)
+        })
+      })
+  })
+})()

@@ -6,7 +6,6 @@ Navbar is Bootstrap responsive navigation header component fixed to the top of p
 
 ## Usage
 
-support {{< badge color="primary" text="v2.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 ```xml
@@ -25,25 +24,23 @@ element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" te
 </navbar>
 ```
 
-- **filterMenu** {{< badge color="light" text="v2.0" />}} - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
+- **filterMenu** - applies the regular expression to menu names and `ref` attributes. If the regular expression matches, adds the menu to the top navigation.
     expression matches, adds the menu to the top navigation.
-- **cssClass** {{< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
-- **theme** {{< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap theme . `light` is the default value if value is empty or `null`.
-- **background** {{< badge color="light" text="v2.0" />}} - Sets the css class with built-in Bootstrap colour theme. `light` is the default value if value is empty or `null`.
-- **center** {{< badge color="light" text="v2.1" />}} - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
-- **alignMenu** {{< badge color="light" text="v2.1" />}} - Sets the alignment of menu to the `left` or pushing to the `right` (**default**).
+- **cssClass** - Sets the css class with built-in Bootstrap support. The default value is `null`.
+- **theme** - Sets the css class with built-in Bootstrap theme.
+- **background** - Sets the css class with built-in Bootstrap colour theme.
+- **center** - Sets the centering of the component with values `true`  (**default**) or `false`. `center` use bootstrap containers otherwise use default bootstrap alignment.
+- **alignMenu** - Sets the alignment of menu to the `left` or pushing to the `right` (**default**).
 
 ### Image element
 
 Add image to the brand part of navbar.
 
-- **src** {{< badge color="light" text="v2.0" />}} - the path location of image to use.
-- **width** {{< badge color="light" text="v2.0" />}} - the width of image, 30 is the default if value is empty or `null`.
-- **height** {{< badge color="light" text="v2.0" />}} - the height of image, 30 is the default if value is empty or `null`.
+- **src** - the path location of image to use.
+- **width** - the width of image, 30 is the default if value is empty or `null`.
+- **height** - the height of image, 30 is the default if value is empty or `null`.
 
 ### Additional Menu
-
-{{< badge color="primary" text="New in v2.4" />}}
 
 It is placed on the right of the navbar component. The additional menu is set using `<additionalMenu>` element:
 
@@ -51,9 +48,9 @@ It is placed on the right of the navbar component. The additional menu is set us
 <navbar>
     <additionalMenu>
         <![CDATA[
-          <ul class="navbar-nav navbar-additional ml-md-auto">
+          <ul class="navbar-nav navbar-additional ms-md-auto">
             <li class="nav-item dropdown">
-            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 v2.3
             </a>
             <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
@@ -94,7 +91,6 @@ Here is a table containing different configuration of Navbar.
 
 ## Brand
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 The brand text (or image) appearing in the left of the top navigation bar can be customised using
@@ -107,8 +103,8 @@ The brand text (or image) appearing in the left of the top navigation bar can be
 </brand>
 ```
 
-- **name** element sets the text of the top-left brand
-- **href** element sets the link to open when the brand text is clicked
+- **name** - element sets the text of the top-left brand
+- **href** - element sets the link to open when the brand text is clicked
 
 Note that the `<name>` element can be used to embed custom HTML content. To do that, use `CDATA`
 element as the contents of `<name>` (writing HTML without `CDATA` will not work):

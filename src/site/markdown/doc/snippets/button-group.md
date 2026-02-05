@@ -1,14 +1,14 @@
 # Button Group
 
-{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ml-1" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ms-1" />}}
 
-[Based on Bootstrap Button Group page](https://getbootstrap.com/docs/4.6/components/button-group/)
+[Based on Bootstrap Button Group page](https://getbootstrap.com/docs/5.3/components/button-group/)
 
 Group a series of buttons together on a single line with the button group, and super-power them with JavaScript.
 
 ## Basic example
 
-Wrap a series of buttons with `.btn` in `.btn-group`. Add on optional JavaScript radio and checkbox style behavior with [our buttons plugin](https://getbootstrap.com/docs/4.6/components/buttons/#button-plugin).
+Wrap a series of buttons with `.btn` in `.btn-group`. Add on optional JavaScript radio and checkbox style behavior with [our buttons plugin](https://getbootstrap.com/docs/5.3/components/buttons/#button-plugin).
 
 {{% example %}}
 {{< preview-section >}}
@@ -238,7 +238,7 @@ Place a `.btn-group` within another `.btn-group` when you want dropdown menus mi
 {{< bs-button color="secondary" >}}1{{< /bs-button >}}
 {{< bs-button color="secondary" >}}2{{< /bs-button >}}
 {{< layout class="btn-group" role="group" >}}
-{{< bs-button color="secondary" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >}}
+{{< bs-button color="secondary" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >}}
 Dropdown
 {{< /bs-button >}}
 {{% dropdown %}}
@@ -258,7 +258,7 @@ Dropdown
 {{< bs-button color="secondary" >}}1{{< /bs-button >}}
 {{< bs-button color="secondary" >}}2{{< /bs-button >}}
 {{< layout class="btn-group" role="group" >}}
-{{< bs-button color="secondary" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >}}
+{{< bs-button color="secondary" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >}}
 Dropdown
 {{< /bs-button >}}
 {{% dropdown %}}
@@ -298,7 +298,7 @@ Make a set of buttons appear vertically stacked rather than horizontally. **Spli
 {{< bs-button color="secondary" >}}Button{{< /bs-button >}}
 {{< bs-button color="secondary" >}}Button{{< /bs-button >}}
 {{< layout class="btn-group" role="group" >}}
-{{< bs-button color="secondary" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >}}
+{{< bs-button color="secondary" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >}}
 Dropdown
 {{< /bs-button >}}
 {{% dropdown %}}

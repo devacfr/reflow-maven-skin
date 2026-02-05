@@ -12,7 +12,9 @@ WARRANTIES OR CONDITIONS OF
   ANY KIND, either express or implied. See the License for the specific language governing
 permissions and limitations under
   the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -66,15 +68,13 @@ permissions and limitations under
                   <artifactId>anchorjs</artifactId>
                   <version>${anchorJsVesrion}</version>
                 </artifactItem>
+                <dependency>
+                  <groupId>org.webjars</groupId>
+                  <artifactId>prismjs</artifactId>
+                  <version>${prismJsVersion}</version>
+                </dependency>
               </artifactItems>
             </configuration>
-          </execution>
-          <execution>
-            <id>unpack-js-project-deps</id>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <phase>generate-resources</phase>
           </execution>
         </executions>
       </plugin>
@@ -99,6 +99,7 @@ permissions and limitations under
             <configuration>
               <outputDirectory>${project.build.outputDirectory}</outputDirectory>
               <resources>
+                <!-- Extract AnchorJs dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/META-INF/resources/webjars/anchorjs/${anchorJsVesrion}</directory>
@@ -107,6 +108,7 @@ permissions and limitations under
                     <include>anchor.min.js</include>
                   </includes>
                 </resource>
+                <!-- Extract Bootstrap dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/META-INF/resources/webjars/bootstrap/${bootstrapVersion}</directory>
@@ -115,6 +117,16 @@ permissions and limitations under
                     <include>js/bootstrap.min.js</include>
                   </includes>
                 </resource>
+                <!-- Extract Bootstrap-icons dependencies -->
+                <resource>
+                  <directory>
+                    ${project.build.directory}/dependency/bootstrap-icons</directory>
+                  <includes>
+                    <include>css/bootstrap-icons.min.css</include>
+                    <include>css/fonts/*</include>
+                  </includes>
+                </resource>
+                <!-- Extract Popper.js dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/META-INF/resources/webjars/popper.js/${popperVersion}/umd</directory>
@@ -123,6 +135,7 @@ permissions and limitations under
                     <include>popper.min.js</include>
                   </includes>
                 </resource>
+                <!-- Extract jQuery dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/META-INF/resources/webjars/jquery/${jqueryVersion}</directory>
@@ -131,6 +144,7 @@ permissions and limitations under
                     <include>jquery.min.js</include>
                   </includes>
                 </resource>
+                <!-- Extract Highlight.js dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/META-INF/resources/webjars/highlightjs/${highlightJsVersion}</directory>
@@ -141,6 +155,7 @@ permissions and limitations under
                     <include>highlight.min.js</include>
                   </includes>
                 </resource>
+                <!-- Extract FontAwesome dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web/css</directory>
@@ -149,6 +164,7 @@ permissions and limitations under
                     <include>all.min.css</include>
                   </includes>
                 </resource>
+                <!-- Extract FontAwesome webfont dependencies -->
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesomeVersion}-web</directory>
@@ -178,6 +194,43 @@ permissions and limitations under
                 https://use.fontawesome.com/releases/v${fontawesomeVersion}/fontawesome-free-${fontawesomeVersion}-web.zip</url>
               <unpack>true</unpack>
               <outputDirectory>${project.build.directory}/dependency/fontawesome</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-bootstrap-icons-css</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>https://cdn.jsdelivr.net/npm/bootstrap-icons@${bootstrapIconsVersion}/font/bootstrap-icons.min.css</url>
+              <unpack>false</unpack>
+              <outputDirectory>${project.build.directory}/dependency/bootstrap-icons/css</outputDirectory>
+            </configuration>
+          </execution>
+           <execution>
+            <id>get-bootstrap-icons-fonts</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>https://cdn.jsdelivr.net/npm/bootstrap-icons@${bootstrapIconsVersion}/font/fonts/bootstrap-icons.woff</url>
+              <unpack>false</unpack>
+              <outputDirectory>${project.build.directory}/dependency/bootstrap-icons/css/fonts</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-brite-bootstrap-theme</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/brite/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/brite</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
           <execution>
@@ -324,6 +377,19 @@ permissions and limitations under
             </configuration>
           </execution>
           <execution>
+            <id>get-morph-bootstrap-theme</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/morph/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/morph</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
             <id>get-pulse-bootstrap-theme</id>
             <goals>
               <goal>wget</goal>
@@ -333,6 +399,19 @@ permissions and limitations under
               <url>
                 https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/pulse/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/pulse</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-quartz-bootstrap-theme</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/quartz/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/quartz</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>
@@ -441,6 +520,19 @@ permissions and limitations under
             </configuration>
           </execution>
           <execution>
+            <id>get-vapor-bootstrap-theme</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/vapor/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/vapor</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
             <id>get-yeti-bootstrap-theme</id>
             <goals>
               <goal>wget</goal>
@@ -450,6 +542,19 @@ permissions and limitations under
               <url>
                 https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/yeti/bootstrap.min.css</url>
               <outputDirectory>${project.build.outputDirectory}/css/themes/yeti</outputDirectory>
+              <outputFileName>bootstrap.min.css</outputFileName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>get-zephir-bootstrap-theme</id>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <url>
+                https://cdn.jsdelivr.net/npm/bootswatch@${bootswatchVersion}/dist/zephyr/bootstrap.min.css</url>
+              <outputDirectory>${project.build.outputDirectory}/css/themes/zephyr</outputDirectory>
               <outputFileName>bootstrap.min.css</outputFileName>
             </configuration>
           </execution>

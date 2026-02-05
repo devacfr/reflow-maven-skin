@@ -16,8 +16,9 @@
 ##
 #macro ( renderFooter )##
 #*  *##set( $datePosition = ${pageContext.datePosition} )##
+#*  *##set( $footer = ${pageContext.footer} )##
   <!-- Footer -->
-<footer class="footer $pageContext.footer.cssClass">
+<footer class="footer $footer.cssClass" #addAttrIf( $footer.theme , "data-bs-theme", $footer.theme)>
     <div class="container">
         <div class="row">
             ## if menus are available, display bottom navigation

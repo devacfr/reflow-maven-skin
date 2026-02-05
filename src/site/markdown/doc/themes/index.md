@@ -1,6 +1,5 @@
 # Themes
 
-support {{< badge color="primary" text="v1.0" />}} <br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 Reflow skin builds on [Twitter Bootstrap][bootstrap] and supports predefined and custom
@@ -52,6 +51,18 @@ There are several options for the `<theme>` value:
 {{% card class="h-100" %}}
 <!--
     <card-body>
+        <a href="themes/bootswatch-brite.html" class="stretched-link"><img src="../images/doc/bootswatch-brite.png" class="img-fluid" /></a>
+        <h5 class="card-title no-anchor"><a href="themes/bootswatch-brite.html">Brite</a></h5>
+        <pre><code>&lt;theme&gt;bootswatch-brite&lt;/theme&gt;</code></pre>
+    </card-body>
+-->
+{{% /card  %}}
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+{{% card class="h-100" %}}
+<!--
+    <card-body>
         <a href="themes/bootswatch-cerulean.html" class="stretched-link"><img src="../images/doc/bootswatch-cerulean.png" class="img-fluid" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-cerulean.html">Cerulean</a></h5>
         <pre><code>&lt;theme&gt;bootswatch-cerulean&lt;/theme&gt;</code></pre>
@@ -67,6 +78,18 @@ There are several options for the `<theme>` value:
         <a href="themes/bootswatch-cosmo.html" class="stretched-link"><img src="../images/doc/bootswatch-cosmo.png" class="img-fluid" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-cosmo.html">Cosmo</a></h5>
         <pre><code>&lt;theme&gt;bootswatch-cosmo&lt;/theme&gt;</code></pre>
+    </card-body>
+-->
+{{% /card  %}}
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+{{% card class="h-100" %}}
+<!--
+    <card-body>
+        <a href="themes/bootswatch-cyborg.html" class="stretched-link"><img src="../images/doc/bootswatch-cyborg.png" class="img-fluid" /></a>
+        <h5 class="card-title no-anchor"><a href="themes/bootswatch-cyborg.html">Cyborg</a></h5>
+        <pre><code>&lt;theme&gt;bootswatch-cyborg&lt;/theme&gt;</code></pre>
     </card-body>
 -->
 {{% /card  %}}
@@ -172,9 +195,33 @@ There are several options for the `<theme>` value:
 {{% card class="h-100" %}}
 <!--
     <card-body>
+        <a href="themes/bootswatch-morph.html" class="stretched-link"><img src="../images/doc/bootswatch-morph.png" class="img-fluid" /></a>
+        <h5 class="card-title no-anchor"><a href="themes/bootswatch-morph.html">Morph</a></h5>
+        <pre><code>&lt;theme&gt;bootswatch-morph&lt;/theme&gt;</code></pre>
+    </card-body>
+-->
+{{% /card  %}}
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+{{% card class="h-100" %}}
+<!--
+    <card-body>
         <a href="themes/bootswatch-pulse.html" class="stretched-link"><img src="../images/doc/bootswatch-pulse.png" class="img-fluid" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-pulse.html">Pulse</a></h5>
         <pre><code>&lt;theme&gt;bootswatch-pulse&lt;/theme&gt;</code></pre>
+    </card-body>
+-->
+{{% /card  %}}
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+{{% card class="h-100" %}}
+<!--
+    <card-body>
+        <a href="themes/bootswatch-quartz.html" class="stretched-link"><img src="../images/doc/bootswatch-quartz.png" class="img-fluid" /></a>
+        <h5 class="card-title no-anchor"><a href="themes/bootswatch-quartz.html">Quartz</a></h5>
+        <pre><code>&lt;theme&gt;bootswatch-quartz&lt;/theme&gt;</code></pre>
     </card-body>
 -->
 {{% /card  %}}
@@ -280,9 +327,33 @@ There are several options for the `<theme>` value:
 {{% card class="h-100" %}}
 <!--
     <card-body>
+        <a href="themes/bootswatch-vapor.html" class="stretched-link"><img src="../images/doc/bootswatch-vapor.png" class="img-fluid" /></a>
+        <h5 class="card-title no-anchor"><a href="themes/bootswatch-vapor.html">Vapor</a></h5>
+        <pre><code>&lt;theme&gt;bootswatch-vapor&lt;/theme&gt;</code></pre>
+    </card-body>
+-->
+{{% /card  %}}
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+{{% card class="h-100" %}}
+<!--
+    <card-body>
         <a href="themes/bootswatch-yeti.html" class="stretched-link"><img src="../images/doc/bootswatch-yeti.png" class="img-fluid" /></a>
         <h5 class="card-title no-anchor"><a href="themes/bootswatch-yeti.html">Yeti</a></h5>
         <pre><code>&lt;theme&gt;bootswatch-yeti&lt;/theme&gt;</code></pre>
+    </card-body>
+-->
+{{% /card  %}}
+{{< /column >}}
+
+{{< column class="mb-4" >}}
+{{% card class="h-100" %}}
+<!--
+    <card-body>
+        <a href="themes/bootswatch-zephyr.html" class="stretched-link"><img src="../images/doc/bootswatch-zephyr.png" class="img-fluid" /></a>
+        <h5 class="card-title no-anchor"><a href="themes/bootswatch-zephyr.html">Zephyr</a></h5>
+        <pre><code>&lt;theme&gt;bootswatch-zephyr&lt;/theme&gt;</code></pre>
     </card-body>
 -->
 {{% /card  %}}

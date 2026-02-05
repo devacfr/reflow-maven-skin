@@ -1,7 +1,5 @@
 # Working with Snippets
 
-{{< badge color="primary" text="New in v2.4" />}}
-
 Markdown is simple content format, but there are times when Markdown falls short. Often, authors are forced to add raw HTML to Markdown content. Reflow created snippets to get around these limitations.
 A `shortcode` and `web component` are a simple snippet inside a page that Reflow will render using a predefined template. This feature is specific at Markdown (not test with other format for the moment).
 

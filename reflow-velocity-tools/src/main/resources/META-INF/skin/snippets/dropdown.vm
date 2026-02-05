@@ -49,7 +49,7 @@
 #if(${snippet.title})
     #if ($type == "single")
     <div class="dropdown ${direction}">
-      <button type="button" class="${class} dropdown-toggle" #addAttributes( ${snippet.dataAttributes} ) data-toggle="dropdown" aria-expanded="false">
+      <button type="button" class="${class} dropdown-toggle" #addAttributes( ${snippet.dataAttributes} ) data-bs-toggle="dropdown" aria-expanded="false">
         ${snippet.title}
       </button>
     #elseif ($type == "split")
@@ -58,13 +58,13 @@
       <button type="button" class="${class}">
         ${snippet.title}
       </button>
-      <button type="button" class="${class} dropdown-toggle dropdown-toggle-split" #addAttributes( ${snippet.dataAttributes} ) data-toggle="dropdown" aria-expanded="false">
+      <button type="button" class="${class} dropdown-toggle dropdown-toggle-split" #addAttributes( ${snippet.dataAttributes} ) data-bs-toggle="dropdown" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
 #*  *##else##
     <div class="btn-group">
       <div class="btn-group ${direction}">
-      <button type="button" class="${class} dropdown-toggle dropdown-toggle-split" #addAttributes( ${snippet.dataAttributes} ) data-toggle="dropdown" aria-expanded="false">
+      <button type="button" class="${class} dropdown-toggle dropdown-toggle-split" #addAttributes( ${snippet.dataAttributes} ) data-bs-toggle="dropdown" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
 #*  *##end##

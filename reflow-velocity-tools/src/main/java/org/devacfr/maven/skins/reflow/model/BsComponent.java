@@ -32,14 +32,14 @@ public abstract class BsComponent extends Component {
   private final String component;
 
   /** */
-  private String theme = "light";
+  private String theme;
 
   /** */
-  private String background = "light";
+  private String background;
 
   /**
    * Default constructor.
-   * 
+   *
    * @param config
    *          a config (can not be {@code null}).
    * @param component
@@ -57,7 +57,7 @@ public abstract class BsComponent extends Component {
     if (!Strings.isNullOrEmpty(getTheme())) {
       css += component + "-" + getTheme() + " ";
     }
-    if (!Strings.isNullOrEmpty(getBackground())) {
+    if (!Strings.isNullOrEmpty(getBackground()) && !"light".equals(getBackground())) {
       css += "bg-" + getBackground() + " ";
     }
     if (!Strings.isNullOrEmpty(super.getCssClass())) {

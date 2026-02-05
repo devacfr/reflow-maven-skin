@@ -17,43 +17,94 @@
  * Outputs navbar
  *
  *###
+##
+#* Renders the theme switcher in the navbar *#
+##
+#macro( renderSwitcherTheme )##
+  <!-- theme switcher: BEGIN -->
+<ul class="navbar-nav d-flex flex-row align-items-center">
+  <li class="nav-item dropdown">
+    <button id="m_button_theme_switcher" class="btn btn-link nav-link px-2" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" >
+      <span class="svg-icon theme-dark-show" style="color: var(--bs-nav-link-color);">
+        #include("META-INF/skin/svg/theme-dark.svg")
+      </span>
+      <span class="svg-icon theme-light-show" style="color: var(--bs-nav-link-color);">
+        #include("META-INF/skin/svg/theme-light.svg")
+      </span>
+      <span class="d-lg-none ms-2" id="m_theme_text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="m_theme_text">
+      <li>
+      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+        <span class="svg-icon me-2">
+          #include("META-INF/skin/svg/theme-light.svg")
+        </span>
+        Light
+      </button>
+      </li>
+      <li>
+      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+        <span class="svg-icon me-2">
+          #include("META-INF/skin/svg/theme-dark.svg")
+        </span>
+        Dark
+      </button>
+      </li>
+      <li>
+      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+        <span class="svg-icon me-2">
+        #include("META-INF/skin/svg/theme-system.svg")
+        </span>
+        System
+      </button>
+      </li>
+    </ul>
+  </li>
+</ul>
+<!-- theme switcher: END -->
+#end
+##
+##
+#* Outputs the navbar if it is defined in the page context *#
+##
 #macro ( renderNavbar )##
-    <nav id="m_top_navbar" class="navbar navbar-expand-lg fixed-top ${pageContext.navbar.cssClass}" role="navigation">
-#*  *##if ( $pageContext.navbar.center )<div class="container">#end##
+#*  *##set( $navbar = $pageContext.navbar )##
+    <nav id="m_top_navbar" class="navbar navbar-expand-lg fixed-top ${navbar.cssClass}" #addAttrIf( $navbar.theme , "data-bs-theme", $navbar.theme) role="navigation">
+#*  *##if ( $navbar.center )<div class="container">#end##
 ##
 ## Insert brand if it is available
-#*  *##if ( $pageContext.navbar.brandHref )##
-            <a class="navbar-brand mb-0 h1" href="$pageContext.navbar.brandHref">
-#*      *##if ( $pageContext.navbar.image )##
-                <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
+#*  *##if ( $navbar.brandHref )##
+            <a class="navbar-brand mb-0 h1" href="$navbar.brandHref">
+#*      *##if ( $navbar.image )##
+                <img src="$navbar.image.src" width="$navbar.image.width" height="$navbar.image.height" class="d-inline-block" />
 #*      *##end##
-#*      *##if ( $pageContext.navbar.brandName )##
+#*      *##if ( $navbar.brandName )##
             ${pageContext.navbar.brandName}
 #*      *##end##
             </a>
 #*  *##else##
             <div class="navbar-brand mb-0 h1">
-#*      *##if ( $pageContext.navbar.image )##
-                <img src="$pageContext.navbar.image.src" width="$pageContext.navbar.image.width" height="$pageContext.navbar.image.height" class="d-inline-block" />
+#*      *##if ( $navbar.image )##
+                <img src="$navbar.image.src" width="$navbar.image.width" height="$navbar.image.height" class="d-inline-block" />
 #*      *##end##
-#*      *##if ( $pageContext.navbar.brandName )##
+#*      *##if ( $navbar.brandName )##
                 ${pageContext.navbar.brandName}
 #*      *##end##
             </div>
 #*  *##end##
 ##
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar-collapse-1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top_navbar_collapse_1" aria-controls="top-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="top-navbar-collapse-1">
-                <ul class="nav navbar-nav #if( $pageContext.navbar.alignMenu== 'right' )ml-md-auto#end">
+            <div class="collapse navbar-collapse" id="top_navbar_collapse_1">
+                <ul class="navbar-nav #if( $navbar.alignMenu== 'right' )ms-md-auto#end">
 ##
-#*  *##foreach ( $menu in $pageContext.navbar.menus)##
+#*  *##foreach ( $menu in $navbar.menus)##
 #*      *##if( $menu.menuItems.isEmpty())##
                     <li class="nav-item #if( $menu.active)active#end" >$htmlTool.link( $config, $menu.href, $menu.name, $menu.target, "nav-link" )</li>
 #*      *##else##
                     <li class="nav-item dropdown#if ( $menu.active ) active#end">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$menu.name <b class="caret"></b></a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$menu.name <b class="caret"></b></a>
                         <div class="dropdown-menu">
 #*          *##foreach ( $item in $menu.menuItems )##
 #*              *##if ($item.menuItems.isEmpty())##
@@ -79,15 +130,18 @@
 #*  *##end## foreach
 ##
                 </ul><!--/ul.navbar-nav -->
-#*  *##if ( $pageContext.navbar.additionalMenu )##
-#*      *##if ( $pageContext.navbar.additionalMenu.getChildCount() > 0 )##
-#*          *##htmlContent ( $pageContext.navbar.additionalMenu.getChildren() )##
+#*  *##if ( $navbar.additionalMenu )##
+#*      *##if ( $navbar.additionalMenu.getChildCount() > 0 )##
+#*          *##htmlContent ( $navbar.additionalMenu.getChildren() )##
 #*      *##else
-#*          *#$pageContext.navbar.additionalMenu.getValue()
+#*          *#$navbar.additionalMenu.getValue()
 #*      *##end##
 #*  *##end##
+#*  *##renderSwitcherTheme()##
             </div><!--/.nav-collapse -->
-#*  *##if ( $pageContext.navbar.center )</div> <!--/.container -->#end##
+#*  *##if ( $$navbar.center )
+      </div> <!--/.container -->
+#*  *##end##
     </nav> <!--/.navbar -->
 #end##
 #renderNavbar()

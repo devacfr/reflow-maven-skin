@@ -4,8 +4,7 @@ Standard Maven site allows customising the website _banner_.
 
 ## Header
 
-support {{< badge color="primary" text="v2.2" />}}<br/>
-element {{< badge color="secondary" text="reflow" />}}
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 The Header is the component displayed to top of page. If header element contains a specific html, the contained will be used instead of the generated banner text.
 
@@ -17,11 +16,11 @@ The Header is the component displayed to top of page. If header element contains
     background="bootstrap colour theme" ><![CDATA[ custom html representing the header content ]]></header>
 ```
 
-- **type** {{< badge color="light" text="v2.3" />}} - indicates the type of header.
-- **enabled** {{< badge color="light" text="v2.2" />}} - Indicates whether the header is visible. The header is displayed by default.
-- **cssClass** {{< badge color="light" text="v2.2" />}} - Sets the css class with built-in Bootstrap support. The default value is `null`.
-- **theme** {{< badge color="light" text="v2.2" />}} - Sets the css class with built-in Bootstrap theme . The default value is `null`. the prefix css theme is `header-`.
-- **background** {{< badge color="light" text="v2.2" />}} - Sets the css class with built-in Bootstrap colour theme. The default value is `null`.
+- **type** - indicates the type of header.
+- **enabled** - Indicates whether the header is visible. The header is displayed by default.
+- **cssClass** - Sets the css class with built-in Bootstrap support. The default value is `null`.
+- **theme** - Sets the css class with built-in Bootstrap theme . The default value is `null`. the prefix css theme is `header-`.
+- **background** - Sets the css class with built-in Bootstrap colour theme. The default value is `null`.
 
 ### Jumbotron Header
 
@@ -56,14 +55,14 @@ Reflow renders following html:
 ```
 
 {{< callout color="info" title="Note" level="5" >}}
-
 You can remark in example above, `theme` and `background` attributes are associated with `jumbotron` component rather the `header` container.
-
 {{< /callout >}}
 
 [header-jumbotron]: test/header-jumbotron.html
 
 ### Banner Header
+
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 The Banner Header represents the simple way to display your slogan, logo and banner to top of the page. The following [sample page][header-banner] displays the configuration below:
 
@@ -100,6 +99,8 @@ Reflow renders following html:
 [header-banner]: test/header-banner.html
 
 ### Custom Header
+
+element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 ```xml
 <header enabled="true" cssClass="text-center text-light">
@@ -143,16 +144,13 @@ descriptor instead of using `<custom><reflowSkin>`:
 ```
 
 {{< callout color="info" title="Note" level="5" >}}
-
 Before, you had the solution to display either a logo or a title. Now, you have the choice to display a logo and a title. Unlike maven fluido skin plugin, `<name>` is used to display h1 heading title. Use `alt` element instead `name`. `<name>` element can have `CDATA` element as its contents, allowing custom HTML content in the banner.
-
 {{< /callout >}}
 
 [mvn-site-banner]: http://maven.apache.org/plugins/maven-site-plugin/examples/sitedescriptor.html#Banner
 
 ## Slogan
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 The skin allows setting a website slogan in the banner. It would appear underneath the website

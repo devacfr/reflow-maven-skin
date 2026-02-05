@@ -30,9 +30,7 @@ different styles and their further options are explained below.
 
 ## ToC Top Bar
 
-support {{< badge color="primary" text="v1.0" />}} <br/>
 element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
-
 
 Top ToC displays the table of contents as a horizontal menu just below the site header. Top items provide drop-down menus for subsections. Such menu s used throughout the whole site here.
 
@@ -54,7 +52,6 @@ The ToC snaps to the top of the screen to allow easy navigation in long pages.
 
 ## ToC Sidebar
 
-support {{< badge color="primary" text="v1.0" />}} <br/>
 element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 ```xml
@@ -64,9 +61,9 @@ element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" te
      level="number">sidebar</toc>
 ```
 
-- **position** {{< badge color="light" text="v2.0" />}} - The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
-- **level** {{< badge color="light" text="v2.0" />}} - Sets the number of heading level to display. `0` allows to display all heading level (**default value**).
-- **autoExpandable** {{< badge color="light" text="v2.0" />}} - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise `false`.
-- **expanded** {{< badge color="light" text="v2.0" />}} - Sets to `true` (**default value**) to expand all menus in tree, otherwise `false` to show only 1st level Toc items.
+- **position** - The ToC can be displayed as a tree in the sidebar. This style `relative` does not snap to the page when scrolling, but scrolls with the whole page. The default position `fixed` allow to fix the position of ToC depending on where the user has scrolled. See it in action in the [sample page][toc-sidebar].
+- **level** - Sets the number of heading level to display. `0` allows to display all heading level (**default value**).
+- **autoExpandable** - Sets to `true` (**default value**) to automatically expand and collapse sub-menu on select or during scroll whenever a new item becomes activated by the scrollspy, otherwise `false`.
+- **expanded** - Sets to `true` (**default value**) to expand all menus in tree, otherwise `false` to show only 1st level Toc items.
 
 [toc-sidebar]: test/toc-sidebar.html

@@ -1,8 +1,8 @@
 # Card
 
-{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="WEB COMPONENT" class="ml-1" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="WEB COMPONENT" class="ms-1" />}}
 
-[Based on Bootstrap Card page](https://getbootstrap.com/docs/4.6/components/card/)
+[Based on Bootstrap Card page](https://getbootstrap.com/docs/5.3/components/card/)
 
 Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
 
@@ -12,9 +12,9 @@ A card is a flexible and extensible content container. It includes options for h
 
 ## Example
 
-Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no `margin` by default, so use [spacing utilities](https://getbootstrap.com/docs/4.6/utilities/spacing/) as needed.
+Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no `margin` by default, so use [spacing utilities](https://getbootstrap.com/docs/5.3/utilities/spacing/) as needed.
 
-Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various [sizing options](https://getbootstrap.com/docs/4.6/components/card/#sizing).
+Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various [sizing options](https://getbootstrap.com/docs/5.3/components/card/#sizing).
 
 {{% example %}}
 
@@ -315,7 +315,7 @@ Using the grid, wrap cards in columns and rows as needed.
 
 ### Using utilities
 
-Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.6/utilities/sizing/) to quickly set a card’s width.
+Use our handful of [available sizing utilities](https://getbootstrap.com/docs/5.3/utilities/sizing/) to quickly set a card’s width.
 
 {{% example %}}
 {{< preview-section >}}
@@ -367,7 +367,7 @@ Use our handful of [available sizing utilities](https://getbootstrap.com/docs/4.
 
 ## Text alignment
 
-You can quickly change the text alignment of any card—in its entirety or specific parts—with our [text align classes](https://getbootstrap.com/docs/4.6/utilities/text/#text-alignment).
+You can quickly change the text alignment of any card—in its entirety or specific parts—with our [text align classes](https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment).
 
 {{% example %}}
 {{< preview-section >}}

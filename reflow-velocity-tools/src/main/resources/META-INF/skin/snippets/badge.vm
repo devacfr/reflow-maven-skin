@@ -20,10 +20,10 @@
  *#
 #*  *##set( $class = "badge")
 #*  *##if( ${snippet.attrs['pill']})
-#*      *##set( $class = "$class badge-pill")
+#*      *##set( $class = "$class rounded-pill")
 #*  *##end##
 #*  *##if( ${snippet.attrs['color']})
-#*      *##set( $class = "$class badge-${snippet.attrs['color']}")
+#*      *##set( $class = "$class text-bg-${snippet.attrs['color']}")
 #*  *##end##
 #if ( ${snippet.attrs['href']} )##
 <a href="${snippet.attrs['href']}" #addHtmlAttributes( ${snippet} ${class} ) >${snippet.text}</a>

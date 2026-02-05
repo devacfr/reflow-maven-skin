@@ -25,7 +25,7 @@
   <custom>
     <reflowSkin>
       <googleAnalyticsAccountId>G-EQKQXRQ7ZR</googleAnalyticsAccountId>
-      <absoluteResourceURL>${this.site.url}</absoluteResourceURL>
+      <absoluteResourceURL>${this.url}</absoluteResourceURL>
       <localResources>true</localResources>
       <smoothScroll>true</smoothScroll>
       <theme>default</theme>
@@ -49,28 +49,20 @@
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc numberItems="6" theme="dark" background="dark" cssClass="border rounded">top</toc>
       <!-- Include the documentation and tools in the top navigation (in addition to links) -->
-      <navbar filterMenu="Documentation|Maven documentation" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="left">
+      <navbar filterMenu="Documentation|Maven documentation" cssClass="border-bottom" background="dark" theme="dark" center="true" alignMenu="left">
         <image src="$resourcePath/images/logo.svg" />
         <additionalMenu>
           <![CDATA[
-          <ul class="navbar-nav navbar-additional ml-md-auto">
-            <li class="nav-item" data-toggle="tooltip" title="GitHub Project">
-                <a href="https://github.com/devacfr/reflow-maven-skin" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-github"></i></a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" title="Twitter">
-                <a href="https://twitter.com/devacfr" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-twitter"></i></a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" title="Mail me">
-                <a href="mailto:devacfr@mac.com" class="p-1 text-secondary"><i class="fas fa-lg fa-envelope"></i></a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" title="Gitter">
-                <a href="https://gitter.im/reflow-maven-skin/public" class="p-1 text-secondary" target="_blank"><i class="fab fa-lg fa-gitter"></i></a>
-            </li>
+          <ul class="navbar-nav navbar-additional ms-md-auto d-flex flex-row align-items-center">
+            <li class="nav-item" data-bs-toggle="tooltip" title="GitHub Project"><a href="https://github.com/devacfr/reflow-maven-skin" class="nav-link p-1" target="_blank"><i class="fab fa-lg fa-github"></i></a></li>
+            <li class="nav-item" data-bs-toggle="tooltip" title="Twitter"><a href="https://twitter.com/devacfr" class="nav-link p-1" target="_blank"><i class="fab fa-lg fa-twitter"></i></a></li>
+            <li class="nav-item" data-bs-toggle="tooltip" title="Mail me"><a href="mailto:devacfr@mac.com" class="nav-link p-1"><i class="fas fa-lg fa-envelope"></i></a></li>
+            <li class="nav-item" data-bs-toggle="tooltip" title="Gitter"><a href="https://gitter.im/reflow-maven-skin/public" class="nav-link p-1" target="_blank"><i class="fab fa-lg fa-gitter"></i></a></li>
+            <li class="nav-item mx-2"><div class="vr" style="color: var(--bs-nav-link-color);"></div></li>
           </ul>
           ]]>
         </additionalMenu>
       </navbar>
-      <navside-menu theme="light" background="light" />
       <footer theme="dark" background="dark" cssClass="py-5" />
       <!-- Split menus in the bottom navigation -->
       <bottomNav>
@@ -170,128 +162,159 @@
         <doc-themes-index>
           <toc>false</toc>
         </doc-themes-index>
+        <doc-themes-bootswatch-brite>
+          <theme>bootswatch-brite</theme>
+          <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
+          <toc background="dark" theme="dark">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
+          <footer background="primary" />
+        </doc-themes-bootswatch-brite>
         <doc-themes-bootswatch-cerulean>
           <theme>bootswatch-cerulean</theme>
           <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
-          <footer theme="dark" background="dark" />
+          <toc background="dark" theme="dark">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
+          <footer background="dark" theme="dark" />
         </doc-themes-bootswatch-cerulean>
         <doc-themes-bootswatch-cosmo>
           <theme>bootswatch-cosmo</theme>
           <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="body-secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="dark" background="dark" />
         </doc-themes-bootswatch-cosmo>
         <doc-themes-bootswatch-cyborg>
           <theme>bootswatch-cyborg</theme>
           <highlightJsTheme>atelier-seaside-dark</highlightJsTheme>
           <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
-          <footer theme="dark" background="dark" />
+          <navbar background="primary" filterMenu="inherit" />
+          <footer theme="dark" background="body-secondary" />
         </doc-themes-bootswatch-cyborg>
         <doc-themes-bootswatch-darkly>
           <theme>bootswatch-darkly</theme>
           <highlightJsTheme>dark</highlightJsTheme>
           <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="light" background="primary" />
         </doc-themes-bootswatch-darkly>
         <doc-themes-bootswatch-flatly>
           <theme>bootswatch-flatly</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="light" background="primary" />
         </doc-themes-bootswatch-flatly>
         <doc-themes-bootswatch-journal>
           <theme>bootswatch-journal</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="dark" background="dark" />
         </doc-themes-bootswatch-journal>
         <doc-themes-bootswatch-litera>
           <theme>bootswatch-litera</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="dark" background="dark" />
         </doc-themes-bootswatch-litera>
         <doc-themes-bootswatch-lumen>
           <theme>bootswatch-lumen</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-lumen>
         <doc-themes-bootswatch-lux>
           <theme>bootswatch-lux</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" theme="dark" filterMenu="inherit" />
           <footer theme="light" background="light" />
         </doc-themes-bootswatch-lux>
         <doc-themes-bootswatch-materia>
           <theme>bootswatch-materia</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="light" background="light" />
         </doc-themes-bootswatch-materia>
         <doc-themes-bootswatch-minty>
           <theme>bootswatch-minty</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="light" background="light" />
         </doc-themes-bootswatch-minty>
+        <doc-themes-bootswatch-morph>
+          <theme>bootswatch-morph</theme>
+          <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
+          <toc background="secondary">top</toc>
+          <navbar background="dark"  theme="dark" filterMenu="inherit" />
+          <footer theme="dark" background="dark" />
+        </doc-themes-bootswatch-morph>
         <doc-themes-bootswatch-pulse>
           <theme>bootswatch-pulse</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" theme="dark" filterMenu="inherit" />
           <footer theme="light" background="light" />
         </doc-themes-bootswatch-pulse>
+        <doc-themes-bootswatch-quartz>
+          <theme>bootswatch-quartz</theme>
+          <header enabled="true" type="jumbotron" background="light" cssClass="text-dark"></header>
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
+          <footer theme="dark" background="dark" />
+        </doc-themes-bootswatch-quartz>
         <doc-themes-bootswatch-sandstone>
           <theme>bootswatch-sandstone</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-sandstone>
         <doc-themes-bootswatch-simplex>
           <theme>bootswatch-simplex</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-simplex>
         <doc-themes-bootswatch-sketchy>
           <theme>bootswatch-sketchy</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-sketchy>
         <doc-themes-bootswatch-slate>
           <theme>bootswatch-slate</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="dark" background="secondary" />
         </doc-themes-bootswatch-slate>
         <doc-themes-bootswatch-solar>
           <theme>bootswatch-solar</theme>
-          <toc theme="light" background="light">top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <toc background="secondary">top</toc>
+          <navbar background="primary" filterMenu="inherit" />
           <footer theme="dark" background="dark" />
         </doc-themes-bootswatch-solar>
         <doc-themes-bootswatch-spacelab>
           <theme>bootswatch-spacelab</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-spacelab>
         <doc-themes-bootswatch-superhero>
           <theme>bootswatch-superhero</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-superhero>
         <doc-themes-bootswatch-united>
           <theme>bootswatch-united</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-united>
+        <doc-themes-bootswatch-vapor>
+          <theme>bootswatch-vapor</theme>
+          <toc>top</toc>
+          <navbar background="primary" filterMenu="inherit" />
+        </doc-themes-bootswatch-vapor>
         <doc-themes-bootswatch-yeti>
           <theme>bootswatch-yeti</theme>
           <toc>top</toc>
-          <navbar theme="dark" background="primary" filterMenu="inherit" />
+          <navbar background="primary" filterMenu="inherit" />
         </doc-themes-bootswatch-yeti>
+        <doc-themes-bootswatch-zephyr>
+          <theme>bootswatch-zephyr</theme>
+          <toc>top</toc>
+          <navbar background="primary" filterMenu="inherit" />
+        </doc-themes-bootswatch-zephyr>
         <doc-reflow-documentation type="doc">
           <!-- Declare the specific nav menu -->
           <menu name="Reflow Documentation" selectFirstOnExpand="true">
@@ -304,6 +327,7 @@
             </item>
             <item name="Snippets">
               <item name="Working with Snippet" href="doc/snippets/snippet.html" />
+              <item name="Accordion" href="doc/snippets/accordion.html" />
               <item name="Alerts" href="doc/snippets/alerts.html" />
               <item name="Badge" href="doc/snippets/badge.html" />
               <item name="Breadcrumb" href="doc/snippets/breadcrumb.html" />
@@ -328,7 +352,7 @@
             <item name="Themes" href="doc/themes/index.html" />
             <item name="Multi-module Site" href="doc/multi-module.html" />
             <item name="Local Resources" href="doc/resources.html" />
-            <item name="Migration" href="doc/migration.html" />
+            <item name="Migration to v2" href="doc/migration.html" />
           </menu>
         </doc-reflow-documentation>
         <doc-get-started>
@@ -354,33 +378,33 @@
           <header type="jumbotron" background="dark" cssClass="text-light"></header>
         </doc-test-header-jumbotron>
         <doc-test-navbar-centered-right>
-          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="right">
+          <navbar filterMenu="inherit" cssClass="border-bottom" center="true" alignMenu="right">
             <image src="$resourcePath/images/logo.svg" />
           </navbar>
         </doc-test-navbar-centered-right>
         <doc-test-navbar-centered-left>
-          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="true" alignMenu="left">
+          <navbar filterMenu="inherit" cssClass="border-bottom" center="true" alignMenu="left">
             <image src="$resourcePath/images/logo.svg" />
           </navbar>
         </doc-test-navbar-centered-left>
         <doc-test-navbar-uncentered-right>
-          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="right">
+          <navbar filterMenu="inherit" cssClass="border-bottom" center="false" alignMenu="right">
             <image src="$resourcePath/images/logo.svg" />
           </navbar>
         </doc-test-navbar-uncentered-right>
         <doc-test-navbar-uncentered-left>
-          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="left">
+          <navbar filterMenu="inherit" cssClass="border-bottom" center="false" alignMenu="left">
             <image src="$resourcePath/images/logo.svg" />
           </navbar>
         </doc-test-navbar-uncentered-left>
         <doc-test-navbar-additional-menu>
-          <navbar filterMenu="inherit" theme="light" background="light" cssClass="border-bottom" center="false" alignMenu="left">
+          <navbar filterMenu="inherit" cssClass="border-bottom" center="false" alignMenu="left">
             <image src="$resourcePath/images/logo.svg" />
             <additionalMenu>
               <![CDATA[
-                <ul class="navbar-nav navbar-additional ml-md-auto">
+                <ul class="navbar-nav navbar-additional ms-md-auto">
                   <li class="nav-item dropdown">
-                  <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       v2.3
                   </a>
                   <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
@@ -424,6 +448,7 @@
         <meta name="application-name" content="Reflow Skin">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="$resourcePath/css/bootstrap-icons.min.css">
         ]]>
     </head>
 

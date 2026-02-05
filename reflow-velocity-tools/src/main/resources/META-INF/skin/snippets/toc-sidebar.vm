@@ -19,11 +19,12 @@
  *
  *###
 #macro ( renderTocSidebar )##
-#*  *##if ( $pageContext.toc.enabled && $pageContext.toc.type == "sidebar")##
-#*      *##set ( $tocItems = $pageContext.toc.tocItems )##
+#*  *##set ( $toc = $pageContext.toc )##
+#*  *##if ( $toc.enabled && $toc.type == "sidebar")##
+#*      *##set ( $tocItems = $toc.tocItems )##
 #*      *##if ( !$tocSidebarAdded )##
-            <div id="m_toc_sidebar" class="d-print-none ${pageContext.toc.cssOptions}">
-                <nav id="m_toc_sidebar_nav" class="flex-column">
+            <div id="m_toc_sidebar" class="toc-sidebar d-print-none ${toc.cssOptions}">
+                <nav id="m_toc_sidebar_nav" class="toc-sidebar-nav flex-column">
 #*          *##renderAsideTocMenu ( $tocItems )
                 </nav>
            </div>
@@ -38,10 +39,10 @@
  *###
 #macro ( renderAsideTocMenu $menus )##
 ##
-                <ul class="nav--sidebar nav flex-column flex-nowrap">
+                <ul class="nav-sidebar nav flex-column flex-nowrap">
 #*  *##foreach ( $item in $menus )
 #*      *##renderAsideTocItem ( $item 1 )
-    #end##
+#*  *##end##
                 </ul>
 #end##
 ##

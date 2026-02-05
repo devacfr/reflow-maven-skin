@@ -20,12 +20,12 @@
   ... slides ...
  {{< /carousel >}}
  *#
-<div id="${snippet.id}" class="carousel slide#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end #if( ${snippet.crossfade} == 'true' )carousel-fade#end" data-ride="carousel">
+<div id="${snippet.id}" class="carousel slide#if( ${snippet.attrs['class']} ) ${snippet.attrs['class']}#end #if( ${snippet.crossfade} == 'true' )carousel-fade#end" data-bs-ride="carousel">
 #*  *##if( ${snippet.withIndicators} == "true" )##
 #*  *##set($index = 0)##
     <ol class="carousel-indicators">
 #*      *##foreach ( $slide in ${snippet.slides} )##
-        <li data-target="#${snippet.id}" data-slide-to="$index" class="#if( $index==0 )active#end"></li>
+        <li data-bs-target="#${snippet.id}" data-bs-slide-to="$index" class="#if( $index==0 )active#end"></li>
 #*          *##set( $index = $index + 1)##
 #*      *##end##
     </ol>
@@ -33,7 +33,7 @@
   <div class="carousel-inner">
 #*  *##set ( $activeClass = ' active' )##
 #*  *##foreach( $slide in ${snippet.slides} )##
-    <div class="carousel-item$activeClass#if( ${slide.attrs['class']} ) ${slide.attrs['class']}#end" #if( ${slide.interval} )data-interval="${slide.interval}"#end >
+    <div class="carousel-item$activeClass#if( ${slide.attrs['class']} ) ${slide.attrs['class']}#end" #if( ${slide.interval} )data-bs-interval="${slide.interval}"#end >
 #*      *##if( ${slide["slide-image"]})
 #*          *##if( ${slide["slide-image"].html})
         #render_html( ${slide["slide-image"]} )
@@ -53,11 +53,11 @@
 #*  *##end##
   </div>
 #*  *##if( ${snippet.withControls} == "true" )##
-  <a class="carousel-control-prev" href="#${snippet.id}" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href="#${snippet.id}" role="button" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#${snippet.id}" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#${snippet.id}" role="button" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>

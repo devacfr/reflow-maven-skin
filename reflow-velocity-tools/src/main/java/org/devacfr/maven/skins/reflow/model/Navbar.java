@@ -93,8 +93,8 @@ public class Navbar extends BsComponent {
     }
     this.center = config.getAttributeValue(COMPONENT, "center", Boolean.class, true);
     this.alignMenu = config.getAttributeValue(COMPONENT, "alignMenu", String.class, "right");
-    this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
-    this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
+    this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, null));
+    this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, null));
     this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
     this.filterMenu = config.getAttributeValue(COMPONENT, "filterMenu", String.class, null);
     Xpp3Dom element = config.get(COMPONENT);

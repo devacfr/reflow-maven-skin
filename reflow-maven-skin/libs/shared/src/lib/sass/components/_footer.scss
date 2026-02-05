@@ -1,0 +1,130 @@
+/*
+* Copyright 2012-2026 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+@use '~bootstrap/scss/variables' as bs;
+@use '~bootstrap/scss/mixins' as mixin;
+
+:root,.footer-light,.footer[data-bs-theme=light] {
+  --rf-footer-nav-header: rgba(var(bs.$black), 0.7);
+  --rf-footer-nav-link-active: rgba(var(bs.$dark), 0.7);
+  --rf-footer-time-color: var(bs.$secondary);
+  --rf-footer-blockquote-border-left-color: var(bs.$secondary);
+}
+
+.footer-dark,.footer[data-bs-theme=dark], [data-bs-theme=dark] .footer {
+  --rf-footer-nav-header: rgba(var(bs.$white), 0.7);
+  --rf-footer-nav-link-active: var(bs.$white);
+  --rf-footer-time-color: var(bs.$secondary);
+  --rf-footer-blockquote-border-left-color: var(bs.$secondary);
+}
+
+.footer {
+  padding: 1rem;
+
+  .nav-list {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0;
+
+    >li>a {
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 3px 15px;
+    }
+    .nav-header {
+      margin-left: -15px;
+      margin-right: -15px;
+      display: block;
+      padding: 3px 15px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 20px;
+      text-transform: uppercase;
+      color: var(--rf-footer-nav-header);
+    }
+
+    >.active>a,
+    >.active>a:focus {
+    color: var(--rf-footer-nav-link-active);
+}
+
+    [class^="fas"],
+    [class*=" fas"] {
+        margin-right: 2px;
+    }
+  }
+
+  .nav {
+    li+.nav-header {
+      margin-top: 9px;
+    }
+    .nav-link {
+      padding: 0.1rem 1rem !important;
+    }
+  }
+
+  li:not(.active)>a.nav-link:hover {
+    text-decoration-line: underline;
+  }
+
+  .bottom-description {
+    display: none;
+  }
+
+  .blockquote {
+    border-left-width: 5px;
+    border-left-style: solid;
+    padding: 0px 20px;
+    font-size: 1rem !important;
+    border-left-color: var(--rf-footer-blockquote-border-left-color);
+  }
+
+  time {
+    color: var(--rf-footer-time-color);
+    font-size: .8rem;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .subfooter {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+.footer .subfooter {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+
+@include mixin.media-breakpoint-up(lg) {
+  .footer {
+    .bottom-description {
+      display: inherit;
+    }
+
+    .subfooter {
+      font-size: 1rem;
+    }
+}
+}

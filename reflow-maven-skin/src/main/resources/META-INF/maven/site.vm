@@ -19,9 +19,9 @@
 ##
 ##
 #*  *##if( $pageType == "frame" )##
-#*  *##set( $bodyContent = $config.renderSnippets( $bodyContent ) )##
-#*  *##set( $bodyContent = $pageContext.preRender() )##
-#*      *#$config.renderSnippet( "<bs-doc-content></bs-doc-content>" )##
+#*    *##set( $bodyContent = $config.renderSnippets( $bodyContent ) )##
+#*    *##set( $bodyContent = $pageContext.preRender() )##
+#*    *#$config.renderSnippet( "<bs-doc-content></bs-doc-content>" )##
 #*  *##else##
 #*      *##parse( "page-default.vm")##
 #*  *##end##

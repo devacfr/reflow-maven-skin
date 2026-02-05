@@ -1,83 +1,17 @@
-/*
- * svg bootstrap color
-*/
-.svg-icon {
-    height: 23px;
-    width: 23px
-}
-
-.svg-icon g [fill] {
-    fill: var(--blue)
-}
-
-.svg-icon.svg-icon--brand g [fill] {
-    fill: var(--brand) !important
-}
-
-.svg-icon.svg-icon--light g [fill] {
-    fill: var(--light) !important
-}
-
-.svg-icon.svg-icon--dark g [fill] {
-    fill: var(--dark) !important
-}
-
-.svg-icon.svg-icon--primary g [fill] {
-    fill: var(--primary) !important
-}
-
-.svg-icon.svg-icon--secondary g [fill] {
-    fill: var(--secondary) !important
-}
-
-.svg-icon.svg-icon--success g [fill] {
-    fill: var(--success) !important
-}
-
-.svg-icon.svg-icon--info g [fill] {
-    fill: var(--info) !important
-}
-
-.svg-icon.svg-icon--warning g [fill] {
-    fill: var(--warning) !important
-}
-
-.svg-icon.svg-icon--danger g [fill] {
-    fill: var(--danger) !important
-}
-
-.svg-icon.svg-icon--purple g [fill] {
-    fill: var(--purple) !important
-}
-
-
-.svg-icon.svg-icon--sm {
-    height: 20px;
-    width: 20px
-}
-
-.svg-icon.svg-icon--md {
-    height: 30px;
-    width: 30px
-}
-
-.svg-icon.svg-icon--lg {
-    height: 40px;
-    width: 40px
-}
-
-.svg-icon.svg-icon--xl {
-    height: 50px;
-    width: 50px
-}
-
-a.btn .svg-icon {
-    padding-bottom: 2px;
-}
-
-a.btn-primary:hover .svg-icon g [fill],
-a.btn-outline-primary:hover .svg-icon g [fill] {
-    fill: var(--light) !important;
+:root,[data-bs-theme=light] {
+  --bd-purple: #4c0bce;
+  --bd-violet: #712cf9;
+  --bd-accent: #ffe484;
+  --bd-violet-rgb: 113, 44, 249;
+  --bd-accent-rgb: 255, 228, 132;
+  --bd-pink-rgb: 214, 51, 132;
+  --bd-teal-rgb: 32, 201, 151;
+  --bd-violet-bg: var(--bd-violet);
+  --bd-toc-color: var(--bd-violet);
+  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
+  --bd-callout-link: 10, 88, 202;
+  --bd-callout-code-color: #ab296a;
+  --bd-pre-bg: var(--bs-tertiary-bg)
 }
 
 
@@ -89,9 +23,9 @@ a.btn-outline-primary:hover .svg-icon g [fill] {
 }
 
 .color-highlight:after {
-    content: "2";
+    content: "3";
     font-weight: 900;
-    color: var(--danger);
+    color: var(--bs-danger);
     position: relative;
 }
 
@@ -108,14 +42,6 @@ a.btn-outline-primary:hover .svg-icon g [fill] {
 BODY {
     padding-top: 59px;
 }
-
-
-h2,
-h3 {
-    margin-top: 2rem;
-    margin-bottom: 1.6rem;
-}
-
 
 
 /*
@@ -189,13 +115,13 @@ h3 {
 
 .footer .footer--news {
     border-radius: 5px;
-    border-color: var(--secondary);
+    border-color: var(--bs-secondary);
     border-width: 1px;
     border-style: dashed;
 }
 
 .footer--news a {
-    color: var(--yellow);
+    color: var(--bs-yellow);
 }
 
 /*
@@ -207,7 +133,7 @@ h3 {
     font-size: 21.6px
 }
 
-.header-highlight .svg-icon--highlight {
+.header-highlight .svg-icon-highlight {
     height: 80%;
     width: 80%;
 }
@@ -219,7 +145,7 @@ h3 {
 
 .header-highlight h2 {
     font-size: 46px;
-    border-left: 8px solid var(--secondary);
+    border-left: 8px solid var(--bs-secondary);
     padding: 10px 15px;
     margin-bottom: 25px
 }
@@ -227,22 +153,16 @@ h3 {
 
 .header-highlight .text-right h2 {
     border-left: none;
-    border-right: 8px solid var(--secondary);
+    border-right: 8px solid var(--bs-secondary);
+    text-align: right;
 }
 
-
-.header-highlight.about {
-    margin-bottom: 0;
-}
 
 .header-highlight.general {
     font-size: 18px
 }
 
-.header-highlight.general .svg-icon--highlight {
-    height: 100px;
-    width: 100px;
-}
+
 
 .header-highlight.general img {
     max-height: 125px;
@@ -252,60 +172,72 @@ h3 {
 
 .header-highlight.responsive-layout {
     margin-bottom: 0;
-    background-color: #eee
+    background-color: var(--bs-tertiary-bg)
+}
+
+
+.header-highlight.responsive-layout .svg-icon-highlight svg {
+    height: 80%;
+    width: 80%;
+}
+
+
+[data-bs-theme=dark] {
+  --bd-violet: #9561fb;
+  --bd-violet-bg: #712cf9;
+  --bd-toc-color: var(--bs-emphasis-color);
+  --bd-sidebar-link-bg: rgba(85, 33, 187, .5);
+  --bd-callout-link: 110, 168, 254;
+  --bd-callout-code-color: #e685b5;
+  --bd-pre-bg: #1b1f22
 }
 
 /*
  * callout from bootstrap
 */
 .bd-callout {
-    padding: 1.25rem;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid #eee;
-    border-left-width: .25rem;
-    border-radius: .25rem;
+  --bs-link-color-rgb: var(--bd-callout-link);
+  --bs-code-color: var(--bd-callout-code-color);
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--bd-callout-color, inherit);
+  background-color: var(--bd-callout-bg, var(--bs-gray-100));
+  border-left: .25rem solid var(--bd-callout-border, var(--bs-gray-300))
 }
 
 .bd-callout h4 {
-    margin-top: 0;
-    margin-bottom: .25rem;
+  margin-bottom: .25rem
 }
 
-.bd-callout p:last-child {
-    margin-bottom: 0;
-}
-
-.bd-callout code {
-    border-radius: .25rem;
+.bd-callout>:last-child {
+  margin-bottom: 0
 }
 
 .bd-callout+.bd-callout {
-    margin-top: -.25rem;
+  margin-top: -.25rem
+}
+
+.bd-callout .highlight {
+  background-color: #0000000d
 }
 
 .bd-callout-info {
-    border-left-color: var(--info);
-}
-
-.bd-callout-info h4 {
-    color: var(--info);
+  --bd-callout-color: var(--bs-info-text-emphasis);
+  --bd-callout-bg: var(--bs-info-bg-subtle);
+  --bd-callout-border: var(--bs-info-border-subtle)
 }
 
 .bd-callout-warning {
-    border-left-color: var(--warning);
-}
-
-.bd-callout-warning h4 {
-    color: var(--warning);
+  --bd-callout-color: var(--bs-warning-text-emphasis);
+  --bd-callout-bg: var(--bs-warning-bg-subtle);
+  --bd-callout-border: var(--bs-warning-border-subtle)
 }
 
 .bd-callout-danger {
-    border-left-color: var(--danger);
-}
-
-.bd-callout-danger h4 {
-    color: var(--danger);
+  --bd-callout-color: var(--bs-danger-text-emphasis);
+  --bd-callout-bg: var(--bs-danger-bg-subtle);
+  --bd-callout-border: var(--bs-danger-border-subtle)
 }
 
 /*
@@ -385,9 +317,23 @@ h3 {
   display: block
 }
 
+
+.bd-subtitle {
+  font-size: calc(1.275rem + .3vw);
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1200px) {
+  .bd-subtitle {
+    font-size:1.5rem
+  }
+}
+
+
 /*
  * highlight code block
 */
-.highlight .highlight-code pre{
+.highlight .highlight-code pre {
     margin-bottom: 0 !important;
 }

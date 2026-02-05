@@ -48,6 +48,10 @@ case $i in
     skipTests=true
     shift
     ;;
+    -p|--report)
+    maven_profiles="$( add_mvn_profile "${maven_profiles}" "reporting" )"
+    shift
+    ;;
     -X|--debug)
     maven_args="${maven_args} --debug"
     shift

@@ -6,7 +6,6 @@ This page lists various general configuration options for Reflow Maven skin.
 
 ### Generate or set short title
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 Short title is used in site breadcrumbs and other places. In some cases it is created by Maven site (e.g. when set in APT), etc. In other cases, however, it is missing - a glaring omission from Markdown pages.
@@ -24,7 +23,6 @@ Reflow skin provides a couple options to circumvent this, either generate or set
 
 ### Custom page title
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}} {{< badge color="info" text="component" />}}
 
 By default, the page title is generated from the project name and its short title. The skin allows setting own page title, e.g. to allow for titles such as "_My Page | My Super Website_", etc.
@@ -79,7 +77,6 @@ All links from defined in [`<body><links>` element][mvn-site-links] of `site.xml
 
 ### Code highlight
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 Code highlighting can be provided for source code sections in pages using [highlight.js][highlight-js]. It detects the language automatically and provides code highlighting functionality. To enable it, use `<highlightJs>` flag:
@@ -105,7 +102,6 @@ Code highlighting theme can be changed to match your website theme. Available th
 
 ### Image previews (lightbox)
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 Reflow skin enables CSS pop-ups for image links on the website using [Lightbox 2][lightbox]. See one in action by opening [this link to an image][lightbox-test]. The previews are enabled by default but can be disabled using `<imgLightbox>` flag:
@@ -123,7 +119,6 @@ Reflow skin enables CSS pop-ups for image links on the website using [Lightbox 2
 
 ### Smooth scroll
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of contents links). Smooth scrolling can be disabled using `<smoothScroll>` flag:
@@ -137,7 +132,6 @@ Reflow skin enables smooth scrolling for in-page navigation (e.g. for table of c
 
 ### Anchor Link (AnchorJS)
 
-support {{< badge color="primary" text="v2.3" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 Reflow skin enables deep anchor links heading elements in body section. AnchorJS can be disabled using `<anchorJS>` flag:
@@ -161,7 +155,6 @@ The generated Maven site code is updated by default, e.g. update CSS of generate
 
 ### Bootstrap icons
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 To match [Bootstrap][bootstrap] themes, Reflow skin replaces some icons used by Maven site with corresponding Bootstrap icons, e.g. in change log page and others:
@@ -182,7 +175,6 @@ This can be disabled using `bootstrapIcons` flag:
 
 ### HTML5-style anchors
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 Anchors (links to page elements) in HTML5 are defined using `id` attribute on any element.
@@ -198,7 +190,6 @@ to HTML5 equivalents where applicable by default. Disable with `html5Anchor` fla
 
 ## Mark page header
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 By default, the first `<h1>` or `<h2>` heading in the page body is marked as _page header_. It allows Bootstrap CSS to give it an emphasised presentation. To disable page header being marked, use the `<markPageHeader>` flag:
@@ -212,7 +203,6 @@ By default, the first `<h1>` or `<h2>` heading in the page body is marked as _pa
 
 ## Skin attribution
 
-support {{< badge color="primary" text="v1.0" />}}<br/>
 element {{< badge color="secondary" text="reflow" />}}
 
 The Reflow skin is released under the [Apache license][apache-license] and thus can be used freely. By default, a link to the skin website and the author homepage is added at the bottom of the skin: _Reflow Maven skin by devacfr_. I would appreciate if you kept the link - it will help with the popularity of the skin. If you want, it can be disabled using `<skinAttribution>` flag:

@@ -14,5 +14,7 @@
 ## limitations under the License.
 ##
 <div class="main-body">
+  <div id="m_body_content" class="body-content">
 #*  *##evaluate ( $bodyContent ) ##
+  </div>
 </div> <!-- main-body: end -->

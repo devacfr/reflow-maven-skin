@@ -17,7 +17,9 @@
     <div class="row main-body-row no-gutters">
 #*      *#$config.renderSnippet( "<navside-menu></navside-menu>" )##
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 py-md-3 px-md-4">
-            <div id="m_doc_frame" class="main-body--frame h-100">
+            <div id="m_body_content" class="body-content">
+              <div id="m_doc_frame" class="main-body--frame h-100">
+              </div>
             </div>
         </div>
     </div>

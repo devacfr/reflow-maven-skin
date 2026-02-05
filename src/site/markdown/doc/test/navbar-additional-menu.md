@@ -9,9 +9,9 @@
             <image src="$resourcePath/images/logo.svg" />
             <additionalMenu>
               <![CDATA[
-                <ul class="navbar-nav navbar-additional ml-md-auto">
+                <ul class="navbar-nav navbar-additional ms-md-auto">
                   <li class="nav-item dropdown">
-                  <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="m_versions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       v2.3
                   </a>
                   <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">

@@ -97,7 +97,7 @@
         <div class="header--banner-content" id="$id">
 #*      *### add link around image and title if href is set
 #*      *##if ( $banner.href && $banner.href != '' )##
-            <a href="$banner.href" class="stretched-link"></a>
+            <a href="$banner.href">
 #*      *##end##
 ##*      *### add image if set
 #*      *##if ( $banner.image && $banner.image.src )##
@@ -109,6 +109,9 @@
 #*      *##end##
 #*      *##if ( $banner.name )##
             <h1 class="d-inline-block">$banner.name</h1>
+#*      *##end##
+#*      *##if ( $banner.href && $banner.href != '' )##
+            </a>
 #*      *##end##
 ##
         </div>

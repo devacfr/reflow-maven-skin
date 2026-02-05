@@ -1,8 +1,8 @@
 # Badge
 
-{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ml-1" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ms-1" />}}
 
-[Based on Bootstrap Badge page](https://getbootstrap.com/docs/4.6/components/badge/)
+[Based on Bootstrap Badge page](https://getbootstrap.com/docs/5.3/components/badge/)
 
 Documentation and examples for badges, our small count and labeling component.
 

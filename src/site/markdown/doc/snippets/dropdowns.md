@@ -1,8 +1,8 @@
 # Dropdowns
 
-{{< badge color="primary" text="New in v2.4" />}}{{< badge color="info" text="SHORTCODE" class="ml-1" />}}
+{{< badge color="primary" text="New in v2.4" />}}{{< badge color="info" text="SHORTCODE" class="ms-1" />}}
 
-[Based on Bootstrap Dropdowns page](https://getbootstrap.com/docs/4.6/components/dropdowns/)
+[Based on Bootstrap Dropdowns page](https://getbootstrap.com/docs/5.3/components/dropdowns/)
 
 Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.
 
@@ -12,7 +12,7 @@ Dropdowns are toggleable, contextual overlays for displaying lists of links and 
 
 Dropdowns are built on a third party library, [Popper](https://popper.js.org/), which provides dynamic positioning and viewport detection. Be sure to include [popper.min.js](https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js) before Bootstrap’s JavaScript or use `bootstrap.bundle.min.js` / `bootstrap.bundle`.js which contains Popper. Popper isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required.
 
-If you’re building our JavaScript from source, it [requires util.js](https://getbootstrap.com/docs/4.6/getting-started/javascript/#util).
+If you’re building our JavaScript from source, it [requires util.js](https://getbootstrap.com/docs/5.3/getting-started/javascript/#util).
 
 ## Accessibility
 

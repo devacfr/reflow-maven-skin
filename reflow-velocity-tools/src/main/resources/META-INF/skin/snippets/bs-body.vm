@@ -16,16 +16,15 @@
 ##
 ## Renders the body content.
 ##
-#*  *##if ( $config.not( "markPageHeader" ) )##
-        ## do not mark page header, just print the content
-#*      *##set ( $bodyWithHeader = $content )##
-#*  *##else##
+## do not mark page header, just print the content
+#*  *##set ( $bodyWithHeader = $bodyContent )##
+#*  *##if ( !$config.not( "markPageHeader" ) )##
         ## try marking the header
-#*      *##set ( $bodyWithHeader = $htmlTool.wrap($content, "h1", '<div class="page-header"></div>', 1) )##
-#*      *##if ( $bodyWithHeader == $content )##
+#*      *##set ( $bodyWithHeader = $htmlTool.wrap($bodyContent, "h1", '<div class="page-header"></div>', 1) )##
+#*      *##if ( $bodyWithHeader == $bodyContent )##
             ## nothing's changed - try with h2
-#*          *##set ( $bodyWithHeader = $htmlTool.wrap($content, "h2", '<div class="page-header"></div>', 1) )##
+#*          *##set ( $bodyWithHeader = $htmlTool.wrap($bodyContent, "h2", '<div class="page-header"></div>', 1) )##
 #*      *##end##
 #*  *##end##
 ## output the content with marked header
-#*  *#$bodyContent
+$bodyWithHeader

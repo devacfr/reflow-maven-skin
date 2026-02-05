@@ -6,7 +6,7 @@
 {{< bs-button color="secondary" >}}1{{< /bs-button >}}
 {{< bs-button color="secondary" >}}2{{< /bs-button >}}
 {{< layout class="btn-group" role="group" >}}
-{{< bs-button color="secondary" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >}}
+{{< bs-button color="secondary" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >}}
 Dropdown
 {{< /bs-button >}}
 {{% dropdown %}}

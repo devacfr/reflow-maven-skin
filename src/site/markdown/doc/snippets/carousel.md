@@ -1,18 +1,84 @@
 # Carousel
 
-{{< badge color="primary" text="New in v2.4" />}}{{< badge color="info" text="WEB COMPONENT" class="ml-1" />}}
+{{< badge color="info" text="WEB COMPONENT" class="ms-1" />}}
 
-[Based on Bootstrap Carousel page](https://getbootstrap.com/docs/4.6/components/carousel/)
+[Based on Bootstrap Carousel page](https://getbootstrap.com/docs/5.3/components/carousel/)
 
-A slideshow component for cycling through elements—images or slides of text—like a carousel.
+{{< layout class="bd-subtitle" >}}A slideshow component for cycling through elements—images or slides of text—like a carousel.{{< /layout >}}
 
 ## How it works
 
-The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.
+* The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.
+* For performance reasons, `carousels must be manually initialized` using the [carousel constructor method](https://getbootstrap.com/docs/5.3/components/carousel/#methods). Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator.
+The only exception are [autoplaying carousels](https://getbootstrap.com/docs/5.3/components/carousel/#autoplaying-carousels) with the `data-bs-ride="carousel"` attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, `don’t explicitly initialize the same carousels with the constructor method`.
+* Nested carousels are not supported. You should also be aware that carousels in general can often cause usability and accessibility challenges.
 
-## Example
+{{< callout color="info" >}}
+The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion).
+{{< /callout >}}
 
-Carousels don’t automatically normalize slide dimensions. As such, you may need to use additional utilities or custom styles to appropriately size content. While carousels support previous/next controls and indicators, they’re not explicitly required. Add and customize as you see fit.
+## Basic examples
+
+Here is a basic example of a carousel with three slides. Note the previous/next controls.
+
+{{% example %}}
+{{< preview-section >}}
+
+{{% carousel id="carousel1" withControls="true" %}}
+<!--
+    <slide>
+        <slide-image>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
+            preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#666"></rect>
+                <text x="50%" y="50%" fill="#444" dy=".3em">First slide</text>
+            </svg>
+        </slide-image>
+    </slide>
+    <slide>
+        <slide-image>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
+            preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#666"></rect>
+                <text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text>
+            </svg>
+        </slide-image>
+    </slide>
+    <slide>
+        <slide-image>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" 
+            preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Third slide">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#666"></rect>
+                <text x="50%" y="50%" fill="#444" dy=".3em">Third slide</text>
+            </svg>
+        </slide-image>
+    </slide>
+-->
+{{% /carousel %}}
+{{< /preview-section >}}
+{{< code-section >}}
+
+```xml
+{{% carousel id="carousel" withControls="true" %}}
+<!--
+  <slide>
+    <slide-image src="..." class="d-block w-100" />
+  </slide>
+  <slide>
+    <slide-image src="..." class="d-block w-100" />
+  </slide>
+  <slide>
+    <slide-image src="..." class="d-block w-100" />
+  </slide>
+-->
+{{% /carousel %}}
+```
+
+{{< /code-section >}}
+{{% /example %}}
 
 ### Slides only
 

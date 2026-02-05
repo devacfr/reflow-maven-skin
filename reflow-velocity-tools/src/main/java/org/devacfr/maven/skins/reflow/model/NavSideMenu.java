@@ -135,8 +135,8 @@ public class NavSideMenu extends BsComponent {
           .withItems(items)
           .withSelectFirstOnSelect(
             config.getAttributeValue(MENU_COMPONENT, "selectFirstOnExpand", Boolean.class, true));
-      this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, "light"));
-      this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, "light"));
+      this.setTheme(config.getAttributeValue(COMPONENT, "theme", String.class, null));
+      this.setBackground(config.getAttributeValue(COMPONENT, "background", String.class, null));
       this.setCssClass(config.getAttributeValue(COMPONENT, "cssClass", String.class, null));
     }
     this.addCssOptions("sidenav-enabled");

@@ -1,8 +1,8 @@
 # Breadcrumb
 
-{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ml-1" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ms-1" />}}
 
-[Based on Bootstrap Breadcrumb page](https://getbootstrap.com/docs/4.6/components/breadcrumb/)
+[Based on Bootstrap Breadcrumb page](https://getbootstrap.com/docs/5.3/components/breadcrumb/)
 
 Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.
 

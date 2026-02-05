@@ -1,8 +1,8 @@
 # Buttons
 
-{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ml-1" />}}
+{{< badge color="primary" text="New in v2.4" />}} {{< badge color="info" text="SHORTCODE" class="ms-1" />}}
 
-[Based on Bootstrap Buttons page](https://getbootstrap.com/docs/4.6/components/buttons/)
+[Based on Bootstrap Buttons page](https://getbootstrap.com/docs/5.3/components/buttons/)
 
 Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
 
@@ -249,17 +249,17 @@ Do more with buttons. Control button states or create groups of buttons for more
 
 ### Toggle states
 
-Add `data-toggle="button"` to toggle a button’s `active` state. If you’re pre-toggling a button, you must manually add the `.active` class and `aria-pressed="true"` to the `<button>`.
+Add `data-bs-toggle="button"` to toggle a button’s `active` state. If you’re pre-toggling a button, you must manually add the `.active` class and `aria-pressed="true"` to the `<button>`.
 
 {{% example %}}
 {{< preview-section >}}
 
-{{< bs-button color="primary" data-toggle="button" aria-pressed="false" >}}Single toggle{{< /bs-button >}}
+{{< bs-button color="primary" data-bs-toggle="button" aria-pressed="false" >}}Single toggle{{< /bs-button >}}
 {{< /preview-section >}}
 {{< code-section >}}
 
 ```html
-{{< bs-button color="primary" data-toggle="button" aria-pressed="false" >}}Single toggle{{< /bs-button >}}
+{{< bs-button color="primary" data-bs-toggle="button" aria-pressed="false" >}}Single toggle{{< /bs-button >}}
 ```
 
 {{< /code-section >}}
@@ -267,7 +267,7 @@ Add `data-toggle="button"` to toggle a button’s `active` state. If you’re pr
 
 ## Checkbox and radio buttons
 
-Bootstrap’s `.button` styles can be applied to other elements, such as `<label>`s, to provide checkbox or radio style button toggling. Add `data-toggle="buttons"` to a `.btn-group` containing those modified buttons to enable their toggling behavior via JavaScript and add `.btn-group-toggle` to style the `<input>`s within your buttons. **Note that you can create single input-powered buttons or groups of them**.
+Bootstrap’s `.button` styles can be applied to other elements, such as `<label>`s, to provide checkbox or radio style button toggling. Add `data-bs-toggle="buttons"` to a `.btn-group` containing those modified buttons to enable their toggling behavior via JavaScript and add `.btn-group-toggle` to style the `<input>`s within your buttons. **Note that you can create single input-powered buttons or groups of them**.
 
 The checked state for these buttons is **only updated via `click` event** on the button. If you use another method to update the input—e.g., with `<input type="reset">` or by manually applying the input’s `checked` property—you’ll need to toggle `.active` on the `<label>` manually.
 
@@ -276,7 +276,7 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {{% example %}}
 {{< preview-section >}}
 
-{{< layout class="btn-group-toggle" data-toggle="buttons" >}}
+{{< layout class="btn-group-toggle" data-bs-toggle="buttons" >}}
 <!--
 <label class="btn btn-secondary active">
   <input type="checkbox" checked> Checked
@@ -287,7 +287,7 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {{< code-section >}}
 
 ```html
-{{< layout class="btn-group-toggle" data-toggle="buttons" >}}
+{{< layout class="btn-group-toggle" data-bs-toggle="buttons" >}}
 <!--
 <label class="btn btn-secondary active">
   <input type="checkbox" checked> Checked
@@ -302,7 +302,7 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {{% example %}}
 {{< preview-section >}}
 
-{{< layout class="btn-group btn-group-toggle" data-toggle="buttons" >}}
+{{< layout class="btn-group btn-group-toggle" data-bs-toggle="buttons" >}}
 <!--
 <label class="btn btn-secondary active">
   <input type="radio" name="options" id="option1" checked> Active
@@ -319,7 +319,7 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {{< code-section >}}
 
 ```html
-{{< layout class="btn-group btn-group-toggle" data-toggle="buttons" >}}
+{{< layout class="btn-group btn-group-toggle" data-bs-toggle="buttons" >}}
 <!--
 <label class="btn btn-secondary active">
   <input type="radio" name="options" id="option1" checked> Active

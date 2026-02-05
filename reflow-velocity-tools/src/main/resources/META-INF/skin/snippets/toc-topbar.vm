@@ -22,7 +22,7 @@
     <hr class="toc-separator" />
     <div id="m_toc_topbar" class="navbar navbar-expand-lg ${pageContext.toc.cssClass}" role="navigation">
       <div id="toc_scroll_target">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#m_toc_topnav_collapse" aria-controls="m_toc_topnav_collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#m_toc_topnav_collapse" aria-controls="m_toc_topnav_collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         <div id="m_toc_topnav_collapse" class="collapse navbar-collapse">
@@ -103,7 +103,7 @@
                         <li class="nav-item toplevel"><a class="nav-link" href="#$topItem.id" title="$topItem.text">$topItem.text</a></li>
 #*      *##else##
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" title="$topItem.text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$topItem.text</a>
+                            <a class="nav-link dropdown-toggle" href="#" title="$topItem.text" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$topItem.text</a>
                             <div class="dropdown-menu">
                                 <!-- Repeat the item, otherwise it is not clickable as the dropdown root -->
                                 <a class="dropdown-item" href="#$topItem.id" title="$topItem.text">$topItem.text</a>
@@ -119,7 +119,7 @@
 #*      *### put the max items into an extra dropdown
         <li class="nav-item divider-vertical"></li>
         <li class="nav-item dropdown">
-            <a class="dropdown-item" href="#" title="More&hellip;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&hellip;</a>
+            <a class="dropdown-item" href="#" title="More&hellip;" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&hellip;</a>
             <div class="dropdown-menu">
 #*          *##renderTopTocDropdown ( $tocBarMaxItems )##
             </div>

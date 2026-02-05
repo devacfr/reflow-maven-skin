@@ -123,6 +123,12 @@ ${sp}children:
 #*  *##if( $value )$attr="$value"#end##
 #end##
 ##
+#** add attribute to html element
+ *#
+#macro( addAttrIf $condition $attr $value )##
+#*  *##if( $condition && $value )$attr="$value"#end##
+#end##
+##
 #if( $snippet.attrs["debug"])##
     #debug( $snippet true 0)
 #end

@@ -1,0 +1,147 @@
+/*
+* Copyright 2012-2026 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+@use 'sass:color';
+@use '~bootstrap/scss/variables' as bs;
+@use '../mixins/scroll' as scroll;
+
+
+// Prismjs
+$prismjs-bg-dark: #151521;
+
+$prismjs-border-dark: rgba(bs.$white, 0.1);
+
+$prismjs-btn-bg-dark: color.lighten($prismjs-bg-dark, 9%);
+$prismjs-btn-bg-hover-dark: color.lighten($prismjs-bg-dark, 12%);
+
+$prismjs-btn-color-dark: rgba(bs.$white, 0.75);
+$prismjs-btn-color-hover-dark: bs.$primary;
+
+$prismjs-scrollbar-color-dark: color.lighten($prismjs-bg-dark, 12%);
+$prismjs-scrollbar-color-hover-dark: color.lighten($prismjs-bg-dark, 15%);
+
+
+:root,
+[data-bs-theme="light"] {
+
+	// Prismjs
+	--#{$prefix}prismjs-bg: #{$prismjs-bg};
+
+	--#{$prefix}prismjs-border: #{$prismjs-border};
+
+	--#{$prefix}prismjs-btn-bg: #{$prismjs-btn-bg};
+	--#{$prefix}prismjs-btn-bg-hover: #{$prismjs-btn-bg-hover};
+	--#{$prefix}prismjs-btn-color: #{$prismjs-btn-color};
+	--#{$prefix}prismjs-btn-color-hover: #{$prismjs-btn-color-hover};
+
+	--#{$prefix}prismjs-scrollbar-color: #{$prismjs-scrollbar-color};
+	--#{$prefix}prismjs-scrollbar-color-hover: #{$prismjs-scrollbar-color-hover};
+}
+
+[data-bs-theme="dark"] {
+	// Prismjs
+	--#{$prefix}prismjs-bg: #{$prismjs-bg-dark};
+
+	--#{$prefix}prismjs-border: #{$prismjs-border-dark};
+
+	--#{$prefix}prismjs-btn-bg: #{$prismjs-btn-bg-dark};
+	--#{$prefix}prismjs-btn-bg-hover: #{$prismjs-btn-bg-hover-dark};
+	--#{$prefix}prismjs-btn-color: #{$prismjs-btn-color-dark};
+	--#{$prefix}prismjs-btn-color-hover: #{$prismjs-btn-color-hover-dark};
+
+	--#{$prefix}prismjs-scrollbar-color: #{$prismjs-scrollbar-color-dark};
+	--#{$prefix}prismjs-scrollbar-color-hover: #{$prismjs-scrollbar-color-hover-dark};
+}
+
+// Highlight
+.highlight {
+    position: relative;
+    background: var(--#{$prefix}prismjs-bg);
+    border-radius: bs.$border-radius;
+    padding: 1.75rem 1.5rem 1.75rem 1.5rem;
+
+    // Tabs
+    .nav {
+        border-bottom: 1px solid var(--#{$prefix}prismjs-border);
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        margin-top: -0.25rem;
+
+        .nav-item {
+            margin-right: 0.75rem;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.35rem 1rem;
+            border-radius: bs.$border-radius;
+            color: var(--#{$prefix}prismjs-btn-color);
+            transition: bs.$transition-base;
+            background-color: transparent;
+
+            &:focus,
+            &.active {
+                transition: bs.$transition-base;
+                background-color: var(--#{$prefix}prismjs-btn-bg-hover);
+                color: var(--#{$prefix}prismjs-btn-color-hover);
+            }
+        }
+    }
+
+    .highlight-copy {
+        display: none;
+        position: absolute;
+        right: 1.75rem;
+        top: 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.35rem 1rem !important;
+        transition: bs.$transition-base;
+        background-color: var(--#{$prefix}prismjs-btn-bg);
+        color: var(--#{$prefix}prismjs-btn-color);
+
+        &:focus,
+        &:hover {
+            transition: bs.$transition-base;
+            background-color: var(--#{$prefix}prismjs-btn-bg-hover);
+            color: var(--#{$prefix}prismjs-btn-color-hover);
+        }
+    }
+
+    &:hover {
+        .highlight-copy {
+            display: flex;
+        }
+    }
+
+    // Code
+    .highlight-code {
+        pre {
+            background-color: transparent;
+            overflow: auto;
+            padding: 0;
+            margin: 0;
+
+            @include scroll.scrollbar-color( var(--#{$prefix}prismjs-scrollbar-color), var(--#{$prefix}prismjs-scrollbar-color-hover));
+
+            code[class*="language-"] {
+                padding: 0;
+                margin: 0;
+                font-size: 1rem !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,82 @@
+/*
+* Copyright 2012-2026 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+.scrolltop svg {
+    height: 20px;
+    width: 20px;
+}
+
+.scrolltop>i {
+    font-size: 1.3rem;
+    color: var(--bs-light);
+}
+
+.scrolltop g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+    fill: var(--bs-light);
+}
+
+.scrolltop:hover g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+}
+
+.scrolltop:hover>i {
+    color: var(--bs-light);
+}
+
+.scrolltop--on .scrolltop {
+    opacity: 0.3;
+    -webkit-animation: scrolltop-show-animation 0.4s ease-out 1;
+    animation: scrolltop-show-animation 0.4s ease-out 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.scrolltop--on .scrolltop:hover {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .scrolltop {
+        bottom: 30px;
+        right: 15px;
+    }
+}
+
+@-webkit-keyframes scrolltop-show-animation {
+    from {
+        margin-bottom: -15px;
+    }
+
+    to {
+        margin-bottom: 0;
+    }
+}
+
+@keyframes scrolltop-show-animation {
+    from {
+        margin-bottom: -15px;
+    }
+
+    to {
+        margin-bottom: 0;
+    }
+}

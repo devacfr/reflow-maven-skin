@@ -54,13 +54,13 @@ Breaking it down, here’s how it works:
 * Containers provide a means to center and horizontally pad your site’s contents. Use `.container` for a responsive pixel width or `.container-fluid` for `width: 100%` across all viewport and device sizes.
 * Rows are wrappers for columns. Each column has horizontal `padding` (called a gutter) for controlling the space between them. This `padding` is then counteracted on the rows with negative margins. This way, all the content in your columns is visually aligned down the left side.
 * In a grid layout, content must be placed within columns and only columns may be immediate children of rows.
-* Thanks to flexbox, grid columns without a specified `width` will automatically layout as equal width columns. For example, four instances of `.col-sm` will each automatically be 25% wide from the small breakpoint and up. See the [auto-layout columns](https://getbootstrap.com/docs/4.6/layout/grid/#auto-layout-columns) section for more examples.
+* Thanks to flexbox, grid columns without a specified `width` will automatically layout as equal width columns. For example, four instances of `.col-sm` will each automatically be 25% wide from the small breakpoint and up. See the [auto-layout columns](https://getbootstrap.com/docs/5.3/layout/grid/#auto-layout-columns) section for more examples.
 * Column classes indicate the number of columns you’d like to use out of the possible 12 per row. So, if you want three equal-width columns across, you can use `.col-4`.
 * Column `width`s are set in percentages, so they’re always fluid and sized relative to their parent element.
 * Columns have horizontal `padding` to create the gutters between individual columns, however, you can remove the `margin` from rows and `padding` from columns with `.no-gutters` on the `.row`.
-* To make the grid responsive, there are five grid breakpoints, one for each [responsive breakpoint](https://getbootstrap.com/docs/4.6/layout/overview/#responsive-breakpoints): all breakpoints (extra small), small, medium, large, and extra large.
+* To make the grid responsive, there are five grid breakpoints, one for each [responsive breakpoint](https://getbootstrap.com/docs/5.3/layout/overview/#responsive-breakpoints): all breakpoints (extra small), small, medium, large, and extra large.
 * Grid breakpoints are based on minimum width media queries, meaning **they apply to that one breakpoint and all those above it** (e.g., `.col-sm-4` applies to small, medium, large, and extra large devices, but not the first `xs` breakpoint).
-* You can use predefined grid classes (like `.col-4`) or [Sass mixins](https://getbootstrap.com/docs/4.6/layout/grid/#sass-mixins) for more semantic markup.
+* You can use predefined grid classes (like `.col-4`) or [Sass mixins](https://getbootstrap.com/docs/5.3/layout/grid/#sass-mixins) for more semantic markup.
 
 Be aware of the limitations and [bugs around flexbox](https://github.com/philipwalton/flexbugs), like the [inability to use some HTML elements as flex containers](https://github.com/philipwalton/flexbugs#flexbug-9).
 
@@ -124,7 +124,7 @@ For example, here are two grid layouts that apply to every device and viewport, 
 
 ### Equal-width multi-line
 
-Create equal-width columns that span multiple lines by inserting a `.w-100` where you want the columns to break to a new line. Make the breaks responsive by mixing `.w-100` with some [responsive display utilities](https://getbootstrap.com/docs/4.6/utilities/display/).
+Create equal-width columns that span multiple lines by inserting a `.w-100` where you want the columns to break to a new line. Make the breaks responsive by mixing `.w-100` with some [responsive display utilities](https://getbootstrap.com/docs/5.3/utilities/display/).
 
 There was a [Safari flexbox bug](https://github.com/philipwalton/flexbugs#flexbug-11) that prevented this from working without an explicit `flex-basis` or `border`. There are workarounds for older browser versions, but they shouldn’t be necessary if your target browsers don’t fall into the buggy versions.
 
@@ -619,7 +619,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns. **
 
 The gutters between columns in our predefined grid classes can be removed with `.no-gutters`. This removes the negative `margins` from `.row` and the horizontal `padding` from all immediate children columns.
 
-Here’s the source code for creating these styles. Note that column overrides are scoped to only the first children columns and are targeted via [attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors). While this generates a more specific selector, column padding can still be further customized with [spacing utilities](https://getbootstrap.com/docs/4.6/utilities/spacing/).
+Here’s the source code for creating these styles. Note that column overrides are scoped to only the first children columns and are targeted via [attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors). While this generates a more specific selector, column padding can still be further customized with [spacing utilities](https://getbootstrap.com/docs/5.3/utilities/spacing/).
 
 **Need an edge-to-edge design?** Drop the parent `.container` or `.container-fluid`.
 
@@ -729,7 +729,7 @@ Breaking columns to a new line in flexbox requires a small hack: add an element 
 
 {{< /example >}}
 
-You may also apply this break at specific breakpoints with our [responsive display utilities](https://getbootstrap.com/docs/4.6/utilities/display/).
+You may also apply this break at specific breakpoints with our [responsive display utilities](https://getbootstrap.com/docs/5.3/utilities/display/).
 
 {{< example type="row" >}}
 
@@ -812,7 +812,7 @@ There are also responsive `.order-first` and `.order-last` classes that change t
 
 ### Offsetting columns
 
-You can offset grid columns in two ways: our responsive `.offset-` grid classes and our [margin utilities](https://getbootstrap.com/docs/4.6/utilities/spacing/). Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
+You can offset grid columns in two ways: our responsive `.offset-` grid classes and our [margin utilities](https://getbootstrap.com/docs/5.3/utilities/spacing/). Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
 
 #### Offset classes
 

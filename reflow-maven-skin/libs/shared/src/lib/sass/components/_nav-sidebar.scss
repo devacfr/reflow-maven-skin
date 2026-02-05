@@ -1,0 +1,319 @@
+/*
+* Copyright 2012-2026 Christophe Friederich
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+@use '~bootstrap/scss/variables' as bs;
+
+
+:root, .nav-sidebar[data-bs-theme=dark], [data-bs-theme=dark] .nav-sidebar {
+  --rf-sidebar-link-dot-active-color: var(--bs-primary);
+  --rf-sidebar-link-link-color: rgba(var(--bs-white-rgb), 0.7);
+  --rf-sidebar-link-hover-color: var(--bs-white);
+  --rf-sidebar-link-hover-bg: transparent;
+  --rf-sidebar-link-hover-dot-color: var(--bs-primary);
+  --rf-sidebar-line-color: rgba(var(--bs-white-rgb), 0.5);
+}
+
+.nav-sidebar {
+    --rf-sidebar-link-dot-active-color: var(--bs-primary);
+    --rf-sidebar-link-link-color: rgba(var(--bs-dark-rgb), 0.7);
+    --rf-sidebar-link-hover-color: rgba(var(--bs-dark-rgb), 0.9);
+    --rf-sidebar-link-hover-bg: transparent;
+    --rf-sidebar-link-hover-dot-color: var(--bs-primary);
+    --rf-sidebar-line-color: rgba(var(--bs-dark-rgb), 0.5);
+    --rf-sidebar-font-size: 14px;
+    --rf-sidebar-link-font-size: 14px;
+    margin-left: 5px !important;
+    font-size: var(--rf-sidebar-font-size);
+}
+
+.nav-sidebar  li a.active:before {
+    content: "";
+    border-radius: 50%;
+    left: -3px;
+    top: 12px;
+    background: var(--rf-sidebar-link-dot-active-color);
+    position: absolute;
+    width: 6px;
+    height: 6px;
+}
+
+.nav-sidebar  li a {
+    font-size: inherit;
+    overflow: visible;
+    display: table-cell;
+    padding: 0 0 0 10px;
+    position: initial;
+    line-height: 20px;
+}
+
+.nav-sidebar .nav-link {
+  font-size: var(--rf-sidebar-link-font-size);
+  color: var(--rf-sidebar-link-link-color);
+}
+
+.nav-sidebar li .nav-link.active {
+    color: var(--bs-primary);
+    font-weight: 500;
+}
+
+.nav-sidebar li:hover .nav-link {
+    color: var(--rf-sidebar-link-hover-color);
+    background-color: var(--rf-sidebar-link-hover-bg);
+}
+
+.nav-sidebar li:hover a:not(.active):before {
+    content: "";
+    border-radius: 50%;
+    left: -3px;
+    top: 10px;
+    background: var(--rf-sidebar-link-hover-dot-color);
+    position: absolute;
+    width: 6px;
+    height: 6px;
+}
+
+.nav-sidebar li {
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 3px 0 3px 0px;
+    margin: 0;
+    position: relative;
+    display: list-item;
+    line-height: 16px;
+}
+
+.nav-sidebar li.h1:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 40%;
+    margin: 7px 0 4px 0;
+    background: var(--rf-sidebar-line-color);
+    clear: both;
+}
+
+.nav-sidebar li.h3 {
+    padding-left: 10px;
+}
+
+.nav-sidebar li.h4 {
+    padding-left: 20px;
+}
+
+.nav-sidebar li.h5 {
+    padding-left: 30px;
+}
+
+.nav-sidebar li:before {
+    border-left: 1px solid var(--rf-sidebar-line-color);
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+/*--------------------------------------------------
+ * navbar side
+ *--------------------------------------------------*/
+.navside-menu {
+  --rf-navside-navside-item-bg-active: var(--bs-primary);
+  --rf-navside-navside-item-color-active: var(--bs-white);
+  --rf-navside-navside-item-bg-hover: rgba(var(--bs-black-rgb), 0.5);
+  --rf-navside-navside-item-color-hover: var(--bs-white);
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -ms-flex-pack: start;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+}
+
+.navside-nav {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.navside-menu .menu-list {
+    padding-left: 15px;
+}
+
+.navside-menu .navside-brand {
+    line-height: inherit;
+    display: inline-block;
+    font-weight: 700;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navside-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.navside-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.navside-toggler:focus,
+.navside-toggler:hover {
+    text-decoration: none;
+}
+
+.navside-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.navside-toggler-icon {
+    font-style: normal;
+    font-variant: normal;
+    font-family: "Font Awesome 5 Free";
+    font-size: inherit;
+    font-weight: 900;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navside-toggler-icon:after {
+    content: "\f0c9";
+    /* align-justify */
+}
+
+.navside-menu ul,
+.navside-menu li.navside-item {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.navside-menu ul.menu-content>li.navside-item {
+    padding-left: 5px;
+}
+
+.navside-menu ul li.navside-item:not(.collapsed) .arrow:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f107";
+    /* angle-down */
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: right;
+    font-weight: 900;
+}
+
+.navside-menu ul li.navside-item.collapsed .arrow:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f105";
+    /* angle-right */
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: right;
+    font-weight: 900;
+}
+
+.navside-menu ul .sub-menu .navside-item,
+.navside-menu li.navside-item .sub-menu .navside-item {
+    border: none;
+    line-height: 28px;
+    margin-left: 0px;
+}
+
+.navside-menu ul .sub-menu li.navside-item:before,
+.navside-menu li.navside-item .sub-menu li:before {
+    font-family: "Font Awesome 5 Free";
+    content: " ";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: inherit;
+    font-weight: 900;
+    font-size: 10px;
+}
+
+.navside-menu li.navside-item a {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px 0;
+}
+
+.navside-menu li.navside-item a i {
+    width: 20px;
+    padding-right: 20px;
+}
+
+.navside-menu li.navside-item.active {
+    background-color: var(--rf-navside-navside-item-bg-active);
+    color: var(--rf-navside-navside-item-color-active);
+}
+
+
+.navside-menu li.navside-item:not(.active):hover {
+    background-color: var(--rf-navside-navside-item-bg-hover);
+    color: var(--rf-navside-navside-item-color-hover);
+}
+
+@media (max-width: 1200px) {
+    .navside-menu {
+        font-size: 0.8rem;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .navside-expand-lg {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 50px;
+        bottom: 0;
+        overflow-y: auto;
+        height: 100vh;
+        padding-bottom: 50px;
+        display: block;
+        background-color: transparent;
+    }
+
+    .navside-expand-lg .navside-collapse {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+
+    .navside-expand-lg .navside-toggler {
+        display: none;
+    }
+}
