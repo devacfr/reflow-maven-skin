@@ -1036,7 +1036,11 @@ public class SkinConfigTool extends SafeConfig implements ISkinConfig {
         projectUrl += '/';
       }
       final String currentFileDir = URITool.toURI(projectUrl).resolve(currentFileName).resolve(".").toString();
-      return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+      if (!Strings.isNullOrEmpty(absoluteResourceURL)) {
+        // If absoluteResourceURL is set, it's assumed to be a full URL path to the resources directory.
+        // The relative path is computed by relativizing the currentFileDir against the absoluteResourceURL.
+        return URITool.relativizeLink(currentFileDir, absoluteResourceURL);
+      }
     }
     return (String) velocityContext.get("relativePath");
   }
