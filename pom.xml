@@ -64,10 +64,10 @@ governing permissions and limitations under
   </modules>
 
   <scm>
-    <connection>scm:git:git@devacfr/reflow-maven-skin.git</connection>
-    <developerConnection>scm:git:git@github.com:devacfr/reflow-maven-skin.git</developerConnection>
+    <connection>scm:git:${project.scm.url}</connection>
+    <developerConnection>scm:git:${project.scm.url}</developerConnection>
+    <url>${scm_url}.git</url>
     <tag>v2.0.0</tag>
-    <url>${scm_url}/tree/master</url>
   </scm>
   <issueManagement>
     <system>${issue-system}</system>
