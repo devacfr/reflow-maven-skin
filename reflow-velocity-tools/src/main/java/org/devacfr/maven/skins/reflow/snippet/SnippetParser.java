@@ -352,7 +352,9 @@ public class SnippetParser {
           }
         }
       } catch (final Exception e) {
-        LOGGER.warn("Cannot load snippet resources from path: {}", path, e);
+        if (LOGGER.isDebugEnabled()) {
+          LOGGER.debug("Cannot load snippet resources from path: {}", path, e);
+        }
       }
     }
     return resources;
