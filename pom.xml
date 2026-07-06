@@ -151,7 +151,7 @@ governing permissions and limitations under
 
     <guava.version>32.1.2-jre</guava.version>
     <findbugs.version>3.0.2</findbugs.version>
-    <logback.version>1.5.25</logback.version>
+    <logback.version>1.5.33</logback.version>
     <jsoup.version>1.21.2</jsoup.version>
     <lombok.version>1.18.42</lombok.version>
     <slf4j.version>2.0.17</slf4j.version>
